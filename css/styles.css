@@ -46,16 +46,36 @@ body {
     cursor: pointer;
 }
 
+/* HERO con fondo de imagen */
 .hero {
-    text-align: center;
-    padding: 20px 20px;
-    background-color: #4539e69e;
-    color: white;
+  background: url("../Imagenes/header.png") no-repeat center center/cover;
+  /* Cambiá "header.png" por la imagen que quieras */
+  min-height: 30vh; /* ocupa casi toda la pantalla */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: left;
+  color: #fff; /* texto blanco para contrastar */
+  padding: 0 20px;
+  position: relative;
+}
+/* Oscurecer un poco la imagen para que el texto resalte */
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.5); /* capa semitransparente */
+  z-index: 1;
 }
 
-.hero h1 {
-    font-size: 2.5em;
-    margin-bottom: 10px;
+/* Asegura que el texto quede arriba de la capa */
+.hero h1,
+.hero p,
+.hero a {
+  position: relative;
+  z-index: 2;
 }
 
 .btn {
