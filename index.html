@@ -7,7 +7,9 @@
     <link rel="stylesheet" href="css/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="icon" href="imagenes/icono.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     <meta name="description" content="El Basurero, tu canal de reacciones en YouTube. Horarios, videos y comunidad.">
+    
 <meta name="keywords" content="El Basurero, reacciones, YouTube, directos, comunidad">
 </head>
 <body>
@@ -35,7 +37,40 @@
             <a href="https://www.youtube.com/@elbasureroedgar" class="btn">Ver en YouTube</a>
         </section>
 
-        
+       
+
+
+<!-- Carrusel -->
+<div class="swiper mySwiper">
+  <div class="swiper-wrapper">
+    <!-- Slide 1 -->
+    <div class="swiper-slide">
+      <a href="https://www.youtube.com/watch?v=VIDEO_ID1" target="_blank">
+        <img src="Imagenes/fantasma de buenos aires.webp" alt="Fantasma de Buenos Aires">
+      </a>
+    </div>
+    <!-- Slide 2 -->
+    <div class="swiper-slide">
+      <a href="https://www.youtube.com/watch?v=VIDEO_ID2" target="_blank">
+        <img src="Imagenes/el clan.webp" alt="El Clan">
+      </a>
+    </div>
+    <!-- Slide 3 -->
+    <div class="swiper-slide">
+      <a href="https://www.youtube.com/watch?v=VIDEO_ID3" target="_blank">
+        <img src="Imagenes/100 veces no debo.webp" alt="100 veces no debo">
+      </a>
+    </div>
+  </div>
+
+  <!-- Botones de navegación -->
+  <div class="swiper-button-next"></div>
+  <div class="swiper-button-prev"></div>
+
+  <!-- Paginación -->
+  <div class="swiper-pagination"></div>
+</div>
+
 
         <section class="social">
             <h2>Sígueme en mis redes</h2>
@@ -61,5 +96,24 @@
     </footer>
 
     <script src="js/scripts.js"></script>
+    <!-- Scripts de Swiper -->
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script>
+  var swiper = new Swiper(".mySwiper", {
+    loop: true,
+    autoplay: {
+      delay: 3000, // Cambia cada 3 segundos
+      disableOnInteraction: false,
+    },
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+  });
+</script>
 </body>
 </html>
