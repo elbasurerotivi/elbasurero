@@ -51,12 +51,12 @@ body {
   background: url("../Imagenes/header.png") no-repeat center center/cover;
   /* Cambiá "header.png" por la imagen que quieras */
   min-height: 30vh; /* ocupa casi toda la pantalla */
-  display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: left;
+  justify-content: right;
+  align-items: right;
+  text-align: right;
   color: #fff; /* texto blanco para contrastar */
+  text-shadow: #000;
   padding: 0 20px;
   position: relative;
 }
@@ -80,12 +80,13 @@ body {
 
 .btn {
     display: inline-block;
-    padding: 10px 20px;
-    background-color: #1d3557;
+    padding: 10px 10px;
+    background-color: #e21b1b;
     color: white;
     text-decoration: none;
     border-radius: 5px;
-    margin-top: 15px;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 .latest-videos {
