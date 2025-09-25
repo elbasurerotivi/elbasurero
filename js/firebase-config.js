@@ -1,4 +1,4 @@
-// Configuración de Firebase (ejemplo, reemplaza con la tuya)
+// Importar las funciones necesarias
 const firebaseConfig = {
   apiKey: "TU_API_KEY",
   authDomain: "tu-proyecto.firebaseapp.com",
