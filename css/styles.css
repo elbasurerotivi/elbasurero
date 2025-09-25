@@ -470,3 +470,69 @@ footer {
   height: 100%;
   border: none;
 }
+
+
+
+
+/* Página Comunidad */
+
+.forum {
+  max-width: 700px;
+  margin: 20px auto;
+  padding: 15px;
+}
+
+#forum-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+#forum-form input, 
+#forum-form textarea {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-family: 'Roboto', sans-serif;
+}
+
+#forum-form button {
+  padding: 10px;
+  border: none;
+  background: #333;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+#forum-form button:hover {
+  background: #555;
+}
+
+#messages .post {
+  background: #f9f9f9;
+  border: 1px solid #ddd;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+.post-header {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 8px;
+}
+
+.post-actions {
+  margin-top: 10px;
+}
+
+.post-actions button {
+  margin-right: 10px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: #333;
+}
+
