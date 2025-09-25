@@ -396,3 +396,21 @@ footer {
   color: #00acee;          /* opcional: cambia solo el título al pasar el mouse */
 }
 
+/* Quitar highlight de logo y menú */
+.logo a,
+.menu-toggle {
+  outline: none;
+  -webkit-tap-highlight-color: transparent; /* en móviles */
+}
+
+.logo a:focus,
+.menu-toggle:focus {
+  outline: none;
+}
+
+.logo a:active,
+.menu-toggle:active {
+  outline: none;
+}
+
+
