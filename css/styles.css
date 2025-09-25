@@ -369,3 +369,14 @@ footer {
   color: #000000;
   text-decoration: none;
 }
+/* Quitar color azul y subrayado en los links de las tarjetas */
+.video-card a {
+  text-decoration: none;   /* quita subrayado */
+  color: inherit;          /* hereda el color del texto padre */
+  display: block;          /* hace que el link ocupe toda la tarjeta */
+}
+
+.video-card a:hover h3 {
+  color: #00acee;          /* opcional: cambia solo el título al pasar el mouse */
+}
+
