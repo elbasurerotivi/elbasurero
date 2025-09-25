@@ -1,9 +1,3 @@
-// Toggle menú en móviles
-document.querySelector('.menu-toggle').addEventListener('click', () => {
-    document.querySelector('.nav-menu').classList.toggle('active');
-});
-
-
 /// header ///
 
 document.addEventListener("DOMContentLoaded", () => {
