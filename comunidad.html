@@ -7,8 +7,6 @@
   <link rel="stylesheet" href="css/styles.css">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <link rel="icon" href="Imagenes/icono.png" type="image/x-icon">
-  <meta name="description" content="El Basurero, tu canal de reacciones en YouTube. Horarios, videos y comunidad.">
-  <meta name="keywords" content="El Basurero, reacciones, YouTube, directos, comunidad">
 </head>
 <body>
   <div id="header"></div>
@@ -23,6 +21,82 @@
 
     <div id="messages"></div>
   </section>
+
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js"></script>
+
+  <script src="js/firebase-config.js"></script>
+  <script src="js/forum.js"></script>
+</body>
+</html>
+2. js/firebase-config.js
+Acá ponés tu configuración de Firebase (la obtenés desde la consola de Firebase cuando creás el proyecto).
+
+javascript
+Copiar código
+// Configuración de Firebase (ejemplo, reemplaza con la tuya)
+const firebaseConfig = {
+  apiKey: "TU_API_KEY",
+  authDomain: "tu-proyecto.firebaseapp.com",
+  databaseURL: "https://tu-proyecto-default-rtdb.firebaseio.com",
+  projectId: "tu-proyecto",
+  storageBucket: "tu-proyecto.appspot.com",
+  messagingSenderId: "123456789",
+  appId: "1:123456789:web:abcdef"
+};
+
+// Inicializar Firebase
+const app = firebase.initializeApp(firebaseConfig);
+const db = firebase.database();
+3. js/forum.js
+Este archivo maneja el envío y lectura en tiempo real.
+
+javascript
+Copiar código
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("forum-form");
+  const messagesDiv = document.getElementById("messages");
+
+  // Enviar mensaje a Firebase
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const username = document.getElementById("username").value.trim();
+    const text = document.getElementById("message").value.trim();
+
+    if (username && text) {
+      const newMessage = {
+        username,
+        text,
+        time: new Date().toLocaleString(),
+        likes: 0
+      };
+
+      db.ref("messages").push(newMessage);
+      form.reset();
+    }
+  });
+
+  // Mostrar mensajes en tiempo real
+  db.ref("messages").on("value", (snapshot) => {
+    messagesDiv.innerHTML = "";
+    snapshot.forEach((childSnapshot) => {
+      const msg = childSnapshot.val();
+      const messageEl = document.createElement("div");
+      messageEl.classList.add("post");
+
+      messageEl.innerHTML = `
+        <div class="post-header">
+          <strong>${msg.username}</strong> <span class="time">${msg.time}</span>
+        </div>
+        <p>${msg.text}</p>
+      `;
+
+      messagesDiv.prepend(messageEl);
+    });
+  });
+});
 
   <script src="js/scripts.js"></script>
   <script>
