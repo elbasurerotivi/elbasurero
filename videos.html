@@ -8,30 +8,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <header>
-    <nav class="navbar">
-      <div class="logo">
-  <a href="index.html">
-    <img src="Imagenes/logo.png" alt="El Basurero Logo">
-  </a>
-</div>
-
-      <div class="menu-toggle" id="mobile-menu">
-        <span class="bar"></span>
-        <span class="bar"></span>
-        <span class="bar"></span>
-      </div>
-              <!-- Menú de navegación -->
-        <ul class="nav-menu">
-          <li><a href="index.html">Inicio</a></li>
-          <li><a href="videos.html">Videos</a></li>
-          <li><a href="directos.html">Directos</a></li>
-          <li><a href="comunidad.html">Comunidad</a></li>
-          <li><a href="recomendaciones.html">Recomendaciones</a></li>
-          <li><a href="contacto.html">Contacto</a></li>
-        </ul>
-    </nav>
-  </header>
+  
+  <div id="header"></div>
 
   <main class="videos-page">
     <h1>Videos</h1>
@@ -71,6 +49,14 @@
   <script src="videos.js"></script>
   <script src="videos.js"></script>
   <script src="js/scripts.js"></script>
+  <script>
+  fetch("header.html")
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById("header").innerHTML = data;
+    })
+    .catch(error => console.error("Error cargando el header:", error));
+</script>
 <script>
   const videoGrid = document.getElementById("video-grid");
   const filterButtons = document.querySelectorAll(".tab-button");
