@@ -16,14 +16,55 @@
 
     
     <section class="schedule">
-    <h2>Horarios de Directos</h2>
-    <ul>
-        <li>Lunes - 20:00 Arg: Reacciones en vivo</li>
-        <li>Jueves - 21:00 Arg: Twitch</li>
-        <li>Sabados - 21:00 Arg: YouTube</li>
-        <li>Domingos - 21:00 Arg: Twitch</li>
-    </ul>
+  <h2>📅 Horarios de Directos</h2>
+  <div class="schedule-grid">
+    <div class="card">
+      <h3>Lunes</h3>
+      <p>20:00 (Arg)</p>
+      <span>Reacciones en vivo</span>
+    </div>
+    <div class="card">
+      <h3>Jueves</h3>
+      <p>21:00 (Arg)</p>
+      <span>Twitch</span>
+    </div>
+    <div class="card">
+      <h3>Sábados</h3>
+      <p>21:00 (Arg)</p>
+      <span>YouTube</span>
+    </div>
+    <div class="card">
+      <h3>Domingos</h3>
+      <p>21:00 (Arg)</p>
+      <span>Twitch</span>
+    </div>
+  </div>
 </section>
+
+<section class="last-stream">
+  <h2>📺 Último Directo</h2>
+  <div class="video-container">
+    <iframe width="100%" height="400" 
+      src="https://www.youtube.com/embed/VIDEO_ID" 
+      title="Último directo en YouTube" 
+      frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+      allowfullscreen>
+    </iframe>
+  </div>
+</section>
+
+<section class="last-stream">
+  <h2>📺 Último Directo</h2>
+  <div class="video-container">
+    <iframe
+      src="https://player.twitch.tv/?channel=TU_CANAL&parent=tu-dominio.com"
+      height="400"
+      width="100%"
+      allowfullscreen>
+    </iframe>
+  </div>
+</section>
+
 <script src="js/scripts.js"></script>
 <script>
   fetch("header.html")
