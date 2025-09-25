@@ -126,6 +126,43 @@ footer {
     text-decoration: none;
 }
 
+.social {
+  text-align: center;
+  margin: 3rem 0;
+}
+
+.social-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.social-links a {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  background: #1c1c1c;
+  color: white;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  transition: transform 0.2s ease, background 0.3s;
+}
+
+.social-links a:hover {
+  background: #ffcc00;
+  color: black;
+  transform: scale(1.05);
+}
+
+.social-links img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+
 /* Responsive para móviles */
 @media (max-width: 768px) {
     .nav-menu {
