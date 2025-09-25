@@ -4,6 +4,24 @@ document.querySelector('.menu-toggle').addEventListener('click', () => {
 });
 
 
+/// header ///
+
+  // Cargar header dinámico
+  fetch("header.html")
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById("header-placeholder").innerHTML = data;
+
+      // Vuelve a enganchar la lógica del menú hamburguesa
+      const mobileMenu = document.getElementById("mobile-menu");
+      const navMenu = document.querySelector(".nav-menu");
+
+      mobileMenu.addEventListener("click", () => {
+        mobileMenu.classList.toggle("active");
+        navMenu.classList.toggle("active");
+      });
+    })
+    .catch(err => console.error("Error cargando header:", err));
 
 
 
