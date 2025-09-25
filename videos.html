@@ -1,47 +1,108 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>El Basurero - Videos</title>
-    <link rel="stylesheet" href="css/styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="icon" href="imagenes/icono.png" type="image/x-icon">
-    <meta name="description" content="El Basurero, tu canal de reacciones en YouTube. Horarios, videos y comunidad.">
-<meta name="keywords" content="El Basurero, reacciones, YouTube, directos, comunidad">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Videos - El Basurero</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-        <header>
-      <nav class="navbar">
-        <div class="logo">
-          <img src="Imagenes/logo.png" alt="El Basurero Logo">
-        </div>
+  <header>
+    <nav class="navbar">
+      <div class="logo">
+        <img src="Imagenes/logo.png" alt="El Basurero Logo">
+      </div>
+      <div class="menu-toggle" id="mobile-menu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </div>
+      <ul class="nav-menu">
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="directos.html">Directos</a></li>
+        <li><a href="videos.html" class="active">Videos</a></li>
+        <li><a href="comunidad.html">Comunidad</a></li>
+        <li><a href="recomendaciones.html">Recomendaciones</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
 
-        <!-- Botón hamburguesa -->
-        <div class="menu-toggle" id="mobile-menu">
-          <span class="bar"></span>
-          <span class="bar"></span>
-          <span class="bar"></span>
-        </div>
+  <main class="videos-page">
+    <h1>Videos</h1>
+    <p>Categorias</p>
 
-        <!-- Menú de navegación -->
-        <ul class="nav-menu">
-          <li><a href="index.html">Inicio</a></li>
-          <li><a href="directos.html">Directos</a></li>
-          <li><a href="videos.html">Videos</a></li>
-          <li><a href="comunidad.html">Comunidad</a></li>
-          <li><a href="recomendaciones.html">Recomendaciones</a></li>
-          <li><a href="contacto.html">Contacto</a></li>
-        </ul>
-      </nav>
-    </header>
+    <!-- Tabs de categorías -->
+    <div class="tabs">
+  <button class="tab-button active" data-category="all">Todos</button>
+  <button class="tab-button" data-category="Peliculas">Películas</button>
+  <button class="tab-button" data-category="Series">Series</button>
+  <button class="tab-button" data-category="Comedia">Comedia</button>
+  <button class="tab-button" data-category="Directos">Directos</button>
+  <button class="tab-button" data-category="Cultura">Cultura</button>
+  <button class="tab-button" data-category="Humor">Humor</button>
+  <button class="tab-button" data-category="Drama">Drama</button>
+  <button class="tab-button" data-category="Terror">Terror</button>
+  <button class="tab-button" data-category="Música">Música</button>
+  <button class="tab-button" data-category="Documental">Documental</button>
+  <button class="tab-button" data-category="Historia">Historia</button>
+  <button class="tab-button" data-category="Especiales">Especiales</button>
+  <button class="tab-button" data-category="Just Chatting">Just Chatting</button>
+  <button class="tab-button" data-category="Suspenso">Suspenso</button>
+  <button class="tab-button" data-category="Biopic">Biopic</button>
+  <button class="tab-button" data-category="Concierto">Concierto</button>
+</div>
 
-    <section class="latest-videos">
-            <h2>Últimos Videos</h2>
-            <div class="video-grid" id="video-grid">
-                <!-- Videos cargados dinámicamente con JavaScript -->
-            </div>
-        </section>
-<script src="js/scripts.js"></script>
+<div id="video-grid" class="video-grid"></div>
+
+
+  </main>
+
+  <footer>
+    <p>&copy; 2025 El Basurero. Todos los derechos reservados.</p>
+  </footer>
+
+
+  <script src="videos.js"></script>
+  <script src="videos.js"></script>
+  <script src="js/scripts.js"></script>
+<script>
+  const videoGrid = document.getElementById("video-grid");
+  const filterButtons = document.querySelectorAll(".tab-button");
+
+  function renderVideos(category) {
+    videoGrid.innerHTML = "";
+    const filtered = category === "all"
+      ? videosData
+      : videosData.filter(video => video.tags.includes(category));
+
+    filtered.forEach(video => {
+      const card = document.createElement("div");
+      card.classList.add("video-card");
+      card.innerHTML = `
+        <a href="${video.link}" target="_blank">
+          <img src="${video.miniatura}" alt="${video.titulo}">
+          <h3>${video.titulo}</h3>
+          <p>${video.descripcion}</p>
+          <small>${video.fecha}</small>
+        </a>
+      `;
+      videoGrid.appendChild(card);
+    });
+  }
+
+  // Botones de filtro
+  filterButtons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      document.querySelector(".tab-button.active").classList.remove("active");
+      btn.classList.add("active");
+      renderVideos(btn.dataset.category);
+    });
+  });
+
+  // Cargar todos al inicio
+  renderVideos("all");
+</script>
 </body>
-</html
+</html>

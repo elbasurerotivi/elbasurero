@@ -3,18 +3,8 @@ document.querySelector('.menu-toggle').addEventListener('click', () => {
     document.querySelector('.nav-menu').classList.toggle('active');
 });
 
-// Ejemplo de carga dinámica de videos (puedes integrarlo con la API de YouTube más adelante)
-const videos = [
-    { title: '🌄 Reacción a un video sobre San Luis, Argentina 🇦🇷 | Descubriendo provincias', url: 'https://www.youtube.com/watch?v=sdR4Tw0xT6w' },
-    { title: '🍫 Lunes de Mariano: Reacción a Mariano Rodríguez, Willy Wonka y la fábrica de chocolate (1971) 🎬', url: 'https://www.youtube.com/watch?v=gfFO4uTJZiU' }
-];
 
-const videoGrid = document.getElementById('video-grid');
-videos.forEach(video => {
-    const videoCard = document.createElement('div');
-    videoCard.innerHTML = `<h3>${video.title}</h3><a href="${video.url}" target="_blank">Ver video</a>`;
-    videoGrid.appendChild(videoCard);
-});
+
 
 
 

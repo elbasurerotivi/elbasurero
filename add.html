@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Añadir Videos - El Basurero</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #111;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 40px;
+    }
+    .form-container {
+      background: #222;
+      padding: 20px 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+      max-width: 650px;
+      width: 100%;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 8px;
+      border: none;
+      font-size: 1rem;
+    }
+    textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .tags label {
+      font-weight: normal;
+    }
+    .tags input {
+      margin-right: 6px;
+    }
+    button {
+      margin-top: 20px;
+      padding: 12px;
+      width: 100%;
+      border: none;
+      border-radius: 8px;
+      background: #00acee;
+      color: white;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+    button:hover {
+      background: #0084b8;
+    }
+    .output {
+      margin-top: 20px;
+      background: #333;
+      padding: 15px;
+      border-radius: 8px;
+      font-family: monospace;
+      white-space: pre-wrap;
+      max-height: 300px;
+      overflow-y: auto;
+    }
+    #preview {
+      margin-top: 10px;
+      max-width: 100%;
+      border-radius: 8px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h1>Agregar Videos</h1>
+    <form id="videoForm">
+      <label for="titulo">Título</label>
+      <input type="text" id="titulo" required />
+
+      <label for="descripcion">Descripción</label>
+      <textarea id="descripcion" required></textarea>
+
+      <label for="fecha">Fecha</label>
+      <input type="date" id="fecha" required />
+
+      <label for="link">Link de YouTube</label>
+      <input type="url" id="link" placeholder="https://www.youtube.com/watch?v=..." required />
+
+      <label for="miniatura">Miniatura (subir imagen)</label>
+      <input type="file" id="miniatura" accept="image/*" required />
+      <img id="preview" alt="Vista previa">
+
+      <label>Tags</label>
+      <div class="tags">
+        <label><input type="checkbox" value="Peliculas" /> Películas</label>
+        <label><input type="checkbox" value="Series" /> Series</label>
+        <label><input type="checkbox" value="Comedia" /> Comedia</label>
+        <label><input type="checkbox" value="Directos" /> Directos</label>
+        <label><input type="checkbox" value="Cultura" /> Cultura</label>
+        <label><input type="checkbox" value="Humor" /> Humor</label>
+        <label><input type="checkbox" value="Drama" /> Drama</label>
+        <label><input type="checkbox" value="Terror" /> Terror</label>
+        <label><input type="checkbox" value="Música" /> Música</label>
+        <label><input type="checkbox" value="Documental" /> Documental</label>
+        <label><input type="checkbox" value="Historia" /> Historia</label>
+        <label><input type="checkbox" value="Especiales" /> Especiales</label>
+        <label><input type="checkbox" value="Just Chatting" /> Just Chatting</label>
+        <label><input type="checkbox" value="Suspenso" /> Suspenso</label>
+        <label><input type="checkbox" value="Biopic" /> Biopic</label>
+        <label><input type="checkbox" value="Concierto" /> Concierto</label>
+
+      </div>
+
+      <button type="submit">➕ Agregar a la lista</button>
+    </form>
+
+    <div class="output" id="output"></div>
+
+    <button id="downloadAll">⬇️ Descargar Todos</button>
+  </div>
+
+  <script>
+    const miniaturaInput = document.getElementById("miniatura");
+    const preview = document.getElementById("preview");
+    let fileName = "";
+    let videosList = []; // Aquí guardamos todos los videos
+
+    // Vista previa y guardar nombre de archivo
+    miniaturaInput.addEventListener("change", (e) => {
+      const file = e.target.files[0];
+      if (file) {
+        fileName = "Imagenes/" + file.name;
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          preview.src = e.target.result;
+          preview.style.display = "block";
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+
+    document.getElementById("videoForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const titulo = document.getElementById("titulo").value.trim();
+      const descripcion = document.getElementById("descripcion").value.trim();
+      const fecha = document.getElementById("fecha").value;
+      const link = document.getElementById("link").value.trim();
+      const tags = Array.from(document.querySelectorAll(".tags input:checked")).map(cb => cb.value);
+
+      if (!fileName) {
+        alert("Por favor, subí una imagen.");
+        return;
+      }
+
+      const videoObj = {
+        titulo: titulo,
+        descripcion: descripcion,
+        fecha: fecha,
+        link: link,
+        miniatura: fileName,
+        tags: tags
+      };
+
+      videosList.push(videoObj);
+
+      // Mostrar en pantalla
+      const jsCode = JSON.stringify(videoObj, null, 2)
+        .replace(/\"([^(\")"]+)\":/g, "$1:")
+        .replace(/\"/g, "'");
+      document.getElementById("output").textContent += `  ${jsCode},\n`;
+
+      // Resetear formulario
+      document.getElementById("videoForm").reset();
+      preview.style.display = "none";
+      fileName = "";
+    });
+
+    // Descargar todos los videos juntos
+    document.getElementById("downloadAll").addEventListener("click", () => {
+      if (videosList.length === 0) {
+        alert("No hay videos en la lista.");
+        return;
+      }
+
+      const jsCode = videosList.map(v =>
+        JSON.stringify(v, null, 2)
+          .replace(/\"([^(\")"]+)\":/g, "$1:")
+          .replace(/\"/g, "'")
+      ).join("\n");
+
+      const finalCode = `[\n${jsCode}\n]`;
+
+      const blob = new Blob([finalCode], { type: "application/javascript" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "add.js";
+      a.click();
+      URL.revokeObjectURL(url);
+
+      alert("✅ Archivo add.js descargado con todos los videos.\n⚠️ Recordá mover manualmente las imágenes a la carpeta Imagenes/.");
+    });
+  </script>
+</body>
+</html>

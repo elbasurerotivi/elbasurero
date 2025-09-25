@@ -277,3 +277,95 @@ footer {
     transform: translateY(-8px) rotate(-45deg);
   }
 }
+
+
+
+/* pagina videos.html
+
+/* ===== PAGINA VIDEOS ===== */
+.videos-page {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  margin: 20px 0 40px;
+}
+
+.tab-button {
+  background: #222;
+  color: #fff;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.tab-button:hover {
+  background: #00acee;
+}
+
+.tab-button.active {
+  background: #00acee;
+}
+
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.video-card {
+  background: #dddddd00;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.091);
+  transition: transform 0.3s ease;
+}
+
+.video-card:hover {
+  transform: translateY(-5px);
+}
+
+.video-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.video-card h3 {
+  margin: 15px;
+  font-size: 1.7rem;
+  color: #000000;
+  text-decoration: none;
+}
+
+.video-card p {
+  margin: 15px;
+  font-size: 1.1rem;
+  color: #000000;
+  text-decoration: none;
+}
+.video-card small {
+  margin: 15px;
+  margin-bottom: 5px;
+  font-size: 1.1rem;
+  color: #000000;
+  text-decoration: none;
+}
