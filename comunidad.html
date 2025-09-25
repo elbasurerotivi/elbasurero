@@ -1,37 +1,37 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>El Basurero - Comunidad</title>
-    <link rel="stylesheet" href="css/styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="icon" href="Imagenes/icono.png" type="image/x-icon">
-    <meta name="description" content="El Basurero, tu canal de reacciones en YouTube. Horarios, videos y comunidad.">
-<meta name="keywords" content="El Basurero, reacciones, YouTube, directos, comunidad">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>El Basurero - Comunidad</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="Imagenes/icono.png" type="image/x-icon">
+  <meta name="description" content="El Basurero, tu canal de reacciones en YouTube. Horarios, videos y comunidad.">
+  <meta name="keywords" content="El Basurero, reacciones, YouTube, directos, comunidad">
 </head>
 <body>
+  <div id="header"></div>
 
-        <div id="header"></div>
-
-
-    <section class="forum">
+  <section class="forum">
     <h2>Foro de la Comunidad</h2>
     <form id="forum-form">
-        <input type="text" id="username" placeholder="Tu nombre" required>
-        <textarea id="message" placeholder="Escribe tu mensaje" required></textarea>
-        <button type="submit">Enviar</button>
+      <input type="text" id="username" placeholder="Tu nombre" required>
+      <textarea id="message" placeholder="Escribe tu mensaje" required></textarea>
+      <button type="submit">Enviar</button>
     </form>
+
     <div id="messages"></div>
-</section>
-<script src="js/scripts.js"></script>
-<script>
-  fetch("header.html")
-    .then(response => response.text())
-    .then(data => {
-      document.getElementById("header").innerHTML = data;
-    })
-    .catch(error => console.error("Error cargando el header:", error));
-</script>
+  </section>
+
+  <script src="js/scripts.js"></script>
+  <script>
+    fetch("header.html")
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById("header").innerHTML = data;
+      })
+      .catch(error => console.error("Error cargando el header:", error));
+  </script>
 </body>
 </html>
