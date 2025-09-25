@@ -80,3 +80,32 @@ mobileMenu.addEventListener("click", () => {
   mobileMenu.classList.toggle("active");
   navMenu.classList.toggle("active");
 });
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  console.log("✅ scripts.js cargado");
+
+  fetch("header.html")
+    .then(response => {
+      console.log("Respuesta fetch:", response);
+      return response.text();
+    })
+    .then(data => {
+      document.getElementById("header-placeholder").innerHTML = data;
+      console.log("✅ Header insertado");
+
+      // Menú hamburguesa
+      const mobileMenu = document.getElementById("mobile-menu");
+      const navMenu = document.querySelector(".nav-menu");
+
+      if (mobileMenu && navMenu) {
+        mobileMenu.addEventListener("click", () => {
+          mobileMenu.classList.toggle("active");
+          navMenu.classList.toggle("active");
+        });
+      }
+    })
+    .catch(err => console.error("❌ Error cargando header:", err));
+});
+
+
