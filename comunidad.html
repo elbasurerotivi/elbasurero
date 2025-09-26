@@ -1,66 +1,75 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>El Basurero - Comunidad</title>
-  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/styles.css" />
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <link rel="icon" href="Imagenes/icono.png" type="image/x-icon">
 </head>
 <body>
   <div id="header"></div>
 
-  <section class="forum">
-    <h2>Foro de la Comunidad</h2>
-    <form id="forum-form">
-      <input type="text" id="username" placeholder="Tu nombre" required>
-      <textarea id="message" placeholder="Escribe tu mensaje" required></textarea>
-      <button type="submit">Enviar</button>
-    </form>
+  <main class="container">
+    <section class="forum">
+      <h2>Foro de la Comunidad</h2>
 
-    <div id="messages"></div>
-  </section>
+      <form id="forum-form" class="forum-form">
+        <input type="text" id="username" placeholder="Tu nombre" required maxlength="30" />
+        <textarea id="message" placeholder="Escribe tu mensaje" required maxlength="500"></textarea>
+        <div class="form-actions">
+          <button type="submit">Enviar</button>
+          <button type="button" id="clear-forum">Limpiar mensajes (local)</button>
+        </div>
+      </form>
+
+      <div id="messages" class="messages"></div>
+    </section>
+
+    <section class="community-calendar">
+      <h2>Calendario de Cumpleaños</h2>
+      <div class="calendar-wrapper">
+        <div class="calendar-controls">
+          <button id="prevMonth" aria-label="Mes anterior">‹</button>
+          <h3 id="monthYear"></h3>
+          <button id="nextMonth" aria-label="Mes siguiente">›</button>
+        </div>
+
+        <div id="calendar" class="calendar-grid" role="grid" aria-label="Calendario"></div>
+
+        <div class="birthday-sidebar">
+          <h4>Cumpleaños del mes</h4>
+          <ul id="birthdayList" class="birthday-list"></ul>
+        </div>
+      </div>
+
+      <!-- Modal sencillo para agregar cumpleaños -->
+      <div id="birthdayModal" class="modal" aria-hidden="true">
+        <div class="modal-content">
+          <button id="closeModal" class="modal-close" aria-label="Cerrar">&times;</button>
+          <h3 id="modalTitle">Agregar cumpleaños</h3>
+          <form id="birthdayForm">
+            <label>Nombre:<br/><input type="text" id="bName" required maxlength="50" /></label>
+            <label>Fecha:<br/><input type="date" id="bDate" required /></label>
+            <div class="form-actions">
+              <button type="submit">Guardar</button>
+              <button type="button" id="cancelModal">Cancelar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
   </main>
+
   <footer>
     <p>&copy; 2025 El Basurero. Todos los derechos reservados.</p>
-    <h3>Sígueme en mis redes</h3>
-  <div class="social-links">
-    <a href="https://www.twitch.tv/elbasurerochido" target="_blank">
-      <img src="Imagenes/twitch_logo.png" alt="Twitch"> Twitch
-    </a>
-    <a href="https://www.youtube.com/@elbasureroedgar" target="_blank">
-      <img src="Imagenes/youtube_logo.png" alt="YouTube"> YouTube
-    </a>
-    <a href="https://discord.gg/TgAkT7PFt5" target="_blank">
-      <img src="Imagenes/discord_logo.png" alt="Discord"> Discord
-    </a>
-    <a href="https://www.instagram.com/el_basurero_tiviplas" target="_blank">
-      <img src="Imagenes/instagram_logo.png" alt="Instagram"> Instagram
-    </a>
-    <a href="https://www.facebook.com/el.basurero.ti.vi.plas" target="_blank">
-      <img src="Imagenes/facebook_logo.png" alt="Facebook"> Facebook
-    </a>
-    <a href="https://www.patreon.com/cw/ElBasureroTi_Vi_Plas" target="_blank">
-      <img src="Imagenes/patreon_logo.png" alt="Patreon"> Patreon
-    </a>
-  </div>
-</footer>
-
-  <!-- Firebase -->
-  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js"></script>
+  </footer>
 
   <script src="js/firebase-config.js"></script>
-  <script src="js/forum.js"></script>
+  <!-- Keep existing scripts.js (header + common) -->
   <script src="js/scripts.js"></script>
-  <script>
-    fetch("header.html")
-      .then(response => response.text())
-      .then(data => {
-        document.getElementById("header").innerHTML = data;
-      })
-      .catch(error => console.error("Error cargando el header:", error));
-  </script>
+  <!-- New community script (handles forum + calendar, with localStorage fallback) -->
+  <script src="js/community.js"></script>
 </body>
 </html>

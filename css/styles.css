@@ -606,3 +606,50 @@ footer h3 {
   color: #333;
 }
 
+
+
+/* === Comunidad additions === */
+
+/* ===== Comunidad: Foro y Calendario ===== */
+.container { max-width: 1100px; margin: 0 auto; padding: 1rem; }
+.forum { margin: 2rem 0; }
+.forum-form { display:flex; flex-direction:column; gap:0.6rem; max-width:800px; margin:0 auto; }
+.forum-form input, .forum-form textarea { padding:0.6rem; border-radius:6px; border:1px solid #ccc; font-size:1rem; }
+.forum-form .form-actions { display:flex; gap:0.6rem; align-items:center; }
+.forum-form button { padding:0.6rem 1rem; border-radius:6px; border:none; cursor:pointer; background:#ffcc00; color:#111; }
+
+.messages { margin-top:1rem; display:flex; flex-direction:column; gap:0.8rem; }
+.post { background:#fff; padding:0.9rem; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.06); }
+.post-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem; }
+.post-body { margin:0; }
+.post-actions { margin-top:8px; }
+.post-actions .delete-btn { background:transparent; border:1px solid #e0e0e0; padding:0.3rem 0.6rem; border-radius:5px; cursor:pointer; }
+
+/* Calendar */
+.community-calendar { margin: 2rem 0; }
+.calendar-wrapper { display:flex; gap:1rem; align-items:flex-start; flex-direction:column; }
+.calendar-controls { display:flex; align-items:center; gap:1rem; justify-content:center; margin-bottom:0.8rem; }
+.calendar-controls button { padding:0.3rem 0.6rem; border-radius:6px; border:1px solid #ddd; cursor:pointer; background:#fff; }
+.calendar-grid { display:grid; grid-template-columns: repeat(7, 1fr); gap:6px; }
+.calendar-cell { background:#fff; min-height:70px; padding:6px; border-radius:6px; position:relative; box-shadow:0 2px 6px rgba(0,0,0,0.05); }
+.calendar-header { background:transparent; font-weight:700; text-align:center; }
+.calendar-cell.empty { background:transparent; box-shadow:none; }
+.date-num { font-weight:700; margin-bottom:6px; }
+.birthday-badge { position:absolute; right:6px; top:6px; background:#ff6b6b; color:white; border-radius:999px; padding:0.15rem 0.5rem; font-size:0.8rem; }
+
+.birthday-sidebar { margin-top:1rem; }
+.birthday-list { list-style:none; padding:0; margin:0; }
+.birthday-list li { padding:0.25rem 0; display:flex; justify-content:space-between; align-items:center; }
+
+/* Modal */
+.modal { display:none; position:fixed; left:0; top:0; right:0; bottom:0; background:rgba(0,0,0,0.5); justify-content:center; align-items:center; z-index:999; }
+.modal.open { display:flex; }
+.modal-content { background:#fff; padding:1rem; border-radius:8px; width:320px; max-width:90%; position:relative; }
+.modal-close { position:absolute; right:8px; top:6px; background:transparent; border:none; font-size:1.4rem; cursor:pointer; }
+
+/* Responsive */
+@media(min-width:900px){
+  .calendar-wrapper { flex-direction:row; }
+  .calendar-grid .calendar-cell { min-height:140px; }
+  .birthday-sidebar { width:300px; }
+}
