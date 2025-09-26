@@ -653,3 +653,92 @@ footer h3 {
   .calendar-grid .calendar-cell { min-height:140px; }
   .birthday-sidebar { width:300px; }
 }
+
+
+
+/* Página Comunidad */
+
+/* ====== CHAT ====== */
+#community-wall {
+  max-height: 400px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 0.8rem;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.message {
+  background: #f9f9f9;
+  padding: 0.6rem 0.8rem;
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.msg-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.4rem;
+}
+
+.msg-time {
+  font-size: 0.8rem;
+  color: #777;
+}
+
+.msg-actions {
+  margin-top: 0.4rem;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.msg-actions button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+/* ====== CALENDARIO ====== */
+.birthday-form {
+  display: flex;
+  gap: 0.6rem;
+  margin-bottom: 1rem;
+}
+
+.birthday-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.birthday-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #fff;
+  padding: 0.6rem 1rem;
+  border-radius: 6px;
+  margin-bottom: 0.5rem;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.birthday-list .name {
+  font-weight: bold;
+}
+
+.birthday-list .date {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.bday-actions button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  margin-left: 0.5rem;
+  color: #007bff;
+}
