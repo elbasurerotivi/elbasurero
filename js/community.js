@@ -55,6 +55,7 @@ onValue(messagesRef, (snapshot) => {
       <p>${data.text}</p>
       <div class="msg-actions">
         <button class="like-btn">👍 ${data.reactions?.likes || 0}</button>
+        <button class="encanta-btn">❤️ ${data.reactions?.encanta || 0}</button>
         <button class="edit-btn">Editar</button>
         <button class="delete-btn">Eliminar</button>
       </div>
