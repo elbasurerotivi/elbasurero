@@ -26,12 +26,13 @@ form.addEventListener("submit", (e) => {
   if (!name || !text) return;
 
   push(messagesRef, {
-    name,
-    text,
-    timestamp: Date.now(),
-    color: getRandomColor(),
-    reactions: { likes: 0 }
-  });
+  name,
+  text,
+  timestamp: Date.now(),
+  color: getRandomColor(),
+  reactions: { likes: 0, encanta: 0 } // 👈 ahora incluye ambas
+});
+
 
   messageInput.value = "";
 });
@@ -40,10 +41,13 @@ form.addEventListener("submit", (e) => {
 onValue(messagesRef, (snapshot) => {
   const msgs = [];
   snapshot.forEach((child) => msgs.push({ id: child.key, ...child.val() }));
-  msgs.sort((a, b) => b.timestamp - a.timestamp); // más nuevo primero
+  msgs.sort((a, b) => b.timestamp - a.timestamp);
 
   wall.innerHTML = "";
   msgs.forEach((data) => {
+    const likesCount = data.reactions?.likes ? Object.keys(data.reactions.likes).length : 0;
+    const encantaCount = data.reactions?.encanta ? Object.keys(data.reactions.encanta).length : 0;
+
     const div = document.createElement("div");
     div.classList.add("message");
 
@@ -54,12 +58,28 @@ onValue(messagesRef, (snapshot) => {
       </div>
       <p>${data.text}</p>
       <div class="msg-actions">
-        <button class="like-btn">👍 ${data.reactions?.likes || 0}</button>
-        <button class="encanta-btn">❤️ ${data.reactions?.encanta || 0}</button>
+        <button class="like-btn">👍 ${likesCount}</button>
+        <button class="encanta-btn">❤️ ${encantaCount}</button>
         <button class="edit-btn">Editar</button>
         <button class="delete-btn">Eliminar</button>
       </div>
     `;
+
+    // Toggle like
+    div.querySelector(".like-btn").addEventListener("click", () => {
+      const user = nameInput.value.trim() || "Anónimo";
+      const path = ref(db, `messages/${data.id}/reactions/likes/${user}`);
+      update(path, { ".sv": "timestamp" }) // activa
+        .catch(() => remove(path));       // si ya existe, lo quita
+    });
+
+    // Toggle encanta
+    div.querySelector(".encanta-btn").addEventListener("click", () => {
+      const user = nameInput.value.trim() || "Anónimo";
+      const path = ref(db, `messages/${data.id}/reactions/encanta/${user}`);
+      update(path, { ".sv": "timestamp" })
+        .catch(() => remove(path));
+    });
 
     // Reaccionar
     div.querySelector(".like-btn").addEventListener("click", () => {
