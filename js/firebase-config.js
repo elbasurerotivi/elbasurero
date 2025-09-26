@@ -1,14 +1,21 @@
-// Importar las funciones necesarias
+// Importar Firebase (versión modular)
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
+import { getDatabase, ref, push, onValue } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-database.js";
+
+// Configuración de tu proyecto Firebase
 const firebaseConfig = {
-  apiKey: "TU_API_KEY",
-  authDomain: "tu-proyecto.firebaseapp.com",
-  databaseURL: "https://tu-proyecto-default-rtdb.firebaseio.com",
-  projectId: "tu-proyecto",
-  storageBucket: "tu-proyecto.appspot.com",
-  messagingSenderId: "123456789",
-  appId: "1:123456789:web:abcdef"
+  apiKey: "AIzaSyDqj18mvS9a4Ud3Y0voD5wolrhL3bSnhUw",
+  authDomain: "elbasurero-af722.firebaseapp.com",
+  databaseURL: "https://elbasurero-af722-default-rtdb.firebaseio.com",
+  projectId: "elbasurero-af722",
+  storageBucket: "elbasurero-af722.firebasestorage.app",
+  messagingSenderId: "577473118837",
+  appId: "1:577473118837:web:6a6ab394c6cec3bff36e3c"
 };
 
 // Inicializar Firebase
-const app = firebase.initializeApp(firebaseConfig);
-const db = firebase.database();
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+
+// Exportar para usar en community.js
+export { db, ref, push, onValue };
