@@ -36,15 +36,36 @@ form.addEventListener("submit", (e) => {
   messageInput.value = "";
 });
 
-// Mostrar mensajes en tiempo real
+
+
+/* ========================
+   CALENDARIO DE CUMPLEAÑOS
+======================== */
+const birthdayForm = document.getElementById("birthday-form");
+const birthdayList = document.getElementById("birthday-list");
+
+const birthdaysRef = ref(db, "birthdays");
+
+// Guardar cumpleaños
+birthdayForm.addEventListener("submit", (e) => {
+  e.preventDefau// Mostrar mensajes en tiempo real
 onValue(messagesRef, (snapshot) => {
   const msgs = [];
-  snapshot.forEach((child) => msgs.push({ id: child.key, ...child.val() }));
+  snapshot.forEach((child) => {
+    msgs.push({ id: child.key, ...child.val() });
+  });
 
-  // Ordenar: más nuevo arriba
+  // Ordenar por timestamp (más nuevo arriba)
   msgs.sort((a, b) => (a.timestamp || 0) - (b.timestamp || 0));
   msgs.reverse();
 
+  // Si no hay mensajes
+  if (msgs.length === 0) {
+    wall.innerHTML = "<p style='text-align:center; color:#777'>No hay mensajes todavía. Sé el primero en escribir!</p>";
+    return;
+  }
+
+  // Renderizar mensajes
   wall.innerHTML = "";
   msgs.forEach((data) => {
     const likesCount = data.reactions?.likes ? Object.keys(data.reactions.likes).length : 0;
@@ -55,7 +76,7 @@ onValue(messagesRef, (snapshot) => {
 
     div.innerHTML = `
       <div class="msg-header">
-        <strong style="color:${data.color || "#000"}">${data.name}</strong>
+        <strong style="color:${data.color || "#000"}">${data.name || "Anónimo"}</strong>
         <span class="msg-time">${data.timestamp ? new Date(data.timestamp).toLocaleString("es-AR") : ""}</span>
       </div>
       <p>${data.text || ""}</p>
@@ -74,9 +95,9 @@ onValue(messagesRef, (snapshot) => {
     div.querySelector(".like-btn").addEventListener("click", () => {
       const path = ref(db, `messages/${data.id}/reactions/likes/${user}`);
       if (data.reactions?.likes?.[user]) {
-        remove(path); // quitar reacción
+        remove(path);
       } else {
-        set(path, true); // agregar reacción
+        set(path, true);
       }
     });
 
@@ -108,18 +129,8 @@ onValue(messagesRef, (snapshot) => {
     wall.appendChild(div);
   });
 });
-
-/* ========================
-   CALENDARIO DE CUMPLEAÑOS
-======================== */
-const birthdayForm = document.getElementById("birthday-form");
-const birthdayList = document.getElementById("birthday-list");
-
-const birthdaysRef = ref(db, "birthdays");
-
-// Guardar cumpleaños
-birthdayForm.addEventListener("submit", (e) => {
-  e.preventDefault();
+   
+lt();
   const name = document.getElementById("bday-name").value.trim();
   const date = document.getElementById("bday-date").value;
   if (!name || !date) return;
@@ -163,3 +174,4 @@ onValue(birthdaysRef, (snapshot) => {
     birthdayList.appendChild(li);
   });
 });
+
