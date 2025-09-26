@@ -489,55 +489,36 @@ footer h3 {
   color: #aaa;
 }
 
-.last-stream {
-  text-align: center;
-  margin: 3rem 0;
-}
-
-.video-container {
-  position: relative;
-  padding-bottom: 56.25%; /* 16:9 */
-  height: 0;
-  overflow: hidden;
-  max-width: 100%;
-}
-
-.video-container iframe {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%;
-  height: 100%;
-  border: none;
-}
-
-.twitch-video {
-  position: relative;
-  display: inline-block;
-  width: 100%;
-  max-width: 866px; /* opcional, ajusta al tamaño de tu video */
-}
-
-.twitch-video video {
+/* Estilo general de los videos */
+.video-container iframe,
+.video-container video {
   width: 100%;
   height: auto;
-  display: block;
   border-radius: 10px;
+  display: block;
 }
 
-.twitch-logo {
-  position: absolute;
-  bottom: 10px;   /* separación del borde inferior */
-  right: 10px;    /* separación del borde derecho */
-  width: 60px;    /* tamaño del logo */
-  height: auto;
-  opacity: 0.9;   /* un poco transparente, opcional */
-  transition: transform 0.2s ease, opacity 0.2s ease;
+/* Contenedor de streams en desktop */
+.streams {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin: 2rem 0;
 }
 
-.twitch-video:hover .twitch-logo {
-  transform: scale(1.1); /* efecto sutil al pasar el mouse */
-  opacity: 1;
+/* En escritorio: 2 columnas */
+@media (min-width: 992px) {
+  .streams {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .stream {
+    flex: 1;
+    max-width: 48%; /* que cada video ocupe la mitad del ancho */
+  }
 }
+
 
 
 
