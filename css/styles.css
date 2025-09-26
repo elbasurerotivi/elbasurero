@@ -658,12 +658,11 @@ footer h3 {
 
 /* Página Comunidad */
 
-/* ====== CHAT ====== */
 /* Contenedor del chat */
 #community-wall {
-  max-height: 400px;        /* altura máxima del chat */
-  min-height: 200px;        /* opcional: altura mínima */
-  overflow-y: auto;         /* barra vertical */
+  max-height: 400px;        /* altura máxima visible */
+  min-height: 200px;        /* altura mínima */
+  overflow-y: auto;         /* activa scroll vertical */
   border: 1px solid #ddd;
   border-radius: 8px;
   padding: 0.8rem;
@@ -681,7 +680,7 @@ footer h3 {
   box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
 
-/* Header de cada mensaje */
+/* Cabecera de mensaje (nombre + hora) */
 .msg-header {
   display: flex;
   justify-content: space-between;
@@ -693,7 +692,7 @@ footer h3 {
   color: #777;
 }
 
-/* Botones */
+/* Acciones (botones de editar/eliminar/reaccionar) */
 .msg-actions {
   margin-top: 0.4rem;
   display: flex;
