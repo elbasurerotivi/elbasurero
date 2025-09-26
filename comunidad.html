@@ -15,32 +15,34 @@
     <section class="forum">
       <h2>Foro de la Comunidad</h2>
 
-      <form id="forum-form" class="forum-form">
-        <input type="text" id="username" placeholder="Tu nombre" required maxlength="30" />
+      <!-- MURO -->
+      <form id="message-form" class="forum-form">
+        <input type="text" id="name" placeholder="Tu nombre" required maxlength="30" />
         <textarea id="message" placeholder="Escribe tu mensaje" required maxlength="500"></textarea>
         <div class="form-actions">
           <button type="submit">Enviar</button>
-          <button type="button" id="clear-forum">Limpiar mensajes (local)</button>
         </div>
       </form>
+
+      <div id="community-wall" class="messages"></div>
+
 
       <div id="messages" class="messages"></div>
     </section>
 
     <section class="community-calendar">
       <h2>Calendario de Cumpleaños</h2>
-      <div class="calendar-wrapper">
-        <div class="calendar-controls">
-          <button id="prevMonth" aria-label="Mes anterior">‹</button>
-          <h3 id="monthYear"></h3>
-          <button id="nextMonth" aria-label="Mes siguiente">›</button>
+      <!-- CALENDARIO -->
+      <form id="birthday-form">
+        <label>Nombre:<br/><input type="text" id="bday-name" required maxlength="50" /></label>
+        <label>Fecha:<br/><input type="date" id="bday-date" required /></label>
+        <div class="form-actions">
+          <button type="submit">Guardar</button>
         </div>
+      </form>
 
-        <div id="calendar" class="calendar-grid" role="grid" aria-label="Calendario"></div>
+      <ul id="birthday-list" class="birthday-list"></ul>
 
-        <div class="birthday-sidebar">
-          <h4>Cumpleaños del mes</h4>
-          <ul id="birthdayList" class="birthday-list"></ul>
         </div>
       </div>
 
@@ -66,13 +68,13 @@
     <p>&copy; 2025 El Basurero. Todos los derechos reservados.</p>
   </footer>
 
-  <script src="js/firebase-config.js"></script>
+  
   <!-- Keep existing scripts.js (header + common) -->
   <script src="js/scripts.js"></script>
   <!-- New community script (handles forum + calendar, with localStorage fallback) -->
   <script src="js/community.js"></script>
   <!-- Firebase -->
-<script type="module" src="js/community.js"></script>
+  <script type="module" src="js/community.js"></script>
 
 </body>
 </html>
