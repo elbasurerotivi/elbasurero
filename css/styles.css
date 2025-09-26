@@ -510,6 +510,36 @@ footer h3 {
   border: none;
 }
 
+.twitch-video {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  max-width: 866px; /* opcional, ajusta al tamaño de tu video */
+}
+
+.twitch-video video {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 10px;
+}
+
+.twitch-logo {
+  position: absolute;
+  bottom: 10px;   /* separación del borde inferior */
+  right: 10px;    /* separación del borde derecho */
+  width: 60px;    /* tamaño del logo */
+  height: auto;
+  opacity: 0.9;   /* un poco transparente, opcional */
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.twitch-video:hover .twitch-logo {
+  transform: scale(1.1); /* efecto sutil al pasar el mouse */
+  opacity: 1;
+}
+
+
 
 
 
