@@ -1,5 +1,5 @@
 // Importar Firebase
-import { db, ref, push, onValue, remove, update } from "./firebase-config.js";
+import { db, ref, push, onValue, remove, update, set } from "./firebase-config.js";
 
 /* ========================
    CHAT / MURO
@@ -12,7 +12,7 @@ const messageInput = document.getElementById("message");
 // Referencia en Firebase
 const messagesRef = ref(db, "messages");
 
-// Paleta de colores para nombres
+// Paleta de colores
 const colors = ["#e74c3c", "#2ecc71", "#3498db", "#f39c12", "#9b59b6", "#1abc9c"];
 function getRandomColor() {
   return colors[Math.floor(Math.random() * colors.length)];
@@ -21,27 +21,26 @@ function getRandomColor() {
 // Enviar mensaje
 form.addEventListener("submit", (e) => {
   e.preventDefault();
-  const name = nameInput.value.trim();
+  const name = nameInput.value.trim() || "Anónimo";
   const text = messageInput.value.trim();
-  if (!name || !text) return;
+  if (!text) return;
 
   push(messagesRef, {
-  name,
-  text,
-  timestamp: Date.now(),
-  color: getRandomColor(),
-  reactions: { likes: 0, encanta: 0 } // 👈 ahora incluye ambas
-});
-
+    name,
+    text,
+    timestamp: Date.now(),
+    color: getRandomColor(),
+    reactions: { likes: {}, encanta: {} } // 👈 objetos vacíos
+  });
 
   messageInput.value = "";
 });
 
-// Mostrar mensajes en tiempo real
+// Mostrar mensajes
 onValue(messagesRef, (snapshot) => {
   const msgs = [];
   snapshot.forEach((child) => msgs.push({ id: child.key, ...child.val() }));
-  msgs.sort((a, b) => b.timestamp - a.timestamp);
+  msgs.sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
 
   wall.innerHTML = "";
   msgs.forEach((data) => {
@@ -54,7 +53,7 @@ onValue(messagesRef, (snapshot) => {
     div.innerHTML = `
       <div class="msg-header">
         <strong style="color:${data.color || "#000"}">${data.name}</strong>
-        <span class="msg-time">${new Date(data.timestamp).toLocaleString("es-AR")}</span>
+        <span class="msg-time">${new Date(data.timestamp || Date.now()).toLocaleString("es-AR")}</span>
       </div>
       <p>${data.text}</p>
       <div class="msg-actions">
@@ -65,27 +64,27 @@ onValue(messagesRef, (snapshot) => {
       </div>
     `;
 
+    // Usuario actual
+    const user = nameInput.value.trim() || "Anónimo";
+
     // Toggle like
     div.querySelector(".like-btn").addEventListener("click", () => {
-      const user = nameInput.value.trim() || "Anónimo";
       const path = ref(db, `messages/${data.id}/reactions/likes/${user}`);
-      update(path, { ".sv": "timestamp" }) // activa
-        .catch(() => remove(path));       // si ya existe, lo quita
+      if (data.reactions?.likes?.[user]) {
+        remove(path); // quitar reacción
+      } else {
+        set(path, true); // agregar reacción
+      }
     });
 
     // Toggle encanta
     div.querySelector(".encanta-btn").addEventListener("click", () => {
-      const user = nameInput.value.trim() || "Anónimo";
       const path = ref(db, `messages/${data.id}/reactions/encanta/${user}`);
-      update(path, { ".sv": "timestamp" })
-        .catch(() => remove(path));
-    });
-
-    // Reaccionar
-    div.querySelector(".like-btn").addEventListener("click", () => {
-      update(ref(db, "messages/" + data.id + "/reactions"), {
-        likes: (data.reactions?.likes || 0) + 1
-      });
+      if (data.reactions?.encanta?.[user]) {
+        remove(path);
+      } else {
+        set(path, true);
+      }
     });
 
     // Editar
@@ -104,60 +103,5 @@ onValue(messagesRef, (snapshot) => {
     });
 
     wall.appendChild(div);
-  });
-});
-
-/* ========================
-   CALENDARIO DE CUMPLEAÑOS
-======================== */
-const birthdayForm = document.getElementById("birthday-form");
-const birthdayList = document.getElementById("birthday-list");
-
-const birthdaysRef = ref(db, "birthdays");
-
-// Guardar cumpleaños
-birthdayForm.addEventListener("submit", (e) => {
-  e.preventDefault();
-  const name = document.getElementById("bday-name").value.trim();
-  const date = document.getElementById("bday-date").value;
-  if (!name || !date) return;
-
-  push(birthdaysRef, { name, date });
-  birthdayForm.reset();
-});
-
-// Mostrar cumpleaños ordenados
-onValue(birthdaysRef, (snapshot) => {
-  const arr = [];
-  snapshot.forEach((child) => arr.push({ id: child.key, ...child.val() }));
-  arr.sort((a, b) => new Date(a.date) - new Date(b.date));
-
-  birthdayList.innerHTML = "";
-  arr.forEach((data) => {
-    const li = document.createElement("li");
-    li.innerHTML = `
-      <span class="name">${data.name}</span>
-      <span class="date">${new Date(data.date).toLocaleDateString("es-AR")}</span>
-      <div class="bday-actions">
-        <button class="edit-bday">Editar</button>
-        <button class="delete-bday">Eliminar</button>
-      </div>
-    `;
-
-    // Editar cumpleaños
-    li.querySelector(".edit-bday").addEventListener("click", () => {
-      const nuevoNombre = prompt("Nuevo nombre:", data.name) || data.name;
-      const nuevaFecha = prompt("Nueva fecha (YYYY-MM-DD):", data.date) || data.date;
-      update(ref(db, "birthdays/" + data.id), { name: nuevoNombre, date: nuevaFecha });
-    });
-
-    // Eliminar cumpleaños
-    li.querySelector(".delete-bday").addEventListener("click", () => {
-      if (confirm("¿Seguro que quieres eliminar este cumpleaños?")) {
-        remove(ref(db, "birthdays/" + data.id));
-      }
-    });
-
-    birthdayList.appendChild(li);
   });
 });
