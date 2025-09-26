@@ -30,11 +30,12 @@ form.addEventListener("submit", (e) => {
     text,
     timestamp: Date.now(),
     color: getRandomColor(),
-    reactions: { likes: {}, encanta: {} } // 👈 objetos vacíos
+    reactions: { likes: {}, encanta: {} } // 👈 siempre objetos vacíos
   });
 
   messageInput.value = "";
 });
+
 
 // Mostrar mensajes
 onValue(messagesRef, (snapshot) => {

@@ -6,7 +6,8 @@ import {
   push, 
   onValue, 
   remove, 
-  update 
+  update,
+  set   // 👈 agregar esto 
 } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-database.js";
 
 // Configuración de tu proyecto Firebase
@@ -25,4 +26,5 @@ const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
 // Exportar para usar en community.js
-export { db, ref, push, onValue, remove, update };
+export { db, ref, push, onValue, remove, update, set };
+
