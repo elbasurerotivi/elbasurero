@@ -1,48 +1,41 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>El Basurero - Comunidad</title>
-  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/styles.css">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <link rel="icon" href="Imagenes/icono.png" type="image/x-icon">
 </head>
 <body>
   <div id="header"></div>
 
-  <main class="container">
-    <!-- Chat -->
-    <section class="forum">
-      <h2>Foro de la Comunidad</h2>
-      <form id="message-form" class="forum-form">
-        <input type="text" id="name" placeholder="Tu nombre" required maxlength="30" />
-        <textarea id="message" placeholder="Escribe tu mensaje" required maxlength="500"></textarea>
-        <button type="submit">Enviar</button>
-      </form>
-      <div id="community-wall" class="messages"></div>
-    </section>
+  <section class="forum">
+    <h2>Foro de la Comunidad</h2>
+    <form id="message-form">
+      <input type="text" id="name" placeholder="Tu nombre" required>
+      <textarea id="message" placeholder="Escribe tu mensaje" required></textarea>
+      <button type="submit">Enviar</button>
+    </form>
 
-    <!-- Calendario -->
-    <section class="community-calendar">
-      <h2>Calendario de Cumpleaños</h2>
-      <form id="birthday-form" class="birthday-form">
-        <input type="text" id="bday-name" placeholder="Nombre" required maxlength="50" />
-        <input type="date" id="bday-date" required />
-        <button type="submit">Guardar</button>
-      </form>
-      <ul id="birthday-list" class="birthday-list"></ul>
-    </section>
-  </main>
+    <div id="community-wall"></div>
+  </section>
 
-  <footer>
-    <p>&copy; 2025 El Basurero. Todos los derechos reservados.</p>
-  </footer>
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js"></script>
 
-  <!-- Header + comunes -->
-  <script src="js/scripts.js"></script>
-
-  <!-- Comunidad -->
+  <!-- Tus scripts -->
   <script type="module" src="js/community.js"></script>
+  <script src="js/scripts.js"></script>
+  <script>
+    fetch("header.html")
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById("header").innerHTML = data;
+      })
+      .catch(error => console.error("Error cargando el header:", error));
+  </script>
 </body>
 </html>
