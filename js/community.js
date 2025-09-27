@@ -45,15 +45,8 @@ onValue(messagesRef, (snapshot) => {
     }
     wall.appendChild(div);
   });
-  // Actualizar último timestamp visto
-  if (msgs.length > 0) {
-    lastRenderedTimestamp = msgs[0].timestamp;
-  }
-
-  // Scroll suave al inicio (último mensaje arriba)
-  wall.scrollTo({ top: 0, behavior: "smooth" });
+  
 });
-
 
 /* ========================
    CALENDARIO DE CUMPLEAÑOS
