@@ -39,6 +39,9 @@ onValue(messagesRef, (snapshot) => {
     div.classList.add("message");
     div.innerHTML = `<strong>${data.name}</strong>: ${data.text}`;
     wall.appendChild(div);
+// Siempre mostrar el último mensaje arriba
+    wall.scrollTop = 0;
+
   });
 });
 
