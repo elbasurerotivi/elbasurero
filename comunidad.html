@@ -12,10 +12,9 @@
   <div id="header"></div>
 
   <main class="container">
+    <!-- Chat -->
     <section class="forum">
       <h2>Foro de la Comunidad</h2>
-
-      <!-- MURO -->
       <form id="message-form" class="forum-form">
         <input type="text" id="name" placeholder="Tu nombre" required maxlength="30" />
         <textarea id="message" placeholder="Escribe tu mensaje" required maxlength="500"></textarea>
@@ -25,42 +24,19 @@
       </form>
 
       <div id="community-wall" class="messages"></div>
-
-
-      <div id="messages" class="messages"></div>
     </section>
 
+    <!-- Calendario -->
     <section class="community-calendar">
-      <h2>Calendario de Cumpleaños</h2>
-      <!-- CALENDARIO -->
-      <form id="birthday-form">
-        <label>Nombre:<br/><input type="text" id="bday-name" required maxlength="50" /></label>
-        <label>Fecha:<br/><input type="date" id="bday-date" required /></label>
+      <h2>🎂 Calendario de Cumpleaños</h2>
+      <form id="birthday-form" class="birthday-form">
+        <input type="text" id="bday-name" placeholder="Nombre" required maxlength="50" />
+        <input type="date" id="bday-date" required />
         <div class="form-actions">
           <button type="submit">Guardar</button>
         </div>
       </form>
-
       <ul id="birthday-list" class="birthday-list"></ul>
-
-        </div>
-      </div>
-
-      <!-- Modal sencillo para agregar cumpleaños -->
-      <div id="birthdayModal" class="modal" aria-hidden="true">
-        <div class="modal-content">
-          <button id="closeModal" class="modal-close" aria-label="Cerrar">&times;</button>
-          <h3 id="modalTitle">Agregar cumpleaños</h3>
-          <form id="birthdayForm">
-            <label>Nombre:<br/><input type="text" id="bName" required maxlength="50" /></label>
-            <label>Fecha:<br/><input type="date" id="bDate" required /></label>
-            <div class="form-actions">
-              <button type="submit">Guardar</button>
-              <button type="button" id="cancelModal">Cancelar</button>
-            </div>
-          </form>
-        </div>
-      </div>
     </section>
   </main>
 
@@ -68,13 +44,10 @@
     <p>&copy; 2025 El Basurero. Todos los derechos reservados.</p>
   </footer>
 
-  
-  <!-- Keep existing scripts.js (header + common) -->
+  <!-- Header + comunes -->
   <script src="js/scripts.js"></script>
-  <!-- New community script (handles forum + calendar, with localStorage fallback) -->
-  <script src="js/community.js"></script>
-  <!-- Firebase -->
-  <script type="module" src="js/community.js"></script>
 
+  <!-- Comunidad (solo una vez y como módulo) -->
+  <script type="module" src="js/community.js"></script>
 </body>
 </html>
