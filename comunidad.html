@@ -31,10 +31,13 @@
           <!-- messages container. NOTE: layout uses column-reverse so newest appear on top visually -->
           <div id="community-wall" class="messages" aria-live="polite"></div>
 
-          <form id="message-form" class="message-form">
-            <textarea id="message" placeholder="Escribí algo..." rows="2" required></textarea>
-            <button type="submit" class="btn send">Enviar</button>
+          <form id="message-form">
+            <input type="text" id="name" placeholder="Tu nombre" required maxlength="30" />
+            <textarea id="message" placeholder="Escribe tu mensaje" required maxlength="500"></textarea>
+            <button type="submit">Enviar</button>
           </form>
+          <div id="community-wall"></div>
+
         </section>
       </div>
     </section>
@@ -42,7 +45,9 @@
 
   <script src="js/scripts.js"></script>
   <!-- Cargar el módulo principal del chat -->
-  <script type="module" src="js/community.js"></script>
+  
+<script type="module" src="js/community.js"></script>
+
 
   <script>
     // cargar header si existe (no crítico)
