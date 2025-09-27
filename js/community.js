@@ -12,6 +12,8 @@ const messageInput = document.getElementById("message");
 // Referencia a mensajes en Firebase
 const messagesRef = ref(db, "messages");
 
+let lastRenderedTimestamp = 0; // para detectar nuevos
+
 // Enviar mensaje
 form.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -25,7 +27,6 @@ form.addEventListener("submit", (e) => {
       text: message,
       timestamp: Date.now()
     });
-
     messageInput.value = "";
   }
 });
@@ -33,39 +34,33 @@ form.addEventListener("submit", (e) => {
 // Mostrar mensajes en tiempo real
 onValue(messagesRef, (snapshot) => {
   const msgs = [];
-  snapshot.forEach((child) => msgs.push({ id: child.key, ...child.val() }));
+  snapshot.forEach((child) => msgs.push(child.val()));
 
-  // Ordenar: más nuevo arriba
-  msgs.sort((a, b) => (a.timestamp || 0) - (b.timestamp || 0));
-  msgs.reverse();
+  // Ordenar por timestamp (más nuevo arriba)
+  msgs.sort((a, b) => b.timestamp - a.timestamp);
 
   wall.innerHTML = "";
   msgs.forEach((data) => {
-    const likesCount = data.reactions?.likes ? Object.keys(data.reactions.likes).length : 0;
-    const encantaCount = data.reactions?.encanta ? Object.keys(data.reactions.encanta).length : 0;
-
     const div = document.createElement("div");
     div.classList.add("message");
+    div.innerHTML = `<strong>${data.name}</strong>: ${data.text}`;
 
-    div.innerHTML = `
-      <div class="msg-header">
-        <strong style="color:${data.color || "#000"}">${data.name}</strong>
-        <span class="msg-time">${data.timestamp ? new Date(data.timestamp).toLocaleString("es-AR") : ""}</span>
-      </div>
-      <p>${data.text || ""}</p>
-      <div class="msg-actions">
-        <button class="like-btn">👍 ${likesCount}</button>
-        <button class="encanta-btn">❤️ ${encantaCount}</button>
-        <button class="edit-btn">Editar</button>
-        <button class="delete-btn">Eliminar</button>
-      </div>
-    `;
+    // Si es un mensaje nuevo → resaltar
+    if (data.timestamp > lastRenderedTimestamp) {
+      div.classList.add("new-message");
+      setTimeout(() => div.classList.remove("new-message"), 1500);
+    }
 
     wall.appendChild(div);
   });
 
-  // 👇 Esto asegura que siempre se vea el último mensaje
-  wall.scrollTop = 0;
+  // Actualizar último timestamp visto
+  if (msgs.length > 0) {
+    lastRenderedTimestamp = msgs[0].timestamp;
+  }
+
+  // Scroll suave al inicio (último mensaje arriba)
+  wall.scrollTo({ top: 0, behavior: "smooth" });
 });
 
 

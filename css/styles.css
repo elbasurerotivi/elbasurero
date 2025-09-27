@@ -772,6 +772,18 @@ body {
   .messages { height:420px; }
 }
 
+/* Animación de resaltado en mensaje nuevo */
+.new-message {
+  background-color: #fff3cd; /* amarillo suave */
+  transition: background-color 1.5s ease;
+}
+
+/* Scroll suave para el contenedor */
+#community-wall {
+  scroll-behavior: smooth;
+}
+
+
 
 
 
