@@ -47,13 +47,20 @@ onValue(messagesRef, (snapshot) => {
 ======================== */
 const birthdayForm = document.getElementById("birthday-form");
 const birthdayList = document.getElementById("birthday-list");
+const calendarEl = document.getElementById("calendar");
+const monthLabel = document.getElementById("month-label");
+const prevBtn = document.getElementById("prev-month");
+const nextBtn = document.getElementById("next-month");
 
 const birthdaysRef = ref(db, "birthdays");
 
-// Enviar cumpleaños
+let currentMonth = new Date().getMonth();
+let currentYear = new Date().getFullYear();
+let allBirthdays = [];
+
+// Guardar cumpleaños
 birthdayForm.addEventListener("submit", (e) => {
   e.preventDefault();
-
   const name = document.getElementById("bday-name").value.trim();
   const date = document.getElementById("bday-date").value;
 
@@ -63,13 +70,95 @@ birthdayForm.addEventListener("submit", (e) => {
   }
 });
 
-// Mostrar cumpleaños en tiempo real
+// Escuchar cumpleaños
+// Escuchar cumpleaños
 onValue(birthdaysRef, (snapshot) => {
-  birthdayList.innerHTML = "";
+  allBirthdays = [];
   snapshot.forEach((child) => {
-    const data = child.val();
+    allBirthdays.push({ id: child.key, ...child.val() }); // 👈 guardamos id + datos
+  });
+
+  renderBirthdayList();
+  renderCalendar();
+});
+
+// Render lista ordenada
+function renderBirthdayList() {
+  birthdayList.innerHTML = "";
+
+  const sorted = [...allBirthdays].sort((a, b) => {
+    const [, ma, da] = a.date.split("-").map(Number);
+    const [, mb, db] = b.date.split("-").map(Number);
+    return ma - mb || da - db;
+  });
+
+  sorted.forEach((data) => {
+    const [y, m, d] = data.date.split("-"); // yyyy-mm-dd
+    const fecha = `${d.padStart(2, "0")}-${m.padStart(2, "0")}-${y}`; // 👈 forzamos formato dd-mm-aaaa
+
     const li = document.createElement("li");
-    li.textContent = `${data.name} 🎂 (${data.date})`;
+    li.textContent = `${data.name} 🎂 (${fecha})`;
     birthdayList.appendChild(li);
   });
+}
+
+
+// Render calendario
+function renderCalendar() {
+  const firstDay = new Date(currentYear, currentMonth, 1).getDay(); // 0 = domingo
+  const lastDate = new Date(currentYear, currentMonth + 1, 0).getDate();
+
+  monthLabel.textContent = new Date(currentYear, currentMonth).toLocaleString("es-ES", {
+    month: "long",
+    year: "numeric"
+  });
+
+  let html = `<table class="calendar-table">
+    <thead>
+      <tr>
+        <th>Dom</th><th>Lun</th><th>Mar</th><th>Mié</th><th>Jue</th><th>Vie</th><th>Sáb</th>
+      </tr>
+    </thead>
+    <tbody><tr>`;
+
+  let dayOfWeek = firstDay;
+  for (let i = 0; i < dayOfWeek; i++) {
+    html += "<td></td>";
+  }
+
+  for (let day = 1; day <= lastDate; day++) {
+  const currentDate = `${currentYear}-${String(currentMonth + 1).padStart(2,"0")}-${String(day).padStart(2,"0")}`;
+
+  const hasBirthday = allBirthdays.some(b => b.date === currentDate);
+
+  html += `<td class="${hasBirthday ? "birthday-cell" : ""}">${day}</td>`;
+  dayOfWeek++;
+  if (dayOfWeek === 7 && day < lastDate) {
+    html += "</tr><tr>";
+    dayOfWeek = 0;
+  }
+}
+
+
+  html += "</tr></tbody></table>";
+  calendarEl.innerHTML = html;
+}
+
+// Navegación entre meses
+prevBtn.addEventListener("click", () => {
+  currentMonth--;
+  if (currentMonth < 0) {
+    currentMonth = 11;
+    currentYear--;
+  }
+  renderCalendar();
+});
+
+nextBtn.addEventListener("click", () => {
+  currentMonth++;
+  if (currentMonth > 11) {
+    currentMonth = 0;
+    currentYear++;
+  }
+  renderCalendar();
 });

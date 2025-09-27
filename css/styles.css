@@ -787,44 +787,151 @@ body {
 
 
 
-/* ====== CALENDARIO ====== */
-.birthday-form {
+/* Contenedor lado a lado */
+.community-calendar {
   display: flex;
-  gap: 0.6rem;
-  margin-bottom: 1rem;
+  gap: 2rem;
+  align-items: flex-start;
 }
 
+/* Lista de cumpleaños */
 .birthday-list {
+  flex: 1;
   list-style: none;
   padding: 0;
   margin: 0;
 }
-
 .birthday-list li {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   background: #fff;
   padding: 0.6rem 1rem;
   border-radius: 6px;
   margin-bottom: 0.5rem;
   box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  font-size: 0.95rem;
 }
 
-.birthday-list .name {
+/* Calendario */
+#calendar {
+  flex: 1;
+}
+.calendar-table {
+  border-collapse: collapse;
+  width: 100%;
+  background: #fff;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+.calendar-table th,
+.calendar-table td {
+  border: 1px solid #ddd;
+  text-align: center;
+  padding: 0.6rem;
+}
+.calendar-table th {
+  background: #007bff;
+  color: #fff;
+}
+.birthday-cell {
+  background: #ffeb3b;
   font-weight: bold;
+  border-radius: 50%;
 }
 
-.birthday-list .date {
-  font-size: 0.9rem;
-  color: #666;
+.community-calendar {
+  display: block;
+  margin-top: 1rem;
 }
 
-.bday-actions button {
-  background: transparent;
+.calendar-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+/* Inputs y botones calendario */
+.birthday-form {
+  display: flex;
+  gap: 8px;
+  margin: 12px 0;
+  align-items: flex-end;
+}
+
+.birthday-form input {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+  flex: 1;
+}
+
+.birthday-form button {
+  padding: 10px 16px;
   border: none;
+  border-radius: 8px;
+  background: #007bff;
+  color: white;
   cursor: pointer;
-  margin-left: 0.5rem;
-  color: #007bff;
+  transition: 0.2s;
+}
+.birthday-form button:hover {
+  background: #0056b3;
 }
 
+/* Grid lista + calendario */
+.calendar-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: start;
+  margin-top: 1rem;
+}
+
+/* Navegación calendario */
+.calendar-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.calendar-nav button {
+  border: none;
+  background: #007bff;
+  color: white;
+  border-radius: 6px;
+  padding: 4px 10px;
+  cursor: pointer;
+}
+.calendar-nav button:hover {
+  background: #0056b3;
+}
+#month-label {
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+/* Estilo tabla calendario */
+.calendar-table {
+  border-collapse: collapse;
+  width: 100%;
+  background: #fff;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+.calendar-table th,
+.calendar-table td {
+  border: 1px solid #ddd;
+  text-align: center;
+  padding: 0.6rem;
+}
+.calendar-table th {
+  background: #007bff;
+  color: #fff;
+}
+.birthday-cell {
+  background: #ffeb3b;
+  font-weight: bold;
+  border-radius: 50%;
+}
