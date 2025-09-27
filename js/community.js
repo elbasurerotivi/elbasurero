@@ -32,18 +32,42 @@ form.addEventListener("submit", (e) => {
 
 // Mostrar mensajes en tiempo real
 onValue(messagesRef, (snapshot) => {
+  const msgs = [];
+  snapshot.forEach((child) => msgs.push({ id: child.key, ...child.val() }));
+
+  // Ordenar: más nuevo arriba
+  msgs.sort((a, b) => (a.timestamp || 0) - (b.timestamp || 0));
+  msgs.reverse();
+
   wall.innerHTML = "";
-  snapshot.forEach((child) => {
-    const data = child.val();
+  msgs.forEach((data) => {
+    const likesCount = data.reactions?.likes ? Object.keys(data.reactions.likes).length : 0;
+    const encantaCount = data.reactions?.encanta ? Object.keys(data.reactions.encanta).length : 0;
+
     const div = document.createElement("div");
     div.classList.add("message");
-    div.innerHTML = `<strong>${data.name}</strong>: ${data.text}`;
-    wall.appendChild(div);
-// Siempre mostrar el último mensaje arriba
-    wall.scrollTop = 0;
 
+    div.innerHTML = `
+      <div class="msg-header">
+        <strong style="color:${data.color || "#000"}">${data.name}</strong>
+        <span class="msg-time">${data.timestamp ? new Date(data.timestamp).toLocaleString("es-AR") : ""}</span>
+      </div>
+      <p>${data.text || ""}</p>
+      <div class="msg-actions">
+        <button class="like-btn">👍 ${likesCount}</button>
+        <button class="encanta-btn">❤️ ${encantaCount}</button>
+        <button class="edit-btn">Editar</button>
+        <button class="delete-btn">Eliminar</button>
+      </div>
+    `;
+
+    wall.appendChild(div);
   });
+
+  // 👇 Esto asegura que siempre se vea el último mensaje
+  wall.scrollTop = 0;
 });
+
 
 /* ========================
    CALENDARIO DE CUMPLEAÑOS
