@@ -14,7 +14,8 @@ const firebaseConfig = {
   projectId: "elbasurero-af722",
   storageBucket: "elbasurero-af722.firebasestorage.app",
   messagingSenderId: "577473118837",
-  appId: "1:577473118837:web:6a6ab394c6cec3bff36e3c"
+  appId: "1:577473118837:web:6a6ab394c6cec3bff36e3c",
+  measurementId: "G-N1QYBFXVVV"
 };
 
 
