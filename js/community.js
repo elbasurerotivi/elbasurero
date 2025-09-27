@@ -1,165 +1,238 @@
-// Importar Firebase
-import { db, ref, push, onValue, remove, update, set } from "./firebase-config.js";
+// js/community.js
+import { db } from "./firebase-config.js";
+import { ref, push, onValue, set, remove, update } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js";
 
-/* ========================
-   CHAT / MURO
-======================== */
-const wall = document.getElementById("community-wall");
-const form = document.getElementById("message-form");
-const nameInput = document.getElementById("name");
-const messageInput = document.getElementById("message");
+console.log("community.js loaded (module)");
 
-// Referencia en Firebase
-const messagesRef = ref(db, "messages");
+// Reactions supported
+const REACTIONS = [
+  { key: 'like', emoji: '👍', title: 'Me gusta' },
+  { key: 'dislike', emoji: '👎', title: 'No me gusta' },
+  { key: 'love', emoji: '❤️', title: 'Me encanta' },
+  { key: 'angry', emoji: '😡', title: 'Me enoja' },
+  { key: 'wow', emoji: '😮', title: 'Me sorprende' }
+];
 
-// Paleta de colores
-const colors = ["#e74c3c", "#2ecc71", "#3498db", "#f39c12", "#9b59b6", "#1abc9c"];
-function getRandomColor() {
-  return colors[Math.floor(Math.random() * colors.length)];
+// Elements
+const wall = document.getElementById('community-wall');
+const form = document.getElementById('message-form');
+const nameInput = document.getElementById('name');
+const messageInput = document.getElementById('message');
+const participantsEl = document.getElementById('participants');
+const saveNameBtn = document.getElementById('save-name');
+
+if (!wall || !form || !nameInput || !messageInput) {
+  console.error("Missing DOM elements for chat. Check comunidad.html IDs.");
 }
 
-// Enviar mensaje
-form.addEventListener("submit", (e) => {
+// Simple uid for each browser (stored in localStorage)
+let uid = localStorage.getItem('chat_uid');
+if (!uid) {
+  uid = 'u_' + Math.random().toString(36).slice(2,10);
+  localStorage.setItem('chat_uid', uid);
+}
+
+// Name handling
+let savedName = localStorage.getItem('chat_name') || '';
+if (!savedName) {
+  savedName = prompt('Elegí un nombre para el chat (se guardará en este navegador):') || 'Anónimo';
+  localStorage.setItem('chat_name', savedName);
+}
+nameInput.value = savedName;
+
+// Save name button
+saveNameBtn.addEventListener('click', () => {
+  const v = nameInput.value.trim() || 'Anónimo';
+  localStorage.setItem('chat_name', v);
+  savedName = v;
+  alert('Nombre guardado: ' + v);
+});
+
+// helpers
+function getRandomColor() {
+  const colors = ['#e74c3c', '#2ecc71', '#3498db', '#f39c12', '#9b59b6', '#1abc9c', '#34495e'];
+  return colors[Math.floor(Math.random()*colors.length)];
+}
+function timeString(ts) {
+  try { return new Date(ts).toLocaleString('es-AR'); } catch(e) { return ''; }
+}
+
+// DB refs
+const messagesRef = ref(db, 'messages');
+const participantsRef = ref(db, 'participants');
+
+// send message
+form.addEventListener('submit', async (e) => {
   e.preventDefault();
-  const name = nameInput.value.trim() || "Anónimo";
   const text = messageInput.value.trim();
+  const name = nameInput.value.trim() || savedName || 'Anónimo';
   if (!text) return;
 
-  push(messagesRef, {
+  const newMsg = {
+    uid,
     name,
     text,
     timestamp: Date.now(),
     color: getRandomColor(),
-    reactions: { likes: {}, encanta: {} } // objetos vacíos
-  });
-
-  messageInput.value = "";
+    reactions: {}
+  };
+  try {
+    await push(messagesRef, newMsg);
+    messageInput.value = '';
+  } catch (err) {
+    console.error('Error sending message:', err);
+    alert('Error al enviar el mensaje. Revisa la consola.');
+  }
 });
 
-// Mostrar mensajes en tiempo real
+// register participant (simple online marker)
+(function registerParticipant(){
+  try{
+    set(ref(db, 'participants/' + uid), { name: nameInput.value || savedName, ts: Date.now() });
+    window.addEventListener('beforeunload', () => {
+      remove(ref(db, 'participants/' + uid)).catch(()=>{});
+    });
+  }catch(e){ console.warn('participant registration failed', e); }
+})();
+
+// render participants
+onValue(participantsRef, (snap) => {
+  const parts = [];
+  snap.forEach(child => parts.push(child.val()));
+  if (parts.length === 0) {
+    participantsEl.innerHTML = '<div class="muted">No hay participantes</div>';
+    return;
+  }
+  participantsEl.innerHTML = parts.map(p=> '<div class="participant-item">' + escapeHtml(p.name || 'Anon') + '</div>').join('');
+}, (err)=>{ console.error('participants read error', err); });
+
+// Listen messages in realtime
 onValue(messagesRef, (snapshot) => {
   const msgs = [];
-  snapshot.forEach((child) => msgs.push({ id: child.key, ...child.val() }));
-
-  // Ordenar: más nuevo arriba
-  msgs.sort((a, b) => (a.timestamp || 0) - (b.timestamp || 0));
-  msgs.reverse();
-
-  wall.innerHTML = "";
-  msgs.forEach((data) => {
-    const likesCount = data.reactions?.likes ? Object.keys(data.reactions.likes).length : 0;
-    const encantaCount = data.reactions?.encanta ? Object.keys(data.reactions.encanta).length : 0;
-
-    const div = document.createElement("div");
-    div.classList.add("message");
-
-    div.innerHTML = `
-      <div class="msg-header">
-        <strong style="color:${data.color || "#000"}">${data.name}</strong>
-        <span class="msg-time">${data.timestamp ? new Date(data.timestamp).toLocaleString("es-AR") : ""}</span>
-      </div>
-      <p>${data.text || ""}</p>
-      <div class="msg-actions">
-        <button class="like-btn">👍 ${likesCount}</button>
-        <button class="encanta-btn">❤️ ${encantaCount}</button>
-        <button class="edit-btn">Editar</button>
-        <button class="delete-btn">Eliminar</button>
-      </div>
-    `;
-
-    // Usuario actual (para reacciones únicas)
-    const user = nameInput.value.trim() || "Anónimo";
-
-    // Toggle 👍
-    div.querySelector(".like-btn").addEventListener("click", () => {
-      const path = ref(db, `messages/${data.id}/reactions/likes/${user}`);
-      if (data.reactions?.likes?.[user]) {
-        remove(path); // quitar reacción
-      } else {
-        set(path, true); // agregar reacción
-      }
-    });
-
-    // Toggle ❤️
-    div.querySelector(".encanta-btn").addEventListener("click", () => {
-      const path = ref(db, `messages/${data.id}/reactions/encanta/${user}`);
-      if (data.reactions?.encanta?.[user]) {
-        remove(path);
-      } else {
-        set(path, true);
-      }
-    });
-
-    // Editar mensaje
-    div.querySelector(".edit-btn").addEventListener("click", () => {
-      const nuevoTexto = prompt("Editar mensaje:", data.text);
-      if (nuevoTexto) {
-        update(ref(db, "messages/" + data.id), { text: nuevoTexto });
-      }
-    });
-
-    // Eliminar mensaje
-    div.querySelector(".delete-btn").addEventListener("click", () => {
-      if (confirm("¿Seguro que quieres eliminar este mensaje?")) {
-        remove(ref(db, "messages/" + data.id));
-      }
-    });
-
-    wall.appendChild(div);
+  snapshot.forEach(child => {
+    msgs.push({ id: child.key, ...child.val() });
   });
+
+  // sort by timestamp desc (newest first)
+  msgs.sort((a,b) => (b.timestamp || 0) - (a.timestamp || 0));
+
+  // render
+  renderMessages(msgs);
+}, (err) => {
+  console.error('messages read error', err);
+  wall.innerHTML = '<div class="muted">No se pueden cargar mensajes: ' + (err.message || '') + '</div>';
 });
 
-/* ========================
-   CALENDARIO DE CUMPLEAÑOS
-======================== */
-const birthdayForm = document.getElementById("birthday-form");
-const birthdayList = document.getElementById("birthday-list");
+function renderMessages(messages){
+  // messages is an array newest-first
+  wall.innerHTML = '';
+  if (!messages || messages.length === 0) {
+    wall.innerHTML = '<div class="muted" style="text-align:center; padding:24px;">No hay mensajes todavía. Sé el primero en escribir.</div>';
+    return;
+  }
 
-const birthdaysRef = ref(db, "birthdays");
+  messages.forEach(msg => {
+    const el = document.createElement('div');
+    el.className = 'msg';
 
-// Guardar cumpleaños
-birthdayForm.addEventListener("submit", (e) => {
-  e.preventDefault();
-  const name = document.getElementById("bday-name").value.trim();
-  const date = document.getElementById("bday-date").value;
-  if (!name || !date) return;
+    const avatar = document.createElement('div');
+    avatar.className = 'avatar';
+    avatar.style.background = msg.color || '#777';
+    avatar.textContent = (msg.name && msg.name.slice(0,1).toUpperCase()) || 'A';
 
-  push(birthdaysRef, { name, date });
-  birthdayForm.reset();
-});
+    const body = document.createElement('div');
+    body.className = 'msg-body';
 
-// Mostrar cumpleaños ordenados
-onValue(birthdaysRef, (snapshot) => {
-  const arr = [];
-  snapshot.forEach((child) => arr.push({ id: child.key, ...child.val() }));
-  arr.sort((a, b) => new Date(a.date) - new Date(b.date));
+    // Header
+    const header = document.createElement('div');
+    header.className = 'msg-head';
+    const nameEl = document.createElement('div');
+    nameEl.className = 'name';
+    nameEl.textContent = msg.name || 'Anónimo';
+    const timeEl = document.createElement('div');
+    timeEl.className = 'msg-time';
+    timeEl.textContent = timeString(msg.timestamp);
 
-  birthdayList.innerHTML = "";
-  arr.forEach((data) => {
-    const li = document.createElement("li");
-    li.innerHTML = `
-      <span class="name">${data.name}</span>
-      <span class="date">${new Date(data.date).toLocaleDateString("es-AR")}</span>
-      <div class="bday-actions">
-        <button class="edit-bday">Editar</button>
-        <button class="delete-bday">Eliminar</button>
-      </div>
-    `;
+    header.appendChild(nameEl);
+    header.appendChild(timeEl);
 
-    // Editar cumpleaños
-    li.querySelector(".edit-bday").addEventListener("click", () => {
-      const nuevoNombre = prompt("Nuevo nombre:", data.name) || data.name;
-      const nuevaFecha = prompt("Nueva fecha (YYYY-MM-DD):", data.date) || data.date;
-      update(ref(db, "birthdays/" + data.id), { name: nuevoNombre, date: nuevaFecha });
+    // Text
+    const textP = document.createElement('div');
+    textP.className = 'msg-text';
+    textP.textContent = msg.text || '';
+
+    // Actions: reactions
+    const actions = document.createElement('div');
+    actions.className = 'msg-actions';
+
+    REACTIONS.forEach(r => {
+      const count = msg.reactions && msg.reactions[r.key] ? Object.keys(msg.reactions[r.key]).length : 0;
+      const active = msg.reactions && msg.reactions[r.key] && msg.reactions[r.key][uid];
+      const btn = document.createElement('button');
+      btn.className = 'react-btn' + (active ? ' active' : '');
+      btn.setAttribute('data-reaction', r.key);
+      btn.innerHTML = '<span class="emoji">'+r.emoji+'</span> <span class="count">'+count+'</span>';
+      btn.title = r.title;
+
+      btn.addEventListener('click', async () => {
+        try {
+          const path = 'messages/' + msg.id + '/reactions/' + r.key + '/' + uid;
+          if (active) {
+            await remove(ref(db, path));
+          } else {
+            await set(ref(db, path), true);
+          }
+        } catch (err) {
+          console.error('reaction toggle error', err);
+        }
+      });
+      actions.appendChild(btn);
     });
 
-    // Eliminar cumpleaños
-    li.querySelector(".delete-bday").addEventListener("click", () => {
-      if (confirm("¿Seguro que quieres eliminar este cumpleaños?")) {
-        remove(ref(db, "birthdays/" + data.id));
-      }
-    });
+    // Controls (edit/delete only if author)
+    const controls = document.createElement('div');
+    controls.className = 'msg-controls';
+    if (msg.uid === uid) {
+      const editBtn = document.createElement('button');
+      editBtn.className = 'control-btn';
+      editBtn.textContent = 'Editar';
+      editBtn.addEventListener('click', async () => {
+        const nuevo = prompt('Editar tu mensaje:', msg.text || '');
+        if (nuevo !== null) {
+          try {
+            await update(ref(db, 'messages/' + msg.id), { text: nuevo });
+          } catch (err) { console.error('edit error', err); }
+        }
+      });
+      const delBtn = document.createElement('button');
+      delBtn.className = 'control-btn';
+      delBtn.textContent = 'Eliminar';
+      delBtn.addEventListener('click', async () => {
+        if (!confirm('¿Eliminar este mensaje?')) return;
+        try {
+          await remove(ref(db, 'messages/' + msg.id));
+        } catch (err) { console.error('delete error', err); }
+      });
+      controls.appendChild(editBtn);
+      controls.appendChild(delBtn);
+    }
 
-    birthdayList.appendChild(li);
+    // Compose message node
+    body.appendChild(header);
+    body.appendChild(textP);
+    body.appendChild(actions);
+    body.appendChild(controls);
+
+    el.appendChild(avatar);
+    el.appendChild(body);
+
+    wall.appendChild(el);
   });
-});
+
+  // Keep scroll at top (newest-first layout)
+  try { wall.scrollTop = 0; } catch(e){}
+}
+
+// Minimal safe escape
+function escapeHtml(str){ if(!str) return ''; return String(str).replace(/[&<>"']/g, (m)=>({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',\"'\":'&#39;' }[m])); }
+   
