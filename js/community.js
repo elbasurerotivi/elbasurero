@@ -38,14 +38,8 @@ onValue(messagesRef, (snapshot) => {
     const div = document.createElement("div");
     div.classList.add("message");
     div.innerHTML = `<strong>${data.name}</strong>: ${data.text}`;
-    // Si es un mensaje nuevo → resaltar
-    if (data.timestamp > lastRenderedTimestamp) {
-      div.classList.add("new-message");
-      setTimeout(() => div.classList.remove("new-message"), 1500);
-    }
     wall.appendChild(div);
   });
-  
 });
 
 /* ========================
