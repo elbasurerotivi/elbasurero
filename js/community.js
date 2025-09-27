@@ -38,9 +38,22 @@ onValue(messagesRef, (snapshot) => {
     const div = document.createElement("div");
     div.classList.add("message");
     div.innerHTML = `<strong>${data.name}</strong>: ${data.text}`;
+    // Si es un mensaje nuevo → resaltar
+    if (data.timestamp > lastRenderedTimestamp) {
+      div.classList.add("new-message");
+      setTimeout(() => div.classList.remove("new-message"), 1500);
+    }
     wall.appendChild(div);
   });
+  // Actualizar último timestamp visto
+  if (msgs.length > 0) {
+    lastRenderedTimestamp = msgs[0].timestamp;
+  }
+
+  // Scroll suave al inicio (último mensaje arriba)
+  wall.scrollTo({ top: 0, behavior: "smooth" });
 });
+
 
 /* ========================
    CALENDARIO DE CUMPLEAÑOS
