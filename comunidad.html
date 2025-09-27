@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>El Basurero - Comunidad</title>
   <link rel="stylesheet" href="css/styles.css">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
@@ -11,31 +11,45 @@
 <body>
   <div id="header"></div>
 
-  <section class="forum">
-    <h2>Foro de la Comunidad</h2>
-    <form id="message-form">
-      <input type="text" id="name" placeholder="Tu nombre" required>
-      <textarea id="message" placeholder="Escribe tu mensaje" required></textarea>
-      <button type="submit">Enviar</button>
-    </form>
+  <main class="container">
+    <section class="chat-wrap">
+      <header class="chat-header">
+        <h2>Comunidad — Muro</h2>
+        <div class="user-controls">
+          <input id="name" class="name-input" placeholder="Tu nombre" />
+          <button id="save-name" class="btn small">Guardar</button>
+        </div>
+      </header>
 
-    <div id="community-wall"></div>
-  </section>
+      <div class="chat-content">
+        <aside class="chat-sidebar">
+          <h3>Participantes</h3>
+          <div id="participants" class="participants-list">—</div>
+        </aside>
 
-  <!-- Firebase -->
-  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js"></script>
+        <section class="chat-main">
+          <!-- messages container. NOTE: layout uses column-reverse so newest appear on top visually -->
+          <div id="community-wall" class="messages" aria-live="polite"></div>
 
-  <!-- Tus scripts -->
-  <script type="module" src="js/community.js"></script>
+          <form id="message-form" class="message-form">
+            <textarea id="message" placeholder="Escribí algo..." rows="2" required></textarea>
+            <button type="submit" class="btn send">Enviar</button>
+          </form>
+        </section>
+      </div>
+    </section>
+  </main>
+
   <script src="js/scripts.js"></script>
+  <!-- Cargar el módulo principal del chat -->
+  <script type="module" src="js/community.js"></script>
+
   <script>
+    // cargar header si existe (no crítico)
     fetch("header.html")
-      .then(response => response.text())
-      .then(data => {
-        document.getElementById("header").innerHTML = data;
-      })
-      .catch(error => console.error("Error cargando el header:", error));
+      .then(r => r.text())
+      .then(html => document.getElementById("header").innerHTML = html)
+      .catch(()=>{ /* silent */ });
   </script>
 </body>
 </html>
