@@ -1,14 +1,10 @@
-// Importar Firebase (versión modular)
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
-import { 
-  getDatabase, 
-  ref, 
-  push, 
-  onValue, 
-  remove, 
-  update, 
-  set // 👈 agregado
-} from "https://www.gstatic.com/firebasejs/9.22.2/firebase-database.js";
+// js/firebase-config.js
+// Firebase v9 modular - Realtime Database
+// REEMPLAZA los valores de firebaseConfig con los de tu proyecto (desde Firebase Console)
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+import { getDatabase } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js";
+
 
 // Configuración de tu proyecto Firebase
 const firebaseConfig = {
@@ -21,9 +17,8 @@ const firebaseConfig = {
   appId: "1:577473118837:web:6a6ab394c6cec3bff36e3c"
 };
 
-// Inicializar Firebase
+
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
-// Exportar
-export { db, ref, push, onValue, remove, update, set };
+export { db };
