@@ -1,10 +1,6 @@
-// js/firebase-config.js
-// Firebase v9 modular - Realtime Database
-// REEMPLAZA los valores de firebaseConfig con los de tu proyecto (desde Firebase Console)
-
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
-import { getDatabase } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js";
-
+// Importar Firebase (versión modular)
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
+import { getDatabase, ref, push, onValue } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-database.js";
 
 // Configuración de tu proyecto Firebase
 const firebaseConfig = {
@@ -14,12 +10,12 @@ const firebaseConfig = {
   projectId: "elbasurero-af722",
   storageBucket: "elbasurero-af722.firebasestorage.app",
   messagingSenderId: "577473118837",
-  appId: "1:577473118837:web:6a6ab394c6cec3bff36e3c",
-  measurementId: "G-N1QYBFXVVV"
+  appId: "1:577473118837:web:6a6ab394c6cec3bff36e3c"
 };
 
-
+// Inicializar Firebase
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
-export { db };
+// Exportar para usar en community.js
+export { db, ref, push, onValue };
