@@ -58,12 +58,28 @@
     
   </main>
 
-  <footer>
-    <p>&copy; 2025 El Basurero. Todos los derechos reservados.</p>
-  </footer>
+  <div id="footer"></div>
 
   <!-- Header + comunes -->
   <script src="js/scripts.js"></script>
+
+  <script>
+  fetch("header.html")
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById("header").innerHTML = data;
+    })
+    .catch(error => console.error("Error cargando el header:", error));
+</script>
+
+<script>
+  fetch("footer.html")
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById("footer").innerHTML = data;
+    })
+    .catch(error => console.error("Error cargando el footer:", error));
+</script>
 
   <!-- Comunidad (solo una vez y como módulo) -->
   <script type="module" src="js/community.js"></script>

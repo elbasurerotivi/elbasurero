@@ -19,8 +19,8 @@
   <h2>📅 Horarios de Directos</h2>
   <div class="schedule-grid">
     <div class="card">
-      <h3>Lunes</h3>
-      <p>20:00 (Arg)</p>
+      <h3>Miercoles</h3>
+      <p>21:30 (Arg)</p>
       <span>Reacciones en vivo</span>
     </div>
     <div class="card">
@@ -68,30 +68,8 @@
 </section>
 
 </main>
-<footer>
-    <p>&copy; 2025 El Basurero. Todos los derechos reservados.</p>
-    <h3>Sígueme en mis redes</h3>
-  <div class="social-links">
-    <a href="https://www.twitch.tv/elbasurerochido" target="_blank">
-      <img src="Imagenes/twitch_logo.png" alt="Twitch"> Twitch
-    </a>
-    <a href="https://www.youtube.com/@elbasureroedgar" target="_blank">
-      <img src="Imagenes/youtube_logo.png" alt="YouTube"> YouTube
-    </a>
-    <a href="https://discord.gg/TgAkT7PFt5" target="_blank">
-      <img src="Imagenes/discord_logo.png" alt="Discord"> Discord
-    </a>
-    <a href="https://www.instagram.com/el_basurero_tiviplas" target="_blank">
-      <img src="Imagenes/instagram_logo.png" alt="Instagram"> Instagram
-    </a>
-    <a href="https://www.facebook.com/el.basurero.ti.vi.plas" target="_blank">
-      <img src="Imagenes/facebook_logo.png" alt="Facebook"> Facebook
-    </a>
-    <a href="https://www.patreon.com/cw/ElBasureroTi_Vi_Plas" target="_blank">
-      <img src="Imagenes/patreon_logo.png" alt="Patreon"> Patreon
-    </a>
-  </div>
-</footer>
+
+<div id="footer"></div>
 
 <script src="js/scripts.js"></script>
 <script>
@@ -101,6 +79,15 @@
       document.getElementById("header").innerHTML = data;
     })
     .catch(error => console.error("Error cargando el header:", error));
+</script>
+
+<script>
+  fetch("footer.html")
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById("footer").innerHTML = data;
+    })
+    .catch(error => console.error("Error cargando el footer:", error));
 </script>
 </body>
 
