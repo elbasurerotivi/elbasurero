@@ -1,64 +1,36 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>El Basurero - Recomendaciones</title>
-    <link rel="stylesheet" href="css/styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="icon" href="imagenes/icono.png" type="image/x-icon">
-    <meta name="description" content="El Basurero, tu canal de reacciones en YouTube. Horarios, videos y comunidad.">
-<meta name="keywords" content="El Basurero, reacciones, YouTube, directos, comunidad">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>El Basurero - Recomendaciones</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-        
-        <div id="header"></div>
+  <div id="header"></div>
 
-    
-
+  <main class="container">
     <section class="recommendations">
-    <h2>Recomienda contenido para reacciones</h2>
-    <form id="recommend-form">
-        <input type="text" id="name" placeholder="Tu nombre (opcional)">
-        <input type="text" id="recommendation" placeholder="¿Qué quieres que reaccione?" required>
-        <button type="submit">Enviar</button>
-    </form>
-    <div id="recommendations-list"></div>
-</section>
-</main>
-<footer>
-    <p>&copy; 2025 El Basurero. Todos los derechos reservados.</p>
-    <h3>Sígueme en mis redes</h3>
-  <div class="social-links">
-    <a href="https://www.twitch.tv/elbasurerochido" target="_blank">
-      <img src="Imagenes/twitch_logo.png" alt="Twitch"> Twitch
-    </a>
-    <a href="https://www.youtube.com/@elbasureroedgar" target="_blank">
-      <img src="Imagenes/youtube_logo.png" alt="YouTube"> YouTube
-    </a>
-    <a href="https://discord.gg/TgAkT7PFt5" target="_blank">
-      <img src="Imagenes/discord_logo.png" alt="Discord"> Discord
-    </a>
-    <a href="https://www.instagram.com/el_basurero_tiviplas" target="_blank">
-      <img src="Imagenes/instagram_logo.png" alt="Instagram"> Instagram
-    </a>
-    <a href="https://www.facebook.com/el.basurero.ti.vi.plas" target="_blank">
-      <img src="Imagenes/facebook_logo.png" alt="Facebook"> Facebook
-    </a>
-    <a href="https://www.patreon.com/cw/ElBasureroTi_Vi_Plas" target="_blank">
-      <img src="Imagenes/patreon_logo.png" alt="Patreon"> Patreon
-    </a>
-  </div>
-</footer>
+      <h2>💡 Recomendaciones de la Comunidad</h2>
+      
+      <!-- Formulario para recomendar -->
+      <form id="recommend-form" class="recommend-form">
+        <input type="text" id="rec-name" placeholder="Tu nombre" maxlength="30" required>
+        <textarea id="rec-text" placeholder="Escribe tu recomendación" maxlength="500" required></textarea>
+        <button type="submit">Publicar</button>
+      </form>
 
-<script src="js/scripts.js"></script>
-<script>
-  fetch("header.html")
-    .then(response => response.text())
-    .then(data => {
-      document.getElementById("header").innerHTML = data;
-    })
-    .catch(error => console.error("Error cargando el header:", error));
-</script>
+      <!-- Lista de recomendaciones -->
+      <div id="recommend-list" class="recommend-list"></div>
+    </section>
+  </main>
+<div id="footer"></div>
+  
+  <!-- Header + comunes -->
+  <script src="js/scripts.js"></script>
+
+  <!-- Recomendaciones -->
+  <script type="module" src="js/recommendations.js"></script>
 </body>
 </html>
