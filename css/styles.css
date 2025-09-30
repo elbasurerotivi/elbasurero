@@ -935,3 +935,43 @@ body {
   font-weight: bold;
   border-radius: 50%;
 }
+
+/* Lista de cumpleaños scroll */
+.birthday-list {
+  max-height: 250px;
+  overflow-y: auto;
+  padding-right: 8px;
+}
+
+/* Botones editar/eliminar */
+.bday-actions {
+  display: inline-flex;
+  gap: 6px;
+  margin-left: 10px;
+}
+.bday-actions button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+/* Celda de cumpleaños resaltada */
+.birthday-cell {
+  background: #ffeb3b;
+  font-weight: bold;
+  border-radius: 50%;
+  color: #000;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .calendar-wrapper {
+    flex-direction: column;
+  }
+  .birthday-list {
+    max-height: 150px;
+  }
+}
+
+
