@@ -1,7 +1,7 @@
 // Importar Firebase desde firebase-config.js
 import { db, ref, push, onValue, set, remove } from "./firebase-config.js";
 
-
+document.addEventListener("DOMContentLoaded", () => {
 /* ========================
    MURO DE MENSAJES
 ======================== */
@@ -199,5 +199,6 @@ nextBtn.addEventListener("click", () => {
     currentYear++;
   }
   renderCalendar();
+});
 });
 
