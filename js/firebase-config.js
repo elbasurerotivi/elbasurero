@@ -1,6 +1,6 @@
 // Importa lo que necesites de Firebase Realtime Database
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import { getDatabase, ref, push, onValue, set, remove } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+import { getDatabase, ref, push, onValue, set, remove, get, update  } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
 
 
 
@@ -20,4 +20,4 @@ const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
 // Exportar todo lo necesario
-export { db, ref, push, onValue, set, remove };
+export { db, ref, push, onValue, set, remove, get, update  };
