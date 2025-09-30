@@ -882,7 +882,7 @@ body {
 /* Grid lista + calendario */
 .calendar-wrapper {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr; /* lado a lado */
   gap: 2rem;
   align-items: start;
   margin-top: 1rem;
@@ -967,10 +967,16 @@ body {
 /* Responsivo */
 @media (max-width: 768px) {
   .calendar-wrapper {
-    flex-direction: column;
+    display: block;  /* stack en vertical */
   }
+
+  #calendar {
+    margin-top: 1rem;
+  }
+
   .birthday-list {
-    max-height: 150px;
+   max-height: 200px;
+   overflow-y: auto;
   }
 }
 
@@ -982,6 +988,9 @@ body {
   padding: 0.8rem;
   background: #fff;
 }
+#calendar {
+    width: 100%;
+  }
 
 
 
