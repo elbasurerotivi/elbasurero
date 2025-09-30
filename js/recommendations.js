@@ -67,6 +67,7 @@ function renderPost(post) {
   const dislikesCount = Object.keys(post.dislikes || {}).length;
   const userLiked = post.likes && post.likes[userId];
   const userDisliked = post.dislikes && post.dislikes[userId];
+  const commentsCount = post.comments ? Object.keys(post.comments).length : 0;
 
   postEl.innerHTML = `
     <div class="post-header">
@@ -77,7 +78,7 @@ function renderPost(post) {
     <div class="post-actions">
       <button class="like-btn ${userLiked ? "active" : ""}">⬆️ ${likesCount}</button>
       <button class="dislike-btn ${userDisliked ? "active" : ""}">⬇️ ${dislikesCount}</button>
-      <button class="toggle-comments">💬 Comentarios</button>
+      <button class="toggle-comments">💬 Comentarios (${commentsCount})</button>
     </div>
     <div class="comments-section" style="display:none;">
       <div class="comments-list"></div>
@@ -121,7 +122,8 @@ function renderPost(post) {
     push(commentsRef, {
       name,
       text,
-      timestamp: Date.now()
+      timestamp: Date.now(),
+      likes: {} // 👈 cada comentario tendrá reacciones ❤️
     });
 
     commentForm.reset();
@@ -151,11 +153,31 @@ function renderComments(post, container) {
   container.innerHTML = "";
   if (!post.comments) return;
 
-  const comments = Object.values(post.comments).sort((a, b) => b.timestamp - a.timestamp);
-  comments.forEach((c) => {
+  const comments = Object.entries(post.comments).sort((a, b) => b[1].timestamp - a[1].timestamp);
+  comments.forEach(([id, c]) => {
+    const likesCount = c.likes ? Object.keys(c.likes).length : 0;
+    const userLiked = c.likes && c.likes[userId];
+
     const div = document.createElement("div");
     div.className = "comment";
-    div.innerHTML = `<strong>${c.name}</strong>: ${c.text}`;
+    div.innerHTML = `
+      <strong>${c.name}</strong>: ${c.text}
+      <button class="comment-like ${userLiked ? "active" : ""}">❤️ ${likesCount}</button>
+    `;
+
+    // Reacción ❤️ en comentario
+    const likeBtn = div.querySelector(".comment-like");
+    likeBtn.addEventListener("click", () => {
+      const likeRef = ref(db, `recommendations/${post.id}/comments/${id}/likes/${userId}`);
+      get(likeRef).then((snap) => {
+        if (snap.exists()) {
+          remove(likeRef);
+        } else {
+          set(likeRef, true);
+        }
+      });
+    });
+
     container.appendChild(div);
   });
 }
