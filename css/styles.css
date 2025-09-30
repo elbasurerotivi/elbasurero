@@ -1080,3 +1080,74 @@ body {
   cursor: pointer;
 }
 
+/* --- Post actions --- */
+.post-actions button {
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 6px 8px;
+  border-radius: 6px;
+}
+.post-actions button.active {
+  color: #007bff;
+}
+
+/* --- Comentarios --- */
+.comments-section {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid #eee;
+}
+.comment {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 0;
+}
+.comment .comment-text {
+  flex: 1;
+  font-size: 0.95rem;
+}
+.comment-meta {
+  margin-left: 8px;
+  display: flex;
+  align-items: center;
+}
+
+/* Heart style (Instagram-like) */
+.comment-like {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px;
+  border-radius: 8px;
+  transition: transform 0.12s ease, color 0.12s ease;
+  color: #666;
+}
+.comment-like .count {
+  font-size: 0.95rem;
+  color: inherit;
+}
+
+/* Estado activo (corazón lleno rojo) */
+.comment-like.active {
+  color: #e0245e; /* rosa/rojo Instagram-like */
+  transform: scale(1.08);
+  text-shadow: 0 1px 0 rgba(0,0,0,0.06);
+}
+
+/* Hover */
+.comment-like:hover {
+  transform: scale(1.05);
+}
+
+/* Responsivo: que no rompa en móvil */
+.recommend-post {
+  word-break: break-word;
+}
