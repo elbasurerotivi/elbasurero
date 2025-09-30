@@ -93,14 +93,43 @@ function renderBirthdayList() {
   });
 
   sorted.forEach((data) => {
-    const [y, m, d] = data.date.split("-"); // yyyy-mm-dd
-    const fecha = `${d.padStart(2, "0")}-${m.padStart(2, "0")}-${y}`; // 👈 forzamos formato dd-mm-aaaa
+    const [y, m, d] = data.date.split("-");
+    const fecha = `${d.padStart(2, "0")}-${m.padStart(2, "0")}-${y}`;
 
     const li = document.createElement("li");
-    li.textContent = `${data.name} 🎂 (${fecha})`;
+    li.innerHTML = `
+      <span><strong>${data.name}</strong> 🎂 (${fecha})</span>
+      <div class="bday-actions">
+        <button class="edit-bday">✏️</button>
+        <button class="delete-bday">🗑️</button>
+      </div>
+    `;
+
+    // Editar cumpleaños
+    li.querySelector(".edit-bday").addEventListener("click", () => {
+      const nuevoNombre = prompt("Nuevo nombre:", data.name);
+      const nuevaFecha = prompt("Nueva fecha (AAAA-MM-DD):", data.date);
+
+      if (nuevoNombre && nuevaFecha) {
+        if (confirm("¿Confirmar cambios?")) {
+          const updateRef = ref(db, "birthdays/" + data.id);
+          set(updateRef, { name: nuevoNombre, date: nuevaFecha });
+        }
+      }
+    });
+
+    // Eliminar cumpleaños
+    li.querySelector(".delete-bday").addEventListener("click", () => {
+      if (confirm("¿Seguro que quieres eliminar este cumpleaños?")) {
+        const deleteRef = ref(db, "birthdays/" + data.id);
+        remove(deleteRef);
+      }
+    });
+
     birthdayList.appendChild(li);
   });
 }
+
 
 
 // Render calendario
@@ -139,6 +168,14 @@ function renderCalendar() {
   }
 }
 
+const birthdayPeople = allBirthdays
+  .filter(b => b.date === currentDate)
+  .map(b => b.name)
+  .join(", ");
+
+html += `<td class="${hasBirthday ? "birthday-cell" : ""}" title="${birthdayPeople}">
+          ${day}
+        </td>`;
 
   html += "</tr></tbody></table>";
   calendarEl.innerHTML = html;
@@ -162,3 +199,4 @@ nextBtn.addEventListener("click", () => {
   }
   renderCalendar();
 });
+
