@@ -19,15 +19,11 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     })
     .catch(err => console.error("Error cargando header:", err));
-   
-});
 
-// Cargar footer dinámico
-  fetch("footer.html")
-    .then(response => response.text())
-    .then(data => {
-      document.getElementById("footer").innerHTML = data;
-   
+    
+
+
+    
 });
 
 
