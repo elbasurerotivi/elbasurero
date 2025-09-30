@@ -4,75 +4,45 @@ import { db, ref, push, onValue, set, remove } from "./firebase-config.js";
 document.addEventListener("DOMContentLoaded", () => {
 
   /* ========================
-     MURO DE MENSAJES
-  ======================== */
-  const wall = document.getElementById("community-wall");
-  const form = document.getElementById("message-form");
-  const nameInput = document.getElementById("name");
-  const messageInput = document.getElementById("message");
+   MURO DE MENSAJES
+======================== */
+const wall = document.getElementById("community-wall");
+const form = document.getElementById("message-form");
+const nameInput = document.getElementById("name");
+const messageInput = document.getElementById("message");
 
-  const messagesRef = ref(db, "messages");
+// Referencia a mensajes en Firebase
+const messagesRef = ref(db, "messages");
 
-  // Seguridad: sólo enganchar si existe el form
-  if (form && nameInput && messageInput && wall) {
-    form.addEventListener("submit", (e) => {
-      e.preventDefault();
-      const name = nameInput.value.trim();
-      const message = messageInput.value.trim();
-      if (!name || !message) return;
+// Enviar mensaje
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
 
-      // push devuelve una promesa
-      push(messagesRef, {
-        name,
-        text: message,
-        timestamp: Date.now()
-      })
-      .then(() => {
-        messageInput.value = "";
-      })
-      .catch(err => console.error("Error enviando mensaje:", err));
+  const name = nameInput.value.trim();
+  const message = messageInput.value.trim();
+
+  if (name && message) {
+    push(messagesRef, {
+      name,
+      text: message,
+      timestamp: Date.now()
     });
 
-    // Render en tiempo real (robusto)
-    onValue(messagesRef, (snapshot) => {
-      try {
-        const msgs = [];
-        snapshot.forEach(child => msgs.push({ id: child.key, ...child.val() }));
-        // ordenar por timestamp descendente (nuevos primero)
-        msgs.sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
-
-        wall.innerHTML = "";
-        msgs.forEach(data => {
-          const div = document.createElement("div");
-          div.className = "message";
-          const name = data.name || "Anónimo";
-          const text = data.text || "";
-          const time = data.timestamp ? new Date(data.timestamp).toLocaleString("es-AR") : "";
-
-          div.innerHTML = `
-            <div class="msg-header">
-              <strong class="msg-name">${escapeHtml(name)}</strong>
-              <span class="msg-time">${escapeHtml(time)}</span>
-            </div>
-            <div class="msg-body">${escapeHtml(text)}</div>
-          `;
-          wall.appendChild(div);
-        });
-
-        // Mostrar siempre el primero (nuevo) arriba
-        if (wall.scrollTo) {
-          wall.scrollTo({ top: 0, behavior: "smooth" });
-        } else {
-          wall.scrollTop = 0;
-        }
-      } catch (err) {
-        console.error("Error renderizando mensajes:", err);
-      }
-    }, (err) => console.error("onValue messages error:", err));
-
-  } else {
-    console.warn("Chat: faltan elementos #message-form, #name, #message o #community-wall. El chat no se engancha.");
+    messageInput.value = "";
   }
+});
+
+// Mostrar mensajes en tiempo real
+onValue(messagesRef, (snapshot) => {
+  wall.innerHTML = "";
+  snapshot.forEach((child) => {
+    const data = child.val();
+    const div = document.createElement("div");
+    div.classList.add("message");
+    div.innerHTML = `<strong>${data.name}</strong>: ${data.text}`;
+    wall.appendChild(div);
+  });
+});
 
 
   /* ========================
