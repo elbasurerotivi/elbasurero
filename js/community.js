@@ -1,5 +1,6 @@
 // Importar Firebase desde firebase-config.js
-import { db, ref, push, onValue } from "./firebase-config.js";
+import { db, ref, push, onValue, set, remove } from "./firebase-config.js";
+
 
 /* ========================
    MURO DE MENSAJES
@@ -158,9 +159,17 @@ function renderCalendar() {
   for (let day = 1; day <= lastDate; day++) {
   const currentDate = `${currentYear}-${String(currentMonth + 1).padStart(2,"0")}-${String(day).padStart(2,"0")}`;
 
+  const birthdayPeople = allBirthdays
+    .filter(b => b.date === currentDate)
+    .map(b => b.name)
+    .join(", ");
+
   const hasBirthday = allBirthdays.some(b => b.date === currentDate);
 
-  html += `<td class="${hasBirthday ? "birthday-cell" : ""}">${day}</td>`;
+  html += `<td class="${hasBirthday ? "birthday-cell" : ""}" title="${birthdayPeople}">
+            ${day}
+          </td>`;
+
   dayOfWeek++;
   if (dayOfWeek === 7 && day < lastDate) {
     html += "</tr><tr>";
@@ -168,14 +177,6 @@ function renderCalendar() {
   }
 }
 
-const birthdayPeople = allBirthdays
-  .filter(b => b.date === currentDate)
-  .map(b => b.name)
-  .join(", ");
-
-html += `<td class="${hasBirthday ? "birthday-cell" : ""}" title="${birthdayPeople}">
-          ${day}
-        </td>`;
 
   html += "</tr></tbody></table>";
   calendarEl.innerHTML = html;
