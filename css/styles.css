@@ -1140,6 +1140,7 @@ body {
 }
 
 /* Botón corazón estilo Instagram */
+/* Botón corazón estilo Instagram */
 .comment-like {
   background: none;
   border: none;
@@ -1150,7 +1151,6 @@ body {
   gap: 4px;
   padding: 4px 6px;
   border-radius: 6px;
-  transition: transform 0.15s ease, color 0.15s ease;
   color: #666;
 }
 .comment-like .count {
@@ -1161,14 +1161,9 @@ body {
 /* Activo */
 .comment-like.active {
   color: #e0245e;
-  transform: scale(1.1);
   text-shadow: 0 1px 0 rgba(0,0,0,0.08);
 }
 
-/* Hover */
-.comment-like:hover {
-  transform: scale(1.05);
-}
 
 /* --- Ajuste responsivo --- */
 @media (max-width: 600px) {

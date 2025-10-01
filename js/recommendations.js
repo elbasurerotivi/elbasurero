@@ -101,11 +101,16 @@ function renderPost(post) {
   });
 
   // Botón mostrar comentarios
-  const toggleBtn = postEl.querySelector(".toggle-comments");
-  const commentsSection = postEl.querySelector(".comments-section");
-  toggleBtn.addEventListener("click", () => {
-    commentsSection.style.display = commentsSection.style.display === "none" ? "block" : "none";
-  });
+  // Botón mostrar comentarios
+const toggleBtn = postEl.querySelector(".toggle-comments");
+const commentsSection = postEl.querySelector(".comments-section");
+
+toggleBtn.addEventListener("click", (e) => {
+  e.stopPropagation(); // prevenir conflictos
+  commentsSection.style.display =
+    commentsSection.style.display === "none" ? "block" : "none";
+});
+
 
   // Render comentarios
   renderComments(post, postEl.querySelector(".comments-list"));
@@ -153,27 +158,39 @@ function renderComments(post, container) {
   container.innerHTML = "";
   if (!post.comments) return;
 
-  const comments = Object.entries(post.comments).sort((a, b) => b[1].timestamp - a[1].timestamp);
-  comments.forEach(([id, c]) => {
+  // Ordenar: más viejos primero
+  const comments = Object.entries(post.comments).sort((a, b) => a[1].timestamp - b[1].timestamp);
+
+  comments.forEach(([commentId, c]) => {
     const likesCount = c.likes ? Object.keys(c.likes).length : 0;
     const userLiked = c.likes && c.likes[userId];
 
     const div = document.createElement("div");
     div.className = "comment";
+
     div.innerHTML = `
-      <strong>${c.name}</strong>: ${c.text}
-      <button class="comment-like ${userLiked ? "active" : ""}">❤️ ${likesCount}</button>
+      <div class="comment-header">
+        <strong>${c.name}</strong>
+        <span>${c.timestamp ? new Date(c.timestamp).toLocaleDateString("es-AR") : ""}</span>
+      </div>
+      <div class="comment-text">${c.text}</div>
+      <div class="comment-meta">
+        <button type="button" class="comment-like ${userLiked ? "active" : ""}">
+          ❤️ <span class="count">${likesCount}</span>
+        </button>
+      </div>
     `;
 
-    // Reacción ❤️ en comentario
+    // ❤️ Like en comentario
     const likeBtn = div.querySelector(".comment-like");
-    likeBtn.addEventListener("click", () => {
-      const likeRef = ref(db, `recommendations/${post.id}/comments/${id}/likes/${userId}`);
+    likeBtn.addEventListener("click", (e) => {
+      e.stopPropagation(); // no cerrar la sección al dar like
+      const likeRef = ref(db, `recommendations/${post.id}/comments/${commentId}/likes/${userId}`);
       get(likeRef).then((snap) => {
         if (snap.exists()) {
-          remove(likeRef);
+          remove(likeRef); // quitar like
         } else {
-          set(likeRef, true);
+          set(likeRef, true); // dar like
         }
       });
     });
@@ -181,3 +198,4 @@ function renderComments(post, container) {
     container.appendChild(div);
   });
 }
+
