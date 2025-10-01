@@ -1191,3 +1191,11 @@ body {
   transition: background-color 2s ease;
 }
 
+.recommend-post {
+  will-change: transform, opacity;
+}
+
+.recommend-post.highlight {
+  background-color: #fff9c4;
+  transition: background-color 1.8s ease;
+}

@@ -8,7 +8,6 @@ if (!userId) {
   localStorage.setItem("userId", userId);
 }
 
-
 /* ========================
    FORMULARIO
 ======================== */
@@ -33,7 +32,6 @@ form.addEventListener("submit", (e) => {
     text,
     timestamp: Date.now(),
     likes: {},
-    dislikes: {},
     comments: {}
   });
 
@@ -44,56 +42,26 @@ form.addEventListener("submit", (e) => {
 let openComments = new Set();
 
 /* ========================
-   MOSTRAR RECOMENDACIONES
+   MAPA DE POSTS (para FLIP)
 ======================== */
-onValue(recommendationsRef, (snapshot) => {
-  const posts = [];
-  snapshot.forEach((child) => {
-    posts.push({ id: child.key, ...child.val() });
-  });
+const postMap = new Map();
 
-  // Ordenar: más likes primero, después más reciente
-  posts.sort((a, b) => {
-    const likesA = Object.keys(a.likes || {}).length;
-    const likesB = Object.keys(b.likes || {}).length;
-    if (likesB !== likesA) return likesB - likesA;
-    return b.timestamp - a.timestamp;
-  });
+/* Crear nodo de post */
+function createPostElement(post) {
+  const el = document.createElement("div");
+  el.className = "recommend-post";
 
-  // Render posts
-  recList.innerHTML = "";
-  if (posts.length === 0) {
-    recList.innerHTML = "<p>No hay recomendaciones todavía. ¡Sé el primero en publicar!</p>";
-  } else {
-    posts.forEach(renderPost);
-  }
-});
-
-/* ========================
-   RENDER POST
-======================== */
-function renderPost(post) {
-  const postEl = document.createElement("div");
-  postEl.className = "recommend-post";
-
-  const likesCount = Object.keys(post.likes || {}).length;
-  const commentsCount = post.comments ? Object.keys(post.comments).length : 0;
-  const userLiked = post.likes && post.likes[userId];
-
-  // Si estaba abierto antes, mantenerlo
-  const isOpen = openComments.has(post.id);
-
-  postEl.innerHTML = `
+  el.innerHTML = `
     <div class="post-header">
-      <strong>${post.name}</strong>
-      <span>${new Date(post.timestamp).toLocaleString("es-AR")}</span>
+      <strong class="post-author"></strong>
+      <span class="post-time"></span>
     </div>
-    <p class="post-text">${post.text}</p>
+    <div class="post-text"></div>
     <div class="post-actions">
-      <button class="like-btn ${userLiked ? "active" : ""}">❤️ ${likesCount}</button>
-      <button class="toggle-comments">💬 Comentarios (${commentsCount})</button>
+      <button type="button" class="like-btn">❤️ <span class="like-count">0</span></button>
+      <button type="button" class="toggle-comments">💬 Comentarios (<span class="comments-count">0</span>)</button>
     </div>
-    <div class="comments-section" style="display:${isOpen ? "block" : "none"};">
+    <div class="comments-section" style="display:none;">
       <div class="comments-list"></div>
       <form class="comment-form">
         <input type="text" class="comment-name" placeholder="Tu nombre" maxlength="30">
@@ -103,133 +71,203 @@ function renderPost(post) {
     </div>
   `;
 
-  // ❤️ Botón Like en post
-  const likeBtn = postEl.querySelector(".like-btn");
+  const authorEl = el.querySelector(".post-author");
+  const timeEl = el.querySelector(".post-time");
+  const textEl = el.querySelector(".post-text");
+  const likeBtn = el.querySelector(".like-btn");
+  const likeCountEl = el.querySelector(".like-count");
+  const toggleBtn = el.querySelector(".toggle-comments");
+  const commentsCountEl = el.querySelector(".comments-count");
+  const commentsSection = el.querySelector(".comments-section");
+  const commentsListEl = el.querySelector(".comments-list");
+  const commentForm = el.querySelector(".comment-form");
+
+  // Evitar cierre accidental
+  commentsSection.addEventListener("click", (e) => e.stopPropagation());
+
+  // Toggle comentarios
+  toggleBtn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    const isOpen = commentsSection.style.display === "block";
+    commentsSection.style.display = isOpen ? "none" : "block";
+    if (!isOpen) openComments.add(post.id);
+    else openComments.delete(post.id);
+  });
+
+  // Nuevo comentario
+  commentForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const name = commentForm.querySelector(".comment-name").value.trim() || "Anónimo";
+    const text = commentForm.querySelector(".comment-text").value.trim();
+    if (!text) return;
+    const commentsRef = ref(db, `recommendations/${post.id}/comments`);
+    push(commentsRef, { name, text, timestamp: Date.now(), likes: {} });
+    commentForm.reset();
+    openComments.add(post.id);
+  });
+
+  // Like en post
   likeBtn.addEventListener("click", (e) => {
     e.stopPropagation();
     const likeRef = ref(db, `recommendations/${post.id}/likes/${userId}`);
     get(likeRef).then((snap) => {
-      if (snap.exists()) {
-        remove(likeRef).then(() => {
-          highlightPost(postEl);
-          scrollToPost(postEl);
-        });
-      } else {
-        set(likeRef, true).then(() => {
-          highlightPost(postEl);
-          scrollToPost(postEl);
-        });
-      }
+      if (snap.exists()) return remove(likeRef);
+      return set(likeRef, true);
+    }).then(() => {
+      highlightPost(el);
+      setTimeout(() => scrollToPost(el), 380);
     });
   });
 
-  // Botón mostrar/ocultar comentarios
-  const toggleBtn = postEl.querySelector(".toggle-comments");
-  const commentsSection = postEl.querySelector(".comments-section");
-
-  toggleBtn.addEventListener("click", (e) => {
-    e.stopPropagation();
-    if (commentsSection.style.display === "none") {
-      commentsSection.style.display = "block";
-      openComments.add(post.id);   // marcar como abierto
-    } else {
-      commentsSection.style.display = "none";
-      openComments.delete(post.id); // marcar como cerrado
-    }
-  });
-
-  // Render comentarios
-  renderComments(post, postEl.querySelector(".comments-list"));
-
-  // Nuevo comentario
-  const commentForm = postEl.querySelector(".comment-form");
-  commentForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const name = commentForm.querySelector(".comment-name").value.trim() || "Anónimo";
-    const text = commentForm.querySelector(".comment-text").value.trim();
-    if (!text) return;
-
-    const commentsRef = ref(db, `recommendations/${post.id}/comments`);
-    push(commentsRef, {
-      name,
-      text,
-      timestamp: Date.now(),
-      likes: {}
-    });
-
-    commentForm.reset();
-  });
-
-  recList.appendChild(postEl);
+  return {
+    el,
+    authorEl,
+    timeEl,
+    textEl,
+    likeBtn,
+    likeCountEl,
+    toggleBtn,
+    commentsCountEl,
+    commentsSection,
+    commentsListEl,
+    commentForm
+  };
 }
 
-/* ========================
-   EFECTOS VISUALES
-======================== */
-function highlightPost(postEl) {
-  postEl.classList.add("highlight");
-  setTimeout(() => postEl.classList.remove("highlight"), 2000); // 2s resaltado
+/* Actualizar nodo existente */
+function updatePostElement(obj, post) {
+  obj.authorEl.textContent = post.name || "Anónimo";
+  obj.timeEl.textContent = post.timestamp ? new Date(post.timestamp).toLocaleString("es-AR") : "";
+  obj.textEl.textContent = post.text || "";
+
+  const likesCount = post.likes ? Object.keys(post.likes).length : 0;
+  obj.likeCountEl.textContent = likesCount;
+  const userLiked = post.likes && post.likes[userId];
+  obj.likeBtn.classList.toggle("active", !!userLiked);
+
+  const commentsCount = post.comments ? Object.keys(post.comments).length : 0;
+  obj.commentsCountEl.textContent = commentsCount;
+
+  const isOpen = openComments.has(post.id);
+  obj.commentsSection.style.display = isOpen ? "block" : "none";
+
+  renderCommentsForPost(post, obj.commentsListEl);
 }
 
-function scrollToPost(postEl) {
-  postEl.scrollIntoView({ behavior: "smooth", block: "center" });
-}
-
-
-
-
-/* ========================
-   FUNCIONES AUXILIARES
-======================== */
-function toggleReaction(postId, target, opposite) {
-  const postRef = ref(db, `recommendations/${postId}/${target}/${userId}`);
-  const oppRef = ref(db, `recommendations/${postId}/${opposite}/${userId}`);
-
-  get(postRef).then((snap) => {
-    if (snap.exists()) {
-      remove(postRef); // quitar reacción
-    } else {
-      set(postRef, true); // dar reacción
-      remove(oppRef); // quitar opuesta
-    }
-  });
-}
-
-function renderComments(post, container) {
+/* Render comentarios */
+function renderCommentsForPost(post, container) {
   container.innerHTML = "";
   if (!post.comments) return;
 
-  const comments = Object.entries(post.comments).sort((a, b) => a[1].timestamp - b[1].timestamp);
+  const entries = Object.entries(post.comments)
+    .map(([id, c]) => ({ id, ...c }))
+    .sort((a, b) => (a.timestamp || 0) - (b.timestamp || 0));
 
-  comments.forEach(([commentId, c]) => {
+  entries.forEach(c => {
     const likesCount = c.likes ? Object.keys(c.likes).length : 0;
     const userLiked = c.likes && c.likes[userId];
 
-    const div = document.createElement("div");
-    div.className = "comment";
-    div.innerHTML = `
-      <div class="comment-header"><strong>${c.name}</strong></div>
-      <div class="comment-text">${c.text}</div>
+    const d = document.createElement("div");
+    d.className = "comment";
+    d.innerHTML = `
+      <div class="comment-header"><strong>${escapeHtml(c.name)}</strong></div>
+      <div class="comment-text">${escapeHtml(c.text)}</div>
       <div class="comment-meta">
-        <button type="button" class="comment-like ${userLiked ? "active" : ""}">
-          ❤️ <span class="count">${likesCount}</span>
-        </button>
+        <button type="button" class="comment-like ${userLiked ? "active" : ""}">❤️ <span class="count">${likesCount}</span></button>
       </div>
     `;
-
-    // Evento: ❤️ en comentario
-    div.querySelector(".comment-like").addEventListener("click", (e) => {
-      e.stopPropagation();
-      const likeRef = ref(db, `recommendations/${post.id}/comments/${commentId}/likes/${userId}`);
+    d.querySelector(".comment-like").addEventListener("click", (ev) => {
+      ev.stopPropagation();
+      const likeRef = ref(db, `recommendations/${post.id}/comments/${c.id}/likes/${userId}`);
       get(likeRef).then((snap) => {
-        if (snap.exists()) {
-          remove(likeRef);
-        } else {
-          set(likeRef, true);
-        }
+        if (snap.exists()) return remove(likeRef);
+        return set(likeRef, true);
       });
     });
 
-    container.appendChild(div);
+    container.appendChild(d);
   });
 }
+
+/* ====== FLIP: actualizar con animación ====== */
+function updatePostsWithFLIP(posts) {
+  const container = recList;
+  const prevRects = new Map();
+  postMap.forEach((obj, id) => prevRects.set(id, obj.el.getBoundingClientRect()));
+
+  posts.forEach(post => {
+    if (!postMap.has(post.id)) {
+      const obj = createPostElement(post);
+      postMap.set(post.id, obj);
+      container.appendChild(obj.el);
+      updatePostElement(obj, post);
+    } else {
+      const obj = postMap.get(post.id);
+      updatePostElement(obj, post);
+    }
+  });
+
+  posts.forEach(post => {
+    const obj = postMap.get(post.id);
+    if (obj.el.parentNode !== container || container.lastChild !== obj.el) {
+      container.appendChild(obj.el);
+    }
+  });
+
+  const newRects = new Map();
+  posts.forEach(post => newRects.set(post.id, postMap.get(post.id).el.getBoundingClientRect()));
+
+  posts.forEach(post => {
+    const el = postMap.get(post.id).el;
+    const prev = prevRects.get(post.id);
+    const next = newRects.get(post.id);
+    if (prev) {
+      const dx = prev.left - next.left;
+      const dy = prev.top - next.top;
+      if (dx || dy) {
+        el.style.transition = "none";
+        el.style.transform = `translate(${dx}px, ${dy}px)`;
+        el.getBoundingClientRect();
+        el.style.transition = "transform 350ms ease, opacity 350ms ease";
+        el.style.transform = "";
+        el.addEventListener("transitionend", () => { el.style.transition = ""; }, { once: true });
+      }
+    } else {
+      el.style.opacity = "0";
+      requestAnimationFrame(() => {
+        el.style.transition = "opacity 300ms ease";
+        el.style.opacity = "1";
+      });
+    }
+  });
+}
+
+/* Helpers */
+function highlightPost(postEl) {
+  postEl.classList.add("highlight");
+  setTimeout(() => postEl.classList.remove("highlight"), 1800);
+}
+function scrollToPost(postEl) {
+  postEl.scrollIntoView({ behavior: "smooth", block: "center" });
+}
+function escapeHtml(str = "") {
+  return str.replace(/[&<>"']/g, m => ({
+    "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#039;"
+  }[m]));
+}
+
+/* ========================
+   ESCUCHAR POSTS
+======================== */
+onValue(recommendationsRef, (snapshot) => {
+  const posts = [];
+  snapshot.forEach((child) => posts.push({ id: child.key, ...child.val() }));
+  posts.sort((a, b) => {
+    const likesA = Object.keys(a.likes || {}).length;
+    const likesB = Object.keys(b.likes || {}).length;
+    if (likesB !== likesA) return likesB - likesA;
+    return (b.timestamp || 0) - (a.timestamp || 0);
+  });
+  updatePostsWithFLIP(posts);
+});
