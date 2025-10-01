@@ -35,6 +35,9 @@ form.addEventListener("submit", (e) => {
   form.reset();
 });
 
+// Guardamos qué posts tienen comentarios abiertos
+let openComments = new Set();
+
 /* ========================
    MOSTRAR RECOMENDACIONES
 ======================== */
@@ -44,7 +47,7 @@ onValue(recommendationsRef, (snapshot) => {
     posts.push({ id: child.key, ...child.val() });
   });
 
-  // Ordenar: más likes primero, luego más recientes
+  // Ordenar: más likes primero, después más reciente
   posts.sort((a, b) => {
     const likesA = Object.keys(a.likes || {}).length;
     const likesB = Object.keys(b.likes || {}).length;
@@ -52,13 +55,8 @@ onValue(recommendationsRef, (snapshot) => {
     return b.timestamp - a.timestamp;
   });
 
-  // Render posts
   recList.innerHTML = "";
-  if (posts.length === 0) {
-    recList.innerHTML = "<p>No hay recomendaciones todavía. ¡Sé el primero en publicar!</p>";
-  } else {
-    posts.forEach(renderPost);
-  }
+  posts.forEach(renderPost);
 });
 
 /* ========================
@@ -74,6 +72,9 @@ function renderPost(post) {
   const userLiked = post.likes && post.likes[userId];
   const userDisliked = post.dislikes && post.dislikes[userId];
 
+  // Si estaba abierto antes, mantenerlo
+  const isOpen = openComments.has(post.id);
+
   postEl.innerHTML = `
     <div class="post-header">
       <strong>${post.name}</strong>
@@ -85,7 +86,7 @@ function renderPost(post) {
       <button class="dislike-btn ${userDisliked ? "active" : ""}">⬇️ ${dislikesCount}</button>
       <button class="toggle-comments">💬 Comentarios (${commentsCount})</button>
     </div>
-    <div class="comments-section" style="display:none;">
+    <div class="comments-section" style="display:${isOpen ? "block" : "none"};">
       <div class="comments-list"></div>
       <form class="comment-form">
         <input type="text" class="comment-name" placeholder="Tu nombre" maxlength="30">
@@ -95,26 +96,25 @@ function renderPost(post) {
     </div>
   `;
 
-  // Eventos: likes/dislikes
-  postEl.querySelector(".like-btn").addEventListener("click", () => {
-    toggleReaction(post.id, "likes", "dislikes");
-  });
-  postEl.querySelector(".dislike-btn").addEventListener("click", () => {
-    toggleReaction(post.id, "dislikes", "likes");
-  });
-
-  // Evento: mostrar comentarios
+  // Botón mostrar/ocultar comentarios
   const toggleBtn = postEl.querySelector(".toggle-comments");
   const commentsSection = postEl.querySelector(".comments-section");
-  toggleBtn.addEventListener("click", () => {
-    commentsSection.style.display =
-      commentsSection.style.display === "none" ? "block" : "none";
+
+  toggleBtn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    if (commentsSection.style.display === "none") {
+      commentsSection.style.display = "block";
+      openComments.add(post.id);   // marcar como abierto
+    } else {
+      commentsSection.style.display = "none";
+      openComments.delete(post.id); // marcar como cerrado
+    }
   });
 
-  // Render comentarios existentes
+  // Render comentarios
   renderComments(post, postEl.querySelector(".comments-list"));
 
-  // Evento: agregar comentario
+  // Nuevo comentario
   const commentForm = postEl.querySelector(".comment-form");
   commentForm.addEventListener("submit", (e) => {
     e.preventDefault();
@@ -135,6 +135,7 @@ function renderPost(post) {
 
   recList.appendChild(postEl);
 }
+
 
 /* ========================
    FUNCIONES AUXILIARES
