@@ -59,40 +59,14 @@ onValue(recommendationsRef, (snapshot) => {
     return b.timestamp - a.timestamp;
   });
 
-  // --- FLIP Animation ---
-  const oldPositions = {};
-  recList.querySelectorAll(".recommend-post").forEach((el) => {
-    oldPositions[el.dataset.id] = el.getBoundingClientRect();
-  });
-
+  // Render posts
   recList.innerHTML = "";
-
-  posts.forEach((post) => {
-    const postEl = renderPost(post);
-    recList.appendChild(postEl);
-  });
-
-  const newPositions = {};
-  recList.querySelectorAll(".recommend-post").forEach((el) => {
-    newPositions[el.dataset.id] = el.getBoundingClientRect();
-  });
-
-  recList.querySelectorAll(".recommend-post").forEach((el) => {
-    const id = el.dataset.id;
-    const oldPos = oldPositions[id];
-    const newPos = newPositions[id];
-    if (oldPos) {
-      const dy = oldPos.top - newPos.top;
-      el.style.transform = `translateY(${dy}px)`;
-      el.style.transition = "transform 0s";
-      requestAnimationFrame(() => {
-        el.style.transform = "translateY(0)";
-        el.style.transition = "transform 0.5s ease";
-      });
-    }
-  });
+  if (posts.length === 0) {
+    recList.innerHTML = "<p>No hay recomendaciones todavía. ¡Sé el primero en publicar!</p>";
+  } else {
+    posts.forEach(renderPost);
+  }
 });
-
 
 
 /* ========================
@@ -101,7 +75,6 @@ onValue(recommendationsRef, (snapshot) => {
 function renderPost(post) {
   const postEl = document.createElement("div");
   postEl.className = "recommend-post";
-   postEl.dataset.id = post.id; // 👈 necesario para FLIP
 
   const likesCount = Object.keys(post.likes || {}).length;
   const commentsCount = post.comments ? Object.keys(post.comments).length : 0;
