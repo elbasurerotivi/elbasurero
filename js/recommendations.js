@@ -55,8 +55,13 @@ onValue(recommendationsRef, (snapshot) => {
     return b.timestamp - a.timestamp;
   });
 
+  // Render posts
   recList.innerHTML = "";
-  posts.forEach(renderPost);
+  if (posts.length === 0) {
+    recList.innerHTML = "<p>No hay recomendaciones todavía. ¡Sé el primero en publicar!</p>";
+  } else {
+    posts.forEach(renderPost);
+  }
 });
 
 /* ========================
