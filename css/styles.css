@@ -1060,11 +1060,18 @@ body {
   font-size: 0.9rem;
   margin-bottom: 4px;
 }
-.comment-form {
+
+.comment-name {
+  display: flex;
+  gap: 3px;
+  margin-top: 6px;
+}
+.comment-text {
   display: flex;
   gap: 6px;
   margin-top: 6px;
 }
+
 .comment-form input {
   flex: 1;
   padding: 6px;
