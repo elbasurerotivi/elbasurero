@@ -116,23 +116,26 @@ toggleBtn.addEventListener("click", (e) => {
   renderComments(post, postEl.querySelector(".comments-list"));
 
   // Nuevo comentario
-  const commentForm = postEl.querySelector(".comment-form");
-  commentForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const name = commentForm.querySelector(".comment-name").value.trim() || "Anónimo";
-    const text = commentForm.querySelector(".comment-text").value.trim();
-    if (!text) return;
+const commentForm = postEl.querySelector(".comment-form");
+commentForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+  e.stopPropagation(); // 🚀 evita cerrar al comentar
 
-    const commentsRef = ref(db, `recommendations/${post.id}/comments`);
-    push(commentsRef, {
-      name,
-      text,
-      timestamp: Date.now(),
-      likes: {} // 👈 cada comentario tendrá reacciones ❤️
-    });
+  const name = commentForm.querySelector(".comment-name").value.trim() || "Anónimo";
+  const text = commentForm.querySelector(".comment-text").value.trim();
+  if (!text) return;
 
-    commentForm.reset();
+  const commentsRef = ref(db, `recommendations/${post.id}/comments`);
+  push(commentsRef, {
+    name,
+    text,
+    timestamp: Date.now(),
+    likes: {}
   });
+
+  commentForm.reset();
+});
+
 
   recList.appendChild(postEl);
 }
@@ -184,16 +187,17 @@ function renderComments(post, container) {
     // ❤️ Like en comentario
     const likeBtn = div.querySelector(".comment-like");
     likeBtn.addEventListener("click", (e) => {
-      e.stopPropagation(); // no cerrar la sección al dar like
+      e.stopPropagation(); // 🚀 evita cerrar al dar like
       const likeRef = ref(db, `recommendations/${post.id}/comments/${commentId}/likes/${userId}`);
       get(likeRef).then((snap) => {
         if (snap.exists()) {
-          remove(likeRef); // quitar like
+          remove(likeRef);
         } else {
-          set(likeRef, true); // dar like
+          set(likeRef, true);
         }
       });
     });
+
 
     container.appendChild(div);
   });
