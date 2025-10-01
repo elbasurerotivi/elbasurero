@@ -92,8 +92,7 @@ function renderPost(post) {
     </div>
     <p class="post-text">${post.text}</p>
     <div class="post-actions">
-      <button class="like-btn ${userLiked ? "active" : ""}">⬆️ ${likesCount}</button>
-      <button class="dislike-btn ${userDisliked ? "active" : ""}">⬇️ ${dislikesCount}</button>
+      <button class="like-btn ${userLiked ? "active" : ""}">❤️ ${likesCount}</button>
       <button class="toggle-comments">💬 Comentarios (${commentsCount})</button>
     </div>
     <div class="comments-section" style="display:${isOpen ? "block" : "none"};">
