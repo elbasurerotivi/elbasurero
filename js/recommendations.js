@@ -1,8 +1,13 @@
 // Importar Firebase desde tu config
 import { db, ref, push, onValue, set, remove, get } from "./firebase-config.js";
 
-// UID temporal de usuario (puede cambiar luego)
-const userId = "user_" + Math.random().toString(36).substring(2, 9);
+// UID persistente para simular "usuario único"
+let userId = localStorage.getItem("userId");
+if (!userId) {
+  userId = "user_" + Math.random().toString(36).substring(2, 9);
+  localStorage.setItem("userId", userId);
+}
+
 
 /* ========================
    FORMULARIO
