@@ -1095,28 +1095,51 @@ body {
 
 /* --- Comentarios --- */
 .comments-section {
-  margin-top: 10px;
-  padding-top: 10px;
+  margin-top: 12px;
+  padding-top: 12px;
   border-top: 1px solid #eee;
 }
+
 .comment {
+  display: flex;
+  flex-direction: column;   /* cada parte en su fila */
+  gap: 4px;
+  padding: 8px 10px;
+  background: #fafafa;
+  border-radius: 6px;
+  margin-bottom: 8px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+/* Cabecera con nombre y fecha */
+.comment-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 8px;
-  padding: 6px 0;
+  font-size: 0.85rem;
+  color: #555;
 }
-.comment .comment-text {
-  flex: 1;
-  font-size: 0.95rem;
-}
-.comment-meta {
-  margin-left: 8px;
-  display: flex;
-  align-items: center;
+.comment-header strong {
+  color: #333;
+  font-weight: 600;
 }
 
-/* Heart style (Instagram-like) */
+/* Texto del comentario */
+.comment-text {
+  font-size: 0.95rem;
+  line-height: 1.4;
+  color: #222;
+  word-break: break-word;
+}
+
+/* Reacciones abajo */
+.comment-meta {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 4px;
+}
+
+/* Botón corazón estilo Instagram */
 .comment-like {
   background: none;
   border: none;
@@ -1124,22 +1147,22 @@ body {
   font-size: 16px;
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  padding: 6px;
-  border-radius: 8px;
-  transition: transform 0.12s ease, color 0.12s ease;
+  gap: 4px;
+  padding: 4px 6px;
+  border-radius: 6px;
+  transition: transform 0.15s ease, color 0.15s ease;
   color: #666;
 }
 .comment-like .count {
-  font-size: 0.95rem;
+  font-size: 0.85rem;
   color: inherit;
 }
 
-/* Estado activo (corazón lleno rojo) */
+/* Activo */
 .comment-like.active {
-  color: #e0245e; /* rosa/rojo Instagram-like */
-  transform: scale(1.08);
-  text-shadow: 0 1px 0 rgba(0,0,0,0.06);
+  color: #e0245e;
+  transform: scale(1.1);
+  text-shadow: 0 1px 0 rgba(0,0,0,0.08);
 }
 
 /* Hover */
@@ -1147,7 +1170,13 @@ body {
   transform: scale(1.05);
 }
 
-/* Responsivo: que no rompa en móvil */
-.recommend-post {
-  word-break: break-word;
+/* --- Ajuste responsivo --- */
+@media (max-width: 600px) {
+  .comment {
+    padding: 6px 8px;
+  }
+  .comment-text {
+    font-size: 0.9rem;
+  }
 }
+
