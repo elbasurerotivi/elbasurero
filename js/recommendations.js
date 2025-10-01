@@ -77,14 +77,13 @@ function renderPost(post) {
   postEl.className = "recommend-post";
 
   const likesCount = Object.keys(post.likes || {}).length;
-  const dislikesCount = Object.keys(post.dislikes || {}).length;
   const commentsCount = post.comments ? Object.keys(post.comments).length : 0;
   const userLiked = post.likes && post.likes[userId];
-  const userDisliked = post.dislikes && post.dislikes[userId];
 
   // Si estaba abierto antes, mantenerlo
   const isOpen = openComments.has(post.id);
 
+  // 1. Generar el HTML
   postEl.innerHTML = `
     <div class="post-header">
       <strong>${post.name}</strong>
@@ -105,7 +104,21 @@ function renderPost(post) {
     </div>
   `;
 
-  // Botón mostrar/ocultar comentarios
+  // 2. Botón ❤️ Like en post
+  const likeBtn = postEl.querySelector(".like-btn");
+  likeBtn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    const likeRef = ref(db, `recommendations/${post.id}/likes/${userId}`);
+    get(likeRef).then((snap) => {
+      if (snap.exists()) {
+        remove(likeRef); // quitar ❤️
+      } else {
+        set(likeRef, true); // dar ❤️
+      }
+    });
+  });
+
+  // 3. Botón mostrar/ocultar comentarios
   const toggleBtn = postEl.querySelector(".toggle-comments");
   const commentsSection = postEl.querySelector(".comments-section");
 
@@ -120,10 +133,10 @@ function renderPost(post) {
     }
   });
 
-  // Render comentarios
+  // 4. Render comentarios
   renderComments(post, postEl.querySelector(".comments-list"));
 
-  // Nuevo comentario
+  // 5. Nuevo comentario
   const commentForm = postEl.querySelector(".comment-form");
   commentForm.addEventListener("submit", (e) => {
     e.preventDefault();
@@ -142,8 +155,10 @@ function renderPost(post) {
     commentForm.reset();
   });
 
+  // 6. Agregar al DOM
   recList.appendChild(postEl);
 }
+
 
 
 /* ========================
