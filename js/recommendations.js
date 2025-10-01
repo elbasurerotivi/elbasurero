@@ -83,7 +83,6 @@ function renderPost(post) {
   // Si estaba abierto antes, mantenerlo
   const isOpen = openComments.has(post.id);
 
-  // 1. Generar el HTML
   postEl.innerHTML = `
     <div class="post-header">
       <strong>${post.name}</strong>
@@ -104,21 +103,27 @@ function renderPost(post) {
     </div>
   `;
 
-  // 2. Botón ❤️ Like en post
+  // ❤️ Botón Like en post
   const likeBtn = postEl.querySelector(".like-btn");
   likeBtn.addEventListener("click", (e) => {
     e.stopPropagation();
     const likeRef = ref(db, `recommendations/${post.id}/likes/${userId}`);
     get(likeRef).then((snap) => {
       if (snap.exists()) {
-        remove(likeRef); // quitar ❤️
+        remove(likeRef).then(() => {
+          highlightPost(postEl);
+          scrollToPost(postEl);
+        });
       } else {
-        set(likeRef, true); // dar ❤️
+        set(likeRef, true).then(() => {
+          highlightPost(postEl);
+          scrollToPost(postEl);
+        });
       }
     });
   });
 
-  // 3. Botón mostrar/ocultar comentarios
+  // Botón mostrar/ocultar comentarios
   const toggleBtn = postEl.querySelector(".toggle-comments");
   const commentsSection = postEl.querySelector(".comments-section");
 
@@ -133,10 +138,10 @@ function renderPost(post) {
     }
   });
 
-  // 4. Render comentarios
+  // Render comentarios
   renderComments(post, postEl.querySelector(".comments-list"));
 
-  // 5. Nuevo comentario
+  // Nuevo comentario
   const commentForm = postEl.querySelector(".comment-form");
   commentForm.addEventListener("submit", (e) => {
     e.preventDefault();
@@ -155,9 +160,21 @@ function renderPost(post) {
     commentForm.reset();
   });
 
-  // 6. Agregar al DOM
   recList.appendChild(postEl);
 }
+
+/* ========================
+   EFECTOS VISUALES
+======================== */
+function highlightPost(postEl) {
+  postEl.classList.add("highlight");
+  setTimeout(() => postEl.classList.remove("highlight"), 2000); // 2s resaltado
+}
+
+function scrollToPost(postEl) {
+  postEl.scrollIntoView({ behavior: "smooth", block: "center" });
+}
+
 
 
 
