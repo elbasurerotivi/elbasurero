@@ -1183,19 +1183,10 @@ body {
 }
 
 .recommend-post {
-  transition: transform 0.35s ease, opacity 0.35s ease, background-color 0.35s ease;
+  transition: transform 0.5s ease, opacity 0.3s ease;
 }
 
 .recommend-post.highlight {
-  background-color: #fff9c4; /* Amarillo clarito */
-  transition: background-color 2s ease;
-}
-
-.recommend-post {
-  will-change: transform, opacity;
-}
-
-.recommend-post.highlight {
-  background-color: #fff9c4;
-  transition: background-color 1.8s ease;
+  background-color: #fff9c4; /* amarillo suave */
+  transition: background-color 0.8s ease;
 }
