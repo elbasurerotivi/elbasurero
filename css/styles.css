@@ -48,7 +48,7 @@ body {
 
 /* HERO con fondo de imagen */
 .hero {
-  background: url("../Imagenes/header.png") no-repeat center center/cover;
+  background: url("../Imagenes/header.webp") no-repeat center center/cover;
   /* Cambiá "header.png" por la imagen que quieras */
   min-height: 30vh; /* ocupa casi toda la pantalla */
   flex-direction: column;
