@@ -110,9 +110,11 @@
       <label for="link">Link de YouTube</label>
       <input type="url" id="link" placeholder="https://www.youtube.com/watch?v=..." required />
 
-      <label for="miniatura">Miniatura (subir imagen)</label>
-      <input type="file" id="miniatura" accept="image/*" required />
+      <!-- Eliminamos esto -->
+      <!-- <label for="miniatura">Miniatura (subir imagen)</label>
+      <input type="file" id="miniatura" accept="image/*" required /> -->
       <img id="preview" alt="Vista previa">
+
 
       <label>Tags</label>
       <div class="tags">
@@ -144,87 +146,96 @@
   </div>
 
   <script>
-    const miniaturaInput = document.getElementById("miniatura");
-    const preview = document.getElementById("preview");
-    let fileName = "";
-    let videosList = []; // Aquí guardamos todos los videos
+  const preview = document.getElementById("preview");
+  let videosList = []; // Guardamos todos los videos aquí
 
-    // Vista previa y guardar nombre de archivo
-    miniaturaInput.addEventListener("change", (e) => {
-      const file = e.target.files[0];
-      if (file) {
-        fileName = "Imagenes/" + file.name;
-        const reader = new FileReader();
-        reader.onload = function (e) {
-          preview.src = e.target.result;
-          preview.style.display = "block";
-        };
-        reader.readAsDataURL(file);
+  // 📌 Función para obtener miniatura de YouTube con fallback
+  async function getYouTubeThumbnail(url) {
+    const regex = /(?:youtube\.com.*(?:\?|&)v=|youtu\.be\/)([^&#]+)/;
+    const match = url.match(regex);
+    if (match && match[1]) {
+      const videoId = match[1];
+      const maxRes = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+      const fallback = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+
+      try {
+        // Probar si maxres existe
+        const res = await fetch(maxRes, { method: "HEAD" });
+        if (res.ok) return maxRes;
+      } catch (e) {
+        console.warn("No existe maxres, usando hqdefault");
       }
-    });
+      return fallback;
+    }
+    return null;
+  }
 
-    document.getElementById("videoForm").addEventListener("submit", function (e) {
-      e.preventDefault();
+  // 📌 Formulario
+  document.getElementById("videoForm").addEventListener("submit", async function (e) {
+    e.preventDefault();
 
-      const titulo = document.getElementById("titulo").value.trim();
-      const descripcion = document.getElementById("descripcion").value.trim();
-      const fecha = document.getElementById("fecha").value;
-      const link = document.getElementById("link").value.trim();
-      const tags = Array.from(document.querySelectorAll(".tags input:checked")).map(cb => cb.value);
+    const titulo = document.getElementById("titulo").value.trim();
+    const descripcion = document.getElementById("descripcion").value.trim();
+    const fecha = document.getElementById("fecha").value;
+    const link = document.getElementById("link").value.trim();
+    const tags = Array.from(document.querySelectorAll(".tags input:checked")).map(cb => cb.value);
 
-      if (!fileName) {
-        alert("Por favor, subí una imagen.");
-        return;
-      }
+    // Generar miniatura automática
+    const thumbnailUrl = await getYouTubeThumbnail(link);
+    if (!thumbnailUrl) {
+      alert("❌ No se pudo obtener la miniatura. Revisá el link de YouTube.");
+      return;
+    }
 
-      const videoObj = {
-        titulo: titulo,
-        descripcion: descripcion,
-        fecha: fecha,
-        link: link,
-        miniatura: fileName,
-        tags: tags
-      };
+    const videoObj = {
+      titulo,
+      descripcion,
+      fecha,
+      link,
+      miniatura: thumbnailUrl, // ✅ auto thumbnail
+      tags
+    };
 
-      videosList.push(videoObj);
+    videosList.push(videoObj);
 
-      // Mostrar en pantalla
-      const jsCode = JSON.stringify(videoObj, null, 2)
+    // Mostrar en pantalla
+    const jsCode = JSON.stringify(videoObj, null, 2)
+      .replace(/\"([^(\")"]+)\":/g, "$1:")
+      .replace(/\"/g, "'");
+    document.getElementById("output").textContent += `  ${jsCode},\n`;
+
+    // Resetear formulario y mostrar vista previa
+    document.getElementById("videoForm").reset();
+    preview.style.display = "block";
+    preview.src = thumbnailUrl;
+  });
+
+  // 📌 Descargar todos los videos juntos
+  document.getElementById("downloadAll").addEventListener("click", () => {
+    if (videosList.length === 0) {
+      alert("No hay videos en la lista.");
+      return;
+    }
+
+    const jsCode = videosList.map(v =>
+      JSON.stringify(v, null, 2)
         .replace(/\"([^(\")"]+)\":/g, "$1:")
-        .replace(/\"/g, "'");
-      document.getElementById("output").textContent += `  ${jsCode},\n`;
+        .replace(/\"/g, "'")
+    ).join("\n");
 
-      // Resetear formulario
-      document.getElementById("videoForm").reset();
-      preview.style.display = "none";
-      fileName = "";
-    });
+    const finalCode = `[\n${jsCode}\n]`;
 
-    // Descargar todos los videos juntos
-    document.getElementById("downloadAll").addEventListener("click", () => {
-      if (videosList.length === 0) {
-        alert("No hay videos en la lista.");
-        return;
-      }
+    const blob = new Blob([finalCode], { type: "application/javascript" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "add.js";
+    a.click();
+    URL.revokeObjectURL(url);
 
-      const jsCode = videosList.map(v =>
-        JSON.stringify(v, null, 2)
-          .replace(/\"([^(\")"]+)\":/g, "$1:")
-          .replace(/\"/g, "'")
-      ).join("\n");
+    alert("✅ Archivo add.js descargado con todos los videos.");
+  });
+</script>
 
-      const finalCode = `[\n${jsCode}\n]`;
-
-      const blob = new Blob([finalCode], { type: "application/javascript" });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = "add.js";
-      a.click();
-      URL.revokeObjectURL(url);
-
-      alert("✅ Archivo add.js descargado con todos los videos.\n⚠️ Recordá mover manualmente las imágenes a la carpeta Imagenes/.");
-    });
-  </script>
 </body>
 </html>
