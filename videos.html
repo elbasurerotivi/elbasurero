@@ -17,7 +17,7 @@
 
     <!-- Tabs de categorías -->
     <div class="tabs">
-  <button class="tab-button active" data-category="all">Todos</button>
+  <button class="tab-button active" data-category="latest">Últimos</button>
   <button class="tab-button" data-category="Peliculas">Películas</button>
   <button class="tab-button" data-category="Series">Series</button>
   <button class="tab-button" data-category="Comedia">Comedia</button>
@@ -80,25 +80,32 @@
   const filterButtons = document.querySelectorAll(".tab-button");
 
   function renderVideos(category) {
-    videoGrid.innerHTML = "";
-    const filtered = category === "all"
-      ? videosData
-      : videosData.filter(video => video.tags.includes(category));
+  videoGrid.innerHTML = "";
 
-    filtered.forEach(video => {
-      const card = document.createElement("div");
-      card.classList.add("video-card");
-      card.innerHTML = `
-        <a href="${video.link}" target="_blank">
-          <img src="${video.miniatura}" alt="${video.titulo}">
-          <h3>${video.titulo}</h3>
-          <p>${video.descripcion}</p>
-          <small>${video.fecha}</small>
-        </a>
-      `;
-      videoGrid.appendChild(card);
-    });
+  let filtered;
+  if (category === "latest") {
+    filtered = [...videosData] // copia para no modificar el original
+      .sort((a, b) => new Date(b.fecha) - new Date(a.fecha)) // orden descendente por fecha
+      .slice(0, 10); // solo los últimos 10
+  } else {
+    filtered = videosData.filter(video => video.tags.includes(category));
   }
+
+  filtered.forEach(video => {
+    const card = document.createElement("div");
+    card.classList.add("video-card");
+    card.innerHTML = `
+      <a href="${video.link}" target="_blank">
+        <img src="${video.miniatura}" alt="${video.titulo}">
+        <h3>${video.titulo}</h3>
+        <p>${video.descripcion}</p>
+        <small>${video.fecha}</small>
+      </a>
+    `;
+    videoGrid.appendChild(card);
+  });
+}
+
 
   // Botones de filtro
   filterButtons.forEach(btn => {
