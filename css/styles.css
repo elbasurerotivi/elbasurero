@@ -1283,8 +1283,8 @@ body {
 }
 
 .contact-card img {
-  width: 80px;
-  height: 80px;
+  width: 100px;
+  height: 100px;
   margin-bottom: 10px;
 }
 
@@ -1306,3 +1306,4 @@ body {
 .instagram { background: linear-gradient(45deg, #f9ce34, #ee2a7b, #6228d7); }
 .facebook { background: #1877f2; }
 .patreon { background: #f96854; }
+
