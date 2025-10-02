@@ -1290,6 +1290,7 @@ body {
 .contact-card h3 {
   font-size: 1.2rem;
   margin-top: 2;
+  border-top: #000;
 }
 
 /* Efecto hover */
