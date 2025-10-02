@@ -1,33 +1,52 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contacto - El Basurero</title>
-    <link rel="stylesheet" href="css/styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="icon" href="Imagenes/icono.png" type="image/x-icon">
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
-    <meta name="description" content="El Basurero, tu canal de reacciones en YouTube. Horarios, videos y comunidad.">
-    <meta name="keywords" content="El Basurero, reacciones, YouTube, directos, Twitch, México, Argentina, stream, videos, comunidad, películas, series, opinión, videoreacción">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contacto - El Basurero</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="Imagenes/icono.png" type="image/x-icon">
+  <meta name="description" content="El Basurero, tu canal de reacciones en YouTube. Horarios, videos y comunidad.">
+  <meta name="keywords" content="El Basurero, reacciones, YouTube, directos, Twitch, México, Argentina, stream, videos, comunidad, películas, series, opinión, videoreacción">
 </head>
 <body>
 
-        <div id="header"></div>
- 
-    <section class="social">
-    <h2>Conéctate conmigo</h2>
-    <div class="social-links">
-        <a href="https://www.twitch.tv/elbasurerochido" target="_blank">Twitch</a>
-                <a href="https://www.youtube.com/@elbasureroedgar" target="_blank">YouTube</a>
-                <a href="https://discord.gg/TgAkT7PFt5" target="_blank">Discord</a>
-                <a href="https://www.instagram.com/el_basurero_tiviplas" target="_blank">Instagram</a>
-                <a href="https://www.facebook.com/el.basurero.ti.vi.plas" target="_blank">Facebook</a>
-                <a href="https://www.patreon.com/cw/ElBasureroTi_Vi_Plas" target="_blank">Patreon</a>
+  <div id="header"></div>
+
+  <main class="contact-page">
+    <h1>Conéctate conmigo</h1>
+    <p>Encuéntrame en mis plataformas oficiales 👇</p>
+
+    <div class="contact-grid">
+      <a href="https://www.twitch.tv/elbasurerochido" target="_blank" class="contact-card twitch">
+        <img src="Imagenes/twitch_logo.png" alt="Twitch">
+        <h3>Twitch</h3>
+      </a>
+      <a href="https://www.youtube.com/@elbasureroedgar" target="_blank" class="contact-card youtube">
+        <img src="Imagenes/youtube_logo.png" alt="YouTube">
+        <h3>YouTube</h3>
+      </a>
+      <a href="https://discord.gg/TgAkT7PFt5" target="_blank" class="contact-card discord">
+        <img src="Imagenes/discord_logo.png" alt="Discord">
+        <h3>Discord</h3>
+      </a>
+      <a href="https://www.instagram.com/el_basurero_tiviplas" target="_blank" class="contact-card instagram">
+        <img src="Imagenes/instagram_logo.png" alt="Instagram">
+        <h3>Instagram</h3>
+      </a>
+      <a href="https://www.facebook.com/el.basurero.ti.vi.plas" target="_blank" class="contact-card facebook">
+        <img src="Imagenes/facebook_logo.png" alt="Facebook">
+        <h3>Facebook</h3>
+      </a>
+      <a href="https://www.patreon.com/cw/ElBasureroTi_Vi_Plas" target="_blank" class="contact-card patreon">
+        <img src="Imagenes/patreon_logo.png" alt="Patreon">
+        <h3>Patreon</h3>
+      </a>
     </div>
-</section>
-</main>
-<footer>
+  </main>
+
+  <footer>
     <p>&copy; 2025 El Basurero. Todos los derechos reservados.</p>
     <h3>Sígueme en mis redes</h3>
   <div class="social-links">
@@ -51,14 +70,15 @@
     </a>
   </div>
 </footer>
-<script src="js/scripts.js"></script>
-<script>
-  fetch("header.html")
-    .then(response => response.text())
-    .then(data => {
-      document.getElementById("header").innerHTML = data;
-    })
-    .catch(error => console.error("Error cargando el header:", error));
-</script>
+
+  <script src="js/scripts.js"></script>
+  <script>
+    fetch("header.html")
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById("header").innerHTML = data;
+      })
+      .catch(error => console.error("Error cargando el header:", error));
+  </script>
 </body>
 </html>
