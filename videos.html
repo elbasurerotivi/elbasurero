@@ -95,19 +95,51 @@
     filtered = videosData.filter(video => video.tags.includes(category));
   }
 
-  filtered.forEach(video => {
-    const card = document.createElement("div");
-    card.classList.add("video-card");
-    card.innerHTML = `
-      <a href="${video.link}" target="_blank">
-        <img src="${video.miniatura}" alt="${video.titulo}">
-        <h3>${video.titulo}</h3>
-        <p>${video.descripcion}</p>
-        <small>${video.fecha}</small>
-      </a>
-    `;
-    videoGrid.appendChild(card);
-  });
+filtered.forEach(video => {
+  const card = document.createElement("div");
+  card.classList.add("video-card");
+
+  // recortar descripción si es larga
+  const maxLength = 120; 
+  const isLong = video.descripcion.length > maxLength;
+  const shortText = video.descripcion.substring(0, maxLength) + (isLong ? "..." : "");
+
+  card.innerHTML = `
+    <a href="${video.link}" target="_blank">
+      <img src="${video.miniatura}" alt="${video.titulo}">
+      <h3>${video.titulo}</h3>
+    </a>
+    <p class="video-desc">
+      <span class="short">${shortText}</span>
+      <span class="full" style="display:none;">${video.descripcion}</span>
+      ${isLong ? `<button class="toggle-desc">Ver más</button>` : ""}
+    </p>
+    <small>${video.fecha}</small>
+  `;
+
+  videoGrid.appendChild(card);
+
+  // Agregar evento al botón "Ver más"
+  if (isLong) {
+    const toggleBtn = card.querySelector(".toggle-desc");
+    const shortEl = card.querySelector(".short");
+    const fullEl = card.querySelector(".full");
+
+    toggleBtn.addEventListener("click", () => {
+      const isExpanded = fullEl.style.display === "inline";
+      if (isExpanded) {
+        fullEl.style.display = "none";
+        shortEl.style.display = "inline";
+        toggleBtn.textContent = "Ver más";
+      } else {
+        fullEl.style.display = "inline";
+        shortEl.style.display = "none";
+        toggleBtn.textContent = "Ver menos";
+      }
+    });
+  }
+});
+
 }
 
 
