@@ -110,10 +110,11 @@
       <label for="link">Link de YouTube</label>
       <input type="url" id="link" placeholder="https://www.youtube.com/watch?v=..." required />
 
-      <!-- Eliminamos esto -->
-      <!-- <label for="miniatura">Miniatura (subir imagen)</label>
-      <input type="file" id="miniatura" accept="image/*" required /> -->
-      <img id="preview" alt="Vista previa">
+      <!-- Eliminar esto en caso de necesitar quitar la carga manual -->
+      <label for="miniatura">Miniatura (automática o manual)</label>
+      <input type="file" id="miniatura" accept="image/*" />
+      <img id="preview" alt="Vista previa" style="display:none; max-width:200px; margin-top:10px;">
+
 
 
       <label>Tags</label>
@@ -146,9 +147,13 @@
 
   <script>
   const preview = document.getElementById("preview");
-  let videosList = []; // Guardamos todos los videos aquí
+  const linkInput = document.getElementById("link");
+  const miniaturaInput = document.getElementById("miniatura");
+  let videosList = [];
+  let autoThumbnail = ""; // Miniatura obtenida automáticamente
+  let manualThumbnail = ""; // Miniatura subida manualmente
 
-  // 📌 Función para obtener miniatura de YouTube con fallback
+  // 📌 Obtener miniatura automática de YouTube
   async function getYouTubeThumbnail(url) {
     const regex = /(?:youtube\.com.*(?:\?|&)v=|youtu\.be\/)([^&#]+)/;
     const match = url.match(regex);
@@ -158,7 +163,6 @@
       const fallback = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
 
       try {
-        // Probar si maxres existe
         const res = await fetch(maxRes, { method: "HEAD" });
         if (res.ok) return maxRes;
       } catch (e) {
@@ -169,20 +173,48 @@
     return null;
   }
 
-  // 📌 Formulario
+  // 📌 Detectar cuando se ingresa un link
+  linkInput.addEventListener("input", async () => {
+    const url = linkInput.value.trim();
+    if (!url) return;
+
+    autoThumbnail = await getYouTubeThumbnail(url);
+    if (autoThumbnail) {
+      preview.src = autoThumbnail;
+      preview.style.display = "block";
+      manualThumbnail = ""; // Reset manual si se logra auto
+    }
+  });
+
+  // 📌 Opción de subir miniatura manual
+  miniaturaInput.addEventListener("change", (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      manualThumbnail = "Imagenes/" + file.name; // Ruta a usar en JS
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        preview.src = e.target.result;
+        preview.style.display = "block";
+      };
+      reader.readAsDataURL(file);
+    }
+  });
+
+  // 📌 Enviar formulario
   document.getElementById("videoForm").addEventListener("submit", async function (e) {
     e.preventDefault();
 
     const titulo = document.getElementById("titulo").value.trim();
     const descripcion = document.getElementById("descripcion").value.trim();
     const fecha = document.getElementById("fecha").value;
-    const link = document.getElementById("link").value.trim();
+    const link = linkInput.value.trim();
     const tags = Array.from(document.querySelectorAll(".tags input:checked")).map(cb => cb.value);
 
-    // Generar miniatura automática
-    const thumbnailUrl = await getYouTubeThumbnail(link);
+    // Usar miniatura automática si existe, sino la manual
+    const thumbnailUrl = autoThumbnail || manualThumbnail;
+
     if (!thumbnailUrl) {
-      alert("❌ No se pudo obtener la miniatura. Revisá el link de YouTube.");
+      alert("❌ No se encontró miniatura automática ni manual.");
       return;
     }
 
@@ -191,7 +223,7 @@
       descripcion,
       fecha,
       link,
-      miniatura: thumbnailUrl, // ✅ auto thumbnail
+      miniatura: thumbnailUrl,
       tags
     };
 
@@ -203,10 +235,11 @@
       .replace(/\"/g, "'");
     document.getElementById("output").textContent += `  ${jsCode},\n`;
 
-    // Resetear formulario y mostrar vista previa
+    // Resetear formulario
     document.getElementById("videoForm").reset();
-    preview.style.display = "block";
-    preview.src = thumbnailUrl;
+    preview.style.display = "none";
+    autoThumbnail = "";
+    manualThumbnail = "";
   });
 
   // 📌 Descargar todos los videos juntos
@@ -235,6 +268,7 @@
     alert("✅ Archivo add.js descargado con todos los videos.");
   });
 </script>
+
 
 </body>
 </html>
