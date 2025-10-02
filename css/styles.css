@@ -1243,3 +1243,66 @@ body {
   background-color: #fff9c4; /* amarillo suave */
   transition: background-color 0.8s ease;
 }
+
+
+
+/* Contacto*/
+
+.contact-page {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.contact-page h1 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.contact-page p {
+  color: #666;
+  margin-bottom: 30px;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.contact-card {
+  background: #1e1e1e;
+  border-radius: 15px;
+  padding: 20px;
+  text-align: center;
+  transition: all 0.3s ease;
+  color: white;
+  text-decoration: none;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.contact-card img {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 10px;
+}
+
+.contact-card h3 {
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+/* Efecto hover */
+.contact-card:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+
+/* Colores personalizados por red */
+.twitch { background: #9146FF; }
+.youtube { background: #FF0000; }
+.discord { background: #5865F2; }
+.instagram { background: linear-gradient(45deg, #f9ce34, #ee2a7b, #6228d7); }
+.facebook { background: #1877f2; }
+.patreon { background: #f96854; }
