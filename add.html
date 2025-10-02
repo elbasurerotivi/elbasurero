@@ -243,30 +243,31 @@
   });
 
   // 📌 Descargar todos los videos juntos
-  document.getElementById("downloadAll").addEventListener("click", () => {
-    if (videosList.length === 0) {
-      alert("No hay videos en la lista.");
-      return;
-    }
+document.getElementById("downloadAll").addEventListener("click", () => {
+  if (videosList.length === 0) {
+    alert("No hay videos en la lista.");
+    return;
+  }
 
-    const jsCode = videosList.map(v =>
-      JSON.stringify(v, null, 2)
-        .replace(/\"([^(\")"]+)\":/g, "$1:")
-        .replace(/\"/g, "'")
-    ).join("\n");
+  const jsCode = videosList.map(v =>
+    JSON.stringify(v, null, 2)
+      .replace(/\"([^(\")"]+)\":/g, "$1:")
+      .replace(/\"/g, "'")
+  ).join(",\n\n"); // 🔥 agrega coma entre cada objeto
 
-    const finalCode = `[\n${jsCode}\n]`;
+  const finalCode = `${jsCode},`; // 🔥 última coma al final también
 
-    const blob = new Blob([finalCode], { type: "application/javascript" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "add.js";
-    a.click();
-    URL.revokeObjectURL(url);
+  const blob = new Blob([finalCode], { type: "application/javascript" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "add.js";
+  a.click();
+  URL.revokeObjectURL(url);
 
-    alert("✅ Archivo add.js descargado con todos los videos.");
-  });
+  alert("✅ Archivo add.js descargado con todos los videos.");
+});
+
 </script>
 
 
