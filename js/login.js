@@ -5,7 +5,8 @@ import {
   onAuthStateChanged,
   GoogleAuthProvider,
   FacebookAuthProvider,
-  signInWithPopup
+  signInWithPopup,
+  signOut
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 let isLogin = true;
@@ -154,26 +155,13 @@ window.loginFacebook = function() {
     });
 };
 
-// Estado de sesión
-onAuthStateChanged(auth, user => {
-  if (user) {
-    console.log("Usuario conectado:", user.email, "UID:", user.uid);
-  } else {
-    console.log("No hay usuario conectado");
-  }
-});
-
-
-  //logout//
-
-  // js/login.js (añade al final del archivo)
-
 // Función de logout
 window.logout = function() {
   signOut(auth)
     .then(() => {
       alert("Sesión cerrada exitosamente.");
       document.getElementById("logout-container").style.display = "none";
+      document.getElementById("login-container").style.display = "block";
     })
     .catch(error => {
       console.error("Error al cerrar sesión:", error);
@@ -181,17 +169,20 @@ window.logout = function() {
     });
 };
 
-// Mostrar/ocultar botón de logout basado en el estado de sesión
+// Mostrar/ocultar botones de login/logout basado en el estado de sesión
 onAuthStateChanged(auth, user => {
+  const loginContainer = document.getElementById("login-container");
+  const logoutContainer = document.getElementById("logout-container");
   if (user) {
     console.log("Usuario conectado:", user.email, "UID:", user.uid);
-    const logoutContainer = document.getElementById("logout-container");
+    if (loginContainer) loginContainer.style.display = "none";
     if (logoutContainer) logoutContainer.style.display = "block";
-    const logoutBtn = document.getElementById("logout-btn");
-    if (logoutBtn) logoutBtn.addEventListener("click", logout);
   } else {
     console.log("No hay usuario conectado");
-    const logoutContainer = document.getElementById("logout-container");
+    if (loginContainer) loginContainer.style.display = "block";
     if (logoutContainer) logoutContainer.style.display = "none";
   }
 });
+
+// Evento para el botón de login
+document.getElementById("login-btn")?.addEventListener("click", abrirLogin);
