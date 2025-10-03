@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recomendaciones  - El Basurero</title>
+    <title>Recomendaciones - El Basurero</title>
     <link rel="stylesheet" href="css/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="icon" href="Imagenes/icono.png" type="image/x-icon">
@@ -14,29 +14,66 @@
 <body>
   <div id="header"></div>
 
+  
+  <!-- Popup de login -->
+  <div id="loginModal" class="modal">
+    <div class="modal-content">
+      <h2 id="form-title" class="modal-title">Iniciar Sesión</h2>
+      <form id="loginForm" class="login-form">
+        <div class="form-group">
+          <input type="email" id="email" placeholder="Correo electrónico" required>
+        </div>
+        <div class="form-group" id="username-group" style="display: none;">
+          <input type="text" id="username" placeholder="Nombre de usuario (opcional)" maxlength="30">
+        </div>
+        <div class="form-group">
+          <input type="password" id="password" placeholder="Contraseña" required>
+        </div>
+        <button type="button" id="actionBtn" class="btn btn-primary">Login</button>
+      </form>
+      <p class="switch" onclick="toggleForm()">¿No tienes cuenta? Regístrate aquí</p>
+      <div class="social-login">
+        <p>O ingresa con:</p>
+        <button class="btn btn-google" onclick="loginGoogle()">
+          <img src="Imagenes/youtube_logo.png" alt="Google" class="social-icon"> Google
+        </button>
+        <button class="btn btn-facebook" onclick="loginFacebook()">
+          <img src="Imagenes/facebook_logo.png" alt="Facebook" class="social-icon"> Facebook
+        </button>
+      </div>
+      <button class="btn btn-close" onclick="cerrarLogin()">Cerrar</button>
+    </div>
+  </div>
+
   <main class="container">
     <section class="recommendations">
       <h2>💡 Recomendaciones</h2>
-      <p>La recomendacion con mas likes va a subir al <stron>top</stron>, esa va a ser la que tenga <strong>prioridad</strong> para reaccionar.<br>
+      <p>La recomendación con más likes va a subir al <strong>top</strong>, esa va a ser la que tenga <strong>prioridad</strong> para reaccionar.<br>
         <br>Cada recomendación hecha se va a agregar en la lista de <strong>"Vistos"</strong> para saber qué recomendar y qué no.<br></p>
       
       <!-- Formulario para recomendar -->
       <form id="recommend-form" class="recommend-form">
-        <input type="text" id="rec-name" placeholder="Tu nombre" maxlength="30" required>
         <textarea id="rec-text" placeholder="Escribe tu recomendación" maxlength="500" required></textarea>
-        <button type="submit">Publicar</button>
+        <button type="submit" class="btn btn-primary">Publicar</button>
       </form>
 
       <!-- Lista de recomendaciones -->
       <div id="recommend-list" class="recommend-list"></div>
     </section>
   </main>
-<div id="footer"></div>
+  <div id="footer"></div>
   
-  <!-- Header + comunes -->
+  <!-- Scripts -->
   <script src="js/scripts.js"></script>
-
-  <!-- Recomendaciones -->
+  <script>
+    fetch("header.html")
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById("header").innerHTML = data;
+      })
+      .catch(error => console.error("Error cargando el header:", error));
+  </script>
+  <script type="module" src="js/login.js"></script>
   <script type="module" src="js/recommendations.js"></script>
 </body>
 </html>
