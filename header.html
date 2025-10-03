@@ -1,41 +1,19 @@
 <!-- header.html -->
-<header> 
-  <nav class="navbar"> 
-    <div class="logo">
-      <a href="index.html">
-        <img src="Imagenes/logo.png" alt="El Basurero Logo">
-      </a>
-    </div>
-
-<div class="auth-buttons">
-    <div id="login-container">
-      <button id="login-btn" class="btn btn-login">Login</button>
-    </div>
-    <div id="logout-container" style="display: none;">
-      <button id="logout-btn" class="btn btn-logout">Logout</button>
-    </div>
+<nav class="navbar">
+  <div class="logo">
+    <img src="Imagenes/logo.png" alt="El Basurero Logo">
   </div>
-    
-    <!-- Botón hamburguesa -->
-    <div class="menu-toggle" id="mobile-menu">
-      <span class="bar"></span>
-      <span class="bar"></span>
-      <span class="bar"></span>
-    </div>
-
-    <!-- Menú de navegación -->
-    <ul class="nav-menu">
-      <li><a href="index.html">Inicio</a></li>
-      <li><a href="videos.html">Videos</a></li>
-      <li><a href="directos.html">Directos</a></li>
-      <li><a href="comunidad.html">Comunidad</a></li>
-      <li><a href="recomendaciones.html">Recomendaciones</a></li>
-      <li><a href="contacto.html">Contacto</a></li>
-    </ul>
-    
-  <div id="logout-container" style="display: none;">
-    <button id="logout-btn" class="btn btn-logout">Logout</button>
+  <ul class="nav-menu">
+    <li><a href="index.html">Inicio</a></li>
+    <li><a href="videos.html">Videos</a></li>
+    <li><a href="directos.html">Directos</a></li>
+    <li><a href="comunidad.html">Comunidad</a></li>
+    <li><a href="recomendaciones.html">Recomendaciones</a></li>
+    <li><a href="contacto.html">Contacto</a></li>
+  </ul>
+  <div class="menu-toggle" onclick="toggleMenu()">
+    <span class="bar"></span>
+    <span class="bar"></span>
+    <span class="bar"></span>
   </div>
-
-  </nav>
-</header>
+</nav>
