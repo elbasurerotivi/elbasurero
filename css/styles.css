@@ -1291,6 +1291,7 @@ body {
   font-size: 1.2rem;
   margin-bottom: 2;
   border-top: #000;
+  border-top: 2px;
 }
 
 /* Efecto hover */
