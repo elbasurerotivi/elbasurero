@@ -20,11 +20,6 @@ body {
     top: 0;
     z-index: 100;
 }
-.logo-wrap {
-    display: flex;
-    align-items: center;
-    gap: 10px; /* Espacio entre logo y botones */
-}
 
 .logo img {
     height: 50px;
@@ -49,86 +44,6 @@ body {
     display: none;
     font-size: 24px;
     cursor: pointer;
-}
-
-/* Estilos para el contenedor de botones de autenticación */
-.auth-buttons {
-  display: flex;
-  gap: 8px;
-  align-items: center;
-}
-
-/* Estilos generales para botones de auth (sin texto, solo iconos) */
-.btn-auth {
-  background: #1c1c1c;
-  padding: 6px;
-  border: none;
-  border-radius: 50%; /* Circular para sutileza */
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-}
-
-.btn-auth:hover {
-  background: #ffcc00;
-  transform: scale(1.1);
-}
-
-/* Iconos */
-.auth-icon {
-  width: 24px;
-  height: 24px;
-  object-fit: contain;
-}
-
-/* Estilos específicos para login/logout */
-.btn-login {
-  background: #007bff;
-}
-
-.btn-login:hover {
-  background: #0056b3;
-}
-
-.btn-logout {
-  background: #e91e63;
-}
-
-.btn-logout:hover {
-  background: #c2185b;
-}
-
-/* Responsivo */
-@media (max-width: 768px) {
-  .logo-wrap {
-    gap: 6px; /* Menos espacio en móvil */
-  }
-
-  .auth-buttons {
-    gap: 6px;
-  }
-
-  .btn-auth {
-    width: 32px; /* Más pequeño en móvil */
-    height: 32px;
-  }
-
-  .auth-icon {
-    width: 18px;
-    height: 18px;
-  }
-
-  .menu-toggle {
-    margin-left: auto; /* Asegura que el menú hamburguesa esté a la derecha */
-  }
-
-  .nav-menu.active ~ .auth-buttons {
-    display: none; /* Oculta botones cuando el menú está abierto para evitar interferencia */
-  }
 }
 
 /* HERO con fondo de imagen */
