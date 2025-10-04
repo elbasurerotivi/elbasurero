@@ -21,14 +21,19 @@ body {
     z-index: 100;
 }
 
+.logo {
+    margin: 0 20px; /* Espacio entre auth-buttons y nav-menu */
+}
+
 .logo img {
     height: 50px;
-    width: 200;
+   
 }
 
 .nav-menu {
     display: flex;
     list-style: none;
+    margin-left: auto; /* Fuerza el navmenu a la derecha */
 }
 
 .nav-menu li {
@@ -50,7 +55,7 @@ body {
 /* Estilos para el contenedor de botones de autenticación */
 .auth-buttons {
    display: flex;
-   gap: 10px;
+   gap: 8px;
    align-items: center;
 }
 
@@ -130,6 +135,43 @@ body {
     transform: scale(1.1);
 }
 
+/* Responsivo para pantallas pequeñas */
+@media (max-width: 600px) {
+    .navbar {
+        padding: 10px;
+    }
+
+    .auth-buttons {
+        gap: 4px;
+    }
+
+    .logo {
+        margin: 0 10px;
+    }
+
+    .logo img {
+        height: 40px; /* Reducir tamaño del logo */
+    }
+
+    .nav-menu li {
+        margin: 0 5px;
+    }
+
+    .nav-menu a {
+        font-size: 12px; /* Reducir tamaño del texto */
+    }
+
+    .btn-auth {
+        width: 24px;
+        height: 24px;
+    }
+
+    .auth-icon {
+        width: 14px;
+        height: 14px;
+    }
+}
+
 /* Responsivo */
 @media (max-width: 768px) {
     .navbar {
@@ -142,7 +184,7 @@ body {
     }
 
     .auth-buttons {
-        gap: 6px;
+        gap: 8px;
         margin-top: 0; /* Eliminar margen para evitar desplazamiento */
     }
 
@@ -1631,7 +1673,7 @@ body {
 /* Estilos para el contenedor de botones de autenticación */
 .auth-buttons {
   display: flex;
-  gap: 10px;
+  gap: 8px;
   align-items: center;
 }
 
@@ -1678,7 +1720,7 @@ body {
 /* Responsivo */
 @media (max-width: 768px) {
   .auth-buttons {
-    margin-top: 10px;
+    margin-top: 6px;
     justify-content: center;
   }
 }
