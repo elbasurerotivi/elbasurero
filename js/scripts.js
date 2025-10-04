@@ -1,11 +1,12 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // Función para alternar el menú hamburguesa
+  // Definir toggleMenu globalmente
   window.toggleMenu = function() {
     const navMenu = document.querySelector(".nav-menu");
     const menuToggle = document.querySelector(".menu-toggle");
     if (navMenu && menuToggle) {
       navMenu.classList.toggle("active");
       menuToggle.classList.toggle("active");
+      console.log("Menú hamburguesa alternado:", navMenu.classList.contains("active") ? "abierto" : "cerrado");
     } else {
       console.warn("No se encontró .nav-menu o .menu-toggle");
     }
@@ -24,12 +25,13 @@ document.addEventListener("DOMContentLoaded", () => {
         // Re-asignar evento al menú hamburguesa
         const menuToggle = document.querySelector(".menu-toggle");
         if (menuToggle) {
-          menuToggle.addEventListener("click", toggleMenu);
+          menuToggle.addEventListener("click", window.toggleMenu);
+          console.log("Evento click asignado a .menu-toggle");
         } else {
           console.warn("No se encontró .menu-toggle después de cargar el header");
         }
         // Intentar inicializar botones de login/logout
-        function tryInitAuthButtons(attempts = 5, delay = 100) {
+        function tryInitAuthButtons(attempts = 10, delay = 200) {
           if (typeof window.initAuthButtons === "function") {
             window.initAuthButtons();
             console.log("initAuthButtons ejecutado con éxito");
