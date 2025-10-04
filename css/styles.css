@@ -1480,52 +1480,6 @@ body {
 
 
 /* Estilos para el popup de login */
-/* === POPUP DE LOGIN === */
-#loginModal {
-  display: none; /* oculto por defecto */
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.7); /* fondo oscuro semi-transparente */
-  z-index: 9999; /* que esté por encima de todo */
-  justify-content: center;
-  align-items: center;
-}
-
-#loginModal .modal-content {
-  background: #fff;
-  padding: 2rem;
-  border-radius: 10px;
-  width: 320px;
-  max-width: 90%;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
-  text-align: center;
-}
-
-#loginModal input {
-  width: 100%;
-  margin: 8px 0;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-}
-
-#loginModal button {
-  margin-top: 10px;
-  padding: 10px 20px;
-  background: #333;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: bold;
-}
-
-#loginModal button:hover {
-  background: #555;
-}
 
 
 .modal {
