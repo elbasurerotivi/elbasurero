@@ -25,10 +25,6 @@ body {
     height: 50px;
 }
 
-.nav-menu {
-    display: flex;
-    list-style: none;
-}
 
 .nav-menu li {
     margin: 0 15px;
@@ -44,6 +40,7 @@ body {
     display: none;
     font-size: 24px;
     cursor: pointer;
+    margin-left: auto; /* Fuerza el menú hamburguesa a la derecha */
 }
 
 /* Estilos para el contenedor de botones de autenticación */
@@ -160,13 +157,15 @@ body {
     }
 
     .nav-menu {
-        display: none;
+        display: flex;
         flex-direction: column;
         position: absolute;
+        list-style: none;
         top: 60px;
         left: 0;
         background-color: #222;
         width: 100%;
+        margin-left: auto; /* Fuerza el navmenu a la derecha */
     }
 
     .nav-menu.active {
@@ -466,6 +465,37 @@ footer h3 {
   .menu-toggle.active .bar:nth-child(3) {
     transform: translateY(-8px) rotate(-45deg);
   }
+}
+
+/* Responsivo para pantallas < 400px */
+@media (max-width: 400px) {
+    .navbar {
+        padding: 10px 10px; /* Menos padding para ajustar */
+    }
+
+    .logo-wrap {
+        gap: 4px; /* Reducir espacio */
+    }
+
+    .auth-buttons {
+        gap: 4px;
+    }
+
+    .btn-auth {
+        width: 24px;
+        height: 24px;
+    }
+
+    .auth-icon {
+        width: 14px;
+        height: 14px;
+    }
+
+    .menu-toggle .bar {
+        width: 20px;
+        height: 2px;
+        margin: 4px 0;
+    }
 }
 
 
