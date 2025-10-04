@@ -1,15 +1,43 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>El Basurero - Comunidad</title>
-  <link rel="stylesheet" href="css/styles.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="icon" href="Imagenes/icono.png" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comunidad - El Basurero</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="Imagenes/icono.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <meta name="description" content="El Basurero, tu canal de reacciones en YouTube. Horarios, videos y comunidad.">
+    <meta name="keywords" content="El Basurero, reacciones, YouTube, directos, Twitch, México, Argentina, stream, videos, comunidad, películas, series, opinión, videoreacción">
 </head>
 <body>
   <div id="header"></div>
+
+  <!-- 🔹 BOTÓN EJEMPLO PARA ABRIR EL POPUP -->
+<button onclick="abrirLogin()">Acción que requiere login</button>
+
+<!-- 🔹 POPUP LOGIN -->
+<div id="loginModal" style="display:none; position:fixed; top:0; left:0; 
+    width:100%; height:100%; background:rgba(0,0,0,0.7); justify-content:center; 
+    align-items:center; z-index:1000;">
+  <div style="background:white; padding:2rem; border-radius:12px; width:320px; text-align:center;">
+    <h2 id="form-title">Iniciar Sesión</h2>
+    <input type="email" id="email" placeholder="Correo">
+    <input type="password" id="password" placeholder="Contraseña">
+    <button id="actionBtn">Login</button>
+    
+    <p class="switch" onclick="toggleForm()">¿No tienes cuenta? Regístrate aquí</p>
+    
+    <hr>
+    <p>O ingresa con:</p>
+    <button onclick="loginGoogle()">Google</button>
+    <button onclick="loginFacebook()">Facebook</button>
+    
+    <br><br>
+    <button onclick="cerrarLogin()">Cerrar</button>
+  </div>
+</div>
 
   <main class="container">
     <!-- Chat -->
@@ -19,9 +47,10 @@
         <input type="text" id="name" placeholder="Tu nombre" required maxlength="30" />
         <textarea id="message" placeholder="Escribe tu mensaje" required maxlength="500"></textarea>
         <div class="form-actions">
-          <button type="submit">Enviar</button>
+          <button type="submit">Enviar comentario</button>
         </div>
       </form>
+
 
       <div id="community-wall" class="messages"></div>
     </section>
@@ -52,18 +81,149 @@
   </div>
 </section>
 
-
-
-
-    
   </main>
 
-  <footer>
+<footer>
     <p>&copy; 2025 El Basurero. Todos los derechos reservados.</p>
-  </footer>
+    <h3>Sígueme en mis redes</h3>
+  <div class="social-links">
+    <a href="https://www.twitch.tv/elbasurerochido" target="_blank">
+      <img src="Imagenes/twitch_logo.png" alt="Twitch"> Twitch
+    </a>
+    <a href="https://www.youtube.com/@elbasureroedgar" target="_blank">
+      <img src="Imagenes/youtube_logo.png" alt="YouTube"> YouTube
+    </a>
+    <a href="https://discord.gg/TgAkT7PFt5" target="_blank">
+      <img src="Imagenes/discord_logo.png" alt="Discord"> Discord
+    </a>
+    <a href="https://www.instagram.com/el_basurero_tiviplas" target="_blank">
+      <img src="Imagenes/instagram_logo.png" alt="Instagram"> Instagram
+    </a>
+    <a href="https://www.facebook.com/el.basurero.ti.vi.plas" target="_blank">
+      <img src="Imagenes/facebook_logo.png" alt="Facebook"> Facebook
+    </a>
+    <a href="https://www.patreon.com/cw/ElBasureroTi_Vi_Plas" target="_blank">
+      <img src="Imagenes/patreon_logo.png" alt="Patreon"> Patreon
+    </a>
+  </div>
+</footer>
 
   <!-- Header + comunes -->
   <script src="js/scripts.js"></script>
+  <script>
+  fetch("header.html")
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById("header").innerHTML = data;
+    })
+    .catch(error => console.error("Error cargando el header:", error));
+</script>
+
+<script type="module">
+  import { auth } from "./js/firebase-config.js";
+  import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+
+  // Wrapper: chequea si está logueado
+  window.accionProtegida = function(callback) {
+    if (auth.currentUser) {
+      callback(); // ejecuta acción normal
+    } else {
+      abrirLogin(); // abre popup
+    }
+  }
+
+  // Acción ejemplo
+  window.enviarComentario = function() {
+    alert("Comentario enviado!");
+  }
+</script>
+
+// login //
+<script type="module">
+  import { auth } from "./js/firebase-config.js";
+  import { 
+    createUserWithEmailAndPassword, 
+    signInWithEmailAndPassword, 
+    onAuthStateChanged,
+    GoogleAuthProvider,
+    FacebookAuthProvider,
+    signInWithPopup
+  } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+
+  let isLogin = true;
+
+  // Abrir/Cerrar popup
+  window.abrirLogin = function() {
+    document.getElementById("loginModal").style.display = "flex";
+  }
+  window.cerrarLogin = function() {
+    document.getElementById("loginModal").style.display = "none";
+  }
+
+  // Cambiar entre login y registro
+  window.toggleForm = function() {
+    isLogin = !isLogin;
+    document.getElementById("form-title").innerText = isLogin ? "Iniciar Sesión" : "Registrarse";
+    document.getElementById("actionBtn").innerText = isLogin ? "Login" : "Registrarse";
+    document.querySelector(".switch").innerText = isLogin 
+      ? "¿No tienes cuenta? Regístrate aquí" 
+      : "¿Ya tienes cuenta? Inicia sesión aquí";
+  }
+
+  // Acción principal (login o registro con email/pass)
+  document.getElementById("actionBtn").addEventListener("click", () => {
+    const email = document.getElementById("email").value;
+    const pass = document.getElementById("password").value;
+
+    if (isLogin) {
+      signInWithEmailAndPassword(auth, email, pass)
+        .then(userCredential => {
+          alert("Bienvenido " + userCredential.user.email);
+          cerrarLogin();
+        })
+        .catch(error => alert(error.message));
+    } else {
+      createUserWithEmailAndPassword(auth, email, pass)
+        .then(userCredential => {
+          alert("Usuario registrado: " + userCredential.user.email);
+          cerrarLogin();
+        })
+        .catch(error => alert(error.message));
+    }
+  });
+
+  // 🔹 Login con Google
+  window.loginGoogle = function() {
+    const provider = new GoogleAuthProvider();
+    signInWithPopup(auth, provider)
+      .then(result => {
+        alert("Bienvenido " + result.user.displayName);
+        cerrarLogin();
+      })
+      .catch(error => alert(error.message));
+  }
+
+  // 🔹 Login con Facebook
+  window.loginFacebook = function() {
+    const provider = new FacebookAuthProvider();
+    signInWithPopup(auth, provider)
+      .then(result => {
+        alert("Bienvenido " + result.user.displayName);
+        cerrarLogin();
+      })
+      .catch(error => alert(error.message));
+  }
+
+  // 🔹 Estado de sesión
+  onAuthStateChanged(auth, user => {
+    if (user) {
+      console.log("Usuario conectado:", user.email);
+    } else {
+      console.log("No logueado");
+    }
+  });
+</script>
+
 
   <!-- Comunidad (solo una vez y como módulo) -->
   <script type="module" src="js/community.js"></script>
