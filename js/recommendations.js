@@ -1,12 +1,24 @@
 // Importar Firebase desde tu config
-import { db, ref, push, onValue, set, remove, get } from "./firebase-config.js";
+import { auth, db, ref, push, onValue, set, remove, get } from "./firebase-config.js";
 
-// UID persistente para simular "usuario único"
+// UID persistente para simular "usuario único" (para likes no autenticados)
 let userId = localStorage.getItem("userId");
 if (!userId) {
   userId = "user_" + Math.random().toString(36).substring(2, 9);
   localStorage.setItem("userId", userId);
 }
+
+// Autocompletar nombre de usuario si está autenticado
+document.addEventListener("DOMContentLoaded", () => {
+  if (auth.currentUser) {
+    const userRef = ref(db, `users/${auth.currentUser.uid}`);
+    get(userRef).then(snapshot => {
+      if (snapshot.exists()) {
+        document.getElementById("rec-name").value = snapshot.val().username || "Anónimo";
+      }
+    }).catch(err => console.error("Error obteniendo datos del usuario:", err));
+  }
+});
 
 
 /* ========================
@@ -67,10 +79,6 @@ onValue(recommendationsRef, (snapshot) => {
   }
 });
 
-
-/* ========================
-   RENDER POST
-======================== */
 function renderPost(post) {
   const postEl = document.createElement("div");
   postEl.className = "recommend-post";
@@ -79,7 +87,6 @@ function renderPost(post) {
   const commentsCount = post.comments ? Object.keys(post.comments).length : 0;
   const userLiked = post.likes && post.likes[userId];
 
-  // Si estaba abierto antes, mantenerlo
   const isOpen = openComments.has(post.id);
 
   postEl.innerHTML = `
@@ -102,21 +109,18 @@ function renderPost(post) {
     </div>
   `;
 
-  // ❤️ Botón Like en post
   const likeBtn = postEl.querySelector(".like-btn");
   likeBtn.addEventListener("click", (e) => {
-  e.stopPropagation();
-  accionProtegida(() => {
-    const likeRef = ref(db, `recommendations/${post.id}/likes/${userId}`);
-    get(likeRef).then((snap) => {
-      if (snap.exists()) remove(likeRef);
-      else set(likeRef, true);
+    e.stopPropagation();
+    accionProtegida(() => {
+      const likeRef = ref(db, `recommendations/${post.id}/likes/${userId}`);
+      get(likeRef).then((snap) => {
+        if (snap.exists()) remove(likeRef);
+        else set(likeRef, true);
+      });
     });
   });
-});
 
-
-  // Botón mostrar/ocultar comentarios
   const toggleBtn = postEl.querySelector(".toggle-comments");
   const commentsSection = postEl.querySelector(".comments-section");
 
@@ -131,25 +135,21 @@ function renderPost(post) {
     }
   });
 
-  // Render comentarios
   renderComments(post, postEl.querySelector(".comments-list"));
 
-  // Nuevo comentario
   const commentForm = postEl.querySelector(".comment-form");
   commentForm.addEventListener("submit", (e) => {
-  e.preventDefault();
-  accionProtegida(() => {
-    const name = commentForm.querySelector(".comment-name").value.trim() || "Anónimo";
-    const text = commentForm.querySelector(".comment-text").value.trim();
-    if (!text) return;
-    const commentsRef = ref(db, `recommendations/${post.id}/comments`);
-    push(commentsRef, { name, text, timestamp: Date.now(), likes: {} });
-    commentForm.reset();
+    e.preventDefault();
+    accionProtegida(() => {
+      const name = commentForm.querySelector(".comment-name").value.trim() || "Anónimo";
+      const text = commentForm.querySelector(".comment-text").value.trim();
+      if (!text) return;
+      const commentsRef = ref(db, `recommendations/${post.id}/comments`);
+      push(commentsRef, { name, text, timestamp: Date.now(), likes: {} });
+      commentForm.reset();
+    });
   });
-});
 
-
-  // Animación de entrada
   postEl.style.opacity = "0";
   postEl.style.transform = "translateY(20px)";
   requestAnimationFrame(() => {
@@ -161,10 +161,6 @@ function renderPost(post) {
   recList.appendChild(postEl);
 }
 
-
-/* ========================
-   EFECTOS VISUALES
-======================== */
 function highlightPost(postEl) {
   postEl.classList.add("highlight");
   setTimeout(() => postEl.classList.remove("highlight"), 2000); // 2s resaltado
@@ -174,12 +170,6 @@ function scrollToPost(postEl) {
   postEl.scrollIntoView({ behavior: "smooth", block: "center" });
 }
 
-
-
-
-/* ========================
-   FUNCIONES AUXILIARES
-======================== */
 function toggleReaction(postId, target, opposite) {
   const postRef = ref(db, `recommendations/${postId}/${target}/${userId}`);
   const oppRef = ref(db, `recommendations/${postId}/${opposite}/${userId}`);
@@ -216,18 +206,16 @@ function renderComments(post, container) {
       </div>
     `;
 
-    // Evento: ❤️ en comentario
     div.querySelector(".comment-like").addEventListener("click", (e) => {
-  e.stopPropagation();
-  accionProtegida(() => {
-    const likeRef = ref(db, `recommendations/${post.id}/comments/${commentId}/likes/${userId}`);
-    get(likeRef).then((snap) => {
-      if (snap.exists()) remove(likeRef);
-      else set(likeRef, true);
+      e.stopPropagation();
+      accionProtegida(() => {
+        const likeRef = ref(db, `recommendations/${post.id}/comments/${commentId}/likes/${userId}`);
+        get(likeRef).then((snap) => {
+          if (snap.exists()) remove(likeRef);
+          else set(likeRef, true);
+        });
+      });
     });
-  });
-});
-
 
     container.appendChild(div);
   });

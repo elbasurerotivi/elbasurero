@@ -1,22 +1,20 @@
 <nav class="navbar">
-  <div class="logo-wrap">
-    <div class="logo">
-      <a href="index.html">
-        <img src="Imagenes/logo.png" alt="El Basurero Logo">
-      </a>
+  <div class="auth-buttons">
+    <div id="login-container">
+      <button id="login-btn" class="btn btn-auth btn-login">
+        <img src="Imagenes/login.png" alt="Login" class="auth-icon">
+      </button>
     </div>
-    <div class="auth-buttons">
-      <div id="login-container">
-        <button id="login-btn" class="btn btn-auth btn-login">
-          <img src="Imagenes/login.png" alt="Login" class="auth-icon">
-        </button>
-      </div>
-      <div id="logout-container" style="display: none;">
-        <button id="logout-btn" class="btn btn-auth btn-logout">
-          <img src="Imagenes/logout.png" alt="Logout" class="auth-icon">
-        </button>
-      </div>
+    <div id="logout-container" style="display: none;">
+      <button id="logout-btn" class="btn btn-auth btn-logout">
+        <img src="Imagenes/logout.png" alt="Logout" class="auth-icon">
+      </button>
     </div>
+  </div>
+  <div class="logo">
+    <a href="index.html">
+      <img src="Imagenes/logo.png" alt="El Basurero Logo">
+    </a>
   </div>
   <ul class="nav-menu">
     <li><a href="index.html">Inicio</a></li>
@@ -26,7 +24,7 @@
     <li><a href="recomendaciones.html">Recomendaciones</a></li>
     <li><a href="contacto.html">Contacto</a></li>
   </ul>
-  <div class="menu-toggle">
+  <div class="menu-toggle" onclick="toggleMenu()">
     <span class="bar"></span>
     <span class="bar"></span>
     <span class="bar"></span>

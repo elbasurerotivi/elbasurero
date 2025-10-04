@@ -1,5 +1,5 @@
 // Importar Firebase desde tu config
-import { db, ref, push, onValue, set, remove, get } from "./firebase-config.js";
+import { auth, db, ref, push, onValue, set, remove, get } from "./firebase-config.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   /* ========================
@@ -7,7 +7,6 @@ document.addEventListener("DOMContentLoaded", () => {
   ======================== */
   const wall = document.getElementById("community-wall");
   const form = document.getElementById("message-form");
-  const nameInput = document.getElementById("name");
   const messageInput = document.getElementById("message");
 
   // Referencia a mensajes en Firebase
@@ -15,37 +14,33 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Enviar mensaje
   if (form) {
-    form.addEventListener("submit", (e) => {
+    form.addEventListener("submit", async (e) => {
       e.preventDefault();
-      window.accionProtegida(() => {
-        const name = nameInput?.value.trim();
-        const message = messageInput?.value.trim();
-        if (name && message) {
-          push(messagesRef, { name, text: message, timestamp: Date.now() });
+      accionProtegida(async () => {
+        // Obtener nombre de usuario desde la base de datos
+        const userRef = ref(db, `users/${auth.currentUser.uid}`);
+        const snapshot = await get(userRef);
+        const username = snapshot.exists() ? snapshot.val().username || "Anónimo" : "Anónimo";
+        
+        const message = messageInput.value.trim();
+        if (message) {
+          await push(messagesRef, { name: username, text: message, timestamp: Date.now() });
           messageInput.value = "";
-        } else {
-          alert("Por favor, completa todos los campos.");
         }
       });
     });
-  } else {
-    console.warn("No se encontró el elemento #message-form");
   }
 
   // Mostrar mensajes en tiempo real
   onValue(messagesRef, (snapshot) => {
-    if (wall) {
-      wall.innerHTML = "";
-      snapshot.forEach((child) => {
-        const data = child.val();
-        const div = document.createElement("div");
-        div.classList.add("message");
-        div.innerHTML = `<strong>${escapeHtml(data.name)}</strong>: ${escapeHtml(data.text)}`;
-        wall.appendChild(div);
-      });
-    } else {
-      console.warn("No se encontró el elemento #community-wall");
-    }
+    wall.innerHTML = "";
+    snapshot.forEach((child) => {
+      const data = child.val();
+      const div = document.createElement("div");
+      div.classList.add("message");
+      div.innerHTML = `<strong>${escapeHtml(data.name)}</strong>: ${escapeHtml(data.text)}`;
+      wall.appendChild(div);
+    });
   });
 
   /* ========================
@@ -101,22 +96,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Guardar cumpleaños
   if (birthdayForm) {
-    birthdayForm.addEventListener("submit", (e) => {
+    birthdayForm.addEventListener("submit", async (e) => {
       e.preventDefault();
-      window.accionProtegida(() => {
-        const name = document.getElementById("bday-name")?.value.trim();
+      accionProtegida(async () => {
+        // Obtener nombre de usuario desde la base de datos
+        const userRef = ref(db, `users/${auth.currentUser.uid}`);
+        const snapshot = await get(userRef);
+        const username = snapshot.exists() ? snapshot.val().username || "Anónimo" : "Anónimo";
+        
         const date = document.getElementById("bday-date")?.value;
-        if (!name || !date) {
-          alert("Por favor, completa todos los campos.");
-          return;
-        }
-        push(birthdaysRef, { name, date })
+        if (!username || !date) return;
+        await push(birthdaysRef, { name: username, date })
           .then(() => birthdayForm.reset())
           .catch(err => console.error("Error guardando cumpleaños:", err));
       });
     });
-  } else {
-    console.warn("No se encontró el elemento #birthday-form");
   }
 
   // Escuchar cumpleaños en tiempo real
@@ -136,10 +130,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Render lista ordenada por mes/día
   function renderBirthdayList() {
-    if (!birthdayList) {
-      console.warn("No se encontró el elemento #birthday-list");
-      return;
-    }
     birthdayList.innerHTML = "";
 
     const sorted = [...allBirthdays].sort((a, b) => {
@@ -186,10 +176,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Render calendario del mes actual
   function renderCalendar() {
-    if (!calendarEl || !monthLabel) {
-      console.warn("No se encontró el elemento #calendar o #month-label");
-      return;
-    }
+    if (!calendarEl || !monthLabel) return;
 
     const firstDay = new Date(currentYear, currentMonth, 1).getDay();
     const lastDate = new Date(currentYear, currentMonth + 1, 0).getDate();
@@ -238,8 +225,6 @@ document.addEventListener("DOMContentLoaded", () => {
       if (currentMonth < 0) { currentMonth = 11; currentYear--; }
       renderCalendar();
     });
-  } else {
-    console.warn("No se encontró el elemento #prev-month");
   }
   if (nextBtn) {
     nextBtn.addEventListener("click", () => {
@@ -247,8 +232,6 @@ document.addEventListener("DOMContentLoaded", () => {
       if (currentMonth > 11) { currentMonth = 0; currentYear++; }
       renderCalendar();
     });
-  } else {
-    console.warn("No se encontró el elemento #next-month");
   }
 
   // Utilidad: escapar HTML

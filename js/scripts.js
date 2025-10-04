@@ -1,12 +1,11 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // Definir toggleMenu globalmente
+  // Función para alternar el menú hamburguesa
   window.toggleMenu = function() {
     const navMenu = document.querySelector(".nav-menu");
     const menuToggle = document.querySelector(".menu-toggle");
     if (navMenu && menuToggle) {
       navMenu.classList.toggle("active");
       menuToggle.classList.toggle("active");
-      console.log("Menú hamburguesa alternado:", navMenu.classList.contains("active") ? "abierto" : "cerrado");
     } else {
       console.warn("No se encontró .nav-menu o .menu-toggle");
     }
@@ -25,13 +24,12 @@ document.addEventListener("DOMContentLoaded", () => {
         // Re-asignar evento al menú hamburguesa
         const menuToggle = document.querySelector(".menu-toggle");
         if (menuToggle) {
-          menuToggle.addEventListener("click", window.toggleMenu);
-          console.log("Evento click asignado a .menu-toggle");
+          menuToggle.addEventListener("click", toggleMenu);
         } else {
           console.warn("No se encontró .menu-toggle después de cargar el header");
         }
         // Intentar inicializar botones de login/logout
-        function tryInitAuthButtons(attempts = 10, delay = 200) {
+        function tryInitAuthButtons(attempts = 10, delay = 300) {
           if (typeof window.initAuthButtons === "function") {
             window.initAuthButtons();
             console.log("initAuthButtons ejecutado con éxito");
@@ -39,7 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
             console.warn(`initAuthButtons no está definido, reintentando (${attempts} intentos restantes)`);
             setTimeout(() => tryInitAuthButtons(attempts - 1, delay), delay);
           } else {
-            console.error("No se pudo cargar initAuthButtons. Verifica que login.js se cargue correctamente.");
+            console.error("No se pudo cargar initAuthButtons. Verifica que js/login.js exista y no tenga errores.");
           }
         }
         tryInitAuthButtons();

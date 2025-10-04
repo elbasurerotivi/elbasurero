@@ -224,3 +224,4 @@ window.initAuthButtons = function() {
     }
   });
 };
+console.log("login.js cargado");

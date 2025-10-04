@@ -21,15 +21,8 @@ body {
     z-index: 100;
 }
 
-.logo-wrap {
-    display: flex;
-    align-items: center;
-    gap: 8px; /* Espacio entre logo y botones */
-}
-
 .logo img {
     height: 50px;
-
 }
 
 .nav-menu {
@@ -45,7 +38,6 @@ body {
     color: white;
     text-decoration: none;
     font-weight: bold;
-    font-size: 14px; /* Tamaño de referencia para los iconos */
 }
 
 .menu-toggle {
@@ -56,13 +48,39 @@ body {
 
 /* Estilos para el contenedor de botones de autenticación */
 .auth-buttons {
-    display: flex;
-    gap: 8px;
-    align-items: center;
-    position: relative;
+   display: flex;
+   gap: 10px;
+   align-items: center;
 }
 
 /* Estilos generales para botones de autenticación */
+
+/* Estilos para el botón de login */
+.btn-login {
+  background: #007bff00;
+  color: #fff;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 700;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Estilos para el botón de login */
+.btn-login {
+  background: #007bff;
+  color: #fff;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 700;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
 .btn-auth {
     padding: 6px;
     border: none;
@@ -85,21 +103,29 @@ body {
 
 /* Estilos para el botón de login */
 .btn-login {
-    background: #007bff;
+    background: #007bff00;
 }
 
 .btn-login:hover {
-    background: #0056b3;
+    background: #0057b300;
     transform: scale(1.1);
 }
 
 /* Estilos para el botón de logout */
 .btn-logout {
-    background: #e91e63;
+    background: #e91e6200;
+    color: #fff;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 700;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .btn-logout:hover {
-    background: #c2185b;
+    background: #c2185c00;
     transform: scale(1.1);
 }
 
@@ -131,7 +157,6 @@ body {
 
     .menu-toggle {
         display: block;
-        margin-left: auto; /* Asegura que esté a la derecha */
     }
 
     .nav-menu {
