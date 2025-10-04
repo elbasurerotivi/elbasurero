@@ -15,49 +15,36 @@
 <body>
   <div id="header"></div>
 
-  <!-- 🔒 Mensaje de acceso -->
-  <div id="mensaje-login" style="display:flex; justify-content:center; align-items:center; 
-       height:60vh; text-align:center; font-size:1.3em; color:#333; flex-direction:column;">
-    <p>🔒 <strong>Inicia sesión para acceder a esta sección</strong></p>
-    <button onclick="abrirLogin()" style="margin-top:10px; padding:10px 20px; font-size:1em; cursor:pointer;">
-      Iniciar sesión
-    </button>
-  </div>
-
-  <!-- 🔹 Contenido protegido -->
-  <div id="contenido-protegido" style="display:none;">
-
+  
     <!-- Popup de login -->
-    <div id="loginModal" class="modal" style="display: none;">
-  <div class="modal-content">
-    <h2 class="modal-title" id="form-title">Iniciar Sesión</h2>
-    <form id="login-form" class="login-form">
-      <div class="form-group" id="username-group" style="display: none;">
-        <input type="text" id="username" placeholder="Nombre de usuario" maxlength="30">
+    <div id="loginModal" class="modal">
+      <div class="modal-content">
+        <h2 id="form-title" class="modal-title">Iniciar Sesión</h2>
+        <form id="loginForm" class="login-form">
+          <div class="form-group">
+            <input type="email" id="email" placeholder="Correo electrónico" required>
+          </div>
+          <div class="form-group" id="username-group" style="display: none;">
+            <input type="text" id="username" placeholder="Nombre de usuario (opcional)" maxlength="30">
+          </div>
+          <div class="form-group">
+            <input type="password" id="password" placeholder="Contraseña" required>
+          </div>
+          <button type="button" id="actionBtn" class="btn btn-primary">Login</button>
+        </form>
+        <p class="switch" onclick="toggleForm()">¿No tienes cuenta? Regístrate aquí</p>
+        <div class="social-login">
+          <p>O ingresa con:</p>
+          <button class="btn btn-google" onclick="loginGoogle()">
+            <img src="Imagenes/google_logo.webp" alt="Google" class="social-icon"> Google
+          </button>
+          <button class="btn btn-facebook" onclick="loginFacebook()">
+            <img src="Imagenes/facebook_logo_2.png" alt="Facebook" class="social-icon"> Facebook
+          </button>
+        </div>
+        <button class="btn btn-close" onclick="cerrarLogin()">Cerrar</button>
       </div>
-      <div class="form-group">
-        <input type="email" id="email" placeholder="Correo electrónico" required>
-      </div>
-      <div class="form-group">
-        <input type="password" id="password" placeholder="Contraseña" required>
-      </div>
-      <button type="submit" id="actionBtn" class="btn btn-primary">Login</button>
-    </form>
-    <div class="social-login">
-      <p>O inicia sesión con:</p>
-      <button class="btn btn-google" onclick="loginGoogle()">
-        <img src="Imagenes/google_logo.webp" alt="Google"> Google
-      </button>
-      <button class="btn btn-facebook" onclick="loginFacebook()">
-        <img src="Imagenes/facebook_logo_2.png" alt="Facebook"> Facebook
-      </button>
     </div>
-    <button class="btn btn-close" onclick="cerrarLogin()">Cerrar</button>
-    <div class="switch" onclick="toggleForm()">
-      ¿No tienes cuenta? Regístrate aquí
-    </div>
-  </div>
-</div>
 
     <main class="container">
       <section class="chat-wrap">
@@ -107,30 +94,9 @@
       </div>
     </footer>
 
-  </div> <!-- Fin contenido protegido -->
-
-  <!-- 🔸 Script de control de acceso -->
-  <script type="module">
-    import { auth } from "./js/firebase-config.js";
-    import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
-
-    const mensaje = document.getElementById("mensaje-login");
-    const contenido = document.getElementById("contenido-protegido");
-
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        mensaje.style.display = "none";
-        contenido.style.display = "block";
-      } else {
-        mensaje.style.display = "flex";
-        contenido.style.display = "none";
-      }
-    });
-  </script>
-
   <!-- Scripts -->
-  <script type="module" src="js/login.js"></script>
+  <script type="module" src="js/login.js" defer></script>
   <script type="module" src="js/community.js" defer></script>
-  <script src="js/scripts.js" defer></script>
+  <script src="js/scripts.js"></script>
 </body>
 </html>

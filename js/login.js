@@ -11,9 +11,7 @@ import {
 
 let isLogin = true;
 
-// -----------------------------
-// 🔹 Abrir / Cerrar popup
-// -----------------------------
+// Abrir/Cerrar popup
 window.abrirLogin = function() {
   const loginModal = document.getElementById("loginModal");
   if (loginModal) {
@@ -34,9 +32,7 @@ window.cerrarLogin = function() {
   }
 };
 
-// -----------------------------
-// 🔹 Cambiar entre login y registro
-// -----------------------------
+// Cambiar entre login y registro
 window.toggleForm = function() {
   isLogin = !isLogin;
   const formTitle = document.getElementById("form-title");
@@ -50,13 +46,10 @@ window.toggleForm = function() {
     ? "¿No tienes cuenta? Regístrate aquí" 
     : "¿Ya tienes cuenta? Inicia sesión aquí";
   if (usernameGroup) usernameGroup.style.display = isLogin ? "none" : "block";
-
   console.log(`Formulario cambiado a: ${isLogin ? "Login" : "Registro"}`);
 };
 
-// -----------------------------
-// 🔹 Acción protegida (wrapper)
-// -----------------------------
+// Acción protegida (wrapper)
 window.accionProtegida = function(callback) {
   if (auth.currentUser) {
     console.log("Usuario autenticado:", auth.currentUser.email);
@@ -67,9 +60,7 @@ window.accionProtegida = function(callback) {
   }
 };
 
-// -----------------------------
-// 🔹 Login / Registro con email y contraseña
-// -----------------------------
+// Acción principal (login o registro con email/pass)
 document.getElementById("actionBtn")?.addEventListener("click", () => {
   const email = document.getElementById("email")?.value.trim();
   const pass = document.getElementById("password")?.value.trim();
@@ -85,22 +76,20 @@ document.getElementById("actionBtn")?.addEventListener("click", () => {
   }
 
   if (isLogin) {
-    // ---- Login ----
-    signInWithEmailAndPassword(auth, email, pass)
-      .then(userCredential => {
-        console.log("Inicio de sesión exitoso:", userCredential.user.email);
-        alert(`Bienvenido, ${userCredential.user.email}!`);
-        cerrarLogin();
-        // Recargar para actualizar la vista con datos del usuario
-        location.reload();
-      })
-      .catch(error => {
-        console.error("Error al iniciar sesión:", error);
-        alert(`Error al iniciar sesión: ${error.message}`);
-      });
+  signInWithEmailAndPassword(auth, email, pass)
+    .then(userCredential => {
+      console.log("Inicio de sesión exitoso:", userCredential.user.email);
+      alert(`Bienvenido, ${userCredential.user.email}!`);
+      cerrarLogin();
+      // Recargar la página para actualizar la vista con datos del usuario
+      location.reload();
+    })
+    .catch(error => {
+      console.error("Error al iniciar sesión:", error);
+      alert(`Error al iniciar sesión: ${error.message}`);
+    });
 
   } else {
-    // ---- Registro ----
     createUserWithEmailAndPassword(auth, email, pass)
       .then(userCredential => {
         const user = userCredential.user;
@@ -115,8 +104,9 @@ document.getElementById("actionBtn")?.addEventListener("click", () => {
           console.log("Datos del usuario guardados en la base de datos");
           alert(`Usuario registrado: ${user.email}`);
           cerrarLogin();
+          // Recargar la página para actualizar la vista con datos del usuario
           location.reload();
-        })
+         })
         .catch(error => {
           console.error("Error al guardar datos del usuario:", error);
           alert(`Error al guardar datos del usuario: ${error.message}`);
@@ -129,9 +119,7 @@ document.getElementById("actionBtn")?.addEventListener("click", () => {
   }
 });
 
-// -----------------------------
-// 🔹 Login con Google
-// -----------------------------
+// Login con Google
 window.loginGoogle = function() {
   console.log("Iniciando autenticación con Google...");
   const provider = new GoogleAuthProvider();
@@ -149,8 +137,10 @@ window.loginGoogle = function() {
         console.log("Datos del usuario guardados en la base de datos");
         alert(`Bienvenido, ${user.displayName || user.email}!`);
         cerrarLogin();
+        // Recargar la página para actualizar la vista
         location.reload();
-      })
+       })
+     
       .catch(error => {
         console.error("Error al guardar datos del usuario:", error);
         alert(`Error al guardar datos del usuario: ${error.message}`);
@@ -162,9 +152,7 @@ window.loginGoogle = function() {
     });
 };
 
-// -----------------------------
-// 🔹 Login con Facebook
-// -----------------------------
+// Login con Facebook
 window.loginFacebook = function() {
   console.log("Iniciando autenticación con Facebook...");
   const provider = new FacebookAuthProvider();
@@ -182,38 +170,36 @@ window.loginFacebook = function() {
         console.log("Datos del usuario guardados en la base de datos");
         alert(`Bienvenido, ${user.displayName || user.email}!`);
         cerrarLogin();
+        // Recargar la página para actualizar la vista
         location.reload();
-      })
+       })
       .catch(error => {
         console.error("Error al guardar datos del usuario:", error);
         alert(`Error al guardar datos del usuario: ${error.message}`);
       });
-    })
+    });
     .catch(error => {
       console.error("Error al iniciar sesión con Facebook:", error);
       alert(`Error al iniciar sesión con Facebook: ${error.message}`);
     });
 };
 
-// -----------------------------
-// 🔹 Logout
-// -----------------------------
+// Función de logout
 window.logout = function() {
   signOut(auth)
     .then(() => {
       console.log("Sesión cerrada exitosamente.");
       alert("Sesión cerrada exitosamente.");
+      // Recargar para reflejar estado de logout
       location.reload();
-    })
+     })
     .catch(error => {
       console.error("Error al cerrar sesión:", error);
       alert(`Error al cerrar sesión: ${error.message}`);
     });
 };
 
-// -----------------------------
-// 🔹 Inicializar botones de login/logout (header)
-// -----------------------------
+// Inicializar botones de login/logout
 window.initAuthButtons = function() {
   const loginContainer = document.getElementById("login-container");
   const logoutContainer = document.getElementById("logout-container");
@@ -228,7 +214,6 @@ window.initAuthButtons = function() {
   } else {
     console.warn("No se encontró el elemento #login-btn");
   }
-
   if (logoutBtn) {
     logoutBtn.addEventListener("click", () => {
       window.logout();
@@ -238,7 +223,7 @@ window.initAuthButtons = function() {
     console.warn("No se encontró el elemento #logout-btn");
   }
 
-  // Actualizar visibilidad según estado de autenticación
+  // Actualizar visibilidad según el estado de autenticación
   onAuthStateChanged(auth, user => {
     if (user) {
       console.log("Usuario conectado:", user.email, "UID:", user.uid);
@@ -252,4 +237,4 @@ window.initAuthButtons = function() {
   });
 };
 
-console.log("✅ login.js cargado correctamente");
+console.log("login.js cargado");
