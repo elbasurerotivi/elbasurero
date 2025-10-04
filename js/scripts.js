@@ -6,6 +6,8 @@ document.addEventListener("DOMContentLoaded", () => {
     if (navMenu && menuToggle) {
       navMenu.classList.toggle("active");
       menuToggle.classList.toggle("active");
+    } else {
+      console.warn("No se encontró .nav-menu o .menu-toggle");
     }
   };
 
@@ -13,20 +15,32 @@ document.addEventListener("DOMContentLoaded", () => {
   const header = document.getElementById("header");
   if (header) {
     fetch("header.html")
-      .then(response => response.text())
+      .then(response => {
+        if (!response.ok) throw new Error(`Error al cargar header.html: ${response.status}`);
+        return response.text();
+      })
       .then(data => {
         header.innerHTML = data;
         // Re-asignar evento al menú hamburguesa
         const menuToggle = document.querySelector(".menu-toggle");
         if (menuToggle) {
           menuToggle.addEventListener("click", toggleMenu);
-        }
-        // Inicializar botones de login/logout
-        if (typeof window.initAuthButtons === "function") {
-          window.initAuthButtons();
         } else {
-          console.warn("initAuthButtons no está definido. Asegúrate de que login.js se cargue correctamente.");
+          console.warn("No se encontró .menu-toggle después de cargar el header");
         }
+        // Intentar inicializar botones de login/logout
+        function tryInitAuthButtons(attempts = 5, delay = 100) {
+          if (typeof window.initAuthButtons === "function") {
+            window.initAuthButtons();
+            console.log("initAuthButtons ejecutado con éxito");
+          } else if (attempts > 0) {
+            console.warn(`initAuthButtons no está definido, reintentando (${attempts} intentos restantes)`);
+            setTimeout(() => tryInitAuthButtons(attempts - 1, delay), delay);
+          } else {
+            console.error("No se pudo cargar initAuthButtons. Verifica que login.js se cargue correctamente.");
+          }
+        }
+        tryInitAuthButtons();
       })
       .catch(error => console.error("Error cargando el header:", error));
   } else {

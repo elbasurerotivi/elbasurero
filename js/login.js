@@ -52,8 +52,10 @@ window.toggleForm = function() {
 // Acción protegida (wrapper)
 window.accionProtegida = function(callback) {
   if (auth.currentUser) {
+    console.log("Usuario autenticado:", auth.currentUser.email);
     callback();
   } else {
+    console.log("No hay usuario autenticado, abriendo popup de login");
     window.abrirLogin();
   }
 };
@@ -222,8 +224,3 @@ window.initAuthButtons = function() {
     }
   });
 };
-
-// Inicializar botones al cargar la página
-document.addEventListener("DOMContentLoaded", () => {
-  window.initAuthButtons();
-});
