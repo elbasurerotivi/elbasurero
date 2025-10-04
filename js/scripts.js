@@ -1,21 +1,27 @@
-/// Header ///
 document.addEventListener("DOMContentLoaded", () => {
-  // Cargar header dinámico
-  fetch("header.html")
-    .then(response => response.text())
-    .then(data => {
-      document.getElementById("header").innerHTML = data;
+  // Función para alternar el menú hamburguesa
+  window.toggleMenu = function() {
+    const navMenu = document.querySelector(".nav-menu");
+    const menuToggle = document.querySelector(".menu-toggle");
+    if (navMenu && menuToggle) {
+      navMenu.classList.toggle("active");
+      menuToggle.classList.toggle("active");
+    }
+  };
 
-      // Menú hamburguesa
-      const mobileMenu = document.getElementById("mobile-menu");
-      const navMenu = document.querySelector(".nav-menu");
-
-      if (mobileMenu && navMenu) {
-        mobileMenu.addEventListener("click", () => {
-          mobileMenu.classList.toggle("active");
-          navMenu.classList.toggle("active");
-        });
-      }
-    })
-    .catch(err => console.error("Error cargando header:", err));
+  // Re-asignar eventos después de cargar el header dinámicamente
+  const header = document.getElementById("header");
+  if (header) {
+    fetch("header.html")
+      .then(response => response.text())
+      .then(data => {
+        header.innerHTML = data;
+        // Re-asignar evento al menú hamburguesa después de cargar el header
+        const menuToggle = document.querySelector(".menu-toggle");
+        if (menuToggle) {
+          menuToggle.addEventListener("click", toggleMenu);
+        }
+      })
+      .catch(error => console.error("Error cargando el header:", error));
+  }
 });
