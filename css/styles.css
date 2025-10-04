@@ -1367,7 +1367,7 @@ body {
 }
 
 .comment-text {
-    color: #ccc;
+    color: #000000;
     font-size: 13px;
 }
 
@@ -1708,6 +1708,7 @@ body {
     justify-content: center;
   }
 }
+
 
 
 
