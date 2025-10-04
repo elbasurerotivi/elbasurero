@@ -1,4 +1,3 @@
-// Importar Firebase desde tu config
 import { auth, db, ref, push, onValue, set, remove, get } from "./firebase-config.js";
 
 // UID persistente para simular "usuario único" (para likes no autenticados)
@@ -8,24 +7,10 @@ if (!userId) {
   localStorage.setItem("userId", userId);
 }
 
-// Autocompletar nombre de usuario si está autenticado
-document.addEventListener("DOMContentLoaded", () => {
-  if (auth.currentUser) {
-    const userRef = ref(db, `users/${auth.currentUser.uid}`);
-    get(userRef).then(snapshot => {
-      if (snapshot.exists()) {
-        document.getElementById("rec-name").value = snapshot.val().username || "Anónimo";
-      }
-    }).catch(err => console.error("Error obteniendo datos del usuario:", err));
-  }
-});
-
-
 /* ========================
    FORMULARIO
 ======================== */
 const form = document.getElementById("recommend-form");
-const recName = document.getElementById("rec-name");
 const recText = document.getElementById("rec-text");
 const recList = document.getElementById("recommend-list");
 
@@ -35,7 +20,20 @@ const recommendationsRef = ref(db, "recommendations");
 form.addEventListener("submit", (e) => {
   e.preventDefault();
   accionProtegida(() => {
-    const name = recName.value.trim() || "Anónimo";
+    const user = auth.currentUser;
+    let name = "Anónimo";
+    if (user) {
+      if (user.displayName) {
+        name = user.displayName;
+      } else {
+        const userRef = ref(db, `users/${user.uid}`);
+        get(userRef).then(snapshot => {
+          if (snapshot.exists()) {
+            name = snapshot.val().username || "Anónimo";
+          }
+        }).catch(err => console.error("Error obteniendo datos del usuario:", err));
+      }
+    }
     const text = recText.value.trim();
     if (!text) return;
     push(recommendationsRef, {
@@ -48,7 +46,6 @@ form.addEventListener("submit", (e) => {
     form.reset();
   });
 });
-
 
 // Guardamos qué posts tienen comentarios abiertos
 let openComments = new Set();
@@ -102,7 +99,6 @@ function renderPost(post) {
     <div class="comments-section" style="display:${isOpen ? "block" : "none"};">
       <div class="comments-list"></div>
       <form class="comment-form">
-        <input type="text" class="comment-name" placeholder="Tu nombre" maxlength="30">
         <input type="text" class="comment-text" placeholder="Escribe un comentario" maxlength="300" required>
         <button type="submit">Comentar</button>
       </form>
@@ -113,7 +109,8 @@ function renderPost(post) {
   likeBtn.addEventListener("click", (e) => {
     e.stopPropagation();
     accionProtegida(() => {
-      const likeRef = ref(db, `recommendations/${post.id}/likes/${userId}`);
+      const uid = auth.currentUser ? auth.currentUser.uid : userId;
+      const likeRef = ref(db, `recommendations/${post.id}/likes/${uid}`);
       get(likeRef).then((snap) => {
         if (snap.exists()) remove(likeRef);
         else set(likeRef, true);
@@ -140,8 +137,20 @@ function renderPost(post) {
   const commentForm = postEl.querySelector(".comment-form");
   commentForm.addEventListener("submit", (e) => {
     e.preventDefault();
-    accionProtegida(() => {
-      const name = commentForm.querySelector(".comment-name").value.trim() || "Anónimo";
+    accionProtegida(async () => {
+      const user = auth.currentUser;
+      let name = "Anónimo";
+      if (user) {
+        if (user.displayName) {
+          name = user.displayName;
+        } else {
+          const userRef = ref(db, `users/${user.uid}`);
+          const snapshot = await get(userRef);
+          if (snapshot.exists()) {
+            name = snapshot.val().username || "Anónimo";
+          }
+        }
+      }
       const text = commentForm.querySelector(".comment-text").value.trim();
       if (!text) return;
       const commentsRef = ref(db, `recommendations/${post.id}/comments`);
@@ -159,29 +168,6 @@ function renderPost(post) {
   });
 
   recList.appendChild(postEl);
-}
-
-function highlightPost(postEl) {
-  postEl.classList.add("highlight");
-  setTimeout(() => postEl.classList.remove("highlight"), 2000); // 2s resaltado
-}
-
-function scrollToPost(postEl) {
-  postEl.scrollIntoView({ behavior: "smooth", block: "center" });
-}
-
-function toggleReaction(postId, target, opposite) {
-  const postRef = ref(db, `recommendations/${postId}/${target}/${userId}`);
-  const oppRef = ref(db, `recommendations/${postId}/${opposite}/${userId}`);
-
-  get(postRef).then((snap) => {
-    if (snap.exists()) {
-      remove(postRef); // quitar reacción
-    } else {
-      set(postRef, true); // dar reacción
-      remove(oppRef); // quitar opuesta
-    }
-  });
 }
 
 function renderComments(post, container) {
@@ -209,7 +195,8 @@ function renderComments(post, container) {
     div.querySelector(".comment-like").addEventListener("click", (e) => {
       e.stopPropagation();
       accionProtegida(() => {
-        const likeRef = ref(db, `recommendations/${post.id}/comments/${commentId}/likes/${userId}`);
+        const uid = auth.currentUser ? auth.currentUser.uid : userId;
+        const likeRef = ref(db, `recommendations/${post.id}/comments/${commentId}/likes/${uid}`);
         get(likeRef).then((snap) => {
           if (snap.exists()) remove(likeRef);
           else set(likeRef, true);
