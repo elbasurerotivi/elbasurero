@@ -13,23 +13,35 @@ let isLogin = true;
 
 // Abrir/Cerrar popup
 window.abrirLogin = function() {
-  document.getElementById("loginModal").style.display = "flex";
+  const loginModal = document.getElementById("loginModal");
+  if (loginModal) {
+    loginModal.style.display = "flex";
+  } else {
+    console.error("No se encontró el elemento #loginModal");
+  }
 };
 
 window.cerrarLogin = function() {
-  document.getElementById("loginModal").style.display = "none";
+  const loginModal = document.getElementById("loginModal");
+  if (loginModal) {
+    loginModal.style.display = "none";
+  }
 };
 
 // Cambiar entre login y registro
 window.toggleForm = function() {
   isLogin = !isLogin;
-  document.getElementById("form-title").innerText = isLogin ? "Iniciar Sesión" : "Registrarse";
-  document.getElementById("actionBtn").innerText = isLogin ? "Login" : "Registrarse";
-  document.querySelector(".switch").innerText = isLogin 
+  const formTitle = document.getElementById("form-title");
+  const actionBtn = document.getElementById("actionBtn");
+  const switchLink = document.querySelector(".switch");
+  const usernameGroup = document.getElementById("username-group");
+
+  if (formTitle) formTitle.innerText = isLogin ? "Iniciar Sesión" : "Registrarse";
+  if (actionBtn) actionBtn.innerText = isLogin ? "Login" : "Registrarse";
+  if (switchLink) switchLink.innerText = isLogin 
     ? "¿No tienes cuenta? Regístrate aquí" 
     : "¿Ya tienes cuenta? Inicia sesión aquí";
-  const usernameGroup = document.getElementById("username-group");
-  usernameGroup.style.display = isLogin ? "none" : "block";
+  if (usernameGroup) usernameGroup.style.display = isLogin ? "none" : "block";
 };
 
 // Acción protegida (wrapper)
@@ -43,8 +55,8 @@ window.accionProtegida = function(callback) {
 
 // Acción principal (login o registro con email/pass)
 document.getElementById("actionBtn")?.addEventListener("click", () => {
-  const email = document.getElementById("email").value.trim();
-  const pass = document.getElementById("password").value.trim();
+  const email = document.getElementById("email")?.value.trim();
+  const pass = document.getElementById("password")?.value.trim();
   const username = document.getElementById("username")?.value.trim();
 
   if (!email || !pass) {
@@ -159,9 +171,8 @@ window.loginFacebook = function() {
 window.logout = function() {
   signOut(auth)
     .then(() => {
+      console.log("Sesión cerrada exitosamente.");
       alert("Sesión cerrada exitosamente.");
-      document.getElementById("logout-container").style.display = "none";
-      document.getElementById("login-container").style.display = "block";
     })
     .catch(error => {
       console.error("Error al cerrar sesión:", error);
@@ -169,20 +180,34 @@ window.logout = function() {
     });
 };
 
-// Mostrar/ocultar botones de login/logout basado en el estado de sesión
-onAuthStateChanged(auth, user => {
+// Inicializar botones de login/logout después de cargar el header
+window.initAuthButtons = function() {
   const loginContainer = document.getElementById("login-container");
   const logoutContainer = document.getElementById("logout-container");
-  if (user) {
-    console.log("Usuario conectado:", user.email, "UID:", user.uid);
-    if (loginContainer) loginContainer.style.display = "none";
-    if (logoutContainer) logoutContainer.style.display = "block";
-  } else {
-    console.log("No hay usuario conectado");
-    if (loginContainer) loginContainer.style.display = "block";
-    if (logoutContainer) logoutContainer.style.display = "none";
-  }
-});
+  const loginBtn = document.getElementById("login-btn");
+  const logoutBtn = document.getElementById("logout-btn");
 
-// Evento para el botón de login
-document.getElementById("login-btn")?.addEventListener("click", abrirLogin);
+  if (loginBtn) {
+    loginBtn.addEventListener("click", window.abrirLogin);
+  } else {
+    console.warn("No se encontró el elemento #login-btn");
+  }
+  if (logoutBtn) {
+    logoutBtn.addEventListener("click", window.logout);
+  } else {
+    console.warn("No se encontró el elemento #logout-btn");
+  }
+
+  // Actualizar visibilidad según el estado de autenticación
+  onAuthStateChanged(auth, user => {
+    if (user) {
+      console.log("Usuario conectado:", user.email, "UID:", user.uid);
+      if (loginContainer) loginContainer.style.display = "none";
+      if (logoutContainer) logoutContainer.style.display = "block";
+    } else {
+      console.log("No hay usuario conectado");
+      if (loginContainer) loginContainer.style.display = "block";
+      if (logoutContainer) logoutContainer.style.display = "none";
+    }
+  });
+};
