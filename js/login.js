@@ -16,6 +16,7 @@ window.abrirLogin = function() {
   const loginModal = document.getElementById("loginModal");
   if (loginModal) {
     loginModal.style.display = "flex";
+    console.log("Popup de login abierto");
   } else {
     console.error("No se encontró el elemento #loginModal");
   }
@@ -25,6 +26,9 @@ window.cerrarLogin = function() {
   const loginModal = document.getElementById("loginModal");
   if (loginModal) {
     loginModal.style.display = "none";
+    console.log("Popup de login cerrado");
+  } else {
+    console.error("No se encontró el elemento #loginModal");
   }
 };
 
@@ -42,6 +46,7 @@ window.toggleForm = function() {
     ? "¿No tienes cuenta? Regístrate aquí" 
     : "¿Ya tienes cuenta? Inicia sesión aquí";
   if (usernameGroup) usernameGroup.style.display = isLogin ? "none" : "block";
+  console.log(`Formulario cambiado a: ${isLogin ? "Login" : "Registro"}`);
 };
 
 // Acción protegida (wrapper)
@@ -49,7 +54,7 @@ window.accionProtegida = function(callback) {
   if (auth.currentUser) {
     callback();
   } else {
-    abrirLogin();
+    window.abrirLogin();
   }
 };
 
@@ -180,7 +185,7 @@ window.logout = function() {
     });
 };
 
-// Inicializar botones de login/logout después de cargar el header
+// Inicializar botones de login/logout
 window.initAuthButtons = function() {
   const loginContainer = document.getElementById("login-container");
   const logoutContainer = document.getElementById("logout-container");
@@ -188,12 +193,18 @@ window.initAuthButtons = function() {
   const logoutBtn = document.getElementById("logout-btn");
 
   if (loginBtn) {
-    loginBtn.addEventListener("click", window.abrirLogin);
+    loginBtn.addEventListener("click", () => {
+      window.abrirLogin();
+      console.log("Clic en botón Login del header");
+    });
   } else {
     console.warn("No se encontró el elemento #login-btn");
   }
   if (logoutBtn) {
-    logoutBtn.addEventListener("click", window.logout);
+    logoutBtn.addEventListener("click", () => {
+      window.logout();
+      console.log("Clic en botón Logout del header");
+    });
   } else {
     console.warn("No se encontró el elemento #logout-btn");
   }
@@ -211,3 +222,8 @@ window.initAuthButtons = function() {
     }
   });
 };
+
+// Inicializar botones al cargar la página
+document.addEventListener("DOMContentLoaded", () => {
+  window.initAuthButtons();
+});

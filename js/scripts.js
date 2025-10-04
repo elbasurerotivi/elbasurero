@@ -25,9 +25,11 @@ document.addEventListener("DOMContentLoaded", () => {
         if (typeof window.initAuthButtons === "function") {
           window.initAuthButtons();
         } else {
-          console.warn("initAuthButtons no está definido");
+          console.warn("initAuthButtons no está definido. Asegúrate de que login.js se cargue correctamente.");
         }
       })
       .catch(error => console.error("Error cargando el header:", error));
+  } else {
+    console.warn("No se encontró el elemento #header");
   }
 });
