@@ -844,50 +844,6 @@ footer h3 {
   color: #333;
 }
 
-.chat-wrap {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
-}
-
-.chat-content {
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-}
-
-.chat-main {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-.messages {
-  max-height: 400px; /* Altura máxima del contenedor de mensajes */
-  overflow-y: auto; /* Habilitar scroll vertical */
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  display: flex;
-  flex-direction: column; /* Asegura que los mensajes se apilen verticalmente */
-  gap: 10px;
-}
-
-.message {
-  padding: 8px;
-  border-bottom: 1px solid #eee;
-  word-break: break-word;
-}
-
-.message:last-child {
-  border-bottom: none; /* Eliminar borde del último mensaje */
-}
-
-.message strong {
-  color: #333;
-  font-weight: 600;
-}
 
 /* === Comunidad additions === */
 
@@ -1753,5 +1709,6 @@ body {
     justify-content: center;
   }
 }
+
 
 
