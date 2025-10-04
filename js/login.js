@@ -1,4 +1,3 @@
-// js/login.js
 import { auth, db, ref, set } from "./firebase-config.js";
 import { 
   createUserWithEmailAndPassword, 
@@ -161,7 +160,8 @@ window.logout = function() {
   signOut(auth)
     .then(() => {
       alert("Sesión cerrada exitosamente.");
-      updateAuthFab(); // Actualizar el botón flotante
+      document.getElementById("logout-container").style.display = "none";
+      document.getElementById("login-container").style.display = "block";
     })
     .catch(error => {
       console.error("Error al cerrar sesión:", error);
@@ -169,38 +169,20 @@ window.logout = function() {
     });
 };
 
-// Función para actualizar el botón flotante
-function updateAuthFab() {
-  const authFab = document.getElementById("auth-fab");
-  const authBtn = document.getElementById("auth-btn");
-  if (authBtn) {
-    if (auth.currentUser) {
-      authBtn.innerHTML = "🚪"; // Icono de logout
-      authBtn.classList.remove("login");
-      authBtn.classList.add("logout");
-      authBtn.onclick = logout;
-      if (authFab) authFab.style.display = "block";
-    } else {
-      authBtn.innerHTML = "👤"; // Icono de login
-      authBtn.classList.remove("logout");
-      authBtn.classList.add("login");
-      authBtn.onclick = abrirLogin;
-      if (authFab) authFab.style.display = "block";
-    }
-  }
-}
-
-// Estado de sesión
+// Mostrar/ocultar botones de login/logout basado en el estado de sesión
 onAuthStateChanged(auth, user => {
+  const loginContainer = document.getElementById("login-container");
+  const logoutContainer = document.getElementById("logout-container");
   if (user) {
     console.log("Usuario conectado:", user.email, "UID:", user.uid);
+    if (loginContainer) loginContainer.style.display = "none";
+    if (logoutContainer) logoutContainer.style.display = "block";
   } else {
     console.log("No hay usuario conectado");
+    if (loginContainer) loginContainer.style.display = "block";
+    if (logoutContainer) logoutContainer.style.display = "none";
   }
-  updateAuthFab(); // Actualizar el botón flotante al cambiar el estado
 });
 
-// Inicializar el botón flotante al cargar la página
-updateAuthFab();
-
-
+// Evento para el botón de login
+document.getElementById("login-btn")?.addEventListener("click", abrirLogin);
