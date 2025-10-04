@@ -81,6 +81,9 @@ document.getElementById("actionBtn")?.addEventListener("click", () => {
         console.log("Inicio de sesión exitoso:", userCredential.user.email);
         alert(`Bienvenido, ${userCredential.user.email}!`);
         cerrarLogin();
+        // Recargar la página para actualizar la vista con datos del usuario
+        location.reload();
+       })
       })
       .catch(error => {
         console.error("Error al iniciar sesión:", error);
@@ -101,6 +104,9 @@ document.getElementById("actionBtn")?.addEventListener("click", () => {
           console.log("Datos del usuario guardados en la base de datos");
           alert(`Usuario registrado: ${user.email}`);
           cerrarLogin();
+          // Recargar la página para actualizar la vista con datos del usuario
+          location.reload();
+         })
         })
         .catch(error => {
           console.error("Error al guardar datos del usuario:", error);
@@ -132,6 +138,9 @@ window.loginGoogle = function() {
         console.log("Datos del usuario guardados en la base de datos");
         alert(`Bienvenido, ${user.displayName || user.email}!`);
         cerrarLogin();
+        // Recargar la página para actualizar la vista
+        location.reload();
+       })
       })
       .catch(error => {
         console.error("Error al guardar datos del usuario:", error);
@@ -162,6 +171,9 @@ window.loginFacebook = function() {
         console.log("Datos del usuario guardados en la base de datos");
         alert(`Bienvenido, ${user.displayName || user.email}!`);
         cerrarLogin();
+        // Recargar la página para actualizar la vista
+        location.reload();
+       })
       })
       .catch(error => {
         console.error("Error al guardar datos del usuario:", error);
@@ -180,6 +192,9 @@ window.logout = function() {
     .then(() => {
       console.log("Sesión cerrada exitosamente.");
       alert("Sesión cerrada exitosamente.");
+      // Recargar para reflejar estado de logout
+      location.reload();
+     })
     })
     .catch(error => {
       console.error("Error al cerrar sesión:", error);
@@ -224,4 +239,5 @@ window.initAuthButtons = function() {
     }
   });
 };
+
 console.log("login.js cargado");
