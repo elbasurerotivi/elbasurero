@@ -1233,7 +1233,6 @@ body {
 
 
   /* Recomendaciones.html*/
-/* Contenedor principal */
 
 .container {
     max-width: 1200px;
@@ -1334,9 +1333,9 @@ body {
 }
 
 .like-btn, .toggle-comments {
-    background: none;
+    background: #000000;
     border: none;
-    color: #ffe57f;
+    color: #3D3D3D;
     cursor: pointer;
     font-size: 14px;
     padding: 5px;
@@ -1709,6 +1708,7 @@ body {
     justify-content: center;
   }
 }
+
 
 
 
