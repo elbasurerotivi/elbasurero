@@ -1495,7 +1495,7 @@ body {
 
 /* Estilos para el botón de login */
 .btn-login {
-  max-width: 5px;
+  max-width: 2px;
   max-height: auto;
   background: #007bff00;
   color: #fff;
@@ -1509,13 +1509,15 @@ body {
 }
 
 .btn-login:hover {
-  background: #0056b3;
+  background: #0057b300;
   transform: scale(1.05);
 }
 
 /* Estilos para el botón de logout */
 .btn-logout {
-  background: #e91e63;
+  max-width: 2px;
+  max-height: auto;
+  background: #e91e6200;
   color: #fff;
   padding: 8px 16px;
   border: none;
@@ -1527,7 +1529,7 @@ body {
 }
 
 .btn-logout:hover {
-  background: #c2185b;
+  background: #c2185c00;
   transform: scale(1.05);
 }
 
