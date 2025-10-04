@@ -1254,12 +1254,12 @@ body {
 }
 
 .recommendations p {
-    color: #ccc;
+    color: #ffffff;
     margin-bottom: 20px;
 }
 
 .recommend-form {
-    background: #222;
+    background: #5f5f5f;
     padding: 15px;
     border-radius: 8px;
     margin-bottom: 20px;
@@ -1293,14 +1293,14 @@ body {
 }
 
 .recommend-list {
-    display: grid;
+    display: list-item;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 20px;
 }
 
 .recommend-post {
-    background: #222;
-    border: 1px solid #333;
+    background: #535353;
+    border: 1px solid #9e9e9e;
     border-radius: 8px;
     padding: 15px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
@@ -1337,7 +1337,7 @@ body {
 .like-btn, .toggle-comments {
     background: none;
     border: none;
-    color: #ffcc00;
+    color: #ffe57f;
     cursor: pointer;
     font-size: 14px;
     padding: 5px;
