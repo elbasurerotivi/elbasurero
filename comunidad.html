@@ -1,21 +1,16 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Comunidad - El Basurero</title>
-    <link rel="stylesheet" href="css/styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="icon" href="Imagenes/icono.png" type="image/x-icon">
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
-    <meta name="description" content="El Basurero, tu canal de reacciones en YouTube. Horarios, videos y comunidad.">
-    <meta name="keywords" content="El Basurero, reacciones, YouTube, directos, Twitch, México, Argentina, stream, videos, comunidad, películas, series, opinión, videoreacción">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Comunidad - El Basurero</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
   <div id="header"></div>
 
-<!-- 🔹 POPUP LOGIN -->
-<!-- Popup de login -->
+  <!-- Popup de login -->
   <div id="loginModal" class="modal">
     <div class="modal-content">
       <h2 id="form-title" class="modal-title">Iniciar Sesión</h2>
@@ -35,10 +30,10 @@
       <div class="social-login">
         <p>O ingresa con:</p>
         <button class="btn btn-google" onclick="loginGoogle()">
-          <img src="Imagenes/google_logo.webp" alt="Google" class="social-icon"> Google
+          <img src="Imagenes/google_logo.png" alt="Google" class="social-icon"> Google
         </button>
         <button class="btn btn-facebook" onclick="loginFacebook()">
-          <img src="Imagenes/facebook_logo_2.png" alt="Facebook" class="social-icon"> Facebook
+          <img src="Imagenes/facebook_logo.png" alt="Facebook" class="social-icon"> Facebook
         </button>
       </div>
       <button class="btn btn-close" onclick="cerrarLogin()">Cerrar</button>
@@ -46,192 +41,55 @@
   </div>
 
   <main class="container">
-    <!-- Chat -->
-    <section class="forum">
-      <h2>El BasuChat</h2>
-      <form id="message-form" class="forum-form">
-        <input type="text" id="name" placeholder="Tu nombre" required maxlength="30" />
-        <textarea id="message" placeholder="Escribe tu mensaje" required maxlength="500"></textarea>
-        <div class="form-actions">
-          <button type="submit">Enviar comentario</button>
+    <section class="chat-wrap">
+      <h2>💬 El BasuChat</h2>
+      <div class="chat-content">
+        <div class="chat-main">
+          <div id="community-wall" class="messages"></div>
+          <form id="message-form" class="message-form">
+            <textarea id="message" placeholder="Escribe tu mensaje" maxlength="500" required></textarea>
+            <button type="submit" class="btn send">Enviar comentario</button>
+          </form>
         </div>
-      </form>
-
-
-      <div id="community-wall" class="messages"></div>
+      </div>
     </section>
 
-    <!-- Calendario -->
     <section class="community-calendar">
-  <h2>🎂 Cumpleaños</h2>
-
-  <form id="birthday-form" class="birthday-form">
-    <input type="text" id="bday-name" placeholder="Nombre" required maxlength="50" />
-    <input type="date" id="bday-date" required />
-    <div class="form-actions">
-      <button type="submit">Guardar</button>
-    </div>
-  </form>
-
-  <div class="calendar-wrapper">
-    <ul id="birthday-list" class="birthday-list"></ul>
-
-    <div>
+      <h2>🎂 Cumpleaños</h2>
+      <form id="birthday-form">
+        <div class="form-group">
+          <input type="text" id="bday-name" placeholder="Nombre" maxlength="50" required>
+        </div>
+        <div class="form-group">
+          <input type="date" id="bday-date" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Guardar</button>
+      </form>
       <div class="calendar-controls">
-        <button id="prev-month">◀</button>
+        <button type="button" id="prev-month">◀</button>
         <span id="month-label"></span>
-        <button id="next-month">▶</button>
+        <button type="button" id="next-month">▶</button>
       </div>
       <div id="calendar"></div>
-    </div>
-  </div>
-</section>
-
+      <ul id="birthday-list"></ul>
+    </section>
   </main>
 
-<footer>
-    <p>&copy; 2025 El Basurero. Todos los derechos reservados.</p>
+  <footer>
+    <p>© 2025 El Basurero. Todos los derechos reservados.</p>
     <h3>Sígueme en mis redes</h3>
-  <div class="social-links">
-    <a href="https://www.twitch.tv/elbasurerochido" target="_blank">
-      <img src="Imagenes/twitch_logo.png" alt="Twitch"> Twitch
-    </a>
-    <a href="https://www.youtube.com/@elbasureroedgar" target="_blank">
-      <img src="Imagenes/youtube_logo.png" alt="YouTube"> YouTube
-    </a>
-    <a href="https://discord.gg/TgAkT7PFt5" target="_blank">
-      <img src="Imagenes/discord_logo.png" alt="Discord"> Discord
-    </a>
-    <a href="https://www.instagram.com/el_basurero_tiviplas" target="_blank">
-      <img src="Imagenes/instagram_logo.png" alt="Instagram"> Instagram
-    </a>
-    <a href="https://www.facebook.com/el.basurero.ti.vi.plas" target="_blank">
-      <img src="Imagenes/facebook_logo.png" alt="Facebook"> Facebook
-    </a>
-    <a href="https://www.patreon.com/cw/ElBasureroTi_Vi_Plas" target="_blank">
-      <img src="Imagenes/patreon_logo.png" alt="Patreon"> Patreon
-    </a>
-  </div>
-</footer>
+    <div class="social-links">
+      <a href="#" class="twitch"><img src="Imagenes/twitch_logo.png" alt="Twitch"> Twitch</a>
+      <a href="#" class="youtube"><img src="Imagenes/youtube_logo.png" alt="YouTube"> YouTube</a>
+      <a href="#" class="discord"><img src="Imagenes/discord_logo.png" alt="Discord"> Discord</a>
+      <a href="#" class="instagram"><img src="Imagenes/instagram_logo.png" alt="Instagram"> Instagram</a>
+      <a href="#" class="facebook"><img src="Imagenes/facebook_logo.png" alt="Facebook"> Facebook</a>
+      <a href="#" class="patreon"><img src="Imagenes/patreon_logo.png" alt="Patreon"> Patreon</a>
+    </div>
+  </footer>
 
-  <!-- Header + comunes -->
+  <script type="module" src="js/login.js" defer></script>
+  <script type="module" src="js/community.js" defer></script>
   <script src="js/scripts.js"></script>
-  <script>
-  fetch("header.html")
-    .then(response => response.text())
-    .then(data => {
-      document.getElementById("header").innerHTML = data;
-    })
-    .catch(error => console.error("Error cargando el header:", error));
-</script>
-
-<script type="module">
-  import { auth } from "./js/firebase-config.js";
-  import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
-
-  // Wrapper: chequea si está logueado
-  window.accionProtegida = function(callback) {
-    if (auth.currentUser) {
-      callback(); // ejecuta acción normal
-    } else {
-      abrirLogin(); // abre popup
-    }
-  }
-
-  // Acción ejemplo
-  window.enviarComentario = function() {
-    alert("Comentario enviado!");
-  }
-</script>
-
-// login //
-<script type="module">
-  import { auth } from "./js/firebase-config.js";
-  import { 
-    createUserWithEmailAndPassword, 
-    signInWithEmailAndPassword, 
-    onAuthStateChanged,
-    GoogleAuthProvider,
-    FacebookAuthProvider,
-    signInWithPopup
-  } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
-
-  let isLogin = true;
-
-  // Abrir/Cerrar popup
-  window.abrirLogin = function() {
-    document.getElementById("loginModal").style.display = "flex";
-  }
-  window.cerrarLogin = function() {
-    document.getElementById("loginModal").style.display = "none";
-  }
-
-  // Cambiar entre login y registro
-  window.toggleForm = function() {
-    isLogin = !isLogin;
-    document.getElementById("form-title").innerText = isLogin ? "Iniciar Sesión" : "Registrarse";
-    document.getElementById("actionBtn").innerText = isLogin ? "Login" : "Registrarse";
-    document.querySelector(".switch").innerText = isLogin 
-      ? "¿No tienes cuenta? Regístrate aquí" 
-      : "¿Ya tienes cuenta? Inicia sesión aquí";
-  }
-
-  // Acción principal (login o registro con email/pass)
-  document.getElementById("actionBtn").addEventListener("click", () => {
-    const email = document.getElementById("email").value;
-    const pass = document.getElementById("password").value;
-
-    if (isLogin) {
-      signInWithEmailAndPassword(auth, email, pass)
-        .then(userCredential => {
-          alert("Bienvenido " + userCredential.user.email);
-          cerrarLogin();
-        })
-        .catch(error => alert(error.message));
-    } else {
-      createUserWithEmailAndPassword(auth, email, pass)
-        .then(userCredential => {
-          alert("Usuario registrado: " + userCredential.user.email);
-          cerrarLogin();
-        })
-        .catch(error => alert(error.message));
-    }
-  });
-
-  // 🔹 Login con Google
-  window.loginGoogle = function() {
-    const provider = new GoogleAuthProvider();
-    signInWithPopup(auth, provider)
-      .then(result => {
-        alert("Bienvenido " + result.user.displayName);
-        cerrarLogin();
-      })
-      .catch(error => alert(error.message));
-  }
-
-  // 🔹 Login con Facebook
-  window.loginFacebook = function() {
-    const provider = new FacebookAuthProvider();
-    signInWithPopup(auth, provider)
-      .then(result => {
-        alert("Bienvenido " + result.user.displayName);
-        cerrarLogin();
-      })
-      .catch(error => alert(error.message));
-  }
-
-  // 🔹 Estado de sesión
-  onAuthStateChanged(auth, user => {
-    if (user) {
-      console.log("Usuario conectado:", user.email);
-    } else {
-      console.log("No logueado");
-    }
-  });
-</script>
-
-
-  <!-- Comunidad (solo una vez y como módulo) -->
-  <script type="module" src="js/community.js"></script>
 </body>
 </html>

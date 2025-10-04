@@ -1,150 +1,77 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recomendaciones  - El Basurero</title>
-    <link rel="stylesheet" href="css/styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="icon" href="Imagenes/icono.png" type="image/x-icon">
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
-    <meta name="description" content="El Basurero, tu canal de reacciones en YouTube. Horarios, videos y comunidad.">
-    <meta name="keywords" content="El Basurero, reacciones, YouTube, directos, Twitch, México, Argentina, stream, videos, comunidad, películas, series, opinión, videoreacción">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recomendaciones - El Basurero</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
   <div id="header"></div>
 
-<!-- 🔹 POPUP LOGIN -->
-<div id="loginModal" style="display:none; position:fixed; top:0; left:0; 
-    width:100%; height:100%; background:rgba(0,0,0,0.7); justify-content:center; 
-    align-items:center; z-index:1000;">
-  <div style="background:white; padding:2rem; border-radius:12px; width:320px; text-align:center;">
-    <h2 id="form-title">Iniciar Sesión</h2>
-    <input type="email" id="email" placeholder="Correo">
-    <input type="password" id="password" placeholder="Contraseña">
-    <button id="actionBtn">Login</button>
-    
-    <p class="switch" onclick="toggleForm()">¿No tienes cuenta? Regístrate aquí</p>
-    
-    <hr>
-    <p>O ingresa con:</p>
-    <button onclick="loginGoogle()">Google</button>
-    <button onclick="loginFacebook()">Facebook</button>
-    
-    <br><br>
-    <button onclick="cerrarLogin()">Cerrar</button>
+  <!-- Popup de login -->
+  <div id="loginModal" class="modal">
+    <div class="modal-content">
+      <h2 id="form-title" class="modal-title">Iniciar Sesión</h2>
+      <form id="loginForm" class="login-form">
+        <div class="form-group">
+          <input type="email" id="email" placeholder="Correo electrónico" required>
+        </div>
+        <div class="form-group" id="username-group" style="display: none;">
+          <input type="text" id="username" placeholder="Nombre de usuario (opcional)" maxlength="30">
+        </div>
+        <div class="form-group">
+          <input type="password" id="password" placeholder="Contraseña" required>
+        </div>
+        <button type="button" id="actionBtn" class="btn btn-primary">Login</button>
+      </form>
+      <p class="switch" onclick="toggleForm()">¿No tienes cuenta? Regístrate aquí</p>
+      <div class="social-login">
+        <p>O ingresa con:</p>
+        <button class="btn btn-google" onclick="loginGoogle()">
+          <img src="Imagenes/google_logo.png" alt="Google" class="social-icon"> Google
+        </button>
+        <button class="btn btn-facebook" onclick="loginFacebook()">
+          <img src="Imagenes/facebook_logo.png" alt="Facebook" class="social-icon"> Facebook
+        </button>
+      </div>
+      <button class="btn btn-close" onclick="cerrarLogin()">Cerrar</button>
+    </div>
   </div>
-</div>
 
   <main class="container">
     <section class="recommendations">
       <h2>💡 Recomendaciones</h2>
-      <p>La recomendacion con mas likes va a subir al <stron>top</stron>, esa va a ser la que tenga <strong>prioridad</strong> para reaccionar.<br>
+      <p>La recomendación con más likes va a subir al <strong>top</strong>, esa va a ser la que tenga <strong>prioridad</strong> para reaccionar.<br>
         <br>Cada recomendación hecha se va a agregar en la lista de <strong>"Vistos"</strong> para saber qué recomendar y qué no.<br></p>
       
       <!-- Formulario para recomendar -->
       <form id="recommend-form" class="recommend-form">
-        <input type="text" id="rec-name" placeholder="Tu nombre" maxlength="30" required>
         <textarea id="rec-text" placeholder="Escribe tu recomendación" maxlength="500" required></textarea>
-        <button type="submit">Publicar</button>
+        <button type="submit" class="btn btn-primary">Publicar</button>
       </form>
 
       <!-- Lista de recomendaciones -->
       <div id="recommend-list" class="recommend-list"></div>
     </section>
   </main>
-<div id="footer"></div>
-  
-  <!-- Header + comunes -->
+
+  <footer>
+    <p>© 2025 El Basurero. Todos los derechos reservados.</p>
+    <h3>Sígueme en mis redes</h3>
+    <div class="social-links">
+      <a href="#" class="twitch"><img src="Imagenes/twitch_logo.png" alt="Twitch"> Twitch</a>
+      <a href="#" class="youtube"><img src="Imagenes/youtube_logo.png" alt="YouTube"> YouTube</a>
+      <a href="#" class="discord"><img src="Imagenes/discord_logo.png" alt="Discord"> Discord</a>
+      <a href="#" class="instagram"><img src="Imagenes/instagram_logo.png" alt="Instagram"> Instagram</a>
+      <a href="#" class="facebook"><img src="Imagenes/facebook_logo.png" alt="Facebook"> Facebook</a>
+      <a href="#" class="patreon"><img src="Imagenes/patreon_logo.png" alt="Patreon"> Patreon</a>
+    </div>
+  </footer>
+
+  <script type="module" src="js/login.js" defer></script>
+  <script type="module" src="js/recommendations.js" defer></script>
   <script src="js/scripts.js"></script>
-
-<script type="module">
-  import { auth } from "./js/firebase-config.js";
-  import { 
-    createUserWithEmailAndPassword, 
-    signInWithEmailAndPassword, 
-    onAuthStateChanged,
-    GoogleAuthProvider,
-    FacebookAuthProvider,
-    signInWithPopup
-  } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
-
-  let isLogin = true;
-
-  // Abrir/Cerrar popup
-  window.abrirLogin = function() {
-    document.getElementById("loginModal").style.display = "flex";
-  }
-  window.cerrarLogin = function() {
-    document.getElementById("loginModal").style.display = "none";
-  }
-
-  // Cambiar entre login y registro
-  window.toggleForm = function() {
-    isLogin = !isLogin;
-    document.getElementById("form-title").innerText = isLogin ? "Iniciar Sesión" : "Registrarse";
-    document.getElementById("actionBtn").innerText = isLogin ? "Login" : "Registrarse";
-    document.querySelector(".switch").innerText = isLogin 
-      ? "¿No tienes cuenta? Regístrate aquí" 
-      : "¿Ya tienes cuenta? Inicia sesión aquí";
-  }
-
-  // Acción principal (login o registro con email/pass)
-  document.getElementById("actionBtn").addEventListener("click", () => {
-    const email = document.getElementById("email").value;
-    const pass = document.getElementById("password").value;
-
-    if (isLogin) {
-      signInWithEmailAndPassword(auth, email, pass)
-        .then(userCredential => {
-          alert("Bienvenido " + userCredential.user.email);
-          cerrarLogin();
-        })
-        .catch(error => alert(error.message));
-    } else {
-      createUserWithEmailAndPassword(auth, email, pass)
-        .then(userCredential => {
-          alert("Usuario registrado: " + userCredential.user.email);
-          cerrarLogin();
-        })
-        .catch(error => alert(error.message));
-    }
-  });
-
-  // 🔹 Login con Google
-  window.loginGoogle = function() {
-    const provider = new GoogleAuthProvider();
-    signInWithPopup(auth, provider)
-      .then(result => {
-        alert("Bienvenido " + result.user.displayName);
-        cerrarLogin();
-      })
-      .catch(error => alert(error.message));
-  }
-
-  // 🔹 Login con Facebook
-  window.loginFacebook = function() {
-    const provider = new FacebookAuthProvider();
-    signInWithPopup(auth, provider)
-      .then(result => {
-        alert("Bienvenido " + result.user.displayName);
-        cerrarLogin();
-      })
-      .catch(error => alert(error.message));
-  }
-
-  // 🔹 Estado de sesión
-  onAuthStateChanged(auth, user => {
-    if (user) {
-      console.log("Usuario conectado:", user.email);
-    } else {
-      console.log("No logueado");
-    }
-  });
-</script>
-
-
-  <!-- Recomendaciones -->
-  <script type="module" src="js/recommendations.js"></script>
 </body>
 </html>

@@ -1,52 +1,52 @@
 // Importar Firebase desde tu config
 import { db, ref, push, onValue, set, remove, get } from "./firebase-config.js";
 
-
 document.addEventListener("DOMContentLoaded", () => {
-
   /* ========================
    MURO DE MENSAJES
-======================== */
-const wall = document.getElementById("community-wall");
-const form = document.getElementById("message-form");
-const nameInput = document.getElementById("name");
-const messageInput = document.getElementById("message");
+  ======================== */
+  const wall = document.getElementById("community-wall");
+  const form = document.getElementById("message-form");
+  const nameInput = document.getElementById("name");
+  const messageInput = document.getElementById("message");
 
-// Referencia a mensajes en Firebase
-const messagesRef = ref(db, "messages");
+  // Referencia a mensajes en Firebase
+  const messagesRef = ref(db, "messages");
 
-// Enviar mensaje
-form.addEventListener("submit", (e) => {
-  e.preventDefault();
-  accionProtegida(() => {
-    const name = nameInput.value.trim();
-    const message = messageInput.value.trim();
-    if (name && message) {
-      push(messagesRef, { name, text: message, timestamp: Date.now() });
-      messageInput.value = "";
+  // Enviar mensaje
+  if (form) {
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      window.accionProtegida(() => {
+        const name = nameInput?.value.trim();
+        const message = messageInput?.value.trim();
+        if (name && message) {
+          push(messagesRef, { name, text: message, timestamp: Date.now() });
+          messageInput.value = "";
+        } else {
+          alert("Por favor, completa todos los campos.");
+        }
+      });
+    });
+  } else {
+    console.warn("No se encontró el elemento #message-form");
+  }
+
+  // Mostrar mensajes en tiempo real
+  onValue(messagesRef, (snapshot) => {
+    if (wall) {
+      wall.innerHTML = "";
+      snapshot.forEach((child) => {
+        const data = child.val();
+        const div = document.createElement("div");
+        div.classList.add("message");
+        div.innerHTML = `<strong>${escapeHtml(data.name)}</strong>: ${escapeHtml(data.text)}`;
+        wall.appendChild(div);
+      });
+    } else {
+      console.warn("No se encontró el elemento #community-wall");
     }
   });
-});
-
-
-document.getElementById("message-form").addEventListener("submit", (e) => {
-  e.preventDefault(); // ❌ evita que se envíe solo
-  accionProtegida(() => enviarComentario());
-});
-
-
-// Mostrar mensajes en tiempo real
-onValue(messagesRef, (snapshot) => {
-  wall.innerHTML = "";
-  snapshot.forEach((child) => {
-    const data = child.val();
-    const div = document.createElement("div");
-    div.classList.add("message");
-    div.innerHTML = `<strong>${data.name}</strong>: ${data.text}`;
-    wall.appendChild(div);
-  });
-});
-
 
   /* ========================
      CALENDARIO DE CUMPLEAÑOS
@@ -63,9 +63,8 @@ onValue(messagesRef, (snapshot) => {
   let currentYear = new Date().getFullYear();
   let allBirthdays = [];
 
-  // Si falta #calendar o controles, los creamos (para evitar errores)
-  (function ensureCalendarStructure() {
-    // Si no existe calendarEl, tratamos de crear uno dentro de .calendar-wrapper o .community-calendar
+  // Crear estructura del calendario si falta
+  function ensureCalendarStructure() {
     if (!calendarEl) {
       const wrapper = document.querySelector(".calendar-wrapper") || document.querySelector(".community-calendar");
       if (wrapper) {
@@ -75,10 +74,8 @@ onValue(messagesRef, (snapshot) => {
       }
     }
 
-    // Crear controles si faltan
     if (!monthLabel || !prevBtn || !nextBtn) {
-      // buscar contenedor donde poner controles: padre de calendarEl o .calendar-wrapper
-      const parent = calendarEl ? calendarEl.parentElement : document.querySelector(".calendar-wrapper");
+      const parent = calendarEl ? calendarEl.parentElement : document.querySelector(".community-calendar");
       if (parent) {
         const controls = document.createElement("div");
         controls.className = "calendar-controls";
@@ -90,37 +87,37 @@ onValue(messagesRef, (snapshot) => {
         controls.appendChild(m);
         controls.appendChild(n);
 
-        // insertar controles antes del calendarEl si existe
         if (calendarEl) parent.insertBefore(controls, calendarEl);
         else parent.appendChild(controls);
 
-        // actualizar variables
         monthLabel = m;
         prevBtn = p;
         nextBtn = n;
       }
     }
-  })();
-
-  // Sólo enganchar si hay elements mínimos
-  if (!birthdayList || !calendarEl) {
-    console.warn("Calendario: faltan #birthday-list o #calendar. No se engancha el calendario.");
   }
 
-  // Guardar cumpleaños (si existe el form)
+  ensureCalendarStructure();
+
+  // Guardar cumpleaños
   if (birthdayForm) {
     birthdayForm.addEventListener("submit", (e) => {
-  e.preventDefault();
-  accionProtegida(() => {
-    const name = document.getElementById("bday-name")?.value.trim();
-    const date = document.getElementById("bday-date")?.value;
-    if (!name || !date) return;
-    push(birthdaysRef, { name, date })
-      .then(() => birthdayForm.reset())
-      .catch(err => console.error("Error guardando cumpleaños:", err));
-  });
-});
-
+      e.preventDefault();
+      window.accionProtegida(() => {
+        const name = document.getElementById("bday-name")?.value.trim();
+        const date = document.getElementById("bday-date")?.value;
+        if (!name || !date) {
+          alert("Por favor, completa todos los campos.");
+          return;
+        }
+        push(birthdaysRef, { name, date })
+          .then(() => birthdayForm.reset())
+          .catch(err => console.error("Error guardando cumpleaños:", err));
+      });
+    });
+  } else {
+    console.warn("No se encontró el elemento #birthday-form");
+  }
 
   // Escuchar cumpleaños en tiempo real
   onValue(birthdaysRef, (snapshot) => {
@@ -130,7 +127,6 @@ onValue(messagesRef, (snapshot) => {
         allBirthdays.push({ id: child.key, ...child.val() });
       });
 
-      // renderizar ambas vistas
       if (birthdayList) renderBirthdayList();
       if (calendarEl) renderCalendar();
     } catch (err) {
@@ -138,12 +134,14 @@ onValue(messagesRef, (snapshot) => {
     }
   }, (err) => console.error("onValue birthdays error:", err));
 
-
   // Render lista ordenada por mes/día
   function renderBirthdayList() {
+    if (!birthdayList) {
+      console.warn("No se encontró el elemento #birthday-list");
+      return;
+    }
     birthdayList.innerHTML = "";
 
-    // Ordenar por MM then DD
     const sorted = [...allBirthdays].sort((a, b) => {
       const [, ma, da] = (a.date || "0000-00-00").split("-").map(Number);
       const [, mb, db] = (b.date || "0000-00-00").split("-").map(Number);
@@ -164,7 +162,6 @@ onValue(messagesRef, (snapshot) => {
         </div>
       `;
 
-      // editar
       const editBtn = li.querySelector(".edit-bday");
       editBtn?.addEventListener("click", () => {
         const nuevoNombre = prompt("Nuevo nombre:", data.name);
@@ -176,7 +173,6 @@ onValue(messagesRef, (snapshot) => {
           .catch(err => console.error("Error actualizando cumpleaños:", err));
       });
 
-      // eliminar
       const deleteBtn = li.querySelector(".delete-bday");
       deleteBtn?.addEventListener("click", () => {
         if (!confirm("¿Seguro que quieres eliminar este cumpleaños?")) return;
@@ -188,19 +184,19 @@ onValue(messagesRef, (snapshot) => {
     });
   }
 
-
-  // Render calendario del mes actual (domingo = 0)
+  // Render calendario del mes actual
   function renderCalendar() {
-    // seguridad: si no hay elementos no hacemos nada
-    if (!calendarEl || !monthLabel) return;
+    if (!calendarEl || !monthLabel) {
+      console.warn("No se encontró el elemento #calendar o #month-label");
+      return;
+    }
 
-    const firstDay = new Date(currentYear, currentMonth, 1).getDay(); // 0=Dom
+    const firstDay = new Date(currentYear, currentMonth, 1).getDay();
     const lastDate = new Date(currentYear, currentMonth + 1, 0).getDate();
 
     monthLabel.textContent = new Date(currentYear, currentMonth, 1)
       .toLocaleString("es-ES", { month: "long", year: "numeric" });
 
-    // cabecera
     let html = `<table class="calendar-table">
       <thead>
         <tr>
@@ -209,11 +205,9 @@ onValue(messagesRef, (snapshot) => {
       </thead>
       <tbody><tr>`;
 
-    // celdas vacías antes del primer día
     let dayOfWeek = firstDay;
     for (let i = 0; i < dayOfWeek; i++) html += "<td></td>";
 
-    // generar celdas
     for (let day = 1; day <= lastDate; day++) {
       const yyyy = String(currentYear);
       const mm = String(currentMonth + 1).padStart(2, "0");
@@ -237,13 +231,15 @@ onValue(messagesRef, (snapshot) => {
     calendarEl.innerHTML = html;
   }
 
-  // Navegación del calendario (si existen los botones)
+  // Navegación del calendario
   if (prevBtn) {
     prevBtn.addEventListener("click", () => {
       currentMonth--;
       if (currentMonth < 0) { currentMonth = 11; currentYear--; }
       renderCalendar();
     });
+  } else {
+    console.warn("No se encontró el elemento #prev-month");
   }
   if (nextBtn) {
     nextBtn.addEventListener("click", () => {
@@ -251,9 +247,11 @@ onValue(messagesRef, (snapshot) => {
       if (currentMonth > 11) { currentMonth = 0; currentYear++; }
       renderCalendar();
     });
+  } else {
+    console.warn("No se encontró el elemento #next-month");
   }
 
-  // pequeña util: escape para HTML injection (salida segura)
+  // Utilidad: escapar HTML
   function escapeHtml(str) {
     if (!str && str !== 0) return "";
     return String(str)
@@ -263,5 +261,4 @@ onValue(messagesRef, (snapshot) => {
       .replaceAll('"', "&quot;")
       .replaceAll("'", "&#039;");
   }
-
-}); // DOMContentLoaded end
+});
