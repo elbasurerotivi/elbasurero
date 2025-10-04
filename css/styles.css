@@ -1495,7 +1495,7 @@ body {
 
 /* Estilos para el botón de login */
 .btn-login {
-  max-width: 12px;
+  max-width: 5px;
   max-height: auto;
   background: #007bff00;
   color: #fff;
