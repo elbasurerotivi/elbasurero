@@ -23,6 +23,7 @@ body {
 
 .logo img {
     height: 50px;
+    width: 200;
 }
 
 .nav-menu {
@@ -41,7 +42,7 @@ body {
 }
 
 .menu-toggle {
-    display: none;
+    display:contents;
     font-size: 24px;
     cursor: pointer;
 }
