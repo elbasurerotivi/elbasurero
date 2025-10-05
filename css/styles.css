@@ -798,7 +798,7 @@ footer h3 {
 :root {
   --accent: #ff3366;
   --accent-hover: #ff6699;
-  --text-light: #272727;
+  --text-light: #000000;
   --text-muted: #4d4d4d;
   --bg-dark: rgba(8, 8, 8, 0.75);
   --glass-bg: rgba(255, 255, 255, 0.08);
@@ -937,7 +937,7 @@ footer h3 {
 .message-form .send {
   background: var(--accent);
   border: none;
-  color: rgb(27, 27, 27);
+  color: rgb(255 255 255);
   font-weight: 600;
   border-radius: 50px;
   padding: 10px 25px;
@@ -949,6 +949,10 @@ footer h3 {
   background: var(--accent-hover);
   transform: scale(1.05);
 }
+
+
+
+
 
 /* ====== CALENDARIO DE CUMPLEAÑOS ====== */
 .community-calendar {
@@ -1025,9 +1029,9 @@ footer h3 {
 }
 
 .calendar-controls button {
-  background: var(--glass-bg);
-  border: 1px solid var(--border-light);
-  color: var(--text-light);
+  background: #ff3366;
+  border: 1px solid rgb(255 33 33 / 58%);
+  color:#ffffff;
   border-radius: var(--radius);
   padding: 8px 15px;
   cursor: pointer;
@@ -1042,7 +1046,7 @@ footer h3 {
 .calendar-controls span {
   font-size: 18px;
   font-weight: 600;
-  color: var(--text-light);
+  color:#000000;
 }
 
 .calendar-table {
@@ -1059,7 +1063,7 @@ footer h3 {
   text-align: center;
   padding: 10px;
   font-size: 14px;
-  color: var(--text-light);
+  color: #000000;
   border: 1px solid var(--border-light);
 }
 
@@ -1242,8 +1246,8 @@ footer h3 {
 :root {
   --accent: #ff3366;
   --accent-hover: #ff6699;
-  --text-light: #f2f2f2;
-  --text-muted: #aaaaaa;
+  --text-light: #000000;
+  --text-muted: #4d4d4d;
   --bg-dark: rgba(20, 20, 20, 0.75);
   --glass-bg: rgba(255, 255, 255, 0.08);
   --border-light: rgba(255, 255, 255, 0.15);
@@ -1745,10 +1749,10 @@ footer h3 {
 
 .form-group input {
   padding: 10px;
-  border: 1px solid #444;
+  border: 1px solid #c2185c47;
   border-radius: 6px;
-  background: #3a3a3a;
-  color: #fff;
+  background: #ffffff5e;
+  color: #969696;
   font-size: 14px;
 }
 
@@ -1767,7 +1771,7 @@ footer h3 {
 }
 
 .btn-primary {
-  background: #007bff;
+  background: #ff3366;
   color: #fff;
 }
 

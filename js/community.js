@@ -231,7 +231,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const li = document.createElement("li");
       li.className = "bday-item";
       li.innerHTML = `
-        <span class="bday-info"><strong>${escapeHtml(data.name)}</strong> 🎂 (${escapeHtml(fecha)})</span>
+        <span class="bday-info"><strong>${escapeHtml(data.name)}</strong> (${escapeHtml(fecha)})</span>
         <div class="bday-actions">
           <button class="edit-bday" type="button">✏️</button>
           <button class="delete-bday" type="button">🗑️</button>
