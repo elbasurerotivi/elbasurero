@@ -110,23 +110,23 @@ function renderPost(post) {
 
   const likeBtn = postEl.querySelector(".like-btn");
   likeBtn.addEventListener("click", (e) => {
-  e.stopPropagation();
-  accionProtegida(() => {
-    const uid = auth.currentUser ? auth.currentUser.uid : userId;
-    const likeRef = ref(db, `recommendations/${post.id}/likes/${uid}`);
-    get(likeRef).then((snap) => {
-      if (snap.exists()) {
-        remove(likeRef);
-        likeBtn.classList.remove("active");
-        likeBtn.nextElementSibling.classList.remove("active"); // Remover clase active del contador
-      } else {
-        set(likeRef, true);
-        likeBtn.classList.add("active");
-        likeBtn.nextElementSibling.classList.add("active"); // Agregar clase active al contador
-      }
+    e.stopPropagation();
+    accionProtegida(() => {
+      const uid = auth.currentUser ? auth.currentUser.uid : userId;
+      const likeRef = ref(db, `recommendations/${post.id}/likes/${uid}`);
+      get(likeRef).then((snap) => {
+        if (snap.exists()) {
+          remove(likeRef);
+          likeBtn.classList.remove("active");
+          likeBtn.nextElementSibling.classList.remove("active");
+        } else {
+          set(likeRef, true);
+          likeBtn.classList.add("active");
+          likeBtn.nextElementSibling.classList.add("active");
+        }
+      });
     });
   });
-});
 
   const toggleBtn = postEl.querySelector(".toggle-comments");
   const commentsSection = postEl.querySelector(".comments-section");
@@ -212,11 +212,11 @@ function renderComments(post, container) {
           if (snap.exists()) {
             remove(likeRef);
             e.target.classList.remove("active");
-            e.target.nextElementSibling.classList.remove("active"); // Remover clase active del contador
+            e.target.nextElementSibling.classList.remove("active");
           } else {
             set(likeRef, true);
             e.target.classList.add("active");
-            e.target.nextElementSibling.classList.add("active"); // Agregar clase active al contador
+            e.target.nextElementSibling.classList.add("active");
           }
         });
       });
