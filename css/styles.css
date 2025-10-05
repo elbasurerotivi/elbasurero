@@ -1485,7 +1485,7 @@ body {
 }
 
 .comment-form input:focus {
-  border-color: var(--accent);
+  border-color: #242424;
 }
 
 .comment-form button {
