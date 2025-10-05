@@ -1588,6 +1588,48 @@ body {
   color: var(--accent-hover);
 }
 
+/* ==== Ajuste de colores y comportamiento de contador ==== */
+
+.like-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.like-btn {
+  background: none;
+  border: none;
+  color: #222;
+  cursor: pointer;
+  font-size: 20px;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.like-btn.active {
+  color: #ff3366;
+  animation: heartBeat 0.4s;
+}
+
+.like-count {
+  font-size: 15px;
+  color: #000;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.like-count.active {
+  color: #ff3366;
+}
+
+.toggle-comments {
+  color: var(--text-muted);
+}
+
+.toggle-comments:hover {
+  color: var(--accent-hover);
+}
+
+
 
 
 
