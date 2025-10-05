@@ -1008,8 +1008,8 @@ function renderVideos(category = currentCategory, searchQuery = "") {
     // Búsqueda global: filtrar por búsqueda en todos los videos
     const lowerQuery = searchQuery.toLowerCase();
     filtered = filtered.filter(video =>
-      video.titulo.toLowerCase().includes(lowerQuery) ||
-    //video.descripcion.toLowerCase().includes(lowerQuery)// Oculto
+      video.titulo.toLowerCase().includes(lowerQuery) //||//  👈Oculto
+      //video.descripcion.toLowerCase().includes(lowerQuery)// 👈Oculto
     );
   } else {
     // Sin búsqueda: filtrar por categoría
