@@ -65,7 +65,7 @@ body {
 .btn-login {
   background: #007bff00;
   color: #fff;
-  padding: 8px 16px;
+  padding: 0px;
   border: none;
   border-radius: 6px;
   cursor: pointer;
@@ -76,9 +76,9 @@ body {
 
 /* Estilos para el botón de login */
 .btn-login {
-  background: #007bff;
-  color: #fff;
-  padding: 8px 16px;
+  background: #8f959b00;
+  color: #ffffff00;
+  padding: 0px;
   border: none;
   border-radius: 6px;
   cursor: pointer;
@@ -120,8 +120,8 @@ body {
 /* Estilos para el botón de logout */
 .btn-logout {
     background: #e91e6200;
-    color: #fff;
-    padding: 8px 16px;
+    color: #ffffff00;
+    padding: 0px;  
     border: none;
     border-radius: 6px;
     cursor: pointer;
@@ -1889,8 +1889,8 @@ footer h3 {
   max-width: 2px;
   max-height: auto;
   background: #007bff00;
-  color: #fff;
-  padding: 8px 16px;
+  color: #ffffff00;
+  padding: 0px;
   border: none;
   border-radius: 6px;
   cursor: pointer;
@@ -1909,8 +1909,8 @@ footer h3 {
   max-width: 2px;
   max-height: auto;
   background: #e91e6200;
-  color: #fff;
-  padding: 8px 16px;
+  color: #ffffff00;
+  padding: 0px;
   border: none;
   border-radius: 6px;
   cursor: pointer;
