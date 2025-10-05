@@ -1009,8 +1009,8 @@ function renderVideos(category = currentCategory, searchQuery = "") {
     const lowerQuery = searchQuery.toLowerCase();
     filtered = filtered.filter(video =>
       video.titulo.toLowerCase().includes(lowerQuery) //||//  👈Oculto
-      //video.descripcion.toLowerCase().includes(lowerQuery)// 👈Oculto
-    );
+      //video.descripcion.toLowerCase().includes(lowerQuery) );// 👈Oculto
+    
   } else {
     // Sin búsqueda: filtrar por categoría
     if (category !== "latest") {
