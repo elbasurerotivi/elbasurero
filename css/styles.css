@@ -1396,14 +1396,28 @@ body {
   transition: transform 0.2s ease, color 0.2s ease;
 }
 
+.like-btn {
+  background: none;
+  border: none;
+  color: #000000; /* Negro por defecto */
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: color 0.25s ease, transform 0.25s ease;
+}
+
 .like-btn.active {
-  color: var(--accent);
-  transform: scale(1.2);
+  color: #ff0000; /* Rojo al estar activado */
+  transform: scale(1.15);
+  animation: heartBeat 0.4s ease;
 }
 
 .like-btn:hover, .toggle-comments:hover {
-  color: var(--accent-hover);
-  transform: scale(1.15);
+  color: #ff6699; /* Rojo más suave al pasar el mouse */
+  transform: scale(1.1);
 }
 
 /* Corazón animado */
