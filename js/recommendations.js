@@ -1,6 +1,6 @@
 import { auth, db, ref, push, onValue, set, remove, get } from "./firebase-config.js";
 
-// UID persistente para simular "usuario 煤nico" (para likes no autenticados)
+// UID persistente para simular "usuario único" (para likes no autenticados)
 let userId = localStorage.getItem("userId");
 if (!userId) {
   userId = "user_" + Math.random().toString(36).substring(2, 9);
@@ -16,12 +16,12 @@ const recList = document.getElementById("recommend-list");
 
 const recommendationsRef = ref(db, "recommendations");
 
-// Publicar recomendaci贸n
+// Publicar recomendación
 form.addEventListener("submit", (e) => {
   e.preventDefault();
   accionProtegida(() => {
     const user = auth.currentUser;
-    let name = "An贸nimo";
+    let name = "Anónimo";
     if (user) {
       if (user.displayName) {
         name = user.displayName;
@@ -29,7 +29,7 @@ form.addEventListener("submit", (e) => {
         const userRef = ref(db, `users/${user.uid}`);
         get(userRef).then(snapshot => {
           if (snapshot.exists()) {
-            name = snapshot.val().username || "An贸nimo";
+            name = snapshot.val().username || "Anónimo";
           }
         }).catch(err => console.error("Error obteniendo datos del usuario:", err));
       }
@@ -47,7 +47,7 @@ form.addEventListener("submit", (e) => {
   });
 });
 
-// Guardamos qu茅 posts tienen comentarios abiertos
+// Guardamos qué posts tienen comentarios abiertos
 let openComments = new Set();
 
 /* ========================
@@ -59,7 +59,7 @@ onValue(recommendationsRef, (snapshot) => {
     posts.push({ id: child.key, ...child.val() });
   });
 
-  // Ordenar: m谩s likes primero, despu茅s m谩s reciente
+  // Ordenar: más likes primero, después más reciente
   posts.sort((a, b) => {
     const likesA = Object.keys(a.likes || {}).length;
     const likesB = Object.keys(b.likes || {}).length;
@@ -70,7 +70,7 @@ onValue(recommendationsRef, (snapshot) => {
   // Render posts
   recList.innerHTML = "";
   if (posts.length === 0) {
-    recList.innerHTML = "<p>No hay recomendaciones todav铆a. 隆S茅 el primero en publicar!</p>";
+    recList.innerHTML = "<p>No hay recomendaciones todavía. ¡Sé el primero en publicar!</p>";
   } else {
     posts.forEach(renderPost);
   }
@@ -93,8 +93,8 @@ function renderPost(post) {
     </div>
     <p class="post-text">${post.text}</p>
     <div class="post-actions">
-      <button class="like-btn ${userLiked ? "active" : ""}">鉂わ笍 ${likesCount}</button>
-      <button class="toggle-comments">馃挰 Comentarios (${commentsCount})</button>
+      <button class="like-btn ${userLiked ? "active" : ""}">❤️ ${likesCount}</button>
+      <button class="toggle-comments">💬 Comentarios (${commentsCount})</button>
     </div>
     <div class="comments-section" style="display:${isOpen ? "block" : "none"};">
       <div class="comments-list"></div>
@@ -139,7 +139,7 @@ function renderPost(post) {
     e.preventDefault();
     accionProtegida(async () => {
       const user = auth.currentUser;
-      let name = "An贸nimo";
+      let name = "Anónimo";
       if (user) {
         if (user.displayName) {
           name = user.displayName;
@@ -147,7 +147,7 @@ function renderPost(post) {
           const userRef = ref(db, `users/${user.uid}`);
           const snapshot = await get(userRef);
           if (snapshot.exists()) {
-            name = snapshot.val().username || "An贸nimo";
+            name = snapshot.val().username || "Anónimo";
           }
         }
       }
@@ -187,7 +187,7 @@ function renderComments(post, container) {
       <div class="comment-text">${c.text}</div>
       <div class="comment-meta">
         <button type="button" class="comment-like ${userLiked ? "active" : ""}">
-          鉂わ笍 <span class="count">${likesCount}</span>
+          ❤️ <span class="count">${likesCount}</span>
         </button>
       </div>
     `;
