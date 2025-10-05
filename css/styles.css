@@ -1371,10 +1371,15 @@ body {
     font-size: 13px;
 }
 
+.comment-text-form {
+    color: #000000;
+    font-size: 13px;
+}
+
 .comment-form {
   background-color: #ffffff00;
   color:#000000;
-  
+
 }
 
 .comment-meta {

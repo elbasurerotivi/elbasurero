@@ -99,7 +99,7 @@ function renderPost(post) {
     <div class="comments-section" style="display:${isOpen ? "block" : "none"};">
       <div class="comments-list"></div>
       <form class="comment-form">
-        <input type="text" class="comment-text" placeholder="Escribe un comentario" maxlength="300" required>
+        <input type="text" class="comment-text-box" placeholder="Escribe un comentario" maxlength="300" required>
         <button type="submit">Comentar</button>
       </form>
     </div>
@@ -151,7 +151,7 @@ function renderPost(post) {
           }
         }
       }
-      const text = commentForm.querySelector(".comment-text").value.trim();
+      const text = commentForm.querySelector(".comment-text-form").value.trim();
       if (!text) return;
       const commentsRef = ref(db, `recommendations/${post.id}/comments`);
       push(commentsRef, { name, text, timestamp: Date.now(), likes: {} });
@@ -184,7 +184,7 @@ function renderComments(post, container) {
     div.className = "comment";
     div.innerHTML = `
       <div class="comment-header"><strong>${c.name}</strong></div>
-      <div class="comment-text">${c.text}</div>
+      <div class="comment-text-box">${c.text}</div>
       <div class="comment-meta">
         <button type="button" class="comment-like ${userLiked ? "active" : ""}">
           ❤️ <span class="count">${likesCount}</span>
