@@ -1371,6 +1371,12 @@ body {
     font-size: 13px;
 }
 
+.comment-form {
+  background-color: #ffffff00;
+  color:#000000;
+  
+}
+
 .comment-meta {
     margin-top: 5px;
 }
