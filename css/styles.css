@@ -1620,7 +1620,8 @@ footer h3 {
 }
 
 .toggle-comments:hover {
-  transition: none !important;
+  color: var(--accent-hover);
+}
 
 
 
