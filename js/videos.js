@@ -1008,7 +1008,7 @@ function renderVideos(category = currentCategory, searchQuery = "") {
     // Búsqueda global: filtrar por búsqueda en todos los videos
     const lowerQuery = searchQuery.toLowerCase();
     filtered = filtered.filter(video =>
-      video.titulo.toLowerCase().includes(lowerQuery) 
+      video.titulo.toLowerCase().includes(lowerQuery)
     );
   } else {
     // Sin búsqueda: filtrar por categoría
@@ -1051,6 +1051,13 @@ filterButtons.forEach(btn => {
     btn.classList.add("active");
     currentCategory = btn.dataset.category;
     renderVideos(currentCategory, searchInput.value);
+    // Cerrar el menú retráctil en móviles al seleccionar una categoría
+    if (window.innerWidth <= 768) {
+      const tabsMenu = document.querySelector(".tabs-menu");
+      tabsMenu.classList.remove("expanded");
+      const toggleBtn = document.querySelector(".categories-toggle");
+      toggleBtn.textContent = "Categorías ▼";
+    }
   });
 });
 
@@ -1058,6 +1065,17 @@ filterButtons.forEach(btn => {
 searchInput.addEventListener("input", () => {
   renderVideos(currentCategory, searchInput.value);
 });
+
+// Toggle para el menú retráctil de categorías
+const toggleBtn = document.querySelector(".categories-toggle");
+const tabsMenu = document.querySelector(".tabs-menu");
+
+if (toggleBtn && tabsMenu) {
+  toggleBtn.addEventListener("click", () => {
+    tabsMenu.classList.toggle("expanded");
+    toggleBtn.textContent = tabsMenu.classList.contains("expanded") ? "Categorías ▲" : "Categorías ▼";
+  });
+}
 
 // Cargar videos iniciales
 renderVideos("latest");
