@@ -9,12 +9,27 @@ document.addEventListener("DOMContentLoaded", () => {
   const messageInput = document.getElementById("message");
   const messagesRef = ref(db, "messages");
 
+  // UID persistente para likes no autenticados
+  let userId = localStorage.getItem("userId");
+  if (!userId) {
+    userId = "user_" + Math.random().toString(36).substring(2, 9);
+    localStorage.setItem("userId", userId);
+  }
+
+  // Sincronizar userId con auth.currentUser.uid si está autenticado
+  auth.onAuthStateChanged((user) => {
+    if (user) {
+      userId = user.uid;
+      localStorage.setItem("userId", userId);
+    }
+  });
+
   // Función para desplazar al último mensaje
   function scrollToBottom() {
     if (wall) {
       wall.scrollTo({
         top: wall.scrollHeight,
-        behavior: "smooth" // Desplazamiento suave
+        behavior: "smooth"
       });
     }
   }
@@ -24,16 +39,24 @@ document.addEventListener("DOMContentLoaded", () => {
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
       accionProtegida(async () => {
-        const userRef = ref(db, `users/${auth.currentUser.uid}`);
-        const snapshot = await get(userRef);
-        const username = snapshot.exists() ? snapshot.val().username || "Anónimo" : "Anónimo";
-        
+        const user = auth.currentUser;
+        let username = "Anónimo";
+        if (user) {
+          const userRef = ref(db, `users/${user.uid}`);
+          const snapshot = await get(userRef);
+          username = snapshot.exists() ? snapshot.val().username || "Anónimo" : "Anónimo";
+        }
         const message = messageInput.value.trim();
         if (message) {
-          await push(messagesRef, { name: username, text: message, timestamp: Date.now() })
+          await push(messagesRef, {
+            name: username,
+            text: message,
+            timestamp: Date.now(),
+            likes: {}
+          })
             .then(() => {
               messageInput.value = "";
-              scrollToBottom(); // Desplazar al último mensaje después de enviar
+              scrollToBottom();
             })
             .catch(err => {
               console.error("Error enviando mensaje:", err);
@@ -50,12 +73,49 @@ document.addEventListener("DOMContentLoaded", () => {
       wall.innerHTML = "";
       snapshot.forEach((child) => {
         const data = child.val();
+        const messageId = child.key;
+        const likesCount = data.likes ? Object.keys(data.likes).length : 0;
+        const userLiked = data.likes && data.likes[userId];
+
         const div = document.createElement("div");
-        div.classList.add("message");
-        div.innerHTML = `<strong>${escapeHtml(data.name)}</strong>: ${escapeHtml(data.text)}`;
+        div.className = "message";
+        div.innerHTML = `
+          <div class="message-header">
+            <strong>${escapeHtml(data.name)}</strong>
+            <span>${new Date(data.timestamp).toLocaleString("es-AR")}</span>
+          </div>
+          <p class="message-text">${escapeHtml(data.text)}</p>
+          <div class="message-actions">
+            <div class="like-wrapper">
+              <button class="like-btn ${userLiked ? "active" : ""}">❤️</button>
+              <span class="like-count ${userLiked ? "active" : ""}">${likesCount}</span>
+            </div>
+          </div>
+        `;
+
+        const likeBtn = div.querySelector(".like-btn");
+        likeBtn.addEventListener("click", (e) => {
+          e.stopPropagation();
+          accionProtegida(() => {
+            const uid = auth.currentUser ? auth.currentUser.uid : userId;
+            const likeRef = ref(db, `messages/${messageId}/likes/${uid}`);
+            get(likeRef).then((snap) => {
+              if (snap.exists()) {
+                remove(likeRef);
+                likeBtn.classList.remove("active");
+                likeBtn.nextElementSibling.classList.remove("active");
+              } else {
+                set(likeRef, true);
+                likeBtn.classList.add("active");
+                likeBtn.nextElementSibling.classList.add("active");
+              }
+            }).catch(err => console.error("Error al actualizar like:", err));
+          });
+        });
+
         wall.appendChild(div);
       });
-      scrollToBottom(); // Desplazar al último mensaje después de cargar
+      scrollToBottom();
     }, (err) => {
       console.error("Error al cargar mensajes:", err);
       if (err.code === "PERMISSION_DENIED") {
@@ -64,7 +124,8 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  /* ========================
+
+    /* ========================
      CALENDARIO DE CUMPLEAÑOS
   ======================== */
   const birthdayForm = document.getElementById("birthday-form");

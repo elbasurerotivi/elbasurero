@@ -691,6 +691,13 @@ footer h3 {
 
 
 
+
+
+
+
+
+
+
 /* Pagina Directos */
 
 .schedule {
@@ -782,452 +789,445 @@ footer h3 {
 
 
 
-/* Página Comunidad */
 
-.forum {
-  max-width: 700px;
-  margin: 20px auto;
-  padding: 15px;
+
+
+
+/* comunidad.html */
+
+:root {
+  --accent: #ff3366;
+  --accent-hover: #ff6699;
+  --text-light: #f2f2f2;
+  --text-muted: #aaaaaa;
+  --bg-dark: rgba(20, 20, 20, 0.75);
+  --glass-bg: rgba(255, 255, 255, 0.08);
+  --border-light: rgba(255, 255, 255, 0.15);
+  --blur: blur(20px);
+  --radius: 14px;
+  --transition: 0.3s ease;
 }
 
-#forum-form {
+/* ====== CONTENEDOR GENERAL ====== */
+.container {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 0 15px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  margin-bottom: 20px;
-}
-
-#forum-form input, 
-#forum-form textarea {
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
+  gap: 20px;
   font-family: 'Roboto', sans-serif;
+  color: var(--text-light);
 }
 
-#forum-form button {
-  padding: 10px;
-  border: none;
-  background: #333;
-  color: white;
-  border-radius: 6px;
-  cursor: pointer;
+/* ====== CHAT ====== */
+.chat-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
-#forum-form button:hover {
-  background: #555;
+.chat-wrap h2 {
+  font-size: 28px;
+  font-weight: 700;
+  text-align: center;
+  color: var(--accent);
 }
 
-#messages .post {
-  background: #f9f9f9;
-  border: 1px solid #ddd;
-  padding: 12px;
-  border-radius: 8px;
-  margin-bottom: 15px;
+.chat-content {
+  background: var(--glass-bg);
+  backdrop-filter: var(--blur);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: 0 4px 25px rgba(0,0,0,0.3);
+  transition: var(--transition);
 }
 
-.post-header {
-  font-size: 14px;
-  color: #666;
-  margin-bottom: 8px;
+.chat-content:hover {
+  transform: translateY(-2px);
 }
-
-.post-actions {
-  margin-top: 10px;
-}
-
-.post-actions button {
-  margin-right: 10px;
-  border: none;
-  background: transparent;
-  cursor: pointer;
-  color: #333;
-}
-
-
-/* === Comunidad additions === */
-
-/* ===== Comunidad: Foro y Calendario ===== */
-.container { max-width: 1100px; margin: 0 auto; padding: 1rem; }
-.forum { margin: 2rem 0; }
-.forum-form { display:flex; flex-direction:column; gap:0.6rem; max-width:800px; margin:0 auto; }
-.forum-form input, .forum-form textarea { padding:0.6rem; border-radius:6px; border:1px solid #ccc; font-size:1rem; }
-.forum-form .form-actions { display:flex; gap:0.6rem; align-items:center; }
-.forum-form button { padding:0.6rem 1rem; border-radius:6px; border:none; cursor:pointer; background:#ffcc00; color:#111; }
-
-.messages { margin-top:1rem; display:flex; flex-direction:column; gap:0.8rem; }
-.post { background:#fff; padding:0.9rem; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.06); }
-.post-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem; }
-.post-body { margin:0; }
-.post-actions { margin-top:8px; }
-.post-actions .delete-btn { background:transparent; border:1px solid #e0e0e0; padding:0.3rem 0.6rem; border-radius:5px; cursor:pointer; }
-
-/* Calendar */
-.community-calendar { margin: 2rem 0; }
-.calendar-wrapper { display:flex; gap:1rem; align-items:flex-start; flex-direction:column; }
-.calendar-controls { display:flex; align-items:center; gap:1rem; justify-content:center; margin-bottom:0.8rem; }
-.calendar-controls button { padding:0.3rem 0.6rem; border-radius:6px; border:1px solid #ddd; cursor:pointer; background:#fff; }
-.calendar-grid { display:grid; grid-template-columns: repeat(7, 1fr); gap:6px; }
-.calendar-cell { background:#fff; min-height:70px; padding:6px; border-radius:6px; position:relative; box-shadow:0 2px 6px rgba(0,0,0,0.05); }
-.calendar-header { background:transparent; font-weight:700; text-align:center; }
-.calendar-cell.empty { background:transparent; box-shadow:none; }
-.date-num { font-weight:700; margin-bottom:6px; }
-.birthday-badge { position:absolute; right:6px; top:6px; background:#ff6b6b; color:white; border-radius:999px; padding:0.15rem 0.5rem; font-size:0.8rem; }
-
-.birthday-sidebar { margin-top:1rem; }
-.birthday-list { list-style:none; padding:0; margin:0; }
-.birthday-list li { padding:0.25rem 0; display:flex; justify-content:space-between; align-items:center; }
-
-/* Modal */
-.modal { display:none; position:fixed; left:0; top:0; right:0; bottom:0; background:rgba(0,0,0,0.5); justify-content:center; align-items:center; z-index:999; }
-.modal.open { display:flex; }
-.modal-content { background:#fff; padding:1rem; border-radius:8px; width:320px; max-width:90%; position:relative; }
-.modal-close { position:absolute; right:8px; top:6px; background:transparent; border:none; font-size:1.4rem; cursor:pointer; }
-
-/* Responsive */
-@media(min-width:900px){
-  .calendar-wrapper { flex-direction:row; }
-  .calendar-grid .calendar-cell { min-height:140px; }
-  .birthday-sidebar { width:300px; }
-}
-
-
-
-/* Página/* GLOBAL / Base (es recomendable combinar con tu CSS existente) */
-:root{
-  --primary:#1abc9c;
-  --muted:#6b6b6b;
-  --bg:#f5f7fa;
-  --card:#ffffff;
-  --accent:#3498db;
-}
-
-body {
-  font-family: 'Roboto', sans-serif;
-  background:var(--bg);
-  color:#222;
-  margin:0;
-  -webkit-font-smoothing:antialiased;
-  -moz-osx-font-smoothing:grayscale;
-}
-
-.container { max-width:1100px; margin:22px auto; padding:12px; box-sizing:border-box; }
-
-/* ===== Chat / Comunidad styles ===== */
-.chat-wrap { background:transparent; border-radius:10px; }
-
-.chat-header {
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  margin-bottom:12px;
-}
-.chat-header h2 { margin:0; font-size:20px; color:var(--primary); }
-
-.user-controls { display:flex; gap:8px; align-items:center; }
-.name-input { padding:8px 10px; border-radius:8px; border:1px solid #ddd; min-width:180px; }
-.btn { background:var(--primary); color:white; border:none; padding:8px 12px; border-radius:8px; cursor:pointer; }
-.btn.small { padding:6px 10px; font-size:13px; }
-.btn.send { background:var(--accent); }
-
-/* layout */
-.chat-content { display:flex; gap:16px; align-items:flex-start; }
-
-.chat-sidebar {
-  width:220px;
-  background:var(--card);
-  border:1px solid #e6e6e6;
-  border-radius:8px;
-  padding:12px;
-  height:560px;
-  overflow:auto;
-  box-shadow:0 3px 8px rgba(18,18,18,0.03);
-}
-.chat-sidebar h3 { margin-top:0; font-size:16px; color:#333; }
-.participants-list { font-size:14px; color:var(--muted); }
-.participant-item { padding:6px 8px; border-radius:6px; margin-bottom:6px; background:#fbfbfb; border:1px solid #f1f1f1; }
-
-/* main chat area */
-.chat-main { flex:1; display:flex; flex-direction:column; }
 
 .messages {
-  height:520px;
-  overflow-y:auto;
-  padding:12px;
-  display:flex;
-  flex-direction:column-reverse; /* newest-first visual */
-  gap:12px;
-  border-radius:8px;
-  background:linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.4));
-  border:1px solid #eaeaea;
-  box-shadow:0 4px 18px rgba(0,0,0,0.03);
-}
-
-/* Each message */
-.msg {
-  display:flex;
-  gap:12px;
-  align-items:flex-start;
-  background:var(--card);
-  padding:10px;
-  border-radius:10px;
-  border:1px solid #eee;
-  box-shadow:0 2px 6px rgba(10,10,10,0.02);
-  max-width:100%;
-  word-break:break-word;
-}
-.avatar { width:44px; height:44px; border-radius:50%; display:flex; align-items:center; justify-content:center; color:white; font-weight:700; flex-shrink:0; }
-.msg-body { flex:1; }
-.msg-head { display:flex; justify-content:space-between; align-items:center; gap:12px; margin-bottom:6px; }
-.msg-head .name { font-weight:700; }
-.msg-time { font-size:12px; color:var(--muted); }
-
-.msg-text { margin:0 0 8px 0; white-space:pre-wrap; line-height:1.35; color:#222; }
-
-.msg-actions { display:flex; gap:8px; align-items:center; flex-wrap:wrap; margin-top:6px; }
-.react-btn { border:1px solid #eee; background:transparent; padding:6px 8px; border-radius:8px; cursor:pointer; display:inline-flex; gap:6px; align-items:center; font-size:14px; }
-.react-btn .count { font-size:13px; color:var(--muted); }
-.react-btn.active { background:linear-gradient(90deg, rgba(26,188,156,0.08), rgba(52,152,219,0.06)); border-color:rgba(0,0,0,0.06); }
-
-.msg-controls { margin-left:auto; display:flex; gap:6px; align-items:center; }
-.control-btn { border:none; background:transparent; cursor:pointer; color:var(--muted); font-size:14px; padding:6px; border-radius:6px; }
-.control-btn:hover { background:#f2f2f2; color:#333; }
-
-/* message form */
-.message-form { display:flex; gap:8px; margin-top:12px; align-items:flex-end; }
-.message-form textarea { flex:1; padding:10px; border-radius:8px; border:1px solid #ddd; resize:vertical; min-height:44px; max-height:120px; font-size:14px; }
-.message-form .send { padding:10px 16px; }
-
-/* small utilities */
-.muted { color:var(--muted); text-align:center; padding:12px; }
-.error { color:#c0392b; }
-
-/* responsive */
-@media (max-width:800px){
-  .chat-content { flex-direction:column; }
-  .chat-sidebar { width:100%; height:140px; order:2; }
-  .messages { height:420px; }
-}
-
-/* Animación de resaltado en mensaje nuevo */
-.new-message {
-  background-color: #fff3cd; /* amarillo suave */
-  transition: background-color 1.5s ease;
-}
-
-/* Scroll suave para el contenedor */
-#community-wall {
-  scroll-behavior: smooth;
-}
-
-
-
-
-
-/* Contenedor lado a lado */
-.community-calendar {
+  max-height: 400px;
+  overflow-y: auto;
   display: flex;
-  gap: 2rem;
-  align-items: flex-start;
-}
-
-/* Lista de cumpleaños */
-.birthday-list {
-  flex: 1;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-.birthday-list li {
-  background: #fff;
-  padding: 0.6rem 1rem;
-  border-radius: 6px;
-  margin-bottom: 0.5rem;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-  font-size: 0.95rem;
-}
-
-/* Calendario */
-#calendar {
-  flex: 1;
-}
-.calendar-table {
-  border-collapse: collapse;
-  width: 100%;
-  background: #fff;
-  border-radius: 6px;
-  overflow: hidden;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-}
-.calendar-table th,
-.calendar-table td {
-  border: 1px solid #ddd;
-  text-align: center;
-  padding: 0.6rem;
-}
-.calendar-table th {
-  background: #007bff;
-  color: #fff;
-}
-.birthday-cell {
-  background: #ffeb3b;
-  font-weight: bold;
-  border-radius: 50%;
-}
-
-.community-calendar {
-  display: block;
-  margin-top: 1rem;
-}
-
-.calendar-wrapper {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
-  align-items: start;
-}
-
-/* Inputs y botones calendario */
-.birthday-form {
-  display: flex;
-  gap: 8px;
-  margin: 12px 0;
-  align-items: flex-end;
-}
-
-.birthday-form input {
+  flex-direction: column;
+  gap: 15px;
   padding: 10px;
-  border-radius: 8px;
-  border: 1px solid #ddd;
-  font-size: 14px;
-  flex: 1;
+  border-radius: var(--radius);
 }
 
-.birthday-form button {
-  padding: 10px 16px;
-  border: none;
-  border-radius: 8px;
-  background: #007bff;
-  color: white;
-  cursor: pointer;
-  transition: 0.2s;
-}
-.birthday-form button:hover {
-  background: #0056b3;
+.message {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius);
+  padding: 15px;
+  transition: var(--transition);
+  animation: fadeUp 0.5s ease;
 }
 
-/* Grid lista + calendario */
-.calendar-wrapper {
-  display: grid;
-  grid-template-columns: 1fr 1fr; /* lado a lado */
-  gap: 2rem;
-  align-items: start;
-  margin-top: 1rem;
+.message:hover {
+  background: rgba(255,255,255,0.1);
+  transform: translateY(-3px);
 }
 
-/* Navegación calendario */
-.calendar-nav {
+.message-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 8px;
+  color: var(--text-muted);
+  font-size: 13px;
+  margin-bottom: 5px;
 }
-.calendar-nav button {
+
+.message-header strong {
+  color: var(--text-light);
+  font-size: 15px;
+}
+
+.message-text {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.6;
+  color: var(--text-light);
+}
+
+.message-actions {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.message-form {
+  background: var(--glass-bg);
+  backdrop-filter: var(--blur);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius);
+  padding: 15px;
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+  transition: var(--transition);
+}
+
+.message-form:hover {
+  transform: translateY(-2px);
+}
+
+.message-form textarea {
+  flex: 1;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid var(--border-light);
+  color: var(--text-light);
+  border-radius: var(--radius);
+  padding: 12px;
+  resize: none;
+  outline: none;
+  font-size: 15px;
+  transition: var(--transition);
+}
+
+.message-form textarea:focus {
+  border-color: var(--accent);
+  background: rgba(255,255,255,0.12);
+}
+
+.message-form .send {
+  background: var(--accent);
   border: none;
-  background: #007bff;
   color: white;
-  border-radius: 6px;
-  padding: 4px 10px;
+  font-weight: 600;
+  border-radius: 50px;
+  padding: 10px 25px;
   cursor: pointer;
-}
-.calendar-nav button:hover {
-  background: #0056b3;
-}
-#month-label {
-  font-weight: bold;
-  font-size: 1rem;
+  transition: var(--transition);
 }
 
-/* Estilo tabla calendario */
-.calendar-table {
-  border-collapse: collapse;
-  width: 100%;
-  background: #fff;
-  border-radius: 6px;
-  overflow: hidden;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+.message-form .send:hover {
+  background: var(--accent-hover);
+  transform: scale(1.05);
 }
-.calendar-table th,
-.calendar-table td {
-  border: 1px solid #ddd;
+
+/* ====== CALENDARIO DE CUMPLEAÑOS ====== */
+.community-calendar {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.community-calendar h2 {
+  font-size: 28px;
+  font-weight: 700;
   text-align: center;
-  padding: 0.6rem;
-}
-.calendar-table th {
-  background: #007bff;
-  color: #fff;
-}
-.birthday-cell {
-  background: #ffeb3b;
-  font-weight: bold;
-  border-radius: 50%;
+  color: var(--accent);
 }
 
-/* Lista de cumpleaños scroll */
-.birthday-list {
-  max-height: 250px;
-  overflow-y: auto;
-  padding-right: 8px;
+.birthday-form {
+  background: var(--glass-bg);
+  backdrop-filter: var(--blur);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: 0 4px 25px rgba(0,0,0,0.3);
+  transition: var(--transition);
 }
 
-/* Botones editar/eliminar */
-.bday-actions {
-  display: inline-flex;
-  gap: 6px;
-  margin-left: 10px;
+.birthday-form:hover {
+  transform: translateY(-2px);
 }
-.bday-actions button {
-  background: transparent;
+
+.birthday-form .form-group {
+  margin-bottom: 15px;
+}
+
+.birthday-form input {
+  width: 100%;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid var(--border-light);
+  color: var(--text-light);
+  border-radius: var(--radius);
+  padding: 12px;
+  outline: none;
+  font-size: 15px;
+  transition: var(--transition);
+}
+
+.birthday-form input:focus {
+  border-color: var(--accent);
+  background: rgba(255,255,255,0.12);
+}
+
+.birthday-form .btn-primary {
+  display: inline-block;
+  background: var(--accent);
   border: none;
+  color: white;
+  font-weight: 600;
+  border-radius: 50px;
+  padding: 10px 25px;
   cursor: pointer;
-  font-size: 0.9rem;
+  transition: var(--transition);
 }
 
-/* Celda de cumpleaños resaltada */
+.birthday-form .btn-primary:hover {
+  background: var(--accent-hover);
+  transform: scale(1.05);
+}
+
+.calendar-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin: 10px 0;
+}
+
+.calendar-controls button {
+  background: var(--glass-bg);
+  border: 1px solid var(--border-light);
+  color: var(--text-light);
+  border-radius: var(--radius);
+  padding: 8px 15px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.calendar-controls button:hover {
+  background: var(--accent);
+  transform: scale(1.1);
+}
+
+.calendar-controls span {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-light);
+}
+
+.calendar-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--glass-bg);
+  backdrop-filter: var(--blur);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius);
+  box-shadow: 0 2px 15px rgba(0,0,0,0.4);
+}
+
+.calendar-table th, .calendar-table td {
+  text-align: center;
+  padding: 10px;
+  font-size: 14px;
+  color: var(--text-light);
+  border: 1px solid var(--border-light);
+}
+
+.calendar-table th {
+  background: rgba(255,255,255,0.1);
+  font-weight: 600;
+}
+
+.calendar-table td {
+  transition: var(--transition);
+}
+
+.calendar-table td:hover {
+  background: rgba(255,255,255,0.1);
+  transform: scale(1.05);
+}
+
 .birthday-cell {
-  background: #ffeb3b;
-  font-weight: bold;
-  border-radius: 50%;
-  color: #000;
+  background: var(--accent);
+  color: white;
+  font-weight: 600;
 }
 
-/* Responsivo */
-@media (max-width: 768px) {
-  .calendar-wrapper {
-    display: block;  /* stack en vertical */
-  }
-
-  #calendar {
-    margin-top: 1rem;
-  }
-
-  .birthday-list {
-   max-height: 200px;
-   overflow-y: auto;
-  }
+.birthday-cell:hover {
+  background: var(--accent-hover);
 }
 
 #birthday-list {
-  max-height: 300px;
-  overflow-y: auto;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 0.8rem;
-  background: #fff;
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
-#calendar {
-    width: 100%;
+
+.bday-item {
+  background: var(--glass-bg);
+  backdrop-filter: var(--blur);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius);
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: var(--transition);
+  animation: fadeUp 0.5s ease;
+}
+
+.bday-item:hover {
+  transform: translateY(-3px);
+  background: rgba(255,255,255,0.1);
+}
+
+.bday-info {
+  font-size: 15px;
+  color: var(--text-light);
+}
+
+.bday-info strong {
+  color: var(--accent);
+}
+
+.bday-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.bday-actions button {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 16px;
+  transition: var(--transition);
+}
+
+.bday-actions button:hover {
+  color: var(--accent);
+  transform: scale(1.2);
+}
+
+/* ====== REACCIONES (LIKES) ====== */
+.like-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.like-btn {
+  background: none;
+  border: none;
+  color: #222;
+  cursor: pointer;
+  font-size: 20px;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.like-btn:hover {
+  transform: scale(1.2);
+  color: var(--accent-hover);
+}
+
+.like-btn.active {
+  color: var(--accent);
+  animation: heartBeat 0.4s;
+}
+
+.like-count {
+  font-size: 15px;
+  color: #000;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.like-count.active {
+  color: var(--accent);
+}
+
+/* ====== ANIMACIONES ====== */
+@keyframes heartBeat {
+  0%, 100% { transform: scale(1); }
+  25% { transform: scale(1.3); }
+  50% { transform: scale(0.9); }
+  75% { transform: scale(1.1); }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
   }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ====== RESPONSIVE ====== */
+@media (max-width: 600px) {
+  .chat-content, .message, .birthday-form, .bday-item {
+    padding: 15px;
+  }
+  .message-text {
+    font-size: 14px;
+  }
+  .like-btn {
+    font-size: 18px;
+  }
+  .like-count {
+    font-size: 14px;
+  }
+  .calendar-table th, .calendar-table td {
+    padding: 8px;
+    font-size: 12px;
+  }
+  .bday-info {
+    font-size: 14px;
+  }
+}
+
+/* ====== REUTILIZADOS DE RECOMENDACIONES ====== */
+.recommendations, .recommend-form, .recommend-post, .post-header, .post-text, .post-actions, .comments-section, .comment, .comment-header, .comment-text, .comment-meta, .comment-form {
+  /* Mantener estilos existentes de recomendaciones.html */
+}
+
+
+
+
 
 
 
