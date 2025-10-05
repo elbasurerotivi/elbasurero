@@ -1276,7 +1276,7 @@ body {
 }
 
 .recommendations p {
-  color: var(--text-muted);
+  color: black;
   text-align: center;
 }
 
