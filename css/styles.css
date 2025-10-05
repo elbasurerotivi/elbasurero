@@ -1364,13 +1364,13 @@ body {
 }
 
 .post-header strong {
-  color: rgb(34, 34, 34);
+  color: rgba(83, 83, 83, 0.623);
   font-size: 15px;
 }
 
 /* Texto */
 .post-text {
-  color: var(--text-light);
+  color: #020202;
   margin: 12px 0;
   font-size: 15px;
   line-height: 1.5;
