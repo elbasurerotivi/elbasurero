@@ -651,7 +651,7 @@ footer h3 {
   margin: 0;
   font-size: 0.95rem;
   line-height: 1.5;
-  color: var(--text-muted);
+  color:#000000;
 }
 
 .video-card small {
