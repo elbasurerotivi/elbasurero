@@ -1008,7 +1008,7 @@ function renderVideos(category = currentCategory, searchQuery = "") {
     // Búsqueda global: filtrar por búsqueda en todos los videos
     const lowerQuery = searchQuery.toLowerCase();
     filtered = filtered.filter(video =>
-      video.titulo.toLowerCase().includes(lowerQuery)
+      video.titulo.toLowerCase().includes(lowerQuery) 
     );
   } else {
     // Sin búsqueda: filtrar por categoría
@@ -1051,10 +1051,11 @@ filterButtons.forEach(btn => {
     btn.classList.add("active");
     currentCategory = btn.dataset.category;
     renderVideos(currentCategory, searchInput.value);
-    // Cerrar el menú flotante al seleccionar una categoría
+    // Cerrar el menú flotante y quitar la clase active del botón toggle
     const dropdownMenu = document.querySelector(".dropdown-menu");
-    dropdownMenu.classList.remove("expanded");
     const toggleBtn = document.querySelector(".dropdown-toggle");
+    dropdownMenu.classList.remove("expanded");
+    toggleBtn.classList.remove("active");
     toggleBtn.textContent = `Categorías ▼`;
   });
 });
@@ -1071,6 +1072,7 @@ const dropdownMenu = document.querySelector(".dropdown-menu");
 if (toggleBtn && dropdownMenu) {
   toggleBtn.addEventListener("click", () => {
     dropdownMenu.classList.toggle("expanded");
+    toggleBtn.classList.toggle("active");
     toggleBtn.textContent = dropdownMenu.classList.contains("expanded") ? "Categorías ▲" : "Categorías ▼";
   });
 }
