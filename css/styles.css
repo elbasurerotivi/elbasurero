@@ -937,7 +937,7 @@ footer h3 {
 .message-form .send {
   background: var(--accent);
   border: none;
-  color: white;
+  color: rgb(27, 27, 27);
   font-weight: 600;
   border-radius: 50px;
   padding: 10px 25px;
