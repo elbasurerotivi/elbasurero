@@ -23,70 +23,68 @@
       <input type="text" id="video-search" placeholder="Buscar videos por título o descripción...">
     </div>
 
-    <!-- Contenedor de categorías retráctiles -->
-    <div class="categories-wrapper">
-      <button class="categories-toggle">Categorías ▼</button>
-      <div class="tabs-menu">
-        <div class="tabs">
-          <button class="tab-button active" data-category="latest">Últimos</button>
-          <button class="tab-button" data-category="Peliculas">Películas</button>
-          <button class="tab-button" data-category="Series">Series</button>
-          <button class="tab-button" data-category="Directos">Directos</button>
-          <button class="tab-button" data-category="Cultura">Cultura</button>
-          <button class="tab-button" data-category="Humor">Humor</button>
-          <button class="tab-button" data-category="Drama">Drama</button>
-          <button class="tab-button" data-category="Terror">Terror</button>
-          <button class="tab-button" data-category="Música">Música</button>
-          <button class="tab-button" data-category="Documental">Documental</button>
-          <button class="tab-button" data-category="Historia">Historia</button>
-          <button class="tab-button" data-category="Especiales">Especiales</button>
-          <button class="tab-button" data-category="Just Chatting">Just Chatting</button>
-          <button class="tab-button" data-category="Suspenso">Suspenso</button>
-          <button class="tab-button" data-category="Biopic">Biopic</button>
-          <button class="tab-button" data-category="Concierto">Concierto</button>
-        </div>
+    <!-- Menú flotante de categorías -->
+    <div class="dropdown-wrapper">
+      <button class="dropdown-toggle">Categorías ▼</button>
+      <div class="dropdown-menu">
+        <button class="dropdown-item active" data-category="latest">Últimos</button>
+        <button class="dropdown-item" data-category="Peliculas">Películas</button>
+        <button class="dropdown-item" data-category="Series">Series</button>
+        <button class="dropdown-item" data-category="Directos">Directos</button>
+        <button class="dropdown-item" data-category="Cultura">Cultura</button>
+        <button class="dropdown-item" data-category="Humor">Humor</button>
+        <button class="dropdown-item" data-category="Drama">Drama</button>
+        <button class="dropdown-item" data-category="Terror">Terror</button>
+        <button class="dropdown-item" data-category="Música">Música</button>
+        <button class="dropdown-item" data-category="Documental">Documental</button>
+        <button class="dropdown-item" data-category="Historia">Historia</button>
+        <button class="dropdown-item" data-category="Especiales">Especiales</button>
+        <button class="dropdown-item" data-category="Just Chatting">Just Chatting</button>
+        <button class="dropdown-item" data-category="Suspenso">Suspenso</button>
+        <button class="dropdown-item" data-category="Biopic">Biopic</button>
+        <button class="dropdown-item" data-category="Concierto">Concierto</button>
       </div>
     </div>
 
-<div id="video-grid" class="video-grid"></div>
-</main>
+    <div id="video-grid" class="video-grid"></div>
+  </main>
 
-<footer>
+  <footer>
     <p>&copy; 2025 El Basurero. Todos los derechos reservados.</p>
     <h3>Sígueme en mis redes</h3>
-  <div class="social-links">
-    <a href="https://www.twitch.tv/elbasurerochido" target="_blank">
-      <img src="Imagenes/twitch_logo.png" alt="Twitch"> Twitch
-    </a>
-    <a href="https://www.youtube.com/@elbasureroedgar" target="_blank">
-      <img src="Imagenes/youtube_logo.png" alt="YouTube"> YouTube
-    </a>
-    <a href="https://discord.gg/TgAkT7PFt5" target="_blank">
-      <img src="Imagenes/discord_logo.png" alt="Discord"> Discord
-    </a>
-    <a href="https://www.instagram.com/el_basurero_tiviplas" target="_blank">
-      <img src="Imagenes/instagram_logo.png" alt="Instagram"> Instagram
-    </a>
-    <a href="https://www.facebook.com/el.basurero.ti.vi.plas" target="_blank">
-      <img src="Imagenes/facebook_logo.png" alt="Facebook"> Facebook
-    </a>
-    <a href="https://www.patreon.com/cw/ElBasureroTi_Vi_Plas" target="_blank">
-      <img src="Imagenes/patreon_logo.png" alt="Patreon"> Patreon
-    </a>
-  </div>
-</footer>
+    <div class="social-links">
+      <a href="https://www.twitch.tv/elbasurerochido" target="_blank">
+        <img src="Imagenes/twitch_logo.png" alt="Twitch"> Twitch
+      </a>
+      <a href="https://www.youtube.com/@elbasureroedgar" target="_blank">
+        <img src="Imagenes/youtube_logo.png" alt="YouTube"> YouTube
+      </a>
+      <a href="https://discord.gg/TgAkT7PFt5" target="_blank">
+        <img src="Imagenes/discord_logo.png" alt="Discord"> Discord
+      </a>
+      <a href="https://www.instagram.com/el_basurero_tiviplas" target="_blank">
+        <img src="Imagenes/instagram_logo.png" alt="Instagram"> Instagram
+      </a>
+      <a href="https://www.facebook.com/el.basurero.ti.vi.plas" target="_blank">
+        <img src="Imagenes/facebook_logo.png" alt="Facebook"> Facebook
+      </a>
+      <a href="https://www.patreon.com/cw/ElBasureroTi_Vi_Plas" target="_blank">
+        <img src="Imagenes/patreon_logo.png" alt="Patreon"> Patreon
+      </a>
+    </div>
+  </footer>
 
   <script src="js/videos.js"></script>
   <script src="js/scripts.js"></script>
   <script>
-  fetch("header.html")
-    .then(response => response.text())
-    .then(data => {
-      document.getElementById("header").innerHTML = data;
-    })
-    .catch(error => console.error("Error cargando el header:", error));
-</script>
-<script type="module" src="js/login.js" defer></script>
-<script type="module" src="js/community.js" defer></script>
+    fetch("header.html")
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById("header").innerHTML = data;
+      })
+      .catch(error => console.error("Error cargando el header:", error));
+  </script>
+  <script type="module" src="js/login.js" defer></script>
+  <script type="module" src="js/community.js" defer></script>
 </body>
 </html>

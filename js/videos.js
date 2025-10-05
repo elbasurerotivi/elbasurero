@@ -990,7 +990,7 @@ const videosData = [
 
 
 const videoGrid = document.getElementById("video-grid");
-const filterButtons = document.querySelectorAll(".tab-button");
+const filterButtons = document.querySelectorAll(".dropdown-item");
 const searchInput = document.getElementById("video-search");
 let currentCategory = "latest";
 
@@ -1047,17 +1047,15 @@ function renderVideos(category = currentCategory, searchQuery = "") {
 // Botones de filtro
 filterButtons.forEach(btn => {
   btn.addEventListener("click", () => {
-    document.querySelector(".tab-button.active").classList.remove("active");
+    document.querySelector(".dropdown-item.active").classList.remove("active");
     btn.classList.add("active");
     currentCategory = btn.dataset.category;
     renderVideos(currentCategory, searchInput.value);
-    // Cerrar el menú retráctil en móviles al seleccionar una categoría
-    if (window.innerWidth <= 768) {
-      const tabsMenu = document.querySelector(".tabs-menu");
-      tabsMenu.classList.remove("expanded");
-      const toggleBtn = document.querySelector(".categories-toggle");
-      toggleBtn.textContent = "Categorías ▼";
-    }
+    // Cerrar el menú flotante al seleccionar una categoría
+    const dropdownMenu = document.querySelector(".dropdown-menu");
+    dropdownMenu.classList.remove("expanded");
+    const toggleBtn = document.querySelector(".dropdown-toggle");
+    toggleBtn.textContent = `Categorías ▼`;
   });
 });
 
@@ -1066,14 +1064,14 @@ searchInput.addEventListener("input", () => {
   renderVideos(currentCategory, searchInput.value);
 });
 
-// Toggle para el menú retráctil de categorías
-const toggleBtn = document.querySelector(".categories-toggle");
-const tabsMenu = document.querySelector(".tabs-menu");
+// Toggle para el menú flotante
+const toggleBtn = document.querySelector(".dropdown-toggle");
+const dropdownMenu = document.querySelector(".dropdown-menu");
 
-if (toggleBtn && tabsMenu) {
+if (toggleBtn && dropdownMenu) {
   toggleBtn.addEventListener("click", () => {
-    tabsMenu.classList.toggle("expanded");
-    toggleBtn.textContent = tabsMenu.classList.contains("expanded") ? "Categorías ▲" : "Categorías ▼";
+    dropdownMenu.classList.toggle("expanded");
+    toggleBtn.textContent = dropdownMenu.classList.contains("expanded") ? "Categorías ▲" : "Categorías ▼";
   });
 }
 

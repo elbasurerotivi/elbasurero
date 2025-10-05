@@ -594,14 +594,14 @@ footer h3 {
   color: var(--text-muted);
 }
 
-/* ====== CATEGORÍAS RETRÁCTILES ====== */
-.categories-wrapper {
+/* ====== MENÚ FLOTANTE DE CATEGORÍAS ====== */
+.dropdown-wrapper {
   position: relative;
   margin: 20px 0;
+  display: inline-block;
 }
 
-.categories-toggle {
-  display: none; /* Oculto en desktop */
+.dropdown-toggle {
   background: var(--glass-bg);
   backdrop-filter: var(--blur);
   border: 1px solid var(--border-light);
@@ -611,45 +611,58 @@ footer h3 {
   cursor: pointer;
   font-size: 16px;
   font-weight: 600;
+  transition: var(--transition);
+}
+
+.dropdown-toggle:hover {
+  background: var(--accent-hover);
+  transform: scale(1.05);
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: var(--glass-bg);
+  backdrop-filter: var(--blur);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius);
+  padding: 10px;
+  box-shadow: 0 4px 25px rgba(0,0,0,0.3);
+  z-index: 10;
+  min-width: 200px;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.dropdown-menu.expanded {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.dropdown-item {
+  background: transparent;
+  border: none;
+  color: var(--text-light);
+  padding: 10px 15px;
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 600;
   width: 100%;
   text-align: left;
   transition: var(--transition);
 }
 
-.categories-toggle:hover {
-  background: var(--accent-hover);
-}
-
-.tabs-menu {
-  display: block;
-}
-
-.tabs {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px;
-}
-
-.tab-button {
-  background: var(--glass-bg);
-  backdrop-filter: var(--blur);
-  border: 1px solid var(--border-light);
-  color: var(--text-light);
-  padding: 12px 20px;
-  border-radius: var(--radius);
-  cursor: pointer;
-  font-size: 15px;
-  font-weight: 600;
-  transition: var(--transition);
-}
-
-.tab-button:hover {
+.dropdown-item:hover {
   background: var(--accent-hover);
   transform: scale(1.05);
 }
 
-.tab-button.active {
+.dropdown-item.active {
   background: var(--accent);
   color: white;
 }
@@ -729,6 +742,7 @@ footer h3 {
 .video-card a:hover h3 {
   color: var(--accent-hover);
 }
+
 
 
 
