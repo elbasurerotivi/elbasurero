@@ -798,9 +798,9 @@ footer h3 {
 :root {
   --accent: #ff3366;
   --accent-hover: #ff6699;
-  --text-light: #f2f2f2;
-  --text-muted: #aaaaaa;
-  --bg-dark: rgba(20, 20, 20, 0.75);
+  --text-light: #272727;
+  --text-muted: #4d4d4d;
+  --bg-dark: rgba(8, 8, 8, 0.75);
   --glass-bg: rgba(255, 255, 255, 0.08);
   --border-light: rgba(255, 255, 255, 0.15);
   --blur: blur(20px);
