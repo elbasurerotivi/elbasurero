@@ -514,129 +514,86 @@ footer h3 {
 
 
 
-/* pagina videos.html
+/* pagina videos.html */
 
-/* ===== PAGINA VIDEOS ===== */
+:root {
+  --accent: #ff3366;
+  --accent-hover: #ff6699;
+  --text-light: #000000;
+  --text-muted: #4d4d4d;
+  --bg-dark: rgba(20, 20, 20, 0.75);
+  --glass-bg: rgba(255, 255, 255, 0.08);
+  --border-light: rgba(255, 255, 255, 0.15);
+  --blur: blur(20px);
+  --radius: 14px;
+  --transition: 0.3s ease;
+}
+
+/* ====== CONTENEDOR GENERAL ====== */
+.container {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 0 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  font-family: 'Roboto', sans-serif;
+  color: var(--text-light);
+}
+
+/* ====== PAGINA VIDEOS ====== */
 .videos-page {
   max-width: 1200px;
-  margin: 0px auto;
-  padding: 5px;
+  margin: 40px auto;
+  padding: 0 15px;
   text-align: center;
+  color: var(--text-light);
 }
-.videos-page h1{
-  font-size: 2.5rem;
-  margin-top: 0%;
-  margin-bottom: 0px;
-  color: #000000;
+
+.videos-page h1 {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 20px;
 }
+
+.videos-page p {
+  font-size: 18px;
+  color: var(--text-muted);
+  margin-bottom: 20px;
+}
+
 .tabs {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 10px;
-  margin: 20px 0 20px;
+  margin: 20px 0;
 }
 
 .tab-button {
-  background: #222;
-  color: #fff;
-  border: none;
+  background: var(--glass-bg);
+  backdrop-filter: var(--blur);
+  border: 1px solid var(--border-light);
+  color: var(--text-light);
   padding: 12px 20px;
-  border-radius: 8px;
+  border-radius: var(--radius);
   cursor: pointer;
-  font-size: 1rem;
-  transition: all 0.3s ease;
+  font-size: 15px;
+  font-weight: 600;
+  transition: var(--transition);
 }
 
 .tab-button:hover {
-  background: #00acee;
+  background: var(--accent-hover);
+  transform: scale(1.05);
 }
 
 .tab-button.active {
-  background: #00acee;
+  background: var(--accent);
+  color: white;
 }
 
-.tab-content {
-  display: none;
-}
-
-.tab-content.active {
-  display: block;
-}
-
-.video-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 10px;
-}
-
-.video-card {
-  background: #dddddd00;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.091);
-  transition: transform 0.3s ease;
-}
-
-.video-card:hover {
-  transform: translateY(-5px);
-}
-
-.video-card img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-}
-
-.video-card h3 {
-  margin: 15px;
-  font-size: 1.7rem;
-  color: #000000;
-  text-decoration: none;
-}
-
-.video-card p {
-  margin: 15px;
-  font-size: 1.1rem;
-  color: #000000;
-  text-decoration: none;
-}
-.video-card small {
-  margin: 15px;
-  margin-bottom: 5px;
-  font-size: 1.1rem;
-  color: #000000;
-  text-decoration: none;
-}
-/* Quitar color azul y subrayado en los links de las tarjetas */
-.video-card a {
-  text-decoration: none;   /* quita subrayado */
-  color: inherit;          /* hereda el color del texto padre */
-  display: block;          /* hace que el link ocupe toda la tarjeta */
-}
-
-.video-card a:hover h3 {
-  color: #00acee;          /* opcional: cambia solo el título al pasar el mouse */
-}
-
-/* Quitar highlight de logo y menú */
-.logo a,
-.menu-toggle {
-  outline: none;
-  -webkit-tap-highlight-color: transparent; /* en móviles */
-}
-
-.logo a:focus,
-.menu-toggle:focus {
-  outline: none;
-}
-
-.logo a:active,
-.menu-toggle:active {
-  outline: none;
-}
-
-/* --- Video Cards --- */
 .video-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -644,46 +601,670 @@ footer h3 {
 }
 
 .video-card {
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  background: #fff;
-  padding: 12px;
+  background: var(--glass-bg);
+  backdrop-filter: var(--blur);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius);
+  padding: 15px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  height: 420px; /* 👈 altura fija */
+  gap: 10px;
+  height: 420px;
   overflow: hidden;
+  box-shadow: 0 2px 15px rgba(0,0,0,0.4);
+  transition: var(--transition);
+  animation: fadeUp 0.5s ease;
+}
+
+.video-card:hover {
+  transform: translateY(-5px);
+  background: rgba(255,255,255,0.1);
 }
 
 .video-card img {
   width: 100%;
-  height: 160px; /* 👈 todas las miniaturas iguales */
+  height: 160px;
   object-fit: cover;
-  border-radius: 6px;
+  border-radius: var(--radius);
+  transition: var(--transition);
+}
+
+.video-card img:hover {
+  transform: scale(1.05);
 }
 
 .video-card h3 {
-  font-size: 1rem;
+  font-size: 1.2rem;
   margin: 0;
   font-weight: 700;
-  line-height: 1.3;
+  line-height: 1.4;
+  color: var(--text-light);
 }
 
 .video-card .video-desc {
   flex: 1;
-  overflow-y: auto; /* 👈 scroll vertical solo en el texto */
-  padding-right: 6px; /* espacio para el scroll */
+  overflow-y: auto;
+  padding-right: 6px;
 }
 
 .video-card .video-desc p {
   margin: 0;
-  font-size: 0.9rem;
-  line-height: 1.4;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--text-muted);
 }
 
 .video-card small {
-  font-size: 0.8rem;
-  color: #666;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  text-align: right;
+}
+
+.video-card a {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.video-card a:hover h3 {
+  color: var(--accent-hover);
+}
+
+/* ====== MODAL DE LOGIN ====== */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: var(--blur);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease;
+}
+
+.modal-content {
+  background: var(--glass-bg);
+  backdrop-filter: var(--blur);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius);
+  padding: 20px;
+  max-width: 400px;
+  width: 90%;
+  box-shadow: 0 4px 25px rgba(0,0,0,0.3);
+  animation: fadeUp 0.5s ease;
+}
+
+.modal-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--accent);
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group input {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid var(--border-light);
+  color: var(--text-light);
+  border-radius: var(--radius);
+  padding: 12px;
+  outline: none;
+  font-size: 15px;
+  transition: var(--transition);
+}
+
+.form-group input::placeholder {
+  color: var(--text-muted);
+}
+
+.form-group input:focus {
+  border-color: var(--accent);
+  background: rgba(255,255,255,0.12);
+}
+
+.btn {
+  padding: 10px;
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 700;
+  transition: var(--transition);
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: white;
+}
+
+.btn-primary:hover {
+  background: var(--accent-hover);
+  transform: scale(1.05);
+}
+
+.btn-close {
+  background: var(--text-muted);
+  color: white;
+  margin-top: 10px;
+  width: 100%;
+}
+
+.btn-close:hover {
+  background: var(--accent);
+  transform: scale(1.05);
+}
+
+.btn-google, .btn-facebook {
+  background: var(--glass-bg);
+  border: 1px solid var(--border-light);
+  color: var(--text-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.btn-google:hover, .btn-facebook:hover {
+  background: var(--accent);
+  transform: scale(1.05);
+}
+
+.social-login {
+  margin: 20px 0;
+  text-align: center;
+}
+
+.social-login p {
+  color: var(--text-muted);
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.social-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.switch {
+  color: var(--accent);
+  cursor: pointer;
+  font-size: 14px;
+  margin-top: 15px;
+  transition: var(--transition);
+}
+
+.switch:hover {
+  color: var(--accent-hover);
+  text-decoration: underline;
+}
+
+/* ====== BOTONES DE AUTENTICACIÓN (HEADER) ====== */
+.auth-buttons {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.btn-login, .btn-logout {
+  background: var(--glass-bg);
+  border: 1px solid var(--border-light);
+  color: var(--text-light);
+  padding: 8px 16px;
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 700;
+  transition: var(--transition);
+}
+
+.btn-login:hover, .btn-logout:hover {
+  background: var(--accent);
+  transform: scale(1.05);
+}
+
+/* ====== CHAT ====== */
+.chat-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.chat-wrap h2 {
+  font-size: 28px;
+  font-weight: 700;
+  text-align: center;
+  color: var(--accent);
+}
+
+.chat-content {
+  background: var(--glass-bg);
+  backdrop-filter: var(--blur);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: 0 4px 25px rgba(0,0,0,0.3);
+  transition: var(--transition);
+}
+
+.chat-content:hover {
+  transform: translateY(-2px);
+}
+
+.messages {
+  max-height: 400px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 10px;
+  border-radius: var(--radius);
+}
+
+.message {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius);
+  padding: 15px;
+  transition: var(--transition);
+  animation: fadeUp 0.5s ease;
+}
+
+.message:hover {
+  background: rgba(255,255,255,0.1);
+  transform: translateY(-3px);
+}
+
+.message-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--text-muted);
+  font-size: 13px;
+  margin-bottom: 5px;
+}
+
+.message-header strong {
+  color: var(--text-light);
+  font-size: 15px;
+}
+
+.message-text {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.6;
+  color: var(--text-light);
+}
+
+.message-actions {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.message-form {
+  background: var(--glass-bg);
+  backdrop-filter: var(--blur);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius);
+  padding: 15px;
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+  transition: var(--transition);
+}
+
+.message-form:hover {
+  transform: translateY(-2px);
+}
+
+.message-form textarea {
+  flex: 1;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid var(--border-light);
+  color: var(--text-light);
+  border-radius: var(--radius);
+  padding: 12px;
+  resize: none;
+  outline: none;
+  font-size: 15px;
+  transition: var(--transition);
+}
+
+.message-form textarea:focus {
+  border-color: var(--accent);
+  background: rgba(255,255,255,0.12);
+}
+
+.message-form .send {
+  background: var(--accent);
+  border: none;
+  color: white;
+  font-weight: 600;
+  border-radius: 50px;
+  padding: 10px 25px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.message-form .send:hover {
+  background: var(--accent-hover);
+  transform: scale(1.05);
+}
+
+/* ====== CALENDARIO DE CUMPLEAÑOS ====== */
+.community-calendar {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.community-calendar h2 {
+  font-size: 28px;
+  font-weight: 700;
+  text-align: center;
+  color: var(--accent);
+}
+
+.birthday-form {
+  background: var(--glass-bg);
+  backdrop-filter: var(--blur);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: 0 4px 25px rgba(0,0,0,0.3);
+  transition: var(--transition);
+}
+
+.birthday-form:hover {
+  transform: translateY(-2px);
+}
+
+.birthday-form .form-group {
+  margin-bottom: 15px;
+}
+
+.birthday-form input {
+  width: 100%;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid var(--border-light);
+  color: var(--text-light);
+  border-radius: var(--radius);
+  padding: 12px;
+  outline: none;
+  font-size: 15px;
+  transition: var(--transition);
+}
+
+.birthday-form input:focus {
+  border-color: var(--accent);
+  background: rgba(255,255,255,0.12);
+}
+
+.birthday-form .btn-primary {
+  display: inline-block;
+  background: var(--accent);
+  border: none;
+  color: white;
+  font-weight: 600;
+  border-radius: 50px;
+  padding: 10px 25px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.birthday-form .btn-primary:hover {
+  background: var(--accent-hover);
+  transform: scale(1.05);
+}
+
+.calendar-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin: 10px 0;
+}
+
+.calendar-controls button {
+  background: var(--glass-bg);
+  border: 1px solid var(--border-light);
+  color: var(--text-light);
+  border-radius: var(--radius);
+  padding: 8px 15px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.calendar-controls button:hover {
+  background: var(--accent);
+  transform: scale(1.1);
+}
+
+.calendar-controls span {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-light);
+}
+
+.calendar-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--glass-bg);
+  backdrop-filter: var(--blur);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius);
+  box-shadow: 0 2px 15px rgba(0,0,0,0.4);
+}
+
+.calendar-table th, .calendar-table td {
+  text-align: center;
+  padding: 10px;
+  font-size: 14px;
+  color: var(--text-light);
+  border: 1px solid var(--border-light);
+}
+
+.calendar-table th {
+  background: rgba(255,255,255,0.1);
+  font-weight: 600;
+}
+
+.calendar-table td {
+  transition: var(--transition);
+}
+
+.calendar-table td:hover {
+  background: rgba(255,255,255,0.1);
+  transform: scale(1.05);
+}
+
+.birthday-cell {
+  background: var(--accent);
+  color: white;
+  font-weight: 600;
+}
+
+.birthday-cell:hover {
+  background: var(--accent-hover);
+}
+
+#birthday-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.bday-item {
+  background: var(--glass-bg);
+  backdrop-filter: var(--blur);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius);
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: var(--transition);
+  animation: fadeUp 0.5s ease;
+}
+
+.bday-item:hover {
+  transform: translateY(-3px);
+  background: rgba(255,255,255,0.1);
+}
+
+.bday-info {
+  font-size: 15px;
+  color: var(--text-light);
+}
+
+.bday-info strong {
+  color: var(--accent);
+}
+
+.bday-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.bday-actions button {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 16px;
+  transition: var(--transition);
+}
+
+.bday-actions button:hover {
+  color: var(--accent);
+  transform: scale(1.2);
+}
+
+/* ====== REACCIONES (LIKES) ====== */
+.like-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.like-btn {
+  background: none;
+  border: none;
+  color: #222;
+  cursor: pointer;
+  font-size: 20px;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.like-btn:hover {
+  transform: scale(1.2);
+  color: var(--accent-hover);
+}
+
+.like-btn.active {
+  color: var(--accent);
+  animation: heartBeat 0.4s;
+}
+
+.like-count {
+  font-size: 15px;
+  color: #000;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.like-count.active {
+  color: var(--accent);
+}
+
+/* ====== ANIMACIONES ====== */
+@keyframes heartBeat {
+  0%, 100% { transform: scale(1); }
+  25% { transform: scale(1.3); }
+  50% { transform: scale(0.9); }
+  75% { transform: scale(1.1); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ====== RESPONSIVE ====== */
+@media (max-width: 600px) {
+  .videos-page {
+    padding: 0 10px;
+  }
+
+  .tabs {
+    gap: 8px;
+  }
+
+  .tab-button {
+    padding: 10px 15px;
+    font-size: 14px;
+  }
+
+  .video-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .video-card {
+    height: auto;
+    padding: 10px;
+  }
+
+  .video-card img {
+    height: 150px;
+  }
+
+  .video-card h3 {
+    font-size: 1.1rem;
+  }
+
+  .video-card .video-desc p {
+    font-size: 0.85rem;
+  }
+
+  .video-card small {
+    font-size: 0.75rem;
+  }
+}
+
+/* ====== REUTILIZADOS DE RECOMENDACIONES ====== */
+.recommendations, .recommend-form, .recommend-post, .post-header, .post-text, .post-actions, .comments-section, .comment, .comment-header, .comment-text, .comment-meta, .comment-form {
+  /* Mantener estilos existentes de recomendaciones.html */
 }
 
 
