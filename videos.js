@@ -940,7 +940,7 @@ const videosData = [
   {
   titulo: 'Reacción a Mariano Rodríguez | Wickerman 🔥 (Lunes de Mariano en miércoles 😂)',
   descripcion: '¡Regresamos con otra entrega de mi sección “Lunes de Mariano”… que casi nunca sale en lunes! 😂 Esta vez llega en miércoles, pero la tradición se mantiene: una reacción llena de risas al reciente video de Mariano Rodríguez criticando la película Wickerman.\n\nEl estilo de Mariano es simplemente inigualable: humor ácido, guiones perfectos y esa manera de convertir cualquier película en una obra cómica. Yo me la pasé atacado de risa durante toda la reacción, y sé que ustedes también van a disfrutarlo muchísimo.\n\n👉 En este video, además de compartir la genialidad de Mariano, charlamos sobre la película Wickerman y por qué sigue siendo material perfecto para una crítica divertida.\n👉 Y sí, lo sé, esta sección casi nunca sale en lunes… pero la comunidad ya adoptó el chiste, así que “Lunes de Mariano” puede caer en cualquier día de la semana. 😂',
-  fecha: '2025-10-10',
+  fecha: '2025-09-10',
   link: 'https://www.youtube.com/watch?v=1xmuOHQVYLk&t=69s',
   miniatura: 'https://img.youtube.com/vi/1xmuOHQVYLk/maxresdefault.jpg',
   tags: [
