@@ -46,9 +46,13 @@ onValue(recommendationsRef, (snapshot) => {
     return lb - la || b.timestamp - a.timestamp;
   });
 
-  recList.innerHTML = posts.length
-    ? posts.map(renderPost).join("")
-    : "<p>No hay recomendaciones todavía. ¡Sé el primero en publicar!</p>";
+  // ✅ restauramos renderizado DOM manual
+  recList.innerHTML = "";
+  if (posts.length === 0) {
+    recList.innerHTML = "<p>No hay recomendaciones todavía. ¡Sé el primero en publicar!</p>";
+  } else {
+    posts.forEach(renderPost);
+  }
 });
 
 function renderPost(post) {
@@ -83,6 +87,7 @@ function renderPost(post) {
     </div>
   `;
 
+  // --- Likes principales ---
   const likeBtn = wrapper.querySelector(".like-btn");
   const likeCount = wrapper.querySelector(".like-count");
   likeBtn.addEventListener("click", () => {
@@ -103,6 +108,7 @@ function renderPost(post) {
     });
   });
 
+  // --- Comentarios toggle ---
   const toggleBtn = wrapper.querySelector(".toggle-comments");
   const commentsSection = wrapper.querySelector(".comments-section");
   toggleBtn.addEventListener("click", () => {
@@ -110,7 +116,7 @@ function renderPost(post) {
       commentsSection.style.display === "none" ? "block" : "none";
   });
 
-  // Render comentarios
+  // --- Renderizar comentarios ---
   const commentsList = wrapper.querySelector(".comments-list");
   renderComments(post, commentsList);
 
@@ -129,7 +135,6 @@ function renderPost(post) {
   });
 
   recList.appendChild(wrapper);
-  return wrapper.outerHTML;
 }
 
 function renderComments(post, container) {
@@ -159,10 +164,7 @@ function renderComments(post, container) {
       likeBtn.addEventListener("click", () => {
         accionProtegida(() => {
           const uid = auth.currentUser ? auth.currentUser.uid : userId;
-          const likeRef = ref(
-            db,
-            `recommendations/${post.id}/comments/${id}/likes/${uid}`
-          );
+          const likeRef = ref(db, `recommendations/${post.id}/comments/${id}/likes/${uid}`);
           get(likeRef).then((snap) => {
             if (snap.exists()) {
               remove(likeRef);
