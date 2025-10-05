@@ -1359,7 +1359,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: black;
+  color: var(--text-muted);
   font-size: 13px;
 }
 
@@ -1375,6 +1375,7 @@ body {
   font-size: 15px;
   line-height: 1.5;
 }
+
 
 /* Botones de acción */
 .post-actions {
