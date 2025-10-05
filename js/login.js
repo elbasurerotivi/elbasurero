@@ -68,6 +68,14 @@ window.accionProtegida = function(callback) {
 };
 
 // -----------------------------
+// 🔹 Validación de email
+// -----------------------------
+function isValidEmail(email) {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+}
+
+// -----------------------------
 // 🔹 Login / Registro con email y contraseña
 // -----------------------------
 document.getElementById("actionBtn")?.addEventListener("click", () => {
@@ -79,8 +87,19 @@ document.getElementById("actionBtn")?.addEventListener("click", () => {
     alert("Por favor, completa todos los campos requeridos.");
     return;
   }
+
+  if (!isValidEmail(email)) {
+    alert("Por favor, ingresa un correo electrónico válido.");
+    return;
+  }
+
   if (!isLogin && pass.length < 6) {
     alert("La contraseña debe tener al menos 6 caracteres.");
+    return;
+  }
+
+  if (!isLogin && !username) {
+    alert("Por favor, ingresa un nombre de usuario.");
     return;
   }
 
@@ -91,12 +110,25 @@ document.getElementById("actionBtn")?.addEventListener("click", () => {
         console.log("Inicio de sesión exitoso:", userCredential.user.email);
         alert(`Bienvenido, ${userCredential.user.email}!`);
         cerrarLogin();
-        // Recargar para actualizar la vista con datos del usuario
-        location.reload();
+        // No recargar, confiar en onAuthStateChanged para actualizar UI
       })
       .catch(error => {
         console.error("Error al iniciar sesión:", error);
-        alert(`Error al iniciar sesión: ${error.message}`);
+        let errorMessage = "Error al iniciar sesión.";
+        switch (error.code) {
+          case "auth/user-not-found":
+            errorMessage = "Usuario no encontrado. Verifica tu correo.";
+            break;
+          case "auth/wrong-password":
+            errorMessage = "Contraseña incorrecta.";
+            break;
+          case "auth/too-many-requests":
+            errorMessage = "Demasiados intentos. Intenta de nuevo más tarde.";
+            break;
+          default:
+            errorMessage = error.message;
+        }
+        alert(errorMessage);
       });
 
   } else {
@@ -106,25 +138,32 @@ document.getElementById("actionBtn")?.addEventListener("click", () => {
         const user = userCredential.user;
         console.log("Registro exitoso:", user.email);
         const userRef = ref(db, `users/${user.uid}`);
-        set(userRef, {
+        return set(userRef, {
           email: user.email,
-          username: username || "Anónimo",
+          username: username,
           createdAt: Date.now()
         })
         .then(() => {
           console.log("Datos del usuario guardados en la base de datos");
           alert(`Usuario registrado: ${user.email}`);
           cerrarLogin();
-          location.reload();
-        })
-        .catch(error => {
-          console.error("Error al guardar datos del usuario:", error);
-          alert(`Error al guardar datos del usuario: ${error.message}`);
+          // No recargar, confiar en onAuthStateChanged
         });
       })
       .catch(error => {
         console.error("Error al registrarse:", error);
-        alert(`Error al registrarse: ${error.message}`);
+        let errorMessage = "Error al registrarse.";
+        switch (error.code) {
+          case "auth/email-already-in-use":
+            errorMessage = "El correo ya está registrado.";
+            break;
+          case "auth/invalid-email":
+            errorMessage = "Correo electrónico inválido.";
+            break;
+          default:
+            errorMessage = error.message;
+        }
+        alert(errorMessage);
       });
   }
 });
@@ -140,7 +179,7 @@ window.loginGoogle = function() {
       const user = result.user;
       console.log("Autenticación con Google exitosa:", user.email);
       const userRef = ref(db, `users/${user.uid}`);
-      set(userRef, {
+      return set(userRef, {
         email: user.email,
         username: user.displayName || "Anónimo",
         createdAt: Date.now()
@@ -149,11 +188,6 @@ window.loginGoogle = function() {
         console.log("Datos del usuario guardados en la base de datos");
         alert(`Bienvenido, ${user.displayName || user.email}!`);
         cerrarLogin();
-        location.reload();
-      })
-      .catch(error => {
-        console.error("Error al guardar datos del usuario:", error);
-        alert(`Error al guardar datos del usuario: ${error.message}`);
       });
     })
     .catch(error => {
@@ -173,7 +207,7 @@ window.loginFacebook = function() {
       const user = result.user;
       console.log("Autenticación con Facebook exitosa:", user.email);
       const userRef = ref(db, `users/${user.uid}`);
-      set(userRef, {
+      return set(userRef, {
         email: user.email,
         username: user.displayName || "Anónimo",
         createdAt: Date.now()
@@ -182,11 +216,6 @@ window.loginFacebook = function() {
         console.log("Datos del usuario guardados en la base de datos");
         alert(`Bienvenido, ${user.displayName || user.email}!`);
         cerrarLogin();
-        location.reload();
-      })
-      .catch(error => {
-        console.error("Error al guardar datos del usuario:", error);
-        alert(`Error al guardar datos del usuario: ${error.message}`);
       });
     })
     .catch(error => {
@@ -203,7 +232,6 @@ window.logout = function() {
     .then(() => {
       console.log("Sesión cerrada exitosamente.");
       alert("Sesión cerrada exitosamente.");
-      location.reload();
     })
     .catch(error => {
       console.error("Error al cerrar sesión:", error);
@@ -244,10 +272,18 @@ window.initAuthButtons = function() {
       console.log("Usuario conectado:", user.email, "UID:", user.uid);
       if (loginContainer) loginContainer.style.display = "none";
       if (logoutContainer) logoutContainer.style.display = "block";
+      // Actualizar userId para consistencia con recommendations.js y community.js
+      localStorage.setItem("userId", user.uid);
     } else {
       console.log("No hay usuario conectado");
       if (loginContainer) loginContainer.style.display = "block";
       if (logoutContainer) logoutContainer.style.display = "none";
+      // Generar nuevo userId para usuarios no autenticados
+      let userId = localStorage.getItem("userId");
+      if (!userId) {
+        userId = "user_" + Math.random().toString(36).substring(2, 9);
+        localStorage.setItem("userId", userId);
+      }
     }
   });
 };
