@@ -529,6 +529,15 @@ footer h3 {
   --transition: 0.3s ease;
 }
 
+
+
+
+
+
+
+
+
+
 /* ====== CONTENEDOR GENERAL ====== */
 .container {
   max-width: 900px;
@@ -561,6 +570,32 @@ footer h3 {
   font-size: 18px;
   color: var(--text-muted);
   margin-bottom: 20px;
+}
+
+.search-bar {
+  margin-bottom: 20px;
+}
+
+#video-search {
+  width: 100%;
+  max-width: 600px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid var(--border-light);
+  color: var(--text-light);
+  border-radius: var(--radius);
+  padding: 12px 20px;
+  font-size: 15px;
+  outline: none;
+  transition: var(--transition);
+}
+
+#video-search:focus {
+  border-color: var(--accent);
+  background: rgba(255,255,255,0.12);
+}
+
+#video-search::placeholder {
+  color: var(--text-muted);
 }
 
 .tabs {
@@ -651,7 +686,7 @@ footer h3 {
   margin: 0;
   font-size: 0.95rem;
   line-height: 1.5;
-  color:#000000;
+  color: var(--text-muted);
 }
 
 .video-card small {
@@ -669,6 +704,12 @@ footer h3 {
 .video-card a:hover h3 {
   color: var(--accent-hover);
 }
+
+
+
+
+
+
 
 /* ====== MODAL DE LOGIN ====== */
 .modal {

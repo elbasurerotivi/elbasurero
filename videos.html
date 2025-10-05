@@ -18,6 +18,11 @@
   <main class="videos-page">
     <h1>Videos</h1>
     
+    <!-- Buscador de videos -->
+    <div class="search-bar">
+      <input type="text" id="video-search" placeholder="Buscar videos por título o descripción...">
+    </div>
+
     <!-- Tabs de categorías -->
     <div class="tabs">
   <button class="tab-button active" data-category="latest">Últimos</button>
@@ -66,7 +71,7 @@
   </div>
 </footer>
 
-  <script src="videos.js"></script>
+  <script src="js/videos.js"></script>
   <script src="js/scripts.js"></script>
   <script>
   fetch("header.html")
@@ -76,57 +81,78 @@
     })
     .catch(error => console.error("Error cargando el header:", error));
 </script>
-<script>
-  const videoGrid = document.getElementById("video-grid");
-  const filterButtons = document.querySelectorAll(".tab-button");
-
-  function renderVideos(category) {
-  videoGrid.innerHTML = "";
-
-  let filtered;
-  if (category === "latest") {
-    filtered = [...videosData] // copia para no modificar el original
-      .sort((a, b) => new Date(b.fecha) - new Date(a.fecha)) // orden descendente por fecha
-      .slice(0, 10); // solo los últimos 10
-  } else {
-    filtered = videosData.filter(video => video.tags.includes(category));
-  }
-
-filtered.forEach(video => {
-  const card = document.createElement("div");
-  card.classList.add("video-card");
-
-  card.innerHTML = `
-    <a href="${video.link}" target="_blank">
-      <img src="${video.miniatura}" alt="${video.titulo}">
-      <h3>${video.titulo}</h3>
-    </a>
-    <div class="video-desc">
-      <p>${video.descripcion}</p>
-    </div>
-    <small>${video.fecha}</small>
-  `;
-
-  videoGrid.appendChild(card);
-});
-
-
-}
-
-
-  // Botones de filtro
-  filterButtons.forEach(btn => {
-    btn.addEventListener("click", () => {
-      document.querySelector(".tab-button.active").classList.remove("active");
-      btn.classList.add("active");
-      renderVideos(btn.dataset.category);
-    });
-  });
-
-  // Cargar todos al inicio
-  renderVideos("latest");
-</script>
 <script type="module" src="js/login.js" defer></script>
 <script type="module" src="js/community.js" defer></script>
+<script>
+  const videoGrid = document.getElementById("video-grid");
+const filterButtons = document.querySelectorAll(".tab-button");
+const searchInput = document.getElementById("video-search");
+let currentCategory = "latest";
+
+function formatDate(dateStr) {
+  const [year, month, day] = dateStr.split('-');
+  return `${day}-${month}-${year}`;
+}
+
+function renderVideos(category = currentCategory, searchQuery = "") {
+  videoGrid.innerHTML = "";
+
+  let filtered = videosData;
+
+  if (category !== "latest") {
+    filtered = filtered.filter(video => video.tags.includes(category));
+  }
+
+  if (searchQuery) {
+    const lowerQuery = searchQuery.toLowerCase();
+    filtered = filtered.filter(video =>
+      video.titulo.toLowerCase().includes(lowerQuery) ||
+      video.descripcion.toLowerCase().includes(lowerQuery)
+    );
+  }
+
+  filtered = filtered.sort((a, b) => new Date(b.fecha) - new Date(a.fecha));
+
+  if (category === "latest") {
+    filtered = filtered.slice(0, 10);
+  }
+
+  filtered.forEach(video => {
+    const card = document.createElement("div");
+    card.classList.add("video-card");
+
+    card.innerHTML = `
+      <a href="${video.link}" target="_blank">
+        <img src="${video.miniatura}" alt="${video.titulo}">
+        <h3>${video.titulo}</h3>
+      </a>
+      <div class="video-desc">
+        <p>${video.descripcion}</p>
+      </div>
+      <small>${formatDate(video.fecha)}</small>
+    `;
+
+    videoGrid.appendChild(card);
+  });
+}
+
+// Botones de filtro
+filterButtons.forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelector(".tab-button.active").classList.remove("active");
+    btn.classList.add("active");
+    currentCategory = btn.dataset.category;
+    renderVideos(currentCategory, searchInput.value);
+  });
+});
+
+// Buscador
+searchInput.addEventListener("input", () => {
+  renderVideos(currentCategory, searchInput.value);
+});
+
+// Cargar videos iniciales
+renderVideos("latest");
+</script>
 </body>
 </html>
