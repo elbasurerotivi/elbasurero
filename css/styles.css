@@ -549,7 +549,7 @@ footer h3 {
 /* ====== PAGINA VIDEOS ====== */
 .videos-page {
   max-width: 1200px;
-  margin: 40px auto;
+  margin: 5px auto;
   padding: 0 15px;
   text-align: center;
   color: var(--text-light);
