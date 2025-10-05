@@ -1584,9 +1584,6 @@ body {
   color: var(--text-muted);
 }
 
-.toggle-comments:hover {
-  color: var(--accent-hover);
-}
 
 /* ==== Ajuste de colores y comportamiento de contador ==== */
 
@@ -1628,6 +1625,7 @@ body {
 .toggle-comments:hover {
   color: var(--accent-hover);
 }
+
 
 
 
