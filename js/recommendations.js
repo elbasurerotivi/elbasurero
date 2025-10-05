@@ -7,6 +7,14 @@ if (!userId) {
   localStorage.setItem("userId", userId);
 }
 
+// Sincronizar userId con auth.currentUser.uid si el usuario está autenticado
+auth.onAuthStateChanged((user) => {
+  if (user) {
+    userId = user.uid; // Usar uid del usuario autenticado
+    localStorage.setItem("userId", userId); // Actualizar localStorage
+  }
+});
+
 /* ========================
    FORMULARIO
 ======================== */
@@ -54,9 +62,12 @@ let openComments = new Set();
    MOSTRAR RECOMENDACIONES
 ======================== */
 onValue(recommendationsRef, (snapshot) => {
+  console.log("Snapshot recibido:", snapshot.val()); // Depuración
   const posts = [];
   snapshot.forEach((child) => {
-    posts.push({ id: child.key, ...child.val() });
+    const postData = child.val();
+    posts.push({ id: child.key, ...postData });
+    console.log(`Post ${child.key} likes:`, postData.likes); // Depuración
   });
 
   // Ordenar: más likes primero, después más reciente
@@ -83,6 +94,7 @@ function renderPost(post) {
   const likesCount = Object.keys(post.likes || {}).length;
   const commentsCount = post.comments ? Object.keys(post.comments).length : 0;
   const userLiked = post.likes && post.likes[userId];
+  console.log(`Post ${post.id} - userId: ${userId}, userLiked: ${userLiked}`); // Depuración
 
   const isOpen = openComments.has(post.id);
 
@@ -119,12 +131,14 @@ function renderPost(post) {
           remove(likeRef);
           likeBtn.classList.remove("active");
           likeBtn.nextElementSibling.classList.remove("active");
+          console.log(`Like removido para post ${post.id}, uid: ${uid}`); // Depuración
         } else {
           set(likeRef, true);
           likeBtn.classList.add("active");
           likeBtn.nextElementSibling.classList.add("active");
+          console.log(`Like agregado para post ${post.id}, uid: ${uid}`); // Depuración
         }
-      });
+      }).catch(err => console.error("Error al actualizar like:", err));
     });
   });
 
@@ -189,6 +203,7 @@ function renderComments(post, container) {
   comments.forEach(([commentId, c]) => {
     const likesCount = c.likes ? Object.keys(c.likes).length : 0;
     const userLiked = c.likes && c.likes[userId];
+    console.log(`Comentario ${commentId} - userId: ${userId}, userLiked: ${userLiked}`); // Depuración
 
     const div = document.createElement("div");
     div.className = "comment";
@@ -213,12 +228,14 @@ function renderComments(post, container) {
             remove(likeRef);
             e.target.classList.remove("active");
             e.target.nextElementSibling.classList.remove("active");
+            console.log(`Like removido para comentario ${commentId}, uid: ${uid}`); // Depuración
           } else {
             set(likeRef, true);
             e.target.classList.add("active");
             e.target.nextElementSibling.classList.add("active");
+            console.log(`Like agregado para comentario ${commentId}, uid: ${uid}`); // Depuración
           }
-        });
+        }).catch(err => console.error("Error al actualizar like de comentario:", err));
       });
     });
 
