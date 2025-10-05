@@ -1004,21 +1004,25 @@ function renderVideos(category = currentCategory, searchQuery = "") {
 
   let filtered = videosData;
 
-  if (category !== "latest") {
-    filtered = filtered.filter(video => video.tags.includes(category));
-  }
-
   if (searchQuery) {
+    // Búsqueda global: filtrar por búsqueda en todos los videos
     const lowerQuery = searchQuery.toLowerCase();
     filtered = filtered.filter(video =>
       video.titulo.toLowerCase().includes(lowerQuery) ||
       video.descripcion.toLowerCase().includes(lowerQuery)
     );
+  } else {
+    // Sin búsqueda: filtrar por categoría
+    if (category !== "latest") {
+      filtered = filtered.filter(video => video.tags.includes(category));
+    }
   }
 
+  // Siempre ordenar por fecha descendente
   filtered = filtered.sort((a, b) => new Date(b.fecha) - new Date(a.fecha));
 
-  if (category === "latest") {
+  // Para "latest" sin búsqueda, limitar a 10
+  if (category === "latest" && !searchQuery) {
     filtered = filtered.slice(0, 10);
   }
 

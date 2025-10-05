@@ -534,10 +534,6 @@ footer h3 {
 
 
 
-
-
-
-
 /* ====== CONTENEDOR GENERAL ====== */
 .container {
   max-width: 900px;
@@ -704,6 +700,8 @@ footer h3 {
 .video-card a:hover h3 {
   color: var(--accent-hover);
 }
+
+
 
 
 
