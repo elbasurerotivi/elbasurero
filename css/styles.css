@@ -549,7 +549,7 @@ footer h3 {
 /* ====== PAGINA VIDEOS ====== */
 .videos-page {
   max-width: 1200px;
-  margin: 5px auto;
+  margin: 40px auto;
   padding: 0 15px;
   text-align: center;
   color: var(--text-light);
@@ -559,7 +559,7 @@ footer h3 {
   font-size: 28px;
   font-weight: 700;
   color: var(--accent);
-  margin-bottom: 2px;
+  margin-bottom: 20px;
 }
 
 .videos-page p {
@@ -569,7 +569,7 @@ footer h3 {
 }
 
 .search-bar {
-  margin-bottom: 1px;
+  margin-bottom: 20px;
 }
 
 #video-search {
@@ -597,14 +597,13 @@ footer h3 {
 /* ====== MENÚ FLOTANTE DE CATEGORÍAS ====== */
 .dropdown-wrapper {
   position: relative;
-  margin: 0px 0;
+  margin: 20px 0;
   display: inline-block;
 }
 
 .dropdown-toggle {
   background: var(--glass-bg);
   backdrop-filter: var(--blur);
-  margin-top: 5px;
   border: 1px solid var(--border-light);
   color: var(--text-light);
   padding: 12px 20px;
@@ -620,6 +619,11 @@ footer h3 {
   transform: scale(1.05);
 }
 
+.dropdown-toggle.active {
+  background: var(--accent);
+  color: white;
+}
+
 .dropdown-menu {
   display: none;
   position: absolute;
@@ -631,7 +635,7 @@ footer h3 {
   border-radius: var(--radius);
   padding: 10px;
   box-shadow: 0 4px 25px rgba(0,0,0,0.3);
-  z-index: 999;
+  z-index: 10;
   min-width: 200px;
   transition: opacity 0.3s ease, transform 0.3s ease;
   opacity: 0;
