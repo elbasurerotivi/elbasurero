@@ -876,13 +876,13 @@ footer h3 {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: var(--text-muted);
+  color:#000000;
   font-size: 13px;
   margin-bottom: 5px;
 }
 
 .message-header strong {
-  color: var(--text-light);
+  color:#161616af;
   font-size: 15px;
 }
 
@@ -890,7 +890,7 @@ footer h3 {
   font-size: 16px;
   font-weight: 600;
   line-height: 1.6;
-  color: var(--text-light);
+  color:#000000;
 }
 
 .message-actions {
