@@ -93,7 +93,10 @@ function renderPost(post) {
     </div>
     <p class="post-text">${post.text}</p>
     <div class="post-actions">
-      <button class="like-btn ${userLiked ? "active" : ""}">❤️ ${likesCount}</button>
+      <div class="like-wrapper">
+        <button class="like-btn ${userLiked ? "active" : ""}">❤️</button>
+        <span class="like-count ${userLiked ? "active" : ""}">${likesCount}</span>
+      </div>
       <button class="toggle-comments">💬 Comentarios (${commentsCount})</button>
     </div>
     <div class="comments-section" style="display:${isOpen ? "block" : "none"};">
@@ -107,16 +110,23 @@ function renderPost(post) {
 
   const likeBtn = postEl.querySelector(".like-btn");
   likeBtn.addEventListener("click", (e) => {
-    e.stopPropagation();
-    accionProtegida(() => {
-      const uid = auth.currentUser ? auth.currentUser.uid : userId;
-      const likeRef = ref(db, `recommendations/${post.id}/likes/${uid}`);
-      get(likeRef).then((snap) => {
-        if (snap.exists()) remove(likeRef);
-        else set(likeRef, true);
-      });
+  e.stopPropagation();
+  accionProtegida(() => {
+    const uid = auth.currentUser ? auth.currentUser.uid : userId;
+    const likeRef = ref(db, `recommendations/${post.id}/likes/${uid}`);
+    get(likeRef).then((snap) => {
+      if (snap.exists()) {
+        remove(likeRef);
+        likeBtn.classList.remove("active");
+        likeBtn.nextElementSibling.classList.remove("active"); // Remover clase active del contador
+      } else {
+        set(likeRef, true);
+        likeBtn.classList.add("active");
+        likeBtn.nextElementSibling.classList.add("active"); // Agregar clase active al contador
+      }
     });
   });
+});
 
   const toggleBtn = postEl.querySelector(".toggle-comments");
   const commentsSection = postEl.querySelector(".comments-section");
@@ -186,9 +196,10 @@ function renderComments(post, container) {
       <div class="comment-header"><strong>${c.name}</strong></div>
       <div class="comment-text">${c.text}</div>
       <div class="comment-meta">
-        <button type="button" class="comment-like ${userLiked ? "active" : ""}">
-          ❤️ <span class="count">${likesCount}</span>
-        </button>
+        <div class="like-wrapper">
+          <button type="button" class="comment-like ${userLiked ? "active" : ""}">❤️</button>
+          <span class="like-count ${userLiked ? "active" : ""}">${likesCount}</span>
+        </div>
       </div>
     `;
 
@@ -198,8 +209,15 @@ function renderComments(post, container) {
         const uid = auth.currentUser ? auth.currentUser.uid : userId;
         const likeRef = ref(db, `recommendations/${post.id}/comments/${commentId}/likes/${uid}`);
         get(likeRef).then((snap) => {
-          if (snap.exists()) remove(likeRef);
-          else set(likeRef, true);
+          if (snap.exists()) {
+            remove(likeRef);
+            e.target.classList.remove("active");
+            e.target.nextElementSibling.classList.remove("active"); // Remover clase active del contador
+          } else {
+            set(likeRef, true);
+            e.target.classList.add("active");
+            e.target.nextElementSibling.classList.add("active"); // Agregar clase active al contador
+          }
         });
       });
     });

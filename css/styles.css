@@ -1232,6 +1232,9 @@ body {
 
 
 
+
+
+
   /* ==========================================================
    ESTILO NUEVO - ESTÉTICA INSTAGRAM / RED SOCIAL MODERNA
    ========================================================== */
@@ -1569,16 +1572,6 @@ body {
   animation: heartBeat 0.4s;
 }
 
-.like-count {
-  font-size: 15px;
-  color: #000;
-  font-weight: 600;
-  transition: color 0.3s ease;
-}
-
-.like-count.active {
-  color: var(--accent);
-}
 
 .toggle-comments {
   color: var(--text-muted);
@@ -1609,13 +1602,13 @@ body {
 
 .like-count {
   font-size: 15px;
-  color: #000;
+  color: #000; /* Color original (negro) */
   font-weight: 600;
   transition: color 0.3s ease;
 }
 
 .like-count.active {
-  color: #ff3366;
+  color: #ff0000; /* Color rojo cuando está activo */
 }
 
 .toggle-comments {
@@ -1625,6 +1618,10 @@ body {
 .toggle-comments:hover {
   color: var(--accent-hover);
 }
+
+
+
+
 
 
 
