@@ -27,11 +27,15 @@ form.addEventListener("submit", (e) => {
         name = user.displayName;
       } else {
         const userRef = ref(db, `users/${user.uid}`);
-        get(userRef).then(snapshot => {
-          if (snapshot.exists()) {
-            name = snapshot.val().username || "Anónimo";
-          }
-        }).catch(err => console.error("Error obteniendo datos del usuario:", err));
+        get(userRef)
+          .then((snapshot) => {
+            if (snapshot.exists()) {
+              name = snapshot.val().username || "Anónimo";
+            }
+          })
+          .catch((err) =>
+            console.error("Error obteniendo datos del usuario:", err)
+          );
       }
     }
     const text = recText.value.trim();
@@ -41,7 +45,7 @@ form.addEventListener("submit", (e) => {
       text,
       timestamp: Date.now(),
       likes: {},
-      comments: {}
+      comments: {},
     });
     form.reset();
   });
@@ -70,7 +74,8 @@ onValue(recommendationsRef, (snapshot) => {
   // Render posts
   recList.innerHTML = "";
   if (posts.length === 0) {
-    recList.innerHTML = "<p>No hay recomendaciones todavía. ¡Sé el primero en publicar!</p>";
+    recList.innerHTML =
+      "<p>No hay recomendaciones todavía. ¡Sé el primero en publicar!</p>";
   } else {
     posts.forEach(renderPost);
   }
@@ -83,7 +88,6 @@ function renderPost(post) {
   const likesCount = Object.keys(post.likes || {}).length;
   const commentsCount = post.comments ? Object.keys(post.comments).length : 0;
   const userLiked = post.likes && post.likes[userId];
-
   const isOpen = openComments.has(post.id);
 
   postEl.innerHTML = `
@@ -93,7 +97,10 @@ function renderPost(post) {
     </div>
     <p class="post-text">${post.text}</p>
     <div class="post-actions">
-      <button class="like-btn ${userLiked ? "active" : ""}">❤️ ${likesCount}</button>
+      <div class="like-wrapper">
+        <button class="like-btn ${userLiked ? "active" : ""}">❤️</button>
+        <span class="like-count ${userLiked ? "active" : ""}">${likesCount}</span>
+      </div>
       <button class="toggle-comments">💬 Comentarios (${commentsCount})</button>
     </div>
     <div class="comments-section" style="display:${isOpen ? "block" : "none"};">
@@ -106,21 +113,30 @@ function renderPost(post) {
   `;
 
   const likeBtn = postEl.querySelector(".like-btn");
+  const likeCount = postEl.querySelector(".like-count");
   likeBtn.addEventListener("click", (e) => {
     e.stopPropagation();
     accionProtegida(() => {
       const uid = auth.currentUser ? auth.currentUser.uid : userId;
       const likeRef = ref(db, `recommendations/${post.id}/likes/${uid}`);
       get(likeRef).then((snap) => {
-        if (snap.exists()) remove(likeRef);
-        else set(likeRef, true);
+        if (snap.exists()) {
+          remove(likeRef);
+          likeBtn.classList.remove("active");
+          likeCount.classList.remove("active");
+        } else {
+          set(likeRef, true);
+          likeBtn.classList.add("active");
+          likeCount.classList.add("active");
+          likeBtn.classList.add("liked-animation");
+          setTimeout(() => likeBtn.classList.remove("liked-animation"), 400);
+        }
       });
     });
   });
 
   const toggleBtn = postEl.querySelector(".toggle-comments");
   const commentsSection = postEl.querySelector(".comments-section");
-
   toggleBtn.addEventListener("click", (e) => {
     e.stopPropagation();
     if (commentsSection.style.display === "none") {
@@ -159,14 +175,6 @@ function renderPost(post) {
     });
   });
 
-  postEl.style.opacity = "0";
-  postEl.style.transform = "translateY(20px)";
-  requestAnimationFrame(() => {
-    postEl.style.transition = "all 0.4s ease";
-    postEl.style.opacity = "1";
-    postEl.style.transform = "translateY(0)";
-  });
-
   recList.appendChild(postEl);
 }
 
@@ -174,7 +182,9 @@ function renderComments(post, container) {
   container.innerHTML = "";
   if (!post.comments) return;
 
-  const comments = Object.entries(post.comments).sort((a, b) => a[1].timestamp - b[1].timestamp);
+  const comments = Object.entries(post.comments).sort(
+    (a, b) => a[1].timestamp - b[1].timestamp
+  );
 
   comments.forEach(([commentId, c]) => {
     const likesCount = c.likes ? Object.keys(c.likes).length : 0;
@@ -186,20 +196,36 @@ function renderComments(post, container) {
       <div class="comment-header"><strong>${c.name}</strong></div>
       <div class="comment-text">${c.text}</div>
       <div class="comment-meta">
-        <button type="button" class="comment-like ${userLiked ? "active" : ""}">
-          ❤️ <span class="count">${likesCount}</span>
-        </button>
+        <div class="like-wrapper">
+          <button type="button" class="comment-like ${userLiked ? "active" : ""}">❤️</button>
+          <span class="like-count ${userLiked ? "active" : ""}">${likesCount}</span>
+        </div>
       </div>
     `;
 
-    div.querySelector(".comment-like").addEventListener("click", (e) => {
+    const likeBtn = div.querySelector(".comment-like");
+    const likeCount = div.querySelector(".like-count");
+
+    likeBtn.addEventListener("click", (e) => {
       e.stopPropagation();
       accionProtegida(() => {
         const uid = auth.currentUser ? auth.currentUser.uid : userId;
-        const likeRef = ref(db, `recommendations/${post.id}/comments/${commentId}/likes/${uid}`);
+        const likeRef = ref(
+          db,
+          `recommendations/${post.id}/comments/${commentId}/likes/${uid}`
+        );
         get(likeRef).then((snap) => {
-          if (snap.exists()) remove(likeRef);
-          else set(likeRef, true);
+          if (snap.exists()) {
+            remove(likeRef);
+            likeBtn.classList.remove("active");
+            likeCount.classList.remove("active");
+          } else {
+            set(likeRef, true);
+            likeBtn.classList.add("active");
+            likeCount.classList.add("active");
+            likeBtn.classList.add("liked-animation");
+            setTimeout(() => likeBtn.classList.remove("liked-animation"), 400);
+          }
         });
       });
     });
