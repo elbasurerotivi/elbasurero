@@ -1009,7 +1009,7 @@ function renderVideos(category = currentCategory, searchQuery = "") {
     const lowerQuery = searchQuery.toLowerCase();
     filtered = filtered.filter(video =>
       video.titulo.toLowerCase().includes(lowerQuery) ||
-      
+    //video.descripcion.toLowerCase().includes(lowerQuery)// Oculto
     );
   } else {
     // Sin búsqueda: filtrar por categoría
