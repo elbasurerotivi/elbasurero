@@ -1542,6 +1542,53 @@ body {
   }
 }
 
+/* ==== NUEVO BLOQUE PARA LIKES SEPARADOS ==== */
+
+.like-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.like-btn {
+  background: none;
+  border: none;
+  color: #333;
+  cursor: pointer;
+  font-size: 20px;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.like-btn:hover {
+  transform: scale(1.2);
+  color: var(--accent-hover);
+}
+
+.like-btn.active {
+  color: var(--accent);
+  animation: heartBeat 0.4s;
+}
+
+.like-count {
+  font-size: 15px;
+  color: #000;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.like-count.active {
+  color: var(--accent);
+}
+
+.toggle-comments {
+  color: var(--text-muted);
+}
+
+.toggle-comments:hover {
+  color: var(--accent-hover);
+}
+
+
 
 
 
@@ -1843,6 +1890,7 @@ body {
     justify-content: center;
   }
 }
+
 
 
 
