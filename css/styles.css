@@ -604,6 +604,7 @@ footer h3 {
 .dropdown-toggle {
   background: var(--glass-bg);
   backdrop-filter: var(--blur);
+  margin-top: 5px;
   border: 1px solid var(--border-light);
   color: var(--text-light);
   padding: 12px 20px;
