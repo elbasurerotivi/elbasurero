@@ -21,8 +21,34 @@ auth.onAuthStateChanged((user) => {
 const form = document.getElementById("recommend-form");
 const recText = document.getElementById("rec-text");
 const recList = document.getElementById("recommend-list");
+const suggestions = document.getElementById("suggestions");
 
 const recommendationsRef = ref(db, "recommendations");
+let recommendations = []; // Array para almacenar recomendaciones
+
+// Función de distancia Levenshtein
+function levenshteinDistance(str1 = '', str2 = '') {
+  const track = Array(str2.length + 1).fill(null).map(() =>
+    Array(str1.length + 1).fill(null)
+  );
+  for (let i = 0; i <= str1.length; i += 1) {
+    track[0][i] = i;
+  }
+  for (let j = 0; j <= str2.length; j += 1) {
+    track[j][0] = j;
+  }
+  for (let j = 1; j <= str2.length; j += 1) {
+    for (let i = 1; i <= str1.length; i += 1) {
+      const indicator = str1[i - 1] === str2[j - 1] ? 0 : 1;
+      track[j][i] = Math.min(
+        track[j][i - 1] + 1, // deletion
+        track[j - 1][i] + 1, // insertion
+        track[j - 1][i - 1] + indicator // substitution
+      );
+    }
+  }
+  return track[str2.length][str1.length];
+}
 
 // Publicar recomendación
 form.addEventListener("submit", (e) => {
@@ -52,7 +78,43 @@ form.addEventListener("submit", (e) => {
       comments: {}
     });
     form.reset();
+    suggestions.innerHTML = '';
+    suggestions.style.display = 'none';
   });
+});
+
+// Detectar input y mostrar sugerencias
+recText.addEventListener('input', () => {
+  const value = recText.value.trim().toLowerCase();
+  if (value.length < 3) {
+    suggestions.innerHTML = '';
+    suggestions.style.display = 'none';
+    return;
+  }
+
+  // Filtrar recomendaciones similares
+  const similar = recommendations
+    .filter((rec) => {
+      const recLower = rec.text.toLowerCase();
+      const dist = levenshteinDistance(value, recLower);
+      return dist < 5 || recLower.includes(value);
+    })
+    .sort((a, b) => {
+      return levenshteinDistance(value, a.text.toLowerCase()) - levenshteinDistance(value, b.text.toLowerCase());
+    });
+
+  suggestions.innerHTML = '';
+  if (similar.length > 0) {
+    suggestions.style.display = 'block';
+    similar.forEach((rec) => {
+      const item = document.createElement('div');
+      item.className = 'suggestion-item';
+      item.textContent = rec.text;
+      suggestions.appendChild(item);
+    });
+  } else {
+    suggestions.style.display = 'none';
+  }
 });
 
 // Guardamos qué posts tienen comentarios abiertos
@@ -63,9 +125,11 @@ let openComments = new Set();
 ======================== */
 onValue(recommendationsRef, (snapshot) => {
   console.log("Snapshot recibido:", snapshot.val()); // Depuración
+  recommendations = []; // Reiniciar array
   const posts = [];
   snapshot.forEach((child) => {
     const postData = child.val();
+    recommendations.push({ id: child.key, ...postData }); // Almacenar para sugerencias
     posts.push({ id: child.key, ...postData });
     console.log(`Post ${child.key} likes:`, postData.likes); // Depuración
   });

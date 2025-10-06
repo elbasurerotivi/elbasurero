@@ -2289,6 +2289,28 @@ footer h3 {
   color: var(--accent-hover);
 }
 
+/* Suggestions */
+.suggestions {
+  margin-top: 10px;
+  background: #f0f0f0;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
+  display: none;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.suggestion-item {
+  padding: 5px;
+  border-bottom: 1px solid #eee;
+  color: #333;
+}
+
+.suggestion-item:last-child {
+  border-bottom: none;
+}
+
 
 
 
