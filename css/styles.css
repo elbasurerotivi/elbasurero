@@ -2333,19 +2333,23 @@ footer h3 {
   color: white;
   text-decoration: none;
   box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  display: flex; /* Añadido para centrar contenido */
+  flex-direction: column; /* Alinea los elementos en columna */
+  justify-content: center; /* Centra verticalmente */
+  align-items: center; /* Centra horizontalmente */
+  padding: 20px; /* Añadido para espacio interno */
 }
 
 .contact-card img {
   width: 200px;
   height: 200px;
-  
+  object-fit: contain; /* Asegura que la imagen no se distorsione */
 }
 
 .contact-card h3 {
   font-size: 1.2rem;
-  margin-bottom: 2;
-  border-top: #000;
-  border-top: 2px;
+  margin-bottom: 2px; /* Corregido 'margin-bottom: 2' a '2px' */
+  border-top: 2px solid #000; /* Corregido 'border-top: #000; border-top: 2px' */
 }
 
 /* Efecto hover */
@@ -2362,6 +2366,11 @@ footer h3 {
 .facebook { background: #1877f2; }
 .patreon { background: #f96854; }
 .whatsapp { background: #049b1d; }
+
+
+
+
+
 
 
 
