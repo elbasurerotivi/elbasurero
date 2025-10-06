@@ -2301,6 +2301,13 @@ footer h3 {
   overflow-y: auto;
 }
 
+.suggestion-warning {
+  padding: 5px;
+  font-weight: bold;
+  color: #ff0000; /* Rojo para advertencia */
+  border-bottom: 1px solid #eee;
+}
+
 .suggestion-item {
   padding: 5px;
   border-bottom: 1px solid #eee;
@@ -2309,6 +2316,11 @@ footer h3 {
 
 .suggestion-item:last-child {
   border-bottom: none;
+}
+
+/* Transición para el botón */
+.btn.btn-primary {
+  transition: background-color 0.3s ease;
 }
 
 

@@ -22,6 +22,7 @@ const form = document.getElementById("recommend-form");
 const recText = document.getElementById("rec-text");
 const recList = document.getElementById("recommend-list");
 const suggestions = document.getElementById("suggestions");
+const submitBtn = form.querySelector('button[type="submit"]');
 
 const recommendationsRef = ref(db, "recommendations");
 let recommendations = []; // Array para almacenar recomendaciones
@@ -80,6 +81,8 @@ form.addEventListener("submit", (e) => {
     form.reset();
     suggestions.innerHTML = '';
     suggestions.style.display = 'none';
+    submitBtn.disabled = false;
+    submitBtn.style.backgroundColor = ''; // Restaurar color original
   });
 });
 
@@ -89,6 +92,8 @@ recText.addEventListener('input', () => {
   if (value.length < 3) {
     suggestions.innerHTML = '';
     suggestions.style.display = 'none';
+    submitBtn.disabled = false;
+    submitBtn.style.backgroundColor = ''; // Restaurar color original
     return;
   }
 
@@ -106,14 +111,28 @@ recText.addEventListener('input', () => {
   suggestions.innerHTML = '';
   if (similar.length > 0) {
     suggestions.style.display = 'block';
+    
+    // Agregar leyenda de advertencia
+    const warning = document.createElement('div');
+    warning.className = 'suggestion-warning';
+    warning.textContent = 'Tu recomendacion ya fué hecha';
+    suggestions.appendChild(warning);
+    
+    // Agregar sugerencias
     similar.forEach((rec) => {
       const item = document.createElement('div');
       item.className = 'suggestion-item';
       item.textContent = rec.text;
       suggestions.appendChild(item);
     });
+    
+    // Deshabilitar botón y cambiar estilo
+    submitBtn.disabled = true;
+    submitBtn.style.backgroundColor = 'gray';
   } else {
     suggestions.style.display = 'none';
+    submitBtn.disabled = false;
+    submitBtn.style.backgroundColor = ''; // Restaurar color original
   }
 });
 
