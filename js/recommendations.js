@@ -325,3 +325,25 @@ function renderComments(post, container) {
     container.appendChild(div);
   });
 }
+
+// Lógica para el botón Scroll to Top
+const scrollToTopBtn = document.querySelector(".scroll-to-top");
+
+if (scrollToTopBtn) {
+  // Mostrar/Ocultar botón según el scroll
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 200) {
+      scrollToTopBtn.classList.add("visible");
+    } else {
+      scrollToTopBtn.classList.remove("visible");
+    }
+  });
+
+  // Desplazar suavemente hacia arriba al hacer clic
+  scrollToTopBtn.addEventListener("click", () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  });
+}

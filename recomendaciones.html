@@ -15,84 +15,85 @@
 <body>
   <div id="header"></div>
 
-
-    <!-- Popup de login -->
-    <div id="loginModal" class="modal">
-      <div class="modal-content">
-        <h2 id="form-title" class="modal-title">Iniciar Sesión</h2>
-        <form id="loginForm" class="login-form">
-          <div class="form-group">
-            <input type="email" id="email" placeholder="Correo electrónico" required>
-          </div>
-          <div class="form-group" id="username-group" style="display: none;">
-            <input type="text" id="username" placeholder="Nombre de usuario (opcional)" maxlength="30">
-          </div>
-          <div class="form-group">
-            <input type="password" id="password" placeholder="Contraseña" required>
-          </div>
-          <button type="button" id="actionBtn" class="btn btn-primary">Login</button>
-        </form>
-        <p class="switch" onclick="toggleForm()">¿No tienes cuenta? Regístrate aquí</p>
-        <div class="social-login">
-          <p>O ingresa con:</p>
-          <button class="btn btn-google" onclick="loginGoogle()">
-            <img src="Imagenes/google_logo.webp" alt="Google" class="social-icon"> Google
-          </button>
-          <button class="btn btn-facebook" onclick="loginFacebook()">
-            <img src="Imagenes/facebook_logo_2.png" alt="Facebook" class="social-icon"> Facebook
-          </button>
+  <!-- Popup de login -->
+  <div id="loginModal" class="modal">
+    <div class="modal-content">
+      <h2 id="form-title" class="modal-title">Iniciar Sesión</h2>
+      <form id="loginForm" class="login-form">
+        <div class="form-group">
+          <input type="email" id="email" placeholder="Correo electrónico" required>
         </div>
-        <button class="btn btn-close" onclick="cerrarLogin()">Cerrar</button>
+        <div class="form-group" id="username-group" style="display: none;">
+          <input type="text" id="username" placeholder="Nombre de usuario (opcional)" maxlength="30">
+        </div>
+        <div class="form-group">
+          <input type="password" id="password" placeholder="Contraseña" required>
+        </div>
+        <button type="button" id="actionBtn" class="btn btn-primary">Login</button>
+      </form>
+      <p class="switch" onclick="toggleForm()">¿No tienes cuenta? Regístrate aquí</p>
+      <div class="social-login">
+        <p>O ingresa con:</p>
+        <button class="btn btn-google" onclick="loginGoogle()">
+          <img src="Imagenes/google_logo.webp" alt="Google" class="social-icon"> Google
+        </button>
+        <button class="btn btn-facebook" onclick="loginFacebook()">
+          <img src="Imagenes/facebook_logo_2.png" alt="Facebook" class="social-icon"> Facebook
+        </button>
       </div>
+      <button class="btn btn-close" onclick="cerrarLogin()">Cerrar</button>
     </div>
+  </div>
 
-    <main class="container">
-      <section class="recommendations">
-        <h2>💡 Recomendaciones</h2>
-        <p>La recomendación con más likes va a subir al <strong>top</strong>, esa va a ser la que tenga <strong>prioridad</strong> para reaccionar.<br><br>
-        Cada recomendación hecha se va a agregar en la lista de <strong>"Vistos"</strong> para saber qué recomendar y qué no.</p>
-        <p><strong>Para poder interactuar en el sitio primero debes iniciar sesion con tu cuenta de Google</strong></p>
-        
-        <!-- Formulario para recomendar -->
-        <form id="recommend-form" class="recommend-form">
-          <textarea id="rec-text" placeholder="Escribe tu recomendación" maxlength="500" required></textarea>
-          <div id="suggestions" class="suggestions"></div>
-          <button type="submit" class="btn btn-primary">Publicar</button>
-        </form>
+  <main class="container">
+    <section class="recommendations">
+      <h2>💡 Recomendaciones</h2>
+      <p>La recomendación con más likes va a subir al <strong>top</strong>, esa va a ser la que tenga <strong>prioridad</strong> para reaccionar.<br><br>
+      Cada recomendación hecha se va a agregar en la lista de <strong>"Vistos"</strong> para saber qué recomendar y qué no.</p>
+      <p><strong>Para poder interactuar en el sitio primero debes iniciar sesión con tu cuenta de Google</strong></p>
+      
+      <!-- Formulario para recomendar -->
+      <form id="recommend-form" class="recommend-form">
+        <textarea id="rec-text" placeholder="Escribe tu recomendación" maxlength="500" required></textarea>
+        <div id="suggestions" class="suggestions"></div>
+        <button type="submit" class="btn btn-primary">Publicar</button>
+      </form>
 
-        <!-- Lista de recomendaciones -->
-        <div id="recommend-list" class="recommend-list"></div>
-      </section>
-    </main>
+      <!-- Lista de recomendaciones -->
+      <div id="recommend-list" class="recommend-list"></div>
+    </section>
+  </main>
 
-    <footer>
+  <footer>
     <p>&copy; 2025 El Basurero. Todos los derechos reservados.</p>
     <h3>Sígueme en mis redes</h3>
-  <div class="social-links">
-    <a href="https://www.twitch.tv/elbasurerochido" target="_blank">
-      <img src="Imagenes/twitch_logo.png" alt="Twitch"> Twitch
-    </a>
-    <a href="https://www.youtube.com/@elbasureroedgar" target="_blank">
-      <img src="Imagenes/youtube_logo.png" alt="YouTube"> YouTube
-    </a>
-    <a href="https://discord.gg/TgAkT7PFt5" target="_blank">
-      <img src="Imagenes/discord_logo.png" alt="Discord"> Discord
-    </a>
-    <a href="https://www.instagram.com/el_basurero_tiviplas" target="_blank">
-      <img src="Imagenes/instagram_logo.png" alt="Instagram"> Instagram
-    </a>
-    <a href="https://www.facebook.com/el.basurero.ti.vi.plas" target="_blank">
-      <img src="Imagenes/facebook_logo.png" alt="Facebook"> Facebook
-    </a>
-    <a href="https://www.patreon.com/cw/ElBasureroTi_Vi_Plas" target="_blank">
-      <img src="Imagenes/patreon_logo.png" alt="Patreon"> Patreon
-    </a>
-    <a href="https://chat.whatsapp.com/Fyw5G6L8GLm71kMDATHm6P" target="_blank">
-      <img src="Imagenes/WhatsApp.png" alt="Whatsapp"> WhatsApp
-    </a>
-  </div>
-</footer>
+    <div class="social-links">
+      <a href="https://www.twitch.tv/elbasurerochido" target="_blank">
+        <img src="Imagenes/twitch_logo.png" alt="Twitch"> Twitch
+      </a>
+      <a href="https://www.youtube.com/@elbasureroedgar" target="_blank">
+        <img src="Imagenes/youtube_logo.png" alt="YouTube"> YouTube
+      </a>
+      <a href="https://discord.gg/TgAkT7PFt5" target="_blank">
+        <img src="Imagenes/discord_logo.png" alt="Discord"> Discord
+      </a>
+      <a href="https://www.instagram.com/el_basurero_tiviplas" target="_blank">
+        <img src="Imagenes/instagram_logo.png" alt="Instagram"> Instagram
+      </a>
+      <a href="https://www.facebook.com/el.basurero.ti.vi.plas" target="_blank">
+        <img src="Imagenes/facebook_logo.png" alt="Facebook"> Facebook
+      </a>
+      <a href="https://www.patreon.com/cw/ElBasureroTi_Vi_Plas" target="_blank">
+        <img src="Imagenes/patreon_logo.png" alt="Patreon"> Patreon
+      </a>
+      <a href="https://chat.whatsapp.com/Fyw5G6L8GLm71kMDATHm6P" target="_blank">
+        <img src="Imagenes/WhatsApp.png" alt="Whatsapp"> WhatsApp
+      </a>
+    </div>
+  </footer>
 
+  <!-- Botón Scroll to Top -->
+  <button class="scroll-to-top" title="Volver arriba">↑</button>
 
   <!-- Scripts -->
   <script type="module" src="js/login.js" defer></script>

@@ -2051,8 +2051,6 @@ footer h3 {
   line-height: 1.6;
 }
 
-
-
 /* Botones de acción */
 .post-actions {
   display: flex;
@@ -2190,6 +2188,41 @@ footer h3 {
   background: var(--accent-hover);
 }
 
+/* ====== BOTÓN SCROLL TO TOP ====== */
+.scroll-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: var(--glass-bg);
+  backdrop-filter: var(--blur);
+  border: 1px solid var(--border-light);
+  color: var(--text-light);
+  font-size: 18px;
+  font-weight: 700;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 1000;
+}
+
+.scroll-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
+}
+
+.scroll-to-top:hover {
+  background: var(--accent);
+  transform: scale(1.1);
+}
+
 /* ====== ANIMACIONES ====== */
 @keyframes fadeUp {
   from {
@@ -2213,10 +2246,16 @@ footer h3 {
   .like-btn, .toggle-comments {
     font-size: 14px;
   }
+  .scroll-to-top {
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+    bottom: 15px;
+    right: 15px;
+  }
 }
 
 /* ==== NUEVO BLOQUE PARA LIKES SEPARADOS ==== */
-
 .like-wrapper {
   display: flex;
   align-items: center;
@@ -2242,14 +2281,11 @@ footer h3 {
   animation: heartBeat 0.4s;
 }
 
-
 .toggle-comments {
   color: var(--text-muted);
 }
 
-
 /* ==== Ajuste de colores y comportamiento de contador ==== */
-
 .like-wrapper {
   display: flex;
   align-items: center;
