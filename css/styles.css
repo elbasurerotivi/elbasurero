@@ -2801,7 +2801,7 @@ footer h3 {
   .modal-content {
     width: 100%; /* Más ancho en móviles */
     height: 100%; /* Más alto en móviles */
-    max-height: 40%;
+    max-height: 60%;
     object-fit:contain; /* Asegura que la imagen se ajuste sin distorsionarse */
   }
   
