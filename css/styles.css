@@ -2192,8 +2192,8 @@ footer h3 {
 .scroll-to-top {
   position: fixed;
   bottom: 20px;
-  right: 20px;
-  background: var(--glass-bg);
+  right: 70px;
+  background: #ff33665e;
   backdrop-filter: var(--blur);
   border: 1px solid var(--border-light);
   color: var(--text-light);
