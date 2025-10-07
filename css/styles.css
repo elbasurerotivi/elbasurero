@@ -1986,6 +1986,24 @@ footer h3 {
   background: rgba(255,255,255,0.12);
 }
 
+.recommend-form input[type="file"] {
+  margin-top: 10px;
+  color: var(--text-light);
+}
+
+.recommend-form .image-preview {
+  margin-top: 10px;
+  max-width: 100%;
+}
+
+.recommend-form .image-preview img {
+  max-width: 200px;
+  max-height: 200px;
+  object-fit: cover;
+  border-radius: var(--radius);
+  border: 1px solid var(--border-light);
+}
+
 .recommend-form .btn-primary {
   display: inline-block;
   background: var(--accent);
@@ -2051,6 +2069,30 @@ footer h3 {
   line-height: 1.6;
 }
 
+.post-text a {
+  color: var(--accent);
+  text-decoration: underline;
+}
+
+.post-text a:hover {
+  color: var(--accent-hover);
+}
+
+/* Imagen del post */
+.post-image {
+  max-width: 100%;
+  max-height: 300px;
+  object-fit: cover;
+  border-radius: var(--radius);
+  margin-top: 10px;
+  border: 1px solid var(--border-light);
+  transition: var(--transition);
+}
+
+.post-image:hover {
+  transform: scale(1.05);
+}
+
 /* Botones de acción */
 .post-actions {
   display: flex;
@@ -2070,7 +2112,7 @@ footer h3 {
 .like-btn {
   background: none;
   border: none;
-  color: #000000; /* Negro por defecto */
+  color: #000000;
   cursor: pointer;
   font-size: 15px;
   font-weight: 500;
@@ -2081,13 +2123,13 @@ footer h3 {
 }
 
 .like-btn.active {
-  color: #ff0000; /* Rojo al estar activado */
+  color: #ff0000;
   transform: scale(1.15);
   animation: heartBeat 0.4s ease;
 }
 
 .like-btn:hover, .toggle-comments:hover {
-  color: #ff6699; /* Rojo más suave al pasar el mouse */
+  color: #ff6699;
   transform: scale(1.1);
 }
 
@@ -2129,7 +2171,16 @@ footer h3 {
 
 .comment-text {
   font-size: 14px;
-  color: var(--muted);
+  color: var(--text-muted);
+}
+
+.comment-text a {
+  color: var(--accent);
+  text-decoration: underline;
+}
+
+.comment-text a:hover {
+  color: var(--accent-hover);
 }
 
 .comment-like {
@@ -2192,8 +2243,8 @@ footer h3 {
 .scroll-to-top {
   position: fixed;
   bottom: 20px;
-  right: 70px;
-  background: #ff33665d;
+  right: 20px;
+  background: var(--glass-bg);
   backdrop-filter: var(--blur);
   border: 1px solid var(--border-light);
   color: var(--text-light);
@@ -2221,6 +2272,53 @@ footer h3 {
 .scroll-to-top:hover {
   background: var(--accent);
   transform: scale(1.1);
+}
+
+/* ====== SUGERENCIAS ====== */
+.suggestions {
+  margin-top: 10px;
+  background: #f0f0f0;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
+  display: none;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.suggestion-warning {
+  padding: 5px;
+  font-weight: bold;
+  color: #ff0000;
+  border-bottom: 1px solid #eee;
+}
+
+.suggestion-item {
+  padding: 5px;
+  border-bottom: 1px solid #eee;
+  color: #333;
+}
+
+.suggestion-item:last-child {
+  border-bottom: none;
+}
+
+.suggestion-item a {
+  color: var(--accent);
+  text-decoration: underline;
+}
+
+.suggestion-item a:hover {
+  color: var(--accent-hover);
+}
+
+.suggestion-image {
+  max-width: 100px;
+  max-height: 100px;
+  object-fit: cover;
+  border-radius: var(--radius);
+  margin-top: 5px;
+  border: 1px solid var(--border-light);
 }
 
 /* ====== ANIMACIONES ====== */
@@ -2253,9 +2351,16 @@ footer h3 {
     bottom: 15px;
     right: 15px;
   }
+  .post-image {
+    max-height: 200px;
+  }
+  .suggestion-image {
+    max-width: 80px;
+    max-height: 80px;
+  }
 }
 
-/* ==== NUEVO BLOQUE PARA LIKES SEPARADOS ==== */
+/* ====== LIKES SEPARADOS ====== */
 .like-wrapper {
   display: flex;
   align-items: center;
@@ -2281,40 +2386,15 @@ footer h3 {
   animation: heartBeat 0.4s;
 }
 
-.toggle-comments {
-  color: var(--text-muted);
-}
-
-/* ==== Ajuste de colores y comportamiento de contador ==== */
-.like-wrapper {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.like-btn {
-  background: none;
-  border: none;
-  color: #222;
-  cursor: pointer;
-  font-size: 20px;
-  transition: transform 0.2s ease, color 0.2s ease;
-}
-
-.like-btn.active {
-  color: #ff3366;
-  animation: heartBeat 0.4s;
-}
-
 .like-count {
   font-size: 15px;
-  color: #000; /* Color original (negro) */
+  color: #000;
   font-weight: 600;
   transition: color 0.3s ease;
 }
 
 .like-count.active {
-  color: #ff0000; /* Color rojo cuando está activo */
+  color: #ff0000;
 }
 
 .toggle-comments {
@@ -2325,39 +2405,8 @@ footer h3 {
   color: var(--accent-hover);
 }
 
-/* Suggestions */
-.suggestions {
-  margin-top: 10px;
-  background: #f0f0f0;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  padding: 10px;
-  display: none;
-  max-height: 200px;
-  overflow-y: auto;
-}
 
-.suggestion-warning {
-  padding: 5px;
-  font-weight: bold;
-  color: #ff0000; /* Rojo para advertencia */
-  border-bottom: 1px solid #eee;
-}
 
-.suggestion-item {
-  padding: 5px;
-  border-bottom: 1px solid #eee;
-  color: #333;
-}
-
-.suggestion-item:last-child {
-  border-bottom: none;
-}
-
-/* Transición para el botón */
-.btn.btn-primary {
-  transition: background-color 0.3s ease;
-}
 
 
 

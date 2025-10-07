@@ -1,4 +1,5 @@
 import { auth, db, ref, push, onValue, set, remove, get } from "./firebase-config.js";
+import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-storage.js";
 
 // UID persistente para simular "usuario único" (para likes no autenticados)
 let userId = localStorage.getItem("userId");
@@ -20,12 +21,44 @@ auth.onAuthStateChanged((user) => {
 ======================== */
 const form = document.getElementById("recommend-form");
 const recText = document.getElementById("rec-text");
+const recImage = document.getElementById("rec-image");
+const imagePreview = document.getElementById("image-preview");
 const recList = document.getElementById("recommend-list");
 const suggestions = document.getElementById("suggestions");
 const submitBtn = form.querySelector('button[type="submit"]');
 
 const recommendationsRef = ref(db, "recommendations");
+const storage = getStorage();
 let recommendations = []; // Array para almacenar recomendaciones
+
+// Mostrar vista previa de la imagen seleccionada
+recImage.addEventListener("change", (e) => {
+  const file = e.target.files[0];
+  if (file) {
+    // Validar tipo y tamaño (máximo 5MB)
+    if (!file.type.startsWith("image/")) {
+      alert("Por favor, selecciona una imagen válida (jpg, png, gif).");
+      recImage.value = "";
+      imagePreview.innerHTML = "";
+      return;
+    }
+    if (file.size > 5 * 1024 * 1024) {
+      alert("La imagen no debe exceder los 5MB.");
+      recImage.value = "";
+      imagePreview.innerHTML = "";
+      return;
+    }
+
+    // Mostrar vista previa
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      imagePreview.innerHTML = `<img src="${e.target.result}" alt="Vista previa">`;
+    };
+    reader.readAsDataURL(file);
+  } else {
+    imagePreview.innerHTML = "";
+  }
+});
 
 // Función de distancia Levenshtein
 function levenshteinDistance(str1 = '', str2 = '') {
@@ -51,9 +84,9 @@ function levenshteinDistance(str1 = '', str2 = '') {
   return track[str2.length][str1.length];
 }
 
-// Función para convertir URLs en enlaces y escapar HTML
+// Función para convertir URLs en enlaces y soportar emojis
 function linkifyAndEscape(text) {
-  // Escapar HTML para seguridad
+  // Escapar HTML para seguridad, pero permitir emojis (UTF-8)
   const escapeHtml = (str) => {
     return str
       .replace(/&/g, "&amp;")
@@ -66,7 +99,7 @@ function linkifyAndEscape(text) {
   // Regex para detectar URLs (incluye http/https/www)
   const urlRegex = /(https?:\/\/[^\s<>"']+|www\.[^\s<>"']+)/g;
 
-  // Reemplazar URLs con <a> tags, escapando el resto
+  // Reemplazar URLs con <a> tags, preservando emojis
   return escapeHtml(text).replace(urlRegex, (url) => {
     let link = url;
     if (!link.startsWith('http')) {
@@ -77,9 +110,9 @@ function linkifyAndEscape(text) {
 }
 
 // Publicar recomendación
-form.addEventListener("submit", (e) => {
+form.addEventListener("submit", async (e) => {
   e.preventDefault();
-  accionProtegida(() => {
+  accionProtegida(async () => {
     const user = auth.currentUser;
     let name = "Anónimo";
     if (user) {
@@ -87,38 +120,60 @@ form.addEventListener("submit", (e) => {
         name = user.displayName;
       } else {
         const userRef = ref(db, `users/${user.uid}`);
-        get(userRef).then(snapshot => {
-          if (snapshot.exists()) {
-            name = snapshot.val().username || "Anónimo";
-          }
-        }).catch(err => console.error("Error obteniendo datos del usuario:", err));
+        const snapshot = await get(userRef);
+        if (snapshot.exists()) {
+          name = snapshot.val().username || "Anónimo";
+        }
       }
     }
     const text = recText.value.trim();
+    const file = recImage.files[0];
+    let imageUrl = null;
+
     if (!text) return;
+
+    // Subir imagen a Firebase Storage si existe
+    if (file) {
+      const storagePath = `recommendations/${userId}/${Date.now()}_${file.name}`;
+      const imageRef = storageRef(storage, storagePath);
+      try {
+        const snapshot = await uploadBytes(imageRef, file);
+        imageUrl = await getDownloadURL(snapshot.ref);
+      } catch (err) {
+        console.error("Error al subir la imagen:", err);
+        alert("No se pudo subir la imagen. Intenta de nuevo.");
+        return;
+      }
+    }
+
+    // Guardar recomendación en la base de datos
     push(recommendationsRef, {
       name,
       text,
+      imageUrl, // Guardar URL de la imagen
       timestamp: Date.now(),
       likes: {},
       comments: {}
     });
+
     form.reset();
-    suggestions.innerHTML = '';
-    suggestions.style.display = 'none';
+    recImage.value = "";
+    imagePreview.innerHTML = "";
+    suggestions.innerHTML = "";
+    suggestions.style.display = "none";
     submitBtn.disabled = false;
-    submitBtn.style.backgroundColor = ''; // Restaurar color original
+    submitBtn.style.backgroundColor = ""; // Restaurar color original
   });
 });
 
 // Detectar input y mostrar sugerencias
-recText.addEventListener('input', () => {
+recText.addEventListener("input", () => {
   const value = recText.value.trim().toLowerCase();
   if (value.length < 3) {
-    suggestions.innerHTML = '';
-    suggestions.style.display = 'none';
+    suggestions.innerHTML = "";
+    suggestions.style.display = "none";
     submitBtn.disabled = false;
-    submitBtn.style.backgroundColor = ''; // Restaurar color original
+    submitBtn.style.backgroundColor = "";
     return;
   }
 
@@ -133,31 +188,37 @@ recText.addEventListener('input', () => {
       return levenshteinDistance(value, a.text.toLowerCase()) - levenshteinDistance(value, b.text.toLowerCase());
     });
 
-  suggestions.innerHTML = '';
+  suggestions.innerHTML = "";
   if (similar.length > 0) {
-    suggestions.style.display = 'block';
+    suggestions.style.display = "block";
     
     // Agregar leyenda de advertencia
-    const warning = document.createElement('div');
-    warning.className = 'suggestion-warning';
-    warning.textContent = 'Tu recomendacion ya fué hecha';
+    const warning = document.createElement("div");
+    warning.className = "suggestion-warning";
+    warning.textContent = "Tu recomendación ya fue hecha";
     suggestions.appendChild(warning);
     
     // Agregar sugerencias
     similar.forEach((rec) => {
-      const item = document.createElement('div');
-      item.className = 'suggestion-item';
-      item.innerHTML = linkifyAndEscape(rec.text); // Usar la función para sugerencias también
+      const item = document.createElement("div");
+      item.className = "suggestion-item";
+      item.innerHTML = linkifyAndEscape(rec.text);
+      if (rec.imageUrl) {
+        const img = document.createElement("img");
+        img.src = rec.imageUrl;
+        img.alt = "Imagen de la recomendación";
+        img.className = "suggestion-image";
+        item.appendChild(img);
+      }
       suggestions.appendChild(item);
     });
     
-    // Deshabilitar botón y cambiar estilo
     submitBtn.disabled = true;
-    submitBtn.style.backgroundColor = 'gray';
+    submitBtn.style.backgroundColor = "gray";
   } else {
-    suggestions.style.display = 'none';
+    suggestions.style.display = "none";
     submitBtn.disabled = false;
-    submitBtn.style.backgroundColor = ''; // Restaurar color original
+    submitBtn.style.backgroundColor = "";
   }
 });
 
@@ -206,12 +267,18 @@ function renderPost(post) {
 
   const isOpen = openComments.has(post.id);
 
-  postEl.innerHTML = `
+  // Construir el HTML del post
+  let postContent = `
     <div class="post-header">
       <strong>${post.name}</strong>
       <span>${new Date(post.timestamp).toLocaleString("es-AR")}</span>
     </div>
     <p class="post-text">${linkifyAndEscape(post.text)}</p>
+  `;
+  if (post.imageUrl) {
+    postContent += `<img src="${post.imageUrl}" alt="Imagen de la recomendación" class="post-image" loading="lazy">`;
+  }
+  postContent += `
     <div class="post-actions">
       <div class="like-wrapper">
         <button class="like-btn ${userLiked ? "active" : ""}">❤️</button>
@@ -227,6 +294,8 @@ function renderPost(post) {
       </form>
     </div>
   `;
+
+  postEl.innerHTML = postContent;
 
   const likeBtn = postEl.querySelector(".like-btn");
   likeBtn.addEventListener("click", (e) => {
@@ -348,5 +417,27 @@ function renderComments(post, container) {
     });
 
     container.appendChild(div);
+  });
+}
+
+// Lógica para el botón Scroll to Top
+const scrollToTopBtn = document.querySelector(".scroll-to-top");
+
+if (scrollToTopBtn) {
+  // Mostrar/Ocultar botón según el scroll
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 200) {
+      scrollToTopBtn.classList.add("visible");
+    } else {
+      scrollToTopBtn.classList.remove("visible");
+    }
+  });
+
+  // Desplazar suavemente hacia arriba al hacer clic
+  scrollToTopBtn.addEventListener("click", () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
   });
 }
