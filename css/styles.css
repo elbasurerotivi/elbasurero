@@ -2742,7 +2742,7 @@ footer h3 {
   width: 100%;
   max-width: 100%; /* Usa todo el ancho disponible de la tarjeta */
   aspect-ratio: 16 / 9; /* Proporción 16:9 */
-  object-fit: contain; /* Asegura que la imagen se ajuste sin distorsionarse */
+  object-fit:cover; /* Asegura que la imagen se ajuste sin distorsionarse */
   margin: 10px 0;
   border-radius: 8px;
 }
@@ -2799,9 +2799,10 @@ footer h3 {
 /* Ajustes responsivos */
 @media (max-width: 600px) {
   .modal-content {
-    width: 90%; /* Más ancho en móviles */
-    height: 80vh; /* Más alto en móviles */
-    max-height: 500px;
+    width: 100%; /* Más ancho en móviles */
+    height: 100%; /* Más alto en móviles */
+    max-height: 40%;
+    object-fit:contain; /* Asegura que la imagen se ajuste sin distorsionarse */
   }
   
   .announcement-icon {
