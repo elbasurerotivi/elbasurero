@@ -51,31 +51,6 @@ function levenshteinDistance(str1 = '', str2 = '') {
   return track[str2.length][str1.length];
 }
 
-// Función para convertir URLs en enlaces y escapar HTML
-function linkifyAndEscape(text) {
-  // Escapar HTML para seguridad
-  const escapeHtml = (str) => {
-    return str
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;")
-      .replace(/'/g, "&#039;");
-  };
-
-  // Regex para detectar URLs (incluye http/https/www)
-  const urlRegex = /(https?:\/\/[^\s<>"']+|www\.[^\s<>"']+)/g;
-
-  // Reemplazar URLs con <a> tags, escapando el resto
-  return escapeHtml(text).replace(urlRegex, (url) => {
-    let link = url;
-    if (!link.startsWith('http')) {
-      link = 'https://' + link;
-    }
-    return `<a href="${link}" target="_blank" rel="noopener noreferrer">${url}</a>`;
-  });
-}
-
 // Publicar recomendación
 form.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -147,7 +122,7 @@ recText.addEventListener('input', () => {
     similar.forEach((rec) => {
       const item = document.createElement('div');
       item.className = 'suggestion-item';
-      item.innerHTML = linkifyAndEscape(rec.text); // Usar la función para sugerencias también
+      item.textContent = rec.text;
       suggestions.appendChild(item);
     });
     
@@ -211,7 +186,7 @@ function renderPost(post) {
       <strong>${post.name}</strong>
       <span>${new Date(post.timestamp).toLocaleString("es-AR")}</span>
     </div>
-    <p class="post-text">${linkifyAndEscape(post.text)}</p>
+    <p class="post-text">${post.text}</p>
     <div class="post-actions">
       <div class="like-wrapper">
         <button class="like-btn ${userLiked ? "active" : ""}">❤️</button>
@@ -317,7 +292,7 @@ function renderComments(post, container) {
     div.className = "comment";
     div.innerHTML = `
       <div class="comment-header"><strong>${c.name}</strong></div>
-      <div class="comment-text">${linkifyAndEscape(c.text)}</div>
+      <div class="comment-text">${c.text}</div>
       <div class="comment-meta">
         <div class="like-wrapper">
           <button type="button" class="comment-like ${userLiked ? "active" : ""}">❤️</button>
@@ -348,5 +323,27 @@ function renderComments(post, container) {
     });
 
     container.appendChild(div);
+  });
+}
+
+// Lógica para el botón Scroll to Top
+const scrollToTopBtn = document.querySelector(".scroll-to-top");
+
+if (scrollToTopBtn) {
+  // Mostrar/Ocultar botón según el scroll
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 200) {
+      scrollToTopBtn.classList.add("visible");
+    } else {
+      scrollToTopBtn.classList.remove("visible");
+    }
+  });
+
+  // Desplazar suavemente hacia arriba al hacer clic
+  scrollToTopBtn.addEventListener("click", () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
   });
 }
