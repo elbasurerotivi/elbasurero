@@ -83,4 +83,114 @@ document.addEventListener("DOMContentLoaded", () => {
   } else {
     console.warn("No se encontró el elemento #header");
   }
+
+// Cargar y mostrar el popup de anuncios
+fetch("popup.html")
+  .then(response => {
+    if (!response.ok) throw new Error(`Error al cargar popup.html: ${response.status}`);
+    return response.text();
+  })
+  .then(data => {
+    document.body.insertAdjacentHTML("beforeend", data);
+    
+    // Verificar si el popup debe mostrarse
+    const today = new Date().toLocaleDateString("es-AR");
+    const lastShown = localStorage.getItem("announcementLastShown");
+    const noShowToday = localStorage.getItem("noShowToday");
+    
+    const announcementModal = document.getElementById("announcementModal");
+    if (announcementModal && (!noShowToday || lastShown !== today)) {
+      announcementModal.style.display = "flex";
+      console.log("Popup de anuncios mostrado automáticamente");
+    } else {
+      console.log("Popup de anuncios no mostrado (bloqueado por el usuario o mismo día)");
+    }
+    
+    // Inicializar Swiper
+    if (typeof Swiper !== "undefined") {
+      new Swiper(".announcement-swiper", {
+        loop: true,
+        autoplay: {
+          delay: 5000,
+          disableOnInteraction: false,
+        },
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+        slidesPerView: 1,
+        spaceBetween: 20,
+      });
+      console.log("Swiper inicializado correctamente");
+    } else {
+      console.error("Swiper no está definido. Asegúrate de incluir swiper-bundle.min.js antes de scripts.js");
+    }
+    
+    // Actualizar la tarjeta de Último Video dinámicamente (solo imagen y enlace)
+    if (typeof videosData !== "undefined" && videosData.length > 0) {
+      const sortedVideos = videosData.sort((a, b) => new Date(b.fecha) - new Date(a.fecha));
+      const latestVideo = sortedVideos[0];
+      const videoIdMatch = latestVideo.link.match(/v=([^&]+)/);
+      let thumbnail = latestVideo.miniatura;
+      if (videoIdMatch && videoIdMatch[1]) {
+        const videoId = videoIdMatch[1];
+        thumbnail = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+      }
+      const latestImg = document.getElementById("latest-video-img");
+      const latestLink = document.getElementById("latest-video-link");
+      const latestCard = document.getElementById("latest-video-card");
+      if (latestImg && latestLink && latestCard) {
+        latestImg.src = thumbnail;
+        latestImg.alt = latestVideo.titulo;
+        latestLink.href = latestVideo.link;
+        console.log("Tarjeta de Último Video actualizada:", latestVideo.titulo);
+      } else {
+        console.warn("No se encontraron elementos para actualizar la tarjeta de Último Video");
+      }
+    } else {
+      console.warn("videosData no está definido o vacío. Asegúrate de incluir videos.js");
+    }
+    
+    // Manejar el checkbox "No mostrar más por hoy"
+    const noShowCheckbox = document.getElementById("noShowToday");
+    if (noShowCheckbox) {
+      noShowCheckbox.addEventListener("change", () => {
+        if (noShowCheckbox.checked) {
+          localStorage.setItem("noShowToday", "true");
+          localStorage.setItem("announcementLastShown", today);
+          console.log("Checkbox marcado: No mostrar popup por hoy");
+        } else {
+          localStorage.removeItem("noShowToday");
+          console.log("Checkbox desmarcado: Popup puede mostrarse nuevamente");
+        }
+      });
+    }
+  })
+  .catch(error => console.error("Error cargando popup.html:", error));
+  
+  // Función para cerrar el popup
+  window.cerrarAnuncio = function() {
+    const announcementModal = document.getElementById("announcementModal");
+    if (announcementModal) {
+      announcementModal.style.display = "none";
+      console.log("Popup de anuncios cerrado");
+    }
+  };
+
+  // Resetear la preferencia a medianoche
+  function resetNoShowAtMidnight() {
+    const now = new Date();
+    const timeToMidnight = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 0, 0, 0) - now;
+    setTimeout(() => {
+      localStorage.removeItem("noShowToday");
+      localStorage.removeItem("announcementLastShown");
+      console.log("Preferencia de 'No mostrar más por hoy' reseteada a medianoche");
+      resetNoShowAtMidnight();
+    }, timeToMidnight);
+  }
+  resetNoShowAtMidnight();
 });

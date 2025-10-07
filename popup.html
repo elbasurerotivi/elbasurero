@@ -1,0 +1,49 @@
+<!-- popup.html -->
+<div id="announcementModal" class="modal">
+  <div class="modal-content">
+    <h2 class="modal-title">¡Anuncios Importantes!</h2>
+    
+    <!-- Contenedor del carrusel Swiper -->
+    <div class="swiper announcement-swiper">
+      <div class="swiper-wrapper">
+        <!-- Tarjeta 1: Horarios de Streams -->
+        <div class="swiper-slide announcement-card">
+          <h3>Proximo Directo</h3>
+          <a href="https://www.twitch.tv/elbasurerochido" target="_blank" class="image-link">
+            <img src="Imagenes/aliens_2_twitch.jpeg" alt="Próximo Stream en Twitch" class="announcement-img">
+          </a>
+          <a href="https://www.twitch.tv/elbasurerochido" class="btn btn-primary" target="_blank">Ir a Twitch</a>
+        </div>
+        
+        <!-- Tarjeta 2: Último Video (dinámica, simplificada) -->
+        <div class="swiper-slide announcement-card" id="latest-video-card">
+          <h3>Nuevo video</h3>
+          <a href="#" class="image-link" id="latest-video-link" target="_blank">
+            <img src="" alt="Último Video" class="announcement-img" id="latest-video-img">
+          </a>
+          <a href="#" class="btn btn-primary" id="latest-video-link-btn" target="_blank">Ver en YouTube</a>
+        </div>
+        
+        <!-- Tarjeta 3: Programación de la Semana -->
+        <div class="swiper-slide announcement-card">
+          <img src="Imagenes/calendario.jpeg" alt="Calendar Icon" class="announcement-img">
+        </div>
+      </div>
+      
+      <!-- Controles de navegación -->
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+      
+      <!-- Paginación -->
+      <div class="swiper-pagination"></div>
+    </div>
+    
+    <!-- Checkbox para no mostrar más hoy -->
+    <div class="checkbox-container">
+      <input type="checkbox" id="noShowToday" name="noShowToday">
+      <label for="noShowToday">No mostrar más por hoy</label>
+    </div>
+    
+    <button class="btn btn-close" onclick="cerrarAnuncio()">Cerrar</button>
+  </div>
+</div>
