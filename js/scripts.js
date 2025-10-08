@@ -200,3 +200,18 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   resetNoShowAtMidnight();
 });
+
+// Actualizar título de categoría en videos.html
+  if (window.location.pathname.includes('videos.html')) {
+    const categoryItems = document.querySelectorAll('.dropdown-item');
+    const categoryTitle = document.getElementById('category-title');
+    categoryItems.forEach(item => {
+      item.addEventListener('click', () => {
+        categoryItems.forEach(i => i.classList.remove('active'));
+        item.classList.add('active');
+        const category = item.getAttribute('data-category');
+        categoryTitle.textContent = category === 'latest' ? 'Últimos' : category.charAt(0).toUpperCase() + category.slice(1);
+        console.log(`Título de categoría actualizado a: ${categoryTitle.textContent}`);
+      });
+    });
+  }
