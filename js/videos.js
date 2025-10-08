@@ -1000,27 +1000,27 @@ function formatDate(dateStr) {
 }
 
 function renderVideos(category = currentCategory, searchQuery = "") {
+  if (!videoGrid) {
+    console.warn("videoGrid no encontrado, no se renderizan videos.");
+    return;
+  }
   videoGrid.innerHTML = "";
 
   let filtered = videosData;
 
   if (searchQuery) {
-    // Búsqueda global: filtrar por búsqueda en todos los videos
     const lowerQuery = searchQuery.toLowerCase();
     filtered = filtered.filter(video =>
       video.titulo.toLowerCase().includes(lowerQuery)
     );
   } else {
-    // Sin búsqueda: filtrar por categoría
     if (category !== "latest") {
       filtered = filtered.filter(video => video.tags.includes(category));
     }
   }
 
-  // Siempre ordenar por fecha descendente
   filtered = filtered.sort((a, b) => new Date(b.fecha) - new Date(a.fecha));
 
-  // Para "latest" sin búsqueda, limitar a 10
   if (category === "latest" && !searchQuery) {
     filtered = filtered.slice(0, 10);
   }
@@ -1045,25 +1045,34 @@ function renderVideos(category = currentCategory, searchQuery = "") {
 }
 
 // Botones de filtro
-filterButtons.forEach(btn => {
-  btn.addEventListener("click", () => {
-    document.querySelector(".dropdown-item.active").classList.remove("active");
-    btn.classList.add("active");
-    currentCategory = btn.dataset.category;
-    renderVideos(currentCategory, searchInput.value);
-    // Cerrar el menú flotante y quitar la clase active del botón toggle
-    const dropdownMenu = document.querySelector(".dropdown-menu");
-    const toggleBtn = document.querySelector(".dropdown-toggle");
-    dropdownMenu.classList.remove("expanded");
-    toggleBtn.classList.remove("active");
-    toggleBtn.textContent = `Categorías ▼`;
+if (filterButtons.length > 0) {
+  filterButtons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      document.querySelector(".dropdown-item.active").classList.remove("active");
+      btn.classList.add("active");
+      currentCategory = btn.dataset.category;
+      renderVideos(currentCategory, searchInput ? searchInput.value : "");
+      const dropdownMenu = document.querySelector(".dropdown-menu");
+      const toggleBtn = document.querySelector(".dropdown-toggle");
+      if (dropdownMenu && toggleBtn) {
+        dropdownMenu.classList.remove("expanded");
+        toggleBtn.classList.remove("active");
+        toggleBtn.textContent = `Categorías ▼`;
+      }
+    });
   });
-});
+} else {
+  console.warn("filterButtons no encontrados, no se agregan eventos.");
+}
 
 // Buscador
-searchInput.addEventListener("input", () => {
-  renderVideos(currentCategory, searchInput.value);
-});
+if (searchInput) {
+  searchInput.addEventListener("input", () => {
+    renderVideos(currentCategory, searchInput.value);
+  });
+} else {
+  console.warn("searchInput no encontrado, no se agrega evento.");
+}
 
 // Toggle para el menú flotante
 const toggleBtn = document.querySelector(".dropdown-toggle");
@@ -1075,7 +1084,11 @@ if (toggleBtn && dropdownMenu) {
     toggleBtn.classList.toggle("active");
     toggleBtn.textContent = dropdownMenu.classList.contains("expanded") ? "Categorías ▲" : "Categorías ▼";
   });
+} else {
+  console.warn("toggleBtn o dropdownMenu no encontrados, no se agrega evento.");
 }
 
-// Cargar videos iniciales
-renderVideos("latest");
+// Cargar videos iniciales solo si videoGrid existe
+if (videoGrid) {
+  renderVideos("latest");
+}
