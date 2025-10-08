@@ -402,12 +402,12 @@ footer h3 {
   animation-play-state: paused; /* Pausa al hover */
 }
 
-.carousel-wrapper .carousel-slide {
+.carousel-slide {
   flex: 0 0 300px; /* Ancho fijo por slide, ajusta según tu diseño */
   margin-right: 10px; /* Espacio entre slides */
 }
 
-.carousel-wrapper img {
+.carousel-slide img {
   width: 100%;
   height: auto;
   object-fit: cover;
@@ -419,13 +419,13 @@ footer h3 {
     transform: translateX(0);
   }
   100% {
-    transform: translateX(-50%); /* Duplica los slides para loop infinito */
+    transform: translateX(-100%); /* Loop infinito sin duplicados visibles */
   }
 }
 
 /* Responsivo */
 @media (max-width: 600px) {
-  .carousel-wrapper .carousel-slide {
+  .carousel-slide {
     flex: 0 0 200px; /* Menor ancho en móviles */
   }
 }

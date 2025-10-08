@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  console.log("Pathname actual:", window.location.pathname); // Depurar pathname para el popup
+  console.log("Pathname actual:", window.location.pathname); // Depurar pathname
 
   // Función para alternar el menú hamburguesa
   window.toggleMenu = function() {
@@ -177,7 +177,7 @@ document.addEventListener("DOMContentLoaded", () => {
     .catch(error => console.error("Error cargando popup.html:", error));
 
   // Generar carrusel dinámico con los últimos 10 videos en index.html (enfoque simple con CSS)
-  if (window.location.pathname === '/index.html' || window.location.pathname === '/') {
+  if (window.location.pathname.includes('index.html')) { // Ajustado para coincidir con /elbasurero/index.html
     if (typeof videosData !== "undefined" && videosData.length > 0) {
       const carousel = document.getElementById("dynamic-carousel");
       if (carousel) {
