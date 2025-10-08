@@ -2889,6 +2889,8 @@ footer h3 {
   
   .announcement-img {
     max-width: 100%;
+    object-fit: contain;
+    
   }
   
   .announcement-card h3 {
