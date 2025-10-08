@@ -22,6 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
       })
       .then(data => {
         header.innerHTML = data;
+        // Re-asignar evento al menú hamburguesa
         const menuToggle = document.querySelector(".menu-toggle");
         if (menuToggle) {
           menuToggle.addEventListener("click", toggleMenu);
@@ -29,6 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
         } else {
           console.warn("No se encontró .menu-toggle después de cargar el header");
         }
+        // Cargar el popup de login
         const loginModal = document.createElement("div");
         loginModal.id = "loginModal";
         loginModal.className = "modal";
@@ -63,6 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
           </div>
         `;
         document.body.appendChild(loginModal);
+        // Intentar inicializar botones de login/logout
         function tryInitAuthButtons(attempts = 10, delay = 300) {
           if (typeof window.initAuthButtons === "function") {
             window.initAuthButtons();
@@ -81,7 +84,8 @@ document.addEventListener("DOMContentLoaded", () => {
     console.warn("No se encontró el elemento #header");
   }
 
-  // Cargar y mostrar el popup de anuncios en todas las páginas
+// Cargar y mostrar el popup de anuncios solo en la página principal (index.html)
+if (window.location.pathname === '/index.html' || window.location.pathname === '/') {
   fetch("popup.html")
     .then(response => {
       if (!response.ok) throw new Error(`Error al cargar popup.html: ${response.status}`);
@@ -89,23 +93,36 @@ document.addEventListener("DOMContentLoaded", () => {
     })
     .then(data => {
       document.body.insertAdjacentHTML("beforeend", data);
+      
+      // Verificar si el popup debe mostrarse
       const today = new Date().toLocaleDateString("es-AR");
       const lastShown = localStorage.getItem("announcementLastShown");
       const noShowToday = localStorage.getItem("noShowToday");
+      
       const announcementModal = document.getElementById("announcementModal");
       if (announcementModal && (!noShowToday || lastShown !== today)) {
         announcementModal.style.display = "flex";
-        console.log("Popup de anuncios mostrado automáticamente");
+        console.log("Popup de anuncios mostrado automáticamente en index.html");
       } else {
         console.log("Popup de anuncios no mostrado (bloqueado por el usuario o mismo día)");
       }
+      
+      // Inicializar Swiper
       if (typeof Swiper !== "undefined") {
         new Swiper(".announcement-swiper", {
           loop: true,
-          loopAdditionalSlides: 3,
-          autoplay: { delay: 5000, disableOnInteraction: false },
-          navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" },
-          pagination: { el: ".swiper-pagination", clickable: true },
+          autoplay: {
+            delay: 5000,
+            disableOnInteraction: false,
+          },
+          navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+          },
+          pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+          },
           slidesPerView: 1,
           spaceBetween: 20,
         });
@@ -113,6 +130,8 @@ document.addEventListener("DOMContentLoaded", () => {
       } else {
         console.error("Swiper no está definido. Asegúrate de incluir swiper-bundle.min.js antes de scripts.js");
       }
+      
+      // Actualizar la tarjeta de Último Video dinámicamente
       if (typeof videosData !== "undefined" && videosData.length > 0) {
         const sortedVideos = videosData.sort((a, b) => new Date(b.fecha) - new Date(a.fecha));
         const latestVideo = sortedVideos[0];
@@ -138,6 +157,8 @@ document.addEventListener("DOMContentLoaded", () => {
       } else {
         console.warn("videosData no está definido o vacío. Asegúrate de incluir videos.js");
       }
+      
+      // Manejar el checkbox "No mostrar más por hoy"
       const noShowCheckbox = document.getElementById("noShowToday");
       if (noShowCheckbox) {
         noShowCheckbox.addEventListener("change", () => {
@@ -153,77 +174,8 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     })
     .catch(error => console.error("Error cargando popup.html:", error));
-
-  // Generar carrusel dinámico con Swiper en index.html
-  if (window.location.pathname.includes('index.html')) {
-    if (typeof videosData !== "undefined" && videosData.length > 0) {
-      const carousel = document.getElementById("dynamic-carousel");
-      if (carousel) {
-        const sortedVideos = videosData.sort((a, b) => new Date(b.fecha) - new Date(a.fecha));
-        const latestVideos = sortedVideos.slice(0, 10);
-        latestVideos.forEach(video => {
-          const videoIdMatch = video.link.match(/v=([^&]+)/);
-          let thumbnail = video.miniatura;
-          if (videoIdMatch && videoIdMatch[1]) {
-            const videoId = videoIdMatch[1];
-            thumbnail = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
-          }
-          if (thumbnail) {
-            const slide = document.createElement("div");
-            slide.classList.add("swiper-slide");
-            slide.innerHTML = `<a href="${video.link}" target="_blank"><img src="${thumbnail}" alt="${video.titulo}"></a>`;
-            carousel.appendChild(slide);
-            // Duplicar cada slide inmediatamente para asegurar loop
-            carousel.appendChild(slide.cloneNode(true));
-          }
-        });
-        // Inicializar Swiper para el carrusel dinámico
-        if (typeof Swiper !== "undefined") {
-          new Swiper(".mySwiper", {
-            loop: true,
-            loopAdditionalSlides: 10, // Duplica para asegurar loop
-            autoplay: {
-              delay: 1500,
-              disableOnInteraction: false,
-            },
-            pagination: {
-              el: ".swiper-pagination",
-              clickable: true,
-            },
-            navigation: {
-              nextEl: ".swiper-button-next",
-              prevEl: ".swiper-button-prev",
-            },
-            slidesPerView: 1,
-            spaceBetween: 20,
-          });
-          console.log("Carrusel dinámico inicializado");
-        } else {
-          console.error("Swiper no está definido para el carrusel dinámico");
-        }
-      } else {
-        console.warn("Contenedor #dynamic-carousel no encontrado");
-      }
-    } else {
-      console.warn("videosData no está definido o vacío para el carrusel dinámico");
-    }
-  }
-
-  // Actualizar título de categoría en videos.html
-  if (window.location.pathname.includes('videos.html')) {
-    const categoryItems = document.querySelectorAll('.dropdown-item');
-    const categoryTitle = document.getElementById('category-title');
-    categoryItems.forEach(item => {
-      item.addEventListener('click', () => {
-        categoryItems.forEach(i => i.classList.remove('active'));
-        item.classList.add('active');
-        const category = item.getAttribute('data-category');
-        categoryTitle.textContent = category === 'latest' ? 'Últimos' : category.charAt(0).toUpperCase() + category.slice(1);
-        console.log(`Título de categoría actualizado a: ${categoryTitle.textContent}`);
-      });
-    });
-  }
-
+}
+  
   // Función para cerrar el popup
   window.cerrarAnuncio = function() {
     const announcementModal = document.getElementById("announcementModal");
