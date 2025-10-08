@@ -131,34 +131,35 @@
       return;
     }
 
-    // Seleccionamos el contenedor del carrusel
     const swiperWrapper = document.querySelector(".mySwiper .swiper-wrapper");
     if (!swiperWrapper) {
       console.error("⚠️ No se encontró el contenedor .swiper-wrapper del carrusel.");
       return;
     }
 
-    // Ordenar los videos por fecha descendente
+    // Ordenar por fecha descendente y tomar los 10 más recientes
     const latestVideos = [...videosData]
       .sort((a, b) => new Date(b.fecha) - new Date(a.fecha))
-      .slice(0, 10); // solo los 10 más recientes
+      .slice(0, 10);
 
-    // Limpiar carrusel existente (si había slides manuales)
     swiperWrapper.innerHTML = "";
 
-    // Crear los slides dinámicamente
+    // Crear slides dinámicos con miniatura + título sobre la imagen
     latestVideos.forEach(video => {
       const slide = document.createElement("div");
       slide.classList.add("swiper-slide");
       slide.innerHTML = `
-        <a href="${video.link}" target="_blank" rel="noopener noreferrer">
+        <a href="${video.link}" target="_blank" rel="noopener noreferrer" class="video-slide">
           <img src="${video.miniatura}" alt="${video.titulo}" loading="lazy">
+          <div class="video-overlay">
+            <span class="video-title">${video.titulo}</span>
+          </div>
         </a>
       `;
       swiperWrapper.appendChild(slide);
     });
 
-    // Iniciar o actualizar el carrusel Swiper
+    // Inicializar carrusel
     new Swiper(".mySwiper", {
       loop: true,
       autoplay: {
@@ -175,7 +176,7 @@
       },
     });
 
-    console.log("🎬 Carrusel actualizado con los últimos 10 videos.");
+    console.log("🎬 Carrusel actualizado con los últimos 10 videos y títulos dinámicos.");
   });
 </script>
 </body>
