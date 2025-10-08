@@ -572,7 +572,8 @@ const videosData = [
   link: 'https://www.youtube.com/watch?v=BfB4HqqgEfk&t=34s',
   miniatura: 'https://img.youtube.com/vi/BfB4HqqgEfk/maxresdefault.jpg',
   tags: [
-    'Humor'
+    'Humor',
+    'Animación'
   ]
 },
   {
@@ -603,7 +604,8 @@ const videosData = [
   link: 'https://www.youtube.com/watch?v=1vZjpUjNzYg',
   miniatura: 'https://img.youtube.com/vi/1vZjpUjNzYg/maxresdefault.jpg',
   tags: [
-    'Humor'
+    'Humor',
+    'Animación'
   ]
 },
   {
@@ -670,7 +672,8 @@ const videosData = [
   link: 'https://www.youtube.com/watch?v=JKOu52oC6t4',
   miniatura: 'https://img.youtube.com/vi/JKOu52oC6t4/maxresdefault.jpg',
   tags: [
-    'Humor'
+    'Humor',
+    'Animación'
   ]
 },
   {
@@ -858,7 +861,8 @@ const videosData = [
     'Peliculas',
     'Cultura',
     'Drama',
-    'Especiales'
+    'Especiales',
+    'Animación'
   ]
 },
   {
@@ -971,7 +975,8 @@ const videosData = [
   miniatura: 'https://img.youtube.com/vi/mQhqgc8Swes/maxresdefault.jpg',
   tags: [
     'Series',
-    'Humor'
+    'Humor',
+    'Animación'
   ]
 },
 
