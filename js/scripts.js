@@ -103,7 +103,8 @@ document.addEventListener("DOMContentLoaded", () => {
       }
       if (typeof Swiper !== "undefined") {
         new Swiper(".announcement-swiper", {
-          loop: false, // Desactivar loop por ahora
+          loop: true,
+          loopAdditionalSlides: 3, // Duplica slides para evitar warning
           autoplay: { delay: 5000, disableOnInteraction: false },
           navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" },
           pagination: { el: ".swiper-pagination", clickable: true },
@@ -155,13 +156,14 @@ document.addEventListener("DOMContentLoaded", () => {
     })
     .catch(error => console.error("Error cargando popup.html:", error));
 
-  // Generar carrusel dinámico con controles manuales
+  // Generar carrusel dinámico con Swiper en index.html
   if (window.location.pathname.includes('index.html')) {
     if (typeof videosData !== "undefined" && videosData.length > 0) {
       const carousel = document.getElementById("dynamic-carousel");
       if (carousel) {
         const sortedVideos = videosData.sort((a, b) => new Date(b.fecha) - new Date(a.fecha));
         const latestVideos = sortedVideos.slice(0, 10);
+        let slideCount = 0;
         latestVideos.forEach(video => {
           const videoIdMatch = video.link.match(/v=([^&]+)/);
           let thumbnail = video.miniatura;
@@ -171,15 +173,45 @@ document.addEventListener("DOMContentLoaded", () => {
           }
           if (thumbnail) {
             const slide = document.createElement("div");
-            slide.classList.add("carousel-slide");
+            slide.classList.add("swiper-slide");
             slide.innerHTML = `<a href="${video.link}" target="_blank"><img src="${thumbnail}" alt="${video.titulo}"></a>`;
             carousel.appendChild(slide);
+            slideCount++;
           }
         });
-        // Duplicar slides para loop infinito
-        const originalSlides = [...carousel.children];
-        originalSlides.forEach(slide => carousel.appendChild(slide.cloneNode(true)));
-        console.log("Carrusel dinámico generado con CSS (loop infinito)");
+        // Duplicar slides si <10 para evitar warning de loop
+        if (slideCount < 10) {
+          const duplicateTimes = Math.ceil(10 / slideCount) - 1;
+          const originalSlides = [...carousel.children];
+          for (let i = 0; i < duplicateTimes; i++) {
+            originalSlides.forEach(slide => carousel.appendChild(slide.cloneNode(true)));
+          }
+          slideCount = carousel.children.length;
+        }
+        // Inicializar Swiper para el carrusel dinámico
+        if (typeof Swiper !== "undefined") {
+          new Swiper(".mySwiper", {
+            loop: true,
+            loopAdditionalSlides: 10, // Duplica para evitar warning
+            autoplay: {
+              delay: 1500,
+              disableOnInteraction: false, // Reanuda después de interacción
+            },
+            pagination: {
+              el: ".swiper-pagination",
+              clickable: true,
+            },
+            navigation: {
+              nextEl: ".swiper-button-next",
+              prevEl: ".swiper-button-prev",
+            },
+            slidesPerView: 1,
+            spaceBetween: 20,
+          });
+          console.log(`Carrusel dinámico inicializado con ${slideCount} slides`);
+        } else {
+          console.error("Swiper no está definido para el carrusel dinámico");
+        }
       } else {
         console.warn("Contenedor #dynamic-carousel no encontrado");
       }
@@ -187,29 +219,6 @@ document.addEventListener("DOMContentLoaded", () => {
       console.warn("videosData no está definido o vacío para el carrusel dinámico");
     }
   }
-
-  // Función para mover el carrusel manualmente
-  window.moveCarousel = function(direction) {
-    const carousel = document.getElementById("dynamic-carousel");
-    if (carousel) {
-      const slideWidth = carousel.children[0].offsetWidth + 10; // Ancho del slide + margen
-      let currentIndex = Math.round(Math.abs(parseFloat(getComputedStyle(carousel).transform.split(',')[4]) || 0) / slideWidth);
-      console.log("Current index:", currentIndex); // Depuración
-      carousel.classList.add("paused");
-      let newIndex = currentIndex + direction;
-      const totalSlides = carousel.children.length / 2; // Mitad por duplicación
-      newIndex = Math.max(0, Math.min(totalSlides - 1, newIndex)); // Limita el índice
-      const newTranslate = -newIndex * slideWidth;
-      carousel.style.transform = `translateX(${newTranslate}px)`;
-      console.log("New index:", newIndex, "New translate:", newTranslate); // Depuración
-      // Reanudar animación después de 3 segundos
-      clearTimeout(window.carouselTimeout);
-      window.carouselTimeout = setTimeout(() => {
-        carousel.classList.remove("paused");
-        carousel.style.transform = `translateX(0)`; // Reiniciar para animación
-      }, 3000);
-    }
-  };
 
   // Función para cerrar el popup
   window.cerrarAnuncio = function() {

@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="css/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="icon" href="Imagenes/icono.png" type="image/x-icon">
-    <!-- Swiper CSS para el popup -->
+    <!-- Swiper CSS para popup y carrusel -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <meta name="description" content="El Basurero, tu canal de reacciones en YouTube. Horarios, videos y comunidad.">
     <meta name="keywords" content="El Basurero, reacciones, YouTube, directos, Twitch, México, Argentina, stream, videos, comunidad, películas, series, opinión, videoreacción">
@@ -29,11 +29,12 @@
             <a href="https://www.youtube.com/@elbasureroedgar" class="btn">YouTube</a>
         </section>
 
-        <!-- Carrusel dinámico con controles manuales -->
-        <div class="carousel-container">
-            <button class="carousel-control prev" onclick="moveCarousel(-1)">Anterior</button>
-            <div class="carousel-wrapper" id="dynamic-carousel"></div>
-            <button class="carousel-control next" onclick="moveCarousel(1)">Siguiente</button>
+        <!-- Carrusel dinámico con Swiper -->
+        <div class="swiper mySwiper">
+            <div class="swiper-wrapper" id="dynamic-carousel"></div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-pagination"></div>
         </div>
     </main>
     <footer>
@@ -65,7 +66,7 @@
     </footer>
 
     <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script> <!-- Swiper JS para el popup -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="js/videos.js"></script>
     <script src="js/scripts.js"></script>
     <script type="module" src="js/login.js" defer></script>
