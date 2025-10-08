@@ -179,20 +179,23 @@ document.addEventListener("DOMContentLoaded", () => {
             slideCount++;
           }
         });
-        // Duplicar slides si <10 para evitar warning de loop
+        console.log(`Slides generados: ${slideCount}`);
+        // Asegurar al menos 10 slides para loop
         if (slideCount < 10) {
-          const duplicateTimes = Math.ceil(10 / slideCount) - 1;
+          const slidesToAdd = 10 - slideCount;
           const originalSlides = [...carousel.children];
-          for (let i = 0; i < duplicateTimes; i++) {
-            originalSlides.forEach(slide => carousel.appendChild(slide.cloneNode(true)));
+          for (let i = 0; i < slidesToAdd; i++) {
+            const originalIndex = i % originalSlides.length;
+            carousel.appendChild(originalSlides[originalIndex].cloneNode(true));
           }
           slideCount = carousel.children.length;
+          console.log(`Slides duplicados añadidos, total: ${slideCount}`);
         }
         // Inicializar Swiper para el carrusel dinámico
         if (typeof Swiper !== "undefined") {
           new Swiper(".mySwiper", {
             loop: true,
-            loopAdditionalSlides: 10, // Duplica para evitar warning
+            loopAdditionalSlides: slideCount, // Duplica todos los slides para asegurar loop
             autoplay: {
               delay: 1500,
               disableOnInteraction: false, // Reanuda después de interacción
