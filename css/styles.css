@@ -2792,11 +2792,14 @@ footer h3 {
   overflow: hidden;
 }
 
+/* Estilos para el Popup de Anuncios */
 .announcement-swiper {
   width: 100%;
-  height: 100%; /* Ocupa todo el espacio disponible del modal-content */
-  margin: 0;
+  max-width: 600px;
+  margin: 20px auto;
+  border-radius: 12px;
   overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
 .announcement-card {
@@ -2804,8 +2807,11 @@ footer h3 {
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  background: transparent;
-  padding: 10px;
+  background: var(--glass-bg);
+  backdrop-filter: var(--blur);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius);
+  padding: 20px;
   text-align: center;
   color: var(--text-light);
   height: 100%;
@@ -2814,21 +2820,16 @@ footer h3 {
 
 .announcement-card:hover {
   transform: scale(1.02);
-  background: rgba(255, 255, 255, 0.12);
+  background: rgba(255,255,255,0.12);
 }
 
-.announcement-img {
+.announcement-icon {
   width: 100%;
-  max-width: 100%; /* Usa todo el ancho disponible de la tarjeta */
+  max-width: 320px; /* Ancho máximo para la imagen */
   aspect-ratio: 16 / 9; /* Proporción 16:9 */
-  object-fit: cover;
-  margin: 10px 0;
-  border-radius: 8px;
-}
-
-.image-link {
-  display: block; /* Asegura que el enlace ocupe el espacio de la imagen */
-  width: 100%;
+  object-fit: cover; /* Asegura que la imagen se ajuste sin distorsionarse */
+  margin: 15px 0;
+  border-radius: 8px; /* Bordes redondeados para un look limpio */
 }
 
 .announcement-card h3 {
@@ -2842,8 +2843,8 @@ footer h3 {
   font-size: 16px;
   color: var(--text-muted);
   margin-bottom: 15px;
-  max-height: 80px;
-  overflow-y: auto;
+  max-height: 100px;
+  overflow-y: auto; /* Scroll si la descripción es larga */
 }
 
 .modal-subtitle {
@@ -2882,14 +2883,16 @@ footer h3 {
 
 /* Ajustes responsivos */
 @media (max-width: 600px) {
-  .modal-content {
-    width: 90%;
-    height: 80vh;
-    max-height: 500px;
+  .announcement-swiper {
+    max-width: 90%;
   }
   
-  .announcement-img {
-    max-width: 100%;
+  .announcement-card {
+    padding: 15px;
+  }
+  
+  .announcement-icon {
+    max-width: 240px; /* Más pequeño en móviles */
   }
   
   .announcement-card h3 {
@@ -2898,6 +2901,5 @@ footer h3 {
   
   .announcement-card p {
     font-size: 14px;
-    max-height: 60px;
   }
 }
