@@ -103,7 +103,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
       if (typeof Swiper !== "undefined") {
         new Swiper(".announcement-swiper", {
-          loop: true,
+          loop: false, // Desactivar loop por ahora
           autoplay: { delay: 5000, disableOnInteraction: false },
           navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" },
           pagination: { el: ".swiper-pagination", clickable: true },
@@ -193,16 +193,15 @@ document.addEventListener("DOMContentLoaded", () => {
     const carousel = document.getElementById("dynamic-carousel");
     if (carousel) {
       const slideWidth = carousel.children[0].offsetWidth + 10; // Ancho del slide + margen
-      let currentTranslate = parseFloat(getComputedStyle(carousel).transform.split(',')[4]) || 0;
-      console.log("Current position:", currentTranslate); // Depuración
+      let currentIndex = Math.round(Math.abs(parseFloat(getComputedStyle(carousel).transform.split(',')[4]) || 0) / slideWidth);
+      console.log("Current index:", currentIndex); // Depuración
       carousel.classList.add("paused");
-      let newTranslate = currentTranslate + (slideWidth * -direction); // Negativo para mover hacia adelante
+      let newIndex = currentIndex + direction;
       const totalSlides = carousel.children.length / 2; // Mitad por duplicación
-      const maxTranslate = 0; // Inicio
-      const minTranslate = -slideWidth * (totalSlides - 1); // Fin
-      newTranslate = Math.max(minTranslate, Math.min(maxTranslate, newTranslate));
+      newIndex = Math.max(0, Math.min(totalSlides - 1, newIndex)); // Limita el índice
+      const newTranslate = -newIndex * slideWidth;
       carousel.style.transform = `translateX(${newTranslate}px)`;
-      console.log("New position:", newTranslate); // Depuración
+      console.log("New index:", newIndex, "New translate:", newTranslate); // Depuración
       // Reanudar animación después de 3 segundos
       clearTimeout(window.carouselTimeout);
       window.carouselTimeout = setTimeout(() => {
