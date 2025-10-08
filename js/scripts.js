@@ -194,7 +194,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // Inicializar Swiper para el carrusel dinámico
         if (typeof Swiper !== "undefined") {
           new Swiper(".mySwiper", {
-            loop: true,
+            loop: false,
             loopAdditionalSlides: slideCount, // Duplica todos los slides para asegurar loop
             autoplay: {
               delay: 1500,
