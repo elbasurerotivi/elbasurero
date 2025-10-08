@@ -2897,6 +2897,6 @@ footer h3 {
   
   .announcement-card p {
     font-size: 14px;
-    max-height: 60px;
+    max-height: 0px;
   }
 }
