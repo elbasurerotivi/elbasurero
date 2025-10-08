@@ -193,14 +193,17 @@ document.addEventListener("DOMContentLoaded", () => {
     const carousel = document.getElementById("dynamic-carousel");
     if (carousel) {
       const slideWidth = carousel.children[0].offsetWidth + 10; // Ancho del slide + margen
-      let currentPosition = parseFloat(getComputedStyle(carousel).transform.split(',')[4]) || 0;
+      let currentTranslate = parseFloat(getComputedStyle(carousel).transform.split(',')[4]) || 0;
+      console.log("Current position:", currentTranslate); // Depuración
       carousel.classList.add("paused");
-      let newPosition = currentPosition + (slideWidth * direction);
-      const maxPosition = 0; // Inicio
-      const minPosition = -slideWidth * (carousel.children.length / 2 - 1); // Fin (mitad por duplicación)
-      newPosition = Math.max(minPosition, Math.min(maxPosition, newPosition));
-      carousel.style.transform = `translateX(${newPosition}px)`;
-      // Reanudar animación después de 3 segundos sin interacción
+      let newTranslate = currentTranslate + (slideWidth * -direction); // Negativo para mover hacia adelante
+      const totalSlides = carousel.children.length / 2; // Mitad por duplicación
+      const maxTranslate = 0; // Inicio
+      const minTranslate = -slideWidth * (totalSlides - 1); // Fin
+      newTranslate = Math.max(minTranslate, Math.min(maxTranslate, newTranslate));
+      carousel.style.transform = `translateX(${newTranslate}px)`;
+      console.log("New position:", newTranslate); // Depuración
+      // Reanudar animación después de 3 segundos
       clearTimeout(window.carouselTimeout);
       window.carouselTimeout = setTimeout(() => {
         carousel.classList.remove("paused");
