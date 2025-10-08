@@ -858,7 +858,7 @@ const videosData = [
   link: 'https://www.youtube.com/watch?v=bPxSzdptR-s&t=792s',
   miniatura: 'https://img.youtube.com/vi/bPxSzdptR-s/maxresdefault.jpg',
   tags: [
-    'película',
+    'Películas',
     'Cultura',
     'Drama',
     'Especiales',
