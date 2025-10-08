@@ -2884,7 +2884,7 @@ footer h3 {
   .modal-content {
     width: 90%;
     height: 40vh;
-    max-height: 500px;
+    max-height: 100px;
   }
   
   .announcement-img {
