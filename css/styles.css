@@ -2783,9 +2783,9 @@ footer h3 {
   border-radius: var(--radius);
   padding: 20px;
   width: 75%; /* Al menos 3/4 de la pantalla */
-  max-width: 800px; /* Límite máximo para pantallas grandes */
+  max-width: 900px; /* Aumentado para pantallas grandes */
   height: 75vh; /* Al menos 3/4 de la altura de la pantalla */
-  max-height: 600px; /* Límite máximo de altura */
+  max-height: 700px; /* Aumentado para más espacio */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -2804,7 +2804,7 @@ footer h3 {
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  background: transparent; /* Quitamos fondo para que use el del modal-content */
+  background: transparent;
   padding: 10px;
   text-align: center;
   color: var(--text-light);
@@ -2821,9 +2821,14 @@ footer h3 {
   width: 100%;
   max-width: 100%; /* Usa todo el ancho disponible de la tarjeta */
   aspect-ratio: 16 / 9; /* Proporción 16:9 */
-  object-fit:cover; /* Asegura que la imagen se ajuste sin distorsionarse */
+  object-fit: cover;
   margin: 10px 0;
   border-radius: 8px;
+}
+
+.image-link {
+  display: block; /* Asegura que el enlace ocupe el espacio de la imagen */
+  width: 100%;
 }
 
 .announcement-card h3 {
@@ -2878,14 +2883,13 @@ footer h3 {
 /* Ajustes responsivos */
 @media (max-width: 600px) {
   .modal-content {
-    width: 100%; /* Más ancho en móviles */
-    height: 100%; /* Más alto en móviles */
-    max-height: 60%;
-    object-fit:contain; /* Asegura que la imagen se ajuste sin distorsionarse */
+    width: 90%;
+    height: 80vh;
+    max-height: 500px;
   }
   
-  .announcement-icon {
-    max-width: 100%; /* Ajusta según el contenedor */
+  .announcement-img {
+    max-width: 100%;
   }
   
   .announcement-card h3 {
