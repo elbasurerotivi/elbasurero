@@ -183,6 +183,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (carousel) {
         const sortedVideos = videosData.sort((a, b) => new Date(b.fecha) - new Date(a.fecha));
         const latestVideos = sortedVideos.slice(0, 10); // Tomar los últimos 10 videos
+        let slideCount = 0;
         latestVideos.forEach(video => {
           const videoIdMatch = video.link.match(/v=([^&]+)/);
           let thumbnail = video.miniatura;
@@ -190,15 +191,41 @@ document.addEventListener("DOMContentLoaded", () => {
             const videoId = videoIdMatch[1];
             thumbnail = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
           }
-          const slide = document.createElement("div");
-          slide.classList.add("swiper-slide");
-          slide.innerHTML = `
-            <a href="${video.link}" target="_blank">
-              <img src="${thumbnail}" alt="${video.titulo}">
-            </a>
-          `;
-          carousel.appendChild(slide);
+          if (thumbnail) { // Solo agregar slide si hay miniatura válida
+            const slide = document.createElement("div");
+            slide.classList.add("swiper-slide");
+            slide.innerHTML = `
+              <a href="${video.link}" target="_blank">
+                <img src="${thumbnail}" alt="${video.titulo}">
+              </a>
+            `;
+            carousel.appendChild(slide);
+            slideCount++;
+          }
         });
+        // Si hay menos de 10 slides, duplicar los existentes para soportar loop
+        if (slideCount < 10) {
+          for (let i = 0; i < latestVideos.length && slideCount < 10; i++) {
+            const video = latestVideos[i];
+            const videoIdMatch = video.link.match(/v=([^&]+)/);
+            let thumbnail = video.miniatura;
+            if (videoIdMatch && videoIdMatch[1]) {
+              const videoId = videoIdMatch[1];
+              thumbnail = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+            }
+            if (thumbnail) {
+              const slide = document.createElement("div");
+              slide.classList.add("swiper-slide");
+              slide.innerHTML = `
+                <a href="${video.link}" target="_blank">
+                  <img src="${thumbnail}" alt="${video.titulo}">
+                </a>
+              `;
+              carousel.appendChild(slide);
+              slideCount++;
+            }
+          }
+        }
         // Inicializar Swiper para el carrusel dinámico
         if (typeof Swiper !== "undefined") {
           new Swiper(".mySwiper", {
@@ -215,8 +242,10 @@ document.addEventListener("DOMContentLoaded", () => {
               nextEl: ".swiper-button-next",
               prevEl: ".swiper-button-prev",
             },
+            slidesPerView: 1, // Asegurar que sea 1 para evitar conflictos
+            slidesPerGroup: 1 // Ajustar para que sea compatible con loop
           });
-          console.log("Carrusel dinámico inicializado con los últimos 10 videos");
+          console.log(`Carrusel dinámico inicializado con ${slideCount} slides`);
         } else {
           console.error("Swiper no está definido para el carrusel dinámico");
         }
