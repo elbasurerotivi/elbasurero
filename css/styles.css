@@ -2883,7 +2883,7 @@ footer h3 {
 @media (max-width: 600px) {
   .modal-content {
     width: 90%;
-    height: 80vh;
+    height: 40vh;
     max-height: 500px;
   }
   
