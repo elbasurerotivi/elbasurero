@@ -2780,7 +2780,7 @@ footer h3 {
   backdrop-filter: var(--blur);
   border: 1px solid var(--border-light);
   border-radius: var(--radius);
-  padding: 20px;
+  padding: 2px;
   width: 75%; /* Al menos 3/4 de la pantalla */
   max-width: 900px; /* Aumentado para pantallas grandes */
   height: 75vh; /* Al menos 3/4 de la altura de la pantalla */
@@ -2821,7 +2821,7 @@ footer h3 {
   max-width: 100%; /* Usa todo el ancho disponible de la tarjeta */
   aspect-ratio: 16 / 9; /* Proporción 16:9 */
   object-fit: content;
-  margin: 10px 0;
+  margin: 2px 0;
   border-radius: 8px;
 }
 
