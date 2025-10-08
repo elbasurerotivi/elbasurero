@@ -385,6 +385,54 @@ footer h3 {
 
 }
 
+
+/* Estilos para el carrusel simple con CSS */
+.carousel-container {
+  width: 100%;
+  overflow: hidden;
+  margin: 20px 0;
+}
+
+.carousel-wrapper {
+  display: flex;
+  animation: carousel-scroll 30s linear infinite; /* Velocidad del scroll (ajusta 30s según prefieras) */
+}
+
+.carousel-wrapper:hover {
+  animation-play-state: paused; /* Pausa al hover */
+}
+
+.carousel-wrapper .carousel-slide {
+  flex: 0 0 300px; /* Ancho fijo por slide, ajusta según tu diseño */
+  margin-right: 10px; /* Espacio entre slides */
+}
+
+.carousel-wrapper img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+@keyframes carousel-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%); /* Duplica los slides para loop infinito */
+  }
+}
+
+/* Responsivo */
+@media (max-width: 600px) {
+  .carousel-wrapper .carousel-slide {
+    flex: 0 0 200px; /* Menor ancho en móviles */
+  }
+}
+
+
+
+
 /* ===== Estilos Carrusel Swiper ===== */
 .swiper {
   width: 100%;
