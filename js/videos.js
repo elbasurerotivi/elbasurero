@@ -975,6 +975,19 @@ const videosData = [
   ]
 },
 
+  {
+  titulo: 'Reacción a Te Lo Resumo Así Nomás – Evangelion | Extracto del live en Twitch',
+  descripcion: 'Hoy reaccionamos a uno de los videos más legendarios de Te Lo Resumo Así Nomás: Evangelion 🤯\nUna reseña cargada de humor, caos y esas frases que solo Jorge puede soltar sobre un anime que nadie entiende… pero todos amamos.\n\nEste video es un extracto del live en Twitch, donde nos reímos a lo grande con el chat mientras intentábamos descifrar a Shinji y compañía 😅',
+  fecha: '2025-10-08',
+  link: 'https://m.youtube.com/watch?v=QqrO7xA8m5M',
+  miniatura: 'https://img.youtube.com/vi/QqrO7xA8m5M/maxresdefault.jpg',
+  tags: [
+    'Series',
+    'Humor',
+    'Animación'
+  ]
+},
+
 
 
 ];
