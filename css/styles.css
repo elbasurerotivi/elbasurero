@@ -485,7 +485,7 @@ footer h3 {
 .swiper-slide img {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* rellena el espacio recortando exceso */
+  object-fit: contain; /* rellena el espacio recortando exceso */
   transition: transform 0.3s ease-in-out;
 }
 
