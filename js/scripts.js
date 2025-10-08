@@ -84,97 +84,149 @@ document.addEventListener("DOMContentLoaded", () => {
     console.warn("No se encontró el elemento #header");
   }
 
-// Cargar y mostrar el popup de anuncios solo en la página principal (index.html)
-if (window.location.pathname === '/index.html' || window.location.pathname === '/') {
-  fetch("popup.html")
-    .then(response => {
-      if (!response.ok) throw new Error(`Error al cargar popup.html: ${response.status}`);
-      return response.text();
-    })
-    .then(data => {
-      document.body.insertAdjacentHTML("beforeend", data);
-      
-      // Verificar si el popup debe mostrarse
-      const today = new Date().toLocaleDateString("es-AR");
-      const lastShown = localStorage.getItem("announcementLastShown");
-      const noShowToday = localStorage.getItem("noShowToday");
-      
-      const announcementModal = document.getElementById("announcementModal");
-      if (announcementModal && (!noShowToday || lastShown !== today)) {
-        announcementModal.style.display = "flex";
-        console.log("Popup de anuncios mostrado automáticamente en index.html");
-      } else {
-        console.log("Popup de anuncios no mostrado (bloqueado por el usuario o mismo día)");
-      }
-      
-      // Inicializar Swiper
-      if (typeof Swiper !== "undefined") {
-        new Swiper(".announcement-swiper", {
-          loop: true,
-          autoplay: {
-            delay: 5000,
-            disableOnInteraction: false,
-          },
-          navigation: {
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev",
-          },
-          pagination: {
-            el: ".swiper-pagination",
-            clickable: true,
-          },
-          slidesPerView: 1,
-          spaceBetween: 20,
-        });
-        console.log("Swiper inicializado correctamente");
-      } else {
-        console.error("Swiper no está definido. Asegúrate de incluir swiper-bundle.min.js antes de scripts.js");
-      }
-      
-      // Actualizar la tarjeta de Último Video dinámicamente
-      if (typeof videosData !== "undefined" && videosData.length > 0) {
-        const sortedVideos = videosData.sort((a, b) => new Date(b.fecha) - new Date(a.fecha));
-        const latestVideo = sortedVideos[0];
-        const videoIdMatch = latestVideo.link.match(/v=([^&]+)/);
-        let thumbnail = latestVideo.miniatura;
-        if (videoIdMatch && videoIdMatch[1]) {
-          const videoId = videoIdMatch[1];
-          thumbnail = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
-        }
-        const latestImg = document.getElementById("latest-video-img");
-        const latestLink = document.getElementById("latest-video-link");
-        const latestLinkBtn = document.getElementById("latest-video-link-btn");
-        const latestCard = document.getElementById("latest-video-card");
-        if (latestImg && latestLink && latestLinkBtn && latestCard) {
-          latestImg.src = thumbnail;
-          latestImg.alt = latestVideo.titulo;
-          latestLink.href = latestVideo.link;
-          latestLinkBtn.href = latestVideo.link;
-          console.log("Tarjeta de Último Video actualizada:", latestVideo.titulo);
+  // Cargar y mostrar el popup de anuncios solo en la página principal (index.html)
+  if (window.location.pathname === '/index.html' || window.location.pathname === '/') {
+    fetch("popup.html")
+      .then(response => {
+        if (!response.ok) throw new Error(`Error al cargar popup.html: ${response.status}`);
+        return response.text();
+      })
+      .then(data => {
+        document.body.insertAdjacentHTML("beforeend", data);
+        
+        // Verificar si el popup debe mostrarse
+        const today = new Date().toLocaleDateString("es-AR");
+        const lastShown = localStorage.getItem("announcementLastShown");
+        const noShowToday = localStorage.getItem("noShowToday");
+        
+        const announcementModal = document.getElementById("announcementModal");
+        if (announcementModal && (!noShowToday || lastShown !== today)) {
+          announcementModal.style.display = "flex";
+          console.log("Popup de anuncios mostrado automáticamente en index.html");
         } else {
-          console.warn("No se encontraron elementos para actualizar la tarjeta de Último Video");
+          console.log("Popup de anuncios no mostrado (bloqueado por el usuario o mismo día)");
+        }
+        
+        // Inicializar Swiper del popup
+        if (typeof Swiper !== "undefined") {
+          new Swiper(".announcement-swiper", {
+            loop: true,
+            autoplay: {
+              delay: 5000,
+              disableOnInteraction: false,
+            },
+            navigation: {
+              nextEl: ".swiper-button-next",
+              prevEl: ".swiper-button-prev",
+            },
+            pagination: {
+              el: ".swiper-pagination",
+              clickable: true,
+            },
+            slidesPerView: 1,
+            spaceBetween: 20,
+          });
+          console.log("Swiper inicializado correctamente");
+        } else {
+          console.error("Swiper no está definido. Asegúrate de incluir swiper-bundle.min.js antes de scripts.js");
+        }
+        
+        // Actualizar la tarjeta de Último Video dinámicamente
+        if (typeof videosData !== "undefined" && videosData.length > 0) {
+          const sortedVideos = videosData.sort((a, b) => new Date(b.fecha) - new Date(a.fecha));
+          const latestVideo = sortedVideos[0];
+          const videoIdMatch = latestVideo.link.match(/v=([^&]+)/);
+          let thumbnail = latestVideo.miniatura;
+          if (videoIdMatch && videoIdMatch[1]) {
+            const videoId = videoIdMatch[1];
+            thumbnail = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+          }
+          const latestImg = document.getElementById("latest-video-img");
+          const latestLink = document.getElementById("latest-video-link");
+          const latestLinkBtn = document.getElementById("latest-video-link-btn");
+          const latestCard = document.getElementById("latest-video-card");
+          if (latestImg && latestLink && latestLinkBtn && latestCard) {
+            latestImg.src = thumbnail;
+            latestImg.alt = latestVideo.titulo;
+            latestLink.href = latestVideo.link;
+            latestLinkBtn.href = latestVideo.link;
+            console.log("Tarjeta de Último Video actualizada:", latestVideo.titulo);
+          } else {
+            console.warn("No se encontraron elementos para actualizar la tarjeta de Último Video");
+          }
+        } else {
+          console.warn("videosData no está definido o vacío. Asegúrate de incluir videos.js");
+        }
+        
+        // Manejar el checkbox "No mostrar más por hoy"
+        const noShowCheckbox = document.getElementById("noShowToday");
+        if (noShowCheckbox) {
+          noShowCheckbox.addEventListener("change", () => {
+            if (noShowCheckbox.checked) {
+              localStorage.setItem("noShowToday", "true");
+              localStorage.setItem("announcementLastShown", today);
+              console.log("Checkbox marcado: No mostrar popup por hoy");
+            } else {
+              localStorage.removeItem("noShowToday");
+              console.log("Checkbox desmarcado: Popup puede mostrarse nuevamente");
+            }
+          });
+        }
+      })
+      .catch(error => console.error("Error cargando popup.html:", error));
+  }
+
+  // Generar carrusel dinámico con los últimos 5 videos en index.html
+  if (window.location.pathname === '/index.html' || window.location.pathname === '/') {
+    if (typeof videosData !== "undefined" && videosData.length > 0) {
+      const carousel = document.getElementById("dynamic-carousel");
+      if (carousel) {
+        const sortedVideos = videosData.sort((a, b) => new Date(b.fecha) - new Date(a.fecha));
+        const latestVideos = sortedVideos.slice(0, 5); // Tomar los últimos 5 videos
+        latestVideos.forEach(video => {
+          const videoIdMatch = video.link.match(/v=([^&]+)/);
+          let thumbnail = video.miniatura;
+          if (videoIdMatch && videoIdMatch[1]) {
+            const videoId = videoIdMatch[1];
+            thumbnail = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+          }
+          const slide = document.createElement("div");
+          slide.classList.add("swiper-slide");
+          slide.innerHTML = `
+            <a href="${video.link}" target="_blank">
+              <img src="${thumbnail}" alt="${video.titulo}">
+            </a>
+          `;
+          carousel.appendChild(slide);
+        });
+        // Inicializar Swiper para el carrusel dinámico
+        if (typeof Swiper !== "undefined") {
+          new Swiper(".mySwiper", {
+            loop: true,
+            autoplay: {
+              delay: 1500,
+              disableOnInteraction: false,
+            },
+            pagination: {
+              el: ".swiper-pagination",
+              clickable: true,
+            },
+            navigation: {
+              nextEl: ".swiper-button-next",
+              prevEl: ".swiper-button-prev",
+            },
+          });
+          console.log("Carrusel dinámico inicializado con los últimos 5 videos");
+        } else {
+          console.error("Swiper no está definido para el carrusel dinámico");
         }
       } else {
-        console.warn("videosData no está definido o vacío. Asegúrate de incluir videos.js");
+        console.warn("Contenedor #dynamic-carousel no encontrado");
       }
-      
-      // Manejar el checkbox "No mostrar más por hoy"
-      const noShowCheckbox = document.getElementById("noShowToday");
-      if (noShowCheckbox) {
-        noShowCheckbox.addEventListener("change", () => {
-          if (noShowCheckbox.checked) {
-            localStorage.setItem("noShowToday", "true");
-            localStorage.setItem("announcementLastShown", today);
-            console.log("Checkbox marcado: No mostrar popup por hoy");
-          } else {
-            localStorage.removeItem("noShowToday");
-            console.log("Checkbox desmarcado: Popup puede mostrarse nuevamente");
-          }
-        });
-      }
-    })
-    .catch(error => console.error("Error cargando popup.html:", error));
-}
+    } else {
+      console.warn("videosData no está definido o vacío para el carrusel dinámico");
+    }
+  }
   
   // Función para cerrar el popup
   window.cerrarAnuncio = function() {
