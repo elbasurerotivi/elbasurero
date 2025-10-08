@@ -9,7 +9,7 @@ const videosData = [
   link: 'https://www.youtube.com/watch?v=ecQU-umF7Ig&t=50s',
   miniatura: 'Imagenes/el clan.webp',
   tags: [
-    'películas',
+    'Películas',
     'Directos',
     'Drama',
     'Historia',
@@ -24,7 +24,7 @@ const videosData = [
   link: 'https://www.youtube.com/watch?v=suY9sPBv6Bo&t=786s',
   miniatura: 'Imagenes/fantasma de buenos aires.webp',
   tags: [
-    'películas',
+    'Películas',
     'Comedia',
     'Directos',
     'Humor'
@@ -49,7 +49,7 @@ const videosData = [
   link: 'https://www.youtube.com/watch?v=ELR89ybRWRs&t=6168s',
   miniatura: 'Imagenes/un oso rojo.webp',
   tags: [
-    'películas',
+    'Películas',
     'Directos',
     'Drama'
   ]
@@ -62,7 +62,7 @@ const videosData = [
   link: 'https://www.youtube.com/watch?v=KTzz-HNNf48&t=5710s',
   miniatura: 'Imagenes/cronos.webp',
   tags: [
-    'películas',
+    'Películas',
     'Directos',
     'Drama',
     'Suspenso'
@@ -70,12 +70,12 @@ const videosData = [
 },
   {
   titulo: '🎥🔴 Live Parte 1: Interrumpida por el tercer mundo. Reacción | Cien veces no debo',
-  descripcion: 'Hoy nos juntamos en vivo para reaccionar a la película argentina Cien veces no debo. Una comedia clásica dirigida por Alejandro Doria que reúne en la pantalla a un elenco inolvidable y que se ha convertido en una de las películas más queridas del cine argentino.\n\nEn este live vamos a disfrutar, comentar y reírnos con cada escena, analizando sus momentos más memorables, la actuación de sus protagonistas y el estilo tan característico del cine de los 90 en Argentina.\n\nSi te gustan las películas argentinas, las reacciones en vivo, el buen humor y el análisis relajado de cine, este directo es para ti. ¡Acompáñanos y participa en el chat en vivo!',
+  descripcion: 'Hoy nos juntamos en vivo para reaccionar a la película argentina Cien veces no debo. Una comedia clásica dirigida por Alejandro Doria que reúne en la pantalla a un elenco inolvidable y que se ha convertido en una de las película más queridas del cine argentino.\n\nEn este live vamos a disfrutar, comentar y reírnos con cada escena, analizando sus momentos más memorables, la actuación de sus protagonistas y el estilo tan característico del cine de los 90 en Argentina.\n\nSi te gustan las película argentinas, las reacciones en vivo, el buen humor y el análisis relajado de cine, este directo es para ti. ¡Acompáñanos y participa en el chat en vivo!',
   fecha: '2025-08-16',
   link: 'https://www.youtube.com/watch?v=gptQSG82q9E&t=108s',
   miniatura: 'Imagenes/100 veces no debo.webp',
   tags: [
-    'películas',
+    'Películas',
     'Comedia',
     'Directos',
     'Humor'
@@ -83,12 +83,12 @@ const videosData = [
 },
   {
   titulo: '🎥🔴 Parte 2: Volvió la luz!!! Reacción a la película argentina Cien veces no debo',
-  descripcion: 'Hoy nos juntamos en vivo para reaccionar a la película argentina Cien veces no debo. Una comedia clásica dirigida por Alejandro Doria que reúne en la pantalla a un elenco inolvidable y que se ha convertido en una de las películas más queridas del cine argentino.\n\nEn este live vamos a disfrutar, comentar y reírnos con cada escena, analizando sus momentos más memorables, la actuación de sus protagonistas y el estilo tan característico del cine de los 90 en Argentina.',
+  descripcion: 'Hoy nos juntamos en vivo para reaccionar a la película argentina Cien veces no debo. Una comedia clásica dirigida por Alejandro Doria que reúne en la pantalla a un elenco inolvidable y que se ha convertido en una de las película más queridas del cine argentino.\n\nEn este live vamos a disfrutar, comentar y reírnos con cada escena, analizando sus momentos más memorables, la actuación de sus protagonistas y el estilo tan característico del cine de los 90 en Argentina.',
   fecha: '2025-08-16',
   link: 'https://www.youtube.com/watch?v=8rA1ayCNQi4',
   miniatura: 'Imagenes/100 veces no debo.webp',
   tags: [
-    'películas',
+    'Películas',
     'Comedia',
     'Directos',
     'Humor'
@@ -101,7 +101,7 @@ const videosData = [
   link: 'https://www.youtube.com/watch?v=h05Wr9j2whE&t=2337s',
   miniatura: 'Imagenes/nicotina.webp',
   tags: [
-    'películas',
+    'Películas',
     'Comedia',
     'Directos',
     'Humor'
@@ -114,7 +114,7 @@ const videosData = [
   link: 'https://www.youtube.com/watch?v=Si2ezqzM_eQ&t=11499s',
   miniatura: 'Imagenes/el hijo de la novia.webp',
   tags: [
-    'películas',
+    'Películas',
     'Directos',
     'Drama'
   ]
@@ -126,7 +126,7 @@ const videosData = [
   link: 'https://www.youtube.com/watch?v=YAw6o5_ZpxI&t=6s',
   miniatura: 'Imagenes/Tiempo de Valientes.webp',
   tags: [
-    'películas',
+    'Películas',
     'Comedia',
     'Directos',
     'Humor'
@@ -420,7 +420,7 @@ const videosData = [
   link: 'https://www.youtube.com/watch?v=UlFYVCmTq-s&t=282s',
   miniatura: 'https://img.youtube.com/vi/UlFYVCmTq-s/maxresdefault.jpg',
   tags: [
-    'películas',
+    'Películas',
     'Humor',
     'Especiales'
   ]
@@ -548,7 +548,7 @@ const videosData = [
   link: 'https://www.youtube.com/watch?v=cDTkpezLYE8&t=11s',
   miniatura: 'https://img.youtube.com/vi/cDTkpezLYE8/maxresdefault.jpg',
   tags: [
-    'películas',
+    'Películas',
     'Humor',
     'Especiales'
   ]
@@ -560,7 +560,7 @@ const videosData = [
   link: 'https://www.youtube.com/watch?v=vdDiDZDgusA&t=11s',
   miniatura: 'https://img.youtube.com/vi/vdDiDZDgusA/maxresdefault.jpg',
   tags: [
-    'películas',
+    'Películas',
     'Humor',
     'Especiales'
   ]
@@ -650,7 +650,7 @@ const videosData = [
   link: 'https://www.youtube.com/watch?v=q5zECIJktNM&t=30s',
   miniatura: 'https://img.youtube.com/vi/q5zECIJktNM/maxresdefault.jpg',
   tags: [
-    'películas',
+    'Películas',
     'Humor'
   ]
 },
@@ -661,7 +661,7 @@ const videosData = [
   link: 'https://www.youtube.com/watch?v=p4sBOgD5dGM&t=8s',
   miniatura: 'https://img.youtube.com/vi/p4sBOgD5dGM/maxresdefault.jpg',
   tags: [
-    'películas',
+    'Películas',
     'Humor'
   ]
 },
@@ -693,7 +693,7 @@ const videosData = [
   link: 'https://www.youtube.com/watch?v=SKmZoeEKKp4&t=1610s',
   miniatura: 'https://img.youtube.com/vi/SKmZoeEKKp4/maxresdefault.jpg',
   tags: [
-    'películas',
+    'Películas',
     'Humor'
   ]
 },
@@ -768,7 +768,7 @@ const videosData = [
   link: 'https://www.youtube.com/watch?v=48SOsHNIgs0&t=1392s',
   miniatura: 'https://img.youtube.com/vi/48SOsHNIgs0/maxresdefault.jpg',
   tags: [
-    'películas',
+    'Películas',
     'Humor'
   ]
 },
@@ -845,7 +845,7 @@ const videosData = [
   link: 'https://www.youtube.com/watch?v=qIqcYROlHik&t=640s',
   miniatura: 'https://img.youtube.com/vi/qIqcYROlHik/maxresdefault.jpg',
   tags: [
-    'películas',
+    'Películas',
     'Directos',
     'Terror',
     'Suspenso'
@@ -858,7 +858,7 @@ const videosData = [
   link: 'https://www.youtube.com/watch?v=bPxSzdptR-s&t=792s',
   miniatura: 'https://img.youtube.com/vi/bPxSzdptR-s/maxresdefault.jpg',
   tags: [
-    'películas',
+    'película',
     'Cultura',
     'Drama',
     'Especiales',
@@ -895,7 +895,7 @@ const videosData = [
   link: 'https://www.youtube.com/watch?v=gfFO4uTJZiU',
   miniatura: 'https://img.youtube.com/vi/gfFO4uTJZiU/maxresdefault.jpg',
   tags: [
-    'películas',
+    'Películas',
     'Humor'
   ]
 },
@@ -918,7 +918,7 @@ const videosData = [
   link: 'https://www.youtube.com/watch?v=KY7MLjM74bA',
   miniatura: 'https://img.youtube.com/vi/KY7MLjM74bA/maxresdefault.jpg',
   tags: [
-    'películas',
+    'Películas',
     'Humor'
   ]
 },
@@ -951,7 +951,7 @@ const videosData = [
   link: 'https://www.youtube.com/watch?v=1xmuOHQVYLk&t=69s',
   miniatura: 'https://img.youtube.com/vi/1xmuOHQVYLk/maxresdefault.jpg',
   tags: [
-    'películas',
+    'Películas',
     'Humor'
   ]
 },
