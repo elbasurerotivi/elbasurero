@@ -104,7 +104,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (typeof Swiper !== "undefined") {
         new Swiper(".announcement-swiper", {
           loop: true,
-          loopAdditionalSlides: 3, // Duplica slides para evitar warning
+          loopAdditionalSlides: 3,
           autoplay: { delay: 5000, disableOnInteraction: false },
           navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" },
           pagination: { el: ".swiper-pagination", clickable: true },
@@ -180,7 +180,6 @@ document.addEventListener("DOMContentLoaded", () => {
           }
         });
         console.log(`Slides generados: ${slideCount}`);
-        // Asegurar al menos 10 slides para loop
         if (slideCount < 10) {
           const slidesToAdd = 10 - slideCount;
           const originalSlides = [...carousel.children];
@@ -191,14 +190,13 @@ document.addEventListener("DOMContentLoaded", () => {
           slideCount = carousel.children.length;
           console.log(`Slides duplicados añadidos, total: ${slideCount}`);
         }
-        // Inicializar Swiper para el carrusel dinámico
         if (typeof Swiper !== "undefined") {
           new Swiper(".mySwiper", {
-            loop: false,
-            loopAdditionalSlides: slideCount, // Duplica todos los slides para asegurar loop
+            loop: true,
+            loopAdditionalSlides: slideCount,
             autoplay: {
               delay: 1500,
-              disableOnInteraction: false, // Reanuda después de interacción
+              disableOnInteraction: false,
             },
             pagination: {
               el: ".swiper-pagination",
@@ -221,6 +219,21 @@ document.addEventListener("DOMContentLoaded", () => {
     } else {
       console.warn("videosData no está definido o vacío para el carrusel dinámico");
     }
+  }
+
+  // Actualizar título de categoría en videos.html
+  if (window.location.pathname.includes('videos.html')) {
+    const categoryItems = document.querySelectorAll('.dropdown-item');
+    const categoryTitle = document.getElementById('category-title');
+    categoryItems.forEach(item => {
+      item.addEventListener('click', () => {
+        categoryItems.forEach(i => i.classList.remove('active'));
+        item.classList.add('active');
+        const category = item.getAttribute('data-category');
+        categoryTitle.textContent = category === 'latest' ? 'Últimos' : category.charAt(0).toUpperCase() + category.slice(1);
+        console.log(`Título de categoría actualizado a: ${categoryTitle.textContent}`);
+      });
+    });
   }
 
   // Función para cerrar el popup
