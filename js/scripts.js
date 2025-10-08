@@ -199,10 +199,9 @@ document.addEventListener("DOMContentLoaded", () => {
           `;
           carousel.appendChild(slide);
         });
-        // Inicializar Swiper para el carrusel dinámico
+        // Inicializar Swiper para el carrusel dinámico sin loop
         if (typeof Swiper !== "undefined") {
           new Swiper(".mySwiper", {
-            loop: true,
             autoplay: {
               delay: 1500,
               disableOnInteraction: false,
