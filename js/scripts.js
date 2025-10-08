@@ -84,7 +84,7 @@ document.addEventListener("DOMContentLoaded", () => {
     console.warn("No se encontró el elemento #header");
   }
 
-  // Cargar y mostrar el popup de anuncios
+// Cargar y mostrar el popup de anuncios
 fetch("popup.html")
   .then(response => {
     if (!response.ok) throw new Error(`Error al cargar popup.html: ${response.status}`);
@@ -130,7 +130,7 @@ fetch("popup.html")
       console.error("Swiper no está definido. Asegúrate de incluir swiper-bundle.min.js antes de scripts.js");
     }
     
-    // Actualizar la tarjeta de Último Video dinámicamente
+    // Actualizar la tarjeta de Último Video dinámicamente (solo imagen y enlace)
     if (typeof videosData !== "undefined" && videosData.length > 0) {
       const sortedVideos = videosData.sort((a, b) => new Date(b.fecha) - new Date(a.fecha));
       const latestVideo = sortedVideos[0];
@@ -141,16 +141,12 @@ fetch("popup.html")
         thumbnail = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
       }
       const latestImg = document.getElementById("latest-video-img");
-      const latestDesc = document.getElementById("latest-video-desc");
       const latestLink = document.getElementById("latest-video-link");
-      const latestTitle = document.getElementById("latest-video-title");
       const latestCard = document.getElementById("latest-video-card");
-      if (latestImg && latestDesc && latestLink && latestTitle && latestCard) {
+      if (latestImg && latestLink && latestCard) {
         latestImg.src = thumbnail;
         latestImg.alt = latestVideo.titulo;
-        latestDesc.textContent = latestVideo.descripcion.slice(0, 150) + "...";
         latestLink.href = latestVideo.link;
-        latestTitle.textContent = latestVideo.titulo;
         console.log("Tarjeta de Último Video actualizada:", latestVideo.titulo);
       } else {
         console.warn("No se encontraron elementos para actualizar la tarjeta de Último Video");
