@@ -1,6 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-  console.log("Pathname actual:", window.location.pathname);
-
   // Función para alternar el menú hamburguesa
   window.toggleMenu = function() {
     const navMenu = document.querySelector(".nav-menu");
@@ -163,7 +161,6 @@ document.addEventListener("DOMContentLoaded", () => {
       if (carousel) {
         const sortedVideos = videosData.sort((a, b) => new Date(b.fecha) - new Date(a.fecha));
         const latestVideos = sortedVideos.slice(0, 10);
-        let slideCount = 0;
         latestVideos.forEach(video => {
           const videoIdMatch = video.link.match(/v=([^&]+)/);
           let thumbnail = video.miniatura;
@@ -176,24 +173,15 @@ document.addEventListener("DOMContentLoaded", () => {
             slide.classList.add("swiper-slide");
             slide.innerHTML = `<a href="${video.link}" target="_blank"><img src="${thumbnail}" alt="${video.titulo}"></a>`;
             carousel.appendChild(slide);
-            slideCount++;
+            // Duplicar cada slide inmediatamente para asegurar loop
+            carousel.appendChild(slide.cloneNode(true));
           }
         });
-        console.log(`Slides generados: ${slideCount}`);
-        if (slideCount < 10) {
-          const slidesToAdd = 10 - slideCount;
-          const originalSlides = [...carousel.children];
-          for (let i = 0; i < slidesToAdd; i++) {
-            const originalIndex = i % originalSlides.length;
-            carousel.appendChild(originalSlides[originalIndex].cloneNode(true));
-          }
-          slideCount = carousel.children.length;
-          console.log(`Slides duplicados añadidos, total: ${slideCount}`);
-        }
+        // Inicializar Swiper para el carrusel dinámico
         if (typeof Swiper !== "undefined") {
           new Swiper(".mySwiper", {
             loop: true,
-            loopAdditionalSlides: slideCount,
+            loopAdditionalSlides: 10, // Duplica para asegurar loop
             autoplay: {
               delay: 1500,
               disableOnInteraction: false,
@@ -209,7 +197,7 @@ document.addEventListener("DOMContentLoaded", () => {
             slidesPerView: 1,
             spaceBetween: 20,
           });
-          console.log(`Carrusel dinámico inicializado con ${slideCount} slides`);
+          console.log("Carrusel dinámico inicializado");
         } else {
           console.error("Swiper no está definido para el carrusel dinámico");
         }
