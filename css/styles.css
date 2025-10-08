@@ -391,20 +391,22 @@ footer h3 {
   width: 100%;
   overflow: hidden;
   margin: 20px 0;
+  position: relative;
 }
 
 .carousel-wrapper {
   display: flex;
-  animation: carousel-scroll 30s linear infinite; /* Velocidad del scroll (ajusta 30s según prefieras) */
+  animation: carousel-scroll 30s linear infinite; /* Velocidad del scroll */
+  transition: transform 0.5s ease; /* Suave transición manual */
 }
 
-.carousel-wrapper:hover {
-  animation-play-state: paused; /* Pausa al hover */
+.carousel-wrapper.paused {
+  animation-play-state: paused;
 }
 
 .carousel-slide {
-  flex: 0 0 300px; /* Ancho fijo por slide, ajusta según tu diseño */
-  margin-right: 10px; /* Espacio entre slides */
+  flex: 0 0 300px; /* Ancho fijo por slide */
+  margin-right: 10px;
 }
 
 .carousel-slide img {
@@ -414,19 +416,48 @@ footer h3 {
   border-radius: 8px;
 }
 
+.carousel-control {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  z-index: 10;
+  font-size: 16px;
+}
+
+.carousel-control.prev {
+  left: 10px;
+}
+
+.carousel-control.next {
+  right: 10px;
+}
+
+.carousel-control:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
 @keyframes carousel-scroll {
   0% {
     transform: translateX(0);
   }
   100% {
-    transform: translateX(-100%); /* Loop infinito sin duplicados visibles */
+    transform: translateX(-100%); /* Loop infinito */
   }
 }
 
 /* Responsivo */
 @media (max-width: 600px) {
   .carousel-slide {
-    flex: 0 0 200px; /* Menor ancho en móviles */
+    flex: 0 0 200px;
+  }
+  .carousel-control {
+    padding: 5px 10px;
+    font-size: 14px;
   }
 }
 

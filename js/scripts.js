@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  console.log("Pathname actual:", window.location.pathname); // Depurar pathname
+  console.log("Pathname actual:", window.location.pathname);
 
   // Función para alternar el menú hamburguesa
   window.toggleMenu = function() {
@@ -24,7 +24,6 @@ document.addEventListener("DOMContentLoaded", () => {
       })
       .then(data => {
         header.innerHTML = data;
-        // Re-asignar evento al menú hamburguesa
         const menuToggle = document.querySelector(".menu-toggle");
         if (menuToggle) {
           menuToggle.addEventListener("click", toggleMenu);
@@ -32,7 +31,6 @@ document.addEventListener("DOMContentLoaded", () => {
         } else {
           console.warn("No se encontró .menu-toggle después de cargar el header");
         }
-        // Cargar el popup de login
         const loginModal = document.createElement("div");
         loginModal.id = "loginModal";
         loginModal.className = "modal";
@@ -67,7 +65,6 @@ document.addEventListener("DOMContentLoaded", () => {
           </div>
         `;
         document.body.appendChild(loginModal);
-        // Intentar inicializar botones de login/logout
         function tryInitAuthButtons(attempts = 10, delay = 300) {
           if (typeof window.initAuthButtons === "function") {
             window.initAuthButtons();
@@ -94,12 +91,9 @@ document.addEventListener("DOMContentLoaded", () => {
     })
     .then(data => {
       document.body.insertAdjacentHTML("beforeend", data);
-      
-      // Verificar si el popup debe mostrarse
       const today = new Date().toLocaleDateString("es-AR");
       const lastShown = localStorage.getItem("announcementLastShown");
       const noShowToday = localStorage.getItem("noShowToday");
-      
       const announcementModal = document.getElementById("announcementModal");
       if (announcementModal && (!noShowToday || lastShown !== today)) {
         announcementModal.style.display = "flex";
@@ -107,23 +101,12 @@ document.addEventListener("DOMContentLoaded", () => {
       } else {
         console.log("Popup de anuncios no mostrado (bloqueado por el usuario o mismo día)");
       }
-      
-      // Inicializar Swiper del popup
       if (typeof Swiper !== "undefined") {
         new Swiper(".announcement-swiper", {
           loop: true,
-          autoplay: {
-            delay: 5000,
-            disableOnInteraction: false,
-          },
-          navigation: {
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev",
-          },
-          pagination: {
-            el: ".swiper-pagination",
-            clickable: true,
-          },
+          autoplay: { delay: 5000, disableOnInteraction: false },
+          navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" },
+          pagination: { el: ".swiper-pagination", clickable: true },
           slidesPerView: 1,
           spaceBetween: 20,
         });
@@ -131,8 +114,6 @@ document.addEventListener("DOMContentLoaded", () => {
       } else {
         console.error("Swiper no está definido. Asegúrate de incluir swiper-bundle.min.js antes de scripts.js");
       }
-      
-      // Actualizar la tarjeta de Último Video dinámicamente
       if (typeof videosData !== "undefined" && videosData.length > 0) {
         const sortedVideos = videosData.sort((a, b) => new Date(b.fecha) - new Date(a.fecha));
         const latestVideo = sortedVideos[0];
@@ -158,8 +139,6 @@ document.addEventListener("DOMContentLoaded", () => {
       } else {
         console.warn("videosData no está definido o vacío. Asegúrate de incluir videos.js");
       }
-      
-      // Manejar el checkbox "No mostrar más por hoy"
       const noShowCheckbox = document.getElementById("noShowToday");
       if (noShowCheckbox) {
         noShowCheckbox.addEventListener("change", () => {
@@ -176,13 +155,13 @@ document.addEventListener("DOMContentLoaded", () => {
     })
     .catch(error => console.error("Error cargando popup.html:", error));
 
-  // Generar carrusel dinámico con los últimos 10 videos en index.html (enfoque simple con CSS)
-  if (window.location.pathname.includes('index.html')) { // Ajustado para coincidir con /elbasurero/index.html
+  // Generar carrusel dinámico con controles manuales
+  if (window.location.pathname.includes('index.html')) {
     if (typeof videosData !== "undefined" && videosData.length > 0) {
       const carousel = document.getElementById("dynamic-carousel");
       if (carousel) {
         const sortedVideos = videosData.sort((a, b) => new Date(b.fecha) - new Date(a.fecha));
-        const latestVideos = sortedVideos.slice(0, 10); // Tomar los últimos 10 videos
+        const latestVideos = sortedVideos.slice(0, 10);
         latestVideos.forEach(video => {
           const videoIdMatch = video.link.match(/v=([^&]+)/);
           let thumbnail = video.miniatura;
@@ -190,22 +169,16 @@ document.addEventListener("DOMContentLoaded", () => {
             const videoId = videoIdMatch[1];
             thumbnail = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
           }
-          if (thumbnail) { // Solo agregar slide si hay miniatura válida
+          if (thumbnail) {
             const slide = document.createElement("div");
             slide.classList.add("carousel-slide");
-            slide.innerHTML = `
-              <a href="${video.link}" target="_blank">
-                <img src="${thumbnail}" alt="${video.titulo}">
-              </a>
-            `;
+            slide.innerHTML = `<a href="${video.link}" target="_blank"><img src="${thumbnail}" alt="${video.titulo}"></a>`;
             carousel.appendChild(slide);
           }
         });
-        // Duplicar los slides para el loop infinito en CSS
+        // Duplicar slides para loop infinito
         const originalSlides = [...carousel.children];
-        originalSlides.forEach(slide => {
-          carousel.appendChild(slide.cloneNode(true));
-        });
+        originalSlides.forEach(slide => carousel.appendChild(slide.cloneNode(true)));
         console.log("Carrusel dinámico generado con CSS (loop infinito)");
       } else {
         console.warn("Contenedor #dynamic-carousel no encontrado");
@@ -214,7 +187,28 @@ document.addEventListener("DOMContentLoaded", () => {
       console.warn("videosData no está definido o vacío para el carrusel dinámico");
     }
   }
-  
+
+  // Función para mover el carrusel manualmente
+  window.moveCarousel = function(direction) {
+    const carousel = document.getElementById("dynamic-carousel");
+    if (carousel) {
+      const slideWidth = carousel.children[0].offsetWidth + 10; // Ancho del slide + margen
+      let currentPosition = parseFloat(getComputedStyle(carousel).transform.split(',')[4]) || 0;
+      carousel.classList.add("paused");
+      let newPosition = currentPosition + (slideWidth * direction);
+      const maxPosition = 0; // Inicio
+      const minPosition = -slideWidth * (carousel.children.length / 2 - 1); // Fin (mitad por duplicación)
+      newPosition = Math.max(minPosition, Math.min(maxPosition, newPosition));
+      carousel.style.transform = `translateX(${newPosition}px)`;
+      // Reanudar animación después de 3 segundos sin interacción
+      clearTimeout(window.carouselTimeout);
+      window.carouselTimeout = setTimeout(() => {
+        carousel.classList.remove("paused");
+        carousel.style.transform = `translateX(0)`; // Reiniciar para animación
+      }, 3000);
+    }
+  };
+
   // Función para cerrar el popup
   window.cerrarAnuncio = function() {
     const announcementModal = document.getElementById("announcementModal");
