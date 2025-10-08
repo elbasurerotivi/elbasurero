@@ -2820,7 +2820,7 @@ footer h3 {
   width: 100%;
   max-width: 100%; /* Usa todo el ancho disponible de la tarjeta */
   aspect-ratio: 16 / 9; /* Proporción 16:9 */
-  object-fit: cover;
+  object-fit: content;
   margin: 10px 0;
   border-radius: 8px;
 }
