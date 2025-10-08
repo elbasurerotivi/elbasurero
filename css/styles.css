@@ -2761,7 +2761,6 @@ footer h3 {
 
 
 
-/* Popup anuncios*/
 /* Estilos para el Popup de Anuncios */
 .modal {
   display: none;
@@ -2792,36 +2791,6 @@ footer h3 {
   overflow: hidden;
 }
 
-/* Estilos para el Popup de Anuncios */
-.modal {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-}
-
-.modal-content {
-  background: var(--glass-bg);
-  backdrop-filter: var(--blur);
-  border: 1px solid var(--border-light);
-  border-radius: var(--radius);
-  padding: 20px;
-  width: 75%; /* Al menos 3/4 de la pantalla */
-  max-width: 800px; /* Límite máximo para pantallas grandes */
-  height: 75vh; /* Al menos 3/4 de la altura de la pantalla */
-  max-height: 600px; /* Límite máximo de altura */
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  overflow: hidden;
-}
-
 .announcement-swiper {
   width: 100%;
   height: 100%; /* Ocupa todo el espacio disponible del modal-content */
@@ -2834,7 +2803,7 @@ footer h3 {
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  background: transparent; /* Quitamos fondo para que use el del modal-content */
+  background: transparent;
   padding: 10px;
   text-align: center;
   color: var(--text-light);
@@ -2847,13 +2816,18 @@ footer h3 {
   background: rgba(255, 255, 255, 0.12);
 }
 
-.announcement-icon {
+.announcement-img {
   width: 100%;
   max-width: 100%; /* Usa todo el ancho disponible de la tarjeta */
   aspect-ratio: 16 / 9; /* Proporción 16:9 */
-  object-fit: cover; /* Asegura que la imagen se ajuste sin distorsionarse */
+  object-fit: cover;
   margin: 10px 0;
   border-radius: 8px;
+}
+
+.image-link {
+  display: block; /* Asegura que el enlace ocupe el espacio de la imagen */
+  width: 100%;
 }
 
 .announcement-card h3 {
@@ -2908,13 +2882,13 @@ footer h3 {
 /* Ajustes responsivos */
 @media (max-width: 600px) {
   .modal-content {
-    width: 90%; /* Más ancho en móviles */
-    height: 80vh; /* Más alto en móviles */
+    width: 90%;
+    height: 80vh;
     max-height: 500px;
   }
   
-  .announcement-icon {
-    max-width: 100%; /* Ajusta según el contenedor */
+  .announcement-img {
+    max-width: 100%;
   }
   
   .announcement-card h3 {

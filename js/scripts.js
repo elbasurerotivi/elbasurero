@@ -130,7 +130,7 @@ fetch("popup.html")
       console.error("Swiper no está definido. Asegúrate de incluir swiper-bundle.min.js antes de scripts.js");
     }
     
-    // Actualizar la tarjeta de Último Video dinámicamente (solo imagen y enlace)
+    // Actualizar la tarjeta de Último Video dinámicamente
     if (typeof videosData !== "undefined" && videosData.length > 0) {
       const sortedVideos = videosData.sort((a, b) => new Date(b.fecha) - new Date(a.fecha));
       const latestVideo = sortedVideos[0];
@@ -142,11 +142,13 @@ fetch("popup.html")
       }
       const latestImg = document.getElementById("latest-video-img");
       const latestLink = document.getElementById("latest-video-link");
+      const latestLinkBtn = document.getElementById("latest-video-link-btn");
       const latestCard = document.getElementById("latest-video-card");
-      if (latestImg && latestLink && latestCard) {
+      if (latestImg && latestLink && latestLinkBtn && latestCard) {
         latestImg.src = thumbnail;
         latestImg.alt = latestVideo.titulo;
         latestLink.href = latestVideo.link;
+        latestLinkBtn.href = latestVideo.link;
         console.log("Tarjeta de Último Video actualizada:", latestVideo.titulo);
       } else {
         console.warn("No se encontraron elementos para actualizar la tarjeta de Último Video");
