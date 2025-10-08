@@ -1,3 +1,96 @@
+const videoGrid = document.getElementById("video-grid");
+const filterButtons = document.querySelectorAll(".dropdown-item");
+const searchInput = document.getElementById("video-search");
+let currentCategory = "latest";
+
+function formatDate(dateStr) {
+  const [year, month, day] = dateStr.split('-');
+  return `${day}-${month}-${year}`;
+}
+
+function renderVideos(category = currentCategory, searchQuery = "") {
+  videoGrid.innerHTML = "";
+
+  let filtered = videosData;
+
+  if (searchQuery) {
+    // Búsqueda global: filtrar por búsqueda en todos los videos
+    const lowerQuery = searchQuery.toLowerCase();
+    filtered = filtered.filter(video =>
+      video.titulo.toLowerCase().includes(lowerQuery)
+    );
+  } else {
+    // Sin búsqueda: filtrar por categoría
+    if (category !== "latest") {
+      filtered = filtered.filter(video => video.tags.includes(category));
+    }
+  }
+
+  // Siempre ordenar por fecha descendente
+  filtered = filtered.sort((a, b) => new Date(b.fecha) - new Date(a.fecha));
+
+  // Para "latest" sin búsqueda, limitar a 10
+  if (category === "latest" && !searchQuery) {
+    filtered = filtered.slice(0, 10);
+  }
+
+  filtered.forEach(video => {
+    const card = document.createElement("div");
+    card.classList.add("video-card");
+
+    card.innerHTML = `
+      <a href="${video.link}" target="_blank">
+        <img src="${video.miniatura}" alt="${video.titulo}">
+        <h3>${video.titulo}</h3>
+      </a>
+      <div class="video-desc">
+        <p>${video.descripcion}</p>
+      </div>
+      <small>${formatDate(video.fecha)}</small>
+    `;
+
+    videoGrid.appendChild(card);
+  });
+}
+
+// Botones de filtro
+filterButtons.forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelector(".dropdown-item.active").classList.remove("active");
+    btn.classList.add("active");
+    currentCategory = btn.dataset.category;
+    renderVideos(currentCategory, searchInput.value);
+    // Cerrar el menú flotante y quitar la clase active del botón toggle
+    const dropdownMenu = document.querySelector(".dropdown-menu");
+    const toggleBtn = document.querySelector(".dropdown-toggle");
+    dropdownMenu.classList.remove("expanded");
+    toggleBtn.classList.remove("active");
+    toggleBtn.textContent = `Categorías ▼`;
+  });
+});
+
+// Buscador
+searchInput.addEventListener("input", () => {
+  renderVideos(currentCategory, searchInput.value);
+});
+
+// Toggle para el menú flotante
+const toggleBtn = document.querySelector(".dropdown-toggle");
+const dropdownMenu = document.querySelector(".dropdown-menu");
+
+if (toggleBtn && dropdownMenu) {
+  toggleBtn.addEventListener("click", () => {
+    dropdownMenu.classList.toggle("expanded");
+    toggleBtn.classList.toggle("active");
+    toggleBtn.textContent = dropdownMenu.classList.contains("expanded") ? "Categorías ▲" : "Categorías ▼";
+  });
+}
+
+// Cargar videos iniciales
+renderVideos("latest");
+
+
+
 const videosData = [
    {
   titulo: '🎬 Live: Reacción a película con Guillermo Francella en un papel dramático (basada en hechos reales)',
@@ -960,122 +1053,18 @@ const videosData = [
   ]
 },
 
+{
+  titulo: 'Reacción a Te lo resumo Caballeros del Zodiaco',
+  descripcion: 'En este video reaccionamos al clásico de Te Lo Resumo Así Nomás: Los Caballeros del Zodiaco ⚔️\nUna reseña divertidísima sobre una de las series más queridas del anime, llena de humor, nostalgia y esas locuras que solo Te Lo Resumo puede lograr.',
+  fecha: '2025-10-07',
+  link: 'https://www.youtube.com/watch?v=mQhqgc8Swes&t=51s',
+  miniatura: 'https://img.youtube.com/vi/mQhqgc8Swes/maxresdefault.jpg',
+  tags: [
+    'Series',
+    'Humor'
+  ]
+},
+
 
 
 ];
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-const videoGrid = document.getElementById("video-grid");
-const filterButtons = document.querySelectorAll(".dropdown-item");
-const searchInput = document.getElementById("video-search");
-let currentCategory = "latest";
-
-function formatDate(dateStr) {
-  const [year, month, day] = dateStr.split('-');
-  return `${day}-${month}-${year}`;
-}
-
-function renderVideos(category = currentCategory, searchQuery = "") {
-  videoGrid.innerHTML = "";
-
-  let filtered = videosData;
-
-  if (searchQuery) {
-    // Búsqueda global: filtrar por búsqueda en todos los videos
-    const lowerQuery = searchQuery.toLowerCase();
-    filtered = filtered.filter(video =>
-      video.titulo.toLowerCase().includes(lowerQuery)
-    );
-  } else {
-    // Sin búsqueda: filtrar por categoría
-    if (category !== "latest") {
-      filtered = filtered.filter(video => video.tags.includes(category));
-    }
-  }
-
-  // Siempre ordenar por fecha descendente
-  filtered = filtered.sort((a, b) => new Date(b.fecha) - new Date(a.fecha));
-
-  // Para "latest" sin búsqueda, limitar a 10
-  if (category === "latest" && !searchQuery) {
-    filtered = filtered.slice(0, 10);
-  }
-
-  filtered.forEach(video => {
-    const card = document.createElement("div");
-    card.classList.add("video-card");
-
-    card.innerHTML = `
-      <a href="${video.link}" target="_blank">
-        <img src="${video.miniatura}" alt="${video.titulo}">
-        <h3>${video.titulo}</h3>
-      </a>
-      <div class="video-desc">
-        <p>${video.descripcion}</p>
-      </div>
-      <small>${formatDate(video.fecha)}</small>
-    `;
-
-    videoGrid.appendChild(card);
-  });
-}
-
-// Botones de filtro
-filterButtons.forEach(btn => {
-  btn.addEventListener("click", () => {
-    document.querySelector(".dropdown-item.active").classList.remove("active");
-    btn.classList.add("active");
-    currentCategory = btn.dataset.category;
-    renderVideos(currentCategory, searchInput.value);
-    // Cerrar el menú flotante y quitar la clase active del botón toggle
-    const dropdownMenu = document.querySelector(".dropdown-menu");
-    const toggleBtn = document.querySelector(".dropdown-toggle");
-    dropdownMenu.classList.remove("expanded");
-    toggleBtn.classList.remove("active");
-    toggleBtn.textContent = `Categorías ▼`;
-  });
-});
-
-// Buscador
-searchInput.addEventListener("input", () => {
-  renderVideos(currentCategory, searchInput.value);
-});
-
-// Toggle para el menú flotante
-const toggleBtn = document.querySelector(".dropdown-toggle");
-const dropdownMenu = document.querySelector(".dropdown-menu");
-
-if (toggleBtn && dropdownMenu) {
-  toggleBtn.addEventListener("click", () => {
-    dropdownMenu.classList.toggle("expanded");
-    toggleBtn.classList.toggle("active");
-    toggleBtn.textContent = dropdownMenu.classList.contains("expanded") ? "Categorías ▲" : "Categorías ▼";
-  });
-}
-
-// Cargar videos iniciales
-renderVideos("latest");
