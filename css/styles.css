@@ -3097,7 +3097,7 @@ footer h3 {
 /* Overlay del título */
 .video-overlay {
   position: absolute;
-  bottom: 0;
+  top: 0;
   left: 0;
   right: 0;
   background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
