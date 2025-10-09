@@ -24,11 +24,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const snapshot = await get(userRef);
     const data = snapshot.exists() ? snapshot.val() : {};
 
-    if (data.role !== "admin") {
-      alert("Acceso denegado. Solo los administradores pueden usar este panel.");
-      window.location.href = "index.html";
-      return;
-    }
+    if (data.role !== "premium" && data.role !== "admin") {
+  alert("Acceso restringido. Solo miembros premium pueden ver este contenido.");
+  window.location.href = "index.html";
+  return;
+}
+
 
     // ✅ Si es admin, continuar
     initAdminPanel();
