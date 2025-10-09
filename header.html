@@ -1,26 +1,10 @@
 <nav class="navbar">
-  <div class="auth-buttons">
-    <div id="login-container">
-      <button id="login-btn" class="btn btn-auth btn-login">
-        <img src="Imagenes/login.png" alt="Login" class="auth-icon">
-      </button>
-    </div>
-    <div id="logout-container" style="display: none;">
-      <button id="logout-btn" class="btn btn-auth btn-logout">
-        <img src="Imagenes/logout.png" alt="Logout" class="auth-icon">
-      </button>
-    </div>
-  </div>
   <div class="logo">
     <a href="index.html">
       <img src="Imagenes/logo.png" alt="El Basurero Logo">
     </a>
   </div>
-  <div id="logout-container" style="display: none;">
-      <button id="logout-btn" class="btn btn-auth btn-logout">
-        <img src="Imagenes/logout.png" alt="Logout" class="auth-icon">
-      </button>
-  </div>
+
   <ul class="nav-menu">
     <li><a href="index.html">Inicio</a></li>
     <li><a href="videos.html">Videos</a></li>
@@ -29,7 +13,17 @@
     <li><a href="recomendaciones.html">Recomendaciones</a></li>
     <li><a href="contacto.html">Contacto</a></li>
     <li><a href="playlist.html">Premium 🔒</a></li>
+    <!-- 🔹 Nuevo ítem integrado en el menú -->
+    <li class="nav-auth">
+      <button id="login-btn" class="btn btn-auth btn-login">
+        <img src="Imagenes/login.png" alt="Login" class="auth-icon">
+      </button>
+      <button id="logout-btn" class="btn btn-auth btn-logout" style="display: none;">
+        <img src="Imagenes/logout.png" alt="Logout" class="auth-icon">
+      </button>
+    </li>
   </ul>
+
   <div class="menu-toggle">
     <span class="bar"></span>
     <span class="bar"></span>

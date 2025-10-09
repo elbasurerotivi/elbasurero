@@ -58,6 +58,37 @@ header, .navbar {
   color: var(--accent);
 }
 
+.nav-menu {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  gap: 20px;
+}
+
+.nav-auth {
+  display: flex;
+  align-items: center;
+}
+
+.btn-auth {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  transition: transform 0.2s ease;
+}
+
+.btn-auth:hover {
+  transform: scale(1.1);
+}
+
+.auth-icon {
+  width: 28px;
+  height: 28px;
+}
+
+
+
 /* ====== HERO ====== */
 .hero {
   background: url('../Imagenes/bg_dark.jpg') center/cover no-repeat;
