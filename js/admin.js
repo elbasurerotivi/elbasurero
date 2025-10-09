@@ -1,6 +1,9 @@
 // js/admin.js
-import { auth, db, ref, set, get, remove, onValue } from "./firebase-config.js";
+import { auth, db, ref, set, get, remove, onValue, update } from "./firebase-config.js";
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+// ⚙️ Si querés asignarte el rol una vez, hacelo temporalmente así (y luego comentá esta línea):
+// update(ref(db, "users/r7CibZaQPxUTuToote8gcEVvHL32"), { role: "admin" });
 
 document.addEventListener("DOMContentLoaded", () => {
   const emailInput = document.getElementById("emailInput");
@@ -48,13 +51,14 @@ document.addEventListener("DOMContentLoaded", () => {
         const div = document.createElement("div");
         div.className = "user-item";
         div.innerHTML = `
-          <span>${info.email}</span>
-          <span class="role ${info.role}">${info.role}</span>
+          <span>${info.username || info.email}</span>
+          <span class="role ${info.role || 'user'}">${info.role || 'user'}</span>
           <button data-uid="${uid}" class="delete-btn">❌</button>
         `;
         userList.appendChild(div);
       });
 
+      // Botones de eliminar
       document.querySelectorAll(".delete-btn").forEach((btn) => {
         btn.addEventListener("click", async () => {
           const uid = btn.dataset.uid;
@@ -75,11 +79,28 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      // Buscar usuario por email (en un caso real, usarías Firebase Auth admin SDK)
-      // Aquí creamos un ID único local temporal
-      const uid = email.replace(/[@.]/g, "_");
+      // Buscar usuario por email (temporal, sin Admin SDK)
+      const usersRef = ref(db, "users");
+      const snapshot = await get(usersRef);
+      let foundUid = null;
 
-      await set(ref(db, `users/${uid}`), { email, role });
+      if (snapshot.exists()) {
+        const users = snapshot.val();
+        for (const [uid, info] of Object.entries(users)) {
+          if (info.email === email) {
+            foundUid = uid;
+            break;
+          }
+        }
+      }
+
+      if (foundUid) {
+        await update(ref(db, `users/${foundUid}`), { role });
+        alert(`Rol actualizado para ${email} → ${role}`);
+      } else {
+        alert("No se encontró un usuario con ese email.");
+      }
+
       emailInput.value = "";
       roleSelect.value = "user";
     });
