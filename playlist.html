@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Playlist Premium | El Basurero</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/premium.js" defer></script>
+</head>
+<body>
+
+  <!-- Header global -->
+  <div id="header"></div>
+
+  <main class="playlist-container">
+    <h1>🎬 Playlist Premium</h1>
+    <p>Bienvenido a tu lista de reproducción exclusiva. Solo para miembros premium.</p>
+
+    <div class="video-grid" id="videoList">
+      <!-- Los videos se cargarán dinámicamente con JS -->
+    </div>
+  </main>
+
+  <!-- Footer global -->
+  <div id="footer"></div>
+
+  <script>
+    // Cargar header y footer
+    fetch('header.html').then(r => r.text()).then(d => document.getElementById('header').innerHTML = d);
+    fetch('footer.html').then(r => r.text()).then(d => document.getElementById('footer').innerHTML = d);
+
+    // Lista de videos disponibles (puede venir desde Firebase después)
+    const videos = [
+      {
+        id: 'intro_twitch',
+        title: 'Introducción a Twitch',
+        description: 'Aprendé cómo funciona la transmisión en vivo.',
+        thumbnail: 'Imagenes/intro_twitch.mp4', // luego podrías usar una imagen en miniatura
+        source: 'Imagenes/intro_twitch.mp4'
+      },
+      {
+        id: 'unboxing',
+        title: 'Unboxing Misterioso',
+        description: 'Abrimos algo que no esperábamos...',
+        thumbnail: 'Imagenes/unboxing.webp',
+        source: 'Imagenes/unboxing.webp'
+      }
+    ];
+
+    // Renderizar lista
+    const container = document.getElementById('videoList');
+    videos.forEach(v => {
+      const card = document.createElement('div');
+      card.className = 'video-card';
+      card.innerHTML = `
+        <a href="premium-player.html?id=${v.id}">
+          <img src="${v.thumbnail}" alt="${v.title}">
+          <h3>${v.title}</h3>
+          <p>${v.description}</p>
+        </a>
+      `;
+      container.appendChild(card);
+    });
+  </script>
+
+</body>
+</html>
