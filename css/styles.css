@@ -2363,16 +2363,19 @@ footer h3 {
   font-weight: 600;
   color: var(--accent);
   margin-bottom: 5px;
+  text-align: left;
 }
 .comment-header strong{
   color:#aaaaaa;
   margin-bottom: 5px;
   text-align: left;
+  
 }
 
 .comment-text {
   font-size: 18px;
   color: rgba(238, 238, 238, 0.625);
+  text-align: left;
 }
 
 .comment-like {
@@ -2496,8 +2499,13 @@ footer h3 {
     bottom: 15px;
     right: 15px;
   }
+  .comment-header strong{
+  color:#aaaaaa;
+  font-size: 16px;
+  margin-bottom: 5px;
+  text-align: left;
 }
-
+}
 /* ==== NUEVO BLOQUE PARA LIKES SEPARADOS ==== */
 .like-wrapper {
   display: flex;
