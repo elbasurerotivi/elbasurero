@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reproductor Premium | El Basurero</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/premium.js" defer></script>
+</head>
+<body>
+
+  <!-- Header global -->
+  <div id="header"></div>
+
+  <main class="player-container">
+    <div id="videoArea">
+      <h1 id="videoTitle"></h1>
+      <video id="videoPlayer" controls autoplay width="100%"></video>
+      <p id="videoDescription"></p>
+    </div>
+
+    <div class="back-btn">
+      <a href="playlist.html">← Volver a la lista</a>
+    </div>
+  </main>
+
+  <!-- Footer global -->
+  <div id="footer"></div>
+
+  <script>
+    // Cargar header y footer
+    fetch('header.html').then(r => r.text()).then(d => document.getElementById('header').innerHTML = d);
+    fetch('footer.html').then(r => r.text()).then(d => document.getElementById('footer').innerHTML = d);
+
+    // Obtener ID del video desde la URL
+    const params = new URLSearchParams(window.location.search);
+    const videoId = params.get('id');
+
+    // Mismo listado que en playlist.html (podemos moverlo luego a un archivo JSON o Firebase)
+    const videos = {
+      'intro_twitch': {
+        title: 'Introducción a Twitch',
+        description: 'Aprendé cómo funciona la transmisión en vivo.',
+        source: 'Imagenes/intro_twitch.mp4'
+      },
+      'unboxing': {
+        title: 'Unboxing Misterioso',
+        description: 'Abrimos algo que no esperábamos...',
+        source: 'Imagenes/unboxing.webp'
+      }
+    };
+
+    // Mostrar el video correspondiente
+    const video = videos[videoId];
+    if (video) {
+      document.getElementById('videoTitle').textContent = video.title;
+      document.getElementById('videoDescription').textContent = video.description;
+      document.getElementById('videoPlayer').src = video.source;
+    } else {
+      document.getElementById('videoArea').innerHTML = '<p>Video no encontrado.</p>';
+    }
+  </script>
+
+</body>
+</html>
