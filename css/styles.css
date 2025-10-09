@@ -3229,3 +3229,67 @@ footer h3 {
   margin-top: 20px;
 }
 
+
+
+
+
+/*admin*/
+
+.admin-panel {
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.assign-form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.assign-form input,
+.assign-form select {
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+}
+
+.assign-form button {
+  padding: 10px 20px;
+  border-radius: 8px;
+  background-color: #0078d7;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.user-list {
+  margin-top: 20px;
+  text-align: left;
+}
+
+.user-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(0,0,0,0.6);
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.user-item .role {
+  text-transform: capitalize;
+  font-weight: bold;
+}
+
+.user-item .role.premium {
+  color: gold;
+}
+
+.user-item .role.user {
+  color: #aaa;
+}
