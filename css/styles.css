@@ -2954,7 +2954,7 @@ footer h3 {
   border: 1px solid var(--border-light);
   border-radius: var(--radius);
   padding: 2px;
-  width: 75%; /* Al menos 3/4 de la pantalla */
+  width: 62%; /* Al menos 3/4 de la pantalla */
   max-width: 900px; /* Aumentado para pantallas grandes */
   height: 75vh; /* Al menos 3/4 de la altura de la pantalla */
   max-height: 700px; /* Aumentado para más espacio */
@@ -3057,7 +3057,7 @@ footer h3 {
   .modal-content {
     width: 90%;
     height: 80vh;
-    max-height: 320px;
+    max-height: 380px;
   }
   
   .announcement-img {
