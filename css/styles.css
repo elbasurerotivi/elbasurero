@@ -3150,3 +3150,51 @@ footer h3 {
 .announcement-card:hover .announcement-label {
   background: rgba(255, 51, 102, 0.9);
 }
+
+
+
+
+
+
+.playlist-container, .player-container {
+  padding: 20px;
+  text-align: center;
+}
+
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.video-card {
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.2s;
+}
+
+.video-card:hover {
+  transform: scale(1.05);
+}
+
+.video-card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+
+.video-card h3 {
+  margin: 10px 0 5px;
+}
+
+.video-card p {
+  font-size: 0.9em;
+  color: #ccc;
+}
+
+.back-btn {
+  margin-top: 20px;
+}
+
