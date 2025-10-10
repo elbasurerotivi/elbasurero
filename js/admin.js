@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
   onAuthStateChanged(auth, async (user) => {
     if (!user) {
       alert("Debes iniciar sesión para acceder a este panel.");
-      window.location.href = "login.html";
+      window.location.href = "index.html";
       return;
     }
 
