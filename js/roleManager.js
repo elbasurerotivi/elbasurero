@@ -2,37 +2,27 @@
 // Este archivo se modifica automáticamente desde admin.html
 
 export const roles = {
-  "charsvolta@gmail.com": "admin";
-
-const roles={
-
-  "chquilmes1260@gmail.com : "admin";
-  "elbasurerotivi@gmail.com : "admin";
-}
+  "charsvolta@gmail.com": { premium: false, admin: true }
 };
 
-// Función para obtener rol
+// Función para obtener rol como string
 export function getUserRole(email) {
-  return roles[email] || "user";
-}
-
-// js/roleManager.js
-export function getRole(uid) {
-  const roles = JSON.parse(localStorage.getItem("roleManagerData")) || {};
-  const role = roles[uid] || { premium: false, admin: false };
-  return role;
+  const role = roles[email] || { premium: false, admin: false };
+  if (role.admin) return "admin";
+  if (role.premium) return "premium";
+  return "user";
 }
 
 // Verifica si puede entrar a páginas premium
-export function canAccessPremium(uid) {
-  const r = getRole(uid);
-  return r.premium || r.admin;
+export function canAccessPremium(email) {
+  const role = getUserRole(email);
+  return role === "premium" || role === "admin";
 }
 
 // Verifica si es admin
-export function isAdmin(uid) {
-  const r = getRole(uid);
-  return r.admin === true;
+export function isAdmin(email) {
+  const role = getUserRole(email);
+  return role === "admin";
 }
 
 // Protección de páginas

@@ -6,9 +6,9 @@
   <title>Playlist Premium | El Basurero</title>
   <link rel="stylesheet" href="css/styles.css">
 </head>
-<body>
+<body style="display:none;">
   <div id="header"></div>
-  <main id="premiumContent" style="display:none;" class="playlist-container">
+  <main class="playlist-container">
     <h1>🎬 Playlist Premium</h1>
     <p>Bienvenido a tu lista de reproducción exclusiva.</p>
     <div class="video-grid" id="videoList"></div>
@@ -16,8 +16,8 @@
   <div id="footer"></div>
 
   <script type="module">
-    import { protectPage } from "./js/authManager.js";
-    protectPage(["premium", "admin"], "index.html", "premiumContent");
+    import { protectPage } from "./js/roleManager.js";
+    protectPage(["premium", "admin"], "index.html");
   </script>
 
   <script>

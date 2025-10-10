@@ -1,30 +1,53 @@
-import { protectPage, loadRoles, saveRoles } from "./authManager.js";
-import { db, ref, get } from "./firebase-config.js";
+import { auth, db, ref, get } from "./firebase-config.js";
+import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
-document.addEventListener("DOMContentLoaded", async () => {
+document.addEventListener("DOMContentLoaded", () => {
   const userList = document.getElementById("userList");
   const saveBtn = document.getElementById("saveRoles");
+  const downloadLink = document.getElementById("downloadLink");
 
-  // Verify admin access
-  const isAuthorized = await protectPage(["admin"], "index.html");
-  if (!isAuthorized) return;
+  // Verificar que el usuario actual sea admin
+  onAuthStateChanged(auth, async (user) => {
+    if (!user) {
+      alert("Debes iniciar sesión como administrador.");
+      window.location.href = "index.html";
+      return;
+    }
 
-  // Initialize admin panel
+    // Obtener info del usuario actual desde Firebase
+    const userRef = ref(db, `users/${user.uid}`);
+    const snapshot = await get(userRef).catch(() => null);
+    const userData = snapshot?.exists() ? snapshot.val() : {};
+
+    if (userData.role !== "admin") {
+      alert("Acceso restringido. Solo administradores pueden entrar aquí.");
+      window.location.href = "index.html";
+      return;
+    }
+
+    // Si es admin, inicializar el panel
+    initAdminPanel();
+  });
+
   async function initAdminPanel() {
     const usersRef = ref(db, "users");
-    const snapshot = await get(usersRef);
+    const snapshot = await get(usersRef).catch(() => null);
 
-    if (!snapshot.exists()) {
+    if (!snapshot?.exists()) {
       userList.innerHTML = "<p>No hay usuarios registrados.</p>";
       return;
     }
 
     const users = snapshot.val();
-    const roles = loadRoles();
-
     userList.innerHTML = "";
+
     Object.entries(users).forEach(([uid, info]) => {
-      const currentRole = roles[uid] || { premium: false, admin: false };
+      // Cargar rol actual desde Firebase si existe, o default a {premium: false, admin: false}
+      const currentRole = info.role ? { 
+        premium: info.role === "premium" || info.role === "admin", 
+        admin: info.role === "admin" 
+      } : { premium: false, admin: false };
+
       const div = document.createElement("div");
       div.className = "user-item";
       div.innerHTML = `
@@ -34,11 +57,11 @@ document.addEventListener("DOMContentLoaded", async () => {
         </div>
         <div class="user-roles">
           <label>
-            <input type="checkbox" class="chk-premium" data-uid="${uid}" ${currentRole.premium ? "checked" : ""}>
+            <input type="checkbox" class="chk-premium" data-email="${info.email}" ${currentRole.premium ? "checked" : ""}>
             Premium
           </label>
           <label>
-            <input type="checkbox" class="chk-admin" data-uid="${uid}" ${currentRole.admin ? "checked" : ""}>
+            <input type="checkbox" class="chk-admin" data-email="${info.email}" ${currentRole.admin ? "checked" : ""}>
             Admin
           </label>
         </div>
@@ -47,28 +70,83 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
   }
 
-  // Save role changes
+  // Guardar cambios y generar archivo roleManager.js
   saveBtn.addEventListener("click", () => {
     const premiumBoxes = document.querySelectorAll(".chk-premium");
     const adminBoxes = document.querySelectorAll(".chk-admin");
+
     const newRoles = {};
 
     premiumBoxes.forEach((chk) => {
-      const uid = chk.dataset.uid;
-      if (!newRoles[uid]) newRoles[uid] = {};
-      newRoles[uid].premium = chk.checked;
+      const email = chk.dataset.email;
+      if (!newRoles[email]) newRoles[email] = {};
+      newRoles[email].premium = chk.checked;
     });
 
     adminBoxes.forEach((chk) => {
-      const uid = chk.dataset.uid;
-      if (!newRoles[uid]) newRoles[uid] = {};
-      newRoles[uid].admin = chk.checked;
+      const email = chk.dataset.email;
+      if (!newRoles[email]) newRoles[email] = {};
+      newRoles[email].admin = chk.checked;
     });
 
-    saveRoles(newRoles);
-    alert("✅ Roles actualizados correctamente (guardados en el navegador).");
-  });
+    // Generar el contenido de roleManager.js
+    const rolesString = JSON.stringify(newRoles, null, 2);
+    const fileContent = `// js/roleManager.js
+// Este archivo se modifica automáticamente desde admin.html
 
-  // Initialize the panel
-  await initAdminPanel();
+export const roles = ${rolesString};
+
+// Función para obtener rol como string
+export function getUserRole(email) {
+  const role = roles[email] || { premium: false, admin: false };
+  if (role.admin) return "admin";
+  if (role.premium) return "premium";
+  return "user";
+}
+
+// Verifica si puede entrar a páginas premium
+export function canAccessPremium(email) {
+  const role = getUserRole(email);
+  return role === "premium" || role === "admin";
+}
+
+// Verifica si es admin
+export function isAdmin(email) {
+  const role = getUserRole(email);
+  return role === "admin";
+}
+
+// Protección de páginas
+export function protectPage(allowedRoles = ["admin"], redirectUrl = "index.html") {
+  import("./firebase-config.js").then(({ auth }) => {
+    import("https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js").then(({ onAuthStateChanged }) => {
+      onAuthStateChanged(auth, (user) => {
+        if (!user) {
+          alert("Debes iniciar sesión para acceder a esta página.");
+          window.location.href = redirectUrl;
+          return;
+        }
+
+        const role = getUserRole(user.email);
+        if (!allowedRoles.includes(role)) {
+          alert("Acceso restringido. No tienes permiso para ver esta página.");
+          window.location.href = redirectUrl;
+        } else {
+          document.body.style.display = "block";
+        }
+      });
+    });
+  });
+}
+`;
+
+    // Crear blob y activar descarga
+    const blob = new Blob([fileContent], { type: "application/javascript" });
+    const url = URL.createObjectURL(blob);
+    downloadLink.href = url;
+    downloadLink.style.display = "block";
+    downloadLink.click();
+    URL.revokeObjectURL(url); // Liberar memoria
+    alert("✅ Roles actualizados. Descargando roleManager.js actualizado...");
+  });
 });
