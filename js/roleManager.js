@@ -3,9 +3,12 @@
 
 export const roles = {
   "charsvolta@gmail.com": "admin";
+
+const roles={
+
   "chquilmes1260@gmail.com : "admin";
   "elbasurerotivi@gmail.com : "admin";
-
+}
 };
 
 // Función para obtener rol
