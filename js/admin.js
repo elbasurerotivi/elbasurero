@@ -3,7 +3,7 @@ import { auth, db, ref, set, get, remove, onValue, update } from "./firebase-con
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 // ⚙️ Si querés asignarte el rol una vez, hacelo temporalmente así (y luego comentá esta línea):
-// update(ref(db, "users/r7CibZaQPxUTuToote8gcEVvHL32"), { role: "premium" });
+ update(ref(db, "users/r7CibZaQPxUTuToote8gcEVvHL32"), { role: "admin" });
 
 document.addEventListener("DOMContentLoaded", () => {
   const emailInput = document.getElementById("emailInput");
