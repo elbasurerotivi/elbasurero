@@ -1,10 +1,7 @@
-// Importa lo que necesites de Firebase Realtime Database
 // firebase-config.js
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import { getAuth } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-import { getDatabase, ref, push, onValue, set, remove, get } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
-
-
+import { getDatabase, ref, push, onValue, set, remove, get, update } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
 
 // Configuración de tu proyecto Firebase
 const firebaseConfig = {
@@ -19,8 +16,8 @@ const firebaseConfig = {
 
 // Inicializar Firebase
 const app = initializeApp(firebaseConfig);
-const auth = getAuth(app); // Añadido: inicializa auth
+const auth = getAuth(app);
 const db = getDatabase(app);
 
 // Exportar todo lo necesario
-export { auth, db, ref, push, onValue, set, remove, get };
+export { auth, db, ref, push, onValue, set, remove, get, update };
