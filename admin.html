@@ -1,11 +1,9 @@
-<!-- Updated admin.html: No major changes needed here, as the admin panel already supports assigning roles (including downgrading to "user" to "quit" premium/admin) and deleting users. The verification for admin access is solid. -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Panel de Administración | El Basurero</title>
-  <link rel="icon" type="image/x-icon" href="/Imagenes/icono.png"> <!-- Add this line -->
   <link rel="stylesheet" href="css/styles.css" />
   <script type="module" src="js/admin.js"></script>
 </head>
@@ -16,21 +14,8 @@
     <h1>⚙️ Panel de Administración</h1>
     <p>Gestioná los roles de los usuarios registrados.</p>
 
-    <!-- Formulario de asignación manual -->
-    <div class="assign-form">
-      <input type="email" id="emailInput" placeholder="Email del usuario" required />
-      <select id="roleSelect">
-        <option value="user">Usuario común</option>
-        <option value="premium">Premium</option>
-        <option value="admin">Administrador</option>
-      </select>
-      <button id="assignBtn">Asignar rol</button>
-    </div>
+    <hr>
 
-    <hr />
-
-    <!-- Lista de usuarios -->
-    <h2>Miembros registrados</h2>
     <div id="userList" class="user-list">
       <p>Cargando usuarios...</p>
     </div>
@@ -40,12 +25,8 @@
 
   <script>
     // Cargar header y footer globales
-    fetch('header.html')
-      .then((r) => r.text())
-      .then((d) => (document.getElementById('header').innerHTML = d));
-    fetch('footer.html')
-      .then((r) => r.text())
-      .then((d) => (document.getElementById('footer').innerHTML = d));
+    fetch('header.html').then(r => r.text()).then(d => document.getElementById('header').innerHTML = d);
+    fetch('footer.html').then(r => r.text()).then(d => document.getElementById('footer').innerHTML = d);
   </script>
 </body>
 </html>

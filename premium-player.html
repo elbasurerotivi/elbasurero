@@ -28,6 +28,11 @@
   <!-- Footer global -->
   <div id="footer"></div>
 
+  <script type="module">
+  import { protectPage } from "./js/roleManager.js";
+  protectPage(["premium", "admin"], "index.html");
+  </script>
+
   <script>
     // Cargar header y footer
     fetch('header.html').then(r => r.text()).then(d => document.getElementById('header').innerHTML = d);
