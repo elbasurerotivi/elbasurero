@@ -2,7 +2,10 @@
 // Este archivo se modifica automáticamente desde admin.html
 
 export const roles = {
-  "charsvolta@gmail.com": "admin"
+  "charsvolta@gmail.com": "admin";
+  "chquilmes1260@gmail.com : "admin";
+  "elbasurerotivi@gmail.com : "admin";
+
 };
 
 // Función para obtener rol
