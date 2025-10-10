@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const data = snapshot.exists() ? snapshot.val() : {};
 
    if (data.role !== "admin") {
-  alert("Acceso restringido. Solo administradores pueden ver este contenido.");
+  alert("Acceso restringido. Solo administradores pueden usar este panel.");
   window.location.href = "index.html";
   return;
 }
