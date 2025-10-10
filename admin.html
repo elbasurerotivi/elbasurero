@@ -7,7 +7,7 @@
   <link rel="icon" href="Imagenes/icono.png" type="image/x-icon">
   <link rel="stylesheet" href="css/styles.css" />
   <script type="module">
-    import { protectPage } from "./js/roleManager.js";
+    import { protectPage } from "./js/authManager.js";
     protectPage(["admin"], "index.html");
   </script>
   <script type="module" src="js/admin.js"></script>
@@ -16,11 +16,9 @@
   <main class="admin-panel">
     <h1>⚙️ Panel de Administración</h1>
     <p>Gestioná los permisos de usuarios registrados.</p>
-
     <div id="userList" class="user-list">
       <p>Cargando usuarios...</p>
     </div>
-
     <button id="saveRoles" class="btn-save">💾 Guardar cambios</button>
   </main>
 </body>

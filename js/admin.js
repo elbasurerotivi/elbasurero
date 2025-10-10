@@ -1,34 +1,15 @@
-// js/admin.js
-import { auth, db, ref, get } from "./firebase-config.js";
-import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import { protectPage, loadRoles, saveRoles } from "./authManager.js";
+import { db, ref, get } from "./firebase-config.js";
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
   const userList = document.getElementById("userList");
   const saveBtn = document.getElementById("saveRoles");
 
-  // 🔒 Verificar que el usuario actual sea admin
-  onAuthStateChanged(auth, async (user) => {
-    if (!user) {
-      alert("Debes iniciar sesión como administrador.");
-      window.location.href = "index.html";
-      return;
-    }
+  // Verify admin access
+  const isAuthorized = await protectPage(["admin"], "index.html");
+  if (!isAuthorized) return;
 
-    // Obtener info de su perfil
-    const userRef = ref(db, `users/${user.uid}`);
-    const snapshot = await get(userRef);
-    const userData = snapshot.exists() ? snapshot.val() : {};
-
-    if (userData.role !== "admin") {
-      alert("Acceso restringido. Solo administradores pueden entrar aquí.");
-      window.location.href = "index.html";
-      return;
-    }
-
-    // Si es admin → mostrar panel
-    initAdminPanel();
-  });
-
+  // Initialize admin panel
   async function initAdminPanel() {
     const usersRef = ref(db, "users");
     const snapshot = await get(usersRef);
@@ -39,13 +20,11 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     const users = snapshot.val();
-    const roles = loadRoles(); // Cargar roles locales desde roleManager.js / localStorage
+    const roles = loadRoles();
 
     userList.innerHTML = "";
-
     Object.entries(users).forEach(([uid, info]) => {
       const currentRole = roles[uid] || { premium: false, admin: false };
-
       const div = document.createElement("div");
       div.className = "user-item";
       div.innerHTML = `
@@ -68,11 +47,10 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // 💾 Guardar cambios manualmente
+  // Save role changes
   saveBtn.addEventListener("click", () => {
     const premiumBoxes = document.querySelectorAll(".chk-premium");
     const adminBoxes = document.querySelectorAll(".chk-admin");
-
     const newRoles = {};
 
     premiumBoxes.forEach((chk) => {
@@ -87,18 +65,10 @@ document.addEventListener("DOMContentLoaded", () => {
       newRoles[uid].admin = chk.checked;
     });
 
-    // Guardar localmente
-    localStorage.setItem("roleManagerData", JSON.stringify(newRoles));
-
+    saveRoles(newRoles);
     alert("✅ Roles actualizados correctamente (guardados en el navegador).");
   });
 
-  // 📦 Función para leer roles desde localStorage
-  function loadRoles() {
-    try {
-      return JSON.parse(localStorage.getItem("roleManagerData")) || {};
-    } catch {
-      return {};
-    }
-  }
+  // Initialize the panel
+  await initAdminPanel();
 });
