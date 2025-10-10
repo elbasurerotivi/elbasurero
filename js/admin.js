@@ -100,7 +100,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (foundUid) {
         try {
-          await update(ref(db, `users/${foundUid}`), { role });
+          await remove(ref(db, `users/${uid}`)); // In the delete-btn event listener
           alert(`Rol actualizado para ${email} → ${role}`);
         } catch (error) {
           alert("Error al actualizar rol: " + error.message);
