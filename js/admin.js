@@ -13,26 +13,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // 🔒 Verificar usuario actual
   onAuthStateChanged(auth, async (user) => {
-    if (!user) {
-      alert("Debes iniciar sesión como administrador.");
-      window.location.href = "index.html";
-      return;
-    }
+  if (!user) {
+    alert("Debes iniciar sesión como administrador.");
+    window.location.href = "index.html";
+    return;
+  }
 
-    // Obtener su rol desde la base
-    const userRef = ref(db, `users/${user.uid}`);
-    const snapshot = await get(userRef);
-    const data = snapshot.exists() ? snapshot.val() : {};
+  const userRef = ref(db, `users/${user.uid}`);
+  const snapshot = await get(userRef);
+  const data = snapshot.exists() ? snapshot.val() : {};
+  console.log("User data:", data, "UID:", user.uid); // Debug log
 
-    if (data.role !== "admin") {
-      alert("Acceso restringido. Solo administradores pueden usar este panel.");
-      window.location.href = "index.html";
-      return;
-    }
+  if (data.role !== "admin") {
+    alert("Acceso restringido. Solo administradores pueden usar este panel.");
+    window.location.href = "index.html";
+    return;
+  }
 
-    // ✅ Si es admin, continuar
-    initAdminPanel();
-  });
+  initAdminPanel();
+});
 
   function initAdminPanel() {
     const usersRef = ref(db, "users");
