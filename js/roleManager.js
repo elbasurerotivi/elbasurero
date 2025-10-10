@@ -10,6 +10,25 @@ export function getUserRole(email) {
   return roles[email] || "user";
 }
 
+// js/roleManager.js
+export function getRole(uid) {
+  const roles = JSON.parse(localStorage.getItem("roleManagerData")) || {};
+  const role = roles[uid] || { premium: false, admin: false };
+  return role;
+}
+
+// Verifica si puede entrar a páginas premium
+export function canAccessPremium(uid) {
+  const r = getRole(uid);
+  return r.premium || r.admin;
+}
+
+// Verifica si es admin
+export function isAdmin(uid) {
+  const r = getRole(uid);
+  return r.admin === true;
+}
+
 // Protección de páginas
 export function protectPage(allowedRoles = ["admin"], redirectUrl = "index.html") {
   import("./firebase-config.js").then(({ auth }) => {

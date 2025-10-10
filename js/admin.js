@@ -1,90 +1,104 @@
 // js/admin.js
-import { auth, db, ref, onValue } from "./firebase-config.js";
+import { auth, db, ref, get } from "./firebase-config.js";
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-
-const roleManagerPath = "./roleManager.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   const userList = document.getElementById("userList");
   const saveBtn = document.getElementById("saveRoles");
 
-  // Verificar que el usuario logueado sea admin
-  onAuthStateChanged(auth, (user) => {
+  // 🔒 Verificar que el usuario actual sea admin
+  onAuthStateChanged(auth, async (user) => {
     if (!user) {
-      alert("Debes iniciar sesión.");
+      alert("Debes iniciar sesión como administrador.");
       window.location.href = "index.html";
       return;
     }
 
-    import(roleManagerPath).then(({ roles }) => {
-      const currentRole = roles[user.email];
-      if (currentRole !== "admin") {
-        alert("Acceso denegado. Solo administradores pueden usar este panel.");
-        window.location.href = "index.html";
-        return;
-      }
+    // Obtener info de su perfil
+    const userRef = ref(db, `users/${user.uid}`);
+    const snapshot = await get(userRef);
+    const userData = snapshot.exists() ? snapshot.val() : {};
 
-      loadUsers(roles);
-    });
+    if (userData.role !== "admin") {
+      alert("Acceso restringido. Solo administradores pueden entrar aquí.");
+      window.location.href = "index.html";
+      return;
+    }
+
+    // Si es admin → mostrar panel
+    initAdminPanel();
   });
 
-  // Cargar lista de usuarios desde Firebase
-  function loadUsers(roles) {
+  async function initAdminPanel() {
     const usersRef = ref(db, "users");
-    onValue(usersRef, (snapshot) => {
-      userList.innerHTML = "";
-      const data = snapshot.val() || {};
+    const snapshot = await get(usersRef);
 
-      Object.values(data).forEach((info) => {
-        const email = info.email;
-        const username = info.username;
-        const role = roles[email] || "user";
+    if (!snapshot.exists()) {
+      userList.innerHTML = "<p>No hay usuarios registrados.</p>";
+      return;
+    }
 
-        const div = document.createElement("div");
-        div.className = "user-item";
-        div.innerHTML = `
-          <span class="username">${username}</span>
-          <span class="email">${email}</span>
-          <label><input type="checkbox" class="adminChk" ${role === "admin" ? "checked" : ""}> Admin</label>
-          <label><input type="checkbox" class="premiumChk" ${role === "premium" ? "checked" : ""}> Premium</label>
-        `;
-        userList.appendChild(div);
-      });
+    const users = snapshot.val();
+    const roles = loadRoles(); // Cargar roles locales desde roleManager.js / localStorage
+
+    userList.innerHTML = "";
+
+    Object.entries(users).forEach(([uid, info]) => {
+      const currentRole = roles[uid] || { premium: false, admin: false };
+
+      const div = document.createElement("div");
+      div.className = "user-item";
+      div.innerHTML = `
+        <div class="user-info">
+          <strong>${info.username || "Sin nombre"}</strong><br>
+          <small>${info.email}</small>
+        </div>
+        <div class="user-roles">
+          <label>
+            <input type="checkbox" class="chk-premium" data-uid="${uid}" ${currentRole.premium ? "checked" : ""}>
+            Premium
+          </label>
+          <label>
+            <input type="checkbox" class="chk-admin" data-uid="${uid}" ${currentRole.admin ? "checked" : ""}>
+            Admin
+          </label>
+        </div>
+      `;
+      userList.appendChild(div);
     });
   }
 
-  // Guardar roles (reescribir roleManager.js)
-  saveBtn.addEventListener("click", async () => {
-    const newRoles = {};
-    document.querySelectorAll(".user-item").forEach((div) => {
-      const email = div.querySelector(".email").textContent;
-      const isAdmin = div.querySelector(".adminChk").checked;
-      const isPremium = div.querySelector(".premiumChk").checked;
+  // 💾 Guardar cambios manualmente
+  saveBtn.addEventListener("click", () => {
+    const premiumBoxes = document.querySelectorAll(".chk-premium");
+    const adminBoxes = document.querySelectorAll(".chk-admin");
 
-      if (isAdmin) newRoles[email] = "admin";
-      else if (isPremium) newRoles[email] = "premium";
+    const newRoles = {};
+
+    premiumBoxes.forEach((chk) => {
+      const uid = chk.dataset.uid;
+      if (!newRoles[uid]) newRoles[uid] = {};
+      newRoles[uid].premium = chk.checked;
     });
 
-    const fileContent = `// js/roleManager.js\nexport const roles = ${JSON.stringify(newRoles, null, 2)};\n\n` +
-      `export function getUserRole(email){return roles[email]||"user";}\n\n` +
-      `export function protectPage(allowedRoles=["admin"],redirectUrl="index.html"){\n` +
-      `import("./firebase-config.js").then(({auth})=>{\n` +
-      `import("https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js").then(({onAuthStateChanged})=>{\n` +
-      `onAuthStateChanged(auth,(user)=>{\n` +
-      `if(!user){alert("Debes iniciar sesión para acceder a esta página.");window.location.href=redirectUrl;return;}\n` +
-      `const role=getUserRole(user.email);\n` +
-      `if(!allowedRoles.includes(role)){alert("Acceso restringido.");window.location.href=redirectUrl;}\n` +
-      `else{document.body.style.display="block";}\n` +
-      `});});});}`;
-    
-    const blob = new Blob([fileContent], { type: "text/javascript" });
-    const url = URL.createObjectURL(blob);
+    adminBoxes.forEach((chk) => {
+      const uid = chk.dataset.uid;
+      if (!newRoles[uid]) newRoles[uid] = {};
+      newRoles[uid].admin = chk.checked;
+    });
 
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "roleManager.js";
-    a.click();
+    // Guardar localmente
+    localStorage.setItem("roleManagerData", JSON.stringify(newRoles));
 
-    alert("Archivo roleManager.js actualizado. Descargá y reemplazalo en /js/");
+    alert("✅ Roles actualizados correctamente (guardados en el navegador).");
   });
+
+  // 📦 Función para leer roles desde localStorage
+  function loadRoles() {
+    try {
+      return JSON.parse(localStorage.getItem("roleManagerData")) || {};
+    } catch {
+      return {};
+    }
+  }
 });
