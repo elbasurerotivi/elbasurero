@@ -98,7 +98,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       if (foundUid) {
-        try {
+       console.log("Updating user with UID:", foundUid); // Add this
           await remove(ref(db, `users/${uid}`)); // In the delete-btn event listener
           alert(`Rol actualizado para ${email} → ${role}`);
         } catch (error) {
