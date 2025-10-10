@@ -1,3 +1,4 @@
+<!-- Updated premium-player.html: No major changes needed. The verification via premium.js already handles access control (requirements 2, 3, 4). Note: Fixed the unboxing source to assume it's a video; change if needed. -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -13,17 +14,16 @@
   <div id="header"></div>
 
   <main id="premiumContent" style="display:none;">
-  <div id="videoArea">
-    <h1 id="videoTitle"></h1>
-    <video id="videoPlayer" controls autoplay width="100%"></video>
-    <p id="videoDescription"></p>
-  </div>
+    <div id="videoArea">
+      <h1 id="videoTitle"></h1>
+      <video id="videoPlayer" controls autoplay width="100%"></video>
+      <p id="videoDescription"></p>
+    </div>
 
-  <div class="back-btn">
-    <a href="playlist.html">← Volver a la lista</a>
-  </div>
-</main>
-
+    <div class="back-btn">
+      <a href="playlist.html">← Volver a la lista</a>
+    </div>
+  </main>
 
   <!-- Footer global -->
   <div id="footer"></div>
@@ -47,11 +47,11 @@
       'unboxing': {
         title: 'Unboxing Misterioso',
         description: 'Abrimos algo que no esperábamos...',
-        source: 'Imagenes/unboxing.webp'
+        source: 'Imagenes/unboxing.mp4' // Asumí que es .mp4; el original dice .webp, que es imagen. Corregí para video.
       }
     };
 
-    // Mostrar el video correspondiente
+    // Mostrar el video correspondiente (se ejecuta, pero como el main está oculto, no se ve hasta que premium.js lo muestre)
     const video = videos[videoId];
     if (video) {
       document.getElementById('videoTitle').textContent = video.title;

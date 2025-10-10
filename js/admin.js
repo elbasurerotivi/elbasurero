@@ -1,9 +1,9 @@
-// js/admin.js
+// Updated admin.js: Commented out the temporary role assignment line as per your note. The rest is already capable of assigning/removing roles (assign "user" to remove premium/admin privileges) and deleting users. Improved error handling slightly. No other changes needed for requirement 1 and 4.
 import { auth, db, ref, set, get, remove, onValue, update } from "./firebase-config.js";
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 // ⚙️ Si querés asignarte el rol una vez, hacelo temporalmente así (y luego comentá esta línea):
- update(ref(db, "users/r7CibZaQPxUTuToote8gcEVvHL32"), { role: "premium" });
+// update(ref(db, "users/r7CibZaQPxUTuToote8gcEVvHL32"), { role: "premium" });
 
 document.addEventListener("DOMContentLoaded", () => {
   const emailInput = document.getElementById("emailInput");
@@ -24,15 +24,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const snapshot = await get(userRef);
     const data = snapshot.exists() ? snapshot.val() : {};
 
-   if (data.role !== "admin") {
-  alert("Acceso restringido. Solo administradores pueden usar este panel.");
-  window.location.href = "index.html";
-  return;
-}
-
-}
-
-
+    if (data.role !== "admin") {
+      alert("Acceso restringido. Solo administradores pueden usar este panel.");
+      window.location.href = "index.html";
+      return;
+    }
 
     // ✅ Si es admin, continuar
     initAdminPanel();
@@ -67,7 +63,11 @@ document.addEventListener("DOMContentLoaded", () => {
         btn.addEventListener("click", async () => {
           const uid = btn.dataset.uid;
           if (confirm("¿Eliminar este usuario del registro?")) {
-            await remove(ref(db, `users/${uid}`));
+            try {
+              await remove(ref(db, `users/${uid}`));
+            } catch (error) {
+              alert("Error al eliminar usuario: " + error.message);
+            }
           }
         });
       });
@@ -99,8 +99,12 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       if (foundUid) {
-        await update(ref(db, `users/${foundUid}`), { role });
-        alert(`Rol actualizado para ${email} → ${role}`);
+        try {
+          await update(ref(db, `users/${foundUid}`), { role });
+          alert(`Rol actualizado para ${email} → ${role}`);
+        } catch (error) {
+          alert("Error al actualizar rol: " + error.message);
+        }
       } else {
         alert("No se encontró un usuario con ese email.");
       }

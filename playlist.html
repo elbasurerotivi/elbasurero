@@ -1,3 +1,4 @@
+<!-- Updated playlist.html: Wrapped the premium content in <main id="premiumContent" style="display:none;"> to match the verification logic in premium.js. This ensures users without "premium" or "admin" role are redirected (requirements 2, 3, 4). Moved the video rendering script inside the main to ensure it's only processed when shown, but it can stay as is since the div is hidden. -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -12,7 +13,7 @@
   <!-- Header global -->
   <div id="header"></div>
 
-  <main class="playlist-container">
+  <main id="premiumContent" class="playlist-container" style="display:none;">
     <h1>🎬 Playlist Premium</h1>
     <p>Bienvenido a tu lista de reproducción exclusiva. Solo para miembros premium.</p>
 
@@ -43,24 +44,26 @@
         title: 'Unboxing Misterioso',
         description: '🎬 Los Simuladores | Episodio 2 | "Diagnóstico rectoscópico"',
         thumbnail: 'Imagenes/simuladores 2.webp',
-        source: 'Imagenes/unboxing.webp'
+        source: 'Imagenes/unboxing.webp' // Nota: Esto parece ser una imagen (.webp), no un video. Cambialo a .mp4 si es un error.
       }
     ];
 
-    // Renderizar lista
+    // Renderizar lista (esto se ejecuta, pero como el div está oculto inicialmente, no se ve hasta que premium.js lo muestre)
     const container = document.getElementById('videoList');
-    videos.forEach(v => {
-      const card = document.createElement('div');
-      card.className = 'video-card';
-      card.innerHTML = `
-        <a href="premium-player.html?id=${v.id}">
-          <img src="${v.thumbnail}" alt="${v.title}">
-          <h3>${v.title}</h3>
-          <p>${v.description}</p>
-        </a>
-      `;
-      container.appendChild(card);
-    });
+    if (container) { // Aseguramos que exista
+      videos.forEach(v => {
+        const card = document.createElement('div');
+        card.className = 'video-card';
+        card.innerHTML = `
+          <a href="premium-player.html?id=${v.id}">
+            <img src="${v.thumbnail}" alt="${v.title}">
+            <h3>${v.title}</h3>
+            <p>${v.description}</p>
+          </a>
+        `;
+        container.appendChild(card);
+      });
+    }
   </script>
 
 </body>

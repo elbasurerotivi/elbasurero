@@ -1,4 +1,4 @@
-// js/premium.js
+// Updated premium.js: No changes needed here. It already defaults role to "user" if missing, denies access to non-premium/admin (requirements 2, 3), and allows admins full access (requirement 4). It works for both playlist.html and premium-player.html now that playlist.html has the id="premiumContent".
 import { auth, db, ref, get } from "./firebase-config.js";
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
