@@ -1,9 +1,6 @@
-// admin.js
-import { auth, db, ref, set, get, remove, onValue, update } from "./firebase-config.js";
+// js/admin.js
+import { auth, db, ref, get, update, onValue } from "./firebase-config.js";
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-
-// ⚙️ Si querés asignarte el rol una vez, hacelo temporalmente así (y luego comentá esta línea):
-// update(ref(db, "users/r7CibZaQPxUTuToote8gcEVvHL32"), { role: "admin" });
 
 document.addEventListener("DOMContentLoaded", () => {
   const emailInput = document.getElementById("emailInput");
@@ -11,71 +8,52 @@ document.addEventListener("DOMContentLoaded", () => {
   const assignBtn = document.getElementById("assignBtn");
   const userList = document.getElementById("userList");
 
-  // 🔒 Verificar usuario actual
+  // 🔒 Verificar si el usuario logueado es admin
   onAuthStateChanged(auth, async (user) => {
     if (!user) {
-      alert("Debes iniciar sesión como administrador.");
-      window.location.href = "index.html";
+      alert("Debes iniciar sesión para acceder a este panel.");
+      window.location.href = "login.html";
       return;
     }
 
     const userRef = ref(db, `users/${user.uid}`);
     const snapshot = await get(userRef);
-    const data = snapshot.exists() ? snapshot.val() : {};
-    console.log("User data:", data, "UID:", user.uid); // Debug log
-
-    if (data.role !== "admin") {
+    if (!snapshot.exists() || snapshot.val().role !== "admin") {
       alert("Acceso restringido. Solo administradores pueden usar este panel.");
       window.location.href = "index.html";
       return;
     }
 
+    // ✅ Usuario es admin → inicializar panel
     initAdminPanel();
   });
 
   function initAdminPanel() {
     const usersRef = ref(db, "users");
 
-    // Escuchar cambios en tiempo real
+    // Mostrar lista de usuarios en tiempo real
     onValue(usersRef, (snapshot) => {
+      userList.innerHTML = "";
       if (!snapshot.exists()) {
         userList.innerHTML = "<p>No hay usuarios registrados.</p>";
         return;
       }
 
-      const data = snapshot.val();
-      userList.innerHTML = "";
-
-      Object.entries(data).forEach(([uid, info]) => {
+      const users = snapshot.val();
+      Object.entries(users).forEach(([uid, info]) => {
         const div = document.createElement("div");
         div.className = "user-item";
         div.innerHTML = `
           <span>${info.username || info.email}</span>
           <span class="role ${info.role || 'user'}">${info.role || 'user'}</span>
-          <button data-uid="${uid}" class="delete-btn">❌</button>
         `;
         userList.appendChild(div);
       });
-
-      // Botones de eliminar
-      document.querySelectorAll(".delete-btn").forEach((btn) => {
-        btn.addEventListener("click", async () => {
-          const uid = btn.dataset.uid;
-          if (confirm("¿Eliminar este usuario del registro?")) {
-            try {
-              await remove(ref(db, `users/${uid}`));
-              alert("Usuario eliminado correctamente.");
-            } catch (error) {
-              alert("Error al eliminar usuario: " + error.message);
-            }
-          }
-        });
-      });
     });
 
-    // Asignar rol manualmente
+    // Cambiar rol manualmente
     assignBtn.addEventListener("click", async () => {
-      const email = emailInput.value.trim();
+      const email = emailInput.value.trim().toLowerCase();
       const role = roleSelect.value;
 
       if (!email) {
@@ -83,12 +61,30 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      try {
-        // Buscar usuario por email (temporal, sin Admin SDK)
-        const usersRef = ref(db, "users");
-        const snapshot = await get(usersRef);
-        let foundUid = null;
+      // Buscar el UID por email
+      const usersRef = ref(db, "users");
+      const snapshot = await get(usersRef);
+      let foundUid = null;
 
-        if (snapshot.exists()) {
-          const users = snapshot.val();
-          for (const [uid, info] of Object.entries(users))
+      if (snapshot.exists()) {
+        const users = snapshot.val();
+        for (const [uid, info] of Object.entries(users)) {
+          if (info.email.toLowerCase() === email) {
+            foundUid = uid;
+            break;
+          }
+        }
+      }
+
+      if (!foundUid) {
+        alert("No se encontró un usuario con ese email.");
+        return;
+      }
+
+      await update(ref(db, `users/${foundUid}`), { role });
+      alert(`Rol actualizado para ${email} → ${role}`);
+      emailInput.value = "";
+      roleSelect.value = "user";
+    });
+  }
+});
