@@ -3,30 +3,24 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Panel de Administración | El Basurero</title>
+  <title>Panel de Administración</title>
   <link rel="stylesheet" href="css/styles.css" />
+  <script type="module">
+    import { protectPage } from "./js/roleManager.js";
+    protectPage(["admin"], "index.html");
+  </script>
   <script type="module" src="js/admin.js"></script>
 </head>
-<body>
-  <div id="header"></div>
-
+<body style="display:none">
   <main class="admin-panel">
     <h1>⚙️ Panel de Administración</h1>
-    <p>Gestioná los roles de los usuarios registrados.</p>
-
-    <hr>
+    <p>Gestioná los permisos de usuarios registrados.</p>
 
     <div id="userList" class="user-list">
       <p>Cargando usuarios...</p>
     </div>
+
+    <button id="saveRoles" class="btn-save">💾 Guardar cambios</button>
   </main>
-
-  <div id="footer"></div>
-
-  <script>
-    // Cargar header y footer globales
-    fetch('header.html').then(r => r.text()).then(d => document.getElementById('header').innerHTML = d);
-    fetch('footer.html').then(r => r.text()).then(d => document.getElementById('footer').innerHTML = d);
-  </script>
 </body>
 </html>

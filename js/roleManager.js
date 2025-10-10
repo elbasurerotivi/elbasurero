@@ -1,38 +1,34 @@
 // js/roleManager.js
-import { db, ref, get, update } from "./firebase-config.js";
-import { onAuthStateChanged, auth } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+// Este archivo se modifica automáticamente desde admin.html
 
-export async function getUserRole(uid) {
-  const userRef = ref(db, `users/${uid}`);
-  const snapshot = await get(userRef);
-  if (snapshot.exists()) {
-    return snapshot.val().role || "user";
-  }
-  return "user";
+export const roles = {
+  "charsvolta@gmail.com": "admin"
+};
+
+// Función para obtener rol
+export function getUserRole(email) {
+  return roles[email] || "user";
 }
 
-// 🔐 Control de acceso a páginas
+// Protección de páginas
 export function protectPage(allowedRoles = ["admin"], redirectUrl = "index.html") {
-  document.body.style.display = "none"; // ocultar mientras valida
-  onAuthStateChanged(auth, async (user) => {
-    if (!user) {
-      alert("Debes iniciar sesión para acceder.");
-      window.location.href = redirectUrl;
-      return;
-    }
+  import("./firebase-config.js").then(({ auth }) => {
+    import("https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js").then(({ onAuthStateChanged }) => {
+      onAuthStateChanged(auth, (user) => {
+        if (!user) {
+          alert("Debes iniciar sesión para acceder a esta página.");
+          window.location.href = redirectUrl;
+          return;
+        }
 
-    const role = await getUserRole(user.uid);
-    if (!allowedRoles.includes(role)) {
-      alert("Acceso restringido. No tienes permiso para ver esta página.");
-      window.location.href = redirectUrl;
-      return;
-    }
-
-    document.body.style.display = "block"; // mostrar si tiene permiso
+        const role = getUserRole(user.email);
+        if (!allowedRoles.includes(role)) {
+          alert("Acceso restringido. No tienes permiso para ver esta página.");
+          window.location.href = redirectUrl;
+        } else {
+          document.body.style.display = "block";
+        }
+      });
+    });
   });
-}
-
-// 🧩 Actualizar rol desde admin.html
-export async function setUserRole(uid, role) {
-  await update(ref(db, `users/${uid}`), { role });
 }
