@@ -6,6 +6,10 @@ export const roles = {
     "premium": true,
     "admin": false
   },
+  "emenagarcia@gmail.com": {
+    "premium": false,
+    "admin": true
+  },
   "charsvolta@gmail.com": {
     "premium": false,
     "admin": true
@@ -31,7 +35,7 @@ export const roles = {
     "admin": false
   },
   "lrotelo@gmail.com": {
-    "premium": false,
+    "premium": true,
     "admin": false
   },
   "cabraljavier1632@gmail.com": {
@@ -85,10 +89,6 @@ export const roles = {
   "lisangel3110@gmail.com": {
     "premium": false,
     "admin": false
-  },
-  "emenagarcia@gmail.com": {
-    "premium": false,
-    "admin": true
   },
   "rsaira@gmail.com": {
     "premium": false,
