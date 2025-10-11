@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const userList = document.getElementById("userList");
   const saveBtn = document.getElementById("saveRoles");
   const downloadLink = document.getElementById("downloadLink");
+  const searchInput = document.getElementById("userSearch");
 
   // Mostrar body y formulario inicialmente
   document.body.style.display = "block";
@@ -46,14 +47,15 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     const users = snapshot.val();
-    userList.innerHTML = "";
+    const userItems = []; // Array para almacenar elementos DOM
 
     Object.entries(users).forEach(([uid, info]) => {
-      // Inicializar checkboxes con roles de roleManager.js (ignora Firebase)
+      // Inicializar roles de roleManager.js (ignora Firebase)
       const currentRole = roles[info.email] || { premium: false, admin: false };
+      const hasRole = currentRole.premium || currentRole.admin; // Para ordenar al top
 
       const div = document.createElement("div");
-      div.className = "user-item";
+      div.className = `user-item ${hasRole ? 'has-role' : ''}`; // Clase CSS opcional para resaltar
       div.innerHTML = `
         <div class="user-info">
           <strong>${info.username || "Sin nombre"}</strong><br>
@@ -70,11 +72,44 @@ document.addEventListener("DOMContentLoaded", () => {
           </label>
         </div>
       `;
-      userList.appendChild(div);
+      userItems.push({ element: div, hasRole, username: (info.username || "").toLowerCase(), email: info.email.toLowerCase() });
+    });
+
+    // Ordenar: Primero los con roles (hasRole true), luego sin roles. Dentro de cada grupo, orden original
+    userItems.sort((a, b) => {
+      if (a.hasRole && !b.hasRole) return -1; // a al top
+      if (!a.hasRole && b.hasRole) return 1; // b al top
+      return 0; // Mantener orden original
+    });
+
+    // Función para renderizar la lista (usada para inicial y filtro)
+    function renderUserList(items) {
+      userList.innerHTML = "";
+      if (items.length === 0) {
+        userList.innerHTML = "<p>No se encontraron usuarios.</p>";
+        return;
+      }
+      items.forEach(item => userList.appendChild(item.element));
+    }
+
+    // Renderizar lista inicial (ordenada)
+    renderUserList(userItems);
+
+    // Event listener para el buscador (filtrar en tiempo real)
+    searchInput.addEventListener("input", (e) => {
+      const query = e.target.value.toLowerCase().trim();
+      if (query === "") {
+        renderUserList(userItems); // Mostrar todos (ordenados)
+        return;
+      }
+      const filtered = userItems.filter(item =>
+        item.username.includes(query) || item.email.includes(query)
+      );
+      renderUserList(filtered);
     });
   }
 
-  // Guardar cambios y generar archivo roleManager.js (igual que antes)
+  // Guardar cambios y generar archivo roleManager.js
   saveBtn.addEventListener("click", () => {
     const premiumBoxes = document.querySelectorAll(".chk-premium");
     const adminBoxes = document.querySelectorAll(".chk-admin");

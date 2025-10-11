@@ -24,9 +24,16 @@
   <main id="adminPanel" class="admin-panel" style="display:none">
     <h1>⚙️ Panel de Administración</h1>
     <p>Gestioná los permisos de usuarios registrados.</p>
+
+    <!-- Buscador de usuarios -->
+    <div class="search-container">
+      <input type="text" id="userSearch" placeholder="Buscar por nombre de usuario o email...">
+    </div>
+
     <div id="userList" class="user-list">
       <p>Cargando usuarios...</p>
     </div>
+
     <button id="saveRoles" class="btn-save">💾 Guardar cambios</button>
     <a id="downloadLink" style="display:none;" download="roleManager.js">Descargar roleManager.js actualizado</a>
   </main>

@@ -3312,3 +3312,27 @@ footer h3 {
   display: flex;
   gap: 10px;
 }
+
+.search-container {
+  margin: 20px 0;
+  text-align: center;
+}
+
+#userSearch {
+  width: 80%;
+  max-width: 400px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.user-item.has-role {
+  background-color: #f0f8ff; /* Fondo azul claro para usuarios con roles */
+  border-left: 4px solid #007bff; /* Barra lateral para resaltar */
+}
+
+.user-list {
+  max-height: 500px; /* Opcional: límite de altura con scroll */
+  overflow-y: auto;
+}
