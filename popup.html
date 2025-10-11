@@ -43,5 +43,54 @@
     
     <button class="btn btn-close" onclick="cerrarAnuncio()">Cerrar</button>
   </div>
-
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const modalTitle = document.querySelector('.modal-title');
+
+  // Función para cambiar el título con animación
+  function cambiarTitulo(nuevoTexto) {
+    modalTitle.classList.add('fade-out');
+    setTimeout(() => {
+      modalTitle.textContent = nuevoTexto;
+      modalTitle.classList.remove('fade-out');
+      modalTitle.classList.add('fade-in');
+      setTimeout(() => modalTitle.classList.remove('fade-in'), 300);
+    }, 300);
+  }
+
+  const swiper = new Swiper('.announcement-swiper', {
+    loop: true,
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+    },
+    on: {
+      slideChange: function () {
+        const index = swiper.realIndex;
+        switch (index) {
+          case 0:
+            cambiarTitulo('📺 Próximo Stream');
+            break;
+          case 1:
+            cambiarTitulo('🔥 Nuevo Video!!!');
+            break;
+          case 2:
+            cambiarTitulo('🗓️ Horarios');
+            break;
+          default:
+            cambiarTitulo('¡Anuncios Importantes!');
+        }
+      }
+    }
+  });
+
+  cambiarTitulo('🎤 Próximo Stream'); // título inicial
+});
+  </script>
+  
