@@ -8,21 +8,19 @@
   <link rel="stylesheet" href="css/styles.css" />
   <script type="module" src="js/admin.js"></script>
 </head>
-<body style="display:none">
-  <!-- Formulario de login, oculto si ya está logueado -->
+<body>
+  <!-- Formulario de "login" (solo email), visible inicialmente -->
   <div id="loginForm" class="login-form">
-    <h1>🔒 Iniciar Sesión - Admin</h1>
+    <h1>🔒 Acceso Admin - Ingresa tu Email</h1>
     <form id="adminLoginForm">
       <label for="email">Email:</label>
       <input type="email" id="email" required>
-      <label for="password">Contraseña:</label>
-      <input type="password" id="password" required>
-      <button type="submit">Iniciar Sesión</button>
+      <button type="submit">Verificar Acceso</button>
     </form>
     <p id="loginError" style="color: red; display: none;"></p>
   </div>
 
-  <!-- Panel de admin, oculto hasta que se verifique -->
+  <!-- Panel de admin, oculto hasta verificación -->
   <main id="adminPanel" class="admin-panel" style="display:none">
     <h1>⚙️ Panel de Administración</h1>
     <p>Gestioná los permisos de usuarios registrados.</p>

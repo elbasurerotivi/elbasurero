@@ -1,5 +1,6 @@
-import { auth, db, ref, get } from "./firebase-config.js";
-import { onAuthStateChanged, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+// js/admin.js
+import { db, ref, get } from "./firebase-config.js";
+import { getUserRole, roles } from "./roleManager.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   const loginForm = document.getElementById("adminLoginForm");
@@ -10,55 +11,36 @@ document.addEventListener("DOMContentLoaded", () => {
   const saveBtn = document.getElementById("saveRoles");
   const downloadLink = document.getElementById("downloadLink");
 
-  // Manejar estado de autenticación
-  onAuthStateChanged(auth, async (user) => {
-    if (!user) {
-      // No logueado: mostrar formulario de login
-      loginContainer.style.display = "block";
-      adminPanel.style.display = "none";
-      document.body.style.display = "block";
-      return;
-    }
+  // Mostrar body y formulario inicialmente
+  document.body.style.display = "block";
 
-    // Obtener info del usuario desde Firebase
-    const userRef = ref(db, `users/${user.uid}`);
-    const snapshot = await get(userRef).catch(() => null);
-    const userData = snapshot?.exists() ? snapshot.val() : {};
-
-    if (userData.role !== "admin") {
-      alert("Acceso restringido. Solo administradores pueden entrar aquí.");
-      window.location.href = "index.html";
-      return;
-    }
-
-    // Es admin: ocultar login y mostrar panel
-    loginContainer.style.display = "none";
-    adminPanel.style.display = "block";
-    document.body.style.display = "block";
-    initAdminPanel();
-  });
-
-  // Manejar submit del formulario de login
-  loginForm.addEventListener("submit", async (e) => {
+  // Manejar submit del formulario (verificar email en roleManager.js)
+  loginForm.addEventListener("submit", (e) => {
     e.preventDefault();
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
+    const email = document.getElementById("email").value.trim().toLowerCase(); // Normalizar email
 
-    try {
-      await signInWithEmailAndPassword(auth, email, password);
+    const role = getUserRole(email);
+
+    if (role === "admin") {
       loginError.style.display = "none";
-      // onAuthStateChanged manejará el cambio de estado
-    } catch (error) {
-      loginError.textContent = "Error al iniciar sesión: " + (error.message || "Credenciales inválidas");
+      loginContainer.style.display = "none";
+      adminPanel.style.display = "block";
+      initAdminPanel();
+    } else {
+      loginError.textContent = "Acceso denegado: Este email no tiene rol de administrador en roleManager.js.";
       loginError.style.display = "block";
     }
   });
 
   async function initAdminPanel() {
     const usersRef = ref(db, "users");
-    const snapshot = await get(usersRef).catch(() => null);
+    const snapshot = await get(usersRef).catch((error) => {
+      console.error("Error cargando usuarios:", error);
+      userList.innerHTML = "<p>Error cargando usuarios. Verifica las reglas de Firebase para lectura pública en /users.</p>";
+      return null;
+    });
 
-    if (!snapshot?.exists()) {
+    if (!snapshot || !snapshot.exists()) {
       userList.innerHTML = "<p>No hay usuarios registrados.</p>";
       return;
     }
@@ -67,10 +49,8 @@ document.addEventListener("DOMContentLoaded", () => {
     userList.innerHTML = "";
 
     Object.entries(users).forEach(([uid, info]) => {
-      const currentRole = info.role ? { 
-        premium: info.role === "premium" || info.role === "admin", 
-        admin: info.role === "admin" 
-      } : { premium: false, admin: false };
+      // Inicializar checkboxes con roles de roleManager.js (ignora Firebase)
+      const currentRole = roles[info.email] || { premium: false, admin: false };
 
       const div = document.createElement("div");
       div.className = "user-item";
@@ -94,7 +74,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Guardar cambios y generar archivo roleManager.js
+  // Guardar cambios y generar archivo roleManager.js (igual que antes)
   saveBtn.addEventListener("click", () => {
     const premiumBoxes = document.querySelectorAll(".chk-premium");
     const adminBoxes = document.querySelectorAll(".chk-admin");
