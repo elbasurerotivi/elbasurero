@@ -1,40 +1,41 @@
 <!-- popup.html -->
 <div id="announcementModal" class="modal">
   <div class="modal-content">
-    <!-- El título comienza vacío o con el primero -->
-    <h2 class="modal-title"></h2>
+    <h2 class="modal-title">¡Anuncios Importantes!</h2>
 
-    <!-- Carrusel Swiper -->
+    <!-- Contenedor del carrusel Swiper -->
     <div class="swiper announcement-swiper">
       <div class="swiper-wrapper">
         
-        <!-- Tarjeta 1: Próximo Stream -->
+        <!-- Tarjeta 1: Horarios de Streams -->
         <div class="swiper-slide announcement-card">
           <a href="https://www.youtube.com/@elbasureroedgar" target="_blank" class="image-link">
             <img src="Imagenes/the_best_crowd_ever.jpg" alt="Próximo Stream en YouTube" class="announcement-img">
           </a>
         </div>
         
-        <!-- Tarjeta 2: Último Video -->
+        <!-- Tarjeta 2: Último Video (dinámica, simplificada) -->
         <div class="swiper-slide announcement-card" id="latest-video-card">
           <a href="#" class="image-link" id="latest-video-link" target="_blank">
             <img src="" alt="Último Video" class="announcement-img" id="latest-video-img">
           </a>
         </div>
         
-        <!-- Tarjeta 3: Programación -->
+        <!-- Tarjeta 3: Programación de la Semana -->
         <div class="swiper-slide announcement-card">
           <img src="Imagenes/horarios.jpg" alt="Horarios" class="announcement-img">
         </div>
       </div>
       
-      <!-- Controles -->
+      <!-- Controles de navegación -->
       <div class="swiper-button-next"></div>
       <div class="swiper-button-prev"></div>
+      
+      <!-- Paginación -->
       <div class="swiper-pagination"></div>
     </div>
     
-    <!-- Checkbox -->
+    <!-- Checkbox para no mostrar más hoy -->
     <div class="checkbox-container">
       <input type="checkbox" id="noShowToday" name="noShowToday">
       <label for="noShowToday">No mostrar más por hoy</label>
@@ -48,7 +49,7 @@
 document.addEventListener('DOMContentLoaded', function() {
   const modalTitle = document.querySelector('.modal-title');
 
-  // Función para cambiar el texto con efecto suave
+  // Función para cambiar el título con animación
   function cambiarTitulo(nuevoTexto) {
     modalTitle.classList.add('fade-out');
     setTimeout(() => {
@@ -59,7 +60,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }, 300);
   }
 
-  // Inicializar Swiper
   const swiper = new Swiper('.announcement-swiper', {
     loop: true,
     navigation: {
@@ -75,20 +75,22 @@ document.addEventListener('DOMContentLoaded', function() {
         const index = swiper.realIndex;
         switch (index) {
           case 0:
-            cambiarTitulo('🎤 Próximo Stream');
+            cambiarTitulo('📺 Próximo Stream');
             break;
           case 1:
             cambiarTitulo('🔥 Nuevo Video!!!');
             break;
           case 2:
-            cambiarTitulo('🗓️ Horarios de la Semana');
+            cambiarTitulo('🗓️ Horarios');
             break;
+          default:
+            cambiarTitulo('¡Anuncios Importantes!');
         }
       }
     }
   });
 
-  // Mostrar el título correcto al iniciar (por si el carrusel arranca en otra slide)
-  cambiarTitulo('🎤 Próximo Stream');
+  cambiarTitulo('🎤 Próximo Stream'); // título inicial
 });
-</script>
+  </script>
+  
