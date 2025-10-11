@@ -2,6 +2,14 @@
 // Este archivo se modifica automáticamente desde admin.html
 
 export const roles = {
+  "elbasurerotivi@gmail.com": {
+    "premium": true,
+    "admin": false
+  },
+  "charsvolta@gmail.com": {
+    "premium": false,
+    "admin": true
+  },
   "rafatrigos2014@gmail.com": {
     "premium": false,
     "admin": false
@@ -54,10 +62,6 @@ export const roles = {
     "premium": false,
     "admin": false
   },
-  "elbasurerotivi@gmail.com": {
-    "premium": true,
-    "admin": false
-  },
   "drl353@hotmail.com": {
     "premium": false,
     "admin": false
@@ -84,7 +88,7 @@ export const roles = {
   },
   "emenagarcia@gmail.com": {
     "premium": false,
-    "admin": false
+    "admin": true
   },
   "rsaira@gmail.com": {
     "premium": false,
@@ -121,10 +125,6 @@ export const roles = {
   "adri.anez3999@gmail.com": {
     "premium": false,
     "admin": false
-  },
-  "charsvolta@gmail.com": {
-    "premium": false,
-    "admin": true
   },
   "summermieternoverano@gmail.com": {
     "premium": false,
