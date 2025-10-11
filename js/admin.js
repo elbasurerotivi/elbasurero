@@ -1,20 +1,26 @@
 import { auth, db, ref, get } from "./firebase-config.js";
-import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import { onAuthStateChanged, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 document.addEventListener("DOMContentLoaded", () => {
+  const loginForm = document.getElementById("adminLoginForm");
+  const loginError = document.getElementById("loginError");
+  const loginContainer = document.getElementById("loginForm");
+  const adminPanel = document.getElementById("adminPanel");
   const userList = document.getElementById("userList");
   const saveBtn = document.getElementById("saveRoles");
   const downloadLink = document.getElementById("downloadLink");
 
-  // Verificar que el usuario actual sea admin
+  // Manejar estado de autenticación
   onAuthStateChanged(auth, async (user) => {
     if (!user) {
-      alert("Debes iniciar sesión como administrador.");
-      window.location.href = "index.html";
+      // No logueado: mostrar formulario de login
+      loginContainer.style.display = "block";
+      adminPanel.style.display = "none";
+      document.body.style.display = "block";
       return;
     }
 
-    // Obtener info del usuario actual desde Firebase
+    // Obtener info del usuario desde Firebase
     const userRef = ref(db, `users/${user.uid}`);
     const snapshot = await get(userRef).catch(() => null);
     const userData = snapshot?.exists() ? snapshot.val() : {};
@@ -25,8 +31,27 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    // Si es admin, inicializar el panel
+    // Es admin: ocultar login y mostrar panel
+    loginContainer.style.display = "none";
+    adminPanel.style.display = "block";
+    document.body.style.display = "block";
     initAdminPanel();
+  });
+
+  // Manejar submit del formulario de login
+  loginForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+      loginError.style.display = "none";
+      // onAuthStateChanged manejará el cambio de estado
+    } catch (error) {
+      loginError.textContent = "Error al iniciar sesión: " + (error.message || "Credenciales inválidas");
+      loginError.style.display = "block";
+    }
   });
 
   async function initAdminPanel() {
@@ -42,7 +67,6 @@ document.addEventListener("DOMContentLoaded", () => {
     userList.innerHTML = "";
 
     Object.entries(users).forEach(([uid, info]) => {
-      // Cargar rol actual desde Firebase si existe, o default a {premium: false, admin: false}
       const currentRole = info.role ? { 
         premium: info.role === "premium" || info.role === "admin", 
         admin: info.role === "admin" 
@@ -146,7 +170,7 @@ export function protectPage(allowedRoles = ["admin"], redirectUrl = "index.html"
     downloadLink.href = url;
     downloadLink.style.display = "block";
     downloadLink.click();
-    URL.revokeObjectURL(url); // Liberar memoria
+    URL.revokeObjectURL(url);
     alert("✅ Roles actualizados. Descargando roleManager.js actualizado...");
   });
 });
