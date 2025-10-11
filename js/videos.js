@@ -992,6 +992,18 @@ const videosData = [
     'Animación'
   ]
 },
+   
+  {
+  titulo: 'Reacción a Mariano Rodríguez | Superman: del sufrimiento a la redención 🦸‍♂️💀😂',
+  descripcion: 'Este video es el resultado de una noche intensa en Twitch.\nPrimero vimos la nueva película de Superman (la de James Gunn)...\nY sí, la sufrí. No voy a mentir.\nFue como ver a mi infancia ser editada por un algoritmo sin corazón. 🥲\n\nPero el alma se me limpió después con dos videos de Mariano Rodríguez, que vinieron como benditos limpiapaladares cinematográficos:\n👉 Uno sobre la misma película de Gunn (para confirmar que no estoy loco).\n👉 Y otro sobre el clásico de Christopher Reeve, porque la esperanza tiene un hogar y siempre es agradable revisitarlo.\n\nUn cierre perfecto para un día de trauma superheróico.\nSi amas a Superman, te cagó la versión de Gunn o simplemente te gusta verme quejarme con fundamento, este video es para ti 🦸‍♂️',
+  fecha: '2025-10-11',
+  link: 'https://m.youtube.com/watch?v=qj6_Gei_jAY',
+  miniatura: 'https://img.youtube.com/vi/qj6_Gei_jAY/maxresdefault.jpg',
+  tags: [
+    'Películas',
+    'Humor'
+  ]
+},
 
 
 
@@ -1097,3 +1109,4 @@ if (toggleBtn && dropdownMenu) {
 
 // Cargar videos iniciales
 renderVideos("latest");
+
