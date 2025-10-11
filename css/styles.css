@@ -3328,7 +3328,7 @@ footer h3 {
 }
 
 .user-item.has-role {
-  background-color: #f0f8ff; /* Fondo azul claro para usuarios con roles */
+  background-color: #4d4d4d; /* Fondo azul claro para usuarios con roles */
   border-left: 4px solid #007bff; /* Barra lateral para resaltar */
 }
 
