@@ -1,8 +1,8 @@
 <!-- popup.html -->
 <div id="announcementModal" class="modal">
   <div class="modal-content">
-    <!-- Este título cambia dinámicamente -->
-    <h2 class="modal-title">¡Anuncios Importantes!</h2>
+    <!-- El título comienza vacío o con el primero -->
+    <h2 class="modal-title">🎤 Próximo Stream</h2>
 
     <!-- Carrusel Swiper -->
     <div class="swiper announcement-swiper">
@@ -31,8 +31,6 @@
       <!-- Controles -->
       <div class="swiper-button-next"></div>
       <div class="swiper-button-prev"></div>
-      
-      <!-- Paginación -->
       <div class="swiper-pagination"></div>
     </div>
     
@@ -46,12 +44,11 @@
   </div>
 </div>
 
-<!-- SCRIPT -->
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   const modalTitle = document.querySelector('.modal-title');
 
-  // Función para cambiar el texto del título con una transición suave
+  // Función para cambiar el texto con efecto suave
   function cambiarTitulo(nuevoTexto) {
     modalTitle.classList.add('fade-out');
     setTimeout(() => {
@@ -86,15 +83,12 @@ document.addEventListener('DOMContentLoaded', function() {
           case 2:
             cambiarTitulo('🗓️ Horarios de la Semana');
             break;
-          default:
-            cambiarTitulo('¡Anuncios Importantes!');
         }
       }
     }
   });
 
-  // Título inicial
+  // Mostrar el título correcto al iniciar (por si el carrusel arranca en otra slide)
   cambiarTitulo('🎤 Próximo Stream');
 });
 </script>
-
