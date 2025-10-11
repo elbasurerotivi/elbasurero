@@ -2965,6 +2965,8 @@ footer h3 {
 
 
 
+
+
 /* Estilos para el Popup de Anuncios */
 .modal {
   display: none;
@@ -3083,6 +3085,23 @@ footer h3 {
   color: var(--accent-hover);
 }
 
+.modal-title {
+  text-align: center;
+  font-size: 1.8em;
+  margin-bottom: 15px;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.fade-out {
+  opacity: 0;
+  transform: translateY(-8px);
+}
+
+.fade-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 /* Ajustes responsivos */
 @media (max-width: 600px) {
   .modal-content {
@@ -3106,6 +3125,17 @@ footer h3 {
     max-height: 0px;
   }
 }
+
+
+
+
+
+
+
+
+
+
+
 /* ===== Etiqueta del título sobre miniatura ===== */
 .video-slide {
   position: relative;
