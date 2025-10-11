@@ -110,7 +110,6 @@ document.getElementById("actionBtn")?.addEventListener("click", () => {
         console.log("Inicio de sesión exitoso:", userCredential.user.email);
         alert(`Bienvenido, ${userCredential.user.email}!`);
         cerrarLogin();
-        // No recargar, confiar en onAuthStateChanged para actualizar UI
       })
       .catch(error => {
         console.error("Error al iniciar sesión:", error);
@@ -130,7 +129,6 @@ document.getElementById("actionBtn")?.addEventListener("click", () => {
         }
         alert(errorMessage);
       });
-
   } else {
     // ---- Registro ----
     createUserWithEmailAndPassword(auth, email, pass)
@@ -147,7 +145,6 @@ document.getElementById("actionBtn")?.addEventListener("click", () => {
           console.log("Datos del usuario guardados en la base de datos");
           alert(`Usuario registrado: ${user.email}`);
           cerrarLogin();
-          // No recargar, confiar en onAuthStateChanged
         });
       })
       .catch(error => {
@@ -243,8 +240,6 @@ window.logout = function() {
 // 🔹 Inicializar botones de login/logout (header)
 // -----------------------------
 window.initAuthButtons = function() {
-  const loginContainer = document.getElementById("login-container");
-  const logoutContainer = document.getElementById("logout-container");
   const loginBtn = document.getElementById("login-btn");
   const logoutBtn = document.getElementById("logout-btn");
 
@@ -270,15 +265,13 @@ window.initAuthButtons = function() {
   onAuthStateChanged(auth, user => {
     if (user) {
       console.log("Usuario conectado:", user.email, "UID:", user.uid);
-      if (loginContainer) loginContainer.style.display = "none";
-      if (logoutContainer) logoutContainer.style.display = "block";
-      // Actualizar userId para consistencia con recommendations.js y community.js
+      if (loginBtn) loginBtn.style.display = "none";
+      if (logoutBtn) logoutBtn.style.display = "block";
       localStorage.setItem("userId", user.uid);
     } else {
       console.log("No hay usuario conectado");
-      if (loginContainer) loginContainer.style.display = "block";
-      if (logoutContainer) logoutContainer.style.display = "none";
-      // Generar nuevo userId para usuarios no autenticados
+      if (loginBtn) loginBtn.style.display = "block";
+      if (logoutBtn) logoutBtn.style.display = "none";
       let userId = localStorage.getItem("userId");
       if (!userId) {
         userId = "user_" + Math.random().toString(36).substring(2, 9);
@@ -287,5 +280,10 @@ window.initAuthButtons = function() {
     }
   });
 };
+
+// Ejecutar inicialización cuando el DOM esté listo
+document.addEventListener("DOMContentLoaded", () => {
+  window.initAuthButtons();
+});
 
 console.log("✅ login.js cargado correctamente");

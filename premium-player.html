@@ -21,9 +21,10 @@
   <div id="footer"></div>
 
   <script type="module">
-    import { protectPage } from "./js/roleManager.js";
-    protectPage(["premium", "admin"], "index.html");
-  </script>
+  import { protectPage } from "./js/roleManager.js";
+  protectPage(["premium", "admin"], "index.html");
+  import "./js/login.js"; // Cargar login.js
+</script>
 
   <script>
     fetch('header.html').then(r => r.text()).then(d => document.getElementById('header').innerHTML = d);
