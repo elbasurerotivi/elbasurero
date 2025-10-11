@@ -668,7 +668,7 @@ footer h3 {
 /* Botones de navegación */
 .swiper-button-next,
 .swiper-button-prev {
-  color: #fff; /* color flechas */
+  color: #ffffff; /* color flechas */
   transition: color 0.3s ease;
 }
 
@@ -3278,7 +3278,7 @@ footer h3 {
 .assign-form button {
   padding: 10px 20px;
   border-radius: 8px;
-  background-color: #0078d7;
+  background-color: #ffffff;
   color: white;
   border: none;
   cursor: pointer;
