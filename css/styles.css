@@ -674,7 +674,7 @@ footer h3 {
 
 .swiper-button-next:hover,
 .swiper-button-prev:hover {
-  color: #00acee; /* azul estilo "redes" cuando pasás el mouse */
+  color: #ffffff; /* azul estilo "redes" cuando pasás el mouse */
 }
 
 /* Paginación (los puntitos) */
@@ -685,7 +685,7 @@ footer h3 {
 }
 
 .swiper-pagination-bullet-active {
-  background: #00acee; /* puntito activo azul */
+  background: #ff03ab; /* puntito activo azul */
   opacity: 1;
 }
 
