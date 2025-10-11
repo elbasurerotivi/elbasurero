@@ -2,7 +2,146 @@
 // Este archivo se modifica automáticamente desde admin.html
 
 export const roles = {
-  "charsvolta@gmail.com": { premium: false, admin: true }
+  "rafatrigos2014@gmail.com": {
+    "premium": false,
+    "admin": false
+  },
+  "ferchumica8998@gmail.com": {
+    "premium": false,
+    "admin": false
+  },
+  "juangabrielcasalla@gmail.com": {
+    "premium": false,
+    "admin": false
+  },
+  "gazzzt15@gmail.com": {
+    "premium": false,
+    "admin": false
+  },
+  "dielucero@gmail.com": {
+    "premium": false,
+    "admin": false
+  },
+  "lrotelo@gmail.com": {
+    "premium": false,
+    "admin": false
+  },
+  "cabraljavier1632@gmail.com": {
+    "premium": false,
+    "admin": false
+  },
+  "alvareznaty34@gmail.com": {
+    "premium": false,
+    "admin": false
+  },
+  "cja_1975@hotmail.com": {
+    "premium": false,
+    "admin": false
+  },
+  "lalypitar@gmail.com": {
+    "premium": false,
+    "admin": false
+  },
+  "luqueillanesalejandro@gmail.com": {
+    "premium": false,
+    "admin": false
+  },
+  "alexeiuska@gmail.com": {
+    "premium": false,
+    "admin": false
+  },
+  "robertoarria@gmail.com": {
+    "premium": false,
+    "admin": false
+  },
+  "elbasurerotivi@gmail.com": {
+    "premium": true,
+    "admin": false
+  },
+  "drl353@hotmail.com": {
+    "premium": false,
+    "admin": false
+  },
+  "malditoflanders303@hotmail.com": {
+    "premium": false,
+    "admin": false
+  },
+  "l.peralta1993@gmail.com": {
+    "premium": false,
+    "admin": false
+  },
+  "amelie9403@gmail.com": {
+    "premium": false,
+    "admin": false
+  },
+  "cifarellimartin@gmail.com": {
+    "premium": false,
+    "admin": false
+  },
+  "lisangel3110@gmail.com": {
+    "premium": false,
+    "admin": false
+  },
+  "emenagarcia@gmail.com": {
+    "premium": false,
+    "admin": false
+  },
+  "rsaira@gmail.com": {
+    "premium": false,
+    "admin": false
+  },
+  "a.montoro@live.com": {
+    "premium": false,
+    "admin": false
+  },
+  "okandersok@gmail.com": {
+    "premium": false,
+    "admin": false
+  },
+  "chquilmes1260@gmail.com": {
+    "premium": false,
+    "admin": false
+  },
+  "fusco_lucrecia@hotmail.com": {
+    "premium": false,
+    "admin": false
+  },
+  "chinomauroperuzzotti@gmail.com": {
+    "premium": false,
+    "admin": false
+  },
+  "krnlrkr@gmail.com": {
+    "premium": false,
+    "admin": false
+  },
+  "mariaemmaacha@yahoo.com.ar": {
+    "premium": false,
+    "admin": false
+  },
+  "adri.anez3999@gmail.com": {
+    "premium": false,
+    "admin": false
+  },
+  "charsvolta@gmail.com": {
+    "premium": false,
+    "admin": true
+  },
+  "summermieternoverano@gmail.com": {
+    "premium": false,
+    "admin": false
+  },
+  "skywalker1977ar@gmail.com": {
+    "premium": false,
+    "admin": false
+  },
+  "carlosojeda0587@gmail.com": {
+    "premium": false,
+    "admin": false
+  },
+  "davidoller18@gmail.com": {
+    "premium": false,
+    "admin": false
+  }
 };
 
 // Función para obtener rol como string
