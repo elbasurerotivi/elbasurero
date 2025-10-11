@@ -17,31 +17,48 @@
 
   <script type="module">
     import { protectPage } from "./js/roleManager.js";
-    protectPage(["premium", "admin"], "index.html");
-    import "./js/login.js"; // Asegura que login.js se cargue
-  </script>
+    import "./js/login.js";
 
-  <script>
+    protectPage(["premium", "admin"], "index.html");
+
     fetch('header.html').then(r => r.text()).then(d => {
-    document.getElementById('header').innerHTML = d;
-    window.initAuthButtons(); // Re-inicializar botones
-  });
-  fetch('footer.html').then(r => r.text()).then(d => document.getElementById('footer').innerHTML = d);
-  
+      document.getElementById('header').innerHTML = d;
+      window.initAuthButtons();
+    });
+    fetch('footer.html').then(r => r.text()).then(d => document.getElementById('footer').innerHTML = d);
+
     const videos = [
       {
-        id: 'intro_twitch',
+        id: 'simuladores_t1_01',
         title: 'Los Simuladores Episodio 1',
-        description: '🎬 Los Simuladores | Episodio 1 | "Tarjeta de navidad"',
-        thumbnail: 'Imagenes/simuladores 1.webp',
-        source: 'Imagenes/intro_twitch.mp4'
+        description: '🎬 Los Simuladores | Episodio 1 | "Tarjeta de Navidad"',
+        thumbnail: 'Imagenes/simuladores_1.webp',
+        source: 'https://archive.org/details/los-simuladores-2002/T1-01+Tarjeta+de+Navidad+%5BNF-480p%5D.mp4',
+        type: 'video' // MP4 directo (Internet Archive)
       },
       {
-        id: 'unboxing',
+        id: 'simuladores_t1_02',
         title: 'Los Simuladores Episodio 2',
         description: '🎬 Los Simuladores | Episodio 2 | "Diagnóstico rectoscópico"',
-        thumbnail: 'Imagenes/simuladores 2.webp',
-        source: 'Imagenes/unboxing.mp4'
+        thumbnail: 'Imagenes/simuladores_2.webp',
+        source: 'https://archive.org/details/los-simuladores-2002/T1-02+Diagn%C3%B3stico+rectosc%C3%B3pico+%5BNF-480p%5D.mp4',
+        type: 'video' // Otro episodio de Internet Archive
+      },
+      {
+        id: 'drive_video',
+        title: 'Video desde Google Drive',
+        description: 'Un video exclusivo almacenado en Google Drive',
+        thumbnail: 'Imagenes/drive_thumbnail.webp',
+        source: 'https://drive.google.com/file/d/TU_ID_AQUI/preview',
+        type: 'iframe' // Google Drive embed
+      },
+      {
+        id: 'dropbox_video',
+        title: 'Video desde Dropbox',
+        description: 'Un video exclusivo almacenado en Dropbox',
+        thumbnail: 'Imagenes/dropbox_thumbnail.webp',
+        source: 'https://dl.dropboxusercontent.com/s/TU_ID_AQUI/mi-video.mp4?raw=1',
+        type: 'video' // Dropbox enlace raw
       }
     ];
 
