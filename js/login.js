@@ -5,7 +5,8 @@ import {
   onAuthStateChanged,
   GoogleAuthProvider,
   FacebookAuthProvider,
-  signInWithPopup,
+  signInWithRedirect, // Cambiado de signInWithPopup
+  getRedirectResult,  // Añadido para manejar resultados de redirección
   signOut
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
@@ -171,27 +172,42 @@ document.getElementById("actionBtn")?.addEventListener("click", () => {
 window.loginGoogle = function() {
   console.log("Iniciando autenticación con Google...");
   const provider = new GoogleAuthProvider();
-  signInWithPopup(auth, provider)
+  // Opcional: Forzar la selección de cuenta para evitar cierres accidentales
+  provider.addScope('email');
+  signInWithRedirect(auth, provider); // Usar redirección en lugar de popup
+};
+
+// -----------------------------
+// 🔹 Manejar resultado de la redirección
+// -----------------------------
+document.addEventListener("DOMContentLoaded", () => {
+  getRedirectResult(auth)
     .then(result => {
-      const user = result.user;
-      console.log("Autenticación con Google exitosa:", user.email);
-      const userRef = ref(db, `users/${user.uid}`);
-      return set(userRef, {
-        email: user.email,
-        username: user.displayName || "Anónimo",
-        createdAt: Date.now()
-      })
-      .then(() => {
-        console.log("Datos del usuario guardados en la base de datos");
-        alert(`Bienvenido, ${user.displayName || user.email}!`);
-        cerrarLogin();
-      });
+      if (result) {
+        const user = result.user;
+        console.log("Autenticación con Google exitosa:", user.email);
+        const userRef = ref(db, `users/${user.uid}`);
+        return set(userRef, {
+          email: user.email,
+          username: user.displayName || "Anónimo",
+          createdAt: Date.now()
+        })
+        .then(() => {
+          console.log("Datos del usuario guardados en la base de datos");
+          alert(`Bienvenido, ${user.displayName || user.email}!`);
+          cerrarLogin();
+        });
+      }
     })
     .catch(error => {
-      console.error("Error al iniciar sesión con Google:", error);
-      alert(`Error al iniciar sesión con Google: ${error.message}`);
+      console.error("Error al procesar la redirección de Google:", error);
+      if (error.code === "auth/popup-closed-by-user") {
+        alert("El proceso de inicio de sesión con Google fue cancelado. Por favor, intenta de nuevo.");
+      } else {
+        alert(`Error al iniciar sesión con Google: ${error.message}`);
+      }
     });
-};
+});
 
 // -----------------------------
 // 🔹 Login con Facebook
@@ -199,27 +215,40 @@ window.loginGoogle = function() {
 window.loginFacebook = function() {
   console.log("Iniciando autenticación con Facebook...");
   const provider = new FacebookAuthProvider();
-  signInWithPopup(auth, provider)
+  signInWithRedirect(auth, provider); // Usar redirección en lugar de popup
+};
+
+// -----------------------------
+// 🔹 Manejar resultado de la redirección para Facebook
+// -----------------------------
+document.addEventListener("DOMContentLoaded", () => {
+  getRedirectResult(auth)
     .then(result => {
-      const user = result.user;
-      console.log("Autenticación con Facebook exitosa:", user.email);
-      const userRef = ref(db, `users/${user.uid}`);
-      return set(userRef, {
-        email: user.email,
-        username: user.displayName || "Anónimo",
-        createdAt: Date.now()
-      })
-      .then(() => {
-        console.log("Datos del usuario guardados en la base de datos");
-        alert(`Bienvenido, ${user.displayName || user.email}!`);
-        cerrarLogin();
-      });
+      if (result) {
+        const user = result.user;
+        console.log("Autenticación con Facebook exitosa:", user.email);
+        const userRef = ref(db, `users/${user.uid}`);
+        return set(userRef, {
+          email: user.email,
+          username: user.displayName || "Anónimo",
+          createdAt: Date.now()
+        })
+        .then(() => {
+          console.log("Datos del usuario guardados en la base de datos");
+          alert(`Bienvenido, ${user.displayName || user.email}!`);
+          cerrarLogin();
+        });
+      }
     })
     .catch(error => {
-      console.error("Error al iniciar sesión con Facebook:", error);
-      alert(`Error al iniciar sesión con Facebook: ${error.message}`);
+      console.error("Error al procesar la redirección de Facebook:", error);
+      if (error.code === "auth/popup-closed-by-user") {
+        alert("El proceso de inicio de sesión con Facebook fue cancelado. Por favor, intenta de nuevo.");
+      } else {
+        alert(`Error al iniciar sesión con Facebook: ${error.message}`);
+      }
     });
-};
+});
 
 // -----------------------------
 // 🔹 Logout
