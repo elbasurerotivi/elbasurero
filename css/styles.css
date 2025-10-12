@@ -2210,16 +2210,16 @@ footer h3 {
 }
 
 .recommendations  {
-  font-size: 15px;
+  font-size: 20px;
   font-weight: 700;
-  text-align: left;
+  text-align: center;
   color: var(--accent);
 }
 
 .recommendations p {
   color: rgb(191, 191, 191);
-  text-align: left;
-  font-size: 18x;
+  text-align: center;
+  font-size: 20px;
 }
 
 /* ====== FORMULARIO DE PUBLICACIÓN ====== */
@@ -2339,7 +2339,7 @@ footer h3 {
 .like-btn {
   background: none;
   border: none;
-  color: #9b9b9b; /* Negro por defecto */
+  color: #000000; /* Negro por defecto */
   cursor: pointer;
   font-size: 15px;
   font-weight: 500;

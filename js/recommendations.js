@@ -1,35 +1,23 @@
-// recommendations.js actualizado con compatibilidad total
-import {
-  db,
-  auth,
-  ref,
-  onValue,
-  push,
-  update,
-  remove,
-  get,
-  set,
-  onAuthStateChanged,
-} from "./firebase-config.js";
+import { db, auth, ref, onValue, push, update, remove, get, set, onAuthStateChanged } from "./firebase-config.js";
 
-let currentCategory = "movies"; // pestaña activa por defecto
+let currentCategory = "movies";
 let recommendations = [];
 let unsubscribe = null;
+let openComments = new Set();
+let userId = localStorage.getItem("userId") || "user_" + Math.random().toString(36).substring(2, 9);
+localStorage.setItem("userId", userId);
 
-// Función para obtener la referencia correcta según la categoría
-function getCategoryRef() {
-  if (currentCategory === "movies") {
-    // Recomendaciones viejas (raíz original)
-    return ref(db, "recommendations");
-  } else {
-    // Nueva rama para música
-    return ref(db, `music`);
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    userId = user.uid;
+    localStorage.setItem("userId", userId);
   }
+});
+
+function getCategoryRef() {
+  return ref(db, currentCategory === "movies" ? "recommendations" : "music");
 }
 
-// ===============================
-// ELEMENTOS DEL DOM
-// ===============================
 const form = document.getElementById("recommend-form");
 const textarea = document.getElementById("rec-text");
 const suggestionsContainer = document.getElementById("suggestions");
@@ -39,32 +27,39 @@ const lists = {
   music: document.getElementById("recommend-list-music"),
 };
 
-// ===============================
-// CAMBIO DE TABS (CATEGORÍAS)
-// ===============================
 tabButtons.forEach((btn) => {
   btn.addEventListener("click", () => {
     tabButtons.forEach((b) => b.classList.remove("active"));
     btn.classList.add("active");
-
     currentCategory = btn.dataset.category;
-
     Object.keys(lists).forEach((key) => {
       lists[key].style.display = key === currentCategory ? "block" : "none";
     });
-
     if (unsubscribe) unsubscribe();
     unsubscribe = onValue(getCategoryRef(), renderRecommendations);
   });
 });
 
-// ===============================
-// FUNCIÓN PARA MOSTRAR RECOMENDACIONES
-// ===============================
+function linkifyAndEscape(text) {
+  const escapeHtml = (str) => {
+    return str
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  };
+  const urlRegex = /(https?:\/\/[^\s<>"']+|www\.[^\s<>"']+)/g;
+  return escapeHtml(text).replace(urlRegex, (url) => {
+    let link = url;
+    if (!link.startsWith('http')) link = 'https://' + link;
+    return `<a href="${link}" target="_blank" rel="noopener noreferrer">${url}</a>`;
+  });
+}
+
 function renderRecommendations(snapshot) {
   recommendations = [];
   const posts = [];
-
   snapshot.forEach((child) => {
     const postData = child.val();
     recommendations.push({ id: child.key, ...postData });
@@ -80,46 +75,44 @@ function renderRecommendations(snapshot) {
 
   const container = lists[currentCategory];
   container.innerHTML = "";
-
   if (posts.length === 0) {
-    container.innerHTML =
-      "<p>No hay recomendaciones todavía. ¡Sé el primero en publicar!</p>";
+    container.innerHTML = "<p>No hay recomendaciones todavía. ¡Sé el primero en publicar!</p>";
   } else {
     posts.forEach(renderPost);
   }
 }
 
-// ===============================
-// FUNCIÓN PARA CREAR UNA PUBLICACIÓN
-// ===============================
 function renderPost(post) {
   const container = lists[currentCategory];
   const postElement = document.createElement("div");
-  postElement.className = "recommend-item";
+  postElement.className = "recommend-post";
 
   const likesCount = Object.keys(post.likes || {}).length;
-  const commentsCount = post.comments
-    ? Object.keys(post.comments).length
-    : 0;
+  const commentsCount = post.comments ? Object.keys(post.comments).length : 0;
+  const userLiked = post.likes && post.likes[userId];
 
   postElement.innerHTML = `
-    <p class="recommend-text">${post.text}</p>
-    <div class="recommend-meta">
-      <span class="recommend-author">Por: ${post.name}</span>
-      <div class="recommend-actions">
-        <button class="like-btn">❤️ ${likesCount}</button>
-        <button class="comment-btn">💬 Comentarios ${commentsCount}</button>
-      </div>
+    <div class="post-header">
+      <strong>${post.name}</strong>
+      <span>${new Date(post.timestamp).toLocaleString("es-AR")}</span>
     </div>
-    <div class="comments-container" style="display:none;"></div>
+    <p class="post-text">${linkifyAndEscape(post.text)}</p>
+    <div class="post-actions">
+      <div class="like-wrapper">
+        <button class="like-btn ${userLiked ? "active" : ""}">❤️</button>
+        <span class="like-count ${userLiked ? "active" : ""}">${likesCount}</span>
+      </div>
+      <button class="toggle-comments">💬 Comentarios (${commentsCount})</button>
+    </div>
+    <div class="comments-section" style="display:${openComments.has(post.id) ? "block" : "none"};"></div>
   `;
 
   const likeBtn = postElement.querySelector(".like-btn");
-  const commentBtn = postElement.querySelector(".comment-btn");
-  const commentsContainer = postElement.querySelector(".comments-container");
+  const commentBtn = postElement.querySelector(".toggle-comments");
+  const commentsContainer = postElement.querySelector(".comments-section");
 
-  // Likes
-  likeBtn.addEventListener("click", async () => {
+  likeBtn.addEventListener("click", async (e) => {
+    e.stopPropagation();
     const user = auth.currentUser;
     if (!user) return alert("Debes iniciar sesión para dar like.");
     const uid = user.uid;
@@ -127,24 +120,37 @@ function renderPost(post) {
     const snapshot = await get(likeRef);
     if (snapshot.exists()) {
       await remove(likeRef);
+      likeBtn.classList.remove("active");
+      likeBtn.nextElementSibling.classList.remove("active");
     } else {
       await set(likeRef, true);
+      likeBtn.classList.add("active");
+      likeBtn.nextElementSibling.classList.add("active");
     }
   });
 
-  // Comentarios
-  commentBtn.addEventListener("click", () => {
-    commentsContainer.style.display =
-      commentsContainer.style.display === "none" ? "block" : "none";
+  commentBtn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    commentsContainer.style.display = commentsContainer.style.display === "none" ? "block" : "none";
+    if (commentsContainer.style.display === "block") {
+      openComments.add(post.id);
+    } else {
+      openComments.delete(post.id);
+    }
     renderComments(post.id, commentsContainer);
+  });
+
+  postElement.style.opacity = "0";
+  postElement.style.transform = "translateY(20px)";
+  requestAnimationFrame(() => {
+    postElement.style.transition = "all 0.4s ease";
+    postElement.style.opacity = "1";
+    postElement.style.transform = "translateY(0)";
   });
 
   container.appendChild(postElement);
 }
 
-// ===============================
-// RENDERIZAR COMENTARIOS
-// ===============================
 function renderComments(postId, container) {
   const commentsRef = ref(db, `${currentCategory === "movies" ? "recommendations" : "music"}/${postId}/comments`);
 
@@ -166,14 +172,12 @@ function renderComments(postId, container) {
       const user = auth.currentUser;
       if (!user) return alert("Debes iniciar sesión para comentar.");
 
-      const newCommentRef = push(
-        ref(db, `${currentCategory === "movies" ? "recommendations" : "music"}/${postId}/comments`)
-      );
-
+      const newCommentRef = push(commentsRef);
       await set(newCommentRef, {
         name: user.displayName || "Anónimo",
         text: input.value,
         timestamp: Date.now(),
+        likes: {},
       });
 
       input.value = "";
@@ -181,19 +185,45 @@ function renderComments(postId, container) {
 
     snapshot.forEach((child) => {
       const comment = child.val();
+      const likesCount = comment.likes ? Object.keys(comment.likes).length : 0;
+      const userLiked = comment.likes && comment.likes[userId];
+
       const div = document.createElement("div");
-      div.classList.add("comment");
+      div.className = "comment";
       div.innerHTML = `
-        <p><strong>${comment.name}:</strong> ${comment.text}</p>
+        <div class="comment-header"><strong>${comment.name}</strong></div>
+        <div class="comment-text">${linkifyAndEscape(comment.text)}</div>
+        <div class="comment-meta">
+          <div class="like-wrapper">
+            <button type="button" class="comment-like ${userLiked ? "active" : ""}">❤️</button>
+            <span class="like-count ${userLiked ? "active" : ""}">${likesCount}</span>
+          </div>
+        </div>
       `;
+
+      div.querySelector(".comment-like").addEventListener("click", async (e) => {
+        e.stopPropagation();
+        const user = auth.currentUser;
+        if (!user) return alert("Debes iniciar sesión para dar like.");
+        const uid = user.uid;
+        const likeRef = ref(db, `${currentCategory === "movies" ? "recommendations" : "music"}/${postId}/comments/${child.key}/likes/${uid}`);
+        const snap = await get(likeRef);
+        if (snap.exists()) {
+          await remove(likeRef);
+          e.target.classList.remove("active");
+          e.target.nextElementSibling.classList.remove("active");
+        } else {
+          await set(likeRef, true);
+          e.target.classList.add("active");
+          e.target.nextElementSibling.classList.add("active");
+        }
+      });
+
       container.appendChild(div);
     });
   });
 }
 
-// ===============================
-// PUBLICAR NUEVA RECOMENDACIÓN
-// ===============================
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
   const user = auth.currentUser;
@@ -206,37 +236,100 @@ form.addEventListener("submit", async (e) => {
     name: user.displayName || "Anónimo",
     text,
     timestamp: Date.now(),
+    likes: {},
+    comments: {},
   });
 
   textarea.value = "";
+  suggestionsContainer.innerHTML = "";
+  suggestionsContainer.style.display = "none";
 });
 
-// ===============================
-// SUGERENCIAS (ANTI-DUPLICADOS)
-// ===============================
-textarea.addEventListener("input", () => {
-  const query = textarea.value.toLowerCase();
-  const filtered = recommendations.filter((rec) =>
-    rec.text.toLowerCase().includes(query)
+function levenshteinDistance(str1 = '', str2 = '') {
+  const track = Array(str2.length + 1).fill(null).map(() =>
+    Array(str1.length + 1).fill(null)
   );
+  for (let i = 0; i <= str1.length; i += 1) {
+    track[0][i] = i;
+  }
+  for (let j = 0; j <= str2.length; j += 1) {
+    track[j][0] = j;
+  }
+  for (let j = 1; j <= str2.length; j += 1) {
+    for (let i = 1; i <= str1.length; i += 1) {
+      const indicator = str1[i - 1] === str2[j - 1] ? 0 : 1;
+      track[j][i] = Math.min(
+        track[j][i - 1] + 1,
+        track[j - 1][i] + 1,
+        track[j - 1][i - 1] + indicator
+      );
+    }
+  }
+  return track[str2.length][str1.length];
+}
 
-  suggestionsContainer.innerHTML = "";
+textarea.addEventListener("input", () => {
+  const value = textarea.value.trim().toLowerCase();
+  const submitBtn = form.querySelector('button[type="submit"]');
+  if (value.length < 3) {
+    suggestionsContainer.innerHTML = '';
+    suggestionsContainer.style.display = 'none';
+    submitBtn.disabled = false;
+    submitBtn.style.backgroundColor = '';
+    return;
+  }
 
-  if (query && filtered.length > 0) {
-    filtered.forEach((rec) => {
-      const div = document.createElement("div");
-      div.className = "suggestion";
-      div.textContent = rec.text;
-      suggestionsContainer.appendChild(div);
-      div.addEventListener("click", () => {
+  const similar = recommendations
+    .filter((rec) => {
+      const recLower = rec.text.toLowerCase();
+      const dist = levenshteinDistance(value, recLower);
+      return dist < 5 || recLower.includes(value);
+    })
+    .sort((a, b) => {
+      return levenshteinDistance(value, a.text.toLowerCase()) - levenshteinDistance(value, b.text.toLowerCase());
+    });
+
+  suggestionsContainer.innerHTML = '';
+  if (similar.length > 0) {
+    suggestionsContainer.style.display = 'block';
+    const warning = document.createElement('div');
+    warning.className = 'suggestion-warning';
+    warning.textContent = 'Tu recomendación ya fue hecha';
+    suggestionsContainer.appendChild(warning);
+
+    similar.forEach((rec) => {
+      const item = document.createElement('div');
+      item.className = 'suggestion-item';
+      item.innerHTML = linkifyAndEscape(rec.text);
+      suggestionsContainer.appendChild(item);
+      item.addEventListener("click", () => {
         textarea.value = rec.text;
         suggestionsContainer.innerHTML = "";
       });
     });
+
+    submitBtn.disabled = true;
+    submitBtn.style.backgroundColor = 'gray';
+  } else {
+    suggestionsContainer.style.display = 'none';
+    submitBtn.disabled = false;
+    submitBtn.style.backgroundColor = '';
   }
 });
 
-// ===============================
-// LISTENER INICIAL
-// ===============================
 unsubscribe = onValue(getCategoryRef(), renderRecommendations);
+
+const scrollToTopBtn = document.querySelector(".scroll-to-top");
+if (scrollToTopBtn) {
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 200) {
+      scrollToTopBtn.classList.add("visible");
+    } else {
+      scrollToTopBtn.classList.remove("visible");
+    }
+  });
+
+  scrollToTopBtn.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+}
