@@ -170,7 +170,7 @@ window.loginGoogle = function() {
   console.log("Iniciando autenticación con Google...");
   const provider = new GoogleAuthProvider();
   provider.setCustomParameters({
-    prompt: 'select_account' // Fuerza la selección de cuenta para evitar cierres accidentales
+    prompt: 'select_account' // Fuerza la selección de cuenta
   });
   signInWithPopup(auth, provider)
     .then(result => {
@@ -247,10 +247,16 @@ window.logout = function() {
       console.log("Sesión cerrada exitosamente.");
       alert("Sesión cerrada exitosamente.");
       // Forzar actualización de la UI
-      const loginContainer = document.getElementById("login-container");
-      const logoutContainer = document.getElementById("logout-container");
-      if (loginContainer) loginContainer.style.display = "block";
-      if (logoutContainer) logoutContainer.style.display = "none";
+      const loginBtn = document.getElementById("login-btn");
+      const logoutBtn = document.getElementById("logout-btn");
+      if (loginBtn) {
+        loginBtn.style.display = "block";
+        console.log("login-btn mostrado");
+      }
+      if (logoutBtn) {
+        logoutBtn.style.display = "none";
+        console.log("logout-btn ocultado");
+      }
     })
     .catch(error => {
       console.error("Error al cerrar sesión:", error);
@@ -262,8 +268,6 @@ window.logout = function() {
 // 🔹 Inicializar botones de login/logout (header)
 // -----------------------------
 window.initAuthButtons = function() {
-  const loginContainer = document.getElementById("login-container");
-  const logoutContainer = document.getElementById("logout-container");
   const loginBtn = document.getElementById("login-btn");
   const logoutBtn = document.getElementById("logout-btn");
 
@@ -289,31 +293,31 @@ window.initAuthButtons = function() {
   onAuthStateChanged(auth, user => {
     console.log("Estado de autenticación cambiado:", user ? `Usuario conectado: ${user.email}` : "No hay usuario conectado");
     if (user) {
-      if (loginContainer) {
-        loginContainer.style.display = "none";
-        console.log("login-container ocultado");
+      if (loginBtn) {
+        loginBtn.style.display = "none";
+        console.log("login-btn ocultado");
       } else {
-        console.warn("No se encontró el elemento #login-container");
+        console.warn("No se encontró el elemento #login-btn");
       }
-      if (logoutContainer) {
-        logoutContainer.style.display = "block";
-        console.log("logout-container mostrado");
+      if (logoutBtn) {
+        logoutBtn.style.display = "block";
+        console.log("logout-btn mostrado");
       } else {
-        console.warn("No se encontró el elemento #logout-container");
+        console.warn("No se encontró el elemento #logout-btn");
       }
       localStorage.setItem("userId", user.uid);
     } else {
-      if (loginContainer) {
-        loginContainer.style.display = "block";
-        console.log("login-container mostrado");
+      if (loginBtn) {
+        loginBtn.style.display = "block";
+        console.log("login-btn mostrado");
       } else {
-        console.warn("No se encontró el elemento #login-container");
+        console.warn("No se encontró el elemento #login-btn");
       }
-      if (logoutContainer) {
-        logoutContainer.style.display = "none";
-        console.log("logout-container ocultado");
+      if (logoutBtn) {
+        logoutBtn.style.display = "none";
+        console.log("logout-btn ocultado");
       } else {
-        console.warn("No se encontró el elemento #logout-container");
+        console.warn("No se encontró el elemento #logout-btn");
       }
       let userId = localStorage.getItem("userId");
       if (!userId) {
