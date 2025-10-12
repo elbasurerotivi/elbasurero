@@ -2241,7 +2241,7 @@ footer h3 {
   width: 100%;
   background: rgba(255,255,255,0.08);
   border: 1px solid var(--border-light);
-  color: var(--text-light);
+  color: rgb(255, 255, 255);
   border-radius: var(--radius);
   padding: 12px;
   resize: none;
