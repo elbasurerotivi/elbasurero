@@ -2397,16 +2397,16 @@ footer h3 {
   text-align: left;
 }
 .comment-header strong{
-  color:#aaaaaa;
+  color:#aaaaaab0;
   margin-bottom: 5px;
   text-align: left;
-  font-size: 10px;
+  font-size: 9px;
   
 }
 
 .comment-text {
   font-size: 18px;
-  color: rgba(238, 238, 238, 0.625);
+  color: #ededed;
   text-align: left;
 }
 
