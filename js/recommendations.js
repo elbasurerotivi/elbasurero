@@ -78,34 +78,58 @@ function renderRecommendations(snapshot) {
   if (posts.length === 0) {
     container.innerHTML = "<p>No hay recomendaciones todavía. ¡Sé el primero en publicar!</p>";
   } else {
-    posts.forEach(renderPost);
+    posts.forEach((post) => renderPost(post, container));
   }
 }
 
-function renderPost(post) {
-  const container = lists[currentCategory];
-  const postElement = document.createElement("div");
-  postElement.className = "recommend-post";
-
+function renderPost(post, container) {
+  const existingPost = container.querySelector(`[data-post-id="${post.id}"]`);
   const likesCount = Object.keys(post.likes || {}).length;
   const commentsCount = post.comments ? Object.keys(post.comments).length : 0;
   const userLiked = post.likes && post.likes[userId];
 
-  postElement.innerHTML = `
-    <div class="post-header">
-      <strong>${post.name}</strong>
-      <span>${new Date(post.timestamp).toLocaleString("es-AR")}</span>
-    </div>
-    <p class="post-text">${linkifyAndEscape(post.text)}</p>
-    <div class="post-actions">
-      <div class="like-wrapper">
-        <button class="like-btn ${userLiked ? "active" : ""}">❤️</button>
-        <span class="like-count ${userLiked ? "active" : ""}">${likesCount}</span>
+  let postElement;
+  if (existingPost) {
+    // Actualizar post existente
+    postElement = existingPost;
+    const likeBtn = postElement.querySelector(".like-btn");
+    const likeCount = postElement.querySelector(".like-count");
+    const commentBtn = postElement.querySelector(".toggle-comments");
+    likeBtn.className = `like-btn ${userLiked ? "active" : ""}`;
+    likeCount.className = `like-count ${userLiked ? "active" : ""}`;
+    likeCount.textContent = likesCount;
+    commentBtn.textContent = `💬 Comentarios (${commentsCount})`;
+  } else {
+    // Crear nuevo post
+    postElement = document.createElement("div");
+    postElement.className = "recommend-post";
+    postElement.dataset.postId = post.id;
+    postElement.innerHTML = `
+      <div class="post-header">
+        <strong>${post.name}</strong>
+        <span>${new Date(post.timestamp).toLocaleString("es-AR")}</span>
       </div>
-      <button class="toggle-comments">💬 Comentarios (${commentsCount})</button>
-    </div>
-    <div class="comments-section" style="display:${openComments.has(post.id) ? "block" : "none"};"></div>
-  `;
+      <p class="post-text">${linkifyAndEscape(post.text)}</p>
+      <div class="post-actions">
+        <div class="like-wrapper">
+          <button class="like-btn ${userLiked ? "active" : ""}">❤️</button>
+          <span class="like-count ${userLiked ? "active" : ""}">${likesCount}</span>
+        </div>
+        <button class="toggle-comments">💬 Comentarios (${commentsCount})</button>
+      </div>
+      <div class="comments-section" style="display:${openComments.has(post.id) ? "block" : "none"};"></div>
+    `;
+
+    postElement.style.opacity = "0";
+    postElement.style.transform = "translateY(20px)";
+    requestAnimationFrame(() => {
+      postElement.style.transition = "all 0.4s ease";
+      postElement.style.opacity = "1";
+      postElement.style.transform = "translateY(0)";
+    });
+
+    container.appendChild(postElement);
+  }
 
   const likeBtn = postElement.querySelector(".like-btn");
   const commentBtn = postElement.querySelector(".toggle-comments");
@@ -131,58 +155,57 @@ function renderPost(post) {
 
   commentBtn.addEventListener("click", (e) => {
     e.stopPropagation();
-    commentsContainer.style.display = commentsContainer.style.display === "none" ? "block" : "none";
-    if (commentsContainer.style.display === "block") {
+    const isOpen = commentsContainer.style.display === "block";
+    commentsContainer.style.display = isOpen ? "none" : "block";
+    if (!isOpen) {
       openComments.add(post.id);
+      renderComments(post.id, commentsContainer);
     } else {
       openComments.delete(post.id);
     }
+  });
+
+  if (openComments.has(post.id)) {
     renderComments(post.id, commentsContainer);
-  });
-
-  postElement.style.opacity = "0";
-  postElement.style.transform = "translateY(20px)";
-  requestAnimationFrame(() => {
-    postElement.style.transition = "all 0.4s ease";
-    postElement.style.opacity = "1";
-    postElement.style.transform = "translateY(0)";
-  });
-
-  container.appendChild(postElement);
+  }
 }
 
 function renderComments(postId, container) {
   const commentsRef = ref(db, `${currentCategory === "movies" ? "recommendations" : "music"}/${postId}/comments`);
 
   onValue(commentsRef, (snapshot) => {
-    container.innerHTML = "";
+    // Preservar el formulario si ya existe
+    let form = container.querySelector(".comment-form");
+    if (!form) {
+      form = document.createElement("form");
+      form.classList.add("comment-form");
+      form.innerHTML = `
+        <input type="text" placeholder="Escribe un comentario" required maxlength="300" />
+        <button type="submit">Enviar</button>
+      `;
+      container.appendChild(form);
 
-    const form = document.createElement("form");
-    form.classList.add("comment-form");
-    form.innerHTML = `
-      <input type="text" placeholder="Escribe un comentario" required maxlength="300" />
-      <button type="submit">Enviar</button>
-    `;
-    container.appendChild(form);
+      const input = form.querySelector("input");
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const user = auth.currentUser;
+        if (!user) return alert("Debes iniciar sesión para comentar.");
 
-    const input = form.querySelector("input");
+        const newCommentRef = push(commentsRef);
+        await set(newCommentRef, {
+          name: user.displayName || "Anónimo",
+          text: input.value,
+          timestamp: Date.now(),
+          likes: {},
+        });
 
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      const user = auth.currentUser;
-      if (!user) return alert("Debes iniciar sesión para comentar.");
-
-      const newCommentRef = push(commentsRef);
-      await set(newCommentRef, {
-        name: user.displayName || "Anónimo",
-        text: input.value,
-        timestamp: Date.now(),
-        likes: {},
+        input.value = "";
       });
+    }
 
-      input.value = "";
-    });
-
+    // Actualizar solo la lista de comentarios
+    const commentsList = document.createElement("div");
+    commentsList.className = "comments-list";
     snapshot.forEach((child) => {
       const comment = child.val();
       const likesCount = comment.likes ? Object.keys(comment.likes).length : 0;
@@ -190,6 +213,7 @@ function renderComments(postId, container) {
 
       const div = document.createElement("div");
       div.className = "comment";
+      div.dataset.commentId = child.key;
       div.innerHTML = `
         <div class="comment-header"><strong>${comment.name}</strong></div>
         <div class="comment-text">${linkifyAndEscape(comment.text)}</div>
@@ -219,9 +243,17 @@ function renderComments(postId, container) {
         }
       });
 
-      container.appendChild(div);
+      commentsList.appendChild(div);
     });
-  });
+
+    // Reemplazar solo la lista de comentarios, preservando el formulario
+    const existingList = container.querySelector(".comments-list");
+    if (existingList) {
+      existingList.replaceWith(commentsList);
+    } else {
+      container.insertBefore(commentsList, form);
+    }
+  }, { onlyOnce: false });
 }
 
 form.addEventListener("submit", async (e) => {
@@ -282,11 +314,11 @@ textarea.addEventListener("input", () => {
   const similar = recommendations
     .filter((rec) => {
       const recLower = rec.text.toLowerCase();
-      const dist = levenshteinDistance(value, recLower);
+      const dist = leveshteinDistance(value, recLower);
       return dist < 5 || recLower.includes(value);
     })
     .sort((a, b) => {
-      return levenshteinDistance(value, a.text.toLowerCase()) - levenshteinDistance(value, b.text.toLowerCase());
+      return leveshteinDistance(value, a.text.toLowerCase()) - leveshteinDistance(value, b.text.toLowerCase());
     });
 
   suggestionsContainer.innerHTML = '';
