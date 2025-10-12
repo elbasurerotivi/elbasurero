@@ -93,25 +93,36 @@ function renderRecommendations(snapshot) {
 // FUNCIÓN PARA CREAR UNA PUBLICACIÓN
 // ===============================
 function renderPost(post) {
-  const container = lists[currentCategory];
-  const postElement = document.createElement("div");
-  postElement.className = "recommend-item";
+  const postEl = document.createElement("div");
+  postEl.className = "recommend-post";
 
   const likesCount = Object.keys(post.likes || {}).length;
-  const commentsCount = post.comments
-    ? Object.keys(post.comments).length
-    : 0;
+  const commentsCount = post.comments ? Object.keys(post.comments).length : 0;
+  const userLiked = post.likes && post.likes[userId];
+  console.log(`Post ${post.id} - userId: ${userId}, userLiked: ${userLiked}`); // Depuración
 
-  postElement.innerHTML = `
-    <p class="recommend-text">${post.text}</p>
-    <div class="recommend-meta">
-      <span class="recommend-author">Por: ${post.name}</span>
-      <div class="recommend-actions">
-        <button class="like-btn">❤️ ${likesCount}</button>
-        <button class="comment-btn">💬 ${commentsCount}</button>
-      </div>
+  const isOpen = openComments.has(post.id);
+
+  postEl.innerHTML = `
+    <div class="post-header">
+      <strong>${post.name}</strong>
+      <span>${new Date(post.timestamp).toLocaleString("es-AR")}</span>
     </div>
-    <div class="comments-container" style="display:none;"></div>
+    <p class="post-text">${linkifyAndEscape(post.text)}</p>
+    <div class="post-actions">
+      <div class="like-wrapper">
+        <button class="like-btn ${userLiked ? "active" : ""}">❤️</button>
+        <span class="like-count ${userLiked ? "active" : ""}">${likesCount}</span>
+      </div>
+      <button class="toggle-comments">💬 Comentarios (${commentsCount})</button>
+    </div>
+    <div class="comments-section" style="display:${isOpen ? "block" : "none"};">
+      <div class="comments-list"></div>
+      <form class="comment-form">
+        <input type="text" class="comment-text" placeholder="Escribe un comentario" maxlength="300" required>
+        <button type="submit">Comentar</button>
+      </form>
+    </div>
   `;
 
   const likeBtn = postElement.querySelector(".like-btn");
