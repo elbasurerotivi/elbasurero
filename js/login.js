@@ -5,16 +5,11 @@ import {
   onAuthStateChanged,
   GoogleAuthProvider,
   FacebookAuthProvider,
-  signInWithRedirect,
   signInWithPopup,
-  getRedirectResult,
   signOut
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 let isLogin = true;
-
-// Detectar si es un dispositivo móvil
-const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
 // -----------------------------
 // 🔹 Abrir / Cerrar popup
@@ -109,11 +104,13 @@ document.getElementById("actionBtn")?.addEventListener("click", () => {
   }
 
   if (isLogin) {
+    // ---- Login ----
     signInWithEmailAndPassword(auth, email, pass)
       .then(userCredential => {
         console.log("Inicio de sesión exitoso:", userCredential.user.email);
         alert(`Bienvenido, ${userCredential.user.email}!`);
         cerrarLogin();
+        // No recargar, confiar en onAuthStateChanged para actualizar UI
       })
       .catch(error => {
         console.error("Error al iniciar sesión:", error);
@@ -133,7 +130,9 @@ document.getElementById("actionBtn")?.addEventListener("click", () => {
         }
         alert(errorMessage);
       });
+
   } else {
+    // ---- Registro ----
     createUserWithEmailAndPassword(auth, email, pass)
       .then(userCredential => {
         const user = userCredential.user;
@@ -148,6 +147,7 @@ document.getElementById("actionBtn")?.addEventListener("click", () => {
           console.log("Datos del usuario guardados en la base de datos");
           alert(`Usuario registrado: ${user.email}`);
           cerrarLogin();
+          // No recargar, confiar en onAuthStateChanged
         });
       })
       .catch(error => {
@@ -174,25 +174,26 @@ document.getElementById("actionBtn")?.addEventListener("click", () => {
 window.loginGoogle = function() {
   console.log("Iniciando autenticación con Google...");
   const provider = new GoogleAuthProvider();
-  provider.addScope('email');
-  provider.setCustomParameters({ prompt: 'select_account' });
-
-  if (isMobile) {
-    console.log("Usando signInWithRedirect para dispositivo móvil");
-    signInWithRedirect(auth, provider);
-  } else {
-    console.log("Usando signInWithPopup para escritorio");
-    signInWithPopup(auth, provider)
-      .then(result => {
-        const user = result.user;
-        console.log("Autenticación con Google exitosa:", user.email);
-        handleAuthSuccess(user);
+  signInWithPopup(auth, provider)
+    .then(result => {
+      const user = result.user;
+      console.log("Autenticación con Google exitosa:", user.email);
+      const userRef = ref(db, `users/${user.uid}`);
+      return set(userRef, {
+        email: user.email,
+        username: user.displayName || "Anónimo",
+        createdAt: Date.now()
       })
-      .catch(error => {
-        console.error("Error al iniciar sesión con Google (popup):", error);
-        handleAuthError(error);
+      .then(() => {
+        console.log("Datos del usuario guardados en la base de datos");
+        alert(`Bienvenido, ${user.displayName || user.email}!`);
+        cerrarLogin();
       });
-  }
+    })
+    .catch(error => {
+      console.error("Error al iniciar sesión con Google:", error);
+      alert(`Error al iniciar sesión con Google: ${error.message}`);
+    });
 };
 
 // -----------------------------
@@ -201,69 +202,27 @@ window.loginGoogle = function() {
 window.loginFacebook = function() {
   console.log("Iniciando autenticación con Facebook...");
   const provider = new FacebookAuthProvider();
-  if (isMobile) {
-    console.log("Usando signInWithRedirect para dispositivo móvil");
-    signInWithRedirect(auth, provider);
-  } else {
-    console.log("Usando signInWithPopup para escritorio");
-    signInWithPopup(auth, provider)
-      .then(result => {
-        const user = result.user;
-        console.log("Autenticación con Facebook exitosa:", user.email);
-        handleAuthSuccess(user);
-      })
-      .catch(error => {
-        console.error("Error al iniciar sesión con Facebook (popup):", error);
-        handleAuthError(error);
-      });
-  }
-};
-
-// -----------------------------
-// 🔹 Manejar resultado de autenticación
-// -----------------------------
-function handleAuthSuccess(user) {
-  const userRef = ref(db, `users/${user.uid}`);
-  return set(userRef, {
-    email: user.email,
-    username: user.displayName || "Anónimo",
-    createdAt: Date.now()
-  })
-  .then(() => {
-    console.log("Datos del usuario guardados en la base de datos");
-    alert(`Bienvenido, ${user.displayName || user.email}!`);
-    cerrarLogin();
-  });
-}
-
-function handleAuthError(error) {
-  console.error("Error en autenticación:", error);
-  if (error.code === "auth/popup-closed-by-user") {
-    alert("El proceso de inicio de sesión fue cancelado. Por favor, intenta de nuevo.");
-  } else if (error.code === "auth/cancelled-popup-request") {
-    alert("La solicitud de inicio de sesión fue cancelada. Intenta de nuevo.");
-  } else {
-    alert(`Error al iniciar sesión: ${error.message}`);
-  }
-}
-
-// -----------------------------
-// 🔹 Manejar resultado de redirección
-// -----------------------------
-document.addEventListener("DOMContentLoaded", () => {
-  getRedirectResult(auth)
+  signInWithPopup(auth, provider)
     .then(result => {
-      if (result) {
-        const user = result.user;
-        console.log("Autenticación con redirección exitosa:", user.email);
-        handleAuthSuccess(user);
-      }
+      const user = result.user;
+      console.log("Autenticación con Facebook exitosa:", user.email);
+      const userRef = ref(db, `users/${user.uid}`);
+      return set(userRef, {
+        email: user.email,
+        username: user.displayName || "Anónimo",
+        createdAt: Date.now()
+      })
+      .then(() => {
+        console.log("Datos del usuario guardados en la base de datos");
+        alert(`Bienvenido, ${user.displayName || user.email}!`);
+        cerrarLogin();
+      });
     })
     .catch(error => {
-      console.error("Error al procesar la redirección:", error);
-      handleAuthError(error);
+      console.error("Error al iniciar sesión con Facebook:", error);
+      alert(`Error al iniciar sesión con Facebook: ${error.message}`);
     });
-});
+};
 
 // -----------------------------
 // 🔹 Logout
@@ -284,6 +243,8 @@ window.logout = function() {
 // 🔹 Inicializar botones de login/logout (header)
 // -----------------------------
 window.initAuthButtons = function() {
+  const loginContainer = document.getElementById("login-container");
+  const logoutContainer = document.getElementById("logout-container");
   const loginBtn = document.getElementById("login-btn");
   const logoutBtn = document.getElementById("logout-btn");
 
@@ -293,7 +254,7 @@ window.initAuthButtons = function() {
       console.log("Clic en botón Login del header");
     });
   } else {
-    console.warn("El elemento #login-btn no está presente en el DOM. Verifica el header.");
+    console.warn("No se encontró el elemento #login-btn");
   }
 
   if (logoutBtn) {
@@ -302,19 +263,22 @@ window.initAuthButtons = function() {
       console.log("Clic en botón Logout del header");
     });
   } else {
-    console.warn("El elemento #logout-btn no está presente en el DOM. Verifica el header.");
+    console.warn("No se encontró el elemento #logout-btn");
   }
 
+  // Actualizar visibilidad según estado de autenticación
   onAuthStateChanged(auth, user => {
     if (user) {
       console.log("Usuario conectado:", user.email, "UID:", user.uid);
-      if (loginBtn) loginBtn.style.display = "none";
-      if (logoutBtn) logoutBtn.style.display = "block";
+      if (loginContainer) loginContainer.style.display = "none";
+      if (logoutContainer) logoutContainer.style.display = "block";
+      // Actualizar userId para consistencia con recommendations.js y community.js
       localStorage.setItem("userId", user.uid);
     } else {
       console.log("No hay usuario conectado");
-      if (loginBtn) loginBtn.style.display = "block";
-      if (logoutBtn) logoutBtn.style.display = "none";
+      if (loginContainer) loginContainer.style.display = "block";
+      if (logoutContainer) logoutContainer.style.display = "none";
+      // Generar nuevo userId para usuarios no autenticados
       let userId = localStorage.getItem("userId");
       if (!userId) {
         userId = "user_" + Math.random().toString(36).substring(2, 9);
@@ -323,10 +287,5 @@ window.initAuthButtons = function() {
     }
   });
 };
-
-// Ejecutar inicialización cuando el DOM esté listo
-document.addEventListener("DOMContentLoaded", () => {
-  window.initAuthButtons();
-});
 
 console.log("✅ login.js cargado correctamente");
