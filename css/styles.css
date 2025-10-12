@@ -2642,6 +2642,24 @@ footer h3 {
 }
 
 
+.tab-buttons {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+.tab-btn {
+  flex: 1;
+  padding: 10px;
+  background: #333;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.tab-btn.active {
+  background: #555;
+}
+
 
 
 

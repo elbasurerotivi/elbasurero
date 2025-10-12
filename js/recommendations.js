@@ -20,12 +20,54 @@ auth.onAuthStateChanged((user) => {
 ======================== */
 const form = document.getElementById("recommend-form");
 const recText = document.getElementById("rec-text");
-const recList = document.getElementById("recommend-list");
+// Mantengo compatibilidad: si existe un elemento con id antiguo 'recommend-list' lo uso, sino uso el contenedor de movies por defecto.
+const recList = document.getElementById("recommend-list") || document.getElementById("recommend-list-movies") || null;
 const suggestions = document.getElementById("suggestions");
 const submitBtn = form.querySelector('button[type="submit"]');
 
-const recommendationsRef = ref(db, "recommendations");
+let currentCategory = "movies";
+let recommendationsRef = ref(db, `recommendations/${currentCategory}`);
 let recommendations = []; // Array para almacenar recomendaciones
+
+// Tabs: cambiar de categoría
+const tabButtons = document.querySelectorAll(".tab-btn");
+const lists = {
+  movies: document.getElementById("recommend-list-movies"),
+  music: document.getElementById("recommend-list-music"),
+};
+
+// Helper: asegurar que los contenedores existan
+if (!lists.movies && !recList) {
+  console.warn("No se encontró el contenedor de recomendaciones para 'movies'. Revisa el HTML.");
+}
+if (!lists.music) {
+  console.warn("No se encontró el contenedor de recomendaciones para 'music'. Si no la usas, ignora este aviso.");
+}
+
+let unsubscribe = null;
+
+tabButtons.forEach(btn => {
+  btn.addEventListener("click", () => {
+    tabButtons.forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+
+    currentCategory = btn.dataset.category;
+    recommendationsRef = ref(db, `recommendations/${currentCategory}`);
+
+    // Mostrar lista correspondiente
+    Object.keys(lists).forEach(key => {
+      if (lists[key]) {
+        lists[key].style.display = (key === currentCategory) ? "block" : "none";
+      }
+    });
+
+    // Detener listener anterior (si existe)
+    if (typeof unsubscribe === "function") unsubscribe();
+
+    // Registrar nuevo listener y guardar la función de desuscripción
+    unsubscribe = onValue(recommendationsRef, renderRecommendations);
+  });
+});
 
 // Función de distancia Levenshtein
 function levenshteinDistance(str1 = '', str2 = '') {
@@ -96,6 +138,7 @@ form.addEventListener("submit", (e) => {
     }
     const text = recText.value.trim();
     if (!text) return;
+    // push en la rama de la categoría activa
     push(recommendationsRef, {
       name,
       text,
@@ -122,7 +165,7 @@ recText.addEventListener('input', () => {
     return;
   }
 
-  // Filtrar recomendaciones similares
+  // Filtrar recomendaciones similares (del arreglo 'recommendations' que está ligado a la categoría actual)
   const similar = recommendations
     .filter((rec) => {
       const recLower = rec.text.toLowerCase();
@@ -167,18 +210,15 @@ let openComments = new Set();
 /* ========================
    MOSTRAR RECOMENDACIONES
 ======================== */
-onValue(recommendationsRef, (snapshot) => {
-  console.log("Snapshot recibido:", snapshot.val()); // Depuración
-  recommendations = []; // Reiniciar array
+function renderRecommendations(snapshot) {
+  recommendations = [];
   const posts = [];
   snapshot.forEach((child) => {
     const postData = child.val();
-    recommendations.push({ id: child.key, ...postData }); // Almacenar para sugerencias
+    recommendations.push({ id: child.key, ...postData });
     posts.push({ id: child.key, ...postData });
-    console.log(`Post ${child.key} likes:`, postData.likes); // Depuración
   });
 
-  // Ordenar: más likes primero, después más reciente
   posts.sort((a, b) => {
     const likesA = Object.keys(a.likes || {}).length;
     const likesB = Object.keys(b.likes || {}).length;
@@ -186,16 +226,24 @@ onValue(recommendationsRef, (snapshot) => {
     return b.timestamp - a.timestamp;
   });
 
-  // Render posts
-  recList.innerHTML = "";
-  if (posts.length === 0) {
-    recList.innerHTML = "<p>No hay recomendaciones todavía. ¡Sé el primero en publicar!</p>";
-  } else {
-    posts.forEach(renderPost);
+  const container = lists[currentCategory] || recList;
+  if (!container) {
+    console.warn("No se encontró contenedor para renderizar recomendaciones (category:", currentCategory, ")");
+    return;
   }
-});
+  container.innerHTML = "";
+  if (posts.length === 0) {
+    container.innerHTML = "<p>No hay recomendaciones todavía. ¡Sé el primero en publicar!</p>";
+  } else {
+    posts.forEach(post => renderPost(post, container));
+  }
+}
 
-function renderPost(post) {
+// Escuchar inicial por defecto y guardar unsubscribe
+unsubscribe = onValue(recommendationsRef, renderRecommendations);
+
+
+function renderPost(post, containerParam) {
   const postEl = document.createElement("div");
   postEl.className = "recommend-post";
 
@@ -233,7 +281,8 @@ function renderPost(post) {
     e.stopPropagation();
     accionProtegida(() => {
       const uid = auth.currentUser ? auth.currentUser.uid : userId;
-      const likeRef = ref(db, `recommendations/${post.id}/likes/${uid}`);
+      // IMPORTANTE: usar la categoría actual en la ruta de likes
+      const likeRef = ref(db, `recommendations/${currentCategory}/${post.id}/likes/${uid}`);
       get(likeRef).then((snap) => {
         if (snap.exists()) {
           remove(likeRef);
@@ -285,7 +334,8 @@ function renderPost(post) {
       }
       const text = commentForm.querySelector(".comment-text").value.trim();
       if (!text) return;
-      const commentsRef = ref(db, `recommendations/${post.id}/comments`);
+      // IMPORTANTE: guardar comentarios dentro de la categoría actual
+      const commentsRef = ref(db, `recommendations/${currentCategory}/${post.id}/comments`);
       push(commentsRef, { name, text, timestamp: Date.now(), likes: {} });
       commentForm.reset();
     });
@@ -299,7 +349,13 @@ function renderPost(post) {
     postEl.style.transform = "translateY(0)";
   });
 
-  recList.appendChild(postEl);
+  // Añadir al contenedor correcto: preferir containerParam (pasado desde renderRecommendations), sino listas[currentCategory], sino recList
+  const appendTarget = containerParam || lists[currentCategory] || recList;
+  if (appendTarget) {
+    appendTarget.appendChild(postEl);
+  } else {
+    console.warn("No hay un contenedor válido para insertar el post:", post.id);
+  }
 }
 
 function renderComments(post, container) {
@@ -330,7 +386,8 @@ function renderComments(post, container) {
       e.stopPropagation();
       accionProtegida(() => {
         const uid = auth.currentUser ? auth.currentUser.uid : userId;
-        const likeRef = ref(db, `recommendations/${post.id}/comments/${commentId}/likes/${uid}`);
+        // IMPORTANTE: ruta de likes para comentarios incluye la categoría actual
+        const likeRef = ref(db, `recommendations/${currentCategory}/${post.id}/comments/${commentId}/likes/${uid}`);
         get(likeRef).then((snap) => {
           if (snap.exists()) {
             remove(likeRef);
