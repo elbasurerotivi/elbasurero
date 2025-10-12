@@ -5,12 +5,16 @@ import {
   onAuthStateChanged,
   GoogleAuthProvider,
   FacebookAuthProvider,
-  signInWithRedirect, // Cambiado de signInWithPopup
-  getRedirectResult,  // Añadido para manejar resultados de redirección
+  signInWithRedirect,
+  signInWithPopup,
+  getRedirectResult,
   signOut
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 let isLogin = true;
+
+// Detectar si es un dispositivo móvil
+const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
 // -----------------------------
 // 🔹 Abrir / Cerrar popup
@@ -105,7 +109,6 @@ document.getElementById("actionBtn")?.addEventListener("click", () => {
   }
 
   if (isLogin) {
-    // ---- Login ----
     signInWithEmailAndPassword(auth, email, pass)
       .then(userCredential => {
         console.log("Inicio de sesión exitoso:", userCredential.user.email);
@@ -131,7 +134,6 @@ document.getElementById("actionBtn")?.addEventListener("click", () => {
         alert(errorMessage);
       });
   } else {
-    // ---- Registro ----
     createUserWithEmailAndPassword(auth, email, pass)
       .then(userCredential => {
         const user = userCredential.user;
@@ -172,42 +174,26 @@ document.getElementById("actionBtn")?.addEventListener("click", () => {
 window.loginGoogle = function() {
   console.log("Iniciando autenticación con Google...");
   const provider = new GoogleAuthProvider();
-  // Opcional: Forzar la selección de cuenta para evitar cierres accidentales
   provider.addScope('email');
-  signInWithRedirect(auth, provider); // Usar redirección en lugar de popup
-};
+  provider.setCustomParameters({ prompt: 'select_account' });
 
-// -----------------------------
-// 🔹 Manejar resultado de la redirección
-// -----------------------------
-document.addEventListener("DOMContentLoaded", () => {
-  getRedirectResult(auth)
-    .then(result => {
-      if (result) {
+  if (isMobile) {
+    console.log("Usando signInWithRedirect para dispositivo móvil");
+    signInWithRedirect(auth, provider);
+  } else {
+    console.log("Usando signInWithPopup para escritorio");
+    signInWithPopup(auth, provider)
+      .then(result => {
         const user = result.user;
         console.log("Autenticación con Google exitosa:", user.email);
-        const userRef = ref(db, `users/${user.uid}`);
-        return set(userRef, {
-          email: user.email,
-          username: user.displayName || "Anónimo",
-          createdAt: Date.now()
-        })
-        .then(() => {
-          console.log("Datos del usuario guardados en la base de datos");
-          alert(`Bienvenido, ${user.displayName || user.email}!`);
-          cerrarLogin();
-        });
-      }
-    })
-    .catch(error => {
-      console.error("Error al procesar la redirección de Google:", error);
-      if (error.code === "auth/popup-closed-by-user") {
-        alert("El proceso de inicio de sesión con Google fue cancelado. Por favor, intenta de nuevo.");
-      } else {
-        alert(`Error al iniciar sesión con Google: ${error.message}`);
-      }
-    });
-});
+        handleAuthSuccess(user);
+      })
+      .catch(error => {
+        console.error("Error al iniciar sesión con Google (popup):", error);
+        handleAuthError(error);
+      });
+  }
+};
 
 // -----------------------------
 // 🔹 Login con Facebook
@@ -215,38 +201,67 @@ document.addEventListener("DOMContentLoaded", () => {
 window.loginFacebook = function() {
   console.log("Iniciando autenticación con Facebook...");
   const provider = new FacebookAuthProvider();
-  signInWithRedirect(auth, provider); // Usar redirección en lugar de popup
+  if (isMobile) {
+    console.log("Usando signInWithRedirect para dispositivo móvil");
+    signInWithRedirect(auth, provider);
+  } else {
+    console.log("Usando signInWithPopup para escritorio");
+    signInWithPopup(auth, provider)
+      .then(result => {
+        const user = result.user;
+        console.log("Autenticación con Facebook exitosa:", user.email);
+        handleAuthSuccess(user);
+      })
+      .catch(error => {
+        console.error("Error al iniciar sesión con Facebook (popup):", error);
+        handleAuthError(error);
+      });
+  }
 };
 
 // -----------------------------
-// 🔹 Manejar resultado de la redirección para Facebook
+// 🔹 Manejar resultado de autenticación
+// -----------------------------
+function handleAuthSuccess(user) {
+  const userRef = ref(db, `users/${user.uid}`);
+  return set(userRef, {
+    email: user.email,
+    username: user.displayName || "Anónimo",
+    createdAt: Date.now()
+  })
+  .then(() => {
+    console.log("Datos del usuario guardados en la base de datos");
+    alert(`Bienvenido, ${user.displayName || user.email}!`);
+    cerrarLogin();
+  });
+}
+
+function handleAuthError(error) {
+  console.error("Error en autenticación:", error);
+  if (error.code === "auth/popup-closed-by-user") {
+    alert("El proceso de inicio de sesión fue cancelado. Por favor, intenta de nuevo.");
+  } else if (error.code === "auth/cancelled-popup-request") {
+    alert("La solicitud de inicio de sesión fue cancelada. Intenta de nuevo.");
+  } else {
+    alert(`Error al iniciar sesión: ${error.message}`);
+  }
+}
+
+// -----------------------------
+// 🔹 Manejar resultado de redirección
 // -----------------------------
 document.addEventListener("DOMContentLoaded", () => {
   getRedirectResult(auth)
     .then(result => {
       if (result) {
         const user = result.user;
-        console.log("Autenticación con Facebook exitosa:", user.email);
-        const userRef = ref(db, `users/${user.uid}`);
-        return set(userRef, {
-          email: user.email,
-          username: user.displayName || "Anónimo",
-          createdAt: Date.now()
-        })
-        .then(() => {
-          console.log("Datos del usuario guardados en la base de datos");
-          alert(`Bienvenido, ${user.displayName || user.email}!`);
-          cerrarLogin();
-        });
+        console.log("Autenticación con redirección exitosa:", user.email);
+        handleAuthSuccess(user);
       }
     })
     .catch(error => {
-      console.error("Error al procesar la redirección de Facebook:", error);
-      if (error.code === "auth/popup-closed-by-user") {
-        alert("El proceso de inicio de sesión con Facebook fue cancelado. Por favor, intenta de nuevo.");
-      } else {
-        alert(`Error al iniciar sesión con Facebook: ${error.message}`);
-      }
+      console.error("Error al procesar la redirección:", error);
+      handleAuthError(error);
     });
 });
 
@@ -278,7 +293,7 @@ window.initAuthButtons = function() {
       console.log("Clic en botón Login del header");
     });
   } else {
-    console.warn("No se encontró el elemento #login-btn");
+    console.warn("El elemento #login-btn no está presente en el DOM. Verifica el header.");
   }
 
   if (logoutBtn) {
@@ -287,10 +302,9 @@ window.initAuthButtons = function() {
       console.log("Clic en botón Logout del header");
     });
   } else {
-    console.warn("No se encontró el elemento #logout-btn");
+    console.warn("El elemento #logout-btn no está presente en el DOM. Verifica el header.");
   }
 
-  // Actualizar visibilidad según estado de autenticación
   onAuthStateChanged(auth, user => {
     if (user) {
       console.log("Usuario conectado:", user.email, "UID:", user.uid);
