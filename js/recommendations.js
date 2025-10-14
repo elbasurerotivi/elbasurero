@@ -300,6 +300,19 @@ function levenshteinDistance(str1 = '', str2 = '') {
   return track[str2.length][str1.length];
 }
 
+function isSequelVariation(str1, str2) {
+  function getBaseAndNum(s) {
+    const match = s.match(/(.*?)(\s*\d+)?$/);
+    return {
+      base: match[1].trim(),
+      num: match[2] ? parseInt(match[2].trim(), 10) : null
+    };
+  }
+  const { base: b1, num: n1 } = getBaseAndNum(str1);
+  const { base: b2, num: n2 } = getBaseAndNum(str2);
+  return b1 === b2 && n1 !== n2;
+}
+
 textarea.addEventListener("input", () => {
   const value = textarea.value.trim().toLowerCase();
   const submitBtn = form.querySelector('button[type="submit"]');
@@ -315,7 +328,8 @@ textarea.addEventListener("input", () => {
     .filter((rec) => {
       const recLower = rec.text.toLowerCase();
       const dist = levenshteinDistance(value, recLower);
-      return dist < 5 || recLower.includes(value);
+      const isSimilar = dist < 5 || recLower.includes(value);
+      return isSimilar && !isSequelVariation(value, recLower);
     })
     .sort((a, b) => {
       return levenshteinDistance(value, a.text.toLowerCase()) - levenshteinDistance(value, b.text.toLowerCase());
