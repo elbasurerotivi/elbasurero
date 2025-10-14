@@ -2782,6 +2782,189 @@ footer h3 {
   transform: scale(1.2);
 }
 
+/* ==========================================================
+   OPTIMIZACIÓN MÓVIL - NUEVA ESTÉTICA RESPONSIVE
+   ========================================================== */
+@media (max-width: 600px) {
+  body {
+    overflow-x: hidden;
+    padding: 0;
+    margin: 0;
+  }
+
+  .container {
+    max-width: 100%;
+    margin: 20px auto;
+    padding: 0 10px;
+    gap: 15px;
+  }
+
+  /* ===== RECOMENDACIONES ===== */
+  .recommendations {
+    gap: 15px;
+  }
+
+  .recommendations p {
+    font-size: 16px;
+    padding: 0 8px;
+  }
+
+  /* ===== FORMULARIO ===== */
+  .recommend-form {
+    padding: 15px 12px;
+    border-radius: 10px;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.25);
+  }
+
+  .recommend-form textarea {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .recommend-form .btn-primary {
+    width: 100%;
+    font-size: 14px;
+    padding: 10px 0;
+    margin-top: 12px;
+  }
+
+  /* ===== POSTS ===== */
+  .recommend-list {
+    gap: 18px;
+  }
+
+  .recommend-post {
+    padding: 14px;
+    border-radius: 12px;
+  }
+
+  .post-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    font-size: 12px;
+  }
+
+  .post-header strong {
+    font-size: 14px;
+  }
+
+  .post-text {
+    font-size: 17px;
+    line-height: 1.4;
+    text-align: left;
+  }
+
+  /* ===== BOTONES ===== */
+  .post-actions {
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 8px;
+  }
+
+  .like-btn, .toggle-comments {
+    font-size: 14px;
+    gap: 5px;
+  }
+
+  /* ===== COMENTARIOS ===== */
+  .comments-section {
+    padding-top: 8px;
+  }
+
+  .comment {
+    padding: 8px 10px;
+  }
+
+  .comment-header {
+    font-size: 13px;
+  }
+
+  .comment-header strong {
+    font-size: 12px;
+  }
+
+  .comment-text {
+    font-size: 15px;
+    line-height: 1.4;
+  }
+
+  .comment-form {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .comment-form input {
+    font-size: 14px;
+    padding: 8px 12px;
+  }
+
+  .comment-form button {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  /* ===== BOTÓN SCROLL ===== */
+  .scroll-to-top {
+    bottom: 15px;
+    right: 15px;
+    width: 42px;
+    height: 42px;
+    font-size: 18px;
+    opacity: 0.85;
+  }
+
+  /* ===== SUGERENCIAS ===== */
+  .suggestions {
+    padding: 10px;
+    max-height: 180px;
+  }
+
+  .suggestion-warning {
+    font-size: 14px;
+  }
+
+  .suggestion-item {
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  /* ===== COMPLETED LIST ===== */
+  .completed-list {
+    gap: 10px;
+    padding: 5px 0;
+  }
+
+  .completed-post {
+    min-width: 80%;
+    padding: 12px;
+  }
+
+  .completed-post .post-text {
+    font-size: 15px;
+  }
+
+  /* ===== BOTONES PEQUEÑOS ===== */
+  .complete-btn,
+  .delete-btn {
+    padding: 4px 8px;
+    font-size: 11px;
+  }
+
+  /* ===== REFINES VISUALES ===== */
+  .tab-buttons {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .tab-btn {
+    font-size: 14px;
+    padding: 8px;
+    border-radius: 8px;
+  }
+}
+
 
 
 
