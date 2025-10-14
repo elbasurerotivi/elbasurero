@@ -242,7 +242,7 @@ function renderPost(post, container) {
   commentBtn.addEventListener("click", (e) => {
     e.stopPropagation();
     const isOpen = commentsContainer.style.display === "block";
-    commentsContainer.style.display = isOpen ? "none"! : "block";
+    commentsContainer.style.display = isOpen ? "none" : "block";
     if (!isOpen) {
       openComments.add(post.id);
       renderComments(post.id, commentsContainer);
