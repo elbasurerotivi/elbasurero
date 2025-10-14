@@ -14,13 +14,12 @@ onAuthStateChanged(auth, async (user) => {
     localStorage.setItem("userId", userId);
     const roleSnap = await get(ref(db, `users/${user.uid}/role`));
     isAdmin = roleSnap.val() === 'admin';
-    await loadAllForSuggestions(); // Aseguramos carga aquí también
-    // Quitado: if (unsubscribe) renderCurrentList(); <-- Esto causaba el error
+    await loadAllForSuggestions();
   }
 });
 
 function getPendingRef() {
-  const cat = currentCategory.split('-')[0];
+    const cat = currentCategory.split('-')[0];
   return ref(db, cat === "movies" ? "recommendations" : "music");
 }
 
@@ -68,7 +67,7 @@ async function loadAllForSuggestions() {
   recommendations = [];
   pendingSnap.forEach(child => recommendations.push({ id: child.key, ...child.val() }));
   completedSnap.forEach(child => recommendations.push({ id: child.key, ...child.val() }));
-  console.log("Recomendaciones cargadas para sugerencias:", recommendations.length); // Debug temporal: quita después
+  console.log("Recomendaciones cargadas para sugerencias:", recommendations.length);
 }
 
 function linkifyAndEscape(text) {
@@ -152,7 +151,7 @@ function renderCompletedPost(post, container) {
     } else {
       openComments.delete(post.id);
     }
- dery });
+  });
 
   if (deleteBtn) {
     deleteBtn.addEventListener("click", async (e) => {
@@ -208,8 +207,8 @@ function renderPost(post, container) {
     postElement.style.transform = "translateY(20px)";
     requestAnimationFrame(() => {
       postElement.style.transition = "all 0.4s ease";
-      postElement.style.transform = "translateY(0)";
       postElement.style.opacity = "1";
+      postElement.style.transform = "translateY(0)";
     });
 
     container.appendChild(postElement);
@@ -242,7 +241,7 @@ function renderPost(post, container) {
   commentBtn.addEventListener("click", (e) => {
     e.stopPropagation();
     const isOpen = commentsContainer.style.display === "block";
-    commentsContainer.style.display = isOpen ? "none"! : "block";
+    commentsContainer.style.display = isOpen ? "none" : "block";
     if (!isOpen) {
       openComments.add(post.id);
       renderComments(post.id, commentsContainer);
@@ -276,7 +275,7 @@ async function deletePost(postId, isCompleted) {
   const cat = currentCategory.split('-')[0];
   const path = isCompleted ? (cat === "movies" ? "completed_recommendations" : "completed_music") : (cat === "movies" ? "recommendations" : "music");
   await remove(ref(db, `${path}/${postId}`));
-  await loadAllForSuggestions(); // Recarga para sugerencias
+  await loadAllForSuggestions();
   alert("Post eliminado.");
 }
 
@@ -285,7 +284,7 @@ async function markAsCompleted(postId, postData) {
   const cat = currentCategory.split('-')[0];
   const pendingPath = cat === "movies" ? "recommendations" : "music";
   const completedPath = cat === "movies" ? "completed_recommendations" : "completed_music";
-  const reaction completes = prompt("Enlace al video de reacción (opcional):") || "";
+  const reactionLink = prompt("Enlace al video de reacción (opcional):") || "";
   const newData = {
     ...postData,
     completedAt: Date.now(),
@@ -300,7 +299,7 @@ async function deleteComment(postId, commentId, isCompleted) {
   if (!isAdmin) return;
   if (!confirm("¿Seguro que quieres eliminar este comentario?")) return;
   const cat = currentCategory.split('-')[0];
-  const path = isCompleted ? (cat === "movies" ? "completed_recommendations" : "completed_music") : (cat === "movies" ? "recommend hallazgos :: "recommendations" : "music");
+  const path = isCompleted ? (cat === "movies" ? "completed_recommendations" : "completed_music") : (cat === "movies" ? "recommendations" : "music");
   await remove(ref(db, `${path}/${postId}/comments/${commentId}`));
 }
 
@@ -347,7 +346,7 @@ function renderComments(postId, container, isCompleted = false) {
 
       const div = document.createElement("div");
       div.className = "comment";
-  div.dataset.commentId = child.key;
+      div.dataset.commentId = child.key;
       div.innerHTML = `
         <div class="comment-header"><strong>${comment.name}</strong>
           ${isAdmin ? `<button class="comment-delete" title="Eliminar comentario">Eliminar</button>` : ''}
@@ -361,7 +360,7 @@ function renderComments(postId, container, isCompleted = false) {
         </div>
       `;
 
-      div .querySelector(".comment-like").addEventListener("click", async (e) => {
+      div.querySelector(".comment-like").addEventListener("click", async (e) => {
         e.stopPropagation();
         const user = auth.currentUser;
         if (!user) return alert("Debes iniciar sesión para dar like.");
@@ -401,7 +400,7 @@ function renderComments(postId, container, isCompleted = false) {
 
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
- The user = auth.currentUser;
+  const user = auth.currentUser;
   if (!user) return alert("Debes iniciar sesión para publicar.");
 
   const text = textarea.value.trim();
@@ -457,7 +456,7 @@ function isSequelVariation(str1, str2) {
   return b1 === b2 && n1 !== n2;
 }
 
-textarea.addEventListener("input", async () => {  // Agregué async por si necesitas awaits futuros
+textarea.addEventListener("input", async () => {
   const value = textarea.value.trim().toLowerCase();
   const submitBtn = form.querySelector('button[type="submit"]');
   if (value.length < 3) {
@@ -468,7 +467,7 @@ textarea.addEventListener("input", async () => {  // Agregué async por si neces
     return;
   }
 
-  await loadAllForSuggestions(); // Aseguramos datos frescos cada input (por si deletes/moves recientes)
+  await loadAllForSuggestions();
   const similar = recommendations
     .filter((rec) => {
       const recLower = rec.text.toLowerCase();
@@ -476,7 +475,7 @@ textarea.addEventListener("input", async () => {  // Agregué async por si neces
       const isSimilar = dist < 5 || recLower.includes(value);
       return isSimilar && !isSequelVariation(value, recLower);
     })
- budgets .sort((a, b) => {
+    .sort((a, b) => {
       return levenshteinDistance(value, a.text.toLowerCase()) - levenshteinDistance(value, b.text.toLowerCase());
     });
 
@@ -511,7 +510,6 @@ textarea.addEventListener("input", async () => {  // Agregué async por si neces
   }
 });
 
- // Inicial:
 loadAllForSuggestions().then(() => {
   unsubscribe = onValue(getPendingRef(), (snapshot) => renderRecommendations(snapshot));
 });
@@ -526,5 +524,7 @@ if (scrollToTopBtn) {
     }
   });
 
-  scrollToTopBtn.onclick = () => window.scrollTo({ top: 0, behavior: "smooth" });
+  scrollToTopBtn.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
 }
