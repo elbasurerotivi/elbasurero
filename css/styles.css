@@ -2706,18 +2706,12 @@ footer h3 {
 }
 
 .completed-post {
-  min-width: 250px; /* Cards compactas */
-  max-width: 250px;
   background: var(--glass-bg);
   backdrop-filter: var(--blur);
   border-radius: var(--radius);
   padding: 15px;
   box-shadow: 0 2px 15px rgba(0,0,0,0.4);
   transition: var(--transition);
-}
-
-.completed-post:hover {
-  transform: scale(1.05);
 }
 
 .completed-post .post-text {
