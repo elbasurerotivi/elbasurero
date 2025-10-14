@@ -82,7 +82,7 @@ function linkifyAndEscape(text) {
   const urlRegex = /(https?:\/\/[^\s<>"']+|www\.[^\s<>"']+)/g;
   return escapeHtml(text).replace(urlRegex, (url) => {
     let link = url;
-    if (!link.startsWith('http')) link = 'https:' + link;
+    if (!link.startsWith('http')) link = 'https://' + link;
     return `<a href="${link}" target="_blank" rel="noopener noreferrer">${url}</a>`;
   });
 }
@@ -208,7 +208,7 @@ function renderPost(post, container) {
     requestAnimationFrame(() => {
       postElement.style.transition = "all 0.4s ease";
       postElement.style.opacity = "1";
-      postElement.style.transform = "translateY(0)";
+      postElement.style.transform = "translateY the(0)";
     });
 
     container.appendChild(postElement);
