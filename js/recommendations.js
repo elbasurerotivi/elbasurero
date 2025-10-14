@@ -471,14 +471,16 @@ textarea.addEventListener("input", async () => {
     return;
   }
 
-  await loadAllForSuggestions(); // Fresco siempre
+  if (recommendations.length === 0) {
+  await loadAllForSuggestions(); // Solo si está vacío
+}
   const similar = recommendations
     .filter((rec) => {
       const recLower = (rec.text || '').toLowerCase();
       const dist = levenshteinDistance(value, recLower);
       const includesInRec = recLower.includes(value);
       const includesRecInValue = value.includes(recLower); // Bidireccional para parciales
-      const isSimilar = dist < 5 || includesInRec || includesRecInValue;
+      const isSimilar = dist < 3 || includesInRec || includesRecInValue;
       console.log(`Comparando "${valueRaw}" con "${rec.text}": dist=${dist}, includesInRec=${includesInRec}, includesRecInValue=${includesRecInValue}, sequel=${isSequelVariation(value, recLower)}`); // Debug: pega esto!
       return isSimilar && !isSequelVariation(value, recLower);
     })
