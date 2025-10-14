@@ -67,7 +67,7 @@ async function loadAllForSuggestions() {
   recommendations = [];
   pendingSnap.forEach(child => recommendations.push({ id: child.key, ...child.val() }));
   completedSnap.forEach(child => recommendations.push({ id: child.key, ...child.val() }));
-  console.log("Recomendaciones cargadas para sugerencias (restaurado):", recommendations.length); // Debug
+  console.log("Recomendaciones cargadas para sugerencias (restaurado):", recommendations.length);
 }
 
 function linkifyAndEscape(text) {
@@ -422,7 +422,7 @@ form.addEventListener("submit", async (e) => {
   await loadAllForSuggestions(); // Actualiza array después de post
 });
 
-// Detector restaurado de la versión antigua
+// Detector restaurado con mejoras
 function levenshteinDistance(str1 = '', str2 = '') {
   const track = Array(str2.length + 1).fill(null).map(() =>
     Array(str1.length + 1).fill(null)
@@ -459,10 +459,11 @@ function isSequelVariation(str1, str2) {
   return b1 === b2 && n1 !== n2;
 }
 
-textarea.addEventListener("input", async () => { // Async para await load
-  const value = textarea.value.trim().toLowerCase();
+textarea.addEventListener("input", async () => {
+  const valueRaw = textarea.value.trim();
+  const value = valueRaw.toLowerCase();
   const submitBtn = form.querySelector('button[type="submit"]');
-  if (value.length < 3) {
+  if (valueRaw.length < 3) {
     suggestionsContainer.innerHTML = '';
     suggestionsContainer.style.display = 'none';
     submitBtn.disabled = false;
@@ -470,17 +471,20 @@ textarea.addEventListener("input", async () => { // Async para await load
     return;
   }
 
-  await loadAllForSuggestions(); // Asegura fresco de pending + completed
+  await loadAllForSuggestions(); // Fresco siempre
   const similar = recommendations
     .filter((rec) => {
-      const recLower = rec.text.toLowerCase();
+      const recLower = (rec.text || '').toLowerCase();
       const dist = levenshteinDistance(value, recLower);
-      const isSimilar = dist < 5 || recLower.includes(value);
+      const includesInRec = recLower.includes(value);
+      const includesRecInValue = value.includes(recLower); // Bidireccional para parciales
+      const isSimilar = dist < 5 || includesInRec || includesRecInValue;
+      console.log(`Comparando "${valueRaw}" con "${rec.text}": dist=${dist}, includesInRec=${includesInRec}, includesRecInValue=${includesRecInValue}, sequel=${isSequelVariation(value, recLower)}`); // Debug: pega esto!
       return isSimilar && !isSequelVariation(value, recLower);
     })
-    .sort((a, b) => {
-      return levenshteinDistance(value, a.text.toLowerCase()) - levenshteinDistance(value, b.text.toLowerCase());
-    });
+    .sort((a, b) => levenshteinDistance(value, a.text.toLowerCase()) - levenshteinDistance(value, b.text.toLowerCase()));
+
+  console.log("Similares encontrados:", similar.length, similar.map(r => r.text)); // Debug
 
   suggestionsContainer.innerHTML = '';
   if (similar.length > 0) {
@@ -498,7 +502,10 @@ textarea.addEventListener("input", async () => { // Async para await load
       item.innerHTML = linkifyAndEscape(rec.text);
       item.addEventListener("click", () => {
         textarea.value = rec.text;
-        suggestionsContainer.innerHTML = "";
+        suggestionsContainer.innerHTML = '';
+        suggestionsContainer.style.display = 'none';
+        submitBtn.disabled = false; // Habilita al clickear
+        submitBtn.style.backgroundColor = '';
       });
       list.appendChild(item);
     });
