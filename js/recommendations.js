@@ -314,11 +314,11 @@ textarea.addEventListener("input", () => {
   const similar = recommendations
     .filter((rec) => {
       const recLower = rec.text.toLowerCase();
-      const dist = leveshteinDistance(value, recLower);
+      const dist = levenshteinDistance(value, recLower);
       return dist < 5 || recLower.includes(value);
     })
     .sort((a, b) => {
-      return leveshteinDistance(value, a.text.toLowerCase()) - leveshteinDistance(value, b.text.toLowerCase());
+      return levenshteinDistance(value, a.text.toLowerCase()) - levenshteinDistance(value, b.text.toLowerCase());
     });
 
   suggestionsContainer.innerHTML = '';
@@ -326,19 +326,28 @@ textarea.addEventListener("input", () => {
     suggestionsContainer.style.display = 'block';
     const warning = document.createElement('div');
     warning.className = 'suggestion-warning';
-    warning.textContent = 'Tu recomendación ya fue hecha';
+    warning.textContent = 'Recomendacion ya hecha';
     suggestionsContainer.appendChild(warning);
 
+    const details = document.createElement('details');
+    const summary = document.createElement('summary');
+    summary.textContent = 'Ver recomendaciones similares';
+    details.appendChild(summary);
+
+    const list = document.createElement('div');
+    list.className = 'suggestion-list';
     similar.forEach((rec) => {
       const item = document.createElement('div');
       item.className = 'suggestion-item';
       item.innerHTML = linkifyAndEscape(rec.text);
-      suggestionsContainer.appendChild(item);
       item.addEventListener("click", () => {
         textarea.value = rec.text;
         suggestionsContainer.innerHTML = "";
       });
+      list.appendChild(item);
     });
+    details.appendChild(list);
+    suggestionsContainer.appendChild(details);
 
     submitBtn.disabled = true;
     submitBtn.style.backgroundColor = 'gray';
