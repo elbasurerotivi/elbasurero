@@ -1,7 +1,7 @@
 import { db, auth, ref, onValue, push, update, remove, get, set, onAuthStateChanged } from "./firebase-config.js";
 
 let currentCategory = "movies-pending";
-let recommendations = []; // Para sugerencias: se carga con pending + completed de la cat actual
+let recommendations = []; // Para sugerencias: se carga con pending + completed de todas las categorías
 let unsubscribe = null;
 let openComments = new Set();
 let userId = localStorage.getItem("userId") || "user_" + Math.random().toString(36).substring(2, 9);
@@ -14,7 +14,7 @@ onAuthStateChanged(auth, async (user) => {
     localStorage.setItem("userId", userId);
     const roleSnap = await get(ref(db, `users/${user.uid}/role`));
     isAdmin = roleSnap.val() === 'admin';
-    await loadAllForSuggestions(); // Carga inicial
+    await loadAllForSuggestions(); // Carga inicial cuando cambia el estado de auth
   }
 });
 
@@ -52,7 +52,8 @@ tabButtons.forEach((btn) => {
       lists[key].style.display = key === currentCategory ? "block" : "none";
     });
     if (unsubscribe) unsubscribe();
-    loadAllForSuggestions(); // Recarga sugerencias al cambiar tab
+    // Recarga sugerencias al cambiar tab (ahora carga todas las ramas)
+    loadAllForSuggestions();
     const refToUse = currentCategory.includes('completed') ? getCompletedRef() : getPendingRef();
     unsubscribe = onValue(refToUse, (snapshot) => {
       renderRecommendations(snapshot, currentCategory.includes('completed'));
@@ -60,14 +61,45 @@ tabButtons.forEach((btn) => {
   });
 });
 
+/* ============================
+   CARGA DE SUGERENCIAS (FIX)
+   - ahora lee las 4 ramas (movies/music + completed)
+   - normaliza texto y guarda _textNorm para comparaciones rápidas
+   ============================ */
 async function loadAllForSuggestions() {
-  const catKey = currentCategory.split('-')[0]; // 'movies' o 'music'
-  const pendingSnap = await get(ref(db, catKey === "movies" ? "recommendations" : "music"));
-  const completedSnap = await get(ref(db, catKey === "movies" ? "completed_recommendations" : "completed_music"));
-  recommendations = [];
-  pendingSnap.forEach(child => recommendations.push({ id: child.key, ...child.val() }));
-  completedSnap.forEach(child => recommendations.push({ id: child.key, ...child.val() }));
-  console.log("Recomendaciones cargadas para sugerencias (restaurado):", recommendations.length);
+  try {
+    const moviesPendingSnap = await get(ref(db, "recommendations"));
+    const moviesCompletedSnap = await get(ref(db, "completed_recommendations"));
+    const musicPendingSnap = await get(ref(db, "music"));
+    const musicCompletedSnap = await get(ref(db, "completed_music"));
+
+    const temp = [];
+
+    if (moviesPendingSnap && moviesPendingSnap.exists()) {
+      moviesPendingSnap.forEach(child => temp.push({ id: child.key, _source: 'movies-pending', ...child.val() }));
+    }
+    if (moviesCompletedSnap && moviesCompletedSnap.exists()) {
+      moviesCompletedSnap.forEach(child => temp.push({ id: child.key, _source: 'movies-completed', ...child.val() }));
+    }
+    if (musicPendingSnap && musicPendingSnap.exists()) {
+      musicPendingSnap.forEach(child => temp.push({ id: child.key, _source: 'music-pending', ...child.val() }));
+    }
+    if (musicCompletedSnap && musicCompletedSnap.exists()) {
+      musicCompletedSnap.forEach(child => temp.push({ id: child.key, _source: 'music-completed', ...child.val() }));
+    }
+
+    // Normalizamos texto (quita acentos y minúsculas) para comparaciones robustas
+    recommendations = temp.map(r => ({
+      ...r,
+      _textNorm: (r.text || '').toString().normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase()
+    }));
+
+    console.log("Recomendaciones cargadas para sugerencias (restaurado):", recommendations.length);
+    // muestra una muestra corta para debug (puedes comentar luego)
+    console.log("Listado (ejemplo):", recommendations.slice(0, 20).map(r => ({ text: r.text, source: r._source })));
+  } catch (err) {
+    console.error("Error cargando recomendaciones para sugerencias:", err);
+  }
 }
 
 function linkifyAndEscape(text) {
@@ -424,6 +456,7 @@ form.addEventListener("submit", async (e) => {
 
 // Detector restaurado con mejoras
 function levenshteinDistance(str1 = '', str2 = '') {
+  // Calcula distancia normal (works fine para nuestros tamaños)
   const track = Array(str2.length + 1).fill(null).map(() =>
     Array(str1.length + 1).fill(null)
   );
@@ -450,8 +483,8 @@ function isSequelVariation(str1, str2) {
   function getBaseAndNum(s) {
     const match = s.match(/(.*?)(\s*\d+)?$/);
     return {
-      base: match[1].trim().toLowerCase(),
-      num: match[2] ? parseInt(match[2].trim(), 10) : null
+      base: (match && match[1] ? match[1].trim().toLowerCase() : ''),
+      num: match && match[2] ? parseInt(match[2].trim(), 10) : null
     };
   }
   const { base: b1, num: n1 } = getBaseAndNum(str1);
@@ -459,9 +492,15 @@ function isSequelVariation(str1, str2) {
   return b1 === b2 && n1 !== n2;
 }
 
+/* ============================
+   ENTRADA DEL TEXTAREA: búsqueda de similares
+   - usa _textNorm precalculado
+   - umbral adaptativo
+   ============================ */
 textarea.addEventListener("input", async () => {
   const valueRaw = textarea.value.trim();
-  const value = valueRaw.toLowerCase();
+  // Normalizamos entrada (quita acentos y minúsculas)
+  const value = valueRaw.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
   const submitBtn = form.querySelector('button[type="submit"]');
   if (valueRaw.length < 3) {
     suggestionsContainer.innerHTML = '';
@@ -471,20 +510,28 @@ textarea.addEventListener("input", async () => {
     return;
   }
 
+  // Si no hay datos, cargamos (solo la primera vez o si fue vacío)
   if (recommendations.length === 0) {
-  await loadAllForSuggestions(); // Solo si está vacío
-}
+    await loadAllForSuggestions(); // Solo si está vacío
+  }
+
+  // Debug: ver que recomendaciones tenemos disponibles
+  // console.log("Recomendaciones disponibles (count):", recommendations.length);
+  // console.log(recommendations.map(r => ({ text: r.text, source: r._source })));
+
   const similar = recommendations
-    .filter((rec) => {
-      const recLower = (rec.text || '').toLowerCase();
+    .map(rec => {
+      const recLower = rec._textNorm || (rec.text || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
       const dist = levenshteinDistance(value, recLower);
       const includesInRec = recLower.includes(value);
-      const includesRecInValue = value.includes(recLower); // Bidireccional para parciales
-      const isSimilar = dist < 3 || includesInRec || includesRecInValue;
-      console.log(`Comparando "${valueRaw}" con "${rec.text}": dist=${dist}, includesInRec=${includesInRec}, includesRecInValue=${includesRecInValue}, sequel=${isSequelVariation(value, recLower)}`); // Debug: pega esto!
-      return isSimilar && !isSequelVariation(value, recLower);
+      const includesRecInValue = value.includes(recLower);
+      const maxDist = Math.max(2, Math.ceil(Math.max(value.length, recLower.length) * 0.25)); // 25% del largo, mínimo 2
+      const isSimilar = dist <= maxDist || includesInRec || includesRecInValue;
+      return { rec, dist, isSimilar, recLower, includesInRec, includesRecInValue, maxDist };
     })
-    .sort((a, b) => levenshteinDistance(value, a.text.toLowerCase()) - levenshteinDistance(value, b.text.toLowerCase()));
+    .filter(x => x.isSimilar && !isSequelVariation(value, x.recLower))
+    .sort((a, b) => a.dist - b.dist)
+    .map(x => x.rec);
 
   console.log("Similares encontrados:", similar.length, similar.map(r => r.text)); // Debug
 
@@ -523,6 +570,7 @@ textarea.addEventListener("input", async () => {
 });
 
 // Inicial
+// Cargamos sugerencias desde todas las ramas al inicio y nos suscribimos al feed "pending" por defecto
 loadAllForSuggestions().then(() => {
   unsubscribe = onValue(getPendingRef(), (snapshot) => renderRecommendations(snapshot));
 });
