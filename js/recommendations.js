@@ -197,8 +197,8 @@ function renderPost(post, container) {
           <span class="like-count ${userLiked ? "active" : ""}">${likesCount}</span>
         </div>
         <button class="toggle-comments">Comentarios (${commentsCount})</button>
-        ${isAdmin ? `<button class="complete-btn">Marcar Completada</button>` : ''}
-        ${isAdmin ? `<button class="delete-btn">Eliminar Post</button>` : ''}
+        ${isAdmin ? `<button class="complete-btn">Completada</button>` : ''}
+        ${isAdmin ? `<button class="delete-btn">Eliminar</button>` : ''}
       </div>
       <div class="comments-section" style="display:${openComments.has(post.id) ? "block" : "none"};"></div>
     `;
