@@ -444,7 +444,7 @@ function levenshteinDistance(str1 = '', str2 = '') {
 }
 
 function isSequelVariation(str1, str2) {
-  function getBaseAndNum(sZD) {
+  function getBaseAndNum(s) {
     const match = s.match(/(.*?)(\s*\d+)?$/);
     return {
       base: match[1].trim().toLowerCase(),
