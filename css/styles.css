@@ -2643,7 +2643,7 @@ footer h3 {
   padding: 10px;
   background: rgba(255,255,255,0.05);
   border-radius: 8px;
-  color: var(--text-light);
+  color: rgba(211, 211, 211, 0.568);
   cursor: pointer;
   transition: var(--transition);
   font-size: 15px;
