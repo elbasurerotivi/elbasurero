@@ -61,112 +61,63 @@ tabButtons.forEach((btn) => {
   });
 });
 
-// ✅ NUEVA FUNCIÓN RECONSTRUIDA
+/* ============================
+   CARGA DE SUGERENCIAS (FIX)
+   - ahora lee las 4 ramas (movies/music + completed)
+   - normaliza texto y guarda _textNorm para comparaciones rápidas
+   ============================ */
 async function loadAllForSuggestions() {
-  const categories = [
-    { path: "recommendations", source: "movies-pending" },
-    { path: "completed_recommendations", source: "movies-completed" },
-    { path: "music", source: "music-pending" },
-    { path: "completed_music", source: "music-completed" },
-  ];
-  recommendations = [];
-  for (const cat of categories) {
-    const snap = await get(ref(db, cat.path));
-    snap.forEach(child => {
-      const val = child.val();
-      if (val && val.text) {
-        recommendations.push({ text: val.text, source: cat.source });
-      }
-    });
-  }
-  console.log("✅ Recomendaciones cargadas para sugerencias (restaurado):", recommendations.length);
-}
+  try {
+    const moviesPendingSnap = await get(ref(db, "recommendations"));
+    const moviesCompletedSnap = await get(ref(db, "completed_recommendations"));
+    const musicPendingSnap = await get(ref(db, "music"));
+    const musicCompletedSnap = await get(ref(db, "completed_music"));
 
-function normalizeText(str) {
-  return str.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
-}
+    const temp = [];
 
-function levenshteinDistance(str1 = '', str2 = '') {
-  const track = Array(str2.length + 1).fill(null).map(() => Array(str1.length + 1).fill(null));
-  for (let i = 0; i <= str1.length; i++) track[0][i] = i;
-  for (let j = 0; j <= str2.length; j++) track[j][0] = j;
-  for (let j = 1; j <= str2.length; j++) {
-    for (let i = 1; i <= str1.length; i++) {
-      const indicator = str1[i - 1] === str2[j - 1] ? 0 : 1;
-      track[j][i] = Math.min(track[j][i - 1] + 1, track[j - 1][i] + 1, track[j - 1][i - 1] + indicator);
+    if (moviesPendingSnap && moviesPendingSnap.exists()) {
+      moviesPendingSnap.forEach(child => temp.push({ id: child.key, _source: 'movies-pending', ...child.val() }));
     }
+    if (moviesCompletedSnap && moviesCompletedSnap.exists()) {
+      moviesCompletedSnap.forEach(child => temp.push({ id: child.key, _source: 'movies-completed', ...child.val() }));
+    }
+    if (musicPendingSnap && musicPendingSnap.exists()) {
+      musicPendingSnap.forEach(child => temp.push({ id: child.key, _source: 'music-pending', ...child.val() }));
+    }
+    if (musicCompletedSnap && musicCompletedSnap.exists()) {
+      musicCompletedSnap.forEach(child => temp.push({ id: child.key, _source: 'music-completed', ...child.val() }));
+    }
+
+    // Normalizamos texto (quita acentos y minúsculas) para comparaciones robustas
+    recommendations = temp.map(r => ({
+      ...r,
+      _textNorm: (r.text || '').toString().normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase()
+    }));
+
+    console.log("Recomendaciones cargadas para sugerencias (restaurado):", recommendations.length);
+    // muestra una muestra corta para debug (puedes comentar luego)
+    console.log("Listado (ejemplo):", recommendations.slice(0, 20).map(r => ({ text: r.text, source: r._source })));
+  } catch (err) {
+    console.error("Error cargando recomendaciones para sugerencias:", err);
   }
-  return track[str2.length][str1.length];
 }
 
-function isSequelVariation(str1, str2) {
-  function getBaseAndNum(s) {
-    const match = s.match(/(.*?)(\s*\d+)?$/);
-    return { base: match[1].trim().toLowerCase(), num: match[2] ? parseInt(match[2].trim(), 10) : null };
-  }
-  const { base: b1, num: n1 } = getBaseAndNum(str1);
-  const { base: b2, num: n2 } = getBaseAndNum(str2);
-  return b1 === b2 && n1 !== n2;
-}
-
-// Detector de duplicados restaurado
-textarea.addEventListener("input", async () => {
-  const valueRaw = textarea.value.trim();
-  const value = normalizeText(valueRaw);
-  const submitBtn = form.querySelector('button[type="submit"]');
-  if (valueRaw.length < 3) {
-    suggestionsContainer.innerHTML = '';
-    suggestionsContainer.style.display = 'none';
-    submitBtn.disabled = false;
-    submitBtn.style.backgroundColor = '';
-    return;
-  }
-
-  if (recommendations.length === 0) await loadAllForSuggestions();
-
-  const similar = recommendations.filter((rec) => {
-    const recLower = normalizeText(rec.text || '');
-    const dist = levenshteinDistance(value, recLower);
-    const includesInRec = recLower.includes(value);
-    const includesRecInValue = value.includes(recLower);
-    const isSimilar = dist < 3 || includesInRec || includesRecInValue;
-    return isSimilar && !isSequelVariation(value, recLower);
+function linkifyAndEscape(text) {
+  const escapeHtml = (str) => {
+    return str
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  };
+  const urlRegex = /(https?:\/\/[^\s<>"']+|www\.[^\s<>"']+)/g;
+  return escapeHtml(text).replace(urlRegex, (url) => {
+    let link = url;
+    if (!link.startsWith('http')) link = 'https://' + link;
+    return `<a href="${link}" target="_blank" rel="noopener noreferrer">${url}</a>`;
   });
-
-  suggestionsContainer.innerHTML = '';
-  if (similar.length > 0) {
-    suggestionsContainer.style.display = 'block';
-    const warning = document.createElement('div');
-    warning.className = 'suggestion-warning';
-    warning.textContent = 'Recomendación ya hecha';
-    suggestionsContainer.appendChild(warning);
-    const list = document.createElement('div');
-    list.className = 'suggestion-list';
-    similar.forEach((rec) => {
-      const item = document.createElement('div');
-      item.className = 'suggestion-item';
-      item.textContent = rec.text;
-      item.addEventListener("click", () => {
-        textarea.value = rec.text;
-        suggestionsContainer.innerHTML = '';
-        suggestionsContainer.style.display = 'none';
-        submitBtn.disabled = false;
-        submitBtn.style.backgroundColor = '';
-      });
-      list.appendChild(item);
-    });
-    suggestionsContainer.appendChild(list);
-    submitBtn.disabled = true;
-    submitBtn.style.backgroundColor = 'gray';
-  } else {
-    suggestionsContainer.style.display = 'none';
-    submitBtn.disabled = false;
-    submitBtn.style.backgroundColor = '';
-  }
-});
-
-console.log("✅ Sistema de sugerencias global restaurado correctamente.");
-
+}
 
 function renderRecommendations(snapshot, isCompleted = false) {
   const posts = [];
