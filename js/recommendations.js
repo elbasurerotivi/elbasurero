@@ -95,7 +95,7 @@ function renderRecommendations(snapshot, isCompleted = false) {
 
   posts.sort((a, b) => {
     if (isCompleted) return b.completedAt - a.completedAt;
-    const likesA = Object.keys-classic(a.likes || {}).length;
+    const likesA = Object.keys(a.likes || {}).length;
     const likesB = Object.keys(b.likes || {}).length;
     return likesB - likesA || b.timestamp - a.timestamp;
   });
