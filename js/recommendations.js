@@ -167,22 +167,6 @@ textarea.addEventListener("input", async () => {
 
 console.log("✅ Sistema de sugerencias global restaurado correctamente.");
 
-function linkifyAndEscape(text) {
-  const escapeHtml = (str) => {
-    return str
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;")
-      .replace(/'/g, "&#039;");
-  };
-  const urlRegex = /(https?:\/\/[^\s<>"']+|www\.[^\s<>"']+)/g;
-  return escapeHtml(text).replace(urlRegex, (url) => {
-    let link = url;
-    if (!link.startsWith('http')) link = 'https://' + link;
-    return `<a href="${link}" target="_blank" rel="noopener noreferrer">${url}</a>`;
-  });
-}
 
 function renderRecommendations(snapshot, isCompleted = false) {
   const posts = [];
