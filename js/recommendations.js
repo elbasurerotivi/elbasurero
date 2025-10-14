@@ -1,7 +1,7 @@
 import { db, auth, ref, onValue, push, update, remove, get, set, onAuthStateChanged } from "./firebase-config.js";
 
 let currentCategory = "movies-pending";
-let recommendations = []; // Ahora global: todas cats
+let recommendations = []; // Para sugerencias: se carga con pending + completed de la cat actual
 let unsubscribe = null;
 let openComments = new Set();
 let userId = localStorage.getItem("userId") || "user_" + Math.random().toString(36).substring(2, 9);
@@ -14,7 +14,7 @@ onAuthStateChanged(auth, async (user) => {
     localStorage.setItem("userId", userId);
     const roleSnap = await get(ref(db, `users/${user.uid}/role`));
     isAdmin = roleSnap.val() === 'admin';
-    await loadAllForSuggestions();
+    await loadAllForSuggestions(); // Carga inicial
   }
 });
 
@@ -52,7 +52,7 @@ tabButtons.forEach((btn) => {
       lists[key].style.display = key === currentCategory ? "block" : "none";
     });
     if (unsubscribe) unsubscribe();
-    // No recargamos sugerencias aquí para no depender; ya son globales
+    loadAllForSuggestions(); // Recarga sugerencias al cambiar tab
     const refToUse = currentCategory.includes('completed') ? getCompletedRef() : getPendingRef();
     unsubscribe = onValue(refToUse, (snapshot) => {
       renderRecommendations(snapshot, currentCategory.includes('completed'));
@@ -61,19 +61,13 @@ tabButtons.forEach((btn) => {
 });
 
 async function loadAllForSuggestions() {
-  // Cargamos AMBAS categorías siempre, para sugerencias globales anti-duplicados
-  const moviesPendingSnap = await get(ref(db, "recommendations"));
-  const moviesCompletedSnap = await get(ref(db, "completed_recommendations"));
-  const musicPendingSnap = await get(ref(db, "music"));
-  const musicCompletedSnap = await get(ref(db, "completed_music"));
-  
+  const catKey = currentCategory.split('-')[0]; // 'movies' o 'music'
+  const pendingSnap = await get(ref(db, catKey === "movies" ? "recommendations" : "music"));
+  const completedSnap = await get(ref(db, catKey === "movies" ? "completed_recommendations" : "completed_music"));
   recommendations = [];
-  moviesPendingSnap.forEach(child => recommendations.push({ id: child.key, cat: 'movies', ...child.val() }));
-  moviesCompletedSnap.forEach(child => recommendations.push({ id: child.key, cat: 'movies', ...child.val() }));
-  musicPendingSnap.forEach(child => recommendations.push({ id: child.key, cat: 'music', ...child.val() }));
-  musicCompletedSnap.forEach(child => recommendations.push({ id: child.key, cat: 'music', ...child.val() }));
-  
-  console.log("Todas recomendaciones cargadas para sugerencias:", recommendations.length);
+  pendingSnap.forEach(child => recommendations.push({ id: child.key, ...child.val() }));
+  completedSnap.forEach(child => recommendations.push({ id: child.key, ...child.val() }));
+  console.log("Recomendaciones cargadas para sugerencias (restaurado):", recommendations.length); // Debug
 }
 
 function linkifyAndEscape(text) {
@@ -101,7 +95,7 @@ function renderRecommendations(snapshot, isCompleted = false) {
 
   posts.sort((a, b) => {
     if (isCompleted) return b.completedAt - a.completedAt;
-    const likesA = Object.keys(a.likes || {}).length;
+    const likesA = Object.keys-classic(a.likes || {}).length;
     const likesB = Object.keys(b.likes || {}).length;
     return likesB - likesA || b.timestamp - a.timestamp;
   });
@@ -404,6 +398,7 @@ function renderComments(postId, container, isCompleted = false) {
   }, { onlyOnce: false });
 }
 
+// form submit (adaptado a pending)
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
   const user = auth.currentUser;
@@ -424,8 +419,10 @@ form.addEventListener("submit", async (e) => {
   textarea.value = "";
   suggestionsContainer.innerHTML = "";
   suggestionsContainer.style.display = "none";
+  await loadAllForSuggestions(); // Actualiza array después de post
 });
 
+// Detector restaurado de la versión antigua
 function levenshteinDistance(str1 = '', str2 = '') {
   const track = Array(str2.length + 1).fill(null).map(() =>
     Array(str1.length + 1).fill(null)
@@ -462,10 +459,9 @@ function isSequelVariation(str1, str2) {
   return b1 === b2 && n1 !== n2;
 }
 
-textarea.addEventListener("input", async () => {
+textarea.addEventListener("input", async () => { // Async para await load
   const value = textarea.value.trim().toLowerCase();
   const submitBtn = form.querySelector('button[type="submit"]');
-  const currentCat = currentCategory.split('-')[0]; // Cat actual del form/tab
   if (value.length < 3) {
     suggestionsContainer.innerHTML = '';
     suggestionsContainer.style.display = 'none';
@@ -474,10 +470,9 @@ textarea.addEventListener("input", async () => {
     return;
   }
 
-  await loadAllForSuggestions(); // Recarga fresca siempre
+  await loadAllForSuggestions(); // Asegura fresco de pending + completed
   const similar = recommendations
     .filter((rec) => {
-      if (rec.cat !== currentCat) return false; // Solo matchea misma categoría
       const recLower = rec.text.toLowerCase();
       const dist = levenshteinDistance(value, recLower);
       const isSimilar = dist < 5 || recLower.includes(value);
@@ -486,8 +481,6 @@ textarea.addEventListener("input", async () => {
     .sort((a, b) => {
       return levenshteinDistance(value, a.text.toLowerCase()) - levenshteinDistance(value, b.text.toLowerCase());
     });
-
-  console.log("Similares encontrados en input:", similar.length); // Debug: dime qué sale aquí al escribir duplicada
 
   suggestionsContainer.innerHTML = '';
   if (similar.length > 0) {
@@ -506,8 +499,6 @@ textarea.addEventListener("input", async () => {
       item.addEventListener("click", () => {
         textarea.value = rec.text;
         suggestionsContainer.innerHTML = "";
-        suggestionsContainer.style.display = 'none';
-        submitBtn.disabled = false; // Permite editar y enviar si clickean
       });
       list.appendChild(item);
     });
