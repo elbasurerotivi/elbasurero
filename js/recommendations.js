@@ -1,7 +1,7 @@
 import { db, auth, ref, onValue, push, update, remove, get, set, onAuthStateChanged } from "./firebase-config.js";
 
 let currentCategory = "movies-pending";
-let recommendations = [];
+let recommendations = []; // Ahora global: todas cats
 let unsubscribe = null;
 let openComments = new Set();
 let userId = localStorage.getItem("userId") || "user_" + Math.random().toString(36).substring(2, 9);
@@ -19,7 +19,7 @@ onAuthStateChanged(auth, async (user) => {
 });
 
 function getPendingRef() {
-    const cat = currentCategory.split('-')[0];
+  const cat = currentCategory.split('-')[0];
   return ref(db, cat === "movies" ? "recommendations" : "music");
 }
 
@@ -52,7 +52,7 @@ tabButtons.forEach((btn) => {
       lists[key].style.display = key === currentCategory ? "block" : "none";
     });
     if (unsubscribe) unsubscribe();
-    loadAllForSuggestions();
+    // No recargamos sugerencias aquí para no depender; ya son globales
     const refToUse = currentCategory.includes('completed') ? getCompletedRef() : getPendingRef();
     unsubscribe = onValue(refToUse, (snapshot) => {
       renderRecommendations(snapshot, currentCategory.includes('completed'));
@@ -61,13 +61,19 @@ tabButtons.forEach((btn) => {
 });
 
 async function loadAllForSuggestions() {
-  const cat = currentCategory.split('-')[0];
-  const pendingSnap = await get(ref(db, cat === "movies" ? "recommendations" : "music"));
-  const completedSnap = await get(ref(db, cat === "movies" ? "completed_recommendations" : "completed_music"));
+  // Cargamos AMBAS categorías siempre, para sugerencias globales anti-duplicados
+  const moviesPendingSnap = await get(ref(db, "recommendations"));
+  const moviesCompletedSnap = await get(ref(db, "completed_recommendations"));
+  const musicPendingSnap = await get(ref(db, "music"));
+  const musicCompletedSnap = await get(ref(db, "completed_music"));
+  
   recommendations = [];
-  pendingSnap.forEach(child => recommendations.push({ id: child.key, ...child.val() }));
-  completedSnap.forEach(child => recommendations.push({ id: child.key, ...child.val() }));
-  console.log("Recomendaciones cargadas para sugerencias:", recommendations.length);
+  moviesPendingSnap.forEach(child => recommendations.push({ id: child.key, cat: 'movies', ...child.val() }));
+  moviesCompletedSnap.forEach(child => recommendations.push({ id: child.key, cat: 'movies', ...child.val() }));
+  musicPendingSnap.forEach(child => recommendations.push({ id: child.key, cat: 'music', ...child.val() }));
+  musicCompletedSnap.forEach(child => recommendations.push({ id: child.key, cat: 'music', ...child.val() }));
+  
+  console.log("Todas recomendaciones cargadas para sugerencias:", recommendations.length);
 }
 
 function linkifyAndEscape(text) {
@@ -459,6 +465,7 @@ function isSequelVariation(str1, str2) {
 textarea.addEventListener("input", async () => {
   const value = textarea.value.trim().toLowerCase();
   const submitBtn = form.querySelector('button[type="submit"]');
+  const currentCat = currentCategory.split('-')[0]; // Cat actual del form/tab
   if (value.length < 3) {
     suggestionsContainer.innerHTML = '';
     suggestionsContainer.style.display = 'none';
@@ -467,9 +474,10 @@ textarea.addEventListener("input", async () => {
     return;
   }
 
-  await loadAllForSuggestions();
+  await loadAllForSuggestions(); // Recarga fresca siempre
   const similar = recommendations
     .filter((rec) => {
+      if (rec.cat !== currentCat) return false; // Solo matchea misma categoría
       const recLower = rec.text.toLowerCase();
       const dist = levenshteinDistance(value, recLower);
       const isSimilar = dist < 5 || recLower.includes(value);
@@ -478,6 +486,8 @@ textarea.addEventListener("input", async () => {
     .sort((a, b) => {
       return levenshteinDistance(value, a.text.toLowerCase()) - levenshteinDistance(value, b.text.toLowerCase());
     });
+
+  console.log("Similares encontrados en input:", similar.length); // Debug: dime qué sale aquí al escribir duplicada
 
   suggestionsContainer.innerHTML = '';
   if (similar.length > 0) {
@@ -496,6 +506,8 @@ textarea.addEventListener("input", async () => {
       item.addEventListener("click", () => {
         textarea.value = rec.text;
         suggestionsContainer.innerHTML = "";
+        suggestionsContainer.style.display = 'none';
+        submitBtn.disabled = false; // Permite editar y enviar si clickean
       });
       list.appendChild(item);
     });
@@ -510,6 +522,7 @@ textarea.addEventListener("input", async () => {
   }
 });
 
+// Inicial
 loadAllForSuggestions().then(() => {
   unsubscribe = onValue(getPendingRef(), (snapshot) => renderRecommendations(snapshot));
 });
