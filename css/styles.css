@@ -2755,6 +2755,39 @@ footer h3 {
   display: none; /* JS lo muestra si admin */
 }
 
+/* Botones de moderación (admin only) */
+.delete-btn {
+  background: #ff3366; /* Tu --accent */
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  cursor: pointer;
+  margin-left: 10px;
+  transition: var(--transition);
+}
+
+.delete-btn:hover {
+  background: #ff0000; /* Rojo más intenso */
+  transform: scale(1.05);
+}
+
+.comment-delete {
+  background: none;
+  border: none;
+  color: #ff3366;
+  cursor: pointer;
+  font-size: 14px;
+  margin-left: 10px;
+  transition: var(--transition);
+}
+
+.comment-delete:hover {
+  color: #ff0000;
+  transform: scale(1.2);
+}
+
 
 
 

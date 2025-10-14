@@ -82,7 +82,7 @@ function linkifyAndEscape(text) {
   const urlRegex = /(https?:\/\/[^\s<>"']+|www\.[^\s<>"']+)/g;
   return escapeHtml(text).replace(urlRegex, (url) => {
     let link = url;
-    if (!link.startsWith('http')) link = 'https://' + link;
+    if (!link.startsWith('http')) link = 'https:' + link;
     return `<a href="${link}" target="_blank" rel="noopener noreferrer">${url}</a>`;
   });
 }
@@ -130,7 +130,8 @@ function renderCompletedPost(post, container) {
       ${post.reactionLink ? `<a href="${post.reactionLink}" target="_blank">Ver reacción</a>` : ''}
     </div>
     <div class="post-actions">
-      <button class="toggle-comments">💬 Comentarios (${post.comments ? Object.keys(post.comments).length : 0})</button>
+      <button class="toggle-comments">Comentarios (${post.comments ? Object.keys(post.comments).length : 0})</button>
+      ${isAdmin ? `<button class="delete-btn">Eliminar Post</button>` : ''}
     </div>
     <div class="comments-section" style="display:${openComments.has(post.id) ? "block" : "none"};"></div>
   `;
@@ -138,17 +139,26 @@ function renderCompletedPost(post, container) {
 
   const commentBtn = postElement.querySelector(".toggle-comments");
   const commentsContainer = postElement.querySelector(".comments-section");
+  const deleteBtn = postElement.querySelector(".delete-btn");
+
   commentBtn.addEventListener("click", (e) => {
     e.stopPropagation();
     const isOpen = commentsContainer.style.display === "block";
     commentsContainer.style.display = isOpen ? "none" : "block";
     if (!isOpen) {
       openComments.add(post.id);
-      renderComments(post.id, commentsContainer, true); // true para completed
+      renderComments(post.id, commentsContainer, true);
     } else {
       openComments.delete(post.id);
     }
   });
+
+  if (deleteBtn) {
+    deleteBtn.addEventListener("click", async (e) => {
+      e.stopPropagation();
+      await deletePost(post.id, true); // true para completed
+    });
+  }
 
   if (openComments.has(post.id)) {
     renderComments(post.id, commentsContainer, true);
@@ -170,7 +180,7 @@ function renderPost(post, container) {
     likeBtn.className = `like-btn ${userLiked ? "active" : ""}`;
     likeCount.className = `like-count ${userLiked ? "active" : ""}`;
     likeCount.textContent = likesCount;
-    commentBtn.textContent = `💬 Comentarios (${commentsCount})`;
+    commentBtn.textContent = `Comentarios (${commentsCount})`;
   } else {
     postElement = document.createElement("div");
     postElement.className = "recommend-post";
@@ -186,8 +196,9 @@ function renderPost(post, container) {
           <button class="like-btn ${userLiked ? "active" : ""}">❤️</button>
           <span class="like-count ${userLiked ? "active" : ""}">${likesCount}</span>
         </div>
-        <button class="toggle-comments">💬 Comentarios (${commentsCount})</button>
+        <button class="toggle-comments">Comentarios (${commentsCount})</button>
         ${isAdmin ? `<button class="complete-btn">Marcar Completada</button>` : ''}
+        ${isAdmin ? `<button class="delete-btn">Eliminar Post</button>` : ''}
       </div>
       <div class="comments-section" style="display:${openComments.has(post.id) ? "block" : "none"};"></div>
     `;
@@ -207,6 +218,7 @@ function renderPost(post, container) {
   const commentBtn = postElement.querySelector(".toggle-comments");
   const commentsContainer = postElement.querySelector(".comments-section");
   const completeBtn = postElement.querySelector(".complete-btn");
+  const deleteBtn = postElement.querySelector(".delete-btn");
 
   likeBtn.addEventListener("click", async (e) => {
     e.stopPropagation();
@@ -245,9 +257,26 @@ function renderPost(post, container) {
     });
   }
 
+  if (deleteBtn) {
+    deleteBtn.addEventListener("click", async (e) => {
+      e.stopPropagation();
+      await deletePost(post.id, false); // false para pending
+    });
+  }
+
   if (openComments.has(post.id)) {
     renderComments(post.id, commentsContainer);
   }
+}
+
+async function deletePost(postId, isCompleted) {
+  if (!isAdmin) return alert("Solo admins pueden eliminar.");
+  if (!confirm("¿Seguro que quieres eliminar este post? Esto es irreversible.")) return;
+  const cat = currentCategory.split('-')[0];
+  const path = isCompleted ? (cat === "movies" ? "completed_recommendations" : "completed_music") : (cat === "movies" ? "recommendations" : "music");
+  await remove(ref(db, `${path}/${postId}`));
+  loadAllForSuggestions(); // Actualiza sugerencias
+  alert("Post eliminado.");
 }
 
 async function markAsCompleted(postId, postData) {
@@ -263,7 +292,15 @@ async function markAsCompleted(postId, postData) {
   };
   await set(ref(db, `${completedPath}/${postId}`), newData);
   await remove(ref(db, `${pendingPath}/${postId}`));
-  loadAllForSuggestions(); // Actualiza sugerencias
+  loadAllForSuggestions();
+}
+
+async function deleteComment(postId, commentId, isCompleted) {
+  if (!isAdmin) return;
+  if (!confirm("¿Seguro que quieres eliminar este comentario?")) return;
+  const cat = currentCategory.split('-')[0];
+  const path = isCompleted ? (cat === "movies" ? "completed_recommendations" : "completed_music") : (cat === "movies" ? "recommendations" : "music");
+  await remove(ref(db, `${path}/${postId}/comments/${commentId}`));
 }
 
 function renderComments(postId, container, isCompleted = false) {
@@ -311,7 +348,9 @@ function renderComments(postId, container, isCompleted = false) {
       div.className = "comment";
       div.dataset.commentId = child.key;
       div.innerHTML = `
-        <div class="comment-header"><strong>${comment.name}</strong></div>
+        <div class="comment-header"><strong>${comment.name}</strong>
+          ${isAdmin ? `<button class="comment-delete" title="Eliminar comentario">Eliminar</button>` : ''}
+        </div>
         <div class="comment-text">${linkifyAndEscape(comment.text)}</div>
         <div class="comment-meta">
           <div class="like-wrapper">
@@ -338,6 +377,14 @@ function renderComments(postId, container, isCompleted = false) {
           e.target.nextElementSibling.classList.add("active");
         }
       });
+
+      const deleteCommentBtn = div.querySelector(".comment-delete");
+      if (deleteCommentBtn) {
+        deleteCommentBtn.addEventListener("click", async (e) => {
+          e.stopPropagation();
+          await deleteComment(postId, child.key, isCompleted);
+        });
+      }
 
       commentsList.appendChild(div);
     });
@@ -397,7 +444,7 @@ function levenshteinDistance(str1 = '', str2 = '') {
 }
 
 function isSequelVariation(str1, str2) {
-  function getBaseAndNum(s) {
+  function getBaseAndNum(sZD) {
     const match = s.match(/(.*?)(\s*\d+)?$/);
     return {
       base: match[1].trim().toLowerCase(),
