@@ -329,11 +329,6 @@ textarea.addEventListener("input", () => {
     warning.textContent = 'Recomendacion ya hecha';
     suggestionsContainer.appendChild(warning);
 
-    const details = document.createElement('details');
-    const summary = document.createElement('summary');
-    summary.textContent = 'Ver recomendaciones similares';
-    details.appendChild(summary);
-
     const list = document.createElement('div');
     list.className = 'suggestion-list';
     similar.forEach((rec) => {
@@ -346,8 +341,7 @@ textarea.addEventListener("input", () => {
       });
       list.appendChild(item);
     });
-    details.appendChild(list);
-    suggestionsContainer.appendChild(details);
+    suggestionsContainer.appendChild(list);
 
     submitBtn.disabled = true;
     submitBtn.style.backgroundColor = 'gray';

@@ -2611,28 +2611,49 @@ footer h3 {
 /* Suggestions */
 .suggestions {
   margin-top: 10px;
-  background: #f0f0f0;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  padding: 10px;
+  background: var(--glass-bg);
+  backdrop-filter: var(--blur);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius);
+  padding: 15px;
   display: none;
-  max-height: 200px;
+  max-height: 250px;
   overflow-y: auto;
+  box-shadow: 0 4px 25px rgba(0,0,0,0.3);
+  transition: var(--transition);
 }
 
 .suggestion-warning {
-  padding: 5px;
+  padding: 8px 0;
   font-weight: bold;
-  color: #ff0000; /* Rojo para advertencia */
-  border-bottom: 1px solid #eee;
+  color: var(--accent); /* Rojo acento para advertencia */
+  border-bottom: 1px solid var(--border-light);
+  margin-bottom: 10px;
+  text-align: center;
+  font-size: 16px;
+}
+
+.suggestion-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .suggestion-item {
-  padding: 5px;
-  border-bottom: 1px solid #eee;
-  color: #333;
+  padding: 10px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 8px;
+  color: var(--text-light);
+  cursor: pointer;
+  transition: var(--transition);
+  font-size: 15px;
 }
 
+.suggestion-item:hover {
+  background: rgba(255,255,255,0.12);
+  transform: translateY(-2px);
+  color: var(--accent-hover);
+}
 .suggestion-item:last-child {
   border-bottom: none;
 }
