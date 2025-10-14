@@ -290,7 +290,7 @@ function renderComments(postId, container, isCompleted = false) {
 
         const newCommentRef = push(commentsRef);
         await set(newCommentRef, {
-          name: user.displayName || " "Anónimo",
+          name: user.displayName || "Anónimo",
           text: input.value,
           timestamp: Date.now(),
           likes: {},
