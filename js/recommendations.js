@@ -447,7 +447,7 @@ function isSequelVariation(str1, str2) {
   function getBaseAndNum(s) {
     const match = s.match(/(.*?)(\s*\d+)?$/);
     return {
-      base: match[1].trim().toLowerCase(),
+      base: match[1].trim(),
       num: match[2] ? parseInt(match[2].trim(), 10) : null
     };
   }
@@ -509,8 +509,7 @@ textarea.addEventListener("input", () => {
   }
 });
 
-loadAllForSuggestions();
-unsubscribe = onValue(getPendingRef(), (snapshot) => renderRecommendations(snapshot));
+unsubscribe = onValue(getCategoryRef(), renderRecommendations);
 
 const scrollToTopBtn = document.querySelector(".scroll-to-top");
 if (scrollToTopBtn) {
