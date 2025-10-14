@@ -2682,6 +2682,78 @@ footer h3 {
   background: #555;
 }
 
+/* Lista de completadas: Scroll lateral */
+.completed-list {
+  flex-direction: row !important; /* Horizontal */
+  overflow-x: auto;
+  gap: 15px;
+  padding: 10px 0;
+  scrollbar-width: thin; /* Firefox */
+  scrollbar-color: var(--accent) var(--glass-bg);
+}
+
+.completed-list::-webkit-scrollbar {
+  height: 8px;
+}
+
+.completed-list::-webkit-scrollbar-track {
+  background: var(--glass-bg);
+}
+
+.completed-list::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  border-radius: 4px;
+}
+
+.completed-post {
+  min-width: 250px; /* Cards compactas */
+  max-width: 250px;
+  background: var(--glass-bg);
+  backdrop-filter: var(--blur);
+  border-radius: var(--radius);
+  padding: 15px;
+  box-shadow: 0 2px 15px rgba(0,0,0,0.4);
+  transition: var(--transition);
+}
+
+.completed-post:hover {
+  transform: scale(1.05);
+}
+
+.completed-post .post-text {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.completed-meta {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.completed-meta a {
+  color: var(--accent);
+  text-decoration: underline;
+}
+
+/* Botón Marcar Completada (solo admins) */
+.complete-btn {
+  background: var(--accent);
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.complete-btn:hover {
+  background: var(--accent-hover);
+}
+
+.admin-only {
+  display: none; /* JS lo muestra si admin */
+}
 
 
 

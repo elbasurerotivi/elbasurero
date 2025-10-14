@@ -1,21 +1,36 @@
 import { db, auth, ref, onValue, push, update, remove, get, set, onAuthStateChanged } from "./firebase-config.js";
 
-let currentCategory = "movies";
+let currentCategory = "movies-pending";
 let recommendations = [];
 let unsubscribe = null;
 let openComments = new Set();
 let userId = localStorage.getItem("userId") || "user_" + Math.random().toString(36).substring(2, 9);
 localStorage.setItem("userId", userId);
+let isAdmin = false;
 
-onAuthStateChanged(auth, (user) => {
+onAuthStateChanged(auth, async (user) => {
   if (user) {
     userId = user.uid;
     localStorage.setItem("userId", userId);
+    const roleSnap = await get(ref(db, `users/${user.uid}/role`));
+    isAdmin = roleSnap.val() === 'admin';
+    loadAllForSuggestions();
+    if (unsubscribe) renderCurrentList();
   }
 });
 
-function getCategoryRef() {
-  return ref(db, currentCategory === "movies" ? "recommendations" : "music");
+function getPendingRef() {
+  const cat = currentCategory.split('-')[0];
+  return ref(db, cat === "movies" ? "recommendations" : "music");
+}
+
+function getCompletedRef() {
+  const cat = currentCategory.split('-')[0];
+  return ref(db, cat === "movies" ? "completed_recommendations" : "completed_music");
+}
+
+function getListContainer() {
+  return document.getElementById(`recommend-list-${currentCategory}`);
 }
 
 const form = document.getElementById("recommend-form");
@@ -23,8 +38,10 @@ const textarea = document.getElementById("rec-text");
 const suggestionsContainer = document.getElementById("suggestions");
 const tabButtons = document.querySelectorAll(".tab-btn");
 const lists = {
-  movies: document.getElementById("recommend-list-movies"),
-  music: document.getElementById("recommend-list-music"),
+  "movies-pending": document.getElementById("recommend-list-movies-pending"),
+  "movies-completed": document.getElementById("recommend-list-movies-completed"),
+  "music-pending": document.getElementById("recommend-list-music-pending"),
+  "music-completed": document.getElementById("recommend-list-music-completed"),
 };
 
 tabButtons.forEach((btn) => {
@@ -36,9 +53,22 @@ tabButtons.forEach((btn) => {
       lists[key].style.display = key === currentCategory ? "block" : "none";
     });
     if (unsubscribe) unsubscribe();
-    unsubscribe = onValue(getCategoryRef(), renderRecommendations);
+    loadAllForSuggestions();
+    const refToUse = currentCategory.includes('completed') ? getCompletedRef() : getPendingRef();
+    unsubscribe = onValue(refToUse, (snapshot) => {
+      renderRecommendations(snapshot, currentCategory.includes('completed'));
+    });
   });
 });
+
+async function loadAllForSuggestions() {
+  const cat = currentCategory.split('-')[0];
+  const pendingSnap = await get(ref(db, cat === "movies" ? "recommendations" : "music"));
+  const completedSnap = await get(ref(db, cat === "movies" ? "completed_recommendations" : "completed_music"));
+  recommendations = [];
+  pendingSnap.forEach(child => recommendations.push({ id: child.key, ...child.val() }));
+  completedSnap.forEach(child => recommendations.push({ id: child.key, ...child.val() }));
+}
 
 function linkifyAndEscape(text) {
   const escapeHtml = (str) => {
@@ -57,28 +87,71 @@ function linkifyAndEscape(text) {
   });
 }
 
-function renderRecommendations(snapshot) {
-  recommendations = [];
+function renderRecommendations(snapshot, isCompleted = false) {
   const posts = [];
   snapshot.forEach((child) => {
-    const postData = child.val();
-    recommendations.push({ id: child.key, ...postData });
-    posts.push({ id: child.key, ...postData });
+    posts.push({ id: child.key, ...child.val() });
   });
 
   posts.sort((a, b) => {
+    if (isCompleted) return b.completedAt - a.completedAt;
     const likesA = Object.keys(a.likes || {}).length;
     const likesB = Object.keys(b.likes || {}).length;
-    if (likesB !== likesA) return likesB - likesA;
-    return b.timestamp - a.timestamp;
+    return likesB - likesA || b.timestamp - a.timestamp;
   });
 
-  const container = lists[currentCategory];
+  const container = getListContainer();
   container.innerHTML = "";
   if (posts.length === 0) {
     container.innerHTML = "<p>No hay recomendaciones todavía. ¡Sé el primero en publicar!</p>";
   } else {
-    posts.forEach((post) => renderPost(post, container));
+    posts.forEach((post) => {
+      if (isCompleted) {
+        renderCompletedPost(post, container);
+      } else {
+        renderPost(post, container);
+      }
+    });
+  }
+}
+
+function renderCompletedPost(post, container) {
+  const postElement = document.createElement("div");
+  postElement.className = "completed-post";
+  postElement.dataset.postId = post.id;
+  postElement.innerHTML = `
+    <div class="post-header">
+      <strong>${post.name}</strong>
+      <span>${new Date(post.timestamp).toLocaleString("es-AR")}</span>
+    </div>
+    <p class="post-text">${linkifyAndEscape(post.text)}</p>
+    <div class="completed-meta">
+      Completada: ${new Date(post.completedAt).toLocaleString("es-AR")}<br>
+      ${post.reactionLink ? `<a href="${post.reactionLink}" target="_blank">Ver reacción</a>` : ''}
+    </div>
+    <div class="post-actions">
+      <button class="toggle-comments">💬 Comentarios (${post.comments ? Object.keys(post.comments).length : 0})</button>
+    </div>
+    <div class="comments-section" style="display:${openComments.has(post.id) ? "block" : "none"};"></div>
+  `;
+  container.appendChild(postElement);
+
+  const commentBtn = postElement.querySelector(".toggle-comments");
+  const commentsContainer = postElement.querySelector(".comments-section");
+  commentBtn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    const isOpen = commentsContainer.style.display === "block";
+    commentsContainer.style.display = isOpen ? "none" : "block";
+    if (!isOpen) {
+      openComments.add(post.id);
+      renderComments(post.id, commentsContainer, true); // true para completed
+    } else {
+      openComments.delete(post.id);
+    }
+  });
+
+  if (openComments.has(post.id)) {
+    renderComments(post.id, commentsContainer, true);
   }
 }
 
@@ -90,7 +163,6 @@ function renderPost(post, container) {
 
   let postElement;
   if (existingPost) {
-    // Actualizar post existente
     postElement = existingPost;
     const likeBtn = postElement.querySelector(".like-btn");
     const likeCount = postElement.querySelector(".like-count");
@@ -100,7 +172,6 @@ function renderPost(post, container) {
     likeCount.textContent = likesCount;
     commentBtn.textContent = `💬 Comentarios (${commentsCount})`;
   } else {
-    // Crear nuevo post
     postElement = document.createElement("div");
     postElement.className = "recommend-post";
     postElement.dataset.postId = post.id;
@@ -116,6 +187,7 @@ function renderPost(post, container) {
           <span class="like-count ${userLiked ? "active" : ""}">${likesCount}</span>
         </div>
         <button class="toggle-comments">💬 Comentarios (${commentsCount})</button>
+        ${isAdmin ? `<button class="complete-btn">Marcar Completada</button>` : ''}
       </div>
       <div class="comments-section" style="display:${openComments.has(post.id) ? "block" : "none"};"></div>
     `;
@@ -134,13 +206,14 @@ function renderPost(post, container) {
   const likeBtn = postElement.querySelector(".like-btn");
   const commentBtn = postElement.querySelector(".toggle-comments");
   const commentsContainer = postElement.querySelector(".comments-section");
+  const completeBtn = postElement.querySelector(".complete-btn");
 
   likeBtn.addEventListener("click", async (e) => {
     e.stopPropagation();
     const user = auth.currentUser;
     if (!user) return alert("Debes iniciar sesión para dar like.");
     const uid = user.uid;
-    const likeRef = ref(db, `${currentCategory === "movies" ? "recommendations" : "music"}/${post.id}/likes/${uid}`);
+    const likeRef = ref(db, `${currentCategory.split('-')[0] === "movies" ? "recommendations" : "music"}/${post.id}/likes/${uid}`);
     const snapshot = await get(likeRef);
     if (snapshot.exists()) {
       await remove(likeRef);
@@ -165,16 +238,40 @@ function renderPost(post, container) {
     }
   });
 
+  if (completeBtn) {
+    completeBtn.addEventListener("click", async (e) => {
+      e.stopPropagation();
+      await markAsCompleted(post.id, post);
+    });
+  }
+
   if (openComments.has(post.id)) {
     renderComments(post.id, commentsContainer);
   }
 }
 
-function renderComments(postId, container) {
-  const commentsRef = ref(db, `${currentCategory === "movies" ? "recommendations" : "music"}/${postId}/comments`);
+async function markAsCompleted(postId, postData) {
+  if (!isAdmin) return alert("Solo admins pueden marcar.");
+  const cat = currentCategory.split('-')[0];
+  const pendingPath = cat === "movies" ? "recommendations" : "music";
+  const completedPath = cat === "movies" ? "completed_recommendations" : "completed_music";
+  const reactionLink = prompt("Enlace al video de reacción (opcional):") || "";
+  const newData = {
+    ...postData,
+    completedAt: Date.now(),
+    reactionLink
+  };
+  await set(ref(db, `${completedPath}/${postId}`), newData);
+  await remove(ref(db, `${pendingPath}/${postId}`));
+  loadAllForSuggestions(); // Actualiza sugerencias
+}
+
+function renderComments(postId, container, isCompleted = false) {
+  const cat = currentCategory.split('-')[0];
+  const path = isCompleted ? (cat === "movies" ? "completed_recommendations" : "completed_music") : (cat === "movies" ? "recommendations" : "music");
+  const commentsRef = ref(db, `${path}/${postId}/comments`);
 
   onValue(commentsRef, (snapshot) => {
-    // Preservar el formulario si ya existe
     let form = container.querySelector(".comment-form");
     if (!form) {
       form = document.createElement("form");
@@ -193,7 +290,7 @@ function renderComments(postId, container) {
 
         const newCommentRef = push(commentsRef);
         await set(newCommentRef, {
-          name: user.displayName || "Anónimo",
+          name: user.displayName || " "Anónimo",
           text: input.value,
           timestamp: Date.now(),
           likes: {},
@@ -203,7 +300,6 @@ function renderComments(postId, container) {
       });
     }
 
-    // Actualizar solo la lista de comentarios
     const commentsList = document.createElement("div");
     commentsList.className = "comments-list";
     snapshot.forEach((child) => {
@@ -230,7 +326,7 @@ function renderComments(postId, container) {
         const user = auth.currentUser;
         if (!user) return alert("Debes iniciar sesión para dar like.");
         const uid = user.uid;
-        const likeRef = ref(db, `${currentCategory === "movies" ? "recommendations" : "music"}/${postId}/comments/${child.key}/likes/${uid}`);
+        const likeRef = ref(db, `${path}/${postId}/comments/${child.key}/likes/${uid}`);
         const snap = await get(likeRef);
         if (snap.exists()) {
           await remove(likeRef);
@@ -246,7 +342,6 @@ function renderComments(postId, container) {
       commentsList.appendChild(div);
     });
 
-    // Reemplazar solo la lista de comentarios, preservando el formulario
     const existingList = container.querySelector(".comments-list");
     if (existingList) {
       existingList.replaceWith(commentsList);
@@ -264,7 +359,8 @@ form.addEventListener("submit", async (e) => {
   const text = textarea.value.trim();
   if (!text) return;
 
-  await push(getCategoryRef(), {
+  const pendingRef = getPendingRef();
+  await push(pendingRef, {
     name: user.displayName || "Anónimo",
     text,
     timestamp: Date.now(),
@@ -304,7 +400,7 @@ function isSequelVariation(str1, str2) {
   function getBaseAndNum(s) {
     const match = s.match(/(.*?)(\s*\d+)?$/);
     return {
-      base: match[1].trim(),
+      base: match[1].trim().toLowerCase(),
       num: match[2] ? parseInt(match[2].trim(), 10) : null
     };
   }
@@ -366,7 +462,8 @@ textarea.addEventListener("input", () => {
   }
 });
 
-unsubscribe = onValue(getCategoryRef(), renderRecommendations);
+loadAllForSuggestions();
+unsubscribe = onValue(getPendingRef(), (snapshot) => renderRecommendations(snapshot));
 
 const scrollToTopBtn = document.querySelector(".scroll-to-top");
 if (scrollToTopBtn) {

@@ -47,15 +47,17 @@
 
   <main class="container">
     <section class="recommendations">
-  <h2>💡 Recomendaciones</h2>
+  <h2>Recomendaciones</h2>
   <p>La recomendación con más likes va a subir al <strong>top</strong>, esa va a ser la que tenga <strong>prioridad</strong> para reaccionar.<br><br>
   Cada recomendación hecha se va a agregar en la lista de <strong>"Vistos"</strong> para saber qué recomendar y qué no.</p>
   <p><strong>Para poder interactuar en el sitio primero debes iniciar sesión con tu cuenta de Google</strong></p>
 
   <!-- Tabs -->
   <div class="tab-buttons">
-    <button class="tab-btn active" data-category="movies">🎬 Películas y Series</button>
-    <button class="tab-btn" data-category="music">🎵 Música</button>
+    <button class="tab-btn active" data-category="movies-pending">🎬 Pendientes Películas y Series</button>
+    <button class="tab-btn" data-category="movies-completed">🎬 Reaccionadas Películas</button>
+    <button class="tab-btn" data-category="music-pending">🎵 Pendientes Música</button>
+    <button class="tab-btn" data-category="music-completed">🎵 Reaccionadas Música</button>
   </div>
 
   <!-- Formulario -->
@@ -67,8 +69,10 @@
 
   <!-- Contenedor de listas -->
   <div id="recommend-lists">
-    <div id="recommend-list-movies" class="recommend-list active"></div>
-    <div id="recommend-list-music" class="recommend-list" style="display:none;"></div>
+    <div id="recommend-list-movies-pending" class="recommend-list active"></div>
+    <div id="recommend-list-movies-completed" class="recommend-list completed-list" style="display:none;"></div>
+    <div id="recommend-list-music-pending" class="recommend-list" style="display:none;"></div>
+    <div id="recommend-list-music-completed" class="recommend-list completed-list" style="display:none;"></div>
   </div>
 </section>
 
