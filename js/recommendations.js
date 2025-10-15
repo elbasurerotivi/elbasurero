@@ -567,7 +567,7 @@ textarea.addEventListener("input", async () => {
     // Agregar leyenda de advertencia
     const warning = document.createElement('div');
     warning.className = 'suggestion-warning';
-    warning.textContent = 'Tu recomendacion ya fué hecha';
+    warning.textContent = 'Tu recomendacion ya fué hecha, votala en lugar de repetirla';
     suggestionsContainer.appendChild(warning);
     
     // Agregar sugerencias
