@@ -508,6 +508,45 @@ form.addEventListener("submit", async (e) => {
   await loadAllForSuggestions(); // Actualiza array después de post
 });
 
+// form submit (adaptado a pending)
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const user = auth.currentUser;
+  if (!user) return alert("Debes iniciar sesión para publicar.");
+
+  const text = textarea.value.trim();
+  if (!text) return;
+
+  const valueNorm = text.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+  const similar = recommendations
+    .filter(rec => {
+      const recLower = rec._textNorm;
+      const minLen = Math.min(valueNorm.length, recLower.length);
+      if (minLen < 3) return false;
+      const dist = levenshteinDistance(valueNorm.slice(0, minLen), recLower.slice(0, minLen));
+      return dist === 0;
+    });
+
+  if (similar.length > 0) {
+    alert("No puedes publicar: esta recomendación es similar a una existente. Por favor, dale like a la que ya está.");
+    return;
+  }
+
+  const pendingRef = getPendingRef();
+  await push(pendingRef, {
+    name: user.displayName || "Anónimo",
+    text,
+    timestamp: Date.now(),
+    likes: {},
+    comments: {},
+  });
+
+  textarea.value = "";
+  suggestionsContainer.innerHTML = "";
+  suggestionsContainer.style.display = "none";
+  await loadAllForSuggestions(); // Actualiza array después de post
+});
+
 // Detector restaurado con mejoras
 function levenshteinDistance(str1 = '', str2 = '') {
   const track = Array(str2.length + 1).fill(null).map(() =>
@@ -554,22 +593,20 @@ textarea.addEventListener("input", async () => {
   }
 
   const similar = recommendations
-    .map(rec => {
+    .filter(rec => {
       const recLower = rec._textNorm;
-      const dist = levenshteinDistance(value, recLower);
-      const minLength = Math.min(value.length, recLower.length);
-      const similarityThreshold = minLength > 0 ? (dist / minLength) < 0.2 : false; // Bloquea si más del 80% coincide
-      const includesInRec = recLower.includes(value) && (value.length / recLower.length) > 0.8; // Requiere 80% de coincidencia
-      const includesRecInValue = value.includes(recLower) && (recLower.length / value.length) > 0.8; // Requiere 80% de coincidencia
-      const maxDist = 5; // Umbral fijo de 5
-      const isSimilar = (dist <= maxDist && similarityThreshold) || includesInRec || includesRecInValue;
-      return { rec, dist, isSimilar, recLower, includesInRec, includesRecInValue, maxDist };
+      const minLen = Math.min(value.length, recLower.length);
+      if (minLen < 3) return false;
+      const dist = levenshteinDistance(value.slice(0, minLen), recLower.slice(0, minLen));
+      return dist === 0;
     })
-    .filter(x => x.isSimilar)
-    .sort((a, b) => a.dist - b.dist)
-    .map(x => x.rec);
+    .sort((a, b) => {
+      const distA = levenshteinDistance(value, a._textNorm);
+      const distB = levenshteinDistance(value, b._textNorm);
+      return distA - distB;
+    });
 
-  console.log("Similares encontrados:", similar.length, similar.map(r => r.text), "Detalles:", similar.map(s => ({ text: s.text, dist: s.dist, includesInRec: s.includesInRec, includesRecInValue: s.includesRecInValue })));
+  console.log("Similares encontrados:", similar.length, similar.map(r => r.text));
 
   suggestionsContainer.innerHTML = '';
   if (similar.length > 0) {
