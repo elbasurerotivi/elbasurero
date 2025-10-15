@@ -79,10 +79,10 @@ async function loadAllForSuggestions() {
         temp.push({ id: child.key, _source: 'movies-pending', ...child.val() });
         count++;
       });
-      console.log(`Cargados ${count} items de recommendations`);
-    } else {
-      console.log("No hay datos en recommendations");
-    }
+      //console.log(`Cargados ${count} items de recommendations`);
+    //} else {
+      //console.log("No hay datos en recommendations");
+    //}
 
     // Cargar completed_recommendations
     const moviesCompletedSnap = await get(ref(db, "completed_recommendations"));
@@ -92,10 +92,10 @@ async function loadAllForSuggestions() {
         temp.push({ id: child.key, _source: 'movies-completed', ...child.val() });
         count++;
       });
-      console.log(`Cargados ${count} items de completed_recommendations`);
-    } else {
-      console.log("No hay datos en completed_recommendations");
-    }
+      //console.log(`Cargados ${count} items de completed_recommendations`);
+    //} else {
+      //console.log("No hay datos en completed_recommendations");
+    //}
 
     // Cargar music
     const musicPendingSnap = await get(ref(db, "music"));
@@ -105,10 +105,10 @@ async function loadAllForSuggestions() {
         temp.push({ id: child.key, _source: 'music-pending', ...child.val() });
         count++;
       });
-      console.log(`Cargados ${count} items de music`);
-    } else {
-      console.log("No hay datos en music");
-    }
+      //console.log(`Cargados ${count} items de music`);
+    //} else {
+      //console.log("No hay datos en music");
+    //}
 
     // Cargar completed_music
     const musicCompletedSnap = await get(ref(db, "completed_music"));
@@ -118,10 +118,10 @@ async function loadAllForSuggestions() {
         temp.push({ id: child.key, _source: 'music-completed', ...child.val() });
         count++;
       });
-      console.log(`Cargados ${count} items de completed_music`);
-    } else {
-      console.log("No hay datos en completed_music");
-    }
+      //console.log(`Cargados ${count} items de completed_music`);
+   // } else {
+      //console.log("No hay datos en completed_music");
+    //}
 
     // Normalizamos texto (quita acentos y minúsculas) para comparaciones robustas
     recommendations = temp.map(r => ({
@@ -131,7 +131,7 @@ async function loadAllForSuggestions() {
 
     console.log(`Recomendaciones cargadas para sugerencias (restaurado): ${recommendations.length} en total`);
     // muestra una muestra corta para debug (puedes comentar luego)
-    console.log("Listado (ejemplo):", recommendations.slice(0, 20).map(r => ({ text: r.text, source: r._source })));
+    //console.log("Listado (ejemplo):", recommendations.slice(0, 20).map(r => ({ text: r.text, source: r._source })));
   } catch (err) {
     console.error("Error cargando recomendaciones para sugerencias:", err);
     alert("Error al cargar recomendaciones existentes. Intenta recargar la página.");
@@ -479,13 +479,52 @@ form.addEventListener("submit", async (e) => {
   const similar = recommendations
     .filter(rec => {
       const recLower = rec._textNorm;
-      if (valueNorm.length < 3 || recLower.length < 3) return false;
-      // Extraer la parte sin números al final
-      const baseValue = valueNorm.replace(/\s+(temporada|s[ea][s0-9]+|episodio|\d+)$/, '');
-      const baseRec = recLower.replace(/\s+(temporada|s[ea][s0-9]+|episodio|\d+)$/, '');
-      const dist = levenshteinDistance(baseValue, baseRec);
-      console.log(`Comparando base: "${baseValue}" vs "${baseRec}", distancia: ${dist}`);
-      return dist <= 1; // Bloquea si la base es idéntica o con 1 error
+      const dist = levenshteinDistance(valueNorm, recLower);
+      const minLength = Math.min(valueNorm.length, recLower.length);
+      const similarityThreshold = minLength > 0 ? (dist / minLength) < 0.2 : false; // Bloquea si más del 80% coincide
+      const includesInRec = recLower.includes(valueNorm) && (valueNorm.length / recLower.length) > 0.8; // Requiere 80% de coincidencia
+      const includesRecInValue = valueNorm.includes(recLower) && (recLower.length / valueNorm.length) > 0.8; // Requiere 80% de coincidencia
+      console.log(`Comparando: "${valueNorm}" vs "${recLower}", dist: ${dist}, threshold: ${similarityThreshold}, includesInRec: ${includesInRec}, includesRecInValue: ${includesRecInValue}`);
+      return (dist <= 5 && similarityThreshold) || includesInRec || includesRecInValue;
+    });
+
+  if (similar.length > 0) {
+    alert("No puedes publicar: esta recomendación es similar a una existente. Por favor, dale like a la que ya está.");
+    return;
+  }
+
+  const pendingRef = getPendingRef();
+  await push(pendingRef, {
+    name: user.displayName || "Anónimo",
+    text,
+    timestamp: Date.now(),
+    likes: {},
+    comments: {},
+  });
+
+  textarea.value = "";
+  suggestionsContainer.innerHTML = "";
+  suggestionsContainer.style.display = "none";
+  await loadAllForSuggestions(); // Actualiza array después de post
+});
+
+// form submit (adaptado a pending)
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const user = auth.currentUser;
+  if (!user) return alert("Debes iniciar sesión para publicar.");
+
+  const text = textarea.value.trim();
+  if (!text) return;
+
+  const valueNorm = text.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+  const similar = recommendations
+    .filter(rec => {
+      const recLower = rec._textNorm;
+      const minLen = Math.min(valueNorm.length, recLower.length);
+      if (minLen < 3) return false;
+      const dist = levenshteinDistance(valueNorm.slice(0, minLen), recLower.slice(0, minLen));
+      return dist === 0;
     });
 
   if (similar.length > 0) {
@@ -556,12 +595,10 @@ textarea.addEventListener("input", async () => {
   const similar = recommendations
     .filter(rec => {
       const recLower = rec._textNorm;
-      if (value.length < 3 || recLower.length < 3) return false;
-      // Extraer la parte sin números al final
-      const baseValue = value.replace(/\s+(temporada|s[ea][s0-9]+|episodio|\d+)$/, '');
-      const baseRec = recLower.replace(/\s+(temporada|s[ea][s0-9]+|episodio|\d+)$/, '');
-      const dist = levenshteinDistance(baseValue, baseRec);
-      return dist <= 1; // Bloquea si la base es idéntica o con 1 error
+      const minLen = Math.min(value.length, recLower.length);
+      if (minLen < 3) return false;
+      const dist = levenshteinDistance(value.slice(0, minLen), recLower.slice(0, minLen));
+      return dist === 0;
     })
     .sort((a, b) => {
       const distA = levenshteinDistance(value, a._textNorm);
@@ -569,7 +606,7 @@ textarea.addEventListener("input", async () => {
       return distA - distB;
     });
 
-  console.log("Similares encontrados:", similar.length, similar.map(r => r.text), "Detalles:", similar.map(s => ({ text: s.text, dist: levenshteinDistance(value, s._textNorm) })));
+  console.log("Similares encontrados:", similar.length, similar.map(r => r.text));
 
   suggestionsContainer.innerHTML = '';
   if (similar.length > 0) {
