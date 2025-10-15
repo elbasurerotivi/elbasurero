@@ -99,6 +99,7 @@ async function loadAllForSuggestions() {
     console.log("Listado (ejemplo):", recommendations.slice(0, 20).map(r => ({ text: r.text, source: r._source })));
   } catch (err) {
     console.error("Error cargando recomendaciones para sugerencias:", err);
+    alert("Error al cargar recomendaciones existentes. Intenta recargar la página."); // CAMBIO: Agrego alert para UI
   }
 }
 
@@ -439,6 +440,22 @@ form.addEventListener("submit", async (e) => {
   const text = textarea.value.trim();
   if (!text) return;
 
+  // CAMBIO: Check extra de similitud antes de publicar (por si cambian texto después del input)
+  const valueNorm = text.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+  const similar = recommendations
+    .filter(rec => {
+      const dist = levenshteinDistance(valueNorm, rec._textNorm);
+      const maxDist = Math.max(2, Math.ceil(Math.max(valueNorm.length, rec._textNorm.length) * 0.25));
+      const includesInRec = rec._textNorm.includes(valueNorm);
+      const includesRecInValue = valueNorm.includes(rec._textNorm);
+      return (dist <= maxDist || includesInRec || includesRecInValue) && !isSequelVariation(valueNorm, rec._textNorm);
+    });
+
+  if (similar.length > 0) {
+    alert("No puedes publicar: esta recomendación es similar a una existente. Por favor, dale like a la que ya está.");
+    return;
+  }
+
   const pendingRef = getPendingRef();
   await push(pendingRef, {
     name: user.displayName || "Anónimo",
@@ -540,7 +557,7 @@ textarea.addEventListener("input", async () => {
     suggestionsContainer.style.display = 'block';
     const warning = document.createElement('div');
     warning.className = 'suggestion-warning';
-    warning.textContent = 'Recomendacion ya hecha';
+    warning.textContent = 'Recomendaciones similares ya existen. Por favor, dale like a la existente en lugar de crear una nueva.'; // CAMBIO: Mensaje más claro
     suggestionsContainer.appendChild(warning);
 
     const list = document.createElement('div');
@@ -548,14 +565,8 @@ textarea.addEventListener("input", async () => {
     similar.forEach((rec) => {
       const item = document.createElement('div');
       item.className = 'suggestion-item';
-      item.innerHTML = linkifyAndEscape(rec.text);
-      item.addEventListener("click", () => {
-        textarea.value = rec.text;
-        suggestionsContainer.innerHTML = '';
-        suggestionsContainer.style.display = 'none';
-        submitBtn.disabled = false; // Habilita al clickear
-        submitBtn.style.backgroundColor = '';
-      });
+      item.innerHTML = linkifyAndEscape(rec.text) + ` <small>(de ${rec._source})</small>`; // CAMBIO: Agrego fuente para contexto
+      // CAMBIO: Removí el addEventListener("click") para no rellenar y permitir duplicates
       list.appendChild(item);
     });
     suggestionsContainer.appendChild(list);
