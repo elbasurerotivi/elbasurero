@@ -265,87 +265,71 @@ window.logout = function() {
 };
 
 // -----------------------------
-// 🔹 Inicializar botón de autenticación en header
+// 🔹 Inicializar botón de autenticación en header con submenú
 // -----------------------------
 window.initAuthButtons = function() {
   const authBtn = document.getElementById("auth-btn");
+  const userMenu = document.getElementById("user-menu");
+  const logoutBtn = document.getElementById("logout-btn");
   const line1 = document.getElementById("auth-line1");
   const line2 = document.getElementById("auth-line2");
 
-  if (!authBtn || !line1 || !line2) {
-    console.warn("No se encontró el botón de autenticación en el header");
+  if (!authBtn || !userMenu || !logoutBtn || !line1 || !line2) {
+    console.warn("⏳ Esperando a que se cargue el header...");
+    setTimeout(window.initAuthButtons, 500);
     return;
   }
 
-  // Evento principal del botón
-  authBtn.addEventListener("click", () => {
+  // Escuchar cambios de autenticación
+  onAuthStateChanged(auth, (user) => {
+    console.log("🔄 Estado de autenticación cambiado:", user ? user.email : "No hay usuario");
+
+    if (user) {
+      // Mostrar solo el nombre del usuario
+      const nombre = user.displayName || user.email.split("@")[0];
+      authBtn.innerHTML = `${nombre} <span class="arrow">▼</span>`;
+      authBtn.classList.add("logged-in");
+      userMenu.classList.add("hidden");
+    } else {
+      // Mostrar "Iniciar sesión"
+      authBtn.innerHTML = `
+        <span id="auth-line1">Iniciar</span>
+        <span id="auth-line2">sesión</span>
+      `;
+      authBtn.classList.remove("logged-in");
+      userMenu.classList.add("hidden");
+    }
+  });
+
+  // 🔹 Alternar el submenú al hacer clic
+  authBtn.addEventListener("click", (e) => {
     const user = auth.currentUser;
     if (user) {
-      // Si hay usuario → cerrar sesión
-      window.logout();
+      userMenu.classList.toggle("hidden");
+      e.stopPropagation();
     } else {
-      // Si no hay usuario → abrir login
       window.abrirLogin();
     }
   });
 
-  // Escuchar cambios de autenticación
-  onAuthStateChanged(auth, (user) => {
-    console.log("Estado de autenticación cambiado:", user ? user.email : "No hay usuario");
-
-    if (user) {
-      const nombre = user.displayName || user.email.split("@")[0];
-      line1.textContent = nombre;
-      line2.textContent = "Salir";
-    } else {
-      line1.textContent = "Iniciar";
-      line2.textContent = "sesión";
+  // 🔹 Cerrar el submenú si se hace clic fuera
+  document.addEventListener("click", (e) => {
+    if (!authBtn.contains(e.target) && !userMenu.contains(e.target)) {
+      userMenu.classList.add("hidden");
     }
   });
+
+  // 🔹 Botón "Salir"
+  logoutBtn.addEventListener("click", async () => {
+    await signOut(auth);
+    userMenu.classList.add("hidden");
+    console.log("👋 Sesión cerrada");
+  });
+
+  console.log("✅ initAuthButtons inicializado correctamente");
 };
 
-import { onAuthStateChanged, signOut } from "firebase/auth";
-
-const authBtn = document.getElementById("auth-btn");
-const userMenu = document.getElementById("user-menu");
-const logoutBtn = document.getElementById("logout-btn");
-
-onAuthStateChanged(auth, (user) => {
-  if (user) {
-    const nombre = user.displayName || user.email.split("@")[0];
-    authBtn.textContent = nombre;
-    authBtn.classList.add("logged-in");
-  } else {
-    authBtn.innerHTML = `<span id="auth-line1">Iniciar</span><span id="auth-line2">sesión</span>`;
-    authBtn.classList.remove("logged-in");
-    userMenu.classList.add("hidden");
-  }
-});
-
-// 🔹 Alternar el submenú al hacer clic en el nombre
-authBtn.addEventListener("click", () => {
-  if (authBtn.classList.contains("logged-in")) {
-    userMenu.classList.toggle("hidden");
-  } else {
-    window.location.href = "login.html"; // o tu ruta de login
-  }
-});
-
-// 🔹 Botón "Salir"
-logoutBtn.addEventListener("click", async () => {
-  await signOut(auth);
-  userMenu.classList.add("hidden");
-});
-
-
-// Ejecutar cuando el DOM esté listo
+// 🔹 Ejecutar cuando el DOM esté listo
 document.addEventListener("DOMContentLoaded", () => {
-  console.log("Inicializando botón de autenticación...");
   window.initAuthButtons();
 });
-
-
-
-console.log("✅ login.js cargado correctamente");
-
-
