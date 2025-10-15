@@ -481,10 +481,11 @@ form.addEventListener("submit", async (e) => {
       const recLower = rec._textNorm;
       const dist = levenshteinDistance(valueNorm, recLower);
       const minLength = Math.min(valueNorm.length, recLower.length);
-      const similarityThreshold = minLength > 0 ? (dist / minLength) < 0.3 : false; // Bloquea si más del 50% coincide
-      const includesInRec = recLower.includes(valueNorm);
-      const includesRecInValue = valueNorm.includes(recLower);
-      return (dist <= 2 && similarityThreshold) || includesInRec || includesRecInValue;
+      const similarityThreshold = minLength > 0 ? (dist / minLength) < 0.2 : false; // Bloquea si más del 80% coincide
+      const includesInRec = recLower.includes(valueNorm) && (valueNorm.length / recLower.length) > 0.8; // Requiere 80% de coincidencia
+      const includesRecInValue = valueNorm.includes(recLower) && (recLower.length / valueNorm.length) > 0.8; // Requiere 80% de coincidencia
+      console.log(`Comparando: "${valueNorm}" vs "${recLower}", dist: ${dist}, threshold: ${similarityThreshold}, includesInRec: ${includesInRec}, includesRecInValue: ${includesRecInValue}`);
+      return (dist <= 5 && similarityThreshold) || includesInRec || includesRecInValue;
     });
 
   if (similar.length > 0) {
@@ -557,10 +558,10 @@ textarea.addEventListener("input", async () => {
       const recLower = rec._textNorm;
       const dist = levenshteinDistance(value, recLower);
       const minLength = Math.min(value.length, recLower.length);
-      const similarityThreshold = minLength > 0 ? (dist / minLength) < 0.3 : false; // Bloquea si más del 50% coincide
-      const includesInRec = recLower.includes(value);
-      const includesRecInValue = value.includes(recLower);
-      const maxDist = 2; // Umbral fijo de 2
+      const similarityThreshold = minLength > 0 ? (dist / minLength) < 0.2 : false; // Bloquea si más del 80% coincide
+      const includesInRec = recLower.includes(value) && (value.length / recLower.length) > 0.8; // Requiere 80% de coincidencia
+      const includesRecInValue = value.includes(recLower) && (recLower.length / value.length) > 0.8; // Requiere 80% de coincidencia
+      const maxDist = 5; // Umbral fijo de 5
       const isSimilar = (dist <= maxDist && similarityThreshold) || includesInRec || includesRecInValue;
       return { rec, dist, isSimilar, recLower, includesInRec, includesRecInValue, maxDist };
     })
@@ -568,7 +569,7 @@ textarea.addEventListener("input", async () => {
     .sort((a, b) => a.dist - b.dist)
     .map(x => x.rec);
 
-  console.log("Similares encontrados:", similar.length, similar.map(r => r.text));
+  console.log("Similares encontrados:", similar.length, similar.map(r => r.text), "Detalles:", similar.map(s => ({ text: s.text, dist: s.dist, includesInRec: s.includesInRec, includesRecInValue: s.includesRecInValue })));
 
   suggestionsContainer.innerHTML = '';
   if (similar.length > 0) {
