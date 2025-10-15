@@ -481,10 +481,10 @@ form.addEventListener("submit", async (e) => {
       const recLower = rec._textNorm;
       const dist = levenshteinDistance(valueNorm, recLower);
       const minLength = Math.min(valueNorm.length, recLower.length);
-      const similarityThreshold = minLength > 0 ? (dist / minLength) < 0.5 : false; // Bloquea si más del 50% coincide
+      const similarityThreshold = minLength > 0 ? (dist / minLength) < 0.3 : false; // Bloquea si más del 50% coincide
       const includesInRec = recLower.includes(valueNorm);
       const includesRecInValue = valueNorm.includes(recLower);
-      return (dist <= 3 && similarityThreshold) || includesInRec || includesRecInValue;
+      return (dist <= 2 && similarityThreshold) || includesInRec || includesRecInValue;
     });
 
   if (similar.length > 0) {
@@ -557,10 +557,10 @@ textarea.addEventListener("input", async () => {
       const recLower = rec._textNorm;
       const dist = levenshteinDistance(value, recLower);
       const minLength = Math.min(value.length, recLower.length);
-      const similarityThreshold = minLength > 0 ? (dist / minLength) < 0.5 : false; // Bloquea si más del 50% coincide
+      const similarityThreshold = minLength > 0 ? (dist / minLength) < 0.3 : false; // Bloquea si más del 50% coincide
       const includesInRec = recLower.includes(value);
       const includesRecInValue = value.includes(recLower);
-      const maxDist = 3; // Umbral fijo de 3
+      const maxDist = 2; // Umbral fijo de 2
       const isSimilar = (dist <= maxDist && similarityThreshold) || includesInRec || includesRecInValue;
       return { rec, dist, isSimilar, recLower, includesInRec, includesRecInValue, maxDist };
     })
