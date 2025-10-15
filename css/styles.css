@@ -601,7 +601,7 @@ body {
 }
 
 #auth-btn::after {
-  content: "▼";
+  
   font-size: 10px;
   margin-left: 4px;
   opacity: 0;
