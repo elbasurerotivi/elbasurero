@@ -65,6 +65,7 @@ tabButtons.forEach((btn) => {
    CARGA DE SUGERENCIAS (FIX)
    - ahora lee las 4 ramas (movies/music + completed)
    - normaliza texto y guarda _textNorm para comparaciones rápidas
+   - mejora logging para depuración
    ============================ */
 async function loadAllForSuggestions() {
   try {
@@ -474,7 +475,6 @@ form.addEventListener("submit", async (e) => {
   const text = textarea.value.trim();
   if (!text) return;
 
-  // CAMBIO: Check extra de similitud antes de publicar (por si cambian texto después del input)
   const valueNorm = text.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
   const similar = recommendations
     .filter(rec => {
@@ -507,7 +507,6 @@ form.addEventListener("submit", async (e) => {
 
 // Detector restaurado con mejoras
 function levenshteinDistance(str1 = '', str2 = '') {
-  // Calcula distancia normal (works fine para nuestros tamaños)
   const track = Array(str2.length + 1).fill(null).map(() =>
     Array(str1.length + 1).fill(null)
   );
@@ -550,7 +549,6 @@ function isSequelVariation(str1, str2) {
    ============================ */
 textarea.addEventListener("input", async () => {
   const valueRaw = textarea.value.trim();
-  // Normalizamos entrada (quita acentos y minúsculas)
   const value = valueRaw.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
   const submitBtn = form.querySelector('button[type="submit"]');
   if (valueRaw.length < 3) {
@@ -561,14 +559,9 @@ textarea.addEventListener("input", async () => {
     return;
   }
 
-  // Si no hay datos, cargamos (solo la primera vez o si fue vacío)
   if (recommendations.length === 0) {
-    await loadAllForSuggestions(); // Solo si está vacío
+    await loadAllForSuggestions();
   }
-
-  // Debug: ver que recomendaciones tenemos disponibles
-  // console.log("Recomendaciones disponibles (count):", recommendations.length);
-  // console.log(recommendations.map(r => ({ text: r.text, source: r._source })));
 
   const similar = recommendations
     .map(rec => {
@@ -576,7 +569,7 @@ textarea.addEventListener("input", async () => {
       const dist = levenshteinDistance(value, recLower);
       const includesInRec = recLower.includes(value);
       const includesRecInValue = value.includes(recLower);
-      const maxDist = Math.max(2, Math.ceil(Math.max(value.length, recLower.length) * 0.25)); // 25% del largo, mínimo 2
+      const maxDist = Math.max(2, Math.ceil(Math.max(value.length, recLower.length) * 0.25));
       const isSimilar = dist <= maxDist || includesInRec || includesRecInValue;
       return { rec, dist, isSimilar, recLower, includesInRec, includesRecInValue, maxDist };
     })
@@ -584,14 +577,14 @@ textarea.addEventListener("input", async () => {
     .sort((a, b) => a.dist - b.dist)
     .map(x => x.rec);
 
-  console.log("Similares encontrados:", similar.length, similar.map(r => r.text)); // Debug
+  console.log("Similares encontrados:", similar.length, similar.map(r => r.text));
 
   suggestionsContainer.innerHTML = '';
   if (similar.length > 0) {
     suggestionsContainer.style.display = 'block';
     const warning = document.createElement('div');
     warning.className = 'suggestion-warning';
-    warning.textContent = 'Recomendaciones similares ya existen. Por favor, dale like a la existente en lugar de crear una nueva.'; // CAMBIO: Mensaje más claro
+    warning.textContent = 'Recomendaciones similares ya existen. Por favor, dale like a la existente en lugar de crear una nueva.';
     suggestionsContainer.appendChild(warning);
 
     const list = document.createElement('div');
@@ -599,8 +592,7 @@ textarea.addEventListener("input", async () => {
     similar.forEach((rec) => {
       const item = document.createElement('div');
       item.className = 'suggestion-item';
-      item.innerHTML = linkifyAndEscape(rec.text) + ` <small>(de ${rec._source})</small>`; // CAMBIO: Agrego fuente para contexto
-      // CAMBIO: Removí el addEventListener("click") para no rellenar y permitir duplicates
+      item.innerHTML = linkifyAndEscape(rec.text) + ` <small>(de ${rec._source})</small>`;
       list.appendChild(item);
     });
     suggestionsContainer.appendChild(list);
@@ -615,7 +607,6 @@ textarea.addEventListener("input", async () => {
 });
 
 // Inicial
-// Cargamos sugerencias desde todas las ramas al inicio y nos suscribimos al feed "pending" por defecto
 loadAllForSuggestions().then(() => {
   unsubscribe = onValue(getPendingRef(), (snapshot) => renderRecommendations(snapshot));
 });
