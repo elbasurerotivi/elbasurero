@@ -288,44 +288,18 @@ window.initAuthButtons = function() {
       window.abrirLogin();
     }
   });
+  // Escuchar cambios de autenticación
+  onAuthStateChanged(auth, (user) => {
+    console.log("Estado de autenticación cambiado:", user ? user.email : "No hay usuario");
 
-  // Monitorear el estado de autenticación
-
-    onAuthStateChanged(auth, (user) => {
-  console.log("Estado de autenticación cambiado:", user ? user.email : "No hay usuario");
-
-  if (user) {
-    let nombre = user.displayName || user.email.split("@")[0];
-
-    // ✨ Lógica para dividir el nombre si es muy largo
-    const palabras = nombre.split(" ");
-    let linea1 = nombre;
-    let linea2 = "";
-
-    // Si el nombre es demasiado largo, separamos en dos líneas
-    if (nombre.length > 14) {
-      if (palabras.length > 1) {
-        const mitad = Math.ceil(palabras.length / 2);
-        linea1 = palabras.slice(0, mitad).join(" ");
-        linea2 = palabras.slice(mitad).join(" ");
-      } else {
-        // Si es una sola palabra muy larga, dividirla a la mitad
-        linea1 = nombre.slice(0, Math.ceil(nombre.length / 2));
-        linea2 = nombre.slice(Math.ceil(nombre.length / 2));
-      }
-    }
-
-    line1.textContent = linea1;
-    // Si hay una segunda parte del nombre, la mostramos; si no, mantenemos "Salir" abajo
-    if (linea2) {
-      line2.textContent = linea2;
-    } else {
+    if (user) {
+      const nombre = user.displayName || user.email.split("@")[0];
+      line1.textContent = nombre;
       line2.textContent = "Salir";
+    } else {
+      line1.textContent = "Iniciar";
+      line2.textContent = "sesión";
     }
-  } else {
-    line1.textContent = "Iniciar";
-    line2.textContent = "sesión";
-    
   });
 };
 
@@ -338,4 +312,5 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 console.log("✅ login.js cargado correctamente");
+
 
