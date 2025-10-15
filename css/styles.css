@@ -539,6 +539,52 @@ body {
         transform: translateX(-50%); /* Centra horizontalmente */
     }
 }
+/* 🔹 Botón dinámico de autenticación mejorado */
+#auth-btn {
+  background: transparent;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 70px;
+  height: 50px;
+  line-height: 1.2;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 8px;
+  transition: transform 0.2s ease, background-color 0.3s ease;
+  white-space: normal; /* Permite saltos naturales si hay espacio */
+  overflow-wrap: break-word; /* Solo divide si realmente lo necesita */
+  word-break: keep-all; /* Evita cortar palabras por la mitad */
+}
+
+#auth-btn:hover {
+  transform: scale(1.1);
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+#auth-btn span {
+  display: block;
+  text-align: center;
+  color: #eaeaea;
+  white-space: normal;
+  word-break: keep-all;
+}
+
+/* 🔹 Ajuste de tamaño en móvil */
+@media (max-width: 600px) {
+  #auth-btn {
+    width: 60px;
+    height: 45px;
+    font-size: 11px;
+  }
+}
+
+
 
 /* HERO con fondo de imagen */
 .hero {
@@ -3792,5 +3838,6 @@ footer h3 {
   height: 100%;
 
 }
+
 
 
