@@ -5,15 +5,20 @@
     </a>
   </div>
 
-  <ul class="nav-menu">
-    <!-- 🔹 Nuevo ítem integrado en el menú -->
-    <li class="nav-auth">
-      <button id="auth-btn" class="btn btn-auth">
-        <span id="auth-line1">Iniciar</span><br>
-        <span id="auth-line2">sesión</span>
-      </button>
-    </li>
+  <div class="auth-section">
+  <button id="auth-btn">
+    <span id="auth-line1">Iniciar</span>
+    <span id="auth-line2">sesión</span>
+  </button>
 
+  <!-- 🔽 Submenú de usuario -->
+  <div id="user-menu" class="hidden">
+    <button id="logout-btn">Salir</button>
+  </div>
+  </div>
+  
+
+  <ul class="nav-menu">
     <li><a href="index.html">Inicio</a></li>
     <li><a href="videos.html">Videos</a></li>
     <li><a href="directos.html">Directos</a></li>
