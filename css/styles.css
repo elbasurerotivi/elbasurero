@@ -356,19 +356,6 @@ body {
 
 /* Estilos para el botón de login */
 .btn-login {
-  background: #007bff00;
-  color: #fff;
-  padding: 0px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 14px;
-  font-weight: 700;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-/* Estilos para el botón de login */
-.btn-login {
   background: #8f959b00;
   color: #ffffff00;
   padding: 0px;
