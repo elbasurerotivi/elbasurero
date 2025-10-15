@@ -422,6 +422,23 @@ body {
         height: 14px;
     }
 }
+.btn-auth {
+  display: inline-block;
+  text-align: center;
+  font-size: 14px;
+  line-height: 1.1;
+  font-weight: 500;
+  padding: 8px 12px;
+  border: none;
+  background: none;
+  color: white;
+  cursor: pointer;
+}
+
+.btn-auth span {
+  display: block;
+}
+
 
 /* Responsivo */
 @media (max-width: 768px) {
@@ -3733,3 +3750,4 @@ footer h3 {
   height: 100%;
 
 }
+
