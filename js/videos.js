@@ -1005,6 +1005,20 @@ const videosData = [
   ]
 },
 
+{
+  titulo: '🎥 Nuevo video en el canal: “5 PUEBLOS MÁGICOS en provincia de Buenos Aires” – Reacción a Gui 10 road',
+  descripcion: 'Hoy traigo una joyita: un video de Gui 10 road, ese chico que siempre logra que uno quiera salir corriendo a conocer cada rincón del país. En este caso, nos muestra 5 pueblitos de menos de mil habitantes en la provincia de Buenos Aires.\nSí, ¡menos de mil habitantes! O sea… básicamente una cuadra más y ya es otra provincia.\n\nEs un video tranquilo, con paisajes hermosos, datos curiosos y un toque de humor que me encanta.\nY si te preguntas: “¿por qué reaccionar a esto y no a una superproducción de Hollywood?”, bueno… porque Gui 10 road me cae bien y porque puedo.',
+  fecha: '2025-10-15',
+  link: 'https://www.youtube.com/watch?v=-S7nTXyE-aQ',
+  miniatura: 'https://img.youtube.com/vi/-S7nTXyE-aQ/maxresdefault.jpg',
+  tags: [
+    'Cultura',
+    'Documental',
+    'Especiales'
+  ]
+},
+
+
 
 
 ];
