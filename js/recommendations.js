@@ -479,10 +479,12 @@ form.addEventListener("submit", async (e) => {
   const similar = recommendations
     .filter(rec => {
       const dist = levenshteinDistance(valueNorm, rec._textNorm);
-      const maxDist = Math.max(2, Math.ceil(Math.max(valueNorm.length, rec._textNorm.length) * 0.25));
+      const maxDist = 5; // Umbral fijo de 5 como punto de partida
+      const isSequel = isSequelVariation(valueNorm, rec._textNorm);
       const includesInRec = rec._textNorm.includes(valueNorm);
       const includesRecInValue = valueNorm.includes(rec._textNorm);
-      return (dist <= maxDist || includesInRec || includesRecInValue) && !isSequelVariation(valueNorm, rec._textNorm);
+      // Solo consideramos similar si la distancia es baja y no es una secuela/variación
+      return (dist <= maxDist && !isSequel) || includesInRec || includesRecInValue;
     });
 
   if (similar.length > 0) {
@@ -530,6 +532,32 @@ function levenshteinDistance(str1 = '', str2 = '') {
 }
 
 function isSequelVariation(str1, str2) {
+  // Dividimos en palabras para analizar
+  const words1 = str1.split(/\s+/);
+  const words2 = str2.split(/\s+/);
+  if (words1.length < 2 || words2.length < 2) return false; // Mínimo 2 palabras para considerar secuela
+
+  // Contamos palabras comunes al inicio
+  let commonPrefixWords = 0;
+  const minLength = Math.min(words1.length, words2.length);
+  for (let i = 0; i < minLength; i++) {
+    if (words1[i] === words2[i]) {
+      commonPrefixWords++;
+    } else {
+      break;
+    }
+  }
+
+  // Si hay al menos 2 palabras comunes al inicio, consideramos que podría ser secuela
+  if (commonPrefixWords >= 2) {
+    const uniqueWords1 = new Set(words1.slice(commonPrefixWords));
+    const uniqueWords2 = new Set(words2.slice(commonPrefixWords));
+    const diffWords = new Set([...uniqueWords1, ...uniqueWords2]);
+    // Si la diferencia es significativa (más de 1 palabra distinta), es una secuela
+    return diffWords.size > 1;
+  }
+
+  // Fallback: chequeo de base + número (como antes)
   function getBaseAndNum(s) {
     const match = s.match(/(.*?)(\s*\d+)?$/);
     return {
@@ -569,7 +597,7 @@ textarea.addEventListener("input", async () => {
       const dist = levenshteinDistance(value, recLower);
       const includesInRec = recLower.includes(value);
       const includesRecInValue = value.includes(recLower);
-      const maxDist = Math.max(2, Math.ceil(Math.max(value.length, recLower.length) * 0.25));
+      const maxDist = 5; // Umbral fijo de 5
       const isSimilar = dist <= maxDist || includesInRec || includesRecInValue;
       return { rec, dist, isSimilar, recLower, includesInRec, includesRecInValue, maxDist };
     })
