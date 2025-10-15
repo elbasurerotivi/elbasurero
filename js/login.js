@@ -265,73 +265,53 @@ window.logout = function() {
 };
 
 // -----------------------------
-// 🔹 Inicializar botones de login/logout (header)
+// 🔹 Inicializar botón de autenticación en header
 // -----------------------------
 window.initAuthButtons = function() {
-  const loginBtn = document.getElementById("login-btn");
-  const logoutBtn = document.getElementById("logout-btn");
+  const authBtn = document.getElementById("auth-btn");
+  const line1 = document.getElementById("auth-line1");
+  const line2 = document.getElementById("auth-line2");
 
-  if (loginBtn) {
-    loginBtn.addEventListener("click", () => {
-      window.abrirLogin();
-      console.log("Clic en botón Login del header");
-    });
-  } else {
-    console.warn("No se encontró el elemento #login-btn");
+  if (!authBtn || !line1 || !line2) {
+    console.warn("No se encontró el botón de autenticación en el header");
+    return;
   }
 
-  if (logoutBtn) {
-    logoutBtn.addEventListener("click", () => {
-      window.logout();
-      console.log("Clic en botón Logout del header");
-    });
-  } else {
-    console.warn("No se encontró el elemento #logout-btn");
-  }
-
-  // Actualizar visibilidad según estado de autenticación
-  onAuthStateChanged(auth, user => {
-    console.log("Estado de autenticación cambiado:", user ? `Usuario conectado: ${user.email}` : "No hay usuario conectado");
+  // Evento principal del botón
+  authBtn.addEventListener("click", () => {
+    const user = auth.currentUser;
     if (user) {
-      if (loginBtn) {
-        loginBtn.style.display = "none";
-        console.log("login-btn ocultado");
-      } else {
-        console.warn("No se encontró el elemento #login-btn");
-      }
-      if (logoutBtn) {
-        logoutBtn.style.display = "block";
-        console.log("logout-btn mostrado");
-      } else {
-        console.warn("No se encontró el elemento #logout-btn");
-      }
-      localStorage.setItem("userId", user.uid);
+      // Si hay usuario → cerrar sesión
+      window.logout();
     } else {
-      if (loginBtn) {
-        loginBtn.style.display = "block";
-        console.log("login-btn mostrado");
-      } else {
-        console.warn("No se encontró el elemento #login-btn");
-      }
-      if (logoutBtn) {
-        logoutBtn.style.display = "none";
-        console.log("logout-btn ocultado");
-      } else {
-        console.warn("No se encontró el elemento #logout-btn");
-      }
-      let userId = localStorage.getItem("userId");
-      if (!userId) {
-        userId = "user_" + Math.random().toString(36).substring(2, 9);
-        localStorage.setItem("userId", userId);
-      }
+      // Si no hay usuario → abrir login
+      window.abrirLogin();
+    }
+  });
+
+  // Monitorear el estado de autenticación
+  onAuthStateChanged(auth, (user) => {
+    console.log("Estado de autenticación cambiado:", user ? user.email : "No hay usuario");
+
+    if (user) {
+      // Usuario autenticado
+      const nombre = user.displayName || user.email.split("@")[0];
+      line1.textContent = nombre;
+      line2.textContent = "Salir";
+    } else {
+      // Usuario no autenticado
+      line1.textContent = "Iniciar";
+      line2.textContent = "sesión";
     }
   });
 };
 
-// Ejecutar inicialización cuando el DOM esté listo
+// Ejecutar cuando el DOM esté listo
 document.addEventListener("DOMContentLoaded", () => {
-  console.log("Inicializando botones de autenticación...");
+  console.log("Inicializando botón de autenticación...");
   window.initAuthButtons();
 });
+
+
 
 console.log("✅ login.js cargado correctamente");
