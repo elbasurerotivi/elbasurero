@@ -553,49 +553,7 @@ textarea.addEventListener("input", async () => {
     await loadAllForSuggestions();
   }
 
-  const similar = recommendations
-    .map(rec => {
-      const recLower = rec._textNorm;
-      const dist = levenshteinDistance(value, recLower);
-      const minLength = Math.min(value.length, recLower.length);
-      const similarityThreshold = minLength > 0 ? (dist / minLength) < 0.2 : false; // Bloquea si más del 80% coincide
-      const includesInRec = recLower.includes(value) && (value.length / recLower.length) > 0.8; // Requiere 80% de coincidencia
-      const includesRecInValue = value.includes(recLower) && (recLower.length / value.length) > 0.8; // Requiere 80% de coincidencia
-      const maxDist = 5; // Umbral fijo de 5
-      const isSimilar = (dist <= maxDist && similarityThreshold) || includesInRec || includesRecInValue;
-      return { rec, dist, isSimilar, recLower, includesInRec, includesRecInValue, maxDist };
-    })
-    .filter(x => x.isSimilar)
-    .sort((a, b) => a.dist - b.dist)
-    .map(x => x.rec);
-
-  console.log("Similares encontrados:", similar.length, similar.map(r => r.text), "Detalles:", similar.map(s => ({ text: s.text, dist: s.dist, includesInRec: s.includesInRec, includesRecInValue: s.includesRecInValue })));
-
-  suggestionsContainer.innerHTML = '';
-  if (similar.length > 0) {
-    suggestionsContainer.style.display = 'block';
-    const warning = document.createElement('div');
-    warning.className = 'suggestion-warning';
-    warning.textContent = 'Recomendaciones similares ya existen. Por favor, dale like a la existente en lugar de crear una nueva.';
-    suggestionsContainer.appendChild(warning);
-
-    const list = document.createElement('div');
-    list.className = 'suggestion-list';
-    similar.forEach((rec) => {
-      const item = document.createElement('div');
-      item.className = 'suggestion-item';
-      item.innerHTML = linkifyAndEscape(rec.text) + ` <small>(de ${rec._source})</small>`;
-      list.appendChild(item);
-    });
-    suggestionsContainer.appendChild(list);
-
-    submitBtn.disabled = true;
-    submitBtn.style.backgroundColor = 'gray';
-  } else {
-    suggestionsContainer.style.display = 'none';
-    submitBtn.disabled = false;
-    submitBtn.style.backgroundColor = '';
-  }
+  
 });
 
 // Inicial
