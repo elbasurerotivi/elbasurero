@@ -554,7 +554,7 @@ textarea.addEventListener("input", async () => {
     .filter((rec) => {
       const recLower = rec._textNorm;
       const dist = levenshteinDistance(value, recLower);
-      return dist < 5 || recLower.includes(value);
+      return dist < 3 || recLower.includes(value);
     })
     .sort((a, b) => {
       return levenshteinDistance(value, a._textNorm) - levenshteinDistance(value, b._textNorm);
