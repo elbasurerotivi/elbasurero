@@ -193,6 +193,11 @@ header, .navbar {
 }
 .video-card h3 {
   color:#ffffff;
+  font-size: 0.8rem;
+  margin: 0;
+  font-weight: 700;
+  line-height: 1.4;
+  color: #fffefe;
 }
 .video-card small {
   color: var(--text-muted);
@@ -1249,13 +1254,6 @@ footer h3 {
   transform: scale(1.05);
 }
 
-.video-card h3 {
-  font-size: 0.8rem;
-  margin: 0;
-  font-weight: 700;
-  line-height: 1.4;
-  color: #fffefe;
-}
 
 .video-card .video-desc {
   flex: 1;
@@ -1877,11 +1875,7 @@ footer h3 {
     height: 150px;
   }
 
-  .video-card h3 {
-    font-size: 0.8rem;
-  }
-
-  .video-card .video-desc p {
+    .video-card .video-desc p {
     font-size: 0.85rem;
   }
 
@@ -3836,14 +3830,6 @@ footer h3 {
   transform: translateY(0);
 }
 
-
-
-
-
-
-
-
-
 .playlist-container, .player-container {
   padding: 20px;
   text-align: center;
@@ -3878,7 +3864,7 @@ footer h3 {
 }
 
 .video-card p {
-  font-size: 0.9em;
+  font-size: 0.6em;
   color: #ccc;
 }
 
