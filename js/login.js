@@ -288,6 +288,7 @@ window.initAuthButtons = function() {
       window.abrirLogin();
     }
   });
+
   // Escuchar cambios de autenticación
   onAuthStateChanged(auth, (user) => {
     console.log("Estado de autenticación cambiado:", user ? user.email : "No hay usuario");
@@ -302,6 +303,40 @@ window.initAuthButtons = function() {
     }
   });
 };
+
+import { onAuthStateChanged, signOut } from "firebase/auth";
+
+const authBtn = document.getElementById("auth-btn");
+const userMenu = document.getElementById("user-menu");
+const logoutBtn = document.getElementById("logout-btn");
+
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    const nombre = user.displayName || user.email.split("@")[0];
+    authBtn.textContent = nombre;
+    authBtn.classList.add("logged-in");
+  } else {
+    authBtn.innerHTML = `<span id="auth-line1">Iniciar</span><span id="auth-line2">sesión</span>`;
+    authBtn.classList.remove("logged-in");
+    userMenu.classList.add("hidden");
+  }
+});
+
+// 🔹 Alternar el submenú al hacer clic en el nombre
+authBtn.addEventListener("click", () => {
+  if (authBtn.classList.contains("logged-in")) {
+    userMenu.classList.toggle("hidden");
+  } else {
+    window.location.href = "login.html"; // o tu ruta de login
+  }
+});
+
+// 🔹 Botón "Salir"
+logoutBtn.addEventListener("click", async () => {
+  await signOut(auth);
+  userMenu.classList.add("hidden");
+});
+
 
 // Ejecutar cuando el DOM esté listo
 document.addEventListener("DOMContentLoaded", () => {
