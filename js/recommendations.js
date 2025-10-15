@@ -68,24 +68,58 @@ tabButtons.forEach((btn) => {
    ============================ */
 async function loadAllForSuggestions() {
   try {
-    const moviesPendingSnap = await get(ref(db, "recommendations"));
-    const moviesCompletedSnap = await get(ref(db, "completed_recommendations"));
-    const musicPendingSnap = await get(ref(db, "music"));
-    const musicCompletedSnap = await get(ref(db, "completed_music"));
-
     const temp = [];
 
+    // Cargar recommendations
+    const moviesPendingSnap = await get(ref(db, "recommendations"));
     if (moviesPendingSnap && moviesPendingSnap.exists()) {
-      moviesPendingSnap.forEach(child => temp.push({ id: child.key, _source: 'movies-pending', ...child.val() }));
+      let count = 0;
+      moviesPendingSnap.forEach(child => {
+        temp.push({ id: child.key, _source: 'movies-pending', ...child.val() });
+        count++;
+      });
+      console.log(`Cargados ${count} items de recommendations`);
+    } else {
+      console.log("No hay datos en recommendations");
     }
+
+    // Cargar completed_recommendations
+    const moviesCompletedSnap = await get(ref(db, "completed_recommendations"));
     if (moviesCompletedSnap && moviesCompletedSnap.exists()) {
-      moviesCompletedSnap.forEach(child => temp.push({ id: child.key, _source: 'movies-completed', ...child.val() }));
+      let count = 0;
+      moviesCompletedSnap.forEach(child => {
+        temp.push({ id: child.key, _source: 'movies-completed', ...child.val() });
+        count++;
+      });
+      console.log(`Cargados ${count} items de completed_recommendations`);
+    } else {
+      console.log("No hay datos en completed_recommendations");
     }
+
+    // Cargar music
+    const musicPendingSnap = await get(ref(db, "music"));
     if (musicPendingSnap && musicPendingSnap.exists()) {
-      musicPendingSnap.forEach(child => temp.push({ id: child.key, _source: 'music-pending', ...child.val() }));
+      let count = 0;
+      musicPendingSnap.forEach(child => {
+        temp.push({ id: child.key, _source: 'music-pending', ...child.val() });
+        count++;
+      });
+      console.log(`Cargados ${count} items de music`);
+    } else {
+      console.log("No hay datos en music");
     }
+
+    // Cargar completed_music
+    const musicCompletedSnap = await get(ref(db, "completed_music"));
     if (musicCompletedSnap && musicCompletedSnap.exists()) {
-      musicCompletedSnap.forEach(child => temp.push({ id: child.key, _source: 'music-completed', ...child.val() }));
+      let count = 0;
+      musicCompletedSnap.forEach(child => {
+        temp.push({ id: child.key, _source: 'music-completed', ...child.val() });
+        count++;
+      });
+      console.log(`Cargados ${count} items de completed_music`);
+    } else {
+      console.log("No hay datos en completed_music");
     }
 
     // Normalizamos texto (quita acentos y minúsculas) para comparaciones robustas
@@ -94,12 +128,12 @@ async function loadAllForSuggestions() {
       _textNorm: (r.text || '').toString().normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase()
     }));
 
-    console.log("Recomendaciones cargadas para sugerencias (restaurado):", recommendations.length);
+    console.log(`Recomendaciones cargadas para sugerencias (restaurado): ${recommendations.length} en total`);
     // muestra una muestra corta para debug (puedes comentar luego)
     console.log("Listado (ejemplo):", recommendations.slice(0, 20).map(r => ({ text: r.text, source: r._source })));
   } catch (err) {
     console.error("Error cargando recomendaciones para sugerencias:", err);
-    alert("Error al cargar recomendaciones existentes. Intenta recargar la página."); // CAMBIO: Agrego alert para UI
+    alert("Error al cargar recomendaciones existentes. Intenta recargar la página.");
   }
 }
 
