@@ -1263,7 +1263,7 @@ footer h3 {
 
 .video-card .video-desc p {
   margin: 0;
-  font-size: 0.95rem;
+  font-size: 15px;
   line-height: 1.5;
   color: var(--text-muted);
 }
@@ -1876,7 +1876,7 @@ footer h3 {
   }
 
     .video-card .video-desc p {
-    font-size: 0.85rem;
+    font-size: 11px;
   }
 
   .video-card small {
