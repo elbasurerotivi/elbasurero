@@ -5,20 +5,7 @@
     </a>
   </div>
 
-  <!-- 🔹 Sección de autenticación -->
-  <div class="auth-section">
-    <button id="auth-btn">
-      <span id="auth-line1">Iniciar</span>
-      <span id="auth-line2">sesión</span>
-    </button>
-
-    <!-- 🔽 Submenú del usuario -->
-    <div id="user-menu" class="hidden">
-      <button id="logout-btn">Salir</button>
-    </div>
-  </div>
-
-  <!-- 🔹 Menú principal -->
+  <!-- 🔹 Menú principal con botón integrado -->
   <ul class="nav-menu">
     <li><a href="index.html">Inicio</a></li>
     <li><a href="videos.html">Videos</a></li>
@@ -27,8 +14,22 @@
     <li><a href="recomendaciones.html">Recomendaciones</a></li>
     <li><a href="contacto.html">Contacto</a></li>
     <li><a href="playlist.html">Premium 🔒</a></li>
+
+    <!-- 🔹 Botón de autenticación integrado -->
+    <li class="auth-item">
+      <button id="auth-btn">
+        <span id="auth-line1">Iniciar</span>
+        <span id="auth-line2">sesión</span>
+      </button>
+
+      <!-- 🔽 Submenú del usuario -->
+      <div id="user-menu" class="hidden">
+        <button id="logout-btn">Salir</button>
+      </div>
+    </li>
   </ul>
 
+  <!-- 🔹 Botón de menú móvil -->
   <div class="menu-toggle">
     <span class="bar"></span>
     <span class="bar"></span>
