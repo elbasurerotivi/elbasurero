@@ -4008,5 +4008,197 @@ footer h3 {
 }
 
 
+/*encuestas*/
 
+/* === ENCUESTAS PAGE === */
+.encuestas-container {
+  width: 90%;
+  max-width: 900px;
+  margin: 100px auto 50px;
+  backdrop-filter: blur(8px);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  color: #fff;
+}
 
+/* Tabs */
+.encuestas-tabs {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 25px;
+  gap: 15px;
+}
+.encuestas-tabs button {
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.3s;
+  font-weight: 600;
+}
+.encuestas-tabs button.active {
+  background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(5px);
+}
+
+/* Encuesta actual */
+.encuesta-card {
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 16px;
+  padding: 25px;
+  margin-bottom: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+.encuesta-card h3 {
+  font-size: 1.3rem;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+/* Opciones */
+.encuesta-opciones {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.opcion {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+.opcion:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: scale(1.02);
+}
+.opcion.selected {
+  background: rgba(80, 200, 120, 0.3);
+  border-color: rgba(80, 200, 120, 0.6);
+}
+.opcion-text {
+  flex-grow: 1;
+  font-weight: 500;
+}
+.opcion-count {
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+/* Progreso visual de votos */
+.opcion-bar {
+  height: 6px;
+  border-radius: 6px;
+  background: linear-gradient(90deg, #33ccff, #9966ff);
+  margin-top: 6px;
+  transition: width 0.5s;
+}
+
+/* Contador regresivo */
+.countdown {
+  text-align: center;
+  font-size: 1rem;
+  margin-top: 10px;
+  color: #ffc107;
+}
+
+/* Encuestas finalizadas */
+.encuestas-finalizadas {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.finalizada-card {
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 14px;
+  padding: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.finalizada-card h4 {
+  margin-bottom: 10px;
+  color: #ddd;
+  font-size: 1.1rem;
+}
+.opcion.winner {
+  background: rgba(0, 255, 100, 0.25);
+  border-color: rgba(0, 255, 100, 0.6);
+}
+
+/* Crear nueva encuesta (solo admin) */
+.crear-encuesta {
+  margin-top: 40px;
+  padding: 20px;
+  border-radius: 14px;
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+.crear-encuesta h3 {
+  text-align: center;
+  margin-bottom: 15px;
+}
+.crear-encuesta input,
+.crear-encuesta select {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+}
+.crear-encuesta button {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  background: linear-gradient(90deg, #2196f3, #21cbf3);
+  color: #fff;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: opacity 0.3s;
+}
+.crear-encuesta button:hover {
+  opacity: 0.8;
+}
+
+/* Botones de acción */
+.btn-end,
+.btn-start {
+  display: inline-block;
+  padding: 8px 14px;
+  margin-top: 15px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.15);
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background 0.3s;
+}
+.btn-end:hover {
+  background: rgba(255, 0, 0, 0.3);
+}
+.btn-start:hover {
+  background: rgba(0, 255, 100, 0.3);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .encuestas-container {
+    padding: 20px;
+  }
+  .encuesta-card h3 {
+    font-size: 1.1rem;
+  }
+  .opcion {
+    padding: 8px 10px;
+  }
+}
