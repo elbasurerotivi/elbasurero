@@ -320,55 +320,64 @@ btnCancelCreate.addEventListener('click', () => {
   surveyCreator.style.display = 'none';
 });
 
-// Start survey
+// Start survey (crear nueva encuesta)
 btnStartSurvey.addEventListener('click', async () => {
   if (!isAdmin) return alert('Solo administradores pueden crear encuestas.');
+
+  // título y opciones
   const titulo = surveyTitleInput.value.trim();
   if (!titulo) return alert('Ingrese un título');
-  const inputs = Array.from(document.querySelectorAll('.option-input')).map(i=>i.value.trim()).filter(Boolean);
+  
+  const inputs = Array.from(document.querySelectorAll('.option-input'))
+    .map(i => i.value.trim())
+    .filter(Boolean);
+
   if (inputs.length < 2) return alert('La encuesta necesita al menos 2 opciones.');
 
+  // duración
   const days = Number(durDays.value) || 0;
   const hours = Number(durHours.value) || 0;
   const mins = Number(durMins.value) || 0;
   const finTs = Date.now() + ((days*24 + hours)*60 + mins)*60*1000;
 
-  // ensure only one active at a time: deactivate others
-  const updates = {};
-  Object.keys(surveysCache).forEach(id => {
-    if (surveysCache[id] && surveysCache[id].activa) updates[`encuestas/${id}/activa`] = false;
-  });
-
-  // build options
+  // construir objeto de opciones
   const optionsObj = {};
   inputs.forEach((t, idx) => {
-    const id = 'opt_' + Math.random().toString(36).substring(2,9);
+    const id = 'opt_' + Math.random().toString(36).substring(2, 9);
     optionsObj[id] = { text: t, votes: {} };
   });
 
-  const newRef = push(ref(db, 'encuestas'));
-  const newId = newRef.key;
-  updates[`encuestas/${newId}`] = {
-    titulo,
-    options: optionsObj,
-    multiple: !!surveyMultiple.checked,
-    fin: finTs,
-    activa: true,
-    creador: currentUserId,
-    createdAt: Date.now(),
-  };
-
   try {
-    await update(ref(db), updates);
+    // 1️⃣ desactivar otras encuestas activas (si existen)
+    for (const id of Object.keys(surveysCache)) {
+      if (surveysCache[id] && surveysCache[id].activa) {
+        await update(ref(db, `encuestas/${id}`), { activa: false });
+      }
+    }
+
+    // 2️⃣ crear la nueva encuesta en 'encuestas'
+    const encuestasRef = ref(db, 'encuestas');
+    const newRef = push(encuestasRef);
+    const newId = newRef.key;
+
+    await set(newRef, {
+      titulo,
+      options: optionsObj,
+      multiple: !!surveyMultiple.checked,
+      fin: finTs,
+      activa: true,
+      creador: currentUserId,
+      createdAt: Date.now()
+    });
+
   } catch (e) {
     console.error('Error creando encuesta:', e);
     alert('Error al crear encuesta. Revisa la consola.');
     return;
   }
 
-  // reset form
+  // 3️⃣ resetear formulario
   surveyTitleInput.value = '';
-  // keep first two inputs but clear values; remove extras
   const optionInputs = document.querySelectorAll('.option-input');
   optionInputs.forEach((i, idx) => {
     if (idx > 1) {
@@ -378,12 +387,14 @@ btnStartSurvey.addEventListener('click', async () => {
       i.value = '';
     }
   });
+
   surveyMultiple.checked = false;
   durDays.value = '';
   durHours.value = '';
   durMins.value = '';
   surveyCreator.style.display = 'none';
 });
+
 
 // small UX: avoid clicks on closed list doing nothing weird
 closedList.addEventListener('click', (e)=>{ /* placeholder */ });
