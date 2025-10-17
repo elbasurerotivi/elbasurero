@@ -4008,7 +4008,7 @@ footer h3 {
 }
 
 
-/*encuestas*/
+
 
 /* === ENCUESTAS PAGE === */
 .encuestas-container {
@@ -4198,7 +4198,7 @@ footer h3 {
 
 .post-encuesta strong {
   color: rgba(212, 212, 212, 0.623);
-  font-size: 15px;
+  font-size: 25px;
   display: flex;
   justify-content: space-between;
   align-items: center;
