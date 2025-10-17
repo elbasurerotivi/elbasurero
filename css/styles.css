@@ -4193,7 +4193,8 @@ footer h3 {
   color: white
 }
 .survey-meta span{
-  color: rgb(196, 196, 196)
+  color: rgb(196, 196, 196);
+  font-size: 12px;
 }
 
 
