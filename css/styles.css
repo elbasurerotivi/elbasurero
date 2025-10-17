@@ -4189,6 +4189,11 @@ footer h3 {
 .btn-start:hover {
   background: rgba(0, 255, 100, 0.3);
 }
+.opt-left {
+  color: white
+}
+
+
 
 /* Responsive */
 @media (max-width: 600px) {
