@@ -54,12 +54,13 @@ onAuthStateChanged(auth, async (user) => {
     try {
       const roleSnap = await get(ref(db, `users/${user.uid}/role`));
       isAdmin = roleSnap.val() === 'admin';
+      console.log('Auth UID:', user.uid, 'Role:', roleSnap.val(), 'isAdmin:', isAdmin);  // DEBUG: Verifica aquí
     } catch (e) {
       console.error('Error leyendo role:', e);
       isAdmin = false;
     }
     adminControls.style.display = isAdmin ? 'block' : 'none';
-    surveyCreator.style.display = isAdmin ? 'block' : 'none';
+    surveyCreator.style.display = 'none';  // Oculto por defecto, se muestra solo si admin en click
   } else {
     currentUserId = localStorage.getItem('userId') || currentUserId;
     adminControls.style.display = 'none';
@@ -236,26 +237,14 @@ async function toggleVote(surveyId, optId, multiple){
 
   // Single-choice: remove UID from all options, then toggle the requested one
   if (!multiple){
-    // En btnStartSurvey, reemplaza el for loop y set separado por:
-const updates = {};
-for (const id of Object.keys(surveysCache)) {
-  if (surveysCache[id] && surveysCache[id].activa) {
-    updates[`encuestas/${id}/activa`] = false;
-    updates[`encuestas/${id}/closedAt`] = Date.now();
-  }
-}
-const newRef = push(ref(db, 'encuestas'));
-const newId = newRef.key;
-updates[`encuestas/${newId}`] = {
-  titulo,
-  options: optionsObj,
-  multiple: !!surveyMultiple.checked,
-  fin: finTs,
-  activa: true,
-  creador: currentUserId,
-  createdAt: Date.now()
-};
-await update(ref(db), updates);  // Un solo call, pasa rules como admin
+    const updates = {};
+    Object.keys(options).forEach(id => {
+      updates[`encuestas/${surveyId}/options/${id}/votes/${uid}`] = null;
+    });
+    const votePath = `encuestas/${surveyId}/options/${optId}/votes/${uid}`;
+    const voteSnap = await get(ref(db, votePath));
+    updates[votePath] = !voteSnap.exists();  // Toggle: si ya votó, no agregar; pero como limpiamos, siempre agregar si click
+    await update(ref(db), updates);
   } else {
     // multiple choice: toggle only this vote
     const votePath = `encuestas/${surveyId}/options/${optId}/votes/${uid}`;
@@ -307,6 +296,7 @@ async function finalizeSurvey(surveyId){
 
 // Admin: creation UI handling
 btnNewSurvey.addEventListener('click', () => {
+  if (!isAdmin) return alert('Acceso denegado');
   surveyCreator.style.display = surveyCreator.style.display === 'block' ? 'none' : 'block';
 });
 
@@ -331,6 +321,9 @@ btnCancelCreate.addEventListener('click', () => {
 // Start survey (crear nueva encuesta)
 btnStartSurvey.addEventListener('click', async () => {
   if (!isAdmin) return alert('Solo administradores pueden crear encuestas.');
+  if (!auth.currentUser) return alert('Debes estar autenticado.');
+
+  console.log('Iniciando creación - UID:', currentUserId, 'isAdmin:', isAdmin);  // DEBUG
 
   // título y opciones
   const titulo = surveyTitleInput.value.trim();
@@ -356,19 +349,18 @@ btnStartSurvey.addEventListener('click', async () => {
   });
 
   try {
-    // 1️⃣ desactivar otras encuestas activas (si existen)
+    // Multi-path update: desactivar otras + crear nueva en un solo call
+    const updates = {};
     for (const id of Object.keys(surveysCache)) {
       if (surveysCache[id] && surveysCache[id].activa) {
-        await update(ref(db, `encuestas/${id}`), { activa: false });
+        updates[`encuestas/${id}/activa`] = false;
+        updates[`encuestas/${id}/closedAt`] = Date.now();
       }
     }
 
-    // 2️⃣ crear la nueva encuesta en 'encuestas'
-    const encuestasRef = ref(db, 'encuestas');
-    const newRef = push(encuestasRef);
+    const newRef = push(ref(db, 'encuestas'));
     const newId = newRef.key;
-
-    await set(newRef, {
+    updates[`encuestas/${newId}`] = {
       titulo,
       options: optionsObj,
       multiple: !!surveyMultiple.checked,
@@ -376,7 +368,9 @@ btnStartSurvey.addEventListener('click', async () => {
       activa: true,
       creador: currentUserId,
       createdAt: Date.now()
-    });
+    };
+    await update(ref(db), updates);
+    console.log('Encuesta creada con ID:', newId);  // DEBUG
 
   } catch (e) {
     console.error('Error creando encuesta:', e);
@@ -384,7 +378,7 @@ btnStartSurvey.addEventListener('click', async () => {
     return;
   }
 
-  // 3️⃣ resetear formulario
+  // resetear formulario
   surveyTitleInput.value = '';
   const optionInputs = document.querySelectorAll('.option-input');
   optionInputs.forEach((i, idx) => {
