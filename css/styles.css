@@ -4192,6 +4192,9 @@ footer h3 {
 .opt-left {
   color: white
 }
+.vote-count{
+  color: white
+}
 .survey-meta span{
   color: rgb(196, 196, 196);
   font-size: 12px;
