@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<div id="closed-tab" class="tab-content" style="display:none;">
+<div id="closed-surveys-list"></div>
+</div>
+</div>
+
+
+<!-- Formulario de creación (solo admin) -->
+<div id="survey-creator" class="recommend-form" style="display:none;margin-top:20px;">
+<h3>Crear nueva encuesta</h3>
+<label>Título (puede incluir enlaces)</label>
+<input id="survey-title" type="text" placeholder="Título de la encuesta" required />
+
+
+<div id="options-list">
+<label>Opciones</label>
+<div class="option-row">
+<input class="option-input" placeholder="Opción 1" />
+<button class="btn-remove-option btn">✖</button>
+</div>
+<div class="option-row">
+<input class="option-input" placeholder="Opción 2" />
+<button class="btn-remove-option btn">✖</button>
+</div>
+</div>
+<button id="btn-add-option" class="btn">➕ Agregar opción</button>
+
+
+<div style="margin-top:12px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;">
+<label><input id="survey-multiple" type="checkbox" /> Permitir selección múltiple</label>
+
+
+<div style="display:flex;gap:8px;align-items:center;">
+<label>Duración:</label>
+<input id="dur-days" type="number" min="0" placeholder="días" style="width:70px;" />
+<input id="dur-hours" type="number" min="0" max="23" placeholder="hrs" style="width:70px;" />
+<input id="dur-mins" type="number" min="0" max="59" placeholder="mins" style="width:70px;" />
+</div>
+</div>
+
+
+<div style="margin-top:12px;display:flex;gap:12px;">
+<button id="btn-start-survey" class="btn btn-primary">Iniciar encuesta</button>
+<button id="btn-cancel-create" class="btn">Cancelar</button>
+</div>
+</div>
+
+
+<p style="margin-top:18px;color:var(--text-muted);font-size:14px;">Solo los administradores pueden crear o finalizar encuestas. Los votos son anónimos y se muestran en tiempo real.</p>
+
+
+</section>
+</main>
+
+
+<footer>
+<p>&copy; 2025 El Basurero. Todos los derechos reservados.</p>
+</footer>
+
+
+<!-- Scripts -->
+<script type="module" src="js/firebase-config.js" defer></script>
+<script type="module" src="js/encuestas.js" defer></script>
+<script type="module" src="js/login.js" defer></script>
+<script src="js/scripts.js"></script>
+</body>
+</html>
