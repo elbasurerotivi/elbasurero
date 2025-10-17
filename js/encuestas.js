@@ -236,18 +236,26 @@ async function toggleVote(surveyId, optId, multiple){
 
   // Single-choice: remove UID from all options, then toggle the requested one
   if (!multiple){
-    const updates = {};
-    let alreadyInTarget = false;
-    Object.keys(options).forEach(id => {
-      if (options[id].votes && options[id].votes[uid]) {
-        updates[`encuestas/${surveyId}/options/${id}/votes/${uid}`] = null;
-        if (id === optId) alreadyInTarget = true;
-      }
-    });
-    if (!alreadyInTarget){
-      updates[`encuestas/${surveyId}/options/${optId}/votes/${uid}`] = true;
-    }
-    await update(ref(db), updates);
+    // En btnStartSurvey, reemplaza el for loop y set separado por:
+const updates = {};
+for (const id of Object.keys(surveysCache)) {
+  if (surveysCache[id] && surveysCache[id].activa) {
+    updates[`encuestas/${id}/activa`] = false;
+    updates[`encuestas/${id}/closedAt`] = Date.now();
+  }
+}
+const newRef = push(ref(db, 'encuestas'));
+const newId = newRef.key;
+updates[`encuestas/${newId}`] = {
+  titulo,
+  options: optionsObj,
+  multiple: !!surveyMultiple.checked,
+  fin: finTs,
+  activa: true,
+  creador: currentUserId,
+  createdAt: Date.now()
+};
+await update(ref(db), updates);  // Un solo call, pasa rules como admin
   } else {
     // multiple choice: toggle only this vote
     const votePath = `encuestas/${surveyId}/options/${optId}/votes/${uid}`;
