@@ -4332,7 +4332,7 @@ p[style*="muted"] {
     padding: 16px;
     border-radius: 20px;
   }
-  .post-header strong {
+  .post-encuesta strong {
     font-size: 1.2rem;
   }
   .time-remaining {
@@ -4375,7 +4375,7 @@ p[style*="muted"] {
   .post-header {
     align-items: flex-start;
   }
-  .post-header strong {
+  .post-encuesta strong {
     font-size: 1.1rem;
   }
   .opt-right {
