@@ -4195,6 +4195,17 @@ footer h3 {
 .vote-count{
   color: white
 }
+
+.post-encuesta strong {
+  color: rgba(212, 212, 212, 0.623);
+  font-size: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color:rgba(169, 169, 169, 0.537);
+  
+}
+
 .survey-meta span{
   color: rgb(196, 196, 196);
   font-size: 15px;

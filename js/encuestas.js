@@ -114,7 +114,7 @@ function renderActive(survey){
   const endsAt = Number(survey.fin) || Date.now();
 
   card.innerHTML = `
-    <div class="post-header"><strong>${titleHtml}</strong>
+    <div class="post-encuesta"><strong>${titleHtml}</strong>
       <span class="survey-meta">Finaliza: <span class="time-remaining" data-fin="${endsAt}"></span></span>
     </div>
     <div class="survey-options" style="margin-top:12px"></div>
@@ -212,7 +212,7 @@ function renderClosed(data){
     const optsHtml = optEls.map(o => `<div style="padding:8px;border-radius:8px;background:rgba(255,255,255,0.02);margin-bottom:6px;">${linkifyAndEscape(o.text)} <strong>(${o.votes})</strong> ${o.id===winnerId?'<span style="color:var(--accent);">⭐ Ganador</span>':''}</div>`).join('');
 
     card.innerHTML = `
-      <div class="post-header"><strong>${titleHtml}</strong>
+      <div class="post-encuesta"><strong>${titleHtml}</strong>
         <span>${s.fin ? new Date(s.fin).toLocaleString('es-AR') : ''}</span>
       </div>
       <div class="post-text">${optsHtml}</div>
