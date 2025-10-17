@@ -4012,221 +4012,398 @@ footer h3 {
 
 /* === ENCUESTAS PAGE === */
 .encuestas-container {
-  width: 90%;
+  width: 95%;
   max-width: 900px;
-  margin: 100px auto 50px;
-  backdrop-filter: blur(8px);
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 20px;
-  padding: 30px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  margin: 80px auto 40px;
+  backdrop-filter: blur(12px);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 24px;
+  padding: 24px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
   color: #fff;
+  font-family: 'Roboto', sans-serif;
+  transition: all 0.3s ease;
 }
 
-/* Tabs */
+/* Tabs - Estilo app-like con swipe feel en mobile */
 .encuestas-tabs {
   display: flex;
   justify-content: center;
-  margin-bottom: 25px;
-  gap: 15px;
+  margin-bottom: 20px;
+  gap: 12px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+  scrollbar-width: none; /* Firefox */
+}
+.encuestas-tabs::-webkit-scrollbar {
+  display: none; /* Chrome/Safari */
 }
 .encuestas-tabs button {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.08);
   border: none;
-  padding: 10px 20px;
-  border-radius: 20px;
-  color: #fff;
+  padding: 12px 24px;
+  border-radius: 50px;
+  color: #ddd;
   cursor: pointer;
-  transition: background 0.3s;
+  transition: all 0.3s ease;
   font-weight: 600;
+  font-size: 0.95rem;
+  white-space: nowrap;
+  min-width: 120px;
 }
 .encuestas-tabs button.active {
-  background: rgba(255, 255, 255, 0.3);
-  backdrop-filter: blur(5px);
+  background: rgba(255, 255, 255, 0.25);
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transform: translateY(-2px);
+}
+.encuestas-tabs button:hover {
+  background: rgba(255, 255, 255, 0.15);
 }
 
-/* Encuesta actual */
-.encuesta-card {
-  background: rgba(0, 0, 0, 0.3);
-  border-radius: 16px;
-  padding: 25px;
-  margin-bottom: 30px;
-  border: 1px solid rgba(255, 255, 255, 0.15);
+/* Encuesta activa - Card estilo app con sombra suave */
+.recommend-post { /* Usando clases de tu JS */
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 20px;
+  padding: 20px;
+  margin-bottom: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+  transition: transform 0.2s ease;
 }
-.encuesta-card h3 {
-  font-size: 1.3rem;
-  margin-bottom: 15px;
-  text-align: center;
+.recommend-post:hover {
+  transform: translateY(-4px);
 }
-
-/* Opciones */
-.encuesta-opciones {
+.post-header {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  align-items: center;
+  margin-bottom: 16px;
 }
-.opcion {
+.post-header strong {
+  font-size: 1.4rem;
+  color: #fff;
+  text-align: center;
+  margin-bottom: 8px;
+}
+.survey-meta {
+  font-size: 0.9rem;
+  color: #ccc;
+}
+.time-remaining {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #ffc107;
+  margin-left: 4px;
+}
+
+/* Opciones de encuesta - Estilo intuitivo con toque háptico */
+.survey-options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.survey-option {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 12px;
-  padding: 10px 15px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 14px 16px;
   cursor: pointer;
-  transition: background 0.3s, transform 0.2s;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
 }
-.opcion:hover {
-  background: rgba(255, 255, 255, 0.15);
-  transform: scale(1.02);
+.survey-option:hover {
+  background: rgba(255, 255, 255, 0.12);
+  transform: scale(1.01);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
-.opcion.selected {
-  background: rgba(80, 200, 120, 0.3);
-  border-color: rgba(80, 200, 120, 0.6);
-}
-.opcion-text {
-  flex-grow: 1;
-  font-weight: 500;
-}
-.opcion-count {
-  font-size: 0.9rem;
-  opacity: 0.8;
-}
-
-/* Progreso visual de votos */
-.opcion-bar {
-  height: 6px;
-  border-radius: 6px;
-  background: linear-gradient(90deg, #33ccff, #9966ff);
-  margin-top: 6px;
-  transition: width 0.5s;
-}
-
-/* Contador regresivo */
-.countdown {
-  text-align: center;
-  font-size: 1rem;
-  margin-top: 10px;
-  color: #ffc107;
-}
-
-/* Encuestas finalizadas */
-.encuestas-finalizadas {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-.finalizada-card {
-  background: rgba(255, 255, 255, 0.06);
-  border-radius: 14px;
-  padding: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-.finalizada-card h4 {
-  margin-bottom: 10px;
-  color: #ddd;
-  font-size: 1.1rem;
-}
-.opcion.winner {
-  background: rgba(0, 255, 100, 0.25);
-  border-color: rgba(0, 255, 100, 0.6);
-}
-
-/* Crear nueva encuesta (solo admin) */
-.crear-encuesta {
-  margin-top: 40px;
-  padding: 20px;
-  border-radius: 14px;
-  background: rgba(0, 0, 0, 0.25);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-}
-.crear-encuesta h3 {
-  text-align: center;
-  margin-bottom: 15px;
-}
-.crear-encuesta input,
-.crear-encuesta select {
-  width: 100%;
-  margin-bottom: 10px;
-  padding: 10px;
-  border-radius: 10px;
-  border: none;
-  outline: none;
-  font-size: 1rem;
-}
-.crear-encuesta button {
-  width: 100%;
-  padding: 10px;
-  border: none;
-  background: linear-gradient(90deg, #2196f3, #21cbf3);
-  color: #fff;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: opacity 0.3s;
-}
-.crear-encuesta button:hover {
-  opacity: 0.8;
-}
-
-/* Botones de acción */
-.btn-end,
-.btn-start {
-  display: inline-block;
-  padding: 8px 14px;
-  margin-top: 15px;
-  border-radius: 10px;
-  background: rgba(255, 255, 255, 0.15);
-  border: none;
-  color: #fff;
-  cursor: pointer;
-  font-size: 0.9rem;
-  transition: background 0.3s;
-}
-.btn-end:hover {
-  background: rgba(255, 0, 0, 0.3);
-}
-.btn-start:hover {
-  background: rgba(0, 255, 100, 0.3);
+.survey-option.voted { /* Clase dinámica si necesitas via JS */
+  background: rgba(80, 200, 120, 0.2);
+  border-color: rgba(80, 200, 120, 0.4);
 }
 .opt-left {
-  color: white
+  flex-grow: 1;
+  font-size: 1rem;
+  color: #fff;
+  font-weight: 500;
 }
-.vote-count{
-  color: white
-}
-
-.post-encuesta strong {
-  color: rgba(212, 212, 212, 0.623);
-  font-size: 25px;
+.opt-right {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  color:rgba(169, 169, 169, 0.537);
-  
+  gap: 12px;
+}
+.vote-count {
+  font-size: 0.95rem;
+  color: #ccc;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 4px 8px;
+  border-radius: 12px;
+}
+.btn-vote {
+  background: linear-gradient(90deg, #2196f3, #21cbf3);
+  border: none;
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 50px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(33, 150, 243, 0.3);
+}
+.btn-vote:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(33, 150, 243, 0.4);
+}
+.btn-vote.voted {
+  background: #4caf50;
 }
 
-.survey-meta span{
-  color: rgb(196, 196, 196);
-  font-size: 15px;
+/* Barra de progreso en opciones (agrega via JS si quieres % visual) */
+.opcion-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #33ccff, #9966ff);
+  border-radius: 0 4px 4px 0;
+  transition: width 0.5s ease;
+  width: 0%; /* Actualiza dinámicamente */
 }
-.time-remaining{
-  color: white;
-  font-size: 20px;
+
+/* Botón finalizar manual */
+#btn-end-manual {
+  background: rgba(244, 67, 54, 0.8);
+  border: none;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  margin-top: 16px;
+  align-self: center;
+  transition: all 0.3s ease;
+}
+#btn-end-manual:hover {
+  background: #f44336;
+  transform: scale(1.05);
 }
 
+/* Encuestas cerradas - Lista estilo feed app */
+#closed-surveys-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.completed-post {
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 18px;
+  padding: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+}
+.completed-post .post-header {
+  font-size: 1.1rem;
+  color: #ddd;
+  margin-bottom: 12px;
+}
+.completed-post .post-text {
+  font-size: 0.95rem;
+  color: #ccc;
+}
+.completed-post .post-text strong {
+  color: #fff;
+}
+.completed-post span[style*="accent"] {
+  color: #4caf50 !important;
+  font-weight: bold;
+}
 
+/* Formulario creación - Estilo modal app-like */
+#survey-creator {
+  margin-top: 32px;
+  padding: 24px;
+  background: rgba(0, 0, 0, 0.35);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+}
+#survey-creator h3 {
+  text-align: center;
+  font-size: 1.3rem;
+  margin-bottom: 20px;
+  color: #fff;
+}
+#survey-creator label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: #ddd;
+}
+#survey-creator input[type="text"],
+#survey-creator input[type="number"],
+#survey-creator input[type="checkbox"] {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 16px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  color: #fff;
+  font-size: 1rem;
+  outline: none;
+  transition: border 0.3s;
+}
+#survey-creator input:focus {
+  border-color: #2196f3;
+}
+.option-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.option-row input {
+  flex-grow: 1;
+}
+.btn-remove-option {
+  background: rgba(244, 67, 54, 0.6);
+  color: #fff;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+#btn-add-option {
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 50px;
+  cursor: pointer;
+  align-self: flex-start;
+}
+#btn-start-survey {
+  background: linear-gradient(90deg, #4caf50, #8bc34a);
+  margin-top: 16px;
+}
+#btn-cancel-create {
+  background: rgba(255, 255, 255, 0.1);
+  margin-top: 8px;
+}
 
+/* Controles admin */
+#admin-controls {
+  text-align: center;
+  margin: 24px 0;
+}
+#btn-new-survey {
+  background: linear-gradient(90deg, #9966ff, #33ccff);
+  border: none;
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(153, 102, 255, 0.3);
+  transition: all 0.3s;
+}
+#btn-new-survey:hover {
+  transform: scale(1.05);
+}
 
-/* Responsive */
-@media (max-width: 600px) {
+/* Mensajes generales */
+p[style*="muted"] {
+  text-align: center;
+  font-size: 0.85rem;
+  color: #aaa;
+  margin-top: 24px;
+}
+
+/* Responsive - Optimizado para celulares (app feel: touch-friendly, legible) */
+@media (max-width: 768px) {
   .encuestas-container {
-    padding: 20px;
+    width: 98%;
+    margin: 60px auto 20px;
+    padding: 16px;
+    border-radius: 20px;
   }
-  .encuesta-card h3 {
+  .post-header strong {
+    font-size: 1.2rem;
+  }
+  .time-remaining {
+    font-size: 1rem;
+  }
+  .survey-option {
+    padding: 12px 14px;
+    font-size: 0.95rem;
+  }
+  .btn-vote {
+    padding: 8px 14px;
+    font-size: 0.85rem;
+  }
+  #survey-creator input {
+    padding: 10px;
+    font-size: 0.95rem;
+  }
+  .option-row {
+    flex-direction: column;
+  }
+  .btn-remove-option {
+    align-self: flex-end;
+    padding: 6px 10px;
+  }
+  .encuestas-tabs button {
+    padding: 10px 18px;
+    font-size: 0.9rem;
+    min-width: 100px;
+  }
+  /* Espaciado táctil mayor */
+  .survey-option, .btn, button {
+    min-height: 44px; /* Apple HIG para touch targets */
+  }
+}
+
+@media (max-width: 480px) {
+  .encuestas-container {
+    padding: 12px;
+  }
+  .post-header {
+    align-items: flex-start;
+  }
+  .post-header strong {
     font-size: 1.1rem;
   }
-  .opcion {
-    padding: 8px 10px;
+  .opt-right {
+    gap: 8px;
   }
+  .vote-count {
+    font-size: 0.85rem;
+    padding: 2px 6px;
+  }
+  #btn-end-manual {
+    width: 100%;
+    padding: 12px;
+  }
+  /* Scroll horizontal suave en tabs */
+  .encuestas-tabs {
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* Dark mode enhancements y accesibilidad */
+body {
+  background: #121212; /* Asume dark theme */
+  -webkit-font-smoothing: antialiased;
+}
+a {
+  color: #33ccff;
+  text-decoration: none;
+}
+.btn, button {
+  -webkit-tap-highlight-color: transparent; /* Remove tap highlight on mobile */
 }
