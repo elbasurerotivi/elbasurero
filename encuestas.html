@@ -13,60 +13,74 @@
   
 <body>
   <div id="header"></div>
-
   
-<div id="closed-tab" class="tab-content" style="display:none;">
-<div id="closed-surveys-list"></div>
-</div>
-</div>
+<main>
+<section class="encuestas-container">
 
+  <!-- 🔹 Tabs -->
+  <div class="encuestas-tabs">
+    <button class="tab-btn active" data-tab="active">Vigente</button>
+    <button class="tab-btn" data-tab="closed">Finalizadas</button>
+  </div>
 
-<!-- Formulario de creación (solo admin) -->
-<div id="survey-creator" class="recommend-form" style="display:none;margin-top:20px;">
-<h3>Crear nueva encuesta</h3>
-<label>Título (puede incluir enlaces)</label>
-<input id="survey-title" type="text" placeholder="Título de la encuesta" required />
+  <!-- 🔹 Contenedor de encuesta activa -->
+  <div id="active-tab" class="tab-content" style="display:block;">
+    <div id="active-survey-container"></div>
+  </div>
 
+  <!-- 🔹 Contenedor de encuestas cerradas -->
+  <div id="closed-tab" class="tab-content" style="display:none;">
+    <div id="closed-surveys-list"></div>
+  </div>
 
-<div id="options-list">
-<label>Opciones</label>
-<div class="option-row">
-<input class="option-input" placeholder="Opción 1" />
-<button class="btn-remove-option btn">✖</button>
-</div>
-<div class="option-row">
-<input class="option-input" placeholder="Opción 2" />
-<button class="btn-remove-option btn">✖</button>
-</div>
-</div>
-<button id="btn-add-option" class="btn">➕ Agregar opción</button>
+  <!-- 🔹 Controles de administración -->
+  <div id="admin-controls" style="display:none; text-align:center; margin-top:25px;">
+    <button id="btn-new-survey" class="btn btn-primary">🧩 Nueva Encuesta</button>
+  </div>
 
+  <!-- 🔹 Formulario de creación (solo admin) -->
+  <div id="survey-creator" class="recommend-form" style="display:none;margin-top:20px;">
+    <h3>Crear nueva encuesta</h3>
+    <label>Título (puede incluir enlaces)</label>
+    <input id="survey-title" type="text" placeholder="Título de la encuesta" required />
 
-<div style="margin-top:12px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;">
-<label><input id="survey-multiple" type="checkbox" /> Permitir selección múltiple</label>
+    <div id="options-list">
+      <label>Opciones</label>
+      <div class="option-row">
+        <input class="option-input" placeholder="Opción 1" />
+        <button class="btn-remove-option btn">✖</button>
+      </div>
+      <div class="option-row">
+        <input class="option-input" placeholder="Opción 2" />
+        <button class="btn-remove-option btn">✖</button>
+      </div>
+    </div>
 
+    <button id="btn-add-option" class="btn">➕ Agregar opción</button>
 
-<div style="display:flex;gap:8px;align-items:center;">
-<label>Duración:</label>
-<input id="dur-days" type="number" min="0" placeholder="días" style="width:70px;" />
-<input id="dur-hours" type="number" min="0" max="23" placeholder="hrs" style="width:70px;" />
-<input id="dur-mins" type="number" min="0" max="59" placeholder="mins" style="width:70px;" />
-</div>
-</div>
+    <div style="margin-top:12px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;">
+      <label><input id="survey-multiple" type="checkbox" /> Permitir selección múltiple</label>
+      <div style="display:flex;gap:8px;align-items:center;">
+        <label>Duración:</label>
+        <input id="dur-days" type="number" min="0" placeholder="días" style="width:70px;" />
+        <input id="dur-hours" type="number" min="0" max="23" placeholder="hrs" style="width:70px;" />
+        <input id="dur-mins" type="number" min="0" max="59" placeholder="mins" style="width:70px;" />
+      </div>
+    </div>
 
+    <div style="margin-top:12px;display:flex;gap:12px;">
+      <button id="btn-start-survey" class="btn btn-primary">Iniciar encuesta</button>
+      <button id="btn-cancel-create" class="btn">Cancelar</button>
+    </div>
+  </div>
 
-<div style="margin-top:12px;display:flex;gap:12px;">
-<button id="btn-start-survey" class="btn btn-primary">Iniciar encuesta</button>
-<button id="btn-cancel-create" class="btn">Cancelar</button>
-</div>
-</div>
-
-
-<p style="margin-top:18px;color:var(--text-muted);font-size:14px;">Solo los administradores pueden crear o finalizar encuestas. Los votos son anónimos y se muestran en tiempo real.</p>
-
+  <p style="margin-top:18px;color:var(--text-muted);font-size:14px;">
+    Solo los administradores pueden crear o finalizar encuestas. Los votos son anónimos y se muestran en tiempo real.
+  </p>
 
 </section>
 </main>
+
 
 
 <footer>
