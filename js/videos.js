@@ -1018,20 +1018,34 @@ const videosData = [
   ]
 },
 
+   {
+  titulo: 'Reacción a BEST CROWD EVER | Uno de los videos más emocionantes que he visto 😭',
+  descripcion: 'Este video me dejó con la piel de gallina. Es una recopilación de momentos donde el público argentino demuestra por qué tiene la mejor energía del planeta 🌎🔥. Desde conciertos hasta estadios y eventos callejeros, el nivel de pasión que se vive es simplemente indescriptible.\n\nConfieso que me puse demasiado emotivo —sí, lloré al final 😅— porque todo lo que refleja este video me hizo pensar en el apoyo que he recibido de ustedes. 💚 Gracias por estar ahí, comunidad hermosa.\n\n👉 Importante: Hay algunos cortes en el video y en el audio debido a reclamaciones de derechos de autor, pero traté de mantener la experiencia completa sin perder la emoción del momento.',
+  fecha: '2025-10-18',
+  link: 'https://www.youtube.com/watch?v=a6E2zBq-o74',
+  miniatura: 'https://img.youtube.com/vi/a6E2zBq-o74/maxresdefault.jpg',
+  tags: [
+    'Directos',
+    'Cultura',
+    'Música',
+    'Documental',
+    'Especiales',
+    'Conciertos'
+  ]
+},
 
 
+
+
+
+
+
+
+
+   
+   
 
 ];
-
-
-
-
-
-
-
-
-
-
 
 const videoGrid = document.getElementById("video-grid");
 const filterButtons = document.querySelectorAll(".dropdown-item");
@@ -1123,4 +1137,5 @@ if (toggleBtn && dropdownMenu) {
 
 // Cargar videos iniciales
 renderVideos("latest");
+
 
