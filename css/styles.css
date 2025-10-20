@@ -957,20 +957,13 @@ footer h3 {
   transform: scale(1.05);
 }
 
-/* Estilos para los controles de Swiper */
+/* Botones de navegación */
 .swiper-button-next,
 .swiper-button-prev {
-  color: var(--accent);
-  width: 40px;
-  height: 40px;
-  background: rgba(0, 0, 0, 0.5);
-  border-radius: 50%;
+  color: #ffffff; /* color flechas */
+  transition: color 0.3s ease;
 }
 
-.swiper-button-next:after,
-.swiper-button-prev:after {
-  font-size: 20px;
-}
 .swiper-button-next:hover,
 .swiper-button-prev:hover {
   color: #ffffff; /* azul estilo "redes" cuando pasás el mouse */
@@ -3678,7 +3671,7 @@ footer h3 {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  margin: 10px 0;
+  margin: 15px 0;
   font-size: 14px;
   color: var(--text-muted);
 }
