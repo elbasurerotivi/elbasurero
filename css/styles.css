@@ -957,13 +957,20 @@ footer h3 {
   transform: scale(1.05);
 }
 
-/* Botones de navegación */
+/* Estilos para los controles de Swiper */
 .swiper-button-next,
 .swiper-button-prev {
-  color: #ffffff; /* color flechas */
-  transition: color 0.3s ease;
+  color: var(--accent);
+  width: 40px;
+  height: 40px;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
 }
 
+.swiper-button-next:after,
+.swiper-button-prev:after {
+  font-size: 20px;
+}
 .swiper-button-next:hover,
 .swiper-button-prev:hover {
   color: #ffffff; /* azul estilo "redes" cuando pasás el mouse */
@@ -3578,7 +3585,7 @@ footer h3 {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.7); /* Fondo más oscuro para destacar el contenido */
   justify-content: center;
   align-items: center;
   z-index: 1000;
@@ -3589,20 +3596,22 @@ footer h3 {
   backdrop-filter: var(--blur);
   border: 1px solid var(--border-light);
   border-radius: var(--radius);
-  padding: 2px;
-  width: 62%; /* Al menos 3/4 de la pantalla */
-  max-width: 900px; /* Aumentado para pantallas grandes */
-  height: 75vh; /* Al menos 3/4 de la altura de la pantalla */
-  max-height: 700px; /* Aumentado para más espacio */
+  padding: 10px;
+  width: 100vw; /* Ocupa todo el ancho de la pantalla */
+  height: 100vh; /* Ocupa toda la altura de la pantalla */
+  max-width: none; /* Elimina restricción de ancho máximo */
+  max-height: none; /* Elimina restricción de altura máxima */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  align-items: center;
   overflow: hidden;
+  box-sizing: border-box;
 }
 
 .announcement-swiper {
   width: 100%;
-  /*height: 100%; /* Ocupa todo el espacio disponible del modal-content */
+  height: 80%; /* Deja espacio para el título, checkbox y botón de cerrar */
   margin: 0;
   overflow: hidden;
 }
@@ -3611,32 +3620,35 @@ footer h3 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   background: transparent;
-  padding: 10px;
+  padding: 0;
   text-align: center;
   color: var(--text-light);
   height: 100%;
   transition: var(--transition);
 }
 
-/*.announcement-card:hover {
+.announcement-card:hover {
   transform: scale(1.02);
   background: rgba(255, 255, 255, 0.12);
-}*/
+}
 
 .announcement-img {
   width: 100%;
-  max-width: 100%; /* Usa todo el ancho disponible de la tarjeta */
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
   aspect-ratio: 16 / 9; /* Proporción 16:9 */
-  object-fit: content;
-  margin: 2px 0;
+  object-fit: contain; /* Muestra la imagen completa sin cortarla */
   border-radius: 8px;
+  display: block;
 }
 
 .image-link {
-  display: block; /* Asegura que el enlace ocupe el espacio de la imagen */
+  display: block;
   width: 100%;
+  height: 100%;
 }
 
 .announcement-card h3 {
@@ -3666,7 +3678,7 @@ footer h3 {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  margin: 15px 0;
+  margin: 10px 0;
   font-size: 14px;
   color: var(--text-muted);
 }
@@ -3691,7 +3703,7 @@ footer h3 {
 .modal-title {
   text-align: center;
   font-size: 1.8em;
-  margin-bottom: 15px;
+  margin: 10px 0;
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
