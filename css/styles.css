@@ -2581,7 +2581,7 @@ footer h3 {
 .post-header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: left;
   color:rgba(169, 169, 169, 0.537);
   font-size: 13px;
 }
