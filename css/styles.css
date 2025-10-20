@@ -4081,7 +4081,7 @@ footer h3 {
 .post-header {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: left;
   margin-bottom: 16px;
 }
 .post-encuesta strong {
