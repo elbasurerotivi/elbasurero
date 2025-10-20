@@ -2493,7 +2493,7 @@ footer h3 {
 .recommendations  {
   font-size: 20px;
   font-weight: 700;
-  text-align: center;
+  text-align: left;
   color: var(--accent);
 }
 
