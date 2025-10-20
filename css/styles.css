@@ -3591,7 +3591,7 @@ footer h3 {
   border-radius: var(--radius);
   padding: 10px;
   width: 100vw; /* Ocupa todo el ancho de la pantalla */
-  height: 100vh; /* Ocupa toda la altura de la pantalla */
+  height: 600px; /* Ocupa toda la altura de la pantalla */
   max-width: none; /* Elimina restricción de ancho máximo */
   max-height: none; /* Elimina restricción de altura máxima */
   display: flex;
@@ -3712,8 +3712,8 @@ footer h3 {
   .modal-content {
     width: 100%;
     aspect-ratio: 16 / 9;
-    /*height: 80vh;
-    max-height: 380px;*/
+    height: 80vh;
+    max-height: 380px;
   }
   
   .announcement-img {
