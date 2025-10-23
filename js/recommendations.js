@@ -3,7 +3,10 @@ const availableCategories = [
   "Miércoles de Clásicos", 
   "Jueves Animados",
   "Sábados de YouTube",
-  "Dulce, chile y manteca"
+  "Dulce, chile y manteca",
+  "Domingos de Sorpresas",
+  "Series",
+  "Películas"
 ];
 
 import { db, auth, ref, onValue, push, update, remove, get, set, onAuthStateChanged } from "./firebase-config.js";
