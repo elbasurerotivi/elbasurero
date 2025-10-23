@@ -3157,7 +3157,7 @@ footer h3 {
 
 .tag {
   position: relative;
-  background: linear-gradient(135deg, #529b52 0%, #226124 100%);
+  background: linear-gradient(135deg, #226124 100%, #1c3b1d94 100%);
   backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(15px);
   font-size: 11px;
