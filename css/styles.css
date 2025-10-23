@@ -3160,10 +3160,10 @@ footer h3 {
   background: linear-gradient(135deg, #79ff7c 0%, #4caf50 100%);
   backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(15px);
-  font-size: 13px;
+  font-size: 11px;
   font-weight: 700;
   border: 2px solid rgba(255, 255, 255, 0.8);
-  padding: 12px 18px;
+  padding: 9px 15px;
   border-radius: 25px;
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -3179,9 +3179,6 @@ footer h3 {
   overflow: hidden;
 }
 
-.tag:hover {
- left: 100%;
-}
 
 
 /* RESPONSIVO - Tags en móviles */
