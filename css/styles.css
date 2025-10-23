@@ -3173,6 +3173,10 @@ footer h3 {
  left: 100%;
 }
 
+.tag span{
+  font-size: 9px;
+}
+
 /* RESPONSIVO - Tags en móviles */
 @media (max-width: 768px) {
   .tag {
