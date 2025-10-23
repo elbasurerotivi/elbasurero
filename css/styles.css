@@ -3077,7 +3077,7 @@ footer h3 {
 .categories-selection label {
   display: block;
   margin-bottom: 8px;
-  color: #333;
+  color:#c3c3c3;
   font-weight: bold;
 }
 
@@ -3091,7 +3091,7 @@ footer h3 {
   padding: 5px;
   border: 1px solid #e0e0e0;
   border-radius: 8px;
-  background-color: #f9f9f9;
+  background-color: #f9f9f926;
 }
 
 .category-checkbox {
