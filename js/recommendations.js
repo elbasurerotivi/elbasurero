@@ -114,8 +114,8 @@ async function renderFilteredList() {
   let filteredPosts = allPosts;
   if (currentFilter !== "all") {
     filteredPosts = allPosts.filter(post => 
-      post.categories && post.categories.includes(currentFilter)
-    );
+    Array.isArray(post.categories) && post.categories.includes(currentFilter)
+  );
   }
   
   // ORDENAR por likes (IGUAL QUE SIEMPRE)
