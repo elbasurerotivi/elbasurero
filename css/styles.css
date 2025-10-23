@@ -3156,18 +3156,27 @@ footer h3 {
 }
 
 .tag {
+  position: relative;
   background: linear-gradient(135deg, #79ff7c 0%, #4caf50 100%);
   backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(15px);
-  font-size: 15px;
+  font-size: 13px;
+  font-weight: 700;
   border: 2px solid rgba(255, 255, 255, 0.8);
+  padding: 12px 18px;
   border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   color: white !important;
+  white-space: nowrap;
+  min-width: 90px;
+  text-align: center;
   box-shadow: 
     0 8px 30px rgba(121, 255, 124, 0.4),
     0 4px 12px rgba(0, 0, 0, 0.2),
     inset 0 1px 0 rgba(255, 255, 255, 0.3);
   transform: translateY(-2px) scale(1.02);
+  overflow: hidden;
 }
 
 .tag:hover {
