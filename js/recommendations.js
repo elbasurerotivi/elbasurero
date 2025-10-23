@@ -3,7 +3,7 @@ const availableCategories = [
   "Miércoles de Clásicos", 
   "Jueves Animados",
   "Sábados de YouTube",
-  "Dulce, chile y manteca",
+  "Chile, dulce y manteca",
   "Domingos de Sorpresas",
   "Series",
   "Películas",
