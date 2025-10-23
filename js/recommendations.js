@@ -1,3 +1,11 @@
+const availableCategories = [
+  "Lunes de Argentina",
+  "Miércoles de Clásicos",
+  "Jueves Animados",
+  "Sábados de YouTube",
+  "Dulce, chile y manteca"
+];
+
 import { db, auth, ref, onValue, push, update, remove, get, set, onAuthStateChanged } from "./firebase-config.js";
 
 let currentCategory = "movies-pending";
@@ -193,6 +201,11 @@ function renderCompletedPost(post, container) {
       <span>${new Date(post.timestamp).toLocaleString("es-AR")}</span>
     </div>
     <p class="post-text">${linkifyAndEscape(post.text)}</p>
+    ${post.categories && post.categories.length > 0 ? `
+        <div class="post-tags">
+          ${post.categories.map(cat => `<span class="tag">${cat}</span>`).join('')}
+        </div>
+      ` : ''}
     <div class="completed-meta">
       Completada: ${new Date(post.completedAt).toLocaleString("es-AR")}<br>
       ${post.reactionLink ? `<a href="${post.reactionLink}" target="_blank">Ver reacción</a>` : ''}
@@ -259,6 +272,11 @@ function renderPost(post, container) {
         <span>${new Date(post.timestamp).toLocaleString("es-AR")}</span>
       </div>
       <p class="post-text">${linkifyAndEscape(post.text)}</p>
+      ${post.categories && post.categories.length > 0 ? `
+        <div class="post-tags">
+          ${post.categories.map(cat => `<span class="tag">${cat}</span>`).join('')}
+        </div>
+      ` : ''}
       <div class="post-actions">
         <div class="like-wrapper">
           <button class="like-btn ${userLiked ? "active" : ""}">❤️</button>
@@ -489,6 +507,10 @@ form.addEventListener("submit", async (e) => {
     return;
   }
 
+  // Nuevo: Recolectar categorías seleccionadas
+  const selectedCategories = Array.from(document.querySelectorAll('input[name="category"]:checked'))
+    .map(checkbox => checkbox.value);
+
   const pendingRef = getPendingRef();
   await push(pendingRef, {
     name: user.displayName || "Anónimo",
@@ -496,11 +518,14 @@ form.addEventListener("submit", async (e) => {
     timestamp: Date.now(),
     likes: {},
     comments: {},
+    categories: selectedCategories  // Nuevo campo: array de categorías
   });
 
   textarea.value = "";
   suggestionsContainer.innerHTML = "";
   suggestionsContainer.style.display = "none";
+  // Desmarcar checkboxes después de enviar
+  document.querySelectorAll('input[name="category"]').forEach(cb => cb.checked = false);
   await loadAllForSuggestions(); // Actualiza array después de post
 });
 
@@ -606,4 +631,18 @@ if (scrollToTopBtn) {
   scrollToTopBtn.addEventListener("click", () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   });
+
+  // Generar checkboxes para categorías en el form
+const checkboxGroup = document.querySelector(".checkbox-group");
+if (checkboxGroup) {
+  availableCategories.forEach(cat => {
+    const label = document.createElement("label");
+    label.className = "category-checkbox";
+    label.innerHTML = `
+      <input type="checkbox" name="category" value="${cat}">
+      ${cat}
+    `;
+    checkboxGroup.appendChild(label);
+  });
+}
 }

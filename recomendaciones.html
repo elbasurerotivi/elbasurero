@@ -62,10 +62,19 @@
 
   <!-- Formulario -->
   <form id="recommend-form" class="recommend-form">
-    <textarea id="rec-text" placeholder="Escribe tu recomendación" maxlength="500" required></textarea>
-    <div id="suggestions" class="suggestions"></div>
-    <button type="submit" class="btn btn-primary">Publicar</button>
-  </form>
+  <textarea id="rec-text" placeholder="Escribe tu recomendación" maxlength="500" required></textarea>
+  <div id="suggestions" class="suggestions"></div>
+  
+  <!-- Nuevo: Selección de categorías -->
+  <div class="categories-selection">
+    <label>Categorías (opcional, selecciona una o más):</label>
+    <div class="checkbox-group">
+      <!-- Los checkboxes se generarán dinámicamente con JS -->
+    </div>
+  </div>
+  
+  <button type="submit" class="btn btn-primary">Publicar</button>
+</form>
 
   <!-- Contenedor de listas -->
   <div id="recommend-lists">

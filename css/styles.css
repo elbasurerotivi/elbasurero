@@ -3063,6 +3063,42 @@ footer h3 {
   transform: scale(1.2);
 }
 
+/* Selección de categorías en el form */
+.categories-selection {
+  margin: 10px 0;
+  font-size: 14px;
+}
+.checkbox-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.category-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+}
+.category-checkbox input {
+  margin: 0;
+}
+
+/* Tags en las tarjetas */
+.post-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 10px;
+}
+.tag {
+  background-color: #e0e0e0; /* Gris claro, ajusta a tu tema */
+  color: #333;
+  padding: 3px 8px;
+  border-radius: 15px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
 /* ==========================================================
    OPTIMIZACIÓN MÓVIL - NUEVA ESTÉTICA RESPONSIVE
    ========================================================== */
@@ -3245,6 +3281,8 @@ footer h3 {
     border-radius: 8px;
   }
 }
+
+
 
 
 
