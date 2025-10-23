@@ -493,6 +493,15 @@ form.addEventListener("submit", async (e) => {
   const text = textarea.value.trim();
   if (!text) return;
 
+  // **NUEVO: Validación OBLIGATORIA de al menos 1 categoría**
+  const selectedCategories = Array.from(document.querySelectorAll('input[name="category"]:checked'))
+    .map(checkbox => checkbox.value);
+  
+  if (selectedCategories.length === 0) {
+    alert("❌ **Debes seleccionar al menos una categoría** para publicar tu recomendación.");
+    return;
+  }
+
   const valueNorm = text.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
   const similar = recommendations
     .filter(rec => {
@@ -507,10 +516,6 @@ form.addEventListener("submit", async (e) => {
     return;
   }
 
-  // Nuevo: Recolectar categorías seleccionadas
-  const selectedCategories = Array.from(document.querySelectorAll('input[name="category"]:checked'))
-    .map(checkbox => checkbox.value);
-
   const pendingRef = getPendingRef();
   await push(pendingRef, {
     name: user.displayName || "Anónimo",
@@ -518,7 +523,7 @@ form.addEventListener("submit", async (e) => {
     timestamp: Date.now(),
     likes: {},
     comments: {},
-    categories: selectedCategories  // Nuevo campo: array de categorías
+    categories: selectedCategories  // Array con al menos 1 categoría
   });
 
   textarea.value = "";
@@ -526,7 +531,7 @@ form.addEventListener("submit", async (e) => {
   suggestionsContainer.style.display = "none";
   // Desmarcar checkboxes después de enviar
   document.querySelectorAll('input[name="category"]').forEach(cb => cb.checked = false);
-  await loadAllForSuggestions(); // Actualiza array después de post
+  await loadAllForSuggestions();
 });
 
 // Detector restaurado con mejoras

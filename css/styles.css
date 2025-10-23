@@ -3063,40 +3063,119 @@ footer h3 {
   transform: scale(1.2);
 }
 
+/* ========================================
+   CATEGORÍAS - RESPONSIVO COMPLETO
+   ======================================== */
+
 /* Selección de categorías en el form */
 .categories-selection {
-  margin: 10px 0;
+  margin: 15px 0;
   font-size: 14px;
+  font-weight: 500;
 }
+
+.categories-selection label {
+  display: block;
+  margin-bottom: 8px;
+  color: #333;
+  font-weight: bold;
+}
+
+/* Checkbox group - RESPONSIVO */
 .checkbox-group {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 12px;
+  max-height: 120px; /* Limita altura en desktop */
+  overflow-y: auto;
+  padding: 5px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background-color: #f9f9f9;
 }
+
 .category-checkbox {
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 6px;
   cursor: pointer;
-}
-.category-checkbox input {
-  margin: 0;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+  min-width: fit-content;
+  font-size: 13px;
 }
 
-/* Tags en las tarjetas */
+.category-checkbox:hover {
+  background-color: #e3f2fd;
+}
+
+.category-checkbox input {
+  margin: 0;
+  width: 16px;
+  height: 16px;
+  accent-color: #79ff7c; /* Verde que coincide con tus tags */
+}
+
+/* RESPONSIVO - CELULARES */
+@media (max-width: 768px) {
+  .categories-selection {
+    margin: 12px 0;
+    font-size: 13px;
+  }
+  
+  .checkbox-group {
+    gap: 8px;
+    padding: 8px;
+    max-height: none; /* Sin límite en mobile */
+    border-radius: 6px;
+  }
+  
+  .category-checkbox {
+    font-size: 12px;
+    padding: 3px 6px;
+    flex: 1 1 45%; /* 2 por fila en tablets */
+    min-width: 120px;
+  }
+}
+
+@media (max-width: 480px) {
+  .category-checkbox {
+    flex: 1 1 100%; /* 1 por fila en celulares chicos */
+    min-width: auto;
+  }
+}
+
+/* Tags en las tarjetas - MEJORADO */
 .post-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 5px;
-  margin-top: 10px;
+  gap: 6px;
+  margin-top: 8px;
+  margin-bottom: 8px;
 }
+
 .tag {
-  background-color: #79ff7c; /* verde claro, ajusta a tu tema */
+  background-color: #79ff7c; /* Tu verde claro PERFECTO */
   color: #333;
-  padding: 3px 8px;
+  padding: 4px 10px;
   border-radius: 15px;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: bold;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+  transition: transform 0.2s;
+}
+
+.tag:hover {
+  transform: scale(1.05);
+}
+
+/* RESPONSIVO - Tags en móviles */
+@media (max-width: 768px) {
+  .tag {
+    font-size: 10px;
+    padding: 3px 8px;
+  }
 }
 
 /* ==========================================================
