@@ -7,7 +7,7 @@ const availableCategories = [
   "Domingos de Sorpresas",
   "Series",
   "Películas",
-  "TV",
+  "TV"
 ];
 
 import { db, auth, ref, onValue, push, update, remove, get, set, onAuthStateChanged } from "./firebase-config.js";
