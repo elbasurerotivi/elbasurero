@@ -1,6 +1,6 @@
 const availableCategories = [
   "Lunes de Argentina",
-  "Miércoles de Clásicos",
+  "Miércoles de Clásicos", 
   "Jueves Animados",
   "Sábados de YouTube",
   "Dulce, chile y manteca"
@@ -15,6 +15,9 @@ let openComments = new Set();
 let userId = localStorage.getItem("userId") || "user_" + Math.random().toString(36).substring(2, 9);
 localStorage.setItem("userId", userId);
 let isAdmin = false;
+
+// *** NUEVA ADICIÓN 1/4: Variable para filtro ***
+let currentFilter = "all"; // "all" o nombre de categoría
 
 onAuthStateChanged(auth, async (user) => {
   if (user) {
@@ -51,6 +54,85 @@ const lists = {
   "music-completed": document.getElementById("recommend-list-music-completed"),
 };
 
+// *** NUEVA ADICIÓN 2/4: FUNCIÓN PARA CREAR BOTONES DE FILTRO ***
+function createFilterButtons() {
+  const container = document.getElementById("tag-filter-buttons");
+  if (!container) return;
+  
+  // Botón "Todas"
+  const allBtn = document.createElement("button");
+  allBtn.className = "filter-btn active";
+  allBtn.textContent = "Todas";
+  allBtn.dataset.filter = "all";
+  container.appendChild(allBtn);
+  
+  // Botones por categoría
+  availableCategories.forEach(cat => {
+    const btn = document.createElement("button");
+    btn.className = "filter-btn";
+    btn.textContent = cat;
+    btn.dataset.filter = cat;
+    container.appendChild(btn);
+  });
+  
+  // Event listeners para filtrar
+  container.addEventListener("click", (e) => {
+    if (e.target.classList.contains("filter-btn")) {
+      // Quitar active de todos
+      container.querySelectorAll(".filter-btn").forEach(btn => 
+        btn.classList.remove("active")
+      );
+      // Activar clicked
+      e.target.classList.add("active");
+      currentFilter = e.target.dataset.filter;
+      // Re-renderizar lista filtrada (SOLO si no es completed)
+      if (!currentCategory.includes('completed')) {
+        renderFilteredList();
+      }
+    }
+  });
+}
+
+// *** NUEVA ADICIÓN 3/4: FUNCIÓN PARA RENDERIZAR LISTA FILTRADA ***
+async function renderFilteredList() {
+  const container = getListContainer();
+  const allPosts = [];
+  
+  // Obtener TODOS los posts de la categoría actual
+  const snapshot = await get(getPendingRef());
+  if (snapshot.exists()) {
+    snapshot.forEach(child => {
+      allPosts.push({ id: child.key, ...child.val() });
+    });
+  }
+  
+  // FILTRAR por categoría actual
+  let filteredPosts = allPosts;
+  if (currentFilter !== "all") {
+    filteredPosts = allPosts.filter(post => 
+      post.categories && post.categories.includes(currentFilter)
+    );
+  }
+  
+  // ORDENAR por likes (IGUAL QUE SIEMPRE)
+  filteredPosts.sort((a, b) => {
+    const likesA = Object.keys(a.likes || {}).length;
+    const likesB = Object.keys(b.likes || {}).length;
+    return likesB - likesA || b.timestamp - a.timestamp;
+  });
+  
+  // RENDERIZAR
+  container.innerHTML = "";
+  if (filteredPosts.length === 0) {
+    container.innerHTML = 
+      currentFilter === "all" 
+        ? "<p>No hay recomendaciones todavía. ¡Sé el primero!</p>"
+        : `<p>No hay recomendaciones en <strong>"${currentFilter}"</strong>. 😔</p>`;
+  } else {
+    filteredPosts.forEach(post => renderPost(post, container));
+  }
+}
+
 tabButtons.forEach((btn) => {
   btn.addEventListener("click", () => {
     tabButtons.forEach((b) => b.classList.remove("active"));
@@ -66,6 +148,15 @@ tabButtons.forEach((btn) => {
     unsubscribe = onValue(refToUse, (snapshot) => {
       renderRecommendations(snapshot, currentCategory.includes('completed'));
     });
+    // *** NUEVA ADICIÓN: Reset filtro al cambiar tab ***
+    currentFilter = "all";
+    const filterContainer = document.getElementById("tag-filter-buttons");
+    if (filterContainer) {
+      filterContainer.querySelectorAll(".filter-btn").forEach(btn => {
+        btn.classList.remove("active");
+        if (btn.dataset.filter === "all") btn.classList.add("active");
+      });
+    }
   });
 });
 
@@ -163,7 +254,15 @@ function linkifyAndEscape(text) {
   });
 }
 
+// *** NUEVA ADICIÓN 4/4: MODIFICAR renderRecommendations ***
 function renderRecommendations(snapshot, isCompleted = false) {
+  // Si hay filtro activo Y NO es completed, usar filtro
+  if (currentFilter !== "all" && !isCompleted) {
+    renderFilteredList();
+    return;
+  }
+  
+  // LÓGICA ORIGINAL (SIN CAMBIOS)
   const posts = [];
   snapshot.forEach((child) => {
     posts.push({ id: child.key, ...child.val() });
@@ -190,6 +289,8 @@ function renderRecommendations(snapshot, isCompleted = false) {
     });
   }
 }
+
+// ... [TODO EL RESTO DE FUNCIONES IGUALES: renderCompletedPost, renderPost, deletePost, etc.] ...
 
 function renderCompletedPost(post, container) {
   const postElement = document.createElement("div");
@@ -621,6 +722,9 @@ textarea.addEventListener("input", async () => {
 // Inicial
 loadAllForSuggestions().then(() => {
   unsubscribe = onValue(getPendingRef(), (snapshot) => renderRecommendations(snapshot));
+  
+  // *** NUEVA ADICIÓN: Crear botones de filtro ***
+  createFilterButtons();
 });
 
 const scrollToTopBtn = document.querySelector(".scroll-to-top");
@@ -638,16 +742,16 @@ if (scrollToTopBtn) {
   });
 
   // Generar checkboxes para categorías en el form
-const checkboxGroup = document.querySelector(".checkbox-group");
-if (checkboxGroup) {
-  availableCategories.forEach(cat => {
-    const label = document.createElement("label");
-    label.className = "category-checkbox";
-    label.innerHTML = `
-      <input type="checkbox" name="category" value="${cat}">
-      ${cat}
-    `;
-    checkboxGroup.appendChild(label);
-  });
-}
+  const checkboxGroup = document.querySelector(".checkbox-group");
+  if (checkboxGroup) {
+    availableCategories.forEach(cat => {
+      const label = document.createElement("label");
+      label.className = "category-checkbox";
+      label.innerHTML = `
+        <input type="checkbox" name="category" value="${cat}">
+        ${cat}
+      `;
+      checkboxGroup.appendChild(label);
+    });
+  }
 }

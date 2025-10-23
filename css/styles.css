@@ -3178,6 +3178,15 @@ footer h3 {
   }
 }
 
+.tag-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  overflow-x: auto; /* *** AGREGAR ESTO *** */
+  padding-bottom: 5px;
+}
+
 /* ==========================================================
    OPTIMIZACIÓN MÓVIL - NUEVA ESTÉTICA RESPONSIVE
    ========================================================== */
