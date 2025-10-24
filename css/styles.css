@@ -2595,7 +2595,7 @@ footer h3 {
 .post-text {
   background: linear-gradient(180deg, #fafafa 0%, #d1d1d1 100%);
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  -webkit-text-fill-color: rgb(255 200 78);;
   font-size: 20px;
   font-weight: 600;
   line-height: 1.6;
@@ -4717,6 +4717,8 @@ a {
 .btn, button {
   -webkit-tap-highlight-color: transparent; /* Remove tap highlight on mobile */
 }
+
+
 
 /* === MEJORAS PARA ENCUESTAS FINALIZADAS - Estilo Premium === */
 /* Reemplaza la sección existente de .completed-post en tu styles.css */
