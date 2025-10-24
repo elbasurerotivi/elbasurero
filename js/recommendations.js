@@ -722,7 +722,7 @@ textarea.addEventListener("input", async () => {
           
           // Resaltar temporalmente el post
           postElement.style.transition = 'background 0.3s ease';
-          postElement.style.background = 'rgba(255, 215, 0, 0.2)';
+          postElement.style.background = 'rgba(255, 0, 179, 0.21)';
           setTimeout(() => {
             postElement.style.background = ''; // Restaurar fondo
           }, 2000);
