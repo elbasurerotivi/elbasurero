@@ -4612,7 +4612,7 @@ footer h3 {
   margin: 24px 0;
 }
 #btn-new-survey {
-  background: linear-gradient(90deg, #9966ff, #33ccff);
+  background: linear-gradient(90deg, #ff3366, #000000);
   border: none;
   color: #fff;
   padding: 12px 24px;
@@ -4830,7 +4830,7 @@ a {
 /* Contador de votos - Badge estilo app */
 .completed-post .post-text strong {
   color: #fff;
-  background: linear-gradient(90deg, #33ccff, #9966ff);
+  background: linear-gradient(90deg, #ff3366, #000000);
   padding: 6px 12px;
   border-radius: 50px;
   font-size: 0.95rem;
