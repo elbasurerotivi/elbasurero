@@ -667,6 +667,7 @@ function levenshteinDistance(str1 = '', str2 = '') {
    ENTRADA DEL TEXTAREA: búsqueda de similares
    - usa _textNorm precalculado
    - umbral adaptativo
+   - NUEVO: scroll a post al hacer clic en sugerencia
    ============================ */
 textarea.addEventListener("input", async () => {
   const valueRaw = textarea.value.trim();
@@ -702,14 +703,34 @@ textarea.addEventListener("input", async () => {
     // Agregar leyenda de advertencia
     const warning = document.createElement('div');
     warning.className = 'suggestion-warning';
-    warning.textContent = 'Tu recomendacion ya fué hecha, votala en lugar de repetirla:';
+    warning.textContent = 'Tu recomendación ya fue hecha, vótala en lugar de repetirla:';
     suggestionsContainer.appendChild(warning);
     
-    // Agregar sugerencias
+    // Agregar sugerencias con data-post-id y evento de clic
     similar.forEach((rec) => {
       const item = document.createElement('div');
       item.className = 'suggestion-item';
-      item.innerHTML = linkifyAndEscape(rec.text); // Usar la función para sugerencias también
+      item.dataset.postId = rec.id; // Asociar ID del post
+      item.innerHTML = linkifyAndEscape(rec.text);
+      item.style.cursor = 'pointer'; // Indicar que es clicable
+      item.addEventListener('click', () => {
+        // Buscar el post en la lista actual
+        const postElement = document.querySelector(`.recommend-post[data-post-id="${rec.id}"]`);
+        if (postElement && rec._source === currentCategory) {
+          // Scroll suave al post
+          postElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          
+          // Resaltar temporalmente el post
+          postElement.style.transition = 'background 0.3s ease';
+          postElement.style.background = 'rgba(255, 215, 0, 0.2)';
+          setTimeout(() => {
+            postElement.style.background = ''; // Restaurar fondo
+          }, 2000);
+        } else {
+          // Si el post no está en la categoría actual, mostrar mensaje
+          alert(`Esta recomendación está en "${rec._source}". Cambia a esa pestaña para verla.`);
+        }
+      });
       suggestionsContainer.appendChild(item);
     });
     
