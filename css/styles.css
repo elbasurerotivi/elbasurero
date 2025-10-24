@@ -2595,7 +2595,7 @@ footer h3 {
 .post-text {
   background: linear-gradient(180deg, #fafafa 0%, #d1d1d1 100%);
   -webkit-background-clip: text;
-  -webkit-text-fill-color: rgb(255 200 78);;
+  -webkit-text-fill-color: rgb(255, 255, 255);;
   font-size: 20px;
   font-weight: 600;
   line-height: 1.6;
