@@ -329,7 +329,4 @@ window.initAuthButtons = function() {
   console.log("✅ initAuthButtons inicializado correctamente");
 };
 
-// 🔹 Ejecutar cuando el DOM esté listo
-document.addEventListener("DOMContentLoaded", () => {
-  window.initAuthButtons();
-});
+
