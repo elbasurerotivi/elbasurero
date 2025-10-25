@@ -102,7 +102,51 @@ document.addEventListener("DOMContentLoaded", () => {
       } else {
         console.log("Popup de anuncios no mostrado (bloqueado por el usuario o mismo día)");
       }
-      
+
+      // Función para reordenar las tarjetas según el día
+function reordenarTarjetasPorDia() {
+  const dias = [
+    "Lunes de Argentina",      // 0 - Lunes
+    "Miércoles de Clásicos",   // 1 - Martes
+    "Miércoles de Clásicos",   // 2 - Miércoles
+    "Jueves Animados",         // 3 - Jueves
+    "Sábados de YouTube",      // 4 - Viernes
+    "Sábados de YouTube",      // 5 - Sábado
+    "Domingos de Sorpresas"    // 6 - Domingo
+  ];
+
+  const diaActual = new Date().getDay(); // 0 = Domingo, 1 = Lunes...
+  const swiperWrapper = document.querySelector('.announcement-swiper .swiper-wrapper');
+  const slides = Array.from(swiperWrapper.children);
+
+  // Filtrar tarjetas principales (las que SÍ dependen del día)
+  const dinamicas = slides.filter(slide => {
+    const alt = slide.querySelector('img')?.alt || "";
+    return !["Último Video", "Horarios"].includes(alt);
+  });
+
+  // Tarjetas que SIEMPRE deben quedar al final
+  const fijas = slides.filter(slide => {
+    const alt = slide.querySelector('img')?.alt || "";
+    return ["Último Video", "Horarios"].includes(alt);
+  });
+
+  // Ordenar tarjetas dinámicas: empezar desde la correspondiente al día actual
+  const altObjetivo = dias[diaActual === 0 ? 6 : diaActual - 1]; // Domingo = 6
+  const indexInicio = dinamicas.findIndex(slide => slide.querySelector('img').alt === altObjetivo);
+
+  if (indexInicio !== -1) {
+    const ordenadas = [...dinamicas.slice(indexInicio), ...dinamicas.slice(0, indexInicio)];
+
+    // Vaciar el contenedor y reinsertar en orden
+    swiperWrapper.innerHTML = "";
+    ordenadas.forEach(slide => swiperWrapper.appendChild(slide));
+    fijas.forEach(slide => swiperWrapper.appendChild(slide));
+  }
+}
+
+      reordenarTarjetasPorDia();
+
       // Inicializar Swiper
       if (typeof Swiper !== "undefined") {
         new Swiper(".announcement-swiper", {
