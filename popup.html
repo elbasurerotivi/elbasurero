@@ -73,6 +73,61 @@
     <button class="btn btn-close" onclick="cerrarAnuncio()">Cerrar</button>
   </div>
 </div>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const swiperWrapper = document.querySelector('.announcement-swiper .swiper-wrapper');
+  const slides = Array.from(swiperWrapper.children);
+
+  // Mapeo de días a tarjetas
+  const cardOrderByDay = {
+    1: "Lunes de Argentina",          // Lunes
+    2: "Miércoles de Clásicos",       // Martes
+    3: "Miércoles de Clásicos",       // Miércoles
+    4: "Jueves Animados",             // Jueves
+    5: "Sabados de YouTube",          // Viernes
+    6: "Sabados de YouTube",          // Sábado
+    0: "Domingo de Clásicos"          // Domingo
+  };
+
+  // Obtener nombre del día actual
+  const today = new Date().getDay();
+  const prioridad = cardOrderByDay[today];
+
+  // Filtrar tarjetas dinámicas (último video y horarios)
+  const extraCards = slides.filter(slide =>
+    slide.id === 'latest-video-card' || slide.querySelector('img').alt === 'Horarios'
+  );
+
+  // Filtrar todas las tarjetas comunes (con día)
+  const dayCards = slides.filter(slide =>
+    !extraCards.includes(slide)
+  );
+
+  // Reordenar según el día
+  const orderedDayCards = [
+    ...dayCards.filter(slide => slide.querySelector('img').alt === prioridad),
+    ...dayCards.filter(slide => slide.querySelector('img').alt !== prioridad)
+  ];
+
+  // Vaciar y reinsertar en orden
+  swiperWrapper.innerHTML = '';
+  orderedDayCards.forEach(slide => swiperWrapper.appendChild(slide));
+  extraCards.forEach(slide => swiperWrapper.appendChild(slide));
+
+  // ✅ Ahora sí inicializamos Swiper
+  const swiper = new Swiper('.announcement-swiper', {
+    loop: true,
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+    }
+  });
+});
+</script>
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
@@ -88,6 +143,8 @@ document.addEventListener('DOMContentLoaded', function() {
       setTimeout(() => modalTitle.classList.remove('fade-in'), 300);
     }, 300);
   }
+
+  
 
   const swiper = new Swiper('.announcement-swiper', {
     loop: true,
@@ -123,47 +180,3 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
   </script>
-  <script>
-document.addEventListener('DOMContentLoaded', function () {
-  const swiper = new Swiper('.announcement-swiper', {
-    loop: true,
-    navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
-    },
-    pagination: {
-      el: '.swiper-pagination',
-      clickable: true,
-    }
-  });
-
-  // Días de la semana (0 = domingo, 1 = lunes, ...)
-  const today = new Date().getDay();
-
-  // Relacionar día → índice de la tarjeta
-  const dayToSlideIndex = {
-    1: 0, // Lunes → tarjeta 0
-    2: 1, // Martes → próximo sería Miércoles
-    3: 1, // Miércoles → tarjeta 1
-    4: 2, // Jueves → tarjeta 2
-    5: 3, // Viernes → próximo Sábado (slide 3)
-    6: 3, // Sábado → tarjeta 3
-    0: 4  // Domingo → tarjeta 4
-  };
-
-  const slideIndex = dayToSlideIndex[today] ?? 0;
-  swiper.slideToLoop(slideIndex, 0); // 0 = sin animación
-});
-</script>
-
-  
-
-
-
-
-
-
-
-
-
-
