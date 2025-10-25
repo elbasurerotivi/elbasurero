@@ -1043,6 +1043,17 @@ const videosData = [
     'Humor'
   ]
 },
+   {
+  titulo: '“Reacción a Mariano Rodríguez | Review de Encuentros Cercanos del Tercer Tipo 👽🎬',
+  descripcion: 'Hoy reacciono a un nuevo video del gran Mariano Rodríguez, esta vez sobre la clásica Encuentros Cercanos del Tercer Tipo.\nSu manera de analizar el cine siempre me deja pensando… y también riendo 😂.\nSi tú también creciste con esas pelis que mezclan misterio, nostalgia y extraterrestres, este video es para ti 👽✨',
+  fecha: '2025-10-25',
+  link: 'https://youtu.be/OEri7YUEybg',
+  miniatura: 'https://img.youtube.com/vi/OEri7YUEybg/maxresdefault.jpg',
+  tags: [
+    'Películas',
+    'Humor'
+  ]
+},
 
 
 
@@ -1147,6 +1158,7 @@ if (toggleBtn && dropdownMenu) {
 
 // Cargar videos iniciales
 renderVideos("latest");
+
 
 
 
