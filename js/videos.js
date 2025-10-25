@@ -1033,6 +1033,16 @@ const videosData = [
     'Conciertos'
   ]
 },
+   {
+  titulo: 'Lucho con la gente #202 | ¿Estrellas de mar? 😂🇦🇷',
+  descripcion: 'Una nueva joyita de Lucho con la Gente 😆. Este episodio #202 tiene momentos brillantes, pero cuando aparecen las estrellas de mar y mencionan a Patricio… ¡no puedo más de la risa! 🤣💫\nSi te gusta reírte sin culpa, este video es para ti.',
+  fecha: '2025-10-23',
+  link: 'https://www.youtube.com/watch?v=zHMY7HJTZfU',
+  miniatura: 'https://img.youtube.com/vi/zHMY7HJTZfU/maxresdefault.jpg',
+  tags: [
+    'Humor'
+  ]
+},
 
 
 
@@ -1137,5 +1147,6 @@ if (toggleBtn && dropdownMenu) {
 
 // Cargar videos iniciales
 renderVideos("latest");
+
 
 
