@@ -36,15 +36,21 @@
           </a>
         </div>
 
-        
-        <!-- Tarjeta 5: Último Video (dinámica, simplificada) -->
+        <!-- Tarjeta 5: Domingo de Clásicos-->
+        <div class="swiper-slide announcement-card">
+          <a href="https://www.twitch.tv/elbasurerochido" target="_blank" class="image-link">
+            <img src="Imagenes/Picsart_25-10-12_17-37-46-301.jpg" alt="Domingo de Clásicos" class="announcement-img">
+          </a>
+        </div>
+
+        <!-- Tarjeta 6: Último Video (dinámica, simplificada) -->
         <div class="swiper-slide announcement-card" id="latest-video-card">
           <a href="#" class="image-link" id="latest-video-link" target="_blank">
             <img src="" alt="Último Video" class="announcement-img" id="latest-video-img">
           </a>
         </div>
         
-        <!-- Tarjeta 3: Programación de la Semana -->
+        <!-- Tarjeta 7: Programación de la Semana -->
         <div class="swiper-slide announcement-card">
           <img src="Imagenes/horarios.jpg" alt="Horarios" class="announcement-img">
         </div>
@@ -115,7 +121,41 @@ document.addEventListener('DOMContentLoaded', function() {
 
   cambiarTitulo('🎤 Próximo Stream'); // título inicial
 });
+
   </script>
+  <script>
+document.addEventListener('DOMContentLoaded', function () {
+  const swiper = new Swiper('.announcement-swiper', {
+    loop: true,
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+    }
+  });
+
+  // Días de la semana (0 = domingo, 1 = lunes, ...)
+  const today = new Date().getDay();
+
+  // Relacionar día → índice de la tarjeta
+  const dayToSlideIndex = {
+    1: 0, // Lunes → tarjeta 0
+    2: 1, // Martes → próximo sería Miércoles
+    3: 1, // Miércoles → tarjeta 1
+    4: 2, // Jueves → tarjeta 2
+    5: 3, // Viernes → próximo Sábado (slide 3)
+    6: 3, // Sábado → tarjeta 3
+    0: 4  // Domingo → tarjeta 4
+  };
+
+  const slideIndex = dayToSlideIndex[today] ?? 0;
+  swiper.slideToLoop(slideIndex, 0); // 0 = sin animación
+});
+</script>
+
   
 
 
