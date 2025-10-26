@@ -61,12 +61,17 @@
   </div>
 
 
-  <!-- NUEVO: FILTRO POR CATEGORÍAS -->
+  <!-- Button to toggle filters on mobile -->
+<button id="toggle-filters-btn" class="btn btn-secondary mobile-only">Mostrar opciones ▾</button>
+
+
+<!-- Filters and categories wrapper -->
+<div id="filters-wrapper" class="filters-hidden mobile-hidden">
 <div class="filter-tags">
-  <label>Todas las categorías</label>
-  <div class="tag-buttons" id="tag-filter-buttons">
-    <!-- Botones se generan con JS -->
-  </div>
+<label>Todas las categorías</label>
+<div class="tag-buttons" id="tag-filter-buttons">
+<!-- Botones generados por JS -->
+</div>
 </div>
 
   <!-- Formulario -->
@@ -74,14 +79,14 @@
   <textarea id="rec-text" placeholder="Escribe tu recomendación" maxlength="500" required></textarea>
   <div id="suggestions" class="suggestions"></div>
   
-  <!-- Nuevo: Selección de categorías -->
   <div class="categories-selection">
-    <label>Categorías (selecciona una o más):</label>
-    <div class="checkbox-group" required>
-      <!-- Los checkboxes se generarán dinámicamente con JS -->
-    </div>
-  </div>
-  
+<label>Categorías (selecciona una o más):</label>
+<div class="checkbox-group">
+<!-- Checkboxes generados dinámicamente con JS -->
+</div>
+</div>
+</div>
+
   <button type="submit" class="btn btn-primary">Publicar</button>
 </form>
 
@@ -124,6 +129,28 @@
     </div>
   </footer>
 
+  <style>
+/* Ocultar por defecto en pantallas pequeñas */
+.mobile-only {
+display: none;
+}
+
+
+@media (max-width: 768px) {
+.mobile-only {
+display: inline-block;
+margin-bottom: 10px;
+}
+#filters-wrapper {
+display: none;
+margin-top: 10px;
+}
+#filters-wrapper.active {
+display: block;
+}
+}
+</style>
+
   <!-- Botón Scroll to Top -->
   <button class="scroll-to-top" title="Volver arriba">↑</button>
 
@@ -131,5 +158,20 @@
   <script type="module" src="js/login.js" defer></script>
   <script type="module" src="js/recommendations.js" defer></script>
   <script src="js/scripts.js"></script>
+  <script>
+// Toggle filter options on mobile
+document.addEventListener("DOMContentLoaded", () => {
+const toggleBtn = document.getElementById("toggle-filters-btn");
+const filtersWrapper = document.getElementById("filters-wrapper");
+
+
+toggleBtn?.addEventListener("click", () => {
+filtersWrapper.classList.toggle("active");
+toggleBtn.textContent = filtersWrapper.classList.contains("active")
+? "Ocultar opciones ▴"
+: "Mostrar opciones ▾";
+});
+});
+</script>
 </body>
 </html>
