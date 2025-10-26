@@ -61,37 +61,34 @@
   </div>
 
 
-<!-- Botón para filtrar categorías de recomendaciones -->
-<button id="toggle-filters-btn" class="btn btn-secondary mobile-only">Mostrar filtros ▾</button>
+  <!-- Button to toggle filters on mobile -->
+<button id="toggle-filters-btn" class="btn btn-secondary mobile-only">Mostrar opciones ▾</button>
 
-<!-- Botón para mostrar categorías al crear una recomendación -->
-<button id="toggle-form-categories-btn" class="btn btn-secondary mobile-only">Añadir categorías ▾</button>
 
-<!-- Filtros de categorías (para filtrar lo que ya fue recomendado) -->
-<div id="filters-categories-wrapper" class="filters-hidden mobile-hidden">
-  <div class="filter-tags">
-    <label>Filtrar por categorías:</label>
-    <div class="tag-buttons" id="tag-filter-buttons">
-      <!-- Se generan con JS -->
-    </div>
-  </div>
+<!-- Filters and categories wrapper -->
+<div id="filters-wrapper" class="filters-hidden mobile-hidden">
+<div class="filter-tags">
+<label>Todas las categorías</label>
+<div class="tag-buttons" id="tag-filter-buttons">
+<!-- Botones generados por JS -->
+</div>
 </div>
 
-<!-- Formulario -->
-<form id="recommend-form" class="recommend-form">
+  <!-- Formulario -->
+  <form id="recommend-form" class="recommend-form">
   <textarea id="rec-text" placeholder="Escribe tu recomendación" maxlength="500" required></textarea>
-
-  <!-- Categorías del formulario (checkboxes) -->
-  <div id="form-categories-wrapper" class="filters-hidden mobile-hidden">
-    <label>Categorías (selecciona una o más):</label>
-    <div class="checkbox-group">
-      <!-- Checkboxes generados dinámicamente -->
-    </div>
-  </div>
+  <div id="suggestions" class="suggestions"></div>
+  
+  <div class="categories-selection">
+<label>Categorías (selecciona una o más):</label>
+<div class="checkbox-group">
+<!-- Checkboxes generados dinámicamente con JS -->
+</div>
+</div>
+</div>
 
   <button type="submit" class="btn btn-primary">Publicar</button>
 </form>
-
 
   <!-- Contenedor de listas -->
   <div id="recommend-lists">
@@ -133,28 +130,25 @@
   </footer>
 
   <style>
-/* Ocultar botones por defecto */
+/* Ocultar por defecto en pantallas pequeñas */
 .mobile-only {
-  display: none;
+display: none;
 }
+
 
 @media (max-width: 768px) {
-  .mobile-only {
-    display: inline-block;
-    margin-bottom: 10px;
-  }
-  .filters-hidden {
-    display: none;
-  }
-  #filters-categories-wrapper,
-  #form-categories-wrapper {
-    margin-top: 10px;
-    padding: 10px;
-    background: #1e1e1e;
-    border-radius: 10px;
-  }
+.mobile-only {
+display: inline-block;
+margin-bottom: 10px;
 }
-
+#filters-wrapper {
+display: none;
+margin-top: 10px;
+}
+#filters-wrapper.active {
+display: block;
+}
+}
 </style>
 
   <!-- Botón Scroll to Top -->
@@ -178,32 +172,6 @@ toggleBtn.textContent = filtersWrapper.classList.contains("active")
 : "Mostrar opciones ▾";
 });
 });
-/* ============================
-   BOTÓN 1 – Mostrar/Ocultar Filtros de Categorías
-   ============================ */
-const toggleFiltersBtn = document.getElementById("toggle-filters-btn");
-const filtersCategoriesWrapper = document.getElementById("filters-categories-wrapper");
-
-if (toggleFiltersBtn && filtersCategoriesWrapper) {
-  toggleFiltersBtn.addEventListener("click", () => {
-    const isHidden = filtersCategoriesWrapper.classList.toggle("filters-hidden");
-    toggleFiltersBtn.textContent = isHidden ? "Mostrar filtros ▾" : "Ocultar filtros ▴";
-  });
-}
-
-/* ============================
-   BOTÓN 2 – Mostrar/Ocultar Categorías del Formulario
-   ============================ */
-const toggleFormCategoriesBtn = document.getElementById("toggle-form-categories-btn");
-const formCategoriesWrapper = document.getElementById("form-categories-wrapper");
-
-if (toggleFormCategoriesBtn && formCategoriesWrapper) {
-  toggleFormCategoriesBtn.addEventListener("click", () => {
-    const isHidden = formCategoriesWrapper.classList.toggle("filters-hidden");
-    toggleFormCategoriesBtn.textContent = isHidden ? "Añadir categorías ▾" : "Ocultar categorías ▴";
-  });
-}
-
 </script>
 </body>
 </html>

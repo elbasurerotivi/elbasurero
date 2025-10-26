@@ -752,20 +752,6 @@ loadAllForSuggestions().then(() => {
   createFilterButtons();
 });
 
-/* ============================
-   MOSTRAR / OCULTAR OPCIONES (versión móvil)
-   ============================ */
-const toggleFiltersBtn = document.getElementById("toggle-filters-btn");
-const filtersWrapper = document.getElementById("filters-wrapper");
-
-if (toggleFiltersBtn && filtersWrapper) {
-  toggleFiltersBtn.addEventListener("click", () => {
-    const isHidden = filtersWrapper.classList.toggle("filters-hidden");
-    toggleFiltersBtn.textContent = isHidden ? "Mostrar opciones ▾" : "Ocultar opciones ▴";
-  });
-}
-
-
 const scrollToTopBtn = document.querySelector(".scroll-to-top");
 if (scrollToTopBtn) {
   window.addEventListener("scroll", () => {
