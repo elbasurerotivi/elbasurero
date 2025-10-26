@@ -1054,6 +1054,17 @@ const videosData = [
     'Humor'
   ]
 },
+   {
+  titulo: 'Reacción a Pablo Molinari | 10 cosas que hacíamos antes y hoy serían impensables 😂📼',
+  descripcion: 'Hoy reacciono al video de Pablo Molinari: ‘10 cosas que hacíamos antes y hoy serían impensables’.\nUn viaje directo a la nostalgia, cuando rebobinábamos cassettes con un lápiz y usábamos Messenger para todo 😅.\nEntre risas y recuerdos, confirmamos que los Centennials jamás entenderán algunas de estas locuras.\nSi tú también creciste en esa época… este video es para ti 💾📺',
+  fecha: '2025-10-26',
+  link: 'https://youtu.be/GpZ1Jla2vkc',
+  miniatura: 'https://img.youtube.com/vi/GpZ1Jla2vkc/maxresdefault.jpg',
+  tags: [
+    'Cultura',
+    'Humor'
+  ]
+},
 
 
 
@@ -1158,6 +1169,7 @@ if (toggleBtn && dropdownMenu) {
 
 // Cargar videos iniciales
 renderVideos("latest");
+
 
 
 
