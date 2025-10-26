@@ -3551,6 +3551,75 @@ footer h3 {
   }
 }
 
+/* Estilos base para botones toggle */
+.toggle-btn {
+  background-color: #f0f0f0; /* Fondo discreto */
+  border: 1px solid #ddd; /* Borde sutil */
+  border-radius: 8px; /* Esquinas redondeadas para estética */
+  padding: 8px 12px; /* Espacio interno pequeño */
+  font-size: 14px; /* Texto legible pero no grande */
+  cursor: pointer;
+  margin-bottom: 10px; /* Espacio abajo */
+  display: none; /* Oculto por default */
+  width: 100%; /* Ocupa todo el ancho en móvil para facilidad de toque */
+  text-align: left; /* Alineado a izquierda para intuición */
+  transition: background-color 0.3s ease; /* Transición suave */
+}
+
+.toggle-btn:hover {
+  background-color: #e0e0e0; /* Hover sutil */
+}
+
+/* Clase para solo mostrar en móvil */
+.mobile-only {
+  display: none; /* Oculto en desktop */
+}
+
+/* Media query para móviles y tablets (ajusta el breakpoint si necesitas) */
+@media (max-width: 768px) {
+  .mobile-only {
+    display: block; /* Muestra botones solo en móvil */
+  }
+
+  /* Oculta por default los contenidos toggle en móvil para interfaz limpia */
+  #tag-filter-buttons {
+    display: none; /* Filtros ocultos inicialmente */
+    flex-wrap: wrap; /* Asegura que se ajusten en pantallas pequeñas */
+    justify-content: center; /* Centrado para estética */
+  }
+
+  .checkbox-group {
+    display: none; /* Categorías ocultas inicialmente */
+    flex-direction: column; /* Una por línea en móvil para claridad */
+    max-height: 200px; /* Limita altura si hay muchas, con scroll si es necesario */
+    overflow-y: auto; /* Scroll si excede */
+  }
+
+  /* Ajustes generales para móvil: hace todo más compacto */
+  .filter-tags label,
+  .categories-selection label {
+    font-size: 12px; /* Texto más pequeño */
+    margin-bottom: 5px;
+  }
+
+  .recommend-form {
+    padding: 10px; /* Menos padding para ahorrar espacio */
+  }
+
+  .tab-buttons {
+    flex-wrap: wrap; /* Tabs se envuelven si no caben */
+    justify-content: center;
+  }
+}
+
+/* En desktop (pantallas grandes), muestra todo por default sin botones */
+@media (min-width: 769px) {
+  #tag-filter-buttons,
+  .checkbox-group {
+    display: flex !important; /* Siempre visible en PC */
+  }
+}
+
 
 
 

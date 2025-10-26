@@ -58,6 +58,30 @@ const lists = {
   "music-completed": document.getElementById("recommend-list-music-completed"),
 };
 
+// *** NUEVA ADICIÓN: Toggle para filtros y categorías en móvil ***
+function setupMobileToggles() {
+  const toggleFiltersBtn = document.getElementById("toggle-filters-btn");
+  const filterButtons = document.getElementById("tag-filter-buttons");
+  const toggleCategoriesBtn = document.getElementById("toggle-categories-btn");
+  const checkboxGroup = document.querySelector(".checkbox-group");
+
+  if (toggleFiltersBtn && filterButtons) {
+    toggleFiltersBtn.addEventListener("click", () => {
+      const isVisible = filterButtons.style.display === "flex" || filterButtons.style.display === "grid"; // Asumiendo display flex/grid en CSS
+      filterButtons.style.display = isVisible ? "none" : "flex"; // Toggle
+      toggleFiltersBtn.textContent = isVisible ? "🔍 Mostrar Filtros" : "🔍 Ocultar Filtros";
+    });
+  }
+
+  if (toggleCategoriesBtn && checkboxGroup) {
+    toggleCategoriesBtn.addEventListener("click", () => {
+      const isVisible = checkboxGroup.style.display === "flex" || checkboxGroup.style.display === "grid";
+      checkboxGroup.style.display = isVisible ? "none" : "flex";
+      toggleCategoriesBtn.textContent = isVisible ? "🏷️ Mostrar Categorías" : "🏷️ Ocultar Categorías";
+    });
+  }
+}
+
 // *** NUEVA ADICIÓN 2/4: FUNCIÓN PARA CREAR BOTONES DE FILTRO ***
 function createFilterButtons() {
   const container = document.getElementById("tag-filter-buttons");
@@ -750,6 +774,9 @@ loadAllForSuggestions().then(() => {
   
   // *** NUEVA ADICIÓN: Crear botones de filtro ***
   createFilterButtons();
+
+  // *** NUEVA ADICIÓN: Setup toggles para móvil ***
+  setupMobileToggles();
 });
 
 const scrollToTopBtn = document.querySelector(".scroll-to-top");
