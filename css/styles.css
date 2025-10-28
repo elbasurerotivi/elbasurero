@@ -4872,17 +4872,14 @@ a {
 }
 
 .completed-post .post-text > div {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 16px;
-  padding: 16px;
-  position: relative;
-  overflow: hidden;
-  transition: all 0.3s ease;
-  cursor: default;
+  color: #fff;
+  background: linear-gradient(90deg, #ff3366, #000000);
+  padding: 6px 12px;
+  border-radius: 50px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(51, 204, 255, 0.3);
+  flex-shrink: 0;
 }
 
 .completed-post .post-text > div:hover {
@@ -4902,14 +4899,17 @@ a {
 
 /* Contador de votos - Badge estilo app */
 .completed-post .post-text strong {
-  color: #fff;
-  background: linear-gradient(90deg, #ff3366, #000000);
-  padding: 6px 12px;
-  border-radius: 50px;
-  font-size: 0.95rem;
-  font-weight: 600;
-  box-shadow: 0 2px 8px rgba(51, 204, 255, 0.3);
-  flex-shrink: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 16px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  cursor: default;
 }
 
 /* ⭐ GANADOR - Estilo destacado premium */
