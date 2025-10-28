@@ -209,7 +209,7 @@ function renderClosed(data){
       optEls.push({ id: optId, text: opt.text, votes });
     });
 
-    const optsHtml = optEls.map(o => `<div style="padding:8px;border-radius:8px;background:rgba(255,255,255,0.02);margin-bottom:6px;">${linkifyAndEscape(o.text)} <strong>${o.votes} votos</strong> ${o.id===winnerId?'<span style="color:var(--accent);">⭐ Ganador</span>':''}</div>`).join('');
+    const optsHtml = optEls.map(o => `<div style="padding:8px;border-radius:8px;background:rgba(255,255,255,0.02);margin-bottom:6px;"><strong>${o.votes} votos</strong>${linkifyAndEscape(o.text)}  ${o.id===winnerId?'<span style="color:var(--accent);">⭐ Ganador</span>':''}</div>`).join('');
 
     card.innerHTML = `
       <div class="post-encuesta"><strong>${titleHtml}</strong>
