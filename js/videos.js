@@ -2,6 +2,19 @@
 
 
 const videosData = [
+
+  {
+  titulo: 'Reacción a Pablo Molinari | Los himnos nacionales más curiosos del mundo 🎵😂',
+  descripcion: 'Hoy reacciono al video de Pablo Molinari donde analiza diferentes himnos nacionales y comparte datos tan curiosos como divertidos 😆🎶.\nEntre historias patrióticas, letras extrañas y melodías épicas, descubrimos que algunos himnos parecen salidos de una película.\nSi te gusta aprender y reírte al mismo tiempo, este video es para ti 🌍🇦🇷',
+  fecha: '2025-10-31',
+  link: 'https://www.youtube.com/watch?v=KwP-Z-1mwqc',
+  miniatura: 'https://img.youtube.com/vi/KwP-Z-1mwqc/maxresdefault.jpg',
+  tags: [
+    'Cultura',
+    'Humor'
+  ]
+},
+
    {
   titulo: '🎬 Live: Reacción a película con Guillermo Francella en un papel dramático (basada en hechos reales)',
   descripcion: 'Hoy tenemos un live muy especial 🙌\nVamos a reaccionar a una película donde Guillermo Francella se luce en un papel dramático. Eso ya es suficiente para venderla, pero además está basada en hechos reales y tiene un tráiler que simplemente me dejó impactado.',
