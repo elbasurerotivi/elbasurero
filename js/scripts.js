@@ -110,9 +110,9 @@ function reordenarTarjetasPorDia() {
     "Miércoles de Clásicos",   // 1 - Martes
     "Miércoles de Clásicos",   // 2 - Miércoles
     "Jueves Animados",         // 3 - Jueves
-    "Sábados de YouTube",      // 4 - Viernes
-    "Sábados de YouTube",      // 5 - Sábado
-    "Domingos de Sorpresas"    // 6 - Domingo
+    "Sábado de YouTube",      // 4 - Viernes
+    "Sábado de YouTube",      // 5 - Sábado
+    "Domingo de Sorpresas"    // 6 - Domingo
   ];
 
   const diaActual = new Date().getDay(); // 0 = Domingo, 1 = Lunes...
