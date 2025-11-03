@@ -25,6 +25,7 @@ export const videosPremium = [
     type: 'iframe'
   },
 
+  
   {
     id: 'una_accion_solidaria',
     name: "El Encargado",
@@ -34,7 +35,20 @@ export const videosPremium = [
     title2:'Reacción completa con Guillermo Francella',
     description: 'En este episodio, Eliseo profundiza en sus "acciones solidarias" que no son tan inocentes como parecen. Más intriga, más Francella en modo manipulador.',
     thumbnail: 'Imagenes/2 - Una accion solidaria.png',
-    source: 'https://archive.org/embed/02-una-accion-solidaria',
+    source: 'https://rumble.com/embed/v6yywz0/?pub=4nmhh2',
+    type: 'iframe'
+  },
+
+  {
+    id: 'un_turista_en_buenos_aires',
+    name: "El Encargado",
+    temporada: "1",
+    episodio: "3",
+    title: '🧹  Un turista en Buenos Aires',
+    title2:'Reacción completa con Guillermo Francella',
+    description: 'Continuamos con El Encargado, y las cosas se ponen cada vez más interesantes. Este tercer episodio mantiene ese tono sarcástico y elegante que sólo Guillermo Francella puede sostener sin perder el encanto. Lo grabé el mismo día que el episodio anterior —sí, pleno Día de las Madres en Argentina— y fue imposible no seguir viendo. La serie tiene ese algo que te atrapa y no te deja parar. Una entrega exclusiva para Patreon, sin transmisión en vivo ni edición adicional, tal cual se vivió en el momento.',
+    thumbnail: 'Imagenes/3 - Un turista en Buenos Aires.png',
+    source: 'https://rumble.com/embed/v6yywz0/?pub=4nmhh2',
     type: 'iframe'
   },
   
