@@ -48,9 +48,10 @@ export const videosPremium = [
     title2:'Reacción completa con Guillermo Francella',
     description: 'Continuamos con El Encargado, y las cosas se ponen cada vez más interesantes. Este tercer episodio mantiene ese tono sarcástico y elegante que sólo Guillermo Francella puede sostener sin perder el encanto. Lo grabé el mismo día que el episodio anterior —sí, pleno Día de las Madres en Argentina— y fue imposible no seguir viendo. La serie tiene ese algo que te atrapa y no te deja parar. Una entrega exclusiva para Patreon, sin transmisión en vivo ni edición adicional, tal cual se vivió en el momento.',
     thumbnail: 'Imagenes/3 - Un turista en Buenos Aires.png',
-    source: 'https://rumble.com/embed/v6yywz0/?pub=4nmhh2',
+    source: 'https://rumble.com/embed/v6yz9ey/?pub=4nmhh2',
     type: 'iframe'
   },
+  
   
   // Agrega más videos aquí según necesites. Es escalable: solo edita este archivo.
 ];
