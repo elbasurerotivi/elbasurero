@@ -38,16 +38,17 @@
     const container = document.getElementById('videoList');
     videosPremium.forEach(video => {
       const formattedTitle = video.title.replace(/\\n/g, '<br>');
-      card.innerHTML = `
-        <a href="player.html?id=${video.id}">
-          <img src="${video.thumbnail}" alt="${video.title}" loading="lazy">
-          <div class="premium-info">
-            <h3>${formattedTitle}</h3>
-            <p class="premium-episode">T${video.temporada} E${video.episodio} • ${video.name}</p>
-            <p class="premium-desc">${video.description}</p>
-          </div>
-        </a>
-      `;
+
+card.innerHTML = `
+  <a href="player.html?id=${video.id}">
+    <img src="${video.thumbnail}" alt="${video.title}" loading="lazy">
+    <div class="premium-info">
+      <h3>${formattedTitle}</h3>
+      <p class="premium-episode">T${video.temporada} E${video.episodio} • ${video.name}</p>
+      <p class="premium-desc">${video.description}</p>
+    </div>
+  </a>
+`;
       container.appendChild(card);
     });
 
