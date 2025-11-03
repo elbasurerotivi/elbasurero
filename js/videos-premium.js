@@ -1,5 +1,5 @@
 // js/videos.js
-export const videos = [
+export const videosPremium = [
   {
     id: 'estar_en_el_horno',
     title: 'Nada – Episodio 1 | Reacción con Luis Brandoni y la participación de Robert De Niro',
