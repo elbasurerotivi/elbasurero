@@ -4257,6 +4257,7 @@ footer h3 {
 .video-card p {
   font-size: 0.7em;
   color: #ccc;
+  overflow-y: scroll;
 }
 
 .back-btn {
