@@ -1,7 +1,10 @@
 // js/videos.js
 export const videosPremium = [
 
+
   
+  
+  ///El Encargado///
   {
     id: 'un_turista_en_buenos_aires',
     name: "El Encargado",
@@ -38,6 +41,11 @@ export const videosPremium = [
     source: 'https://rumble.com/embed/v6yz8ey/?pub=4nmhh2',
     type: 'iframe'
   },
+
+  
+  
+  
+  ///Nada///
   {
     id: 'estar_en_el_horno',
     name: "Nada",
@@ -47,9 +55,10 @@ export const videosPremium = [
     title2:'Reacción con Luis Brandoni y la participación de Robert De Niro',
     description: 'Primera impresión de Nada, una serie que combina humor, costumbrismo y reflexión sobre la vida, la comida y la soledad en Buenos Aires.\nLuis Brandoni encarna a un crítico gastronómico que debe aprender a vivir “sin nada” cuando su rutina se desmorona.\nY sí, aparece Robert De Niro, dándole un toque internacional inesperado.\n\nUna reacción llena de comentarios sobre estilo, tono y ese humor porteño tan particular.',
     thumbnail: 'Imagenes/01 - Estar en el horno.jpg',
-    source: 'https://player.vimeo.com/video/1129400733?badge=0&amp',
+    source: 'https://rumble.com/embed/v6yzbss/?pub=4nmhh2',
     type: 'iframe'
   },
+  
   
   // Agrega más videos aquí según necesites. Es escalable: solo edita este archivo.
 ];
