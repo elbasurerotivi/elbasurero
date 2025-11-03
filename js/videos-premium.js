@@ -2,7 +2,7 @@
 export const videosPremium = [
   {
     id: 'estar_en_el_horno',
-    title: 'Nada – Episodio 01 Estar en el horno | Reacción con Luis Brandoni y la participación de Robert De Niro',
+    title: 'Nada\nEpisodio 01 - Estar en el horno\nReacción con Luis Brandoni y la participación de Robert De Niro',
     name: "Nada",
     temporada: "1",
     episodio: "1",
@@ -16,7 +16,7 @@ export const videosPremium = [
     name: "El Encargado",
     temporada: "1",
     episodio: "1",
-    title: '🧹 El Encargado – Episodio 01 Un Proyecto Peligroso | Reacción completa con Guillermo Francella',
+    title: '🧹 El Encargado\nEpisodio 01 - Un Proyecto Peligroso\nReacción completa con Guillermo Francella',
     description: 'Francella vuelve, pero esta vez como nunca lo habías visto. En el primer episodio de El Encargado, conocemos a Eliseo, el portero de un edificio que parece tener más poder e información de la que debería.\nUna comedia con tintes oscuros, sarcasmo y crítica social al estilo argentino que tanto nos gusta.\nEn esta reacción exploramos ese primer vistazo al universo de Eliseo, su doble cara y todo el potencial que promete la serie.',
     thumbnail: 'Imagenes/2 - Una accion solidaria.png',
     source: 'https://archive.org/embed/01-un-proyecto-peligroso',
@@ -27,7 +27,7 @@ export const videosPremium = [
     name: "El Encargado",
     temporada: "1",
     episodio: "2",
-    title: '🧹 El Encargado – Episodio 02 Una Acción Solidaria | Reacción completa con Guillermo Francella',
+    title: '🧹 El Encargado\nEpisodio 02 - Una Acción Solidaria\nReacción completa con Guillermo Francella',
     description: 'En este episodio, Eliseo profundiza en sus "acciones solidarias" que no son tan inocentes como parecen. Más intriga, más Francella en modo manipulador.',
     thumbnail: 'Imagenes/3 - Un turista en Buenos Aires.png',
     source: 'https://archive.org/embed/02-una-accion-solidaria',
