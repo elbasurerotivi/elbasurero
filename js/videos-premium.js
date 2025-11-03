@@ -2,7 +2,7 @@
 export const videosPremium = [
   {
     id: 'estar_en_el_horno',
-    title: '🍝Nada\n1x01 - Estar en el horno\nReacción con Luis Brandoni y la participación de Robert De Niro',
+    title: '🍝 Nada\n1x01 - Estar en el horno\nReacción con Luis Brandoni y la participación de Robert De Niro',
     name: "Nada",
     temporada: "1",
     episodio: "1",
