@@ -3848,6 +3848,52 @@ footer h3 {
   box-shadow: 0 2px 8px rgba(0,0,0,0.3);
 }
 
+.premium-desc {
+  font-size: 0.85rem;
+  color: var(--text-muted, #ddd);
+  line-height: 1.5;
+  margin: 0;
+  padding-right: 8px;
+  max-height: 72px; /* ~4 líneas */
+  overflow-y: auto;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+
+  /* Scrollbar personalizada */
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 215, 0, 0.4) rgba(255, 215, 0, 0.1);
+}
+
+/* Webkit (Chrome, Safari, Edge) */
+.premium-desc::-webkit-scrollbar {
+  width: 6px;
+}
+
+.premium-desc::-webkit-scrollbar-track {
+  background: rgba(255, 215, 0, 0.1);
+  border-radius: 10px;
+  backdrop-filter: blur(4px);
+}
+
+.premium-desc::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #ffd700, #ff8c00);
+  border-radius: 10px;
+  box-shadow: 0 0 8px rgba(255, 215, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.premium-desc::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #ffed4e, #ffb84d);
+  box-shadow: 0 0 12px rgba(255, 215, 0, 0.5);
+}
+
+/* Ocultar scrollbar cuando no se necesita */
+.premium-desc:not(:hover)::-webkit-scrollbar-thumb {
+  background: rgba(255, 215, 0, 0.2);
+}
+
 
 
 
