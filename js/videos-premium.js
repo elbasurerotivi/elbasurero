@@ -12,17 +12,6 @@ export const videosPremium = [
     type: 'iframe'
   },
   {
-    id: 'tarjeta_de_navidad',
-    title: 'Los Simuladores Episodio 1',
-    name: "Los Simuladores",
-    temporada: "1",
-    episodio: "1",
-    description: '🎬 Los Simuladores | Episodio 1 | "Tarjeta de navidad"',
-    thumbnail: 'Imagenes/simuladores_1.webp',
-    source: 'https://archive.org/embed/los-simuladores-2002/T1-01 Tarjeta de Navidad [NF-480p].mp4',
-    type: 'iframe'
-  },
-  {
     id: 'un_proyecto_peligroso',
     name: "El Encargado",
     temporada: "1",
