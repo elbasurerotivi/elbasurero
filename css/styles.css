@@ -4247,7 +4247,7 @@ footer h3 {
 .video-card img {
   width: 100%;
   height: 150px;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .video-card h3 {
