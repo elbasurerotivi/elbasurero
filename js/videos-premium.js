@@ -20,7 +20,7 @@ export const videosPremium = [
     title: '🧹 Un Proyecto Peligroso',
     title2: 'Reacción completa con Guillermo Francella',
     description: 'Francella vuelve, pero esta vez como nunca lo habías visto. En el primer episodio de El Encargado, conocemos a Eliseo, el portero de un edificio que parece tener más poder e información de la que debería.\nUna comedia con tintes oscuros, sarcasmo y crítica social al estilo argentino que tanto nos gusta.\nEn esta reacción exploramos ese primer vistazo al universo de Eliseo, su doble cara y todo el potencial que promete la serie.',
-    thumbnail: 'Imagenes/2 - Una accion solidaria.png',
+    thumbnail: 'Imagenes/01 - Un proyecto peligroso.png',
     source: 'https://player.vimeo.com/video/1133013432?h=4f3756800d',
     type: 'iframe'
   },
@@ -33,7 +33,7 @@ export const videosPremium = [
     title: '🧹  Una Acción Solidaria',
     title2:'Reacción completa con Guillermo Francella',
     description: 'En este episodio, Eliseo profundiza en sus "acciones solidarias" que no son tan inocentes como parecen. Más intriga, más Francella en modo manipulador.',
-    thumbnail: 'Imagenes/3 - Un turista en Buenos Aires.png',
+    thumbnail: 'Imagenes/2 - Una accion solidaria.png',
     source: 'https://archive.org/embed/02-una-accion-solidaria',
     type: 'iframe'
   },
