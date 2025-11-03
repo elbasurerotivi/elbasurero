@@ -42,33 +42,6 @@ export const videos = [
     source: 'https://archive.org/embed/02-una-accion-solidaria',
     type: 'iframe'
   },
-  {
-    id: 'un_oso_rojo',
-    title: 'Reacción A Un Oso Rojo Película Argentina HD',
-    description: 'Reacción A Un Oso Rojo Película Argentina HD',
-    source: 'https://archive.org/embed/reaccion-a-un-oso-rojo-pelicula-argentina-hd',
-    type: 'iframe'
-  },
-  {
-    id: 'simuladores_t1_01',
-    title: 'Los Simuladores Episodio 1',
-    description: '🎬 Los Simuladores | Episodio 1 | "Tarjeta de navidad"',
-    source: 'https://archive.org/embed/los-simuladores-2002/T1-01 Tarjeta de Navidad [NF-480p].mp4',
-    type: 'iframe'
-  },
-  {
-    id: 'drive_video',
-    title: 'Video desde Google Drive',
-    description: 'Un video exclusivo almacenado en Google Drive',
-    source: 'https://drive.google.com/file/d/TU_ID_AQUI/preview',
-    type: 'iframe'
-  },
-  {
-    id: 'dropbox_video',
-    title: 'Video desde Dropbox',
-    description: 'Un video exclusivo almacenado en Dropbox',
-    source: 'https://dl.dropboxusercontent.com/s/TU_ID_AQUI/mi-video.mp4?raw=1',
-    type: 'video'
-  }
+  
   // Agrega más videos aquí según necesites. Es escalable: solo edita este archivo.
 ];
