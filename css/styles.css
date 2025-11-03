@@ -3806,9 +3806,20 @@ footer h3 {
 
 .premium-info h2 {
   margin: 0;
-  font-size: 1.1rem;
+  font-size: 1.5rem;
   font-weight: 600;
   color: #ffffff;
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.premium-info h1 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #ffffff9a;
   line-height: 1.3;
   display: -webkit-box;
   -webkit-box-orient: vertical;
