@@ -13,7 +13,8 @@
   <main class="playlist-container">
     <h1>Premium</h1>
     <p>Bienvenido a tu contenido exclusivo.</p>
-    <div class="video-grid" id="videoList"></div>
+    <!-- playlist.html -->
+  <div class="premium-grid" id="videoList"></div>
   </main>
 
   <div id="footer"></div>
@@ -37,14 +38,14 @@
     const container = document.getElementById('videoList');
     videosPremium.forEach(video => {
       const card = document.createElement('div');
-      card.className = 'video-card';
+      card.className = 'premium-card';
       card.innerHTML = `
         <a href="player.html?id=${video.id}">
           <img src="${video.thumbnail}" alt="${video.title}" loading="lazy">
-          <div class="video-info">
+          <div class="premium-info">
             <h3>${video.title}</h3>
-            <p class="episode">T${video.temporada} E${video.episodio} • ${video.name}</p>
-            <p class="descripcion">${video.description}</p>
+            <p class="premium-episode">T${video.temporada} E${video.episodio} • ${video.name}</p>
+            <p class="premium-desc">${video.description}</p>
           </div>
         </a>
       `;
