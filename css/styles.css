@@ -3804,6 +3804,12 @@ footer h3 {
   overflow: hidden;
 }
 
+.premium-info h3 br {
+  display: block;
+  margin: 4px 0;
+  content: "";
+}
+
 .premium-episode {
   font-size: 0.9rem;
   color: var(--gold, #ffd700);

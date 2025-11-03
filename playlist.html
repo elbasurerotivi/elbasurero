@@ -35,22 +35,30 @@
     fetch('footer.html').then(r => r.text()).then(d => document.getElementById('footer').innerHTML = d);
 
     // Mostrar videos en el grid
-    const container = document.getElementById('videoList');
-    videosPremium.forEach(video => {
-      const formattedTitle = video.title.replace(/\\n/g, '<br>');
+const container = document.getElementById('videoList');
+videosPremium.forEach(video => {
+  // 1. Crear la tarjeta
+  const card = document.createElement('div');
+  card.className = 'premium-card';
 
-card.innerHTML = `
-  <a href="player.html?id=${video.id}">
-    <img src="${video.thumbnail}" alt="${video.title}" loading="lazy">
-    <div class="premium-info">
-      <h3>${formattedTitle}</h3>
-      <p class="premium-episode">T${video.temporada} E${video.episodio} • ${video.name}</p>
-      <p class="premium-desc">${video.description}</p>
-    </div>
-  </a>
-`;
-      container.appendChild(card);
-    });
+  // 2. Formatear título con saltos de línea
+  const formattedTitle = video.title.replace(/\\n/g, '<br>');
+
+  // 3. Insertar HTML
+  card.innerHTML = `
+    <a href="player.html?id=${video.id}">
+      <img src="${video.thumbnail}" alt="${video.title}" loading="lazy">
+      <div class="premium-info">
+        <h3>${formattedTitle}</h3>
+        <p class="premium-episode">T${video.temporada} E${video.episodio} • ${video.name}</p>
+        <p class="premium-desc">${video.description}</p>
+      </div>
+    </a>
+  `;
+
+  // 4. Agregar al contenedor
+  container.appendChild(card);
+});
 
     // Mostrar body cuando todo esté listo
     document.body.style.display = 'block';
