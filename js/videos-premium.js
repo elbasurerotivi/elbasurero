@@ -2,7 +2,7 @@
 export const videosPremium = [
   {
     id: 'estar_en_el_horno',
-    title: 'Nada | 1x01 - Estar en el horno<br>Reacción con Luis Brandoni y la participación de Robert De Niro',
+    title: 'Nada\n1x01 - Estar en el horno\nReacción con Luis Brandoni y la participación de Robert De Niro',
     name: "Nada",
     temporada: "1",
     episodio: "1",
@@ -27,7 +27,7 @@ export const videosPremium = [
     name: "El Encargado",
     temporada: "1",
     episodio: "2",
-    title: '🧹 El Encargado | 1x02 - Una Acción Solidaria<br>Reacción completa con Guillermo Francella',
+    title: '🧹 El Encargado\n1x02 - Una Acción Solidaria\nReacción completa con Guillermo Francella',
     description: 'En este episodio, Eliseo profundiza en sus "acciones solidarias" que no son tan inocentes como parecen. Más intriga, más Francella en modo manipulador.',
     thumbnail: 'Imagenes/3 - Un turista en Buenos Aires.png',
     source: 'https://archive.org/embed/02-una-accion-solidaria',

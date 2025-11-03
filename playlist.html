@@ -37,13 +37,12 @@
     // Mostrar videos en el grid
     const container = document.getElementById('videoList');
     videosPremium.forEach(video => {
-      const card = document.createElement('div');
-      card.className = 'premium-card';
+      const formattedTitle = video.title.replace(/\\n/g, '<br>');
       card.innerHTML = `
         <a href="player.html?id=${video.id}">
           <img src="${video.thumbnail}" alt="${video.title}" loading="lazy">
           <div class="premium-info">
-            <h3>${video.title}</h3>
+            <h3>${formattedTitle}</h3>
             <p class="premium-episode">T${video.temporada} E${video.episodio} • ${video.name}</p>
             <p class="premium-desc">${video.description}</p>
           </div>
