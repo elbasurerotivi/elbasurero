@@ -3698,7 +3698,6 @@ footer h3 {
   font-size: 1.2rem;
   margin-bottom: 2px; /* Corregido 'margin-bottom: 2' a '2px' */
   border-top: 2px solid #ffffffae; /* Corregido 'border-top: #000; border-top: 2px' */
-  --accent-hover: #000000;
 }
 
 /* Efecto hover */
@@ -3713,7 +3712,7 @@ footer h3 {
 .discord { background: #5865F2; }
 .instagram { background: linear-gradient(45deg, #f9ce34, #ee2a7b, #6228d7); }
 .facebook { background: #1877f2; }
-.patreon { background: #3d3d3d; }
+.patreon { background: #3b3b3b; }
 .whatsapp { background: #049b1d; }
 
 
