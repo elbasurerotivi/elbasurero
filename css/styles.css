@@ -3698,6 +3698,7 @@ footer h3 {
   font-size: 1.2rem;
   margin-bottom: 2px; /* Corregido 'margin-bottom: 2' a '2px' */
   border-top: 2px solid #ffffffae; /* Corregido 'border-top: #000; border-top: 2px' */
+  --accent-hover: #000000;
 }
 
 /* Efecto hover */
