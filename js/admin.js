@@ -1,64 +1,44 @@
 // js/admin.js
-import { db, ref, get, update, onValue } from "./firebase-config.js";
+import { auth, db, ref, get, update } from "./firebase-config.js";
+import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 document.addEventListener("DOMContentLoaded", () => {
-  const emailForm = document.getElementById("adminEmailForm");
-  const loginError = document.getElementById("loginError");
-  const loginContainer = document.getElementById("loginForm");
   const adminPanel = document.getElementById("adminPanel");
   const userList = document.getElementById("userList");
   const searchInput = document.getElementById("userSearch");
   const logoutBtn = document.getElementById("logoutBtn");
 
   let userItems = [];
-  let currentAdminEmail = "";
 
-  // === VERIFICAR EMAIL ===
-  emailForm.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const email = document.getElementById("email").value.trim().toLowerCase();
-
-    loginError.style.display = "none";
-
-    try {
-      // Buscar usuario por email
-      const usersRef = ref(db, "users");
-      const snapshot = await get(usersRef);
-
-      if (!snapshot.exists()) {
-        throw new Error("No hay usuarios registrados.");
-      }
-
-      const users = snapshot.val();
-      const userEntry = Object.values(users).find(u => u.email.toLowerCase() === email);
-
-      if (!userEntry || userEntry.role !== "admin") {
-        throw new Error("Acceso denegado: Este email no es administrador.");
-      }
-
-      // ÉXITO: Es admin
-      currentAdminEmail = email;
-      loginContainer.style.display = "none";
-      adminPanel.style.display = "block";
-      await initAdminPanel();
-
-    } catch (error) {
-      console.error("Error:", error);
-      loginError.textContent = error.message;
-      loginError.style.display = "block";
+  // === VERIFICAR AUTENTICACIÓN Y ROL ===
+  onAuthStateChanged(auth, async (user) => {
+    if (!user) {
+      alert("Debes iniciar sesión para acceder al panel de administración.");
+      window.location.href = "index.html"; // o página principal
+      return;
     }
+
+    // Verificar si es admin
+    const userRef = ref(db, `users/${user.uid}`);
+    const snapshot = await get(userRef);
+
+    if (!snapshot.exists() || snapshot.val().role !== "admin") {
+      alert("Acceso denegado: No tienes permisos de administrador.");
+      window.location.href = "index.html";
+      return;
+    }
+
+    // ÉXITO: Es admin
+    document.body.style.display = "block";
+    await initAdminPanel();
   });
 
   // === CERRAR SESIÓN ===
   logoutBtn.addEventListener("click", () => {
-    adminPanel.style.display = "none";
-    loginContainer.style.display = "block";
-    document.getElementById("email").value = "";
-    userItems = [];
+    import("./login.js").then(({ logout }) => logout());
   });
 
-  // === CARGAR LISTA DE USUARIOS ===
-
+  // === CARGAR USUARIOS ===
   async function initAdminPanel() {
     userList.innerHTML = "<p>Cargando usuarios...</p>";
 
@@ -107,10 +87,8 @@ document.addEventListener("DOMContentLoaded", () => {
       const saveRole = async (newRole) => {
         try {
           await update(ref(db), { [`users/${uid}/role`]: newRole });
-          console.log(`Rol actualizado: ${info.email} → ${newRole}`);
         } catch (err) {
           alert("Error al guardar: " + err.message);
-          // Revertir checkbox
           if (newRole === "premium") premiumChk.checked = false;
           if (newRole === "admin") adminChk.checked = false;
         }
@@ -138,11 +116,9 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
 
-    // Ordenar: premium/admin arriba
     userItems.sort((a, b) => (a.hasRole && !b.hasRole ? -1 : (!a.hasRole && b.hasRole ? 1 : 0)));
     renderUserList(userItems);
 
-    // Buscador
     searchInput.addEventListener("input", (e) => {
       const query = e.target.value.toLowerCase().trim();
       const filtered = query === "" ? userItems : userItems.filter(i =>
