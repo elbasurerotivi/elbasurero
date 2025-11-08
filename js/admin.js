@@ -1,9 +1,8 @@
 // js/admin.js
-import { auth, db, ref, get, update, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "./firebase-config.js";
-import { initRolesSync, getUserRole } from "./roleManager.js";
+import { db, ref, get, update, onValue } from "./firebase-config.js";
 
 document.addEventListener("DOMContentLoaded", () => {
-  const loginForm = document.getElementById("adminLoginForm");
+  const emailForm = document.getElementById("adminEmailForm");
   const loginError = document.getElementById("loginError");
   const loginContainer = document.getElementById("loginForm");
   const adminPanel = document.getElementById("adminPanel");
@@ -12,63 +11,61 @@ document.addEventListener("DOMContentLoaded", () => {
   const logoutBtn = document.getElementById("logoutBtn");
 
   let userItems = [];
+  let currentAdminEmail = "";
 
-  // === LOGIN ===
-  loginForm.addEventListener("submit", async (e) => {
+  // === VERIFICAR EMAIL ===
+  emailForm.addEventListener("submit", async (e) => {
     e.preventDefault();
-    const email = document.getElementById("email").value.trim();
-    const password = document.getElementById("password").value;
+    const email = document.getElementById("email").value.trim().toLowerCase();
 
     loginError.style.display = "none";
-    loginError.textContent = "";
 
     try {
-      const userCredential = await signInWithEmailAndPassword(auth, email, password);
-      const user = userCredential.user;
+      // Buscar usuario por email
+      const usersRef = ref(db, "users");
+      const snapshot = await get(usersRef);
 
-      // Verificar rol en Firebase
-      const userRef = ref(db, `users/${user.uid}`);
-      const snapshot = await get(userRef);
-
-      if (!snapshot.exists() || snapshot.val().role !== "admin") {
-        await signOut(auth);
-        throw new Error("Acceso denegado: No eres administrador.");
+      if (!snapshot.exists()) {
+        throw new Error("No hay usuarios registrados.");
       }
 
-      // Login exitoso
+      const users = snapshot.val();
+      const userEntry = Object.values(users).find(u => u.email.toLowerCase() === email);
+
+      if (!userEntry || userEntry.role !== "admin") {
+        throw new Error("Acceso denegado: Este email no es administrador.");
+      }
+
+      // ÉXITO: Es admin
+      currentAdminEmail = email;
       loginContainer.style.display = "none";
       adminPanel.style.display = "block";
-      initRolesSync(true);
       await initAdminPanel();
 
     } catch (error) {
-      console.error("Error de login:", error);
-      loginError.textContent = error.message || "Credenciales incorrectas o error de red.";
+      console.error("Error:", error);
+      loginError.textContent = error.message;
       loginError.style.display = "block";
     }
   });
 
   // === CERRAR SESIÓN ===
-  logoutBtn.addEventListener("click", async () => {
-    await signOut(auth);
+  logoutBtn.addEventListener("click", () => {
     adminPanel.style.display = "none";
     loginContainer.style.display = "block";
     document.getElementById("email").value = "";
-    document.getElementById("password").value = "";
+    userItems = [];
   });
 
-  // === CARGAR USUARIOS ===
+  // === CARGAR LISTA DE USUARIOS ===
+
   async function initAdminPanel() {
     userList.innerHTML = "<p>Cargando usuarios...</p>";
 
     const usersRef = ref(db, "users");
-    const snapshot = await get(usersRef).catch((error) => {
-      console.error("Error:", error);
-      userList.innerHTML = `<p style="color:red;">Error: ${error.message}</p>`;
-      return null;
-    });
+    const snapshot = await get(usersRef);
 
-    if (!snapshot || !snapshot.exists()) {
+    if (!snapshot.exists()) {
       userList.innerHTML = "<p>No hay usuarios registrados.</p>";
       return;
     }
@@ -82,18 +79,24 @@ document.addEventListener("DOMContentLoaded", () => {
       const isAdmin = role === "admin";
 
       const div = document.createElement("div");
-      div.className = `user-item ${isPremium || isAdmin ? 'has-role' : ''}`;
-      div.style = "padding: 10px; margin: 5px 0; border: 1px solid #eee; border-radius: 5px; background: #fff;";
+      div.className = "user-item";
+      div.style = "padding: 12px; margin: 8px 0; border: 1px solid #eee; border-radius: 8px; background: #f8f9fa;";
 
       div.innerHTML = `
         <div style="display: flex; justify-content: space-between; align-items: center;">
           <div>
             <strong>${info.username || "Sin nombre"}</strong><br>
-            <small>${info.email}</small>
+            <small style="color: #666;">${info.email}</small>
           </div>
           <div>
-            <label><input type="checkbox" class="chk-premium" data-uid="${uid}" ${isPremium ? "checked" : ""}> Premium</label>
-            <label style="margin-left: 10px;"><input type="checkbox" class="chk-admin" data-uid="${uid}" ${isAdmin ? "checked" : ""}> Admin</label>
+            <label style="margin-right: 15px;">
+              <input type="checkbox" class="chk-premium" data-uid="${uid}" ${isPremium ? "checked" : ""}>
+              Premium
+            </label>
+            <label>
+              <input type="checkbox" class="chk-admin" data-uid="${uid}" ${isAdmin ? "checked" : ""}>
+              Admin
+            </label>
           </div>
         </div>
       `;
@@ -107,7 +110,7 @@ document.addEventListener("DOMContentLoaded", () => {
           console.log(`Rol actualizado: ${info.email} → ${newRole}`);
         } catch (err) {
           alert("Error al guardar: " + err.message);
-          // Revertir
+          // Revertir checkbox
           if (newRole === "premium") premiumChk.checked = false;
           if (newRole === "admin") adminChk.checked = false;
         }
@@ -157,17 +160,4 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     items.forEach(item => userList.appendChild(item.element));
   }
-
-  // Auto-login si ya está autenticado como admin
-  onAuthStateChanged(auth, async (user) => {
-    if (user) {
-      const snapshot = await get(ref(db, `users/${user.uid}`));
-      if (snapshot.exists() && snapshot.val().role === "admin") {
-        loginContainer.style.display = "none";
-        adminPanel.style.display = "block";
-        initRolesSync(true);
-        await initAdminPanel();
-      }
-    }
-  });
 });
