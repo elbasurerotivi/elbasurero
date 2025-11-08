@@ -10,20 +10,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let userItems = [];
 
-  // === VERIFICAR AUTENTICACIÓN Y ROL ===
+  // === VERIFICAR AUTENTICACIÓN Y ROL ADMIN ===
   onAuthStateChanged(auth, async (user) => {
     if (!user) {
       alert("Debes iniciar sesión para acceder al panel de administración.");
-      window.location.href = "index.html"; // o página principal
+      window.location.href = "index.html";
       return;
     }
 
-    // Verificar si es admin
     const userRef = ref(db, `users/${user.uid}`);
-    const snapshot = await get(userRef);
+    const snapshot = await get(userRef).catch(err => {
+      console.error("Error leyendo rol:", err);
+      alert("Error de conexión. Intenta de nuevo.");
+      window.location.href = "index.html";
+    });
 
     if (!snapshot.exists() || snapshot.val().role !== "admin") {
-      alert("Acceso denegado: No tienes permisos de administrador.");
+      alert("Acceso denegado: No eres administrador.");
       window.location.href = "index.html";
       return;
     }
@@ -35,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // === CERRAR SESIÓN ===
   logoutBtn.addEventListener("click", () => {
-    import("./login.js").then(({ logout }) => logout());
+    import("./login.js").then(module => module.logout());
   });
 
   // === CARGAR USUARIOS ===
@@ -43,9 +46,12 @@ document.addEventListener("DOMContentLoaded", () => {
     userList.innerHTML = "<p>Cargando usuarios...</p>";
 
     const usersRef = ref(db, "users");
-    const snapshot = await get(usersRef);
+    const snapshot = await get(usersRef).catch(err => {
+      userList.innerHTML = `<p style="color:red;">Error: ${err.message}</p>`;
+      return null;
+    });
 
-    if (!snapshot.exists()) {
+    if (!snapshot || !snapshot.exists()) {
       userList.innerHTML = "<p>No hay usuarios registrados.</p>";
       return;
     }
@@ -60,24 +66,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const div = document.createElement("div");
       div.className = "user-item";
-      div.style = "padding: 12px; margin: 8px 0; border: 1px solid #eee; border-radius: 8px; background: #f8f9fa;";
+      div.style = "padding: 12px; margin: 8px 0; border: 1px solid #eee; border-radius: 8px; background: #f8f9fa; display: flex; justify-content: space-between; align-items: center;";
 
       div.innerHTML = `
-        <div style="display: flex; justify-content: space-between; align-items: center;">
-          <div>
-            <strong>${info.username || "Sin nombre"}</strong><br>
-            <small style="color: #666;">${info.email}</small>
-          </div>
-          <div>
-            <label style="margin-right: 15px;">
-              <input type="checkbox" class="chk-premium" data-uid="${uid}" ${isPremium ? "checked" : ""}>
-              Premium
-            </label>
-            <label>
-              <input type="checkbox" class="chk-admin" data-uid="${uid}" ${isAdmin ? "checked" : ""}>
-              Admin
-            </label>
-          </div>
+        <div>
+          <strong>${info.username || "Sin nombre"}</strong><br>
+          <small style="color: #666;">${info.email}</small>
+        </div>
+        <div>
+          <label style="margin-right: 15px; font-weight: bold;">
+            <input type="checkbox" class="chk-premium" data-uid="${uid}" ${isPremium ? "checked" : ""}>
+            Premium
+          </label>
+          <label style="font-weight: bold;">
+            <input type="checkbox" class="chk-admin" data-uid="${uid}" ${isAdmin ? "checked" : ""}>
+            Admin
+          </label>
         </div>
       `;
 
@@ -87,6 +91,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const saveRole = async (newRole) => {
         try {
           await update(ref(db), { [`users/${uid}/role`]: newRole });
+          console.log(`Rol actualizado: ${info.email} → ${newRole}`);
         } catch (err) {
           alert("Error al guardar: " + err.message);
           if (newRole === "premium") premiumChk.checked = false;
@@ -116,9 +121,11 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
 
+    // Ordenar: premium/admin arriba
     userItems.sort((a, b) => (a.hasRole && !b.hasRole ? -1 : (!a.hasRole && b.hasRole ? 1 : 0)));
     renderUserList(userItems);
 
+    // Buscador
     searchInput.addEventListener("input", (e) => {
       const query = e.target.value.toLowerCase().trim();
       const filtered = query === "" ? userItems : userItems.filter(i =>

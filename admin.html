@@ -10,19 +10,22 @@
 </head>
 <body style="display:none;">
 
-  <!-- Panel de admin (oculto hasta verificación) -->
+  <!-- Panel de administración -->
   <main id="adminPanel" class="admin-panel" style="max-width: 900px; margin: 20px auto; padding: 20px;">
     <h1>Panel de Administración</h1>
-    <p>Gestioná los roles de usuarios.</p>
+    <p>Gestioná roles de usuarios.</p>
 
+    <!-- Buscador -->
     <div class="search-container" style="margin: 20px 0;">
-      <input type="text" id="userSearch" placeholder="Buscar por nombre o email..." style="width: 100%; padding: 10px; font-size: 16px;">
+      <input type="text" id="userSearch" placeholder="Buscar por nombre o email..." style="width: 100%; padding: 10px; font-size: 16px; border: 1px solid #ccc; border-radius: 5px;">
     </div>
 
-    <div id="userList" class="user-list" style="max-height: 600px; overflow-y: auto; border: 1px solid #2a36dd; padding: 10px; border-radius: 5px; background: #fff;">
+    <!-- Lista de usuarios -->
+    <div id="userList" style="max-height: 600px; overflow-y: auto; border: 1px solid #ddd; padding: 10px; border-radius: 5px; background: #fff;">
       <p>Cargando usuarios...</p>
     </div>
 
+    <!-- Cerrar sesión -->
     <button id="logoutBtn" style="margin-top: 20px; padding: 10px 20px; background: #dc3545; color: white; border: none; border-radius: 5px; cursor: pointer;">
       Cerrar Sesión
     </button>
