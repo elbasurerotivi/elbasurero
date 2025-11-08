@@ -1,51 +1,31 @@
 // js/roleManager.js
-import { db, ref, get } from "./firebase-config.js";
+import { auth, db, ref, get } from "./firebase-config.js";
+import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
-let rolesCache = {};
+export function protectPage(allowedRoles = ["premium", "admin"], redirectUrl = "index.html") {
+  document.body.style.display = "none";
 
-export async function loadRoles() {
-  const snapshot = await get(ref(db, "users"));
-  if (snapshot.exists()) {
-    const users = snapshot.val();
-    rolesCache = {};
-    Object.values(users).forEach(u => {
-      const role = u.role || "user";
-      rolesCache[u.email] = {
-        premium: role === "premium",
-        admin: role === "admin"
-      };
-    });
-  }
-}
+  onAuthStateChanged(auth, async (user) => {
+    if (!user) {
+      alert("Debes iniciar sesión para acceder a esta página.");
+      window.location.href = redirectUrl;
+      return;
+    }
 
-export function getUserRole(email) {
-  const r = rolesCache[email];
-  if (r?.admin) return "admin";
-  if (r?.premium) return "premium";
-  return "user";
-}
+    try {
+      const snapshot = await get(ref(db, `users/${user.uid}`));
+      const role = snapshot.exists() ? (snapshot.val().role || "user") : "user";
 
-export function canAccessPremium(email) {
-  return getUserRole(email) === "premium" || getUserRole(email) === "admin";
-}
-
-export async function protectPage(allowedRoles = ["admin"], redirectUrl = "index.html") {
-  const urlParams = new URLSearchParams(window.location.search);
-  const email = urlParams.get("email"); // Opcional: pasar email por URL
-
-  if (!email) {
-    alert("Acceso denegado: Email requerido.");
-    window.location.href = redirectUrl;
-    return;
-  }
-
-  await loadRoles();
-  const role = getUserRole(email.toLowerCase());
-
-  if (!allowedRoles.includes(role)) {
-    alert("Acceso restringido.");
-    window.location.href = redirectUrl;
-  } else {
-    document.body.style.display = "block";
-  }
+      if (!allowedRoles.includes(role)) {
+        alert("Acceso restringido: Necesitas ser Premium o Admin.");
+        window.location.href = redirectUrl;
+      } else {
+        document.body.style.display = "block";
+      }
+    } catch (error) {
+      console.error("Error verificando rol:", error);
+      alert("Error de conexión. Intenta de nuevo.");
+      window.location.href = redirectUrl;
+    }
+  });
 }
