@@ -3,56 +3,43 @@ import { auth, db, ref, get, update } from "./firebase-config.js";
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 document.addEventListener("DOMContentLoaded", () => {
-  const adminPanel = document.getElementById("adminPanel");
   const userList = document.getElementById("userList");
   const searchInput = document.getElementById("userSearch");
   const logoutBtn = document.getElementById("logoutBtn");
 
   let userItems = [];
 
-  // === VERIFICAR AUTENTICACIÓN Y ROL ADMIN ===
+  // === VERIFICAR AUTENTICACIÓN ===
   onAuthStateChanged(auth, async (user) => {
     if (!user) {
-      alert("Debes iniciar sesión para acceder al panel de administración.");
+      alert("Debes iniciar sesión.");
       window.location.href = "index.html";
       return;
     }
 
-    const userRef = ref(db, `users/${user.uid}`);
-    const snapshot = await get(userRef).catch(err => {
-      console.error("Error leyendo rol:", err);
-      alert("Error de conexión. Intenta de nuevo.");
-      window.location.href = "index.html";
-    });
-
-    if (!snapshot.exists() || snapshot.val().role !== "admin") {
-      alert("Acceso denegado: No eres administrador.");
+    const snapshot = await get(ref(db, `users/${user.uid}`)).catch(() => null);
+    if (!snapshot?.exists() || snapshot.val().role !== "admin") {
+      alert("Acceso denegado.");
       window.location.href = "index.html";
       return;
     }
 
-    // ÉXITO: Es admin
-    document.body.style.display = "block";
+    document.body.classList.add("visible");
     await initAdminPanel();
   });
 
   // === CERRAR SESIÓN ===
   logoutBtn.addEventListener("click", () => {
-    import("./login.js").then(module => module.logout());
+    import("./login.js").then(m => m.logout());
   });
 
   // === CARGAR USUARIOS ===
   async function initAdminPanel() {
-    userList.innerHTML = "<p>Cargando usuarios...</p>";
+    userList.innerHTML = "<p style='text-align:center; color:#aaa;'><i class='fas fa-spinner fa-spin'></i> Cargando...</p>";
 
-    const usersRef = ref(db, "users");
-    const snapshot = await get(usersRef).catch(err => {
-      userList.innerHTML = `<p style="color:red;">Error: ${err.message}</p>`;
-      return null;
-    });
-
-    if (!snapshot || !snapshot.exists()) {
-      userList.innerHTML = "<p>No hay usuarios registrados.</p>";
+    const snapshot = await get(ref(db, "users")).catch(() => null);
+    if (!snapshot?.exists()) {
+      userList.innerHTML = "<p style='text-align:center; color:#aaa;'>No hay usuarios registrados.</p>";
       return;
     }
 
@@ -66,34 +53,35 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const div = document.createElement("div");
       div.className = "user-item";
-      div.style = "padding: 12px; margin: 8px 0; border: 1px solid #eee; border-radius: 8px; background: #f8f9fa; display: flex; justify-content: space-between; align-items: center;";
-
       div.innerHTML = `
-        <div>
-          <strong>${info.username || "Sin nombre"}</strong><br>
-          <small style="color: #666;">${info.email}</small>
+        <div class="user-info">
+          <h3>${info.username || "Sin nombre"}</h3>
+          <small>${info.email}</small>
         </div>
-        <div>
-          <label style="margin-right: 15px; font-weight: bold;">
-            <input type="checkbox" class="chk-premium" data-uid="${uid}" ${isPremium ? "checked" : ""}>
+        <div class="role-controls">
+          <label class="role-label premium">
+            <input type="checkbox" class="role-checkbox chk-premium" data-uid="${uid}" ${isPremium ? "checked" : ""}>
             Premium
           </label>
-          <label style="font-weight: bold;">
-            <input type="checkbox" class="chk-admin" data-uid="${uid}" ${isAdmin ? "checked" : ""}>
+          <label class="role-label admin">
+            <input type="checkbox" class="role-checkbox chk-admin" data-uid="${uid}" ${isAdmin ? "checked" : ""}>
             Admin
           </label>
         </div>
+        <div class="role-change"></div>
       `;
 
       const premiumChk = div.querySelector(".chk-premium");
       const adminChk = div.querySelector(".chk-admin");
+      const flash = div.querySelector(".role-change");
 
       const saveRole = async (newRole) => {
         try {
           await update(ref(db), { [`users/${uid}/role`]: newRole });
-          console.log(`Rol actualizado: ${info.email} → ${newRole}`);
+          flash.classList.add("show");
+          setTimeout(() => flash.classList.remove("show"), 600);
         } catch (err) {
-          alert("Error al guardar: " + err.message);
+          alert("Error: " + err.message);
           if (newRole === "premium") premiumChk.checked = false;
           if (newRole === "admin") adminChk.checked = false;
         }
@@ -121,11 +109,9 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
 
-    // Ordenar: premium/admin arriba
     userItems.sort((a, b) => (a.hasRole && !b.hasRole ? -1 : (!a.hasRole && b.hasRole ? 1 : 0)));
     renderUserList(userItems);
 
-    // Buscador
     searchInput.addEventListener("input", (e) => {
       const query = e.target.value.toLowerCase().trim();
       const filtered = query === "" ? userItems : userItems.filter(i =>
@@ -138,7 +124,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function renderUserList(items) {
     userList.innerHTML = "";
     if (items.length === 0) {
-      userList.innerHTML = "<p>No se encontraron usuarios.</p>";
+      userList.innerHTML = "<p style='text-align:center; color:#aaa;'>No se encontraron usuarios.</p>";
       return;
     }
     items.forEach(item => userList.appendChild(item.element));

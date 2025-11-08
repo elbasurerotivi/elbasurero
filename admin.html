@@ -5,28 +5,303 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Panel de Administración</title>
   <link rel="icon" href="Imagenes/icono.png" type="image/x-icon">
-  <link rel="stylesheet" href="css/styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <script type="module" src="js/admin.js"></script>
-</head>
-<body style="display:none;">
+  <style>
+    :root {
+      --primary: #1a1a2e;
+      --secondary: #16213e;
+      --accent: #00d4ff;
+      --gold: #ffd700;
+      --text: #e0e0e0;
+      --bg: #0f0f1a;
+      --card: #1e1e2e;
+      --border: #33334d;
+      --success: #00ff88;
+      --danger: #ff4757;
+    }
 
-  <!-- Panel de administración -->
-  <main id="adminPanel" class="admin-panel" style="max-width: 900px; margin: 20px auto; padding: 20px;">
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, var(--bg) 0%, var(--primary) 100%);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    body.visible {
+      opacity: 1;
+    }
+
+    .admin-panel {
+      max-width: 1000px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background: rgba(30, 30, 46, 0.7);
+      backdrop-filter: blur(12px);
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      flex: 1;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 0.5rem;
+      background: linear-gradient(90deg, var(--accent), var(--gold));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #aaa;
+      font-size: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    /* Buscador elegante */
+    .search-container {
+      position: relative;
+      margin: 2rem 0;
+    }
+
+    .search-container input {
+      width: 100%;
+      padding: 14px 20px 14px 50px;
+      font-size: 1rem;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 50px;
+      color: var(--text);
+      outline: none;
+      transition: all 0.3s ease;
+    }
+
+    .search-container input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.2);
+    }
+
+    .search-container i {
+      position: absolute;
+      left: 18px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #888;
+      font-size: 1.1rem;
+      pointer-events: none;
+    }
+
+    /* Tarjetas de usuario */
+    .user-list {
+      max-height: 65vh;
+      overflow-y: auto;
+      padding: 1rem;
+      background: var(--card);
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      gap: 1rem;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .user-item {
+      background: var(--secondary);
+      border-radius: 14px;
+      padding: 1.2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border: 1px solid var(--border);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .user-item:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(0, 212, 255, 0.1);
+      border-color: var(--accent);
+    }
+
+    .user-info h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.3rem;
+      color: var(--text);
+    }
+
+    .user-info small {
+      color: #aaa;
+      font-size: 0.9rem;
+    }
+
+    .role-controls {
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+    }
+
+    .role-label {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 600;
+      cursor: pointer;
+      user-select: none;
+      transition: all 0.2s ease;
+    }
+
+    .role-checkbox {
+      appearance: none;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: #333;
+      border: 2px solid #555;
+      position: relative;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .role-checkbox:checked {
+      background: var(--accent);
+      border-color: var(--accent);
+      animation: pulse 0.4s ease;
+    }
+
+    .role-checkbox:checked::after {
+      content: "✓";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      font-weight: bold;
+      font-size: 0.9rem;
+    }
+
+    .role-label.premium .role-checkbox:checked {
+      background: var(--gold);
+      border-color: var(--gold);
+    }
+
+    .role-label.admin .role-checkbox:checked {
+      background: var(--danger);
+      border-color: var(--danger);
+    }
+
+    /* Animación de cambio */
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.3); }
+      100% { transform: scale(1); }
+    }
+
+    .role-change {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      opacity: 0;
+    }
+
+    .role-change.show {
+      animation: flash 0.6s ease;
+      opacity: 1;
+    }
+
+    @keyframes flash {
+      0%, 100% { background: transparent; }
+      50% { background: rgba(0, 212, 255, 0.2); }
+    }
+
+    /* Botón cerrar sesión */
+    #logoutBtn {
+      display: block;
+      margin: 2rem auto 0;
+      padding: 12px 32px;
+      background: linear-gradient(45deg, var(--danger), #ff6b7a);
+      color: white;
+      border: none;
+      border-radius: 50px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(255, 71, 87, 0.3);
+    }
+
+    #logoutBtn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(255, 71, 87, 0.4);
+    }
+
+    /* Scrollbar personalizada */
+    .user-list::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .user-list::-webkit-scrollbar-track {
+      background: var(--card);
+      border-radius: 10px;
+    }
+
+    .user-list::-webkit-scrollbar-thumb {
+      background: var(--accent);
+      border-radius: 10px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .admin-panel {
+        margin: 1rem;
+        padding: 1.5rem;
+      }
+      .role-controls {
+        flex-direction: column;
+        gap: 0.8rem;
+      }
+      .user-item {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <main id="adminPanel" class="admin-panel">
     <h1>Panel de Administración</h1>
-    <p>Gestioná roles de usuarios.</p>
+    <p class="subtitle">Gestioná roles de usuarios con un solo clic</p>
 
     <!-- Buscador -->
-    <div class="search-container" style="margin: 20px 0;">
-      <input type="text" id="userSearch" placeholder="Buscar por nombre o email..." style="width: 100%; padding: 10px; font-size: 16px; border: 1px solid #ccc; border-radius: 5px;">
+    <div class="search-container">
+      <i class="fas fa-search"></i>
+      <input type="text" id="userSearch" placeholder="Buscar por nombre o email...">
     </div>
 
     <!-- Lista de usuarios -->
-    <div id="userList" style="max-height: 600px; overflow-y: auto; border: 1px solid #ddd; padding: 10px; border-radius: 5px; background: #fff;">
+    <div id="userList" class="user-list">
       <p>Cargando usuarios...</p>
     </div>
 
     <!-- Cerrar sesión -->
-    <button id="logoutBtn" style="margin-top: 20px; padding: 10px 20px; background: #dc3545; color: white; border: none; border-radius: 5px; cursor: pointer;">
+    <button id="logoutBtn">
       Cerrar Sesión
     </button>
   </main>
