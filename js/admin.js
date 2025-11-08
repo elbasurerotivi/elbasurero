@@ -1,6 +1,6 @@
 // js/admin.js
-import { db, ref, get, update, onAuthStateChanged } from "./firebase-config.js";
-import { getUserRole, initRolesSync, protectPage } from "./roleManager.js";
+import { auth, db, ref, get, update, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "./firebase-config.js";
+import { initRolesSync, getUserRole } from "./roleManager.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   const loginForm = document.getElementById("adminLoginForm");
@@ -9,46 +9,67 @@ document.addEventListener("DOMContentLoaded", () => {
   const adminPanel = document.getElementById("adminPanel");
   const userList = document.getElementById("userList");
   const searchInput = document.getElementById("userSearch");
+  const logoutBtn = document.getElementById("logoutBtn");
 
-  // Usar protectPage para verificar admin automáticamente (reemplaza el form manual)
-  protectPage(["admin"], "index.html", () => {
-    // Callback al éxito: Inicializar panel
-    loginContainer.style.display = "none";
-    adminPanel.style.display = "block";
-    initRolesSync(true);  // Sync roles en tiempo real
-    window.refreshAdminUI = () => initAdminPanel();  // Hook para refrescar UI
-    initAdminPanel();
-  });
+  let userItems = [];
 
-  // Si quieres mantener el form simple (opcional, pero protectPage lo hace mejor)
-  loginForm.addEventListener("submit", (e) => {
+  // === LOGIN ===
+  loginForm.addEventListener("submit", async (e) => {
     e.preventDefault();
-    const email = document.getElementById("email").value.trim().toLowerCase();
-    const role = getUserRole(email);
-    if (role === "admin") {
-      loginError.style.display = "none";
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value;
+
+    loginError.style.display = "none";
+    loginError.textContent = "";
+
+    try {
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+
+      // Verificar rol en Firebase
+      const userRef = ref(db, `users/${user.uid}`);
+      const snapshot = await get(userRef);
+
+      if (!snapshot.exists() || snapshot.val().role !== "admin") {
+        await signOut(auth);
+        throw new Error("Acceso denegado: No eres administrador.");
+      }
+
+      // Login exitoso
       loginContainer.style.display = "none";
       adminPanel.style.display = "block";
       initRolesSync(true);
-      initAdminPanel();
-    } else {
-      loginError.textContent = "Acceso denegado.";
+      await initAdminPanel();
+
+    } catch (error) {
+      console.error("Error de login:", error);
+      loginError.textContent = error.message || "Credenciales incorrectas o error de red.";
       loginError.style.display = "block";
     }
   });
 
-  let userItems = [];  // Cache para filtrado rápido
+  // === CERRAR SESIÓN ===
+  logoutBtn.addEventListener("click", async () => {
+    await signOut(auth);
+    adminPanel.style.display = "none";
+    loginContainer.style.display = "block";
+    document.getElementById("email").value = "";
+    document.getElementById("password").value = "";
+  });
 
+  // === CARGAR USUARIOS ===
   async function initAdminPanel() {
+    userList.innerHTML = "<p>Cargando usuarios...</p>";
+
     const usersRef = ref(db, "users");
     const snapshot = await get(usersRef).catch((error) => {
       console.error("Error:", error);
-      userList.innerHTML = "<p>Error cargando usuarios.</p>";
+      userList.innerHTML = `<p style="color:red;">Error: ${error.message}</p>`;
       return null;
     });
 
     if (!snapshot || !snapshot.exists()) {
-      userList.innerHTML = "<p>No hay usuarios.</p>";
+      userList.innerHTML = "<p>No hay usuarios registrados.</p>";
       return;
     }
 
@@ -62,67 +83,66 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const div = document.createElement("div");
       div.className = `user-item ${isPremium || isAdmin ? 'has-role' : ''}`;
+      div.style = "padding: 10px; margin: 5px 0; border: 1px solid #eee; border-radius: 5px; background: #fff;";
+
       div.innerHTML = `
-        <div class="user-info">
-          <strong>${info.username || "Sin nombre"}</strong><br>
-          <small>${info.email}</small>
-        </div>
-        <div class="user-roles">
-          <label>Premium: <input type="checkbox" class="chk-premium" data-uid="${uid}" ${isPremium ? "checked" : ""}></label>
-          <label>Admin: <input type="checkbox" class="chk-admin" data-uid="${uid}" ${isAdmin ? "checked" : ""}></label>
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <div>
+            <strong>${info.username || "Sin nombre"}</strong><br>
+            <small>${info.email}</small>
+          </div>
+          <div>
+            <label><input type="checkbox" class="chk-premium" data-uid="${uid}" ${isPremium ? "checked" : ""}> Premium</label>
+            <label style="margin-left: 10px;"><input type="checkbox" class="chk-admin" data-uid="${uid}" ${isAdmin ? "checked" : ""}> Admin</label>
+          </div>
         </div>
       `;
 
-      // Event listeners para checkboxes (guardado inmediato)
       const premiumChk = div.querySelector(".chk-premium");
       const adminChk = div.querySelector(".chk-admin");
 
-      function saveRole(uid, newRole) {
-        const updates = {};
-        updates[`users/${uid}/role`] = newRole;
-        update(ref(db), updates).then(() => {
-          console.log(`Rol actualizado para ${info.email}: ${newRole}`);
-          // No necesitas refrescar manual: el listener de roleManager lo hace
-        }).catch((error) => {
-          console.error("Error guardando:", error);
-          alert("Error: Verifica que estés logueado como admin.");
-          // Revertir checkbox si falla
-          if (newRole === "premium") premiumChk.checked = !premiumChk.checked;
-          else adminChk.checked = !adminChk.checked;
-        });
-      }
+      const saveRole = async (newRole) => {
+        try {
+          await update(ref(db), { [`users/${uid}/role`]: newRole });
+          console.log(`Rol actualizado: ${info.email} → ${newRole}`);
+        } catch (err) {
+          alert("Error al guardar: " + err.message);
+          // Revertir
+          if (newRole === "premium") premiumChk.checked = false;
+          if (newRole === "admin") adminChk.checked = false;
+        }
+      };
 
       premiumChk.addEventListener("change", () => {
-        let newRole = "user";
-        if (adminChk.checked) newRole = "admin";
-        else if (premiumChk.checked) newRole = "premium";
-        saveRole(uid, newRole);
+        let role = "user";
+        if (adminChk.checked) role = "admin";
+        else if (premiumChk.checked) role = "premium";
+        saveRole(role);
       });
 
       adminChk.addEventListener("change", () => {
-        let newRole = "user";
-        if (adminChk.checked) newRole = "admin";
-        else if (premiumChk.checked) newRole = "premium";
-        saveRole(uid, newRole);
+        let role = "user";
+        if (adminChk.checked) role = "admin";
+        else if (premiumChk.checked) role = "premium";
+        saveRole(role);
       });
 
       userItems.push({
         element: div,
         hasRole: isPremium || isAdmin,
         username: (info.username || "").toLowerCase(),
-        email: info.email.toLowerCase(),
-        uid
+        email: info.email.toLowerCase()
       });
     });
 
-    // Ordenar y renderizar
+    // Ordenar: premium/admin arriba
     userItems.sort((a, b) => (a.hasRole && !b.hasRole ? -1 : (!a.hasRole && b.hasRole ? 1 : 0)));
     renderUserList(userItems);
 
-    // Buscador (sin cambios)
+    // Buscador
     searchInput.addEventListener("input", (e) => {
       const query = e.target.value.toLowerCase().trim();
-      const filtered = query === "" ? userItems : userItems.filter(i => 
+      const filtered = query === "" ? userItems : userItems.filter(i =>
         i.username.includes(query) || i.email.includes(query)
       );
       renderUserList(filtered);
@@ -138,8 +158,16 @@ document.addEventListener("DOMContentLoaded", () => {
     items.forEach(item => userList.appendChild(item.element));
   }
 
-  // Cleanup al unload
-  window.addEventListener("beforeunload", () => {
-    import("./roleManager.js").then(({ cleanupRolesSync }) => cleanupRolesSync());
+  // Auto-login si ya está autenticado como admin
+  onAuthStateChanged(auth, async (user) => {
+    if (user) {
+      const snapshot = await get(ref(db, `users/${user.uid}`));
+      if (snapshot.exists() && snapshot.val().role === "admin") {
+        loginContainer.style.display = "none";
+        adminPanel.style.display = "block";
+        initRolesSync(true);
+        await initAdminPanel();
+      }
+    }
   });
 });

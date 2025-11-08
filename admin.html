@@ -9,33 +9,42 @@
   <script type="module" src="js/admin.js"></script>
 </head>
 <body>
-  <!-- Formulario de "login" (solo email), visible inicialmente -->
-  <div id="loginForm" class="login-form">
-    <h1>🔒 Acceso Admin - Ingresa tu Email</h1>
+
+  <!-- Formulario de login (visible al inicio) -->
+  <div id="loginForm" class="login-form" style="max-width: 400px; margin: 50px auto; padding: 20px; border: 1px solid #ccc; border-radius: 10px; background: #f9f9f9;">
+    <h1>Acceso Admin</h1>
     <form id="adminLoginForm">
       <label for="email">Email:</label>
-      <input type="email" id="email" required>
-      <button type="submit">Verificar Acceso</button>
+      <input type="email" id="email" required placeholder="tu@email.com">
+      
+      <label for="password" style="margin-top: 10px;">Contraseña:</label>
+      <input type="password" id="password" required placeholder="••••••••">
+      
+      <button type="submit" style="margin-top: 15px; width: 100%; padding: 10px; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer;">
+        Iniciar Sesión
+      </button>
     </form>
-    <p id="loginError" style="color: red; display: none;"></p>
+    <p id="loginError" style="color: red; margin-top: 10px; display: none;"></p>
   </div>
 
-  <!-- Panel de admin, oculto hasta verificación -->
-  <main id="adminPanel" class="admin-panel" style="display:none">
-    <h1>⚙️ Panel de Administración</h1>
-    <p>Gestioná los permisos de usuarios registrados.</p>
+  <!-- Panel de admin (oculto hasta login) -->
+  <main id="adminPanel" class="admin-panel" style="display:none; max-width: 900px; margin: 20px auto;">
+    <h1>Panel de Administración</h1>
+    <p>Gestioná los roles de usuarios.</p>
 
-    <!-- Buscador de usuarios -->
-    <div class="search-container">
-      <input type="text" id="userSearch" placeholder="Buscar por nombre de usuario o email...">
+    <!-- Buscador -->
+    <div class="search-container" style="margin: 20px 0;">
+      <input type="text" id="userSearch" placeholder="Buscar por nombre o email..." style="width: 100%; padding: 10px; font-size: 16px;">
     </div>
 
-    <div id="userList" class="user-list">
+    <!-- Lista de usuarios -->
+    <div id="userList" class="user-list" style="max-height: 600px; overflow-y: auto; border: 1px solid #ddd; padding: 10px; border-radius: 5px;">
       <p>Cargando usuarios...</p>
     </div>
 
-    <button id="saveRoles" class="btn-save">💾 Guardar cambios</button>
-    <a id="downloadLink" style="display:none;" download="roleManager.js">Descargar roleManager.js actualizado</a>
+    <button id="logoutBtn" style="margin-top: 20px; padding: 10px 20px; background: #dc3545; color: white; border: none; border-radius: 5px; cursor: pointer;">
+      Cerrar Sesión
+    </button>
   </main>
 </body>
 </html>
