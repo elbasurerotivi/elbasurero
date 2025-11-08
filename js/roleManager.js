@@ -1,238 +1,48 @@
 // js/roleManager.js
-// Este archivo se modifica automáticamente desde admin.html
+// Versión dinámica: Lee roles de Firebase en tiempo real
 
-export const roles = {
-  "lrotelo@gmail.com": {
-    "premium": false,
-    "admin": false
-  },
-  "elbasurerotivi@gmail.com": {
-    "premium": true,
-    "admin": false
-  },
-  "emenagarcia@gmail.com": {
-    "premium": false,
-    "admin": true
-  },
-  "charsvolta@gmail.com": {
-    "premium": false,
-    "admin": true
-  },
-  "jamesalta8817@gmail.com": {
-    "premium": false,
-    "admin": false
-  },
-  "delafuentefabiana71@gmail.com": {
-    "premium": false,
-    "admin": false
-  },
-  "javiermartinsanchez@outlook.com.ar": {
-    "premium": false,
-    "admin": false
-  },
-  "rafatrigos2014@gmail.com": {
-    "premium": false,
-    "admin": false
-  },
-  "ferchumica8998@gmail.com": {
-    "premium": false,
-    "admin": false
-  },
-  "juangabrielcasalla@gmail.com": {
-    "premium": false,
-    "admin": false
-  },
-  "gazzzt15@gmail.com": {
-    "premium": false,
-    "admin": false
-  },
-  "dielucero@gmail.com": {
-    "premium": false,
-    "admin": false
-  },
-  "f3d3c3p3@gmail.com": {
-    "premium": false,
-    "admin": false
-  },
-  "cristiangoldner@gmail.com": {
-    "premium": false,
-    "admin": false
-  },
-  "cabraljavier1632@gmail.com": {
-    "premium": false,
-    "admin": false
-  },
-  "alvareznaty34@gmail.com": {
-    "premium": false,
-    "admin": false
-  },
-  "cardozoli159@gmail.com": {
-    "premium": false,
-    "admin": false
-  },
-  "cja_1975@hotmail.com": {
-    "premium": false,
-    "admin": false
-  },
-  "lalypitar@gmail.com": {
-    "premium": false,
-    "admin": false
-  },
-  "luqueillanesalejandro@gmail.com": {
-    "premium": false,
-    "admin": false
-  },
-  "alexeiuska@gmail.com": {
-    "premium": false,
-    "admin": false
-  },
-  "robertoarria@gmail.com": {
-    "premium": false,
-    "admin": false
-  },
-  "pancho.bonavita@gmail.com": {
-    "premium": false,
-    "admin": false
-  },
-  "drl353@hotmail.com": {
-    "premium": false,
-    "admin": false
-  },
-  "ale.torresbernal17@gmail.com": {
-    "premium": false,
-    "admin": false
-  },
-  "malditoflanders303@hotmail.com": {
-    "premium": false,
-    "admin": false
-  },
-  "l.peralta1993@gmail.com": {
-    "premium": false,
-    "admin": false
-  },
-  "amelie9403@gmail.com": {
-    "premium": false,
-    "admin": false
-  },
-  "cifarellimartin@gmail.com": {
-    "premium": false,
-    "admin": false
-  },
-  "luciasuarez.od@gmail.com": {
-    "premium": false,
-    "admin": false
-  },
-  "erinlioflor@gmail.com": {
-    "premium": false,
-    "admin": false
-  },
-  "bizcochosrancios@gmail.com": {
-    "premium": false,
-    "admin": false
-  },
-  "jeandu1026@gmail.com": {
-    "premium": false,
-    "admin": false
-  },
-  "lisangel3110@gmail.com": {
-    "premium": false,
-    "admin": false
-  },
-  "lucasais96@gmail.com": {
-    "premium": false,
-    "admin": false
-  },
-  "rsaira@gmail.com": {
-    "premium": false,
-    "admin": false
-  },
-  "a.montoro@live.com": {
-    "premium": false,
-    "admin": false
-  },
-  "okandersok@gmail.com": {
-    "premium": false,
-    "admin": false
-  },
-  "chquilmes1260@gmail.com": {
-    "premium": false,
-    "admin": false
-  },
-  "fusco_lucrecia@hotmail.com": {
-    "premium": false,
-    "admin": false
-  },
-  "chinomauroperuzzotti@gmail.com": {
-    "premium": false,
-    "admin": false
-  },
-  "car.lotito.101@gmail.com": {
-    "premium": false,
-    "admin": false
-  },
-  "thalecelestial@gmail.com": {
-    "premium": false,
-    "admin": false
-  },
-  "krnlrkr@gmail.com": {
-    "premium": false,
-    "admin": false
-  },
-  "mariaemmaacha@yahoo.com.ar": {
-    "premium": false,
-    "admin": false
-  },
-  "dani352yopedrifloo20@gmail.com": {
-    "premium": false,
-    "admin": false
-  },
-  "adri.anez3999@gmail.com": {
-    "premium": false,
-    "admin": false
-  },
-  "galexhandra@gmail.com": {
-    "premium": false,
-    "admin": false
-  },
-  "troyanoreyvaj9011@gmail.com": {
-    "premium": false,
-    "admin": false
-  },
-  "andresroderick2023@gmail.com": {
-    "premium": false,
-    "admin": false
-  },
-  "summermieternoverano@gmail.com": {
-    "premium": false,
-    "admin": false
-  },
-  "luffycracke@gmail.com": {
-    "premium": false,
-    "admin": false
-  },
-  "skywalker1977ar@gmail.com": {
-    "premium": false,
-    "admin": false
-  },
-  "carlosojeda0587@gmail.com": {
-    "premium": false,
-    "admin": false
-  },
-  "davidoller18@gmail.com": {
-    "premium": false,
-    "admin": false
-  }
-};
+import { db, ref, onValue, get } from "./firebase-config.js";
+import { auth, onAuthStateChanged } from "./firebase-config.js";  // Asegúrate de exportar onAuthStateChanged si no lo está
 
-// Función para obtener rol como string
-export function getUserRole(email) {
-  const role = roles[email] || { premium: false, admin: false };
-  if (role.admin) return "admin";
-  if (role.premium) return "premium";
-  return "user";
+// Cache local para roles (se actualiza en tiempo real)
+let rolesCache = {};
+let currentUser = null;
+let rolesListener = null;
+
+// Inicializar listener para roles de todos los usuarios (solo si es admin o necesario)
+export function initRolesSync(isAdmin = false) {
+  if (rolesListener) return;  // Ya inicializado
+
+  const usersRef = ref(db, "users");
+  rolesListener = onValue(usersRef, (snapshot) => {
+    rolesCache = {};
+    if (snapshot.exists()) {
+      const users = snapshot.val();
+      Object.entries(users).forEach(([uid, info]) => {
+        const role = info.role || "user";
+        rolesCache[info.email] = {
+          premium: role === "premium",
+          admin: role === "admin"
+        };
+      });
+    }
+    console.log("Roles sincronizados:", rolesCache);
+    // Si es admin, refresca la UI automáticamente (puedes hookear esto en admin.js)
+    if (isAdmin && typeof window !== 'undefined' && window.refreshAdminUI) {
+      window.refreshAdminUI();
+    }
+  }, (error) => {
+    console.error("Error sincronizando roles:", error);
+  });
 }
 
-// Verifica si puede entrar a páginas premium
+// Obtener rol de un email (usa cache, sincronizado)
+export function getUserRole(email) {
+  return rolesCache[email] ? 
+    (rolesCache[email].admin ? "admin" : rolesCache[email].premium ? "premium" : "user") : "user";
+}
+
+// Verifica si puede acceder a premium
 export function canAccessPremium(email) {
   const role = getUserRole(email);
   return role === "premium" || role === "admin";
@@ -240,29 +50,46 @@ export function canAccessPremium(email) {
 
 // Verifica si es admin
 export function isAdmin(email) {
-  const role = getUserRole(email);
-  return role === "admin";
+  return getUserRole(email) === "admin";
 }
 
-// Protección de páginas
+// Protección de páginas (usa cache sincronizado)
 export function protectPage(allowedRoles = ["admin"], redirectUrl = "index.html") {
-  import("./firebase-config.js").then(({ auth }) => {
-    import("https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js").then(({ onAuthStateChanged }) => {
-      onAuthStateChanged(auth, (user) => {
-        if (!user) {
-          alert("Debes iniciar sesión para acceder a esta página.");
-          window.location.href = redirectUrl;
-          return;
-        }
+  document.body.style.display = "none";  // Ocultar hasta verificar
 
-        const role = getUserRole(user.email);
-        if (!allowedRoles.includes(role)) {
-          alert("Acceso restringido. No tienes permiso para ver esta página.");
-          window.location.href = redirectUrl;
-        } else {
-          document.body.style.display = "block";
-        }
-      });
-    });
+  onAuthStateChanged(auth, (user) => {
+    if (!user) {
+      alert("Debes iniciar sesión para acceder a esta página.");
+      window.location.href = redirectUrl;
+      return;
+    }
+
+    currentUser = user;
+    const role = getUserRole(user.email);
+
+    if (!allowedRoles.includes(role)) {
+      alert("Acceso restringido. No tienes permiso para ver esta página.");
+      window.location.href = redirectUrl;
+    } else {
+      document.body.style.display = "block";
+      // Inicializar sync si es admin (para admin.html)
+      if (role === "admin") {
+        initRolesSync(true);
+      }
+    }
   });
+}
+
+// Cleanup al cerrar (opcional)
+export function cleanupRolesSync() {
+  if (rolesListener) {
+    rolesListener();  // Detiene el listener
+    rolesListener = null;
+  }
+}
+
+// Para compatibilidad: getUserRole sin auth (pero avisa que necesita login)
+export function getUserRoleNoAuth(email) {
+  console.warn("getUserRoleNoAuth: Usando cache sin auth. Inicializa con login.");
+  return getUserRole(email);
 }
