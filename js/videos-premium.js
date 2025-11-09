@@ -2,6 +2,19 @@
 export const videosPremium = [
 
 
+    {
+    id: 'mi_obra_maestra',
+    name: "Mi Obra Maestra",
+    temporada: "0",
+    episodio: "0",
+    title: 'Mi obra maestra',
+    title2:'Con Guillermo Francella y Luis Brandoni',
+    description: '',
+    thumbnail: 'Imagenes/mi obra maestra.jpg',
+    source: 'https://rumble.com/embed/v6z9dmc/?pub=4nmhh2',
+    type: 'iframe'
+  },
+
   {
     id: 'indiana_jones_2',
     name: "Indiana Jones",
