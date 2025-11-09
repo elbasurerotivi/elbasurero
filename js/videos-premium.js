@@ -2,10 +2,23 @@
 export const videosPremium = [
 
 
+{
+    id: 'indiana_jones_1',
+    name: "Indiana Jones",
+    temporada: "0",
+    episodio: "1",
+    title: '🧢 REACCIÓN A INDIANA JONES Y LOS CAZADORES DEL ARCA PERDIDA',
+    title2:'Increíble final + Mariano Rodríguez',
+    description: 'Nos lanzamos a revivir Indiana Jones y los Cazadores del Arca Perdida, la primera aventura del arqueólogo más icónico del cine. Entre risas, teorías y nostalgia pura, descubrimos por qué esta película sigue siendo una joya absoluta. Y para cerrar con broche de oro, vimos un video de Mariano Rodríguez en YouTube que nos dejó reflexionando y riendo al mismo tiempo. Un clásico, una gran charla y una reacción sin filtros, como siempre.',
+    thumbnail: 'Imagenes/Picsart_25-10-14_10-51-57-730.jpg',
+    source: 'https://rumble.com/embed/v6z7kx6/?pub=4nmhh2',
+    type: 'iframe'
+  },
   
+
   {
     id: 'milo_j',
-    name: "Reaccion con Fabio",
+    name: "Milo J",
     temporada: "",
     episodio: "",
     title: '🔥 REACCIÓN A MILO J',
