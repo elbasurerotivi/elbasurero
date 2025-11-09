@@ -85,6 +85,18 @@ export const videosPremium = [
   
   ///Nada///
   {
+    id: 'la_verdad_de_la_milanesa',
+    name: "Nada",
+    temporada: "1",
+    episodio: "2",
+    title: '🍝 La verdad de la milanesa 🇦🇷 ',
+    title2:'Reacción con Luis Brandoni',
+    description: 'En este tercer episodio de “Nada”, titulado “La verdad de la milanesa”, Manuel Tamayo Prats continúa navegando entre la nostalgia y la desconexión con el mundo moderno. Con su característico sarcasmo, se enfrenta a pequeñas grandes crisis cotidianas que revelan tanto su vulnerabilidad como su terquedad. Luis Brandoni está brillante —otra vez— en este retrato de un hombre atrapado entre el pasado y un presente que ya no le pertenece. El tono sigue siendo irónico y profundamente humano, con momentos que mezclan humor, melancolía y reflexión sobre la identidad porteña. Un episodio delicioso, con sabor a Buenos Aires y a esa ironía tan particular que solo Nada puede ofrecer.',
+    thumbnail: 'Imagenes/Reaccin-a-Nada-Episodio-3-.jpg',
+    source: 'https://rumble.com/embed/v6yzbss/?pub=4nmhh2',
+    type: 'iframe'
+  },
+  {
     id: 'estar_en_el_horno',
     name: "Nada",
     temporada: "1",
