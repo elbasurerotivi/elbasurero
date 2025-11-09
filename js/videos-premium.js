@@ -2,6 +2,19 @@
 export const videosPremium = [
 
 
+  {
+    id: 'indiana_jones_2',
+    name: "Indiana Jones",
+    temporada: "0",
+    episodio: "2",
+    title: '💀 REACCIÓN A INDIANA JONES Y EL TEMPLO DE LA PERDICIÓN',
+    title2:'Sin video de Mariano… pero con Ice Cube',
+    description: 'Volvimos con la segunda entrega de la saga: Indiana Jones y el Templo de la Perdición. Una película más oscura, más intensa y con momentos que siguen sorprendiendo décadas después. Esta vez rompimos la tradición: no hubo video de Mariano Rodríguez sobre la peli, pero no podíamos cerrar sin él, así que terminamos viendo su video sobre La Guerra de los Mundos con Ice Cube. Entre risas, comentarios y reacciones genuinas, fue una sesión redonda.',
+    thumbnail: 'Imagenes/Picsart_25-10-21_14-04-12-948.jpg',
+    source: 'https://rumble.com/embed/v6z7l10/?pub=4nmhh2',
+    type: 'iframe'
+  },
+
 {
     id: 'indiana_jones_1',
     name: "Indiana Jones",
