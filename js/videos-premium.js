@@ -101,12 +101,24 @@ export const videosPremium = [
     id: 'la_verdad_de_la_milanesa',
     name: "Nada",
     temporada: "1",
-    episodio: "2",
+    episodio: "3",
     title: '🍝 La verdad de la milanesa 🇦🇷 ',
     title2:'Reacción con Luis Brandoni',
     description: 'En este tercer episodio de “Nada”, titulado “La verdad de la milanesa”, Manuel Tamayo Prats continúa navegando entre la nostalgia y la desconexión con el mundo moderno. Con su característico sarcasmo, se enfrenta a pequeñas grandes crisis cotidianas que revelan tanto su vulnerabilidad como su terquedad. Luis Brandoni está brillante —otra vez— en este retrato de un hombre atrapado entre el pasado y un presente que ya no le pertenece. El tono sigue siendo irónico y profundamente humano, con momentos que mezclan humor, melancolía y reflexión sobre la identidad porteña. Un episodio delicioso, con sabor a Buenos Aires y a esa ironía tan particular que solo Nada puede ofrecer.',
     thumbnail: 'Imagenes/Reaccin-a-Nada-Episodio-3-.jpg',
-    source: 'https://rumble.com/embed/v6yzbss/?pub=4nmhh2',
+    source: 'https://rumble.com/embed/v6z7sp0/?pub=4nmhh2',
+    type: 'iframe'
+  },
+  {
+    id: 'remar_en_dulce_de_leche',
+    name: "Nada",
+    temporada: "1",
+    episodio: "2",
+    title: '🍷🍮Remar en Dulce de Leche 🇦🇷',
+    title2:'Reacción con Luis Brandoni',
+    description: 'En este segundo episodio de “Nada”, titulado “Remar en Dulce de Leche”, seguimos la vida del refinado y cínico crítico gastronómico Manuel Tamayo Prats (Luis Brandoni), que intenta sobrellevar los cambios de su rutina tras la pérdida de su asistente. Este capítulo, lleno de ironía y sabor argentino, muestra a Manuel enfrentándose a la modernidad con esa mezcla tan suya de soberbia y ternura. El tono es más introspectivo que el primero, con momentos que combinan humor, nostalgia y una dirección impecable. Además, Robert De Niro continúa aportando ese toque internacional y entrañable como Vincent, su amigo estadounidense. Una joya de episodio que me hizo reír, pensar y disfrutar muchísimo.',
+    thumbnail: 'Imagenes/Reaccin-a-Nada-Episodio-2-.jpg',
+    source: 'https://rumble.com/embed/v6z7sgu/?pub=4nmhh2',
     type: 'iframe'
   },
   {
