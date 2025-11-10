@@ -7,9 +7,9 @@ export const videosPremium = [
     name: "Mi Obra Maestra",
     temporada: "0",
     episodio: "0",
-    title: 'Mi obra maestra',
+    title: '🫟Mi obra maestra',
     title2:'Con Guillermo Francella y Luis Brandoni',
-    description: '',
+    description: 'En esta sesión completa en directo vimos Mi obra maestra, una película argentina que mezcla humor, tensión del mercado del arte y la ambición entre dos amigos: un galerista de éxito algo manipulador y un pintor talentoso pero en decadencia. Después de la película cerramos con un video del canal “Te Lo Resumo Así Nomás” sobre el cine argentino, lo que nos dejó con muchas más ganas de explorar nuevas joyitas del cine de Argentina. Una combinación de reacción auténtica, conversación sincera y descubrimiento cultural… ¡como siempre!',
     thumbnail: 'Imagenes/mi obra maestra.jpg',
     source: 'https://rumble.com/embed/v6z9dmc/?pub=4nmhh2',
     type: 'iframe'
@@ -136,4 +136,5 @@ export const videosPremium = [
   
   
   // Agrega más videos aquí según necesites. Es escalable: solo edita este archivo.
+
 ];
