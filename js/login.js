@@ -169,32 +169,39 @@ document.getElementById("actionBtn")?.addEventListener("click", () => {
 window.loginGoogle = function() {
   console.log("Iniciando autenticación con Google...");
   const provider = new GoogleAuthProvider();
-  provider.setCustomParameters({
-    prompt: 'select_account' // Fuerza la selección de cuenta
-  });
+  provider.setCustomParameters({ prompt: 'select_account' });
+
   signInWithPopup(auth, provider)
-    .then(result => {
+    .then(async (result) => {
       const user = result.user;
       console.log("Autenticación con Google exitosa:", user.email);
+
       const userRef = ref(db, `users/${user.uid}`);
-      return set(userRef, {
-        email: user.email,
-        username: user.displayName || "Anónimo",
-        createdAt: Date.now()
-      })
-      .then(() => {
-        console.log("Datos del usuario guardados en la base de datos");
+
+      try {
+        await set(userRef, {
+          email: user.email,
+          username: user.displayName || user.email.split("@")[0],
+          createdAt: Date.now(),
+          role: "user"  // ← ¡IMPORTANTE! Agregar rol por defecto
+        });
+        console.log("Usuario guardado en DB");
         alert(`Bienvenido, ${user.displayName || user.email}!`);
         cerrarLogin();
-      });
+      } catch (dbError) {
+        console.error("Error al guardar en DB:", dbError);
+        alert("Error al guardar tus datos. Contacta al admin.");
+        // Opcional: cerrar sesión si no se pudo guardar
+        // await signOut(auth);
+      }
     })
     .catch(error => {
-      console.error("Error al iniciar sesión con Google:", error);
+      console.error("Error de autenticación:", error);
       let errorMessage = "Error al iniciar sesión con Google.";
       if (error.code === "auth/popup-closed-by-user") {
-        errorMessage = "El popup se cerró antes de completar el proceso. Por favor, intenta de nuevo y no cierres la ventana.";
+        errorMessage = "Ventana cerrada. Intenta de nuevo.";
       } else if (error.code === "auth/popup-blocked") {
-        errorMessage = "El popup fue bloqueado por el navegador. Permite popups para este sitio en la configuración de tu navegador.";
+        errorMessage = "Popup bloqueado. Habilita popups.";
       } else {
         errorMessage = error.message;
       }
