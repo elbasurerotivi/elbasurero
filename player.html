@@ -212,67 +212,67 @@
 
     // === RENDERIZAR COMENTARIOS ===
     function renderComments(comments) {
-      const list = document.getElementById('commentsList');
-      list.innerHTML = '';
+  const list = document.getElementById('commentsList');
+  list.innerHTML = '';
 
-      Object.entries(comments).forEach(([id, c]) => {
-        const el = document.createElement('div');
-        el.className = 'comment';
-        el.innerHTML = `
-          <img src="${c.userPhoto || 'Imagenes/default-avatar.png'}" alt="${c.userName}">
-          <div class="comment-content">
-            <div class="comment-header">
-              <span class="comment-author">${c.userName}</span>
-              <span class="comment-time">${timeAgo(c.timestamp)}</span>
-              ${isAdmin ? `<button class="admin-delete" data-type="comment" data-id="${id}">Eliminar</button>` : ''}
-            </div>
-            <div class="comment-text">${escapeHtml(c.text)}</div>
-            <div class="comment-footer">
-              <button class="comment-like ${c.likedBy?.[currentUser?.uid] ? 'liked' : ''}" data-id="${id}" data-type="comment">
-                Like <span>${c.likesCount || 0}</span>
-              </button>
-              <button class="reply-btn" data-id="${id}">Responder</button>
-            </div>
-            <div class="replies" id="replies-${id}"></div>
-          </div>
-        `;
-        list.appendChild(el);
+  Object.entries(comments).forEach(([id, c]) => {
+    const el = document.createElement('div');
+    el.className = 'comment';
+    el.innerHTML = `
+      <img src="${c.userPhoto || 'Imagenes/default-avatar.png'}" alt="${c.userName}">
+      <div class="comment-content">
+        <div class="comment-header">
+          <span class="comment-author">${c.userName}</span>
+          <span class="comment-time">${timeAgo(c.timestamp)}</span>
+          ${isAdmin ? '<button class="admin-delete" data-type="comment" data-id="' + id + '">Eliminar</button>' : ''}
+        </div>
+        <div class="comment-text">${escapeHtml(c.text)}</div>
+        <div class="comment-footer">
+          <button class="comment-like ${c.likedBy?.[currentUser?.uid] ? 'liked' : ''}" data-id="${id}" data-type="comment">
+            Like <span>${c.likesCount || 0}</span>
+          </button>
+          <button class="reply-btn" data-id="${id}">Responder</button>
+        </div>
+        <div class="replies" id="replies-${id}"></div>
+      </div>
+    `;
+    list.appendChild(el);
 
-        if (c.replies) renderReplies(id, c.replies);
+    if (c.replies) renderReplies(id, c.replies);
 
-        el.querySelector('.reply-btn').onclick = () => showReplyForm(id);
-        el.querySelector('.comment-like')?.onclick = () => toggleLike('comment', id);
-        el.querySelector('.admin-delete')?.onclick = () => deleteItem('comment', id);
-      });
-    }
+    el.querySelector('.reply-btn').onclick = () => showReplyForm(id);
+    el.querySelector('.comment-like')?.onclick = () => toggleLike('comment', id);
+    el.querySelector('.admin-delete')?.onclick = () => deleteItem('comment', id);
+  });
+}
 
-    function renderReplies(commentId, replies) {
-      const container = document.getElementById(`replies-${commentId}`);
-      container.innerHTML = '';
-      Object.entries(replies).forEach(([id, r]) => {
-        const el = document.createElement('div');
-        el.className = 'comment';
-        el.innerHTML = `
-          <img src="${r.userPhoto || 'Imagenes/default-avatar.png'}" alt="${r.userName}">
-          <div class="comment-content">
-            <div class="comment-header">
-              <span class="comment-author">${r.userName}</span>
-              <span class="comment-time">${timeAgo(r.timestamp)}</span>
-              ${isAdmin ? `<button class="admin-delete" data-type="reply" data-cid="${commentId}" data-id="${id}">Eliminar</button>` : ''}
-            </div>
-            <div class="comment-text">${escapeHtml(r.text)}</div>
-            <div class="comment-footer">
-              <button class="comment-like ${r.likedBy?.[currentUser?.uid] ? 'liked' : ''}" data-cid="${commentId}" data-id="${id}" data-type="reply">
-                Like <span>${r.likesCount || 0}</span>
-              </button>
-            </div>
-          </div>
-        `;
-        container.appendChild(el);
-        el.querySelector('.comment-like')?.onclick = () => toggleLike('reply', id, commentId);
-        el.querySelector('.admin-delete')?.onclick = () => deleteItem('reply', id, commentId);
-      });
-    }
+function renderReplies(commentId, replies) {
+  const container = document.getElementById(`replies-${commentId}`);
+  container.innerHTML = '';
+  Object.entries(replies).forEach(([id, r]) => {
+    const el = document.createElement('div');
+    el.className = 'comment';
+    el.innerHTML = `
+      <img src="${r.userPhoto || 'Imagenes/default-avatar.png'}" alt="${r.userName}">
+      <div class="comment-content">
+        <div class="comment-header">
+          <span class="comment-author">${r.userName}</span>
+          <span class="comment-time">${timeAgo(r.timestamp)}</span>
+          ${isAdmin ? '<button class="admin-delete" data-type="reply" data-cid="' + commentId + '" data-id="' + id + '">Eliminar</button>' : ''}
+        </div>
+        <div class="comment-text">${escapeHtml(r.text)}</div>
+        <div class="comment-footer">
+          <button class="comment-like ${r.likedBy?.[currentUser?.uid] ? 'liked' : ''}" data-cid="${commentId}" data-id="${id}" data-type="reply">
+            Like <span>${r.likesCount || 0}</span>
+          </button>
+        </div>
+      </div>
+    `;
+    container.appendChild(el);
+    el.querySelector('.comment-like')?.onclick = () => toggleLike('reply', id, commentId);
+    el.querySelector('.admin-delete')?.onclick = () => deleteItem('reply', id, commentId);
+  });
+}
 
     function showReplyForm(commentId) {
       if (!currentUser) return alert('Inicia sesión para responder');
