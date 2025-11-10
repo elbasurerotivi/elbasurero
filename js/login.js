@@ -1,8 +1,14 @@
-import { auth, db, ref, set } from "./firebase-config.js";
+// js/login.js
+import { 
+  auth, 
+  db, 
+  ref, 
+  set,
+  onAuthStateChanged 
+} from "./firebase-config.js";
 import { 
   createUserWithEmailAndPassword, 
-  signInWithEmailAndPassword, 
-  onAuthStateChanged,
+  signInWithEmailAndPassword,
   GoogleAuthProvider,
   FacebookAuthProvider,
   signInWithPopup,
@@ -11,322 +17,241 @@ import {
 
 let isLogin = true;
 
-// -----------------------------
-// 🔹 Abrir / Cerrar popup
-// -----------------------------
-window.abrirLogin = function() {
-  const loginModal = document.getElementById("loginModal");
-  if (loginModal) {
-    loginModal.style.display = "flex";
-    console.log("Popup de login abierto");
-  } else {
-    console.error("No se encontró el elemento #loginModal");
-  }
-};
-
-window.cerrarLogin = function() {
-  const loginModal = document.getElementById("loginModal");
-  if (loginModal) {
-    loginModal.style.display = "none";
-    console.log("Popup de login cerrado");
-  } else {
-    console.error("No se encontró el elemento #loginModal");
-  }
-};
-
-// -----------------------------
-// 🔹 Cambiar entre login y registro
-// -----------------------------
-window.toggleForm = function() {
-  isLogin = !isLogin;
-  const formTitle = document.getElementById("form-title");
-  const actionBtn = document.getElementById("actionBtn");
-  const switchLink = document.querySelector(".switch");
-  const usernameGroup = document.getElementById("username-group");
-
-  if (formTitle) formTitle.innerText = isLogin ? "Iniciar Sesión" : "Registrarse";
-  if (actionBtn) actionBtn.innerText = isLogin ? "Login" : "Registrarse";
-  if (switchLink) switchLink.innerText = isLogin 
-    ? "¿No tienes cuenta? Regístrate aquí" 
-    : "¿Ya tienes cuenta? Inicia sesión aquí";
-  if (usernameGroup) usernameGroup.style.display = isLogin ? "none" : "block";
-
-  console.log(`Formulario cambiado a: ${isLogin ? "Login" : "Registro"}`);
-};
-
-// -----------------------------
-// 🔹 Acción protegida (wrapper)
-// -----------------------------
-window.accionProtegida = function(callback) {
-  if (auth.currentUser) {
-    console.log("Usuario autenticado:", auth.currentUser.email);
-    callback();
-  } else {
-    console.log("No hay usuario autenticado, abriendo popup de login");
-    window.abrirLogin();
-  }
-};
-
-// -----------------------------
-// 🔹 Validación de email
-// -----------------------------
-function isValidEmail(email) {
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return emailRegex.test(email);
-}
-
-// -----------------------------
-// 🔹 Login / Registro con email y contraseña
-// -----------------------------
-document.getElementById("actionBtn")?.addEventListener("click", () => {
-  const email = document.getElementById("email")?.value.trim();
-  const pass = document.getElementById("password")?.value.trim();
-  const username = document.getElementById("username")?.value.trim();
-
-  if (!email || !pass) {
-    alert("Por favor, completa todos los campos requeridos.");
-    return;
-  }
-
-  if (!isValidEmail(email)) {
-    alert("Por favor, ingresa un correo electrónico válido.");
-    return;
-  }
-
-  if (!isLogin && pass.length < 6) {
-    alert("La contraseña debe tener al menos 6 caracteres.");
-    return;
-  }
-
-  if (!isLogin && !username) {
-    alert("Por favor, ingresa un nombre de usuario.");
-    return;
-  }
-
-  if (isLogin) {
-    signInWithEmailAndPassword(auth, email, pass)
-      .then(userCredential => {
-        console.log("Inicio de sesión exitoso:", userCredential.user.email);
-        alert(`Bienvenido, ${userCredential.user.email}!`);
-        cerrarLogin();
-      })
-      .catch(error => {
-        console.error("Error al iniciar sesión:", error);
-        let errorMessage = "Error al iniciar sesión.";
-        switch (error.code) {
-          case "auth/user-not-found":
-            errorMessage = "Usuario no encontrado. Verifica tu correo.";
-            break;
-          case "auth/wrong-password":
-            errorMessage = "Contraseña incorrecta.";
-            break;
-          case "auth/too-many-requests":
-            errorMessage = "Demasiados intentos. Intenta de nuevo más tarde.";
-            break;
-          default:
-            errorMessage = error.message;
-        }
-        alert(errorMessage);
-      });
-  } else {
-    createUserWithEmailAndPassword(auth, email, pass)
-      .then(userCredential => {
-        const user = userCredential.user;
-        console.log("Registro exitoso:", user.email);
-        const userRef = ref(db, `users/${user.uid}`);
-        return set(userRef, {
-          email: user.email,
-          username: username,
-          createdAt: Date.now()
-        })
-        .then(() => {
-          console.log("Datos del usuario guardados en la base de datos");
-          alert(`Usuario registrado: ${user.email}`);
-          cerrarLogin();
-        });
-      })
-      .catch(error => {
-        console.error("Error al registrarse:", error);
-        let errorMessage = "Error al registrarse.";
-        switch (error.code) {
-          case "auth/email-already-in-use":
-            errorMessage = "El correo ya está registrado.";
-            break;
-          case "auth/invalid-email":
-            errorMessage = "Correo electrónico inválido.";
-            break;
-          default:
-            errorMessage = error.message;
-        }
-        alert(errorMessage);
-      });
-  }
+// === ESPERAR A QUE EL DOM CARGUE ===
+document.addEventListener("DOMContentLoaded", () => {
+  initLoginSystem();
 });
 
-// -----------------------------
-// 🔹 Login con Google
-// -----------------------------
-window.loginGoogle = function() {
-  console.log("Iniciando autenticación con Google...");
-  const provider = new GoogleAuthProvider();
-  provider.setCustomParameters({
-    prompt: 'select_account' // Fuerza la selección de cuenta
-  });
-  signInWithPopup(auth, provider)
-    .then(result => {
-      const user = result.user;
-      console.log("Autenticación con Google exitosa:", user.email);
-      const userRef = ref(db, `users/${user.uid}`);
-      return set(userRef, {
-        email: user.email,
-        username: user.displayName || "Anónimo",
-        createdAt: Date.now()
-      })
-      .then(() => {
-        console.log("Datos del usuario guardados en la base de datos");
-        alert(`Bienvenido, ${user.displayName || user.email}!`);
-        cerrarLogin();
-      });
-    })
-    .catch(error => {
-      console.error("Error al iniciar sesión con Google:", error);
-      let errorMessage = "Error al iniciar sesión con Google.";
-      if (error.code === "auth/popup-closed-by-user") {
-        errorMessage = "El popup se cerró antes de completar el proceso. Por favor, intenta de nuevo y no cierres la ventana.";
-      } else if (error.code === "auth/popup-blocked") {
-        errorMessage = "El popup fue bloqueado por el navegador. Permite popups para este sitio en la configuración de tu navegador.";
-      } else {
-        errorMessage = error.message;
-      }
-      alert(errorMessage);
-    });
-};
-
-// -----------------------------
-// 🔹 Login con Facebook
-// -----------------------------
-window.loginFacebook = function() {
-  console.log("Iniciando autenticación con Facebook...");
-  const provider = new FacebookAuthProvider();
-  signInWithPopup(auth, provider)
-    .then(result => {
-      const user = result.user;
-      console.log("Autenticación con Facebook exitosa:", user.email);
-      const userRef = ref(db, `users/${user.uid}`);
-      return set(userRef, {
-        email: user.email,
-        username: user.displayName || "Anónimo",
-        createdAt: Date.now()
-      })
-      .then(() => {
-        console.log("Datos del usuario guardados en la base de datos");
-        alert(`Bienvenido, ${user.displayName || user.email}!`);
-        cerrarLogin();
-      });
-    })
-    .catch(error => {
-      console.error("Error al iniciar sesión con Facebook:", error);
-      let errorMessage = "Error al iniciar sesión con Facebook.";
-      if (error.code === "auth/popup-closed-by-user") {
-        errorMessage = "El popup se cerró antes de completar el proceso. Por favor, intenta de nuevo y no cierres la ventana.";
-      } else if (error.code === "auth/popup-blocked") {
-        errorMessage = "El popup fue bloqueado por el navegador. Permite popups para este sitio en la configuración de tu navegador.";
-      } else {
-        errorMessage = error.message;
-      }
-      alert(errorMessage);
-    });
-};
-
-// -----------------------------
-// 🔹 Logout
-// -----------------------------
-window.logout = function() {
-  signOut(auth)
-    .then(() => {
-      console.log("Sesión cerrada exitosamente.");
-      alert("Sesión cerrada exitosamente.");
-      // Forzar actualización de la UI
-      const loginBtn = document.getElementById("login-btn");
-      const logoutBtn = document.getElementById("logout-btn");
-      if (loginBtn) {
-        loginBtn.style.display = "block";
-        console.log("login-btn mostrado");
-      }
-      if (logoutBtn) {
-        logoutBtn.style.display = "none";
-        console.log("logout-btn ocultado");
-      }
-    })
-    .catch(error => {
-      console.error("Error al cerrar sesión:", error);
-      alert(`Error al cerrar sesión: ${error.message}`);
-    });
-};
-
-// -----------------------------
-// 🔹 Inicializar botón de autenticación en header con submenú
-// -----------------------------
-window.initAuthButtons = function() {
-  const authBtn = document.getElementById("auth-btn");
-  const userMenu = document.getElementById("user-menu");
-  const logoutBtn = document.getElementById("logout-btn");
-  const line1 = document.getElementById("auth-line1");
-  const line2 = document.getElementById("auth-line2");
-
-  if (!authBtn || !userMenu || !logoutBtn || !line1 || !line2) {
-    console.warn("⏳ Esperando a que se cargue el header...");
-    setTimeout(window.initAuthButtons, 500);
+function initLoginSystem() {
+  const actionBtn = document.getElementById("actionBtn");
+  if (!actionBtn) {
+    console.error("Botón #actionBtn no encontrado. ¿El HTML está cargado?");
     return;
   }
 
-  // Escuchar cambios de autenticación
-  onAuthStateChanged(auth, (user) => {
-    console.log("🔄 Estado de autenticación cambiado:", user ? user.email : "No hay usuario");
+  // -----------------------------
+  // Abrir / Cerrar popup
+  // -----------------------------
+  window.abrirLogin = function() {
+    const loginModal = document.getElementById("loginModal");
+    if (loginModal) {
+      loginModal.style.display = "flex";
+    }
+  };
 
-    if (user) {
-      // Mostrar solo el nombre del usuario
-      const nombre = user.displayName || user.email.split("@")[0];
-      authBtn.innerHTML = `${nombre} <span class="arrow">▼</span>`;
-      authBtn.classList.add("logged-in");
-      userMenu.classList.add("hidden");
+  window.cerrarLogin = function() {
+    const loginModal = document.getElementById("loginModal");
+    if (loginModal) {
+      loginModal.style.display = "none";
+    }
+  };
+
+  // -----------------------------
+  // Cambiar entre login y registro
+  // -----------------------------
+  window.toggleForm = function() {
+    isLogin = !isLogin;
+    const formTitle = document.getElementById("form-title");
+    const actionBtn = document.getElementById("actionBtn");
+    const switchLink = document.querySelector(".switch");
+    const usernameGroup = document.getElementById("username-group");
+
+    if (formTitle) formTitle.innerText = isLogin ? "Iniciar Sesión" : "Registrarse";
+    if (actionBtn) actionBtn.innerText = isLogin ? "Login" : "Registrarse";
+    if (switchLink) switchLink.innerText = isLogin 
+      ? "¿No tienes cuenta? Regístrate aquí" 
+      : "¿Ya tienes cuenta? Inicia sesión aquí";
+    if (usernameGroup) usernameGroup.style.display = isLogin ? "none" : "block";
+  };
+
+  // -----------------------------
+  // Validación de email
+  // -----------------------------
+  function isValidEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  }
+
+  // -----------------------------
+  // Login / Registro
+  // -----------------------------
+  actionBtn.addEventListener("click", () => {
+    const email = document.getElementById("email")?.value.trim();
+    const pass = document.getElementById("password")?.value.trim();
+    const username = document.getElementById("username")?.value.trim();
+
+    if (!email || !pass) {
+      alert("Completa todos los campos.");
+      return;
+    }
+
+    if (!isValidEmail(email)) {
+      alert("Correo inválido.");
+      return;
+    }
+
+    if (!isLogin && pass.length < 6) {
+      alert("La contraseña debe tener al menos 6 caracteres.");
+      return;
+    }
+
+    if (!isLogin && !username) {
+      alert("Ingresa un nombre de usuario.");
+      return;
+    }
+
+    if (isLogin) {
+      signInWithEmailAndPassword(auth, email, pass)
+        .then(userCredential => {
+          alert(`¡Bienvenido, ${userCredential.user.email}!`);
+          cerrarLogin();
+        })
+        .catch(error => {
+          const msg = {
+            "auth/user-not-found": "Usuario no encontrado.",
+            "auth/wrong-password": "Contraseña incorrecta.",
+            "auth/too-many-requests": "Demasiados intentos. Espera."
+          }[error.code] || error.message;
+          alert(msg);
+        });
     } else {
-      // Mostrar "Iniciar sesión"
-      authBtn.innerHTML = `
-        <span id="auth-line1">Iniciar</span>
-        <span id="auth-line2">sesión</span>
-      `;
-      authBtn.classList.remove("logged-in");
+      createUserWithEmailAndPassword(auth, email, pass)
+        .then(userCredential => {
+          const user = userCredential.user;
+          return set(ref(db, `users/${user.uid}`), {
+            email: user.email,
+            username: username,
+            createdAt: Date.now(),
+            role: "user"
+          });
+        })
+        .then(() => {
+          alert("¡Usuario creado con éxito!");
+          cerrarLogin();
+        })
+        .catch(error => {
+          const msg = {
+            "auth/email-already-in-use": "Este correo ya está registrado.",
+            "auth/invalid-email": "Correo inválido.",
+            "auth/weak-password": "Contraseña muy débil."
+          }[error.code] || error.message;
+          alert(msg);
+        });
+    }
+  });
+
+  // -----------------------------
+  // Google Login
+  // -----------------------------
+  window.loginGoogle = function() {
+    const provider = new GoogleAuthProvider();
+    provider.setCustomParameters({ prompt: 'select_account' });
+    signInWithPopup(auth, provider)
+      .then(result => {
+        const user = result.user;
+        return set(ref(db, `users/${user.uid}`), {
+          email: user.email,
+          username: user.displayName || "Anónimo",
+          createdAt: Date.now(),
+          role: "user"
+        });
+      })
+      .then(() => {
+        alert(`¡Bienvenido con Google, ${auth.currentUser.displayName || auth.currentUser.email}!`);
+        cerrarLogin();
+      })
+      .catch(error => {
+        if (error.code !== "auth/popup-closed-by-user") {
+          alert("Error con Google: " + (error.message || "Intenta de nuevo"));
+        }
+      });
+  };
+
+  // -----------------------------
+  // Facebook Login
+  // -----------------------------
+  window.loginFacebook = function() {
+    const provider = new FacebookAuthProvider();
+    signInWithPopup(auth, provider)
+      .then(result => {
+        const user = result.user;
+        return set(ref(db, `users/${user.uid}`), {
+          email: user.email,
+          username: user.displayName || "Anónimo",
+          createdAt: Date.now(),
+          role: "user"
+        });
+      })
+      .then(() => {
+        alert(`¡Bienvenido con Facebook!`);
+        cerrarLogin();
+      })
+      .catch(error => {
+        if (error.code !== "auth/popup-closed-by-user") {
+          alert("Error con Facebook: " + (error.message || "Intenta de nuevo"));
+        }
+      });
+  };
+
+  // -----------------------------
+  // Logout
+  // -----------------------------
+  window.logout = function() {
+    signOut(auth).then(() => {
+      alert("Sesión cerrada.");
+      const loginBtn = document.getElementById("login-btn");
+      const logoutBtn = document.getElementById("logout-btn");
+      if (loginBtn) loginBtn.style.display = "block";
+      if (logoutBtn) logoutBtn.style.display = "none";
+    });
+  };
+
+  // -----------------------------
+  // Header Auth Button
+  // -----------------------------
+  window.initAuthButtons = function() {
+    const authBtn = document.getElementById("auth-btn");
+    const userMenu = document.getElementById("user-menu");
+    const logoutBtn = document.getElementById("logout-btn");
+
+    if (!authBtn || !userMenu || !logoutBtn) {
+      setTimeout(window.initAuthButtons, 500);
+      return;
+    }
+
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const nombre = user.displayName || user.email.split("@")[0];
+        authBtn.innerHTML = `${nombre} <span class="arrow">▼</span>`;
+        authBtn.classList.add("logged-in");
+      } else {
+        authBtn.innerHTML = `<span id="auth-line1">Iniciar</span><span id="auth-line2">sesión</span>`;
+        authBtn.classList.remove("logged-in");
+      }
       userMenu.classList.add("hidden");
-    }
-  });
+    });
 
-  // 🔹 Alternar el submenú al hacer clic
-  authBtn.addEventListener("click", (e) => {
-    const user = auth.currentUser;
-    if (user) {
-      userMenu.classList.toggle("hidden");
-      e.stopPropagation();
-    } else {
-      window.abrirLogin();
-    }
-  });
+    authBtn.addEventListener("click", (e) => {
+      if (auth.currentUser) {
+        userMenu.classList.toggle("hidden");
+        e.stopPropagation();
+      } else {
+        abrirLogin();
+      }
+    });
 
-  // 🔹 Cerrar el submenú si se hace clic fuera
-  document.addEventListener("click", (e) => {
-    if (!authBtn.contains(e.target) && !userMenu.contains(e.target)) {
+    document.addEventListener("click", (e) => {
+      if (!authBtn.contains(e.target) && !userMenu.contains(e.target)) {
+        userMenu.classList.add("hidden");
+      }
+    });
+
+    logoutBtn.addEventListener("click", () => {
+      window.logout();
       userMenu.classList.add("hidden");
-    }
-  });
+    });
+  };
 
-  // 🔹 Botón "Salir"
-  logoutBtn.addEventListener("click", async () => {
-    await signOut(auth);
-    userMenu.classList.add("hidden");
-    console.log("👋 Sesión cerrada");
-  });
-
-  console.log("✅ initAuthButtons inicializado correctamente");
-};
-
-
+  // Iniciar botón de auth
+  window.initAuthButtons();
+}
