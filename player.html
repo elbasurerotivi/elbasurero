@@ -16,37 +16,38 @@
       <!-- El video/iframe se inserta aquí -->
     </div>
     <p id="videoDescription"></p>
+
     <!-- Acciones del video -->
-<div class="video-interactions">
-  <div class="like-section">
-    <button id="likeBtn" class="like-btn">
-      <span class="like-icon">Like</span>
-      <span id="likeCount">0</span>
-    </button>
-  </div>
-</div>
-
-<!-- Comentarios -->
-<section class="comments-section" id="commentsSection">
-  <h3 id="commentsCount">0 Comentarios</h3>
-
-  <!-- Formulario de comentario -->
-  <div id="commentForm" style="display:none;">
-    <div class="comment-form">
-      <img id="userAvatar" src="" alt="Tú" class="comment-avatar">
-      <div class="comment-input-wrapper">
-        <textarea id="commentText" placeholder="Agrega un comentario público..." maxlength="1000"></textarea>
-        <div class="comment-actions">
-          <button id="cancelComment">Cancelar</button>
-          <button id="sendComment" disabled>Comentar</button>
-        </div>
+    <div class="video-interactions">
+      <div class="like-section">
+        <button id="likeBtn" class="like-btn">
+          <span class="like-icon">Like</span>
+          <span id="likeCount">0</span>
+        </button>
       </div>
     </div>
-  </div>
 
-  <!-- Lista de comentarios -->
-  <div id="commentsList"></div>
-</section>
+    <!-- Comentarios -->
+    <section class="comments-section" id="commentsSection">
+      <h3 id="commentsCount">0 Comentarios</h3>
+
+      <!-- Formulario de comentario -->
+      <div id="commentForm" style="display:none;">
+        <div class="comment-form">
+          <img id="userAvatar" src="" alt="Tú" class="comment-avatar">
+          <div class="comment-input-wrapper">
+            <textarea id="commentText" placeholder="Agrega un comentario público..." maxlength="1000"></textarea>
+            <div class="comment-actions">
+              <button id="cancelComment">Cancelar</button>
+              <button id="sendComment" disabled>Comentar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Lista de comentarios -->
+      <div id="commentsList"></div>
+    </section>
 
     <div class="back-btn">
       <a href="playlist.html">← Volver a Premium</a>
@@ -109,251 +110,254 @@
       container.innerHTML = '<p style="text-align:center;color:#ccc;">Error 404</p>';
     }
 
+    // === VARIABLES GLOBALES ===
     let currentUser = null;
-let videoRef = null;
-let commentsUnsub = null;
+    let isAdmin = false;  // Definido aquí
+    let videoRef = null;
+    let commentsUnsub = null;
 
-// Auth
-onAuthStateChanged(auth, async (user) => {
-  currentUser = user;
-  if (user) {
-    document.getElementById('userAvatar').src = user.photoURL || 'Imagenes/default-avatar.png';
-    document.getElementById('commentForm').style.display = 'block';
-  } else {
-    document.getElementById('commentForm').style.display = 'none';
-  }
-  loadVideoInteractions();
-});
+    // === AUTENTICACIÓN Y ROL ===
+    onAuthStateChanged(auth, async (user) => {
+      currentUser = user;
+      if (user) {
+        document.getElementById('userAvatar').src = user.photoURL || 'Imagenes/default-avatar.png';
+        document.getElementById('commentForm').style.display = 'block';
 
-function loadVideoInteractions() {
-  if (!videoId) return;
-
-  videoRef = ref(db, `videos/${videoId}`);
-
-  // Like del video
-  const likeBtn = document.getElementById('likeBtn');
-  const likeCountEl = document.getElementById('likeCount');
-
-  const likesCountRef = ref(db, `videos/${videoId}/likesCount`);
-  const userLikeRef = ref(db, `videos/${videoId}/likedBy/${currentUser?.uid}`);
-
-  onValue(likesCountRef, (snap) => {
-    likeCountEl.textContent = snap.val() || 0;
-  });
-
-  if (currentUser) {
-    onValue(userLikeRef, (snap) => {
-      likeBtn.classList.toggle('liked', !!snap.val());
+        // Verificar si es admin
+        const roleSnap = await get(ref(db, `users/${user.uid}/role`));
+        isAdmin = roleSnap.val() === 'admin';
+      } else {
+        document.getElementById('commentForm').style.display = 'none';
+        isAdmin = false;
+      }
+      loadVideoInteractions();
     });
-  }
 
-  likeBtn.addEventListener('click', async () => {
-    if (!currentUser) return alert('Inicia sesión para dar like');
-    const snap = await get(userLikeRef);
-    if (snap.val()) {
-      await update(videoRef, {
-        likesCount: increment(-1),
-        [`likedBy/${currentUser.uid}`]: null
+    // === CARGAR INTERACCIONES DEL VIDEO ===
+    function loadVideoInteractions() {
+      if (!videoId) return;
+
+      videoRef = ref(db, `videos/${videoId}`);
+
+      // === LIKE DEL VIDEO ===
+      const likeBtn = document.getElementById('likeBtn');
+      const likeCountEl = document.getElementById('likeCount');
+
+      const likesCountRef = ref(db, `videos/${videoId}/likesCount`);
+      const userLikeRef = ref(db, `videos/${videoId}/likedBy/${currentUser?.uid}`);
+
+      onValue(likesCountRef, (snap) => {
+        likeCountEl.textContent = snap.val() || 0;
       });
-    } else {
-      await update(videoRef, {
-        likesCount: increment(1),
-        [`likedBy/${currentUser.uid}`]: true
+
+      if (currentUser) {
+        onValue(userLikeRef, (snap) => {
+          likeBtn.classList.toggle('liked', !!snap.val());
+        });
+      }
+
+      likeBtn.addEventListener('click', async () => {
+        if (!currentUser) return alert('Inicia sesión para dar like');
+        const snap = await get(userLikeRef);
+        if (snap.val()) {
+          await update(videoRef, {
+            likesCount: increment(-1),
+            [`likedBy/${currentUser.uid}`]: null
+          });
+        } else {
+          await update(videoRef, {
+            likesCount: increment(1),
+            [`likedBy/${currentUser.uid}`]: true
+          });
+        }
+      });
+
+      // === COMENTARIOS ===
+      const commentsRef = ref(db, `videos/${videoId}/comments`);
+      commentsUnsub = onValue(commentsRef, (snap) => {
+        renderComments(snap.val() || {});
+        const count = Object.keys(snap.val() || {}).length;
+        document.getElementById('commentsCount').textContent = 
+          `${count} Comentario${count !== 1 ? 's' : ''}`;
       });
     }
-  });
 
-  // Comentarios
-  const commentsRef = ref(db, `videos/${videoId}/comments`);
-  commentsUnsub = onValue(commentsRef, (snap) => {
-    renderComments(snap.val() || {});
-    document.getElementById('commentsCount').textContent = 
-      `${Object.keys(snap.val() || {}).length} Comentario${Object.keys(snap.val() || {}).length !== 1 ? 's' : ''}`;
-  });
-}
+    // === ENVIAR COMENTARIO ===
+    document.getElementById('sendComment').addEventListener('click', async () => {
+      const text = document.getElementById('commentText').value.trim();
+      if (!text || !currentUser) return;
 
-// Enviar comentario
-document.getElementById('sendComment').addEventListener('click', async () => {
-  const text = document.getElementById('commentText').value.trim();
-  if (!text || !currentUser) return;
+      const commentsRef = ref(db, `videos/${videoId}/comments`);
+      await push(commentsRef, {
+        userId: currentUser.uid,
+        userName: currentUser.displayName || 'Anónimo',
+        userPhoto: currentUser.photoURL || 'Imagenes/default-avatar.png',
+        text,
+        timestamp: Date.now(),
+        likesCount: 0
+      });
 
-  const commentsRef = ref(db, `videos/${videoId}/comments`);
-  await push(commentsRef, {
-    userId: currentUser.uid,
-    userName: currentUser.displayName || 'Anónimo',
-    userPhoto: currentUser.photoURL || 'Imagenes/default-avatar.png',
-    text,
-    timestamp: Date.now(),
-    likesCount: 0
-  });
-
-  document.getElementById('commentText').value = '';
-  document.getElementById('sendComment').disabled = true;
-});
-
-document.getElementById('commentText').addEventListener('input', (e) => {
-  document.getElementById('sendComment').disabled = !e.target.value.trim();
-});
-
-document.getElementById('cancelComment').addEventListener('click', () => {
-  document.getElementById('commentText').value = '';
-  document.getElementById('sendComment').disabled = true;
-});
-
-// Renderizar comentarios
-function renderComments(comments) {
-  const list = document.getElementById('commentsList');
-  list.innerHTML = '';
-
-  Object.entries(comments).forEach(([id, c]) => {
-    const el = document.createElement('div');
-    el.className = 'comment';
-    el.innerHTML = `
-      <img src="${c.userPhoto}" alt="${c.userName}">
-      <div class="comment-content">
-        <div class="comment-header">
-          <span class="comment-author">${c.userName}</span>
-          <span class="comment-time">${timeAgo(c.timestamp)}</span>
-          ${isAdmin ? `<button class="admin-delete" data-type="comment" data-id="${id}">Eliminar</button>` : ''}
-        </div>
-        <div class="comment-text">${escapeHtml(c.text)}</div>
-        <div class="comment-footer">
-          <button class="comment-like ${c.likedBy?.[currentUser?.uid] ? 'liked' : ''}" data-id="${id}" data-type="comment">
-            Like <span>${c.likesCount || 0}</span>
-          </button>
-          <button class="reply-btn" data-id="${id}">Responder</button>
-        </div>
-        <div class="replies" id="replies-${id}"></div>
-      </div>
-    `;
-    list.appendChild(el);
-
-    // Render replies
-    if (c.replies) renderReplies(id, c.replies);
-
-    // Eventos
-    el.querySelector('.reply-btn').onclick = () => showReplyForm(id);
-    el.querySelector('.comment-like')?.onclick = () => toggleLike('comment', id);
-    el.querySelector('.admin-delete')?.onclick = () => deleteItem('comment', id);
-  });
-}
-
-function renderReplies(commentId, replies) {
-  const container = document.getElementById(`replies-${commentId}`);
-  container.innerHTML = '';
-  Object.entries(replies).forEach(([id, r]) => {
-    const el = document.createElement('div');
-    el.className = 'comment';
-    el.innerHTML = `
-      <img src="${r.userPhoto}" alt="${r.userName}">
-      <div class="comment-content">
-        <div class="comment-header">
-          <span class="comment-author">${r.userName}</span>
-          <span class="comment-time">${timeAgo(r.timestamp)}</span>
-          ${isAdmin ? `<button class="admin-delete" data-type="reply" data-cid="${commentId}" data-id="${id}">Eliminar</button>` : ''}
-        </div>
-        <div class="comment-text">${escapeHtml(r.text)}</div>
-        <div class="comment-footer">
-          <button class="comment-like ${r.likedBy?.[currentUser?.uid] ? 'liked' : ''}" data-cid="${commentId}" data-id="${id}" data-type="reply">
-            Like <span>${r.likesCount || 0}</span>
-          </button>
-        </div>
-      </div>
-    `;
-    container.appendChild(el);
-    el.querySelector('.comment-like')?.onclick = () => toggleLike('reply', id, commentId);
-    el.querySelector('.admin-delete')?.onclick = () => deleteItem('reply', id, commentId);
-  });
-}
-
-function showReplyForm(commentId) {
-  if (!currentUser) return alert('Inicia sesión para responder');
-  const existing = document.getElementById(`reply-form-${commentId}`);
-  if (existing) return;
-
-  const form = document.createElement('div');
-  form.id = `reply-form-${commentId}`;
-  form.className = 'reply-form';
-  form.innerHTML = `
-    <img src="${currentUser.photoURL || 'Imagenes/default-avatar.png'}" alt="Tú" class="comment-avatar">
-    <textarea placeholder="Escribe tu respuesta..." maxlength="500"></textarea>
-    <div class="comment-actions">
-      <button onclick="this.closest('.reply-form').remove()">Cancelar</button>
-      <button id="send-reply-${commentId}" disabled>Responder</button>
-    </div>
-  `;
-
-  document.getElementById(`replies-${commentId}`).before(form);
-  const textarea = form.querySelector('textarea');
-  const btn = form.querySelector(`#send-reply-${commentId}`);
-
-  textarea.oninput = () => btn.disabled = !textarea.value.trim();
-  btn.onclick = async () => {
-    const text = textarea.value.trim();
-    if (!text) return;
-    const replyRef = ref(db, `videos/${videoId}/comments/${commentId}/replies`);
-    await push(replyRef, {
-      userId: currentUser.uid,
-      userName: currentUser.displayName || 'Anónimo',
-      userPhoto: currentUser.photoURL || 'Imagenes/default-avatar.png',
-      text,
-      timestamp: Date.now(),
-      likesCount: 0
+      document.getElementById('commentText').value = '';
+      document.getElementById('sendComment').disabled = true;
     });
-    form.remove();
-  };
-}
 
-async function toggleLike(type, id, commentId = null) {
-  if (!currentUser) return alert('Inicia sesión');
-  const path = type === 'comment' 
-    ? `videos/${videoId}/comments/${id}`
-    : `videos/${videoId}/comments/${commentId}/replies/${id}`;
-  const likeRef = ref(db, `${path}/likedBy/${currentUser.uid}`);
-  const countRef = ref(db, `${path}/likesCount`);
-  const snap = await get(likeRef);
-  if (snap.val()) {
-    await update(ref(db, path), {
-      likesCount: increment(-1),
-      [`likedBy/${currentUser.uid}`]: null
+    document.getElementById('commentText').addEventListener('input', (e) => {
+      document.getElementById('sendComment').disabled = !e.target.value.trim();
     });
-  } else {
-    await update(ref(db, path), {
-      likesCount: increment(1),
-      [`likedBy/${currentUser.uid}`]: true
+
+    document.getElementById('cancelComment').addEventListener('click', () => {
+      document.getElementById('commentText').value = '';
+      document.getElementById('sendComment').disabled = true;
     });
-  }
-}
 
-async function deleteItem(type, id, commentId = null) {
-  if (!isAdmin) return;
-  if (!confirm('¿Eliminar este ' + (type === 'comment' ? 'comentario' : 'respuesta') + '?')) return;
-  const path = type === 'comment'
-    ? `videos/${videoId}/comments/${id}`
-    : `videos/${videoId}/comments/${commentId}/replies/${id}`;
-  await remove(ref(db, path));
-}
+    // === RENDERIZAR COMENTARIOS ===
+    function renderComments(comments) {
+      const list = document.getElementById('commentsList');
+      list.innerHTML = '';
 
-// Utilidades
-function timeAgo(ts) {
-  const now = Date.now();
-  const diff = now - ts;
-  const minutes = Math.floor(diff / 60000);
-  const hours = Math.floor(minutes / 60);
-  const days = Math.floor(hours / 24);
-  if (days > 0) return `hace ${days} día${days > 1 ? 's' : ''}`;
-  if (hours > 0) return `hace ${hours} hora${hours > 1 ? 's' : ''}`;
-  if (minutes > 0) return `hace ${minutes} min`;
-  return 'ahora';
-}
+      Object.entries(comments).forEach(([id, c]) => {
+        const el = document.createElement('div');
+        el.className = 'comment';
+        el.innerHTML = `
+          <img src="${c.userPhoto || 'Imagenes/default-avatar.png'}" alt="${c.userName}">
+          <div class="comment-content">
+            <div class="comment-header">
+              <span class="comment-author">${c.userName}</span>
+              <span class="comment-time">${timeAgo(c.timestamp)}</span>
+              ${isAdmin ? `<button class="admin-delete" data-type="comment" data-id="${id}">Eliminar</button>` : ''}
+            </div>
+            <div class="comment-text">${escapeHtml(c.text)}</div>
+            <div class="comment-footer">
+              <button class="comment-like ${c.likedBy?.[currentUser?.uid] ? 'liked' : ''}" data-id="${id}" data-type="comment">
+                Like <span>${c.likesCount || 0}</span>
+              </button>
+              <button class="reply-btn" data-id="${id}">Responder</button>
+            </div>
+            <div class="replies" id="replies-${id}"></div>
+          </div>
+        `;
+        list.appendChild(el);
 
-function escapeHtml(text) {
-  const div = document.createElement('div');
-  div.textContent = text;
-  return div.innerHTML;
-}
+        if (c.replies) renderReplies(id, c.replies);
 
-    // Mostrar página
+        el.querySelector('.reply-btn').onclick = () => showReplyForm(id);
+        el.querySelector('.comment-like')?.onclick = () => toggleLike('comment', id);
+        el.querySelector('.admin-delete')?.onclick = () => deleteItem('comment', id);
+      });
+    }
+
+    function renderReplies(commentId, replies) {
+      const container = document.getElementById(`replies-${commentId}`);
+      container.innerHTML = '';
+      Object.entries(replies).forEach(([id, r]) => {
+        const el = document.createElement('div');
+        el.className = 'comment';
+        el.innerHTML = `
+          <img src="${r.userPhoto || 'Imagenes/default-avatar.png'}" alt="${r.userName}">
+          <div class="comment-content">
+            <div class="comment-header">
+              <span class="comment-author">${r.userName}</span>
+              <span class="comment-time">${timeAgo(r.timestamp)}</span>
+              ${isAdmin ? `<button class="admin-delete" data-type="reply" data-cid="${commentId}" data-id="${id}">Eliminar</button>` : ''}
+            </div>
+            <div class="comment-text">${escapeHtml(r.text)}</div>
+            <div class="comment-footer">
+              <button class="comment-like ${r.likedBy?.[currentUser?.uid] ? 'liked' : ''}" data-cid="${commentId}" data-id="${id}" data-type="reply">
+                Like <span>${r.likesCount || 0}</span>
+              </button>
+            </div>
+          </div>
+        `;
+        container.appendChild(el);
+        el.querySelector('.comment-like')?.onclick = () => toggleLike('reply', id, commentId);
+        el.querySelector('.admin-delete')?.onclick = () => deleteItem('reply', id, commentId);
+      });
+    }
+
+    function showReplyForm(commentId) {
+      if (!currentUser) return alert('Inicia sesión para responder');
+      if (document.getElementById(`reply-form-${commentId}`)) return;
+
+      const form = document.createElement('div');
+      form.id = `reply-form-${commentId}`;
+      form.className = 'reply-form';
+      form.innerHTML = `
+        <img src="${currentUser.photoURL || 'Imagenes/default-avatar.png'}" alt="Tú" class="comment-avatar">
+        <textarea placeholder="Escribe tu respuesta..." maxlength="500"></textarea>
+        <div class="comment-actions">
+          <button onclick="this.closest('.reply-form').remove()">Cancelar</button>
+          <button id="send-reply-${commentId}" disabled>Responder</button>
+        </div>
+      `;
+
+      document.getElementById(`replies-${commentId}`).before(form);
+      const textarea = form.querySelector('textarea');
+      const btn = form.querySelector(`#send-reply-${commentId}`);
+
+      textarea.oninput = () => btn.disabled = !textarea.value.trim();
+      btn.onclick = async () => {
+        const text = textarea.value.trim();
+        if (!text) return;
+        const replyRef = ref(db, `videos/${videoId}/comments/${commentId}/replies`);
+        await push(replyRef, {
+          userId: currentUser.uid,
+          userName: currentUser.displayName || 'Anónimo',
+          userPhoto: currentUser.photoURL || 'Imagenes/default-avatar.png',
+          text,
+          timestamp: Date.now(),
+          likesCount: 0
+        });
+        form.remove();
+      };
+    }
+
+    async function toggleLike(type, id, commentId = null) {
+      if (!currentUser) return alert('Inicia sesión');
+      const path = type === 'comment' 
+        ? `videos/${videoId}/comments/${id}`
+        : `videos/${videoId}/comments/${commentId}/replies/${id}`;
+      const likeRef = ref(db, `${path}/likedBy/${currentUser.uid}`);
+      const snap = await get(likeRef);
+      if (snap.val()) {
+        await update(ref(db, path), {
+          likesCount: increment(-1),
+          [`likedBy/${currentUser.uid}`]: null
+        });
+      } else {
+        await update(ref(db, path), {
+          likesCount: increment(1),
+          [`likedBy/${currentUser.uid}`]: true
+        });
+      }
+    }
+
+    async function deleteItem(type, id, commentId = null) {
+      if (!isAdmin) return;
+      if (!confirm(`¿Eliminar este ${type === 'comment' ? 'comentario' : 'respuesta'}?`)) return;
+      const path = type === 'comment'
+        ? `videos/${videoId}/comments/${id}`
+        : `videos/${videoId}/comments/${commentId}/replies/${id}`;
+      await remove(ref(db, path));
+    }
+
+    function timeAgo(ts) {
+      const diff = Date.now() - ts;
+      const minutes = Math.floor(diff / 60000);
+      const hours = Math.floor(minutes / 60);
+      const days = Math.floor(hours / 24);
+      if (days > 0) return `hace ${days} día${days > 1 ? 's' : ''}`;
+      if (hours > 0) return `hace ${hours} hora${hours > 1 ? 's' : ''}`;
+      if (minutes > 0) return `hace ${minutes} min`;
+      return 'ahora';
+    }
+
+    function escapeHtml(text) {
+      const div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
+    }
+
+    // === MOSTRAR PÁGINA ===
     document.body.style.display = 'block';
   </script>
 </body>
