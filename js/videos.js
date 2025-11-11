@@ -3,6 +3,19 @@
 
 const videosData = [
 
+
+  {
+  titulo: 'Una joya de humor absurdo 😂 | Reacción a Peter Capusotto en “Todo por dos pesos”',
+  descripcion: 'Después de terminar una película en Twitch, vimos este fragmento de Peter Capusotto en la sección “Todo por dos pesos”.\nUna genialidad total que nos hizo reír a carcajadas 🤣\nCapusotto tiene esa mezcla de locura, creatividad y sátira que es imposible no disfrutar.',
+  fecha: '2025-11-11',
+  link: 'https://www.youtube.com/watch?v=vwOxKXi9yoc',
+  miniatura: 'https://img.youtube.com/vi/vwOxKXi9yoc/maxresdefault.jpg',
+  tags: [
+    'Humor',
+    'Especiales'
+  ]
+},
+  
   {
   titulo: 'Reacción a Pablo Molinari | Los himnos nacionales más curiosos del mundo 🎵😂',
   descripcion: 'Hoy reacciono al video de Pablo Molinari donde analiza diferentes himnos nacionales y comparte datos tan curiosos como divertidos 😆🎶.\nEntre historias patrióticas, letras extrañas y melodías épicas, descubrimos que algunos himnos parecen salidos de una película.\nSi te gusta aprender y reírte al mismo tiempo, este video es para ti 🌍🇦🇷',
@@ -1174,6 +1187,7 @@ if (toggleBtn && dropdownMenu) {
 
 // Cargar videos iniciales
 renderVideos("latest");
+
 
 
 
