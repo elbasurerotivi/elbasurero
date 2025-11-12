@@ -116,12 +116,13 @@
     </div>
   `;
 
-  // Insertar después del contenedor del video
-  container.insertAdjacentHTML('afterend', interactionHTML);
+  // Insertar DESPUÉS del contenedor del video, pero dentro del main
+const main = document.querySelector('.player-container');
+main.insertAdjacentHTML('beforeend', interactionHTML);
 
   // --- INICIALIZAR INTERACCIÓN ---
   initVideoInteraction(videoId);
-  
+
     } else {
       titleEl.textContent = 'Video no encontrado';
       descEl.textContent = 'El video solicitado no existe o no está disponible.';
