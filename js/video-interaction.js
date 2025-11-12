@@ -207,9 +207,10 @@ function createCommentElement(comment, isReply = false) {
   if (isReply) div.classList.add('reply');
 
   // ID único
-  const fullId = isReply 
+   const fullId = isReply 
     ? `${comment.parentCommentId}-${comment.id}` 
     : comment.id;
+
 
   // Estado del like
   const userLiked = currentUser && comment.likedBy && comment.likedBy[currentUser.uid] === true;
@@ -305,17 +306,16 @@ function loadReplies(commentId, container) {
     replies.sort((a, b) => b.timestamp - a.timestamp);
 
     replies.forEach(reply => {
+      // 👇 Pasamos explícitamente el commentId como parentCommentId
       const replyEl = createCommentElement(
-        {
-          ...reply,
-          parentCommentId: commentId // 👈 asegura que se pase correctamente
-        },
-        true // ← isReply = true
+        { ...reply, parentCommentId: commentId },
+        true // isReply = true
       );
       container.appendChild(replyEl);
     });
   });
 }
+
 
 
 function escapeHtml(text) {
