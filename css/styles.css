@@ -3996,15 +3996,15 @@ footer h3 {
 }
 
 .like-btn.liked {
-  background: #e8f5e9;
-  border-color: #4caf50;
-  color: #2e7d32;
+  background: #9f0404;
+  border-color: #4caf5000;
+  color: #ffffff;
 }
 
 .like-btn.disliked {
-  background: #ffebee;
-  border-color: #f44336;
-  color: #c62828;
+  background: #9f0404;
+  border-color: #4caf5000;
+  color: #ffffff;
 }
 
 .like-icon {
