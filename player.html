@@ -10,15 +10,15 @@
 <body style="display:none;">
   <div id="header"></div>
 
-  <main class="player-container">
+  <main class="player-container-premium">
     <h1 id="videoTitle"></h1>
-    <div class="video-wrapper" id="videoContainer">
+    <div class="video-wrapper" id="videoContainerPremium">
       <!-- El video/iframe se inserta aquí -->
     </div>
     <p id="videoDescription"></p>
 
     <div class="back-btn">
-      <a href="playlist.html">← Volver a Premium</a>
+      <a href="playlist.html">← Atrás</a>
     </div>
   </main>
 
@@ -55,7 +55,7 @@
 
     const titleEl = document.getElementById('videoTitle');
     const descEl = document.getElementById('videoDescription');
-    const container = document.getElementById('videoContainer');
+    const container = document.getElementById('videoContainerPremium');
 
     if (video) {
   titleEl.textContent = video.title;

@@ -36,46 +36,66 @@ async function toggleLike(isLike) {
   const videoRef = ref(db, `videos/${videoId}`);
 
   const snapshot = await get(userRef);
-  const alreadyLiked = snapshot.val() === true;
-  const alreadyDisliked = snapshot.val() === false;
+  const currentValue = snapshot.val(); // true, false, o null
 
-  if ((isLike && alreadyLiked) || (!isLike && alreadyDisliked)) {
+  let likesChange = 0;
+  let dislikesChange = 0;
+
+  if (currentValue === isLike) {
     // Quitar like/dislike
     await set(userRef, null);
-    updateCounts();
+    if (isLike) likesChange = -1;
+    else dislikesChange = -1;
   } else {
-    // Cambiar o poner
+    // Cambiar o poner nuevo
     await set(userRef, isLike);
-    updateCounts();
+    if (isLike) likesChange = 1;
+    else dislikesChange = 1;
+
+    // Si había uno opuesto, restarlo
+    if (currentValue !== null && currentValue !== isLike) {
+      if (currentValue) likesChange = -1;
+      else dislikesChange = -1;
+    }
   }
-}
 
-async function updateCounts() {
-  const videoRef = ref(db, `videos/${videoId}/likedBy`);
-  const snapshot = await get(videoRef);
-  let likes = 0, dislikes = 0;
+  // Actualizar contadores en Firebase
+  const likesRef = ref(db, `videos/${videoId}/likesCount`);
+  const dislikesRef = ref(db, `videos/${videoId}/dislikesCount`);
 
-  snapshot.forEach(child => {
-    if (child.val() === true) likes++;
-    else if (child.val() === false) dislikes++;
-  });
+  const [likesSnap, dislikesSnap] = await Promise.all([get(likesRef), get(dislikesRef)]);
+  const currentLikes = likesSnap.val() || 0;
+  const currentDislikes = dislikesSnap.val() || 0;
 
-  document.getElementById('likeCount').textContent = likes;
-  document.getElementById('dislikeCount').textContent = dislikes;
+  await Promise.all([
+    set(likesRef, Math.max(0, currentLikes + likesChange)),
+    set(dislikesRef, Math.max(0, currentDislikes + dislikesChange))
+  ]);
 
-  // Actualizar botón visual
-  const userLike = (await get(ref(db, `videos/${videoId}/likedBy/${currentUser?.uid}`))).val();
-  const likeBtn = document.getElementById('likeBtn');
-  const dislikeBtn = document.getElementById('dislikeBtn');
-
-  likeBtn.classList.toggle('liked', userLike === true);
-  dislikeBtn.classList.toggle('disliked', userLike === false);
+  updateButtonStates();
 }
 
 function loadLikes() {
-  const likesRef = ref(db, `videos/${videoId}/likedBy`);
-  onValue(likesRef, () => updateCounts());
-  updateCounts();
+  const likesRef = ref(db, `videos/${videoId}/likesCount`);
+  const dislikesRef = ref(db, `videos/${videoId}/dislikesCount`);
+
+  onValue(likesRef, (snap) => {
+    document.getElementById('likeCount').textContent = snap.val() || 0;
+  });
+
+  onValue(dislikesRef, (snap) => {
+    document.getElementById('dislikeCount').textContent = snap.val() || 0;
+  });
+
+  // Estado del botón del usuario
+  const userRef = ref(db, `videos/${videoId}/likedBy/${currentUser?.uid}`);
+  onValue(userRef, (snap) => {
+    const val = snap.val();
+    const likeBtn = document.getElementById('likeBtn');
+    const dislikeBtn = document.getElementById('dislikeBtn');
+    likeBtn.classList.toggle('liked', val === true);
+    dislikeBtn.classList.toggle('disliked', val === false);
+  });
 }
 
 // Comentarios
