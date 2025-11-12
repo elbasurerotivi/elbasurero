@@ -206,15 +206,12 @@ function createCommentElement(comment, isReply = false) {
   div.className = 'comment';
   if (isReply) div.classList.add('reply');
 
-  // ID único
-   const fullId = isReply 
-    ? `${comment.parentCommentId}-${comment.id}` 
+  // 🆔 fullId correcto
+  const fullId = isReply
+    ? `${comment.parentCommentId}-${comment.id}`
     : comment.id;
 
-    // ✅ Agregá el log acá, dentro de la función
   console.log("🧩 fullId generado:", fullId, "→ parent:", comment.parentCommentId);
-
-
 
   // Estado del like
   const userLiked = currentUser && comment.likedBy && comment.likedBy[currentUser.uid] === true;
@@ -248,54 +245,57 @@ function createCommentElement(comment, isReply = false) {
   `;
 
   // === LIKE ===
-  const likeBtn = div.querySelector('.like-comment');
-  likeBtn.addEventListener('click', async () => {
+  div.querySelector('.like-comment').addEventListener('click', async (e) => {
     if (!currentUser) return alert("Debes iniciar sesión");
-    const isReplyMode = likeBtn.dataset.isReply === 'true';
-    const targetId = likeBtn.dataset.id;
+    const targetId = e.target.dataset.id;
+    const isReplyMode = e.target.dataset.isReply === 'true';
     await toggleCommentLike(targetId, isReplyMode);
   });
 
   // === RESPONDER ===
-  div.querySelector('.reply-btn').onclick = () => {
-    const form = div.querySelector('.reply-form');
-    form.style.display = form.style.display === 'none' ? 'flex' : 'none';
-    form.querySelector('textarea').focus();
+  const replyBtn = div.querySelector('.reply-btn');
+  const replyForm = div.querySelector('.reply-form');
+  const textarea = replyForm.querySelector('textarea');
+
+  replyBtn.onclick = () => {
+    replyForm.style.display = replyForm.style.display === 'none' ? 'flex' : 'none';
+    textarea.focus();
   };
 
-  div.querySelector('.cancel-reply').onclick = () => {
-    const form = div.querySelector('.reply-form');
-    form.style.display = 'none';
-    form.querySelector('textarea').value = '';
+  replyForm.querySelector('.cancel-reply').onclick = () => {
+    replyForm.style.display = 'none';
+    textarea.value = '';
   };
 
-  div.querySelector('.send-reply').onclick = async () => {
-    const textarea = div.querySelector('.reply-form textarea');
+  replyForm.querySelector('.send-reply').onclick = async () => {
     const text = textarea.value.trim();
     if (!text || !currentUser) return;
 
-    const repliesRef = ref(db, `videos/${videoId}/comments/${comment.id}/replies`);
+    // 📍 Si estamos respondiendo a un comentario → usamos comment.id
+    // 📍 Si estamos respondiendo a una respuesta → usamos comment.parentCommentId
+    const parentId = isReply ? comment.parentCommentId : comment.id;
+    const repliesRef = ref(db, `videos/${videoId}/comments/${parentId}/replies`);
+
     await push(repliesRef, {
       userId: currentUser.uid,
       userName: currentUser.displayName || "Anónimo",
       userPhoto: currentUser.photoURL || "",
-      text: text,
+      text,
       timestamp: Date.now(),
       likesCount: 0,
       likedBy: {}
     });
 
     textarea.value = '';
-    div.querySelector('.reply-form').style.display = 'none';
+    replyForm.style.display = 'none';
   };
 
   // === CARGAR RESPUESTAS ===
-  if (!isReply) {
-    loadReplies(comment.id, div.querySelector('.replies'));
-  }
+  if (!isReply) loadReplies(comment.id, div.querySelector('.replies'));
 
   return div;
 }
+
 
 function loadReplies(commentId, container) {
   const repliesRef = ref(db, `videos/${videoId}/comments/${commentId}/replies`);
@@ -307,18 +307,20 @@ function loadReplies(commentId, container) {
     snapshot.forEach(child => {
       replies.push({ id: child.key, ...child.val() });
     });
+
     replies.sort((a, b) => b.timestamp - a.timestamp);
 
     replies.forEach(reply => {
-      // 👇 Pasamos explícitamente el commentId como parentCommentId
+      // 👇 inyectamos el parentCommentId correctamente
       const replyEl = createCommentElement(
         { ...reply, parentCommentId: commentId },
-        true // isReply = true
+        true
       );
       container.appendChild(replyEl);
     });
   });
 }
+
 
 
 
