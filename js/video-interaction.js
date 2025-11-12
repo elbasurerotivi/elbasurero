@@ -316,6 +316,8 @@ function loadReplies(commentId, container) {
   });
 }
 
+console.log("🧩 fullId generado:", fullId, "→ parent:", comment.parentCommentId);
+
 
 
 function escapeHtml(text) {
