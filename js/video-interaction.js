@@ -75,6 +75,41 @@ async function toggleLike(isLike) {
   updateButtonStates();
 }
 
+// === LIKE A COMENTARIOS Y RESPUESTAS ===
+async function toggleCommentLike(commentId, isReply = false) {
+  if (!currentUser) return alert("Debes iniciar sesión");
+
+  const basePath = isReply 
+    ? `videos/${videoId}/comments/${commentId.split('-')[0]}/replies/${commentId.split('-')[1]}`
+    : `videos/${videoId}/comments/${commentId}`;
+
+  const userRef = ref(db, `${basePath}/likedBy/${currentUser.uid}`);
+  const likesCountRef = ref(db, `${basePath}/likesCount`);
+
+  const [userSnap, countSnap] = await Promise.all([get(userRef), get(likesCountRef)]);
+  const alreadyLiked = userSnap.val() === true;
+  let newCount = (countSnap.val() || 0);
+
+  if (alreadyLiked) {
+    // Quitar like
+    await set(userRef, null);
+    newCount = Math.max(0, newCount - 1);
+  } else {
+    // Dar like
+    await set(userRef, true);
+    newCount += 1;
+  }
+
+  await set(likesCountRef, newCount);
+
+  // Actualizar botón visual
+  const btn = document.querySelector(`.like-comment[data-id="${commentId}"]`);
+  if (btn) {
+    btn.classList.toggle('liked', !alreadyLiked);
+    btn.innerHTML = `Like ${newCount}`;
+  }
+}
+
 function loadLikes() {
   const likesRef = ref(db, `videos/${videoId}/likesCount`);
   const dislikesRef = ref(db, `videos/${videoId}/dislikesCount`);
@@ -160,7 +195,20 @@ function createCommentElement(comment, isReply = false) {
   div.className = 'comment';
   if (isReply) div.classList.add('reply');
 
-  const photo = comment.userPhoto ? `<img src="${comment.userPhoto}" class="comment-photo" />` : '';
+  // Construir ID único para respuestas: "commentId-replyId"
+  const parentCommentId = comment.parentCommentId || (isReply ? comment.id.split('-')[0] : null);
+  const fullId = isReply 
+    ? `${parentCommentId}-${comment.id}` 
+    : comment.id;
+
+  // Estado del like del usuario actual
+  const userLiked = currentUser && comment.likedBy && comment.likedBy[currentUser.uid] === true;
+  const likedClass = userLiked ? 'liked' : '';
+
+  const photo = comment.userPhoto 
+    ? `<img src="${comment.userPhoto}" class="comment-photo" alt="${escapeHtml(comment.userName)}" />` 
+    : '<div class="comment-photo-placeholder"></div>';
+
   div.innerHTML = `
     <div class="comment-header">
       ${photo}
@@ -169,7 +217,11 @@ function createCommentElement(comment, isReply = false) {
     </div>
     <div class="comment-text">${escapeHtml(comment.text)}</div>
     <div class="comment-actions">
-      <button class="like-comment" data-id="${comment.id}">👍 ${comment.likesCount || 0}</button>
+      <button class="like-comment ${likedClass}" 
+              data-id="${fullId}" 
+              data-is-reply="${isReply}">
+        Like ${comment.likesCount || 0}
+      </button>
       <button class="reply-btn">Responder</button>
     </div>
     <div class="reply-form" style="display:none;">
@@ -180,37 +232,57 @@ function createCommentElement(comment, isReply = false) {
     <div class="replies"></div>
   `;
 
-  // Responder
+  // === BOTÓN DE LIKE ===
+  const likeBtn = div.querySelector('.like-comment');
+  likeBtn.addEventListener('click', async () => {
+    if (!currentUser) {
+      alert("Debes iniciar sesión para dar like");
+      return;
+    }
+
+    const isReplyMode = likeBtn.dataset.isReply === 'true';
+    const targetId = likeBtn.dataset.id;
+
+    await toggleCommentLike(targetId, isReplyMode);
+  });
+
+  // === RESPONDER ===
   div.querySelector('.reply-btn').onclick = () => {
     const form = div.querySelector('.reply-form');
-    form.style.display = form.style.display === 'none' ? 'block' : 'none';
+    form.style.display = form.style.display === 'none' ? 'flex' : 'none';
+    form.querySelector('textarea').focus();
   };
 
   div.querySelector('.cancel-reply').onclick = () => {
-    div.querySelector('.reply-form').style.display = 'none';
+    const form = div.querySelector('.reply-form');
+    form.style.display = 'none';
+    form.querySelector('textarea').value = '';
   };
 
   div.querySelector('.send-reply').onclick = async () => {
     const textarea = div.querySelector('.reply-form textarea');
     const text = textarea.value.trim();
-    if (!text) return;
+    if (!text || !currentUser) return;
 
     const repliesRef = ref(db, `videos/${videoId}/comments/${comment.id}/replies`);
-    await push(repliesRef, {
+    const newReply = await push(repliesRef, {
       userId: currentUser.uid,
       userName: currentUser.displayName || "Anónimo",
       userPhoto: currentUser.photoURL || "",
       text: text,
       timestamp: Date.now(),
-      likesCount: 0
+      likesCount: 0,
+      likedBy: {}
     });
 
     textarea.value = '';
     div.querySelector('.reply-form').style.display = 'none';
   };
 
-  // Cargar respuestas
-  loadReplies(comment.id, div.querySelector('.replies'));
+  // === CARGAR RESPUESTAS ===
+  if (!isReply) {
+    loadReplies(comment.id, div.querySelector('.replies'));
+  }
 
   return div;
 }
