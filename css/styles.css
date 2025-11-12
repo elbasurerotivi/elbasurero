@@ -4033,22 +4033,20 @@ footer h3 {
 }
 
 .add-comment-btn {
-  background: #f8f9fa;
-  border: 2.5px dashed #bbb;
+  background: #f8f9fa4f;
   padding: 16px;
-  width: 100%;
   text-align: center;
   cursor: pointer;
   border-radius: 14px;
   font-size: 15.5px;
-  color: #444;
+  color: #ffffff;
   font-weight: 500;
   transition: all 0.2s;
 }
 
 .add-comment-btn:hover {
-  background: #f0f0f0;
-  border-color: #999;
+  background: #313131;
+  
 }
 
 /* --- COMENTARIO --- */
@@ -4075,7 +4073,7 @@ footer h3 {
 .comment-user {
   font-weight: 700;   /* ← MÁS GRANDE Y FUERTE */
   font-size: 1.02em;  /* ← LIGERAMENTE MÁS GRANDE */
-  color: #1a0dab;
+  color: #ffffff;
 }
 
 .comment-time {
@@ -4086,7 +4084,7 @@ footer h3 {
 .comment-text {
   margin: 8px 0;
   line-height: 1.55;
-  color: #333;
+  color: #ffffff;
   font-size: 15px;
 }
 
@@ -4103,7 +4101,7 @@ footer h3 {
   border: none;
   cursor: pointer;
   font-weight: 600;
-  color: #555;
+  color: #9a9a9a;
   padding: 4px 0;
 }
 
