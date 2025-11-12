@@ -3932,7 +3932,7 @@ footer h3 {
 /* ===========================================
    PREMIUM PLAYER STYLES
    =========================================== */
-.player-container-premium {
+.player-container {
   position: relative;
   z-index: 1;
 }
