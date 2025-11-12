@@ -211,6 +211,10 @@ function createCommentElement(comment, isReply = false) {
     ? `${comment.parentCommentId}-${comment.id}` 
     : comment.id;
 
+    // ✅ Agregá el log acá, dentro de la función
+  console.log("🧩 fullId generado:", fullId, "→ parent:", comment.parentCommentId);
+
+
 
   // Estado del like
   const userLiked = currentUser && comment.likedBy && comment.likedBy[currentUser.uid] === true;
@@ -316,7 +320,6 @@ function loadReplies(commentId, container) {
   });
 }
 
-console.log("🧩 fullId generado:", fullId, "→ parent:", comment.parentCommentId);
 
 
 
