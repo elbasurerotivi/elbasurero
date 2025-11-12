@@ -76,12 +76,18 @@ async function toggleLike(isLike) {
 }
 
 // === LIKE A COMENTARIOS Y RESPUESTAS ===
-async function toggleCommentLike(commentId, isReply = false) {
-  if (!currentUser) return alert("Debes iniciar sesión");
+async function toggleCommentLike(fullId, isReply) {
+  if (!currentUser) return;
 
-  const basePath = isReply 
-    ? `videos/${videoId}/comments/${commentId.split('-')[0]}/replies/${commentId.split('-')[1]}`
-    : `videos/${videoId}/comments/${commentId}`;
+  let basePath;
+  let likesCountRef;
+
+  if (isReply) {
+    const [commentId, replyId] = fullId.split('-');
+    basePath = `videos/${videoId}/comments/${commentId}/replies/${replyId}`;
+  } else {
+    basePath = `videos/${videoId}/comments/${fullId}`;
+  }
 
   const userRef = ref(db, `${basePath}/likedBy/${currentUser.uid}`);
   const likesCountRef = ref(db, `${basePath}/likesCount`);
@@ -91,19 +97,17 @@ async function toggleCommentLike(commentId, isReply = false) {
   let newCount = (countSnap.val() || 0);
 
   if (alreadyLiked) {
-    // Quitar like
     await set(userRef, null);
     newCount = Math.max(0, newCount - 1);
   } else {
-    // Dar like
     await set(userRef, true);
     newCount += 1;
   }
 
   await set(likesCountRef, newCount);
 
-  // Actualizar botón visual
-  const btn = document.querySelector(`.like-comment[data-id="${commentId}"]`);
+  // Actualizar botón
+  const btn = document.querySelector(`.like-comment[data-id="${fullId}"]`);
   if (btn) {
     btn.classList.toggle('liked', !alreadyLiked);
     btn.innerHTML = `Like ${newCount}`;
@@ -198,8 +202,8 @@ function createCommentElement(comment, isReply = false) {
   // Construir ID único para respuestas: "commentId-replyId"
   const parentCommentId = comment.parentCommentId || (isReply ? comment.id.split('-')[0] : null);
   const fullId = isReply 
-    ? `${parentCommentId}-${comment.id}` 
-    : comment.id;
+  ? `${comment.parentCommentId}-${comment.id}` 
+  : comment.id;
 
   // Estado del like del usuario actual
   const userLiked = currentUser && comment.likedBy && comment.likedBy[currentUser.uid] === true;
@@ -300,8 +304,11 @@ function loadReplies(commentId, container) {
     replies.sort((a, b) => b.timestamp - a.timestamp);
 
     replies.forEach(reply => {
-      const replyEl = createCommentElement(reply, true);
-      container.appendChild(replyEl);
+    const replyEl = createCommentElement({
+        ...reply,
+        parentCommentId: commentId  // ← ESTO ES CLAVE
+    }, true);
+    container.appendChild(replyEl);
     });
   });
 }
