@@ -3959,7 +3959,7 @@ footer h3 {
 .reply-form { margin: 10px 0 10px 30px; display: none; }
 .reply-form textarea { width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 6px; }
 .replies { margin-left: 30px; }
-.comment-photo{size: 5px;}
+.comment-photo{size: 5px;border-radius: 8px}
 
 
 
