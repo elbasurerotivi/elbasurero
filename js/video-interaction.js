@@ -1,5 +1,5 @@
 // js/video-interaction.js
-import { auth, db, ref, onValue, set, get, push, update, onAuthStateChanged } from "../firebase-config.js";
+import { auth, db, ref, push, onValue, set, remove, get, update, onAuthStateChanged } from "./firebase-config.js";
 
 let currentUser = null;
 let videoId = null;
