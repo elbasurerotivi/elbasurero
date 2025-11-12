@@ -82,11 +82,19 @@ async function toggleCommentLike(fullId, isReply) {
   let basePath;
 
   if (isReply) {
-    const [commentId, replyId] = fullId.split('-');
+    // fullId debe tener formato "commentId-replyId"
+    const parts = fullId.split('-');
+    if (parts.length < 2) {
+      console.error("❌ Error: fullId inválido para respuesta:", fullId);
+      return;
+    }
+    const [commentId, replyId] = parts;
     basePath = `videos/${videoId}/comments/${commentId}/replies/${replyId}`;
   } else {
     basePath = `videos/${videoId}/comments/${fullId}`;
   }
+
+  console.log("✅ toggleCommentLike →", basePath);
 
   const userRef = ref(db, `${basePath}/likedBy/${currentUser.uid}`);
   const likesCountRef = ref(db, `${basePath}/likesCount`);
@@ -111,6 +119,7 @@ async function toggleCommentLike(fullId, isReply) {
     btn.innerHTML = `Like ${newCount}`;
   }
 }
+
 
 function loadLikes() {
   const likesRef = ref(db, `videos/${videoId}/likesCount`);
@@ -296,14 +305,18 @@ function loadReplies(commentId, container) {
     replies.sort((a, b) => b.timestamp - a.timestamp);
 
     replies.forEach(reply => {
-    const replyEl = createCommentElement({
-        ...reply,
-        parentCommentId: commentId  // ← ESTO ES CLAVE
-    }, true);
-    container.appendChild(replyEl);
+      const replyEl = createCommentElement(
+        {
+          ...reply,
+          parentCommentId: commentId // 👈 asegura que se pase correctamente
+        },
+        true // ← isReply = true
+      );
+      container.appendChild(replyEl);
     });
   });
 }
+
 
 function escapeHtml(text) {
   const div = document.createElement('div');
