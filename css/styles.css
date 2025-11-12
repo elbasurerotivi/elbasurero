@@ -3954,16 +3954,11 @@ footer h3 {
 }
 
 #videoDescription {
-  margin: 20px 40px;
+  margin: 20px 20px;
   line-height: 1.6;
   color: #ffffff;
   font-size: 20px;
   clear: both;
-}
-
-@media (max-width: 600px) {
-  #videoDescription {
-  margin: 20px 20px;
 }
 
 
