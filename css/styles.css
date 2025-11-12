@@ -3979,9 +3979,9 @@ footer h3 {
   align-items: center;
   gap: 7px;
   padding: 10px 20px;
-  border: 1.8px solid #e0e0e0;
+  border: 1.8px solid #e0e0e000;
   border-radius: 30px;
-  background: #ffffff;
+  background: #ffffff00;
   cursor: pointer;
   font-size: 15px;
   font-weight: 600;
