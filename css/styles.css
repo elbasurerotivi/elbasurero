@@ -228,12 +228,11 @@ header, .navbar {
   background: rgba(255,255,255,0.12);
 }
 .like-btn {
-  background: none;
-  border: none;
   color: var(--text-muted);
   cursor: pointer;
   font-size: 15px;
   transition: var(--transition);
+  color: #c72525
 }
 .like-btn.active {
   color: var(--accent);
@@ -1805,8 +1804,6 @@ footer h3 {
 }
 
 .like-btn {
-  background: none;
-  border: none;
   color: #222;
   cursor: pointer;
   font-size: 20px;
@@ -2380,8 +2377,6 @@ footer h3 {
 }
 
 .like-btn {
-  background: none;
-  border: none;
   color: #222;
   cursor: pointer;
   font-size: 20px;
@@ -2633,8 +2628,6 @@ footer h3 {
 }
 
 .like-btn {
-  background: none;
-  border: none;
   color: #000000; /* Negro por defecto */
   cursor: pointer;
   font-size: 15px;
@@ -3959,7 +3952,7 @@ footer h3 {
 }
 
 #videoDescription {
-  margin: 20px 0;
+  margin: 20px 20px;
   line-height: 1.6;
   color: #ffffff;
   font-size: 15px;
