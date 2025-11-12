@@ -80,7 +80,6 @@ async function toggleCommentLike(fullId, isReply) {
   if (!currentUser) return;
 
   let basePath;
-  let likesCountRef;
 
   if (isReply) {
     const [commentId, replyId] = fullId.split('-');
@@ -106,7 +105,6 @@ async function toggleCommentLike(fullId, isReply) {
 
   await set(likesCountRef, newCount);
 
-  // Actualizar botón
   const btn = document.querySelector(`.like-comment[data-id="${fullId}"]`);
   if (btn) {
     btn.classList.toggle('liked', !alreadyLiked);
