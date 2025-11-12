@@ -199,13 +199,12 @@ function createCommentElement(comment, isReply = false) {
   div.className = 'comment';
   if (isReply) div.classList.add('reply');
 
-  // Construir ID único para respuestas: "commentId-replyId"
-  const parentCommentId = comment.parentCommentId || (isReply ? comment.id.split('-')[0] : null);
+  // ID único
   const fullId = isReply 
-  ? `${comment.parentCommentId}-${comment.id}` 
-  : comment.id;
+    ? `${comment.parentCommentId}-${comment.id}` 
+    : comment.id;
 
-  // Estado del like del usuario actual
+  // Estado del like
   const userLiked = currentUser && comment.likedBy && comment.likedBy[currentUser.uid] === true;
   const likedClass = userLiked ? 'liked' : '';
 
@@ -236,17 +235,12 @@ function createCommentElement(comment, isReply = false) {
     <div class="replies"></div>
   `;
 
-  // === BOTÓN DE LIKE ===
+  // === LIKE ===
   const likeBtn = div.querySelector('.like-comment');
   likeBtn.addEventListener('click', async () => {
-    if (!currentUser) {
-      alert("Debes iniciar sesión para dar like");
-      return;
-    }
-
+    if (!currentUser) return alert("Debes iniciar sesión");
     const isReplyMode = likeBtn.dataset.isReply === 'true';
     const targetId = likeBtn.dataset.id;
-
     await toggleCommentLike(targetId, isReplyMode);
   });
 
@@ -269,7 +263,7 @@ function createCommentElement(comment, isReply = false) {
     if (!text || !currentUser) return;
 
     const repliesRef = ref(db, `videos/${videoId}/comments/${comment.id}/replies`);
-    const newReply = await push(repliesRef, {
+    await push(repliesRef, {
       userId: currentUser.uid,
       userName: currentUser.displayName || "Anónimo",
       userPhoto: currentUser.photoURL || "",
