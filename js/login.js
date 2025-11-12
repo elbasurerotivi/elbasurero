@@ -337,3 +337,34 @@ window.initAuthButtons = function() {
 };
 
 
+// -----------------------------
+// CREAR USUARIO PREMIUM (SOLO ADMIN)
+// -----------------------------
+window.createPremiumUser = async function(email, password, username) {
+  if (!confirm(`¿Crear usuario PREMIUM?\nEmail: ${email}\nUsuario: ${username}`)) return;
+
+  try {
+    // 1. Crear en Firebase Auth
+    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+    const user = userCredential.user;
+
+    // 2. Guardar en Realtime Database con role: "premium"
+    const userRef = ref(db, `users/${user.uid}`);
+    await set(userRef, {
+      email: user.email,
+      username: username,
+      role: "premium",
+      createdAt: Date.now()
+    });
+
+    alert(`Usuario premium creado:\n${email}\nContraseña: ${password}\n\n¡Ya puede iniciar sesión!`);
+    console.log("Usuario premium creado:", user.uid);
+
+  } catch (error) {
+    console.error("Error creando usuario premium:", error);
+    let msg = "Error desconocido.";
+    if (error.code === "auth/email-already-in-use") msg = "El correo ya está registrado.";
+    if (error.code === "auth/weak-password") msg = "Contraseña demasiado débil.";
+    alert("Error: " + msg);
+  }
+};

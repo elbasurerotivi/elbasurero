@@ -35,6 +35,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // === CARGAR USUARIOS ===
   async function initAdminPanel() {
+    // Exponer función global para crear usuarios premium
+window.createPremiumUser = window.createPremiumUser || function() {
+  alert("Función no disponible. Recarga la página.");
+};
     userList.innerHTML = "<p style='text-align:center; color:#aaa;'><i class='fas fa-spinner fa-spin'></i> Cargando...</p>";
 
     const snapshot = await get(ref(db, "users")).catch(() => null);

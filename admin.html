@@ -304,6 +304,30 @@
     <button id="logoutBtn">
       Cerrar Sesión
     </button>
+
+    <!-- BOTÓN PARA CREAR USUARIO PREMIUM -->
+<div style="padding: 20px; text-align: center;">
+  <button id="createPremiumBtn" class="btn btn-success">
+    Crear Usuario Premium
+  </button>
+</div>
+
+<script>
+  document.getElementById("createPremiumBtn")?.addEventListener("click", () => {
+    const email = prompt("Correo del nuevo usuario premium:");
+    const username = prompt("Nombre de usuario:", email.split("@")[0]);
+    const password = prompt("Contraseña (mínimo 6 caracteres):");
+
+    if (!email || !username || !password || password.length < 6) {
+      alert("Datos inválidos.");
+      return;
+    }
+
+    // Llamar a función global
+    window.createPremiumUser(email, password, username);
+  });
+</script>
+
   </main>
 
 </body>
