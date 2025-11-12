@@ -12,7 +12,7 @@
 
   <main class="player-container-premium">
     <h1 id="videoTitle"></h1>
-    <div class="video-wrapper" id="videoContainerPremium">
+    <div class="video-wrapper" id="videoContainer">
       <!-- El video/iframe se inserta aquí -->
     </div>
     <p id="videoDescription"></p>
@@ -55,7 +55,7 @@
 
     const titleEl = document.getElementById('videoTitle');
     const descEl = document.getElementById('videoDescription');
-    const container = document.getElementById('videoContainerPremium');
+    const container = document.getElementById('videoContainer');
 
     if (video) {
   titleEl.textContent = video.title;
