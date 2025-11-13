@@ -47,7 +47,6 @@
     button {
       margin-top: 20px;
       padding: 12px;
-      width: 100%;
       border: none;
       border-radius: 8px;
       background: #00acee;
@@ -75,6 +74,11 @@
       border-radius: 8px;
       display: none;
     }
+    .button-row {
+      display: flex;
+      gap: 10px;
+      margin-top: 15px;
+    }
   </style>
 </head>
 <body>
@@ -82,8 +86,8 @@
   <div class="form-container">
     <h1>Agregar Video Premium</h1>
     <form id="videoForm">
-      <label for="id">ID (único)</label>
-      <input type="text" id="id" placeholder="mi_obra_maestra" required>
+      <label for="id">ID (automático)</label>
+      <input type="text" id="id" placeholder="Se genera automáticamente..." readonly />
 
       <label for="name">Nombre</label>
       <input type="text" id="name" placeholder="Mi Obra Maestra" required>
@@ -103,12 +107,14 @@
       <label for="description">Descripción</label>
       <textarea id="description" required></textarea>
 
-      <label for="thumbnail">Miniatura (URL)</label>
-      <input type="url" id="thumbnail" placeholder="https://ruta.com/imagen.jpg" required />
-      <img id="preview" alt="Vista previa">
-
       <label for="source">Fuente (enlace Rumble)</label>
       <input type="url" id="source" placeholder="https://rumble.com/embed/xxxxxx/?pub=xxxx" required>
+
+      <label for="thumbnail">Miniatura</label>
+      <input type="url" id="thumbnail" placeholder="Se intentará obtener automáticamente..." />
+      <input type="file" id="manualThumbnail" accept="image/*" style="margin-top:10px;">
+      <img id="preview" alt="Vista previa">
+      <small id="thumbnailMessage" style="color:#ccc;"></small>
 
       <label for="type">Tipo de video</label>
       <select id="type" required>
@@ -120,23 +126,84 @@
     </form>
 
     <div class="output" id="output"></div>
-    <button id="downloadAll">⬇️ Descargar Todos</button>
+
+    <div class="button-row">
+      <button id="downloadAll">⬇️ Descargar Todos</button>
+      <button id="copyAll">📋 Copiar</button>
+    </div>
   </div>
 
   <script>
   const form = document.getElementById("videoForm");
   const preview = document.getElementById("preview");
   const output = document.getElementById("output");
+  const nameInput = document.getElementById("name");
+  const idInput = document.getElementById("id");
+  const sourceInput = document.getElementById("source");
+  const thumbnailInput = document.getElementById("thumbnail");
+  const manualThumbnail = document.getElementById("manualThumbnail");
+  const thumbnailMessage = document.getElementById("thumbnailMessage");
   const videosList = [];
+  let autoThumbnail = "";
+  let manualThumbnailUrl = "";
 
-  // Vista previa miniatura
-  document.getElementById("thumbnail").addEventListener("input", (e) => {
-    const url = e.target.value.trim();
-    if (url) {
-      preview.src = url;
+  // 🧠 Generar ID automáticamente
+  nameInput.addEventListener("input", () => {
+    const nameValue = nameInput.value.trim().toLowerCase();
+    const generatedId = nameValue
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .replace(/[^a-z0-9]+/g, "_")
+      .replace(/^_|_$/g, "");
+    idInput.value = generatedId;
+  });
+
+  // 🎥 Obtener miniatura automática desde enlace Rumble
+  async function getRumbleThumbnail(rumbleUrl) {
+    try {
+      const res = await fetch(rumbleUrl);
+      const html = await res.text();
+      const match = html.match(/<meta property="og:image" content="([^"]+)"/);
+      if (match && match[1]) return match[1];
+    } catch (e) {
+      console.warn("No se pudo obtener miniatura automática:", e);
+    }
+    return null;
+  }
+
+  // Detectar cuando se ingresa un link de Rumble
+  sourceInput.addEventListener("change", async () => {
+    const url = sourceInput.value.trim();
+    if (!url) return;
+
+    thumbnailMessage.textContent = "🔄 Buscando miniatura automática...";
+    preview.style.display = "none";
+
+    const thumb = await getRumbleThumbnail(url);
+    if (thumb) {
+      autoThumbnail = thumb;
+      thumbnailInput.value = thumb;
+      preview.src = thumb;
       preview.style.display = "block";
+      thumbnailMessage.textContent = "✅ Miniatura obtenida automáticamente desde Rumble.";
     } else {
-      preview.style.display = "none";
+      thumbnailMessage.textContent = "⚠️ No se pudo obtener miniatura automática. Cargá una manualmente.";
+      autoThumbnail = "";
+    }
+  });
+
+  // Cargar miniatura manual desde archivo
+  manualThumbnail.addEventListener("change", (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      manualThumbnailUrl = "Imagenes/" + file.name;
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        preview.src = event.target.result;
+        preview.style.display = "block";
+        thumbnailMessage.textContent = "📸 Miniatura cargada manualmente desde dispositivo.";
+      };
+      reader.readAsDataURL(file);
     }
   });
 
@@ -144,15 +211,21 @@
   form.addEventListener("submit", (e) => {
     e.preventDefault();
 
+    const thumbnailUrl = autoThumbnail || manualThumbnailUrl || thumbnailInput.value.trim();
+    if (!thumbnailUrl) {
+      alert("❌ No se encontró miniatura automática ni manual.");
+      return;
+    }
+
     const video = {
-      id: document.getElementById("id").value.trim(),
-      name: document.getElementById("name").value.trim(),
+      id: idInput.value.trim(),
+      name: nameInput.value.trim(),
       temporada: document.getElementById("temporada").value.trim(),
       episodio: document.getElementById("episodio").value.trim(),
       title: document.getElementById("title").value.trim(),
       title2: document.getElementById("title2").value.trim(),
       description: document.getElementById("description").value.trim(),
-      thumbnail: document.getElementById("thumbnail").value.trim(),
+      thumbnail: thumbnailUrl,
       source: document.getElementById("source").value.trim(),
       type: document.getElementById("type").value.trim()
     };
@@ -162,11 +235,14 @@
     const jsCode = JSON.stringify(video, null, 2)
       .replace(/\"([^(\")"]+)\":/g, "$1:")
       .replace(/\"/g, "'");
-
     output.textContent += `\n${jsCode},\n`;
 
     form.reset();
+    idInput.value = "";
     preview.style.display = "none";
+    thumbnailMessage.textContent = "";
+    autoThumbnail = "";
+    manualThumbnailUrl = "";
   });
 
   // Descargar todos los videos como JS
@@ -183,7 +259,6 @@
     ).join(",\n\n");
 
     const finalCode = `[\n${jsCode}\n];`;
-
     const blob = new Blob([finalCode], { type: "application/javascript" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
@@ -193,6 +268,16 @@
     URL.revokeObjectURL(url);
 
     alert("✅ Archivo videos-premium.js descargado con todos los videos.");
+  });
+
+  // 📋 Copiar todo el contenido del output
+  document.getElementById("copyAll").addEventListener("click", () => {
+    if (!output.textContent.trim()) {
+      alert("No hay nada para copiar.");
+      return;
+    }
+    navigator.clipboard.writeText(output.textContent.trim());
+    alert("📋 Contenido copiado al portapapeles.");
   });
   </script>
 
