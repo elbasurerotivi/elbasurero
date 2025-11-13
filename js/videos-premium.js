@@ -10,7 +10,7 @@ export const videosPremium = [
   title: '👽 REACCIÓN A ENCUENTROS CERCANOS DEL TERCER TIPO',
   title2: 'Cine, misterio y nostalgia en comunidad',
   description: 'Nos reunimos en Twitch para ver juntos Encuentros Cercanos del Tercer Tipo, la obra maestra de Steven Spielberg que mezcla ciencia ficción, asombro y humanidad como pocas películas lo han hecho.\nFue una experiencia increíble verla en comunidad: teorías, risas, debates sobre ovnis y momentos en los que todos quedamos con la piel de gallina.\nUna joya del cine setentero que sigue generando la misma fascinación hoy que el día en que se estrenó.\nUna reacción completa, sincera y llena de nostalgia.',
-  thumbnail: 'https://rumble.com/v71if2w--reaccin-a-encuentros-cercanos-del-tercer-tipo-cine-misterio-y-nostalgia-en.html',
+  thumbnail: 'Imagenes/yNtyz.qR4e-small--REACCIN-A-ENCUENTROS-CERCA.jpg',
   source: 'https://rumble.com/embed/v6zbr2o/?pub=4nmhh2',
   type: 'iframe'
 },
