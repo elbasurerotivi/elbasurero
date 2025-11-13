@@ -3,6 +3,44 @@ export const videosPremium = [
 
 
   {
+  id: 'millenium',
+  name: 'Millenium',
+  temporada: '0',
+  episodio: '1',
+  title: 'Millennium',
+  title2: 'Los hombres que no amaban a las mujeres (sueca)',
+  description: 'En este directo de Twitch vimos juntos Los hombres que no amaban a las mujeres, la versión sueca de la primera entrega de la saga Millennium — dirigida por Niels Arden Oplev y protagonizada por Noomi Rapace y Mikael Nyqvist.',
+  thumbnail: 'Imagenes/Picsart_25-10-24_19-36-11-553.jpg',
+  source: 'https://rumble.com/embed/v6zblns/?pub=4nmhh2',
+  type: 'iframe'
+},
+
+{
+  id: 'millenium',
+  name: '🔍 Millenium',
+  temporada: '0',
+  episodio: '2',
+  title: 'Millennium',
+  title2: 'La chica que soñaba con un cerillo y un galón de gasolina + Peter Capusotto',
+  description: 'Una secuela que me agarró desprevenido: reaccionamos a La chica que soñaba con un cerillo y un galón de gasolina — la segunda parte de la saga sueca The Girl Who Played with Fire — donde todo se complica, la tensión se eleva y el caos aparece por todos lados.\nPara rematar, cerramos la sesión viendo un video de Peter Capusotto que nos hizo soltar carcajadas y pensar al mismo tiempo.\nUna experiencia de comunidad en Twitch plena de giros, comentarios sin filtro y descubrimientos… ¡no te la pierdas!',
+  thumbnail: 'Imagenes/Picsart_25-11-02_19-41-27-072.jpg',
+  source: 'https://rumble.com/embed/v6zbrnq/?pub=4nmhh2',
+  type: 'iframe'
+},
+
+{
+  id: 'les_luthiers',
+  name: '😂 Les Luthiers',
+  temporada: '0',
+  episodio: '1',
+  title: 'Ya no te amo, Raúl',
+  title2: 'No pude parar de reir',
+  description: 'Algunas piezas de humor simplemente no envejecen, y Ya no te amo, Raúl de Les Luthiers es una de ellas.\nUna joya de la ironía, la música y el absurdo más elegante, que me tuvo riendo de principio a fin.\nEntre el ingenio de las letras, los juegos de palabras y esa interpretación tan característica del grupo, fue imposible no rendirse ante el talento de estos genios.\nUna reacción llena de risas sinceras y admiración total por lo que hacen.',
+  thumbnail: 'Imagenes/NO-PUDE-PARAR-DE-RER-con-Y.jpg',
+  source: 'https://rumble.com/embed/v6zcjy0/?pub=4nmhh2',
+  type: 'iframe'
+},
+  {
   id: 'encuentros_cercanos',
   name: '👽 ENCUENTROS CERCANOS DEL TERCER TIPO',
   temporada: '0',
