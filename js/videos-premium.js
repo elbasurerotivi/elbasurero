@@ -15,11 +15,11 @@ export const videosPremium = [
   type: 'iframe'
 },
   {
-  id: 'millenium',
+  id: 'millenium_2',
   name: 'Millenium',
   temporada: '0',
   episodio: '1',
-  title: 'Millennium',
+  title: 'Millennium 2',
   title2: 'Los hombres que no amaban a las mujeres (sueca)',
   description: 'En este directo de Twitch vimos juntos Los hombres que no amaban a las mujeres, la versión sueca de la primera entrega de la saga Millennium — dirigida por Niels Arden Oplev y protagonizada por Noomi Rapace y Mikael Nyqvist.',
   thumbnail: 'Imagenes/Picsart_25-10-24_19-36-11-553.jpg',
@@ -146,6 +146,7 @@ export const videosPremium = [
   
   
   ///Nada///
+
   {
     id: 'la_verdad_de_la_milanesa',
     name: "Nada",

@@ -152,8 +152,8 @@
 
   // 🧠 Generar ID automáticamente
   nameInput.addEventListener("input", () => {
-    const nameValue = nameInput.value.trim().toLowerCase();
-    const generatedId = nameValue
+    const titleValue = titleInput.value.trim().toLowerCase();
+    const generatedId = titleValue
       .normalize("NFD")
       .replace(/[\u0300-\u036f]/g, "")
       .replace(/[^a-z0-9]+/g, "_")
