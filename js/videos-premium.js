@@ -243,7 +243,7 @@ export const videosPremium = [
 },
 
 {
-  id: 'les_luthiers',
+  id: 'bloqueados-de-youtube',
   name: '😂 Les Luthiers',
   temporada: '0',
   episodio: '1',
