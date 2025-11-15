@@ -157,24 +157,70 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
 
-    onValue(ref(db, "videoCatalog"), (snap) => {
-      const data = snap.val();
-      videos = data ? Object.entries(data).map(([id, d]) => ({ id, ...d })) : [];
-      videosLoaded = true;
-      checkAndRender();
-    }, (error) => {
-      console.error("Error cargando videoCatalog:", error);
-      videoList.innerHTML = "<p style='color:red;'>Error: No se pudieron cargar los videos.</p>";
+// === CARGAR DATOS ===
+onValue(ref(db, "videoCategories"), (snap) => {
+  videoCategories = snap.val() || {};
+  renderVideos();
+});
+
+onValue(ref(db, "categories"), (snap) => {
+  categories = snap.val() || {};
+  renderVideos();
+});
+
+// === RENDER ===
+function renderVideos() {
+  const query = searchInput.value.toLowerCase().trim();
+  const filtered = videosPremium.filter(v =>
+    v.title.toLowerCase().includes(query) ||
+    v.id.toLowerCase().includes(query)
+  );
+
+  videoList.innerHTML = "";
+  filtered.forEach(video => {
+    const div = document.createElement("div");
+    div.className = "video-item";
+
+    const currentSlug = videoCategories[video.id] || "";
+    const currentName = categories[currentSlug]?.name || "Sin categoría";
+
+    const catOptions = Object.entries(categories)
+      .map(([slug, data]) => `<option value="${slug}" ${slug === currentSlug ? "selected" : ""}>${data.name}</option>`)
+      .join("");
+
+    div.innerHTML = `
+      <div class="video-info">
+        <h3>${video.title}</h3>
+        <small>ID: ${video.id}</small>
+      </div>
+      <div style="display:flex; gap:0.5rem;">
+        <select class="category-select" data-id="${video.id}">
+          <option value="">-- Sin categoría --</option>
+          ${catOptions}
+        </select>
+        <button class="btn-save" data-id="${video.id}">Guardar</button>
+      </div>
+    `;
+
+    const select = div.querySelector(".category-select");
+    const btn = div.querySelector(".btn-save");
+
+    btn.addEventListener("click", () => {
+      const slug = select.value;
+      update(ref(db, `videoCategories/${video.id}`), slug ? slug : null)
+        .then(() => {
+          btn.style.background = "var(--success)";
+          btn.textContent = "Guardado";
+          setTimeout(() => {
+            btn.style.background = "";
+            btn.textContent = "Guardar";
+          }, 1000);
+        });
     });
 
-    onValue(ref(db, "categories"), (snap) => {
-      categories = snap.val() || {};
-      categoriesLoaded = true;
-      checkAndRender();
-    }, (error) => {
-      console.error("Error cargando categories:", error);
-    });
+    videoList.appendChild(div);
   });
+}
 
   console.log("admin-videos.js cargado correctamente");
 });

@@ -30,26 +30,59 @@
   <script type="module">
   import { protectPage } from "./js/roleManager.js";
   import "./js/login.js";
-  import { videosPremium, categoriasData } from "./js/videos-premium.js";
+  import { videosPremium } from "./js/videos-premium.js";
+  import { db, ref, onValue } from "./js/firebase-config.js";
 
   protectPage(["premium", "admin"], "index.html");
 
-  // Importa firebase-config.js
-import { db, ref, onValue } from "./js/firebase-config.js";
+  let videoCategories = {};
+  let categories = {};
 
-let videosPremium = [];
-let categoriasData = {};
-
-// Escuchar catálogo
-onValue(ref(db, "videoCatalog"), (snap) => {
-  videosPremium = Object.values(snap.val() || {});
-  renderPlaylists(); // o renderVideos()
+  // Escuchar asignaciones
+onValue(ref(db, "videoCategories"), (snap) => {
+  videoCategories = snap.val() || {};
+  renderPlaylists();
 });
 
 onValue(ref(db, "categories"), (snap) => {
-  categoriasData = snap.val() || {};
+  categories = snap.val() || {};
   renderPlaylists();
 });
+
+function renderPlaylists() {
+  const grouped = {};
+
+  videosPremium.forEach(v => {
+    const catSlug = videoCategories[v.id] || "sin-categoria";
+    const catName = categories[catSlug]?.name || "Sin categoría";
+    
+    if (!grouped[catName]) grouped[catName] = [];
+    grouped[catName].push(v);
+  });
+
+  const container = document.getElementById("playlistList");
+  container.innerHTML = "";
+
+  Object.keys(grouped).forEach(catName => {
+    const videos = grouped[catName];
+    const slug = Object.keys(categories).find(s => categories[s].name === catName) || "sin-categoria";
+
+    const background = categories[slug]?.background || videos[0].thumbnail;
+
+    const card = document.createElement("div");
+    card.className = "premium-card";
+    card.innerHTML = `
+      <a href="categorias.html?cat=${slug}">
+        <img src="${background}" loading="lazy">
+        <div class="premium-info">
+          <h2>${catName}</h2>
+          <p>${videos.length} videos</p>
+        </div>
+      </a>
+    `;
+    container.appendChild(card);
+  });
+}
 
   // Cargar header y footer
   fetch('header.html').then(r => r.text()).then(d => {
