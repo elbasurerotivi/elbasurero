@@ -1,6 +1,69 @@
 // js/videos.js
 export const videosPremium = [
 
+///Nada///
+
+  {
+  id: 'tirar_manteca_al_techo',
+  name: 'Nada',
+  temporada: '1',
+  episodio: '5',
+  title: '🔥 Tirar manteca al techo',
+  title2: 'Final inesperado y una despedida que me dejó pensando',
+  description: 'Hay finales que no buscan ruido, pero sí dejarte con esa sensación rara de “necesito procesarlo”.\nEl episodio 5 de NADA logra exactamente eso: una mezcla de ternura, crudeza, humor filoso y una última escena que te obliga a quedarte en silencio un momento.\nEntre detalles que pasan volando, gestos mínimos y decisiones que cierran todo con elegancia, esta reacción se volvió una montaña rusa emocional.\nUna despedida corta, íntima y perfecta para rematar esta miniserie única.',
+  thumbnail: 'Imagenes/NADA-Ep.-5-Final-inesperad.jpg',
+  source: 'https://rumble.com/embed/v6zj5mi/?pub=4nmhh2',
+  type: 'iframe'
+},
+  {
+  id: 'comerse_un_garron',
+  name: 'Nada',
+  temporada: '1',
+  episodio: '4',
+  title: '🍽️ Comerse un garrón',
+  title2: 'Una escena imposible de olvidar',
+  description: 'A veces una serie te sorprende con esos momentos que mezclan humor seco, incomodidad deliciosa y un toque de caos… y el episodio 4 de NADA tiene exactamente eso.\n“Comerse un garrón” se convirtió en una de las secuencias que más me atraparon hasta ahora: entre la tensión, los silencios y la manera tan fina en la que construyen el conflicto, costó trabajo no comentar cada mínimo detalle.\nEse gustito porteño que hace que NADA funcione tan bien.',
+  thumbnail: 'Imagenes/NADA-Ep.-4-Comerse-un-garr.jpg',
+  source: 'https://rumble.com/embed/v6zhhu8/?pub=4nmhh2',
+  type: 'iframe'
+},
+
+  {
+    id: 'la_verdad_de_la_milanesa',
+    name: "Nada",
+    temporada: "1",
+    episodio: "3",
+    title: '🍝 La verdad de la milanesa 🇦🇷 ',
+    title2:'Reacción con Luis Brandoni',
+    description: 'En este tercer episodio de “Nada”, titulado “La verdad de la milanesa”, Manuel Tamayo Prats continúa navegando entre la nostalgia y la desconexión con el mundo moderno. Con su característico sarcasmo, se enfrenta a pequeñas grandes crisis cotidianas que revelan tanto su vulnerabilidad como su terquedad. Luis Brandoni está brillante —otra vez— en este retrato de un hombre atrapado entre el pasado y un presente que ya no le pertenece. El tono sigue siendo irónico y profundamente humano, con momentos que mezclan humor, melancolía y reflexión sobre la identidad porteña. Un episodio delicioso, con sabor a Buenos Aires y a esa ironía tan particular que solo Nada puede ofrecer.',
+    thumbnail: 'Imagenes/Reaccin-a-Nada-Episodio-3-.jpg',
+    source: 'https://rumble.com/embed/v6z7sp0/?pub=4nmhh2',
+    type: 'iframe'
+  },
+  {
+    id: 'remar_en_dulce_de_leche',
+    name: "Nada",
+    temporada: "1",
+    episodio: "2",
+    title: '🍷🍮Remar en Dulce de Leche 🇦🇷',
+    title2:'Reacción con Luis Brandoni',
+    description: 'En este segundo episodio de “Nada”, titulado “Remar en Dulce de Leche”, seguimos la vida del refinado y cínico crítico gastronómico Manuel Tamayo Prats (Luis Brandoni), que intenta sobrellevar los cambios de su rutina tras la pérdida de su asistente. Este capítulo, lleno de ironía y sabor argentino, muestra a Manuel enfrentándose a la modernidad con esa mezcla tan suya de soberbia y ternura. El tono es más introspectivo que el primero, con momentos que combinan humor, nostalgia y una dirección impecable. Además, Robert De Niro continúa aportando ese toque internacional y entrañable como Vincent, su amigo estadounidense. Una joya de episodio que me hizo reír, pensar y disfrutar muchísimo.',
+    thumbnail: 'Imagenes/Reaccin-a-Nada-Episodio-2-.jpg',
+    source: 'https://rumble.com/embed/v6z7sgu/?pub=4nmhh2',
+    type: 'iframe'
+  },
+  {
+    id: 'estar_en_el_horno',
+    name: "Nada",
+    temporada: "1",
+    episodio: "1",
+    title: '🍝 Estar en el horno',
+    title2:'Reacción con Luis Brandoni y la participación de Robert De Niro',
+    description: 'Primera impresión de Nada, una serie que combina humor, costumbrismo y reflexión sobre la vida, la comida y la soledad en Buenos Aires.\nLuis Brandoni encarna a un crítico gastronómico que debe aprender a vivir “sin nada” cuando su rutina se desmorona.\nY sí, aparece Robert De Niro, dándole un toque internacional inesperado.\n\nUna reacción llena de comentarios sobre estilo, tono y ese humor porteño tan particular.',
+    thumbnail: 'Imagenes/01 - Estar en el horno.jpg',
+    source: 'https://rumble.com/embed/v6yzbss/?pub=4nmhh2',
+    type: 'iframe'
+  },
 
 {
   id: 'millenium',
@@ -145,69 +208,7 @@ export const videosPremium = [
   
   
   
-  ///Nada///
-
-  {
-  id: 'tirar_manteca_al_techo',
-  name: 'Nada',
-  temporada: '1',
-  episodio: '5',
-  title: '🔥 Tirar manteca al techo',
-  title2: 'Final inesperado y una despedida que me dejó pensando',
-  description: 'Hay finales que no buscan ruido, pero sí dejarte con esa sensación rara de “necesito procesarlo”.\nEl episodio 5 de NADA logra exactamente eso: una mezcla de ternura, crudeza, humor filoso y una última escena que te obliga a quedarte en silencio un momento.\nEntre detalles que pasan volando, gestos mínimos y decisiones que cierran todo con elegancia, esta reacción se volvió una montaña rusa emocional.\nUna despedida corta, íntima y perfecta para rematar esta miniserie única.',
-  thumbnail: 'Imagenes/NADA-Ep.-5-Final-inesperad.jpg',
-  source: 'https://rumble.com/embed/v6zj5mi/?pub=4nmhh2',
-  type: 'iframe'
-},
-  {
-  id: 'comerse_un_garron',
-  name: 'Nada',
-  temporada: '1',
-  episodio: '4',
-  title: '🍽️ Comerse un garrón',
-  title2: 'Una escena imposible de olvidar',
-  description: 'A veces una serie te sorprende con esos momentos que mezclan humor seco, incomodidad deliciosa y un toque de caos… y el episodio 4 de NADA tiene exactamente eso.\n“Comerse un garrón” se convirtió en una de las secuencias que más me atraparon hasta ahora: entre la tensión, los silencios y la manera tan fina en la que construyen el conflicto, costó trabajo no comentar cada mínimo detalle.\nEse gustito porteño que hace que NADA funcione tan bien.',
-  thumbnail: 'Imagenes/NADA-Ep.-4-Comerse-un-garr.jpg',
-  source: 'https://rumble.com/embed/v6zhhu8/?pub=4nmhh2',
-  type: 'iframe'
-},
-
-  {
-    id: 'la_verdad_de_la_milanesa',
-    name: "Nada",
-    temporada: "1",
-    episodio: "3",
-    title: '🍝 La verdad de la milanesa 🇦🇷 ',
-    title2:'Reacción con Luis Brandoni',
-    description: 'En este tercer episodio de “Nada”, titulado “La verdad de la milanesa”, Manuel Tamayo Prats continúa navegando entre la nostalgia y la desconexión con el mundo moderno. Con su característico sarcasmo, se enfrenta a pequeñas grandes crisis cotidianas que revelan tanto su vulnerabilidad como su terquedad. Luis Brandoni está brillante —otra vez— en este retrato de un hombre atrapado entre el pasado y un presente que ya no le pertenece. El tono sigue siendo irónico y profundamente humano, con momentos que mezclan humor, melancolía y reflexión sobre la identidad porteña. Un episodio delicioso, con sabor a Buenos Aires y a esa ironía tan particular que solo Nada puede ofrecer.',
-    thumbnail: 'Imagenes/Reaccin-a-Nada-Episodio-3-.jpg',
-    source: 'https://rumble.com/embed/v6z7sp0/?pub=4nmhh2',
-    type: 'iframe'
-  },
-  {
-    id: 'remar_en_dulce_de_leche',
-    name: "Nada",
-    temporada: "1",
-    episodio: "2",
-    title: '🍷🍮Remar en Dulce de Leche 🇦🇷',
-    title2:'Reacción con Luis Brandoni',
-    description: 'En este segundo episodio de “Nada”, titulado “Remar en Dulce de Leche”, seguimos la vida del refinado y cínico crítico gastronómico Manuel Tamayo Prats (Luis Brandoni), que intenta sobrellevar los cambios de su rutina tras la pérdida de su asistente. Este capítulo, lleno de ironía y sabor argentino, muestra a Manuel enfrentándose a la modernidad con esa mezcla tan suya de soberbia y ternura. El tono es más introspectivo que el primero, con momentos que combinan humor, nostalgia y una dirección impecable. Además, Robert De Niro continúa aportando ese toque internacional y entrañable como Vincent, su amigo estadounidense. Una joya de episodio que me hizo reír, pensar y disfrutar muchísimo.',
-    thumbnail: 'Imagenes/Reaccin-a-Nada-Episodio-2-.jpg',
-    source: 'https://rumble.com/embed/v6z7sgu/?pub=4nmhh2',
-    type: 'iframe'
-  },
-  {
-    id: 'estar_en_el_horno',
-    name: "Nada",
-    temporada: "1",
-    episodio: "1",
-    title: '🍝 Estar en el horno',
-    title2:'Reacción con Luis Brandoni y la participación de Robert De Niro',
-    description: 'Primera impresión de Nada, una serie que combina humor, costumbrismo y reflexión sobre la vida, la comida y la soledad en Buenos Aires.\nLuis Brandoni encarna a un crítico gastronómico que debe aprender a vivir “sin nada” cuando su rutina se desmorona.\nY sí, aparece Robert De Niro, dándole un toque internacional inesperado.\n\nUna reacción llena de comentarios sobre estilo, tono y ese humor porteño tan particular.',
-    thumbnail: 'Imagenes/01 - Estar en el horno.jpg',
-    source: 'https://rumble.com/embed/v6yzbss/?pub=4nmhh2',
-    type: 'iframe'
-  },
+  
   
   
   // Agrega más videos aquí según necesites. Es escalable: solo edita este archivo.
