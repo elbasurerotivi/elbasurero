@@ -1,11 +1,121 @@
 // js/videos.js
+export const categoriasData = {
+  'shingeki-no-kyojin': {
+    background: 'Imagenes/Picsart_25-10-18_01-10-37-858.jpg',     // Fondo grande
+    cover: 'Imagenes/Shingeki 1.webp',               // Carátula pequeña
+    title: 'Shingeki no Kyojin',
+    synopsis: 'Attack on Titan (Shingeki no Kyojin) es un impactante anime de acción que mezcla drama, terror y animación, con una trama enrevesada, batallas brutales y hondos temas filosóficos. La humanidad resiste tras gigantescas murallas que la protegen de titanes come-hombres. Cuando un titán colosal arrasa su hogar y mata a su madre, Eren Jaeger se une a la Legión de Reconocimiento con sus amigos Mikasa y Armin, solo para descubrir que él mismo puede volverse un titán. En su lucha por la supervivencia, Eren destapa conspiraciones, intrigas políticas y el terrible origen de los titanes.',
+    year: '2013–2023',
+    genre: 'Acción • Drama • Misterio',
+    cast: 'Yuki Kaji, Marina Inoue, Yui Ishikawa'
+  },
+  'nada': {
+    background: 'Imagenes/nada portada.webp',     // Fondo grande
+    cover: 'Imagenes/nada 1.jpg',               // Carátula pequeña
+    title: 'Nada',
+    synopsis: 'Un icónico bon vivant, que apenas tiene recursos suficientes para mantener su estilo de vida acomodado, contrata a una joven paraguaya para reemplazar a la empleada doméstica recientemente fallecida que lo cuidó durante más de 40 años. Una comedia dramática con Luis Brandoni y Robert De Niro.',
+    year: '2023',
+    genre: 'Comedia • Drama',
+    cast: 'Luis Brandoni, Robert De Niro, María Rosa Fugazot'
+  },
+
+    'millenium-2': {
+    background: 'Imagenes/Picsart_25-11-02_19-41-27-072.jpg',     // Fondo grande
+    cover: 'Imagenes/millennium-2.webp',               // Carátula pequeña
+    title: 'Millennium',
+    synopsis: 'Lisbeth Salander es buscada por la policía, tras verse envuelta en el asesinato de dos colaboradores de Millennium, a punto de sacar a la luz un escándalo sobre el comercio sexual en Suecia. Sin embargo, Lisbeth es más un ángel vengador que una víctima indefensa, y arremete con justa ira sobre los que la han herido... Segunda parte de la trilogía Millennium, adaptaciones de las exitosas novelas de Stieg Larsson.',
+    year: '2009',
+    genre: 'Thriller • Intriga',
+    cast: 'Noomi Rapace, Mikael Nyqvist, Lena Endre'
+    },
+  
+  'millenium': {
+    background: 'Imagenes/Picsart_25-10-24_19-36-11-553.jpg',     // Fondo grande
+    cover: 'Imagenes/millennium 1.jpg',               // Carátula pequeña
+    title: 'Millennium',
+    synopsis: 'Un periodista caído en desgracia y una hacker antisocial descubren un secreto espeluznante mientras investigan el caso de una mujer que desapareció 40 años antes.',
+    year: '2009',
+    genre: 'Thriller • Intriga',
+    cast: 'Michael Nyqvist, Noomi Rapace, Sven-Bertil Taube'
+  },
+
+    'les_luthiers': {
+    background: 'Imagenes/les-luthiers-1486327.jpg',     // Fondo grande
+    cover: 'Imagenes/les luthiers.jpg',               // Carátula pequeña
+    title: 'Les Luthiers',
+    synopsis: '"Ya no te amo, Raúl" es una bolera que parodia las canciones de amor apasionadas y dramáticas, característica del estilo de Les Luthiers, donde el humor surge del contraste entre la música y la letra, así como de la interpretación.',
+    year: '2006',
+    genre: 'Humor',
+    cast: 'Les Luthiers'
+  },
+
+    'encuenbtros-cercanos-del-tercer-tipo': {
+    background: 'Imagenes/yNtyz.qR4e-small--REACCIN-A-ENCUENTROS-CERCA.jpg',     // Fondo grande
+    cover: 'Imagenes/encuentros cercanos del tercer tipo.jpg',               // Carátula pequeña  
+    title: 'Encuentros cercanos del Tercer Tipo',
+    synopsis: 'Después de un encuentro accidental con naves de otro mundo, un hombre ordinario sigue una serie de pistas psíquicas sobre el primer encuentro programado entre representantes de la Tierra y visitantes del cosmos.',
+    year: '1977',
+    genre: 'Ciencia Ficcion',
+    cast: 'Richard Dreyfuss, François Truffaut, Teri Garr'
+  },
+
+    'mi-obra-maestra': {
+    background: 'Imagenes/REACCIN-A-Mi-obra-maestra-.jpg',     // Fondo grande
+    cover: 'Imagenes/mi obra maestra.jpg',               // Carátula pequeña
+    title: 'Mi Obra Maestra',
+    synopsis: 'Arturo es un tratante de arte sin escrúpulos y Renzo es un pintor socialmente inadaptado con el que tiene amistad desde hace muchos años. Dispuestos a arriesgarlo todo, desarrollan un plan radical y ridículo para salvarse.',
+    year: '2018',
+    genre: 'Comedia • Drama',
+    cast: 'Guillermo Francella, Luis Brandoni, Raúl Arévalo'
+  },
+  'indiana-jones-2': {
+    background: 'Imagenes/Picsart_25-10-21_14-04-12-948.jpg',     // Fondo grande
+    cover: 'Imagenes/indiana jones 2.jpg',               // Carátula pequeña
+    title: 'Indiana Jones y el templo de la perdición',
+    synopsis: 'En 1935, Indiana Jones llega a la India, todavía parte del Imperio Británico, y se le pide que encuentre una piedra mística. Luego se topa con un culto secreto que comete esclavitud y sacrificios humanos en las catacumbas de un antiguo palacio.',
+    year: '1984',
+    genre: 'Acción • Aventura',
+    cast: 'Harrison Ford, Kate Capshaw, Ke Huy Quan'
+  },
+  'indiana-jones': {
+    background: 'Imagenes/Picsart_25-10-14_10-51-57-730.jpg',     // Fondo grande
+    cover: 'Imagenes/indiana jones 1.jpg',               // Carátula pequeña
+    title: 'Indiana Jones y los cazadores del arca perdida',
+    synopsis: 'En 1936, el arqueólogo y aventurero Indiana Jones es contratado por el gobierno de Estados Unidos para encontrar el Arca de la Alianza antes de que lo hagan los nazis de Adolf Hitler.',
+    year: '1981',
+    genre: 'Acción • Aventura',
+    cast: 'Harrison Ford, Karen Allen, Paul Freeman'
+  },
+  'bloqueados-de-youtube': {
+    background: 'Picsart_25-10-18_02-01-51-724.jpg',     // Fondo grande
+    cover: 'Imagenes/Picsart_25-10-18_02-01-51-724.jpg',               // Carátula pequeña
+    title: 'Bloqueados de YouTube',
+    synopsis: 'Videos de los mas variados. Todo lo que no se puede quedar en youtube, se viene para aca!',
+    year: '2025',
+    genre: 'Musica • Humor • Documental • etc',
+    cast: 'Edgar Mena y el chat'
+  },
+
+  'el-encargado': {
+    background: 'Imagenes/el encargado portada.webp',     // Fondo grande
+    cover: 'Imagenes/el encargado 1.webp',               // Carátula pequeña
+    title: 'El Encargado',
+    synopsis: 'El administrador de departamentos de un edificio residencial aprovecha su poder de vigilancia para entrometerse en la vida de los inquilinos.',
+    year: '2022',
+    genre: 'Comedia • Drama',
+    cast: 'Guillermo Francella, Gabriel Goity, Gastón Cocchiarale'
+  },
+  
+
+
+
+};
 export const videosPremium = [
 
+  
 ///Shinki No Kiojin///
 
-{
-  background: 'Imagenes/Picsart_25-10-18_01-10-37-858.jpg',     // Fondo grande
-  cover: 'Imagenes/Shingeki 1.webp',               // Carátula pequeña
+{  
   id: 'shingeki_no_kyojin_t1_eps_16_20',
   name: 'Shingeki No Kyojin',
   temporada: '1',
@@ -18,9 +128,7 @@ export const videosPremium = [
   type: 'iframe'
 },
 
-{
-  background: 'Imagenes/Picsart_25-10-18_01-10-37-858.jpg',     // Fondo grande
-  cover: 'Imagenes/Shingeki 1.webp',               // Carátula pequeña
+{ 
   id: 'shingeki_no_kyojin_t1_eps_12_15',
   name: 'Shingeki No Kyojin',
   temporada: '1',
@@ -33,8 +141,6 @@ export const videosPremium = [
   type: 'iframe'
 },
 {
-  background: 'Imagenes/Picsart_25-10-18_01-10-37-858.jpg',     // Fondo grande
-  cover: 'Imagenes/Shingeki 1.webp',               // Carátula pequeña
   id: 'shingeki_no_kyojin_t1_eps_7_11',
   name: 'Shingeki No Kyojin',
   temporada: '1',
@@ -51,8 +157,6 @@ export const videosPremium = [
 ///Nada///
 
   {
-  background: 'Imagenes/nada portada.webp',     // Fondo grande
-  cover: 'Imagenes/nada 1.jpg',               // Carátula pequeña
   id: 'tirar_manteca_al_techo',
   name: 'Nada',
   temporada: '1',
@@ -65,8 +169,6 @@ export const videosPremium = [
   type: 'iframe'
 },
   {
-  background: 'Imagenes/nada portada.webp',     // Fondo grande
-  cover: 'Imagenes/nada 1.jpg',               // Carátula pequeña
   id: 'comerse_un_garron',
   name: 'Nada',
   temporada: '1',
@@ -80,8 +182,6 @@ export const videosPremium = [
 },
 
   {
-    background: 'Imagenes/nada portada.webp',     // Fondo grande
-    cover: 'Imagenes/nada 1.jpg',               // Carátula pequeña
     id: 'la_verdad_de_la_milanesa',
     name: "Nada",
     temporada: "1",
@@ -94,8 +194,6 @@ export const videosPremium = [
     type: 'iframe'
   },
   {
-    background: 'Imagenes/nada portada.webp',     // Fondo grande
-    cover: 'Imagenes/nada 1.jpg',               // Carátula pequeña
     id: 'remar_en_dulce_de_leche',
     name: "Nada",
     temporada: "1",
@@ -108,8 +206,6 @@ export const videosPremium = [
     type: 'iframe'
   },
   {
-    background: 'Imagenes/nada portada.webp',     // Fondo grande
-    cover: 'Imagenes/nada 1.jpg',               // Carátula pequeña
     id: 'estar_en_el_horno',
     name: "Nada",
     temporada: "1",
@@ -121,29 +217,24 @@ export const videosPremium = [
     source: 'https://rumble.com/embed/v6yzbss/?pub=4nmhh2',
     type: 'iframe'
   },
-
-{
-  background: 'Imagenes/Picsart_25-10-24_19-36-11-553.jpg',     // Fondo grande
-  cover: 'Imagenes/millennium 1.jpg',               // Carátula pequeña
-  id: 'millenium',
-  name: '🔍 Millenium',
-  temporada: '0',
-  episodio: '2',
-  title: 'Millennium',
-  title2: 'La chica que soñaba con un cerillo y un galón de gasolina + Peter Capusotto',
-  description: 'Una secuela que me agarró desprevenido: reaccionamos a La chica que soñaba con un cerillo y un galón de gasolina — la segunda parte de la saga sueca The Girl Who Played with Fire — donde todo se complica, la tensión se eleva y el caos aparece por todos lados.\nPara rematar, cerramos la sesión viendo un video de Peter Capusotto que nos hizo soltar carcajadas y pensar al mismo tiempo.\nUna experiencia de comunidad en Twitch plena de giros, comentarios sin filtro y descubrimientos… ¡no te la pierdas!',
-  thumbnail: 'Imagenes/Picsart_25-11-02_19-41-27-072.jpg',
-  source: 'https://rumble.com/embed/v6zbrnq/?pub=4nmhh2',
-  type: 'iframe'
-},
   {
-  background: 'Imagenes/Picsart_25-11-02_19-41-27-072.jpg',     // Fondo grande
-  cover: 'Imagenes/millennium-2.webp',               // Carátula pequeña
+    id: 'millenium',
+    name: 'Millenium',
+    temporada: '0',
+    episodio: '2',
+    title: '🔍Millennium',
+    title2: 'La chica que soñaba con un cerillo y un galón de gasolina + Peter Capusotto',
+    description: 'Una secuela que me agarró desprevenido: reaccionamos a La chica que soñaba con un cerillo y un galón de gasolina — la segunda parte de la saga sueca The Girl Who Played with Fire — donde todo se complica, la tensión se eleva y el caos aparece por todos lados.\nPara rematar, cerramos la sesión viendo un video de Peter Capusotto que nos hizo soltar carcajadas y pensar al mismo tiempo.\nUna experiencia de comunidad en Twitch plena de giros, comentarios sin filtro y descubrimientos… ¡no te la pierdas!',
+    thumbnail: 'Imagenes/Picsart_25-11-02_19-41-27-072.jpg',
+    source: 'https://rumble.com/embed/v6zbrnq/?pub=4nmhh2',
+    type: 'iframe'
+  },
+  {
   id: 'millenium_2',
   name: 'Millenium',
   temporada: '0',
   episodio: '1',
-  title: 'Millennium 2',
+  title: '🔍Millennium 2',
   title2: 'Los hombres que no amaban a las mujeres (sueca)',
   description: 'En este directo de Twitch vimos juntos Los hombres que no amaban a las mujeres, la versión sueca de la primera entrega de la saga Millennium — dirigida por Niels Arden Oplev y protagonizada por Noomi Rapace y Mikael Nyqvist.',
   thumbnail: 'Imagenes/Picsart_25-10-24_19-36-11-553.jpg',
@@ -152,8 +243,6 @@ export const videosPremium = [
 },
 
 {
-  background: 'Imagenes/les-luthiers-1486327.jpg',     // Fondo grande
-  cover: 'Imagenes/les luthiers.jpg',               // Carátula pequeña
   id: 'les_luthiers',
   name: '😂 Les Luthiers',
   temporada: '0',
@@ -166,8 +255,6 @@ export const videosPremium = [
   type: 'iframe'
 },
   {
-  background: 'Imagenes/yNtyz.qR4e-small--REACCIN-A-ENCUENTROS-CERCA.jpg',     // Fondo grande
-  cover: 'Imagenes/encuentros cercanos del tercer tipo.jpg',               // Carátula pequeña
   id: 'encuentros_cercanos',
   name: '👽 ENCUENTROS CERCANOS DEL TERCER TIPO',
   temporada: '0',
@@ -180,8 +267,6 @@ export const videosPremium = [
   type: 'iframe'
 },
     {
-    background: 'Imagenes/REACCIN-A-Mi-obra-maestra-.jpg',     // Fondo grande
-    cover: 'Imagenes/mi obra maestra.jpg',               // Carátula pequeña
     id: 'mi_obra_maestra',
     name: "Mi Obra Maestra",
     temporada: "0",
@@ -195,8 +280,6 @@ export const videosPremium = [
   },
 
   {
-    background: 'Imagenes/Picsart_25-10-21_14-04-12-948.jpg',     // Fondo grande
-    cover: 'Imagenes/indiana jones 2.jpg',               // Carátula pequeña
     id: 'indiana_jones_2',
     name: "Indiana Jones",
     temporada: "0",
@@ -210,8 +293,6 @@ export const videosPremium = [
   },
 
   {
-    background: 'Imagenes/Picsart_25-10-14_10-51-57-730.jpg',     // Fondo grande
-    cover: 'Imagenes/indiana jones 1.jpg',               // Carátula pequeña
     id: 'indiana_jones_1',
     name: "Indiana Jones",
     temporada: "0",
@@ -226,8 +307,6 @@ export const videosPremium = [
   
 
   {
-    background: 'Imagenes/Picsart_25-10-14_10-51-57-730.jpg',     // Fondo grande
-    cover: 'Imagenes/indiana jones 1.jpg',               // Carátula pequeña
     id: 'bloqueados_de_youtube',
     name: "Bloqueados de YouTube",
     temporada: "",
@@ -242,8 +321,7 @@ export const videosPremium = [
   
   ///El Encargado///
   {
-    background: 'Imagenes/el encargado portada.webp',     // Fondo grande
-    cover: 'Imagenes/el encargado 1.webp',               // Carátula pequeña
+
     id: 'un_turista_en_buenos_aires',
     name: "El Encargado",
     temporada: "1",

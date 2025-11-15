@@ -28,24 +28,24 @@
 
   <script src="js/scripts.js"></script>
   <script type="module">
-    import { protectPage } from "./js/roleManager.js";
-    import "./js/login.js";
-    import { videosPremium } from "./js/videos-premium.js";
+  import { protectPage } from "./js/roleManager.js";
+  import "./js/login.js";
+  import { videosPremium, categoriasData } from "./js/videos-premium.js";
 
-    protectPage(["premium", "admin"], "index.html");
+  protectPage(["premium", "admin"], "index.html");
 
-    // Cargar header y footer
-    fetch('header.html').then(r => r.text()).then(d => {
-      document.getElementById('header').innerHTML = d;
-      window.initAuthButtons();
-    });
-    fetch('footer.html').then(r => r.text()).then(d => document.getElementById('footer').innerHTML = d);
+  // Cargar header y footer
+  fetch('header.html').then(r => r.text()).then(d => {
+    document.getElementById('header').innerHTML = d;
+    window.initAuthButtons();
+  });
+  fetch('footer.html').then(r => r.text()).then(d => document.getElementById('footer').innerHTML = d);
 
-    // === AGRUPAR POR CATEGORÍA ===
-    const grouped = videosPremium.reduce((acc, v) => {
-      const key = v.name || 'Otros';
-      if (!acc[key]) acc[key] = [];
-      acc[key].push(v);
+  // === AGRUPAR POR CATEGORÍA ===
+  const grouped = videosPremium.reduce((acc, v) => {
+    const key = v.name || 'Otros';
+    if (!acc[key]) acc[key] = [];
+    acc[key].push(v);
       return acc;
     }, {});
 
@@ -65,28 +65,35 @@
         .replace(/(^-|-$)/g, '');
     }
 
-    // === RENDERIZAR TARJETAS DE LISTAS ===
-    const container = document.getElementById('playlistList');
-    Object.keys(grouped).forEach(name => {
-      const videos = grouped[name];
-      const slug = slugify(name);
-      const cover = covers[name] || videos[0].thumbnail;
+// === RENDERIZAR TARJETAS DE LISTAS ===
+Object.keys(grouped).forEach(name => {
+  const videos = grouped[name];
+  const slug = slugify(name);
 
-      const card = document.createElement('div');
-      card.className = 'premium-card playlist-card';
+  // Buscar datos de categoría
+  const catKey = Object.keys(categoriasData).find(key => 
+    categoriasData[key].name === name
+  );
+  const catData = catKey ? categoriasData[catKey] : null;
 
-      card.innerHTML = `
-        <a href="categorias.html?cat=${slug}">
-          <img src="${cover}" alt="${name}" loading="lazy">
-          <div class="premium-info">
-            <h2>${name}</h2>
-            <p class="playlist-count">${videos.length} videos</p>
-          </div>
-        </a>
-      `;
+  // Usar background del primer video o del catData
+  const background = catData?.background || videos[0]?.background || videos[0]?.thumbnail;
 
-      container.appendChild(card);
-    });
+  const card = document.createElement('div');
+  card.className = 'premium-card playlist-card';
+
+  card.innerHTML = `
+    <a href="categorias.html?cat=${slug}">
+      <img src="$$ {background}" alt=" $${name}" loading="lazy">
+      <div class="premium-info">
+        <h2>${name}</h2>
+        <p class="playlist-count">${videos.length} videos</p>
+      </div>
+    </a>
+  `;
+
+  container.appendChild(card);
+});
 
     // === BÚSQUEDA LOCAL (opcional, filtra listas) ===
     const searchInput = document.getElementById('searchInput');
