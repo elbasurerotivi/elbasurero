@@ -264,7 +264,7 @@ export const videosPremium = [
 
 {
   id: 'ya_no_te_amo_raul',
-  categoria: 'Bloqueados de Youtube',
+  categoria: 'Bloqueados de YouTube',
   name: '😂 Les Luthiers',
   temporada: '0',
   episodio: '1',
