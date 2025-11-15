@@ -42,7 +42,7 @@ export const categoriasData = {
     'les_luthiers': {
     background: 'Imagenes/les-luthiers-1486327.jpg',     // Fondo grande
     cover: 'Imagenes/les luthiers.jpg',               // Carátula pequeña
-    title: 'Les Luthiers',
+    title: 'Bloqueados de YouTube',
     synopsis: '"Ya no te amo, Raúl" es una bolera que parodia las canciones de amor apasionadas y dramáticas, característica del estilo de Les Luthiers, donde el humor surge del contraste entre la música y la letra, así como de la interpretación.',
     year: '2006',
     genre: 'Humor',
@@ -371,4 +371,5 @@ export const videosPremium = [
   // Agrega más videos aquí según necesites. Es escalable: solo edita este archivo.
 
 ];
+
 
