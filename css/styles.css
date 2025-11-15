@@ -4000,6 +4000,56 @@ footer h3 {
   transform: scale(1.05);
 }
 
+/* Header de categoría */
+.category-header {
+  text-align: center;
+  margin: 20px 0 30px;
+  padding: 0 16px;
+}
+
+#categoryName {
+  margin: 12px 0 8px;
+  font-size: 2rem;
+  color: var(--gold, #ffd700);
+}
+
+#videoCount {
+  color: #ccc;
+  font-size: 1rem;
+  margin: 0;
+}
+
+/* Botón volver */
+.back-button {
+  padding: 10px 20px;
+  background: rgba(255, 215, 0, 0.2);
+  border: 1px solid var(--gold, #ffd700);
+  color: var(--gold, #ffd700);
+  border-radius: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin-bottom: 16px;
+}
+
+.back-button:hover {
+  background: var(--gold, #ffd700);
+  color: #000;
+  transform: translateY(-2px);
+}
+
+/* Tarjetas de lista */
+.playlist-card .premium-info h2 {
+  font-size: 1.4rem;
+  margin-bottom: 8px;
+}
+
+.playlist-card .playlist-count {
+  color: #aaa;
+  font-size: 0.9rem;
+  margin: 0;
+}
+
 
 
 

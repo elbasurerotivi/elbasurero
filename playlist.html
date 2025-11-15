@@ -13,18 +13,15 @@
   <main class="playlist-container">
     <h1>Premium</h1>
     <p>Bienvenido a tu contenido exclusivo.</p>
-    
+
     <!-- Barra de búsqueda -->
     <div class="search-container">
-      <input type="text" id="searchInput" placeholder="Buscar por título, descripción, temporada o episodio...">
+      <input type="text" id="searchInput" placeholder="Buscar series, episodios o reacciones...">
       <button id="clearSearch" style="display: none;">Limpiar</button>
     </div>
 
-    <!-- Grid para las tarjetas de listas de reproducción -->
+    <!-- Grid de tarjetas de listas -->
     <div class="premium-grid" id="playlistList"></div>
-
-    <!-- Contenedor para los videos de una lista seleccionada o resultados de búsqueda (inicialmente oculto) -->
-    <div id="videoContainer" style="display: none;"></div>
   </main>
 
   <div id="footer"></div>
@@ -44,151 +41,73 @@
     });
     fetch('footer.html').then(r => r.text()).then(d => document.getElementById('footer').innerHTML = d);
 
-    // Agrupar videos por 'name' (serie o categoría)
-    const groupedVideos = videosPremium.reduce((acc, video) => {
-      const key = video.name || 'Otros';
-      if (!acc[key]) {
-        acc[key] = [];
-      }
-      acc[key].push(video);
+    // === AGRUPAR POR CATEGORÍA ===
+    const grouped = videosPremium.reduce((acc, v) => {
+      const key = v.name || 'Otros';
+      if (!acc[key]) acc[key] = [];
+      acc[key].push(v);
       return acc;
     }, {});
 
-    // Mapa de thumbnails para las listas de reproducción (portadas personalizadas)
-    // Puedes asignar paths a imágenes que subas a GitHub, ej: 'Imagenes/shingeki_cover.jpg'
-    // Por defecto, usa el thumbnail del primer video del grupo
-    const playlistThumbnails = {
-      // 'Shingeki No Kyojin': 'Imagenes/shingeki_cover.jpg',
-      // 'Nada': 'Imagenes/nada_cover.jpg',
-      // Agrega más aquí según tus listas
+    // === PORTADAS PERSONALIZADAS (sube estas imágenes a GitHub) ===
+    const covers = {
+      'Shingeki No Kyojin': 'Imagenes/covers/shingeki.jpg',
+      'Nada': 'Imagenes/covers/nada.jpg',
+      'Millenium': 'Imagenes/covers/millenium.jpg',
+      'Les Luthiers': 'Imagenes/covers/lesluthiers.jpg',
+      // Agrega más...
     };
 
-    // Función para obtener thumbnail de una lista
-    function getPlaylistThumbnail(groupName) {
-      return playlistThumbnails[groupName] || groupedVideos[groupName][0]?.thumbnail || 'Imagenes/default_cover.jpg';
+    // === GENERAR URL AMIGABLE ===
+    function slugify(text) {
+      return text.toLowerCase()
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/(^-|-$)/g, '');
     }
 
-    // Función para crear una tarjeta de video
-    function createVideoCard(video) {
-      const card = document.createElement('div');
-      card.className = 'premium-card';
+    // === RENDERIZAR TARJETAS DE LISTAS ===
+    const container = document.getElementById('playlistList');
+    Object.keys(grouped).forEach(name => {
+      const videos = grouped[name];
+      const slug = slugify(name);
+      const cover = covers[name] || videos[0].thumbnail;
 
-      const formattedTitle = video.title.replace(/\\n/g, '<br>');
+      const card = document.createElement('div');
+      card.className = 'premium-card playlist-card';
 
       card.innerHTML = `
-        <a href="player.html?id=${video.id}">
-          <img src="${video.thumbnail}" alt="${video.title}" loading="lazy">
+        <a href="categorias.html?cat=${slug}">
+          <img src="${cover}" alt="${name}" loading="lazy">
           <div class="premium-info">
-            <h2>${video.title}</h2>
-            <h1>${video.title2}</h1>
-            <p class="premium-episode">T${video.temporada} E${video.episodio} • ${video.name}</p>
-            <p class="premium-desc">${video.description}</p>
+            <h2>${name}</h2>
+            <p class="playlist-count">${videos.length} videos</p>
           </div>
         </a>
       `;
 
-      return card;
-    }
-
-    // Función para mostrar videos de una lista o resultados de búsqueda
-    function showVideos(titleText, videos, isSearch = false) {
-      const playlistList = document.getElementById('playlistList');
-      const videoContainer = document.getElementById('videoContainer');
-
-      playlistList.style.display = 'none';
-      videoContainer.style.display = 'block';
-      videoContainer.innerHTML = '';
-
-      // Botón de volver (solo si no es búsqueda, ya que búsqueda tiene 'Limpiar')
-      if (!isSearch) {
-        const backBtn = document.createElement('button');
-        backBtn.textContent = 'Volver a listas';
-        backBtn.className = 'back-button';
-        backBtn.onclick = () => {
-          videoContainer.style.display = 'none';
-          playlistList.style.display = 'grid';
-          searchInput.value = ''; // Limpiar búsqueda al volver
-          clearButton.style.display = 'none';
-        };
-        videoContainer.appendChild(backBtn);
-      }
-
-      // Título de la sección
-      const title = document.createElement('h2');
-      title.textContent = titleText;
-      videoContainer.appendChild(title);
-
-      // Grid de videos
-      const grid = document.createElement('div');
-      grid.className = 'premium-grid';
-
-      if (videos.length === 0) {
-        const noResults = document.createElement('p');
-        noResults.textContent = 'No se encontraron resultados.';
-        videoContainer.appendChild(noResults);
-      } else {
-        videos.forEach(video => {
-          grid.appendChild(createVideoCard(video));
-        });
-      }
-
-      videoContainer.appendChild(grid);
-    }
-
-    // Renderizar tarjetas de listas de reproducción
-    const playlistContainer = document.getElementById('playlistList');
-    Object.keys(groupedVideos).forEach(groupName => {
-      const thumbnail = getPlaylistThumbnail(groupName);
-      const card = document.createElement('div');
-      card.className = 'premium-card playlist-card'; // Clase extra para estilos específicos si necesitas
-
-      card.innerHTML = `
-        <a href="#" onclick="return false;">
-          <img src="${thumbnail}" alt="${groupName}" loading="lazy">
-          <div class="premium-info">
-            <h2>${groupName}</h2>
-            <p>${groupedVideos[groupName].length} videos</p>
-          </div>
-        </a>
-      `;
-
-      card.addEventListener('click', () => {
-        showVideos(groupName, groupedVideos[groupName]);
-      });
-
-      playlistContainer.appendChild(card);
+      container.appendChild(card);
     });
 
-    // Funcionalidad de búsqueda
+    // === BÚSQUEDA LOCAL (opcional, filtra listas) ===
     const searchInput = document.getElementById('searchInput');
-    const clearButton = document.getElementById('clearSearch');
+    const clearBtn = document.getElementById('clearSearch');
 
-    function filterVideos() {
-      const query = searchInput.value.toLowerCase().trim();
-      clearButton.style.display = query ? 'inline-block' : 'none';
+    searchInput.addEventListener('input', () => {
+      const q = searchInput.value.toLowerCase().trim();
+      clearBtn.style.display = q ? 'inline-block' : 'none';
 
-      if (query) {
-        const filtered = videosPremium.filter(video => {
-          const title = video.title.toLowerCase();
-          const title2 = video.title2.toLowerCase();
-          const episode = `t${video.temporada} e${video.episodio} • ${video.name}`.toLowerCase();
-          const desc = video.description.toLowerCase();
-          return title.includes(query) || title2.includes(query) || episode.includes(query) || desc.includes(query);
-        });
-        showVideos('Resultados de búsqueda', filtered, true);
-      } else {
-        document.getElementById('videoContainer').style.display = 'none';
-        document.getElementById('playlistList').style.display = 'grid';
-      }
-    }
-
-    searchInput.addEventListener('input', filterVideos);
-    clearButton.addEventListener('click', () => {
-      searchInput.value = '';
-      filterVideos();
+      document.querySelectorAll('.playlist-card').forEach(card => {
+        const title = card.querySelector('h2').textContent.toLowerCase();
+        card.style.display = title.includes(q) ? 'block' : 'none';
+      });
     });
 
-    // Mostrar body cuando todo esté listo
+    clearBtn.addEventListener('click', () => {
+      searchInput.value = '';
+      clearBtn.style.display = 'none';
+      document.querySelectorAll('.playlist-card').forEach(c => c.style.display = 'block');
+    });
+
     document.body.style.display = 'block';
   </script>
 </body>
