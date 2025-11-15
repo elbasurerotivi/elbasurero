@@ -148,6 +148,19 @@ export const videosPremium = [
   ///Nada///
 
   {
+  id: 'comerse_un_garron',
+  name: 'Nada',
+  temporada: '1',
+  episodio: '4',
+  title: '🍽️ Comerse un garrón',
+  title2: 'Una escena imposible de olvidar',
+  description: 'A veces una serie te sorprende con esos momentos que mezclan humor seco, incomodidad deliciosa y un toque de caos… y el episodio 4 de NADA tiene exactamente eso.\n“Comerse un garrón” se convirtió en una de las secuencias que más me atraparon hasta ahora: entre la tensión, los silencios y la manera tan fina en la que construyen el conflicto, costó trabajo no comentar cada mínimo detalle.\nEse gustito porteño que hace que NADA funcione tan bien.',
+  thumbnail: 'Imagenes/NADA-Ep.-4-Comerse-un-garr.jpg',
+  source: 'https://rumble.com/embed/v6zhhu8/?pub=4nmhh2',
+  type: 'iframe'
+},
+
+  {
     id: 'la_verdad_de_la_milanesa',
     name: "Nada",
     temporada: "1",
