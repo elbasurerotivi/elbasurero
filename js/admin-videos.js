@@ -176,6 +176,7 @@ document.addEventListener("DOMContentLoaded", () => {
       .replace(/[^a-z0-9]+/g, '-')
       .replace(/(^-|-$)/g, '');
   }
+
+  // === DEBUG ===
+  console.log("admin-videos.js cargado correctamente");
 });
-// DEBUG: Verifica que los datos lleguen
-console.log("admin-videos.js cargado");
