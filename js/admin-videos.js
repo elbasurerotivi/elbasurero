@@ -31,12 +31,32 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // === CARGAR DATOS ===
-  async function loadData() {
-    // Cargar categorías
-    onValue(ref(db, "categories"), (snap) => {
-      categories = snap.val() || {};
-      renderVideos();
-    });
+  // === CARGAR DATOS ===
+let videosLoaded = false;
+let categoriesLoaded = false;
+
+function checkAndRender() {
+  if (videosLoaded && categoriesLoaded) {
+    renderVideos();
+  }
+}
+
+onValue(ref(db, "videoCatalog"), (snap) => {
+  videos = Object.entries(snap.val() || {}).map(([id, data]) => ({ id, ...data }));
+  videosLoaded = true;
+  checkAndRender();
+}, (error) => {
+  console.error("Error cargando videoCatalog:", error);
+  videoList.innerHTML = "<p style='color:red;'>Error cargando videos</p>";
+});
+
+onValue(ref(db, "categories"), (snap) => {
+  categories = snap.val() || {};
+  categoriesLoaded = true;
+  checkAndRender();
+}, (error) => {
+  console.error("Error cargando categories:", error);
+});
 
     // Cargar videos
     onValue(ref(db, "videoCatalog"), (snap) => {
@@ -47,59 +67,57 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // === RENDER ===
   function renderVideos() {
-    const query = searchInput.value.toLowerCase().trim();
-    const filtered = videos.filter(v =>
-      v.title.toLowerCase().includes(query) ||
-      v.id.toLowerCase().includes(query)
-    );
+  // Limpiar
+  videoList.innerHTML = "";
+  videoElements = [];
 
-    videoList.innerHTML = "";
-    videoElements = [];
+  const query = searchInput.value.toLowerCase().trim();
+  const filtered = videos.filter(v =>
+    v.title?.toLowerCase().includes(query) ||
+    v.id?.toLowerCase().includes(query)
+  );
 
-    if (filtered.length === 0) {
-      videoList.innerHTML = "<p style='text-align:center; color:#aaa;'>No hay videos</p>";
-      return;
-    }
-
-    filtered.forEach(video => {
-      const div = document.createElement("div");
-      div.className = "video-item";
-
-      const currentCat = video.category || "";
-      const catOptions = Object.entries(categories)
-        .map(([slug, data]) => `<option value="${slug}" ${slug === slugify(currentCat) ? "selected" : ""}>${data.name}</option>`)
-        .join("");
-
-      div.innerHTML = `
-        <div class="video-info">
-          <h3>${video.title}</h3>
-          <small>ID: ${video.id}</small>
-        </div>
-        <div style="display:flex; gap:0.5rem; align-items:center;">
-          <select class="category-select" data-id="${video.id}">
-            <option value="">-- Sin categoría --</option>
-            ${catOptions}
-          </select>
-          <button class="btn-save" data-id="${video.id}">Guardar</button>
-        </div>
-      `;
-
-      const select = div.querySelector(".category-select");
-      const btn = div.querySelector(".btn-save");
-
-      // Preseleccionar
-      const matchingSlug = Object.keys(categories).find(slug =>
-        slugify(categories[slug].name) === slugify(video.category)
-      );
-      if (matchingSlug) select.value = matchingSlug;
-
-      btn.addEventListener("click", () => saveCategory(video.id, select.value));
-      select.addEventListener("change", () => btn.style.background = "#00b8d4");
-
-      videoElements.push(div);
-      videoList.appendChild(div);
-    });
+  if (filtered.length === 0) {
+    videoList.innerHTML = "<p style='text-align:center; color:#aaa;'>No hay videos</p>";
+    return;
   }
+
+  filtered.forEach(video => {
+    const div = document.createElement("div");
+    div.className = "video-item";
+
+    const currentCat = video.category || "";
+    const catOptions = Object.entries(categories)
+      .map(([slug, data]) => {
+        const selected = slugify(data.name) === slugify(currentCat) ? "selected" : "";
+        return `<option value="${slug}" ${selected}>${data.name}</option>`;
+      })
+      .join("");
+
+    div.innerHTML = `
+      <div class="video-info">
+        <h3>${video.title || "Sin título"}</h3>
+        <small>ID: ${video.id}</small>
+      </div>
+      <div style="display:flex; gap:0.5rem; align-items:center;">
+        <select class="category-select" data-id="${video.id}">
+          <option value="">-- Sin categoría --</option>
+          ${catOptions}
+        </select>
+        <button class="btn-save" data-id="${video.id}">Guardar</button>
+      </div>
+    `;
+
+    const select = div.querySelector(".category-select");
+    const btn = div.querySelector(".btn-save");
+
+    btn.addEventListener("click", () => saveCategory(video.id, select.value));
+    select.addEventListener("change", () => btn.style.background = "#00b8d4");
+
+    videoElements.push(div);
+    videoList.appendChild(div);
+  });
+}
 
   // === GUARDAR CATEGORÍA ===
   async function saveCategory(videoId, catSlug) {
@@ -165,3 +183,5 @@ document.addEventListener("DOMContentLoaded", () => {
       .replace(/(^-|-$)/g, '');
   }
 });
+// DEBUG: Verifica que los datos lleguen
+console.log("admin-videos.js cargado");
