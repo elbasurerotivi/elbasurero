@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title id="pageTitle">Categorías | El Basurero</title>
+  <title id="pageTitle">Categorias | El Basurero</title>
   <link rel="stylesheet" href="css/styles.css">
   <link rel="icon" href="Imagenes/icono.png" type="image/x-icon">
 </head>
@@ -11,6 +11,7 @@
   <div id="header"></div>
 
   <main class="playlist-container">
+    <!-- HERO SECTION -->
     <section class="hero-section" id="heroSection">
       <div class="hero-background" id="heroBg"></div>
       <div class="hero-content">
@@ -26,6 +27,7 @@
       </div>
     </section>
 
+    <!-- EPISODIOS -->
     <section class="episodes-section">
       <h2>Episodios</h2>
       <div class="premium-grid" id="videoList"></div>
@@ -38,77 +40,78 @@
   <script type="module">
     import { protectPage } from "./js/roleManager.js";
     import "./js/login.js";
-    import { videosPremium } from "./js/videos-premium.js";
-    import { db, ref, onValue } from "./js/firebase-config.js";
+    import { videosPremium, categoriasData } from "./js/videos-premium.js";
 
     protectPage(["premium", "admin"], "index.html");
 
-    let videoCategories = {};
-    let categories = {};
+    // Cargar header y footer
+    fetch('header.html').then(r => r.text()).then(d => {
+      document.getElementById('header').innerHTML = d;
+      window.initAuthButtons();
+    });
+    fetch('footer.html').then(r => r.text()).then(d => document.getElementById('footer').innerHTML = d);
 
+    // === LEER URL ===
     const urlParams = new URLSearchParams(window.location.search);
     const catSlug = urlParams.get('cat');
-
     if (!catSlug) {
       alert("Categoría no encontrada");
       window.location.href = "playlist.html";
     }
 
-    onValue(ref(db, "videoCategories"), (snap) => {
-      videoCategories = snap.val() || {};
-      renderEpisodios();
-    });
-
-    onValue(ref(db, "categories"), (snap) => {
-      categories = snap.val() || {};
-      renderEpisodios();
-    });
-
-    function renderEpisodios() {
-      const catData = categories[catSlug];
-      if (!catData) return;
-
-      document.getElementById('heroBg').style.backgroundImage = `url('${catData.background}')`;
-      document.getElementById('coverImg').src = catData.cover;
-      document.getElementById('seriesTitle').textContent = catData.name;
-      document.getElementById('seriesMeta').innerHTML = `<strong>${catData.year}</strong> • ${catData.genre}<br><em>${catData.cast}</em>`;
-      document.getElementById('seriesSynopsis').textContent = catData.synopsis;
-      document.title = `${catData.name} | El Basurero`;
-
-      const videos = videosPremium.filter(v => videoCategories[v.id] === catSlug);
-      videos.sort((a, b) => {
-        if (a.temporada !== b.temporada) return a.temporada - b.temporada;
-        const epA = a.episodio.replace(/[^0-9]/g, '');
-        const epB = b.episodio.replace(/[^0-9]/g, '');
-        return parseInt(epA) - parseInt(epB);
-      });
-
-      const container = document.getElementById('videoList');
-      container.innerHTML = "";
-      videos.forEach(video => {
-        const card = document.createElement('div');
-        card.className = 'premium-card episode-card';
-        card.innerHTML = `
-          <a href="player.html?id=${video.id}">
-            <img src="${video.thumbnail}" alt="${video.title}" loading="lazy">
-            <div class="premium-info">
-              <p class="episode-number">T${video.temporada} E${video.episodio}</p>
-              <h3>${video.title}</h3>
-              <p class="episode-desc">${video.title2}</p>
-            </div>
-          </a>
-        `;
-        container.appendChild(card);
-      });
+    // === OBTENER DATOS DE CATEGORÍA ===
+    const catData = categoriasData[catSlug];
+    if (!catData) {
+      alert("Categoría no encontrada");
+      window.location.href = "playlist.html";
     }
 
-    document.getElementById('backBtn').addEventListener('click', () => window.history.back());
+    // === APLICAR DATOS ===
+    document.getElementById('heroBg').style.backgroundImage = `url('${catData.background}')`;
+    document.getElementById('coverImg').src = catData.cover;
+    document.getElementById('seriesTitle').textContent = catData.title;
+    document.getElementById('seriesMeta').innerHTML = `<strong>${catData.year}</strong> • ${catData.genre}<br><em>${catData.cast}</em>`;
+    document.getElementById('seriesSynopsis').textContent = catData.synopsis;
+    document.title = `${catData.title} | El Basurero`;
 
-    fetch('header.html').then(r => r.text()).then(d => {
-      document.getElementById('header').innerHTML = d;
-      window.initAuthButtons?.();
+    // === FILTRAR EPISODIOS ===
+    const videos = videosPremium.filter(v => {
+      const nameSlug = v.name?.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+      return nameSlug === catSlug;
     });
-    fetch('footer.html').then(r => r.text()).then(d => document.getElementById('footer').innerHTML = d);
+
+    // === ORDENAR POR TEMPORADA Y EPISODIO ===
+    videos.sort((a, b) => {
+      if (a.temporada !== b.temporada) return a.temporada - b.temporada;
+      const epA = a.episodio.replace(/[^0-9]/g, '');
+      const epB = b.episodio.replace(/[^0-9]/g, '');
+      return parseInt(epA) - parseInt(epB);
+    });
+
+    // === RENDERIZAR EPISODIOS ===
+    const container = document.getElementById('videoList');
+    videos.forEach(video => {
+      const card = document.createElement('div');
+      card.className = 'premium-card episode-card';
+
+      card.innerHTML = `
+        <a href="player.html?id=${video.id}">
+          <img src="${video.thumbnail}" alt="${video.title}" loading="lazy">
+          <div class="premium-info">
+            <p class="episode-number">T${video.temporada} E${video.episodio}</p>
+            <h3>${video.title}</h3>
+            <p class="episode-desc">${video.title2}</p>
+          </div>
+        </a>
+      `;
+
+      container.appendChild(card);
+    });
+
+    // === BOTÓN VOLVER ===
+    document.getElementById('backBtn').addEventListener('click', () => {
+      window.history.back();
+    });
 
     document.body.style.display = 'block';
   </script>
