@@ -140,7 +140,7 @@
   const form = document.getElementById("videoForm");
   const preview = document.getElementById("preview");
   const output = document.getElementById("output");
-  const nameInput = document.getElementById("name");
+  const titleInput = document.getElementById("title");
   const idInput = document.getElementById("id");
   const sourceInput = document.getElementById("source");
   const thumbnailInput = document.getElementById("thumbnail");
@@ -151,7 +151,7 @@
   let manualThumbnailUrl = "";
 
   // 🧠 Generar ID automáticamente
-  nameInput.addEventListener("input", () => {
+  titleInput.addEventListener("input", () => {
     const titleValue = titleInput.value.trim().toLowerCase();
     const generatedId = titleValue
       .normalize("NFD")
