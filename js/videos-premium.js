@@ -4,7 +4,7 @@ export const categoriasData = {
     background: 'Imagenes/Picsart_25-10-18_01-10-37-858.jpg',     // Fondo grande
     cover: 'Imagenes/Shingeki 1.webp',               // Carátula pequeña
     title: 'Shingeki no Kyojin',
-    synopsis: 'Attack on Titan (Shingeki no Kyojin) es un impactante anime de acción que mezcla drama, terror y animación, con una trama enrevesada, batallas brutales y hondos temas filosóficos. La humanidad resiste tras gigantescas murallas que la protegen de titanes come-hombres. Cuando un titán colosal arrasa su hogar y mata a su madre, Eren Jaeger se une a la Legión de Reconocimiento con sus amigos Mikasa y Armin, solo para descubrir que él mismo puede volverse un titán. En su lucha por la supervivencia, Eren destapa conspiraciones, intrigas políticas y el terrible origen de los titanes.',
+    synopsis: 'Cuando un titán colosal arrasa su hogar y mata a su madre, Eren Jaeger se une a la Legión de Reconocimiento con sus amigos Mikasa y Armin, solo para descubrir que él mismo puede volverse un titán. En su lucha por la supervivencia, Eren destapa conspiraciones, intrigas políticas y el terrible origen de los titanes.',
     year: '2013–2023',
     genre: 'Acción • Drama • Misterio',
     cast: 'Yuki Kaji, Marina Inoue, Yui Ishikawa'
