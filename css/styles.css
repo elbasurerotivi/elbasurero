@@ -4219,6 +4219,204 @@ footer h3 {
   font-size: 0.9rem;
 }
 
+/* ========================================
+   RESPONSIVE MÓVIL - SOLO SE APLICA < 768px
+   ======================================== */
+
+@media (max-width: 768px) {
+  /* === CONTENEDOR GENERAL === */
+  .playlist-container {
+    padding: 0 12px;
+  }
+
+  .playlist-container h1 {
+    font-size: 1.8rem;
+    margin: 20px 0 8px;
+    text-align: center;
+  }
+
+  .playlist-container > p {
+    font-size: 0.95rem;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #ccc;
+  }
+
+  /* === BARRA DE BÚSQUEDA === */
+  .search-container {
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  #searchInput {
+    width: 100%;
+    padding: 14px 16px;
+    font-size: 1rem;
+    border-radius: 12px;
+    border: 1px solid #444;
+  }
+
+  #clearSearch {
+    width: 100%;
+    padding: 10px;
+    font-size: 0.9rem;
+    border-radius: 12px;
+  }
+
+  /* === GRID DE TARJETAS (2 columnas → 1 columna) === */
+  .premium-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px;
+    padding: 0;
+  }
+
+  /* === TARJETAS DE LISTA === */
+  .playlist-card {
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease;
+  }
+
+  .playlist-card:hover {
+    transform: translateY(-4px);
+  }
+
+  .playlist-card img {
+    height: 180px;
+    object-fit: cover;
+  }
+
+  .playlist-card .premium-info {
+    padding: 16px;
+    background: linear-gradient(transparent, rgba(0,0,0,0.9));
+  }
+
+  .playlist-card h2 {
+    font-size: 1.25rem;
+    margin: 0 0 6px;
+    line-height: 1.3;
+  }
+
+  .playlist-count {
+    font-size: 0.85rem;
+    color: #ffd700;
+    font-weight: 600;
+  }
+
+  /* === BOTONES GENERALES === */
+  .back-button,
+  button {
+    font-size: 0.9rem;
+    padding: 10px 16px;
+  }
+
+  /* === HERO EN CATEGORIAS.HTML (móvil) === */
+  .hero-section {
+    height: 55vh;
+    min-height: 400px;
+  }
+
+  .hero-info {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 16px;
+  }
+
+  .series-cover {
+    width: 130px;
+    height: 190px;
+    border-radius: 14px;
+  }
+
+  .series-details h1 {
+    font-size: 1.8rem;
+    margin: 0 0 8px;
+  }
+
+  .series-details p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  #seriesMeta {
+    font-size: 0.9rem;
+  }
+
+  #seriesSynopsis {
+    font-size: 1rem;
+    margin-top: 12px;
+  }
+
+  /* === EPISODIOS EN CATEGORIAS.HTML === */
+  .episodes-section h2 {
+    font-size: 1.5rem;
+    margin: 24px 0 16px;
+  }
+
+  .episode-card img {
+    height: 100px;
+    border-radius: 12px;
+  }
+
+  .episode-card .premium-info {
+    padding: 12px;
+  }
+
+  .episode-number {
+    font-size: 0.8rem;
+  }
+
+  .episode-card h3 {
+    font-size: 1rem;
+    margin: 4px 0;
+  }
+
+  .episode-desc {
+    font-size: 0.85rem;
+    -webkit-line-clamp: 2;
+  }
+
+  /* === FOOTER (si tenés) === */
+  #footer {
+    padding: 20px 12px;
+    font-size: 0.85rem;
+  }
+}
+
+/* ========================================
+   MÓVILES PEQUEÑOS (iPhone SE, etc.) < 400px
+   ======================================== */
+@media (max-width: 400px) {
+  .playlist-container h1 {
+    font-size: 1.6rem;
+  }
+
+  .playlist-card img {
+    height: 160px;
+  }
+
+  .playlist-card h2 {
+    font-size: 1.15rem;
+  }
+
+  .hero-section {
+    height: 50vh;
+    min-height: 360px;
+  }
+
+  .series-cover {
+    width: 110px;
+    height: 160px;
+  }
+
+  .series-details h1 {
+    font-size: 1.6rem;
+  }
+}
+
 
 
 
