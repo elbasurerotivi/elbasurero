@@ -3778,10 +3778,10 @@ footer h3 {
 
 .premium-info {
   flex: 1;
-  padding: 16px;
+  padding: 2px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 0px;
   position: relative;
   z-index: 1;
 }
@@ -4148,11 +4148,11 @@ footer h3 {
   color: var(--gold, #ffd700);
   font-weight: bold;
   font-size: 0.9rem;
-  margin: 0 0 4px;
+  margin: 0 0 0px;
 }
 
 .episode-card h3 {
-  margin: 0 0 6px;
+  margin: 0 0 0px;
   font-size: 1.1rem;
   color: white;
 }
