@@ -47,23 +47,27 @@
   });
   fetch('footer.html').then(r => r.text()).then(d => document.getElementById('footer').innerHTML = d);
 
-  // Obtener video
+    // === OBTENER VIDEO DESDE videoCatalog (Firebase) ===
   const params = new URLSearchParams(window.location.search);
   const videoId = params.get('id');
-  const video = videosPremium.find(v => v.id === videoId);
 
   const titleEl = document.getElementById('videoTitle');
   const descEl = document.getElementById('videoDescription');
   const container = document.getElementById('videoContainer');
 
-  if (video) {
+  try {
+    const snap = await get(ref(db, `videoCatalog/${videoId}`));
+    if (!snap.exists()) throw new Error("Video no encontrado");
+
+    const video = snap.val();
+
     titleEl.textContent = video.title;
-    descEl.textContent = video.description;
+    descEl.textContent = video.description || '';
 
     // INSERTAR VIDEO
     if (video.type === 'iframe') {
       container.innerHTML = `
-        <iframe src="${video.source}" frameborder="0"  width="640" height="360"  allowfullscreen allow="fullscreen; autoplay; encrypted-media"></iframe>
+        <iframe src="${video.source}" frameborder="0" width="640" height="360" allowfullscreen allow="fullscreen; autoplay; encrypted-media"></iframe>
       `;
     } else if (video.type === 'video') {
       container.innerHTML = `
@@ -74,17 +78,16 @@
       `;
     }
 
-    
-    // INSERTAR INTERACCIÓN
+    // === INTERACCIÓN (likes, comentarios) ===
     const interactionHTML = `
       <div class="video-interaction">
         <div class="like-section">
           <button id="likeBtn" class="like-btn">
-            <span class="like-icon"> 👍 </span>
+            <span class="like-icon">Like</span>
             <span id="likeCount">0</span>
           </button>
           <button id="dislikeBtn" class="like-btn dislike">
-            <span class="like-icon"> 👎 </span>
+            <span class="like-icon">Dislike</span>
             <span id="dislikeCount">0</span>
           </button>
         </div>
@@ -106,6 +109,17 @@
 
     const main = document.querySelector('.player-container-premium');
     main.insertAdjacentHTML('beforeend', interactionHTML);
+
+    // === INICIALIZAR INTERACCIÓN (usa /videos node) ===
+    initVideoInteraction(videoId);  // ← Sigue funcionando con /videos
+
+  } catch (err) {
+    titleEl.textContent = 'Video no encontrado';
+    descEl.textContent = 'El video solicitado no existe.';
+    container.innerHTML = '<p style="text-align:center;color:#ccc;">Error 404</p>';
+  }
+
+  document.body.style.display = 'block';
 
     // INICIALIZAR
     initVideoInteraction(videoId);

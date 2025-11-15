@@ -34,6 +34,23 @@
 
   protectPage(["premium", "admin"], "index.html");
 
+  // Importa firebase-config.js
+import { db, ref, onValue } from "./js/firebase-config.js";
+
+let videosPremium = [];
+let categoriasData = {};
+
+// Escuchar catálogo
+onValue(ref(db, "videoCatalog"), (snap) => {
+  videosPremium = Object.values(snap.val() || {});
+  renderPlaylists(); // o renderVideos()
+});
+
+onValue(ref(db, "categories"), (snap) => {
+  categoriasData = snap.val() || {};
+  renderPlaylists();
+});
+
   // Cargar header y footer
   fetch('header.html').then(r => r.text()).then(d => {
     document.getElementById('header').innerHTML = d;
@@ -41,13 +58,13 @@
   });
   fetch('footer.html').then(r => r.text()).then(d => document.getElementById('footer').innerHTML = d);
 
-  // === AGRUPAR POR CATEGORÍA ===
-  const grouped = videosPremium.reduce((acc, v) => {
-    const key = v.name || 'Otros';
-    if (!acc[key]) acc[key] = [];
-    acc[key].push(v);
-      return acc;
-    }, {});
+// === AGRUPAR POR CATEGORÍA ===
+const grouped = videosPremium.reduce((acc, v) => {
+  const key = v.category || 'Sin categoría';
+  if (!acc[key]) acc[key] = [];
+  acc[key].push(v);
+  return acc;
+}, {});
 
     // === PORTADAS PERSONALIZADAS (sube estas imágenes a GitHub) ===
     const covers = {
@@ -64,16 +81,24 @@
 
     // === GENERAR URL AMIGABLE ===
     function slugify(text) {
-      return text.toLowerCase()
-        .replace(/[^a-z0-9]+/g, '-')
-        .replace(/(^-|-$)/g, '');
-    }
+     return text.toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/(^-|-$)/g, '');
+}
 
 // === RENDERIZAR TARJETAS DE LISTAS ===
 const container = document.getElementById('playlistList');
-Object.keys(grouped).forEach(name => {
-  const videos = grouped[name];
-  const slug = slugify(name);
+Object.keys(grouped).forEach(categoryName => {
+  const videos = grouped[categoryName];
+  const slug = slugify(categoryName);
+
+  // === BUSCAR EN categoriasData POR NOMBRE ===
+  const catKey = Object.keys(categoriasData).find(key => 
+    categoriasData[key].name === categoryName
+  );
+  const catData = catKey ? categoriasData[catKey] : null;
 
   // === PRIORIDAD DE IMAGEN ===
   // 1. Portada manual (tú la defines)
@@ -82,7 +107,7 @@ Object.keys(grouped).forEach(name => {
   // 2. Si no hay portada manual, usa catData.background
   if (!background) {
     const catKey = Object.keys(categoriasData).find(key => 
-      categoriasData[key].name === name
+      categoriasData[key].name === categoryName
     );
     const catData = catKey ? categoriasData[catKey] : null;
     background = catData?.background;
@@ -103,7 +128,7 @@ Object.keys(grouped).forEach(name => {
     <a href="categorias.html?cat=${slug}">
       <img src="${background}" alt="${name}" loading="lazy">
       <div class="premium-info">
-        <h2>${name}</h2>
+        <h2>${categoryName}</h2>
         <p class="playlist-count">${videos.length} videos</p>
       </div>
     </a>
