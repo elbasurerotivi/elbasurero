@@ -43,7 +43,7 @@
 
   // === AGRUPAR POR CATEGORÍA ===
   const grouped = videosPremium.reduce((acc, v) => {
-    const key = v.name || 'Otros';
+    const key = v.categoria || 'otros';
     if (!acc[key]) acc[key] = [];
     acc[key].push(v);
       return acc;

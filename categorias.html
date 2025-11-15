@@ -75,10 +75,8 @@ v.categoria<!DOCTYPE html>
     document.title = `${catData.title} | El Basurero`;
 
     // === FILTRAR EPISODIOS ===
-    const videos = videosPremium.filter(v => {
-      const nameSlug = v.name?.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
-      return nameSlug === catSlug;
-    });
+    const videos = videosPremium.filter(v => v.categoria === catSlug);
+
 
     // === ORDENAR POR TEMPORADA Y EPISODIO ===
     videos.sort((a, b) => {

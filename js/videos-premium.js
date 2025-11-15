@@ -128,6 +128,7 @@ export const videosPremium = [
 {  
   id: 'shingeki_no_kyojin_t1_eps_16_20',
   name: 'Shingeki No Kyojin',
+  categoria: 'Shingeki No Kiojin',
   temporada: '1',
   episodio: '16-20',
   title: '🧭 Shingeki No Kyojin T1 Eps. 16–20',
@@ -141,6 +142,7 @@ export const videosPremium = [
 { 
   id: 'shingeki_no_kyojin_t1_eps_12_15',
   name: 'Shingeki No Kyojin',
+  categoria: 'Shingeki No Kiojin',
   temporada: '1',
   episodio: '12-15' ,
   title: '💥 Shingeki No Kyojin T1 Eps. 12–15',
@@ -153,6 +155,7 @@ export const videosPremium = [
 {
   id: 'shingeki_no_kyojin_t1_eps_7_11',
   name: 'Shingeki No Kyojin',
+  categoria: 'Shingeki No Kiojin',
   temporada: '1',
   episodio: '7-11',
   title: '⚔️ Shingeki No Kyojin T1 Eps. 7–11',
@@ -169,6 +172,7 @@ export const videosPremium = [
   {
   id: 'tirar_manteca_al_techo',
   name: 'Nada',
+  categoria: 'Nada',
   temporada: '1',
   episodio: '5',
   title: '🔥 Tirar manteca al techo',
@@ -180,6 +184,7 @@ export const videosPremium = [
 },
   {
   id: 'comerse_un_garron',
+  categoria: 'Nada',
   name: 'Nada',
   temporada: '1',
   episodio: '4',
@@ -193,6 +198,7 @@ export const videosPremium = [
 
   {
     id: 'la_verdad_de_la_milanesa',
+    categoria: 'Nada',
     name: "Nada",
     temporada: "1",
     episodio: "3",
@@ -205,6 +211,7 @@ export const videosPremium = [
   },
   {
     id: 'remar_en_dulce_de_leche',
+    categoria: 'Nada',
     name: "Nada",
     temporada: "1",
     episodio: "2",
@@ -217,6 +224,7 @@ export const videosPremium = [
   },
   {
     id: 'estar_en_el_horno',
+    categoria: 'Nada',
     name: "Nada",
     temporada: "1",
     episodio: "1",
@@ -229,6 +237,7 @@ export const videosPremium = [
   },
   {
     id: 'millenium',
+    categoria: 'Millennium',
     name: 'Millenium',
     temporada: '0',
     episodio: '2',
@@ -241,6 +250,7 @@ export const videosPremium = [
   },
   {
   id: 'millenium_2',
+  categoria: 'Millennium',
   name: 'Millenium',
   temporada: '0',
   episodio: '1',
@@ -253,7 +263,8 @@ export const videosPremium = [
 },
 
 {
-  id: 'bloqueados-de-youtube',
+  id: 'ya_no_te_amo_raul',
+  categoria: 'Bloqueados de Youtube',
   name: '😂 Les Luthiers',
   temporada: '0',
   episodio: '1',
@@ -266,6 +277,7 @@ export const videosPremium = [
 },
   {
   id: 'encuentros_cercanos',
+  categoria: 'Películas',
   name: '👽 ENCUENTROS CERCANOS DEL TERCER TIPO',
   temporada: '0',
   episodio: '0',
@@ -278,6 +290,7 @@ export const videosPremium = [
 },
     {
     id: 'mi_obra_maestra',
+    categoria: 'Películas',
     name: "Mi Obra Maestra",
     temporada: "0",
     episodio: "0",
@@ -291,6 +304,7 @@ export const videosPremium = [
 
   {
     id: 'indiana_jones_2',
+    categoria: 'Películas',
     name: "Indiana Jones",
     temporada: "0",
     episodio: "2",
@@ -304,6 +318,7 @@ export const videosPremium = [
 
   {
     id: 'indiana_jones_1',
+    categoria: 'Películas',
     name: "Indiana Jones",
     temporada: "0",
     episodio: "1",
@@ -318,6 +333,7 @@ export const videosPremium = [
 
   {
     id: 'bloqueados_de_youtube',
+    categoria: 'Bloqueados de YouTube',
     name: "Bloqueados de YouTube",
     temporada: "",
     episodio: "",
@@ -333,6 +349,7 @@ export const videosPremium = [
   {
 
     id: 'un_turista_en_buenos_aires',
+    categoria: 'El Encargado',
     name: "El Encargado",
     temporada: "1",
     episodio: "3",
@@ -344,8 +361,8 @@ export const videosPremium = [
     type: 'iframe'
   },
   {
-    background: 'Imagenes/el encargado portada.webp',     // Fondo grande
-    cover: 'Imagenes/el encargado 1.webp',               // Carátula pequeña
+    id: 'una_accion_solidaria',
+    categoria: 'El Encargado',
     id: 'una_accion_solidaria',
     name: "El Encargado",
     temporada: "1",
@@ -358,8 +375,8 @@ export const videosPremium = [
     type: 'iframe'
   },
   {
-    background: 'Imagenes/el encargado portada.webp',     // Fondo grande
-    cover: 'Imagenes/el encargado 1.webp',               // Carátula pequeña
+    id: 'un_proyecto_peligroso',
+    categoria: 'El Encargado',
     id: 'un_proyecto_peligroso',
     name: "El Encargado",
     temporada: "1",
