@@ -55,7 +55,7 @@ export const categoriasData = {
   },
 
     'encuenbtros-cercanos-del-tercer-tipo': {
-    categoria: 'Películas',
+    categoria: 'Peliculas',
     background: 'Imagenes/yNtyz.qR4e-small--REACCIN-A-ENCUENTROS-CERCA.jpg',     // Fondo grande
     cover: 'Imagenes/encuentros cercanos del tercer tipo.jpg',               // Carátula pequeña  
     title: 'Encuentros cercanos del Tercer Tipo',
@@ -66,7 +66,7 @@ export const categoriasData = {
   },
 
     'mi-obra-maestra': {
-    categoria: 'Películas',
+    categoria: 'Peliculas',
     background: 'Imagenes/REACCIN-A-Mi-obra-maestra-.jpg',     // Fondo grande
     cover: 'Imagenes/mi obra maestra.jpg',               // Carátula pequeña
     title: 'Mi Obra Maestra',
@@ -76,7 +76,7 @@ export const categoriasData = {
     cast: 'Guillermo Francella, Luis Brandoni, Raúl Arévalo'
   },
   'indiana-jones-2': {
-    categoria: 'Películas',
+    categoria: 'Peliculas',
     background: 'Imagenes/Picsart_25-10-21_14-04-12-948.jpg',     // Fondo grande
     cover: 'Imagenes/indiana jones 2.jpg',               // Carátula pequeña
     title: 'Indiana Jones y el templo de la perdición',
@@ -86,7 +86,7 @@ export const categoriasData = {
     cast: 'Harrison Ford, Kate Capshaw, Ke Huy Quan'
   },
   'indiana-jones': {
-    categoria: 'Películas',
+    categoria: 'Peliculas',
     background: 'Imagenes/Picsart_25-10-14_10-51-57-730.jpg',     // Fondo grande
     cover: 'Imagenes/indiana jones 1.jpg',               // Carátula pequeña
     title: 'Indiana Jones y los cazadores del arca perdida',
@@ -128,7 +128,7 @@ export const videosPremium = [
 {  
   id: 'shingeki_no_kyojin_t1_eps_16_20',
   name: 'Shingeki No Kyojin',
-  categoria: 'Shingeki No Kiojin',
+  categoria: 'shingeki no kyojin',
   temporada: '1',
   episodio: '16-20',
   title: '🧭 Shingeki No Kyojin T1 Eps. 16–20',
@@ -142,7 +142,7 @@ export const videosPremium = [
 { 
   id: 'shingeki_no_kyojin_t1_eps_12_15',
   name: 'Shingeki No Kyojin',
-  categoria: 'Shingeki No Kiojin',
+  categoria: 'shingeki no kyojin',
   temporada: '1',
   episodio: '12-15' ,
   title: '💥 Shingeki No Kyojin T1 Eps. 12–15',
@@ -155,7 +155,7 @@ export const videosPremium = [
 {
   id: 'shingeki_no_kyojin_t1_eps_7_11',
   name: 'Shingeki No Kyojin',
-  categoria: 'Shingeki No Kiojin',
+  categoria: 'shingeki no kyojin',
   temporada: '1',
   episodio: '7-11',
   title: '⚔️ Shingeki No Kyojin T1 Eps. 7–11',
@@ -172,7 +172,7 @@ export const videosPremium = [
   {
   id: 'tirar_manteca_al_techo',
   name: 'Nada',
-  categoria: 'Nada',
+  categoria: 'nada',
   temporada: '1',
   episodio: '5',
   title: '🔥 Tirar manteca al techo',
@@ -184,7 +184,7 @@ export const videosPremium = [
 },
   {
   id: 'comerse_un_garron',
-  categoria: 'Nada',
+  categoria: 'nada',
   name: 'Nada',
   temporada: '1',
   episodio: '4',
@@ -198,7 +198,7 @@ export const videosPremium = [
 
   {
     id: 'la_verdad_de_la_milanesa',
-    categoria: 'Nada',
+    categoria: 'nada',
     name: "Nada",
     temporada: "1",
     episodio: "3",
@@ -211,7 +211,7 @@ export const videosPremium = [
   },
   {
     id: 'remar_en_dulce_de_leche',
-    categoria: 'Nada',
+    categoria: 'nada',
     name: "Nada",
     temporada: "1",
     episodio: "2",
@@ -224,7 +224,7 @@ export const videosPremium = [
   },
   {
     id: 'estar_en_el_horno',
-    categoria: 'Nada',
+    categoria: 'nada',
     name: "Nada",
     temporada: "1",
     episodio: "1",
@@ -237,7 +237,7 @@ export const videosPremium = [
   },
   {
     id: 'millenium',
-    categoria: 'Millennium',
+    categoria: 'millennium',
     name: 'Millenium',
     temporada: '0',
     episodio: '2',
@@ -250,7 +250,7 @@ export const videosPremium = [
   },
   {
   id: 'millenium_2',
-  categoria: 'Millennium',
+  categoria: 'millennium',
   name: 'Millenium',
   temporada: '0',
   episodio: '1',
@@ -264,7 +264,7 @@ export const videosPremium = [
 
 {
   id: 'ya_no_te_amo_raul',
-  categoria: 'Bloqueados de YouTube',
+  categoria: 'bloqueados de youtube',
   name: '😂 Les Luthiers',
   temporada: '0',
   episodio: '1',
@@ -277,7 +277,7 @@ export const videosPremium = [
 },
   {
   id: 'encuentros_cercanos',
-  categoria: 'Películas',
+  categoria: 'peliculas',
   name: '👽 ENCUENTROS CERCANOS DEL TERCER TIPO',
   temporada: '0',
   episodio: '0',
@@ -290,7 +290,7 @@ export const videosPremium = [
 },
     {
     id: 'mi_obra_maestra',
-    categoria: 'Películas',
+    categoria: 'peliculas',
     name: "Mi Obra Maestra",
     temporada: "0",
     episodio: "0",
@@ -304,7 +304,7 @@ export const videosPremium = [
 
   {
     id: 'indiana_jones_2',
-    categoria: 'Películas',
+    categoria: 'peliculas',
     name: "Indiana Jones",
     temporada: "0",
     episodio: "2",
@@ -318,7 +318,7 @@ export const videosPremium = [
 
   {
     id: 'indiana_jones_1',
-    categoria: 'Películas',
+    categoria: 'peliculas',
     name: "Indiana Jones",
     temporada: "0",
     episodio: "1",
@@ -333,7 +333,7 @@ export const videosPremium = [
 
   {
     id: 'milo_j',
-    categoria: 'Bloqueados de YouTube',
+    categoria: 'bloqueados de youtube',
     name: "Milo J",
     temporada: "",
     episodio: "",
@@ -349,7 +349,7 @@ export const videosPremium = [
   {
 
     id: 'un_turista_en_buenos_aires',
-    categoria: 'El Encargado',
+    categoria: 'el encargado',
     name: "El Encargado",
     temporada: "1",
     episodio: "3",
@@ -362,7 +362,7 @@ export const videosPremium = [
   },
   {
     id: 'una_accion_solidaria',
-    categoria: 'El Encargado',
+    categoria: 'el encargado',
     id: 'una_accion_solidaria',
     name: "El Encargado",
     temporada: "1",
@@ -376,7 +376,7 @@ export const videosPremium = [
   },
   {
     id: 'un_proyecto_peligroso',
-    categoria: 'El Encargado',
+    categoria: 'el encargado',
     id: 'un_proyecto_peligroso',
     name: "El Encargado",
     temporada: "1",
