@@ -13,8 +13,15 @@
   <main class="playlist-container">
     <h1>Premium</h1>
     <p>Bienvenido a tu contenido exclusivo.</p>
-    <!-- playlist.html -->
-  <div class="premium-grid" id="videoList"></div>
+    
+    <!-- Barra de búsqueda -->
+    <div class="search-container">
+      <input type="text" id="searchInput" placeholder="Buscar por título, descripción, temporada o episodio...">
+      <button id="clearSearch" style="display: none;">Limpiar</button>
+    </div>
+
+    <!-- Contenedor para las listas de reproducción en accordion -->
+    <div id="playlistsAccordion"></div>
   </main>
 
   <div id="footer"></div>
@@ -34,33 +41,91 @@
     });
     fetch('footer.html').then(r => r.text()).then(d => document.getElementById('footer').innerHTML = d);
 
-    // Mostrar videos en el grid
-const container = document.getElementById('videoList');
-videosPremium.forEach(video => {
-  // 1. Crear la tarjeta
-  const card = document.createElement('div');
-  card.className = 'premium-card';
+    // Agrupar videos por 'name' (serie o categoría)
+    const groupedVideos = videosPremium.reduce((acc, video) => {
+      const key = video.name || 'Otros'; // Usar 'name' como clave de agrupación, fallback a 'Otros'
+      if (!acc[key]) {
+        acc[key] = [];
+      }
+      acc[key].push(video);
+      return acc;
+    }, {});
 
-  // 2. Formatear título con saltos de línea
-  const formattedTitle = video.title.replace(/\\n/g, '<br>');
+    // Renderizar el accordion con listas de reproducción
+    const accordionContainer = document.getElementById('playlistsAccordion');
+    Object.keys(groupedVideos).forEach((groupName, index) => {
+      const group = groupedVideos[groupName];
 
-  // 3. Insertar HTML
-  card.innerHTML = `
-    <a href="player.html?id=${video.id}">
-      <img src="${video.thumbnail}" alt="${video.title}" loading="lazy">
-      <div class="premium-info">
-        
-        <h2>${video.title}</h2>
-        <h1>${video.title2}</h1>
-        <p class="premium-episode">T${video.temporada} E${video.episodio} • ${video.name}</p>
-        <p class="premium-desc">${video.description}</p>
-      </div>
-    </a>
-  `;
+      // Crear elemento details para el accordion (menú plegable nativo de HTML)
+      const details = document.createElement('details');
+      details.className = 'playlist-group';
+      details.open = index === 0; // Abrir el primero por defecto
 
-  // 4. Agregar al contenedor
-  container.appendChild(card);
-});
+      const summary = document.createElement('summary');
+      summary.textContent = `${groupName} (${group.length} videos)`;
+      details.appendChild(summary);
+
+      // Crear el grid para los videos del grupo
+      const grid = document.createElement('div');
+      grid.className = 'premium-grid';
+
+      group.forEach(video => {
+        const card = document.createElement('div');
+        card.className = 'premium-card';
+
+        // Formatear título con saltos de línea
+        const formattedTitle = video.title.replace(/\\n/g, '<br>');
+
+        card.innerHTML = `
+          <a href="player.html?id=${video.id}">
+            <img src="${video.thumbnail}" alt="${video.title}" loading="lazy">
+            <div class="premium-info">
+              <h2>${video.title}</h2>
+              <h1>${video.title2}</h1>
+              <p class="premium-episode">T${video.temporada} E${video.episodio} • ${video.name}</p>
+              <p class="premium-desc">${video.description}</p>
+            </div>
+          </a>
+        `;
+
+        grid.appendChild(card);
+      });
+
+      details.appendChild(grid);
+      accordionContainer.appendChild(details);
+    });
+
+    // Funcionalidad de búsqueda
+    const searchInput = document.getElementById('searchInput');
+    const clearButton = document.getElementById('clearSearch');
+    const allCards = document.querySelectorAll('.premium-card');
+
+    function filterVideos() {
+      const query = searchInput.value.toLowerCase().trim();
+      clearButton.style.display = query ? 'inline-block' : 'none';
+
+      allCards.forEach(card => {
+        const title = card.querySelector('h2')?.textContent.toLowerCase() || '';
+        const title2 = card.querySelector('h1')?.textContent.toLowerCase() || '';
+        const episode = card.querySelector('.premium-episode')?.textContent.toLowerCase() || '';
+        const desc = card.querySelector('.premium-desc')?.textContent.toLowerCase() || '';
+
+        const matches = title.includes(query) || title2.includes(query) || episode.includes(query) || desc.includes(query);
+        card.style.display = matches ? 'block' : 'none';
+      });
+
+      // Expandir/contraer grupos basados en resultados visibles
+      document.querySelectorAll('.playlist-group').forEach(group => {
+        const visibleCards = group.querySelectorAll('.premium-card[style="display: block;"]');
+        group.open = visibleCards.length > 0;
+      });
+    }
+
+    searchInput.addEventListener('input', filterVideos);
+    clearButton.addEventListener('click', () => {
+      searchInput.value = '';
+      filterVideos();
+    });
 
     // Mostrar body cuando todo esté listo
     document.body.style.display = 'block';

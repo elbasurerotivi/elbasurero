@@ -3914,6 +3914,76 @@ footer h3 {
   background: rgba(255, 215, 0, 0.2);
 }
 
+/* Estilos para la barra de búsqueda */
+.search-container {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+  gap: 10px;
+}
+
+#searchInput {
+  width: 60%;
+  max-width: 500px;
+  padding: 12px;
+  border: 1px solid var(--border-premium, rgba(255, 215, 0, 0.3));
+  border-radius: var(--radius, 16px);
+  background: rgba(30, 30, 50, 0.4);
+  color: #fff;
+  font-size: 1rem;
+}
+
+#searchInput::placeholder {
+  color: #ccc;
+}
+
+#clearSearch {
+  padding: 12px 20px;
+  background: linear-gradient(45deg, #ffd700, #ff8c00);
+  border: none;
+  border-radius: var(--radius, 16px);
+  color: #000;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+#clearSearch:hover {
+  transform: scale(1.05);
+}
+
+/* Estilos para el accordion */
+.playlist-group {
+  margin-bottom: 16px;
+  border: 1px solid var(--border-premium, rgba(255, 215, 0, 0.3));
+  border-radius: var(--radius, 16px);
+  overflow: hidden;
+  background: rgba(30, 30, 50, 0.4);
+  backdrop-filter: blur(12px);
+}
+
+.playlist-group summary {
+  padding: 16px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: var(--gold, #ffd700);
+  cursor: pointer;
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.05), rgba(255, 100, 0, 0.05));
+  transition: background 0.3s;
+}
+
+.playlist-group summary:hover {
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(255, 100, 0, 0.1));
+}
+
+.playlist-group[open] summary {
+  border-bottom: 1px solid var(--border-premium, rgba(255, 215, 0, 0.3));
+}
+
+/* Ajuste para grids dentro del accordion */
+.playlist-group .premium-grid {
+  padding: 16px;
+}
 
 
 
