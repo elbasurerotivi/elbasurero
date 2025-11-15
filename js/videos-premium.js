@@ -4,6 +4,8 @@ export const videosPremium = [
 ///Shinki No Kiojin///
 
 {
+  background: 'Imagenes/Picsart_25-10-18_01-10-37-858.jpg',     // Fondo grande
+  cover: 'Imagenes/Shingeki 1.webp',               // Carátula pequeña
   id: 'shingeki_no_kyojin_t1_eps_16_20',
   name: 'Shingeki No Kyojin',
   temporada: '1',
@@ -17,6 +19,8 @@ export const videosPremium = [
 },
 
 {
+  background: 'Imagenes/Picsart_25-10-18_01-10-37-858.jpg',     // Fondo grande
+  cover: 'Imagenes/Shingeki 1.webp',               // Carátula pequeña
   id: 'shingeki_no_kyojin_t1_eps_12_15',
   name: 'Shingeki No Kyojin',
   temporada: '1',
@@ -29,6 +33,8 @@ export const videosPremium = [
   type: 'iframe'
 },
 {
+  background: 'Imagenes/Picsart_25-10-18_01-10-37-858.jpg',     // Fondo grande
+  cover: 'Imagenes/Shingeki 1.webp',               // Carátula pequeña
   id: 'shingeki_no_kyojin_t1_eps_7_11',
   name: 'Shingeki No Kyojin',
   temporada: '1',
@@ -45,6 +51,8 @@ export const videosPremium = [
 ///Nada///
 
   {
+  background: 'Imagenes/nada portada.webp',     // Fondo grande
+  cover: 'Imagenes/nada 1.jpg',               // Carátula pequeña
   id: 'tirar_manteca_al_techo',
   name: 'Nada',
   temporada: '1',
@@ -57,6 +65,8 @@ export const videosPremium = [
   type: 'iframe'
 },
   {
+  background: 'Imagenes/nada portada.webp',     // Fondo grande
+  cover: 'Imagenes/nada 1.jpg',               // Carátula pequeña
   id: 'comerse_un_garron',
   name: 'Nada',
   temporada: '1',
@@ -70,6 +80,8 @@ export const videosPremium = [
 },
 
   {
+    background: 'Imagenes/nada portada.webp',     // Fondo grande
+    cover: 'Imagenes/nada 1.jpg',               // Carátula pequeña
     id: 'la_verdad_de_la_milanesa',
     name: "Nada",
     temporada: "1",
@@ -82,6 +94,8 @@ export const videosPremium = [
     type: 'iframe'
   },
   {
+    background: 'Imagenes/nada portada.webp',     // Fondo grande
+    cover: 'Imagenes/nada 1.jpg',               // Carátula pequeña
     id: 'remar_en_dulce_de_leche',
     name: "Nada",
     temporada: "1",
@@ -94,6 +108,8 @@ export const videosPremium = [
     type: 'iframe'
   },
   {
+    background: 'Imagenes/nada portada.webp',     // Fondo grande
+    cover: 'Imagenes/nada 1.jpg',               // Carátula pequeña
     id: 'estar_en_el_horno',
     name: "Nada",
     temporada: "1",
@@ -107,6 +123,8 @@ export const videosPremium = [
   },
 
 {
+  background: 'Imagenes/Picsart_25-10-24_19-36-11-553.jpg',     // Fondo grande
+  cover: 'Imagenes/millennium 1.jpg',               // Carátula pequeña
   id: 'millenium',
   name: '🔍 Millenium',
   temporada: '0',
@@ -119,6 +137,8 @@ export const videosPremium = [
   type: 'iframe'
 },
   {
+  background: 'Imagenes/Picsart_25-11-02_19-41-27-072.jpg',     // Fondo grande
+  cover: 'Imagenes/millennium-2.webp',               // Carátula pequeña
   id: 'millenium_2',
   name: 'Millenium',
   temporada: '0',
@@ -132,6 +152,8 @@ export const videosPremium = [
 },
 
 {
+  background: 'Imagenes/les-luthiers-1486327.jpg',     // Fondo grande
+  cover: 'Imagenes/les luthiers.jpg',               // Carátula pequeña
   id: 'les_luthiers',
   name: '😂 Les Luthiers',
   temporada: '0',
@@ -144,6 +166,8 @@ export const videosPremium = [
   type: 'iframe'
 },
   {
+  background: 'Imagenes/yNtyz.qR4e-small--REACCIN-A-ENCUENTROS-CERCA.jpg',     // Fondo grande
+  cover: 'Imagenes/encuentros cercanos del tercer tipo.jpg',               // Carátula pequeña
   id: 'encuentros_cercanos',
   name: '👽 ENCUENTROS CERCANOS DEL TERCER TIPO',
   temporada: '0',
@@ -156,6 +180,8 @@ export const videosPremium = [
   type: 'iframe'
 },
     {
+    background: 'Imagenes/REACCIN-A-Mi-obra-maestra-.jpg',     // Fondo grande
+    cover: 'Imagenes/mi obra maestra.jpg',               // Carátula pequeña
     id: 'mi_obra_maestra',
     name: "Mi Obra Maestra",
     temporada: "0",
@@ -169,6 +195,8 @@ export const videosPremium = [
   },
 
   {
+    background: 'Imagenes/Picsart_25-10-21_14-04-12-948.jpg',     // Fondo grande
+    cover: 'Imagenes/indiana jones 2.jpg',               // Carátula pequeña
     id: 'indiana_jones_2',
     name: "Indiana Jones",
     temporada: "0",
@@ -181,7 +209,9 @@ export const videosPremium = [
     type: 'iframe'
   },
 
-{
+  {
+    background: 'Imagenes/Picsart_25-10-14_10-51-57-730.jpg',     // Fondo grande
+    cover: 'Imagenes/indiana jones 1.jpg',               // Carátula pequeña
     id: 'indiana_jones_1',
     name: "Indiana Jones",
     temporada: "0",
@@ -196,8 +226,10 @@ export const videosPremium = [
   
 
   {
-    id: 'milo_j',
-    name: "Milo J",
+    background: 'Imagenes/Picsart_25-10-14_10-51-57-730.jpg',     // Fondo grande
+    cover: 'Imagenes/indiana jones 1.jpg',               // Carátula pequeña
+    id: 'bloqueados_de_youtube',
+    name: "Bloqueados de YouTube",
     temporada: "",
     episodio: "",
     title: '🔥 MILO J',
@@ -210,6 +242,8 @@ export const videosPremium = [
   
   ///El Encargado///
   {
+    background: 'Imagenes/el encargado portada.webp',     // Fondo grande
+    cover: 'Imagenes/el encargado 1.webp',               // Carátula pequeña
     id: 'un_turista_en_buenos_aires',
     name: "El Encargado",
     temporada: "1",
@@ -222,6 +256,8 @@ export const videosPremium = [
     type: 'iframe'
   },
   {
+    background: 'Imagenes/el encargado portada.webp',     // Fondo grande
+    cover: 'Imagenes/el encargado 1.webp',               // Carátula pequeña
     id: 'una_accion_solidaria',
     name: "El Encargado",
     temporada: "1",
@@ -234,6 +270,8 @@ export const videosPremium = [
     type: 'iframe'
   },
   {
+    background: 'Imagenes/el encargado portada.webp',     // Fondo grande
+    cover: 'Imagenes/el encargado 1.webp',               // Carátula pequeña
     id: 'un_proyecto_peligroso',
     name: "El Encargado",
     temporada: "1",
