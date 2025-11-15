@@ -332,9 +332,9 @@ export const videosPremium = [
   
 
   {
-    id: 'bloqueados_de_youtube',
+    id: 'milo_j',
     categoria: 'Bloqueados de YouTube',
-    name: "Bloqueados de YouTube",
+    name: "Milo J",
     temporada: "",
     episodio: "",
     title: '🔥 MILO J',
