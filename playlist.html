@@ -20,8 +20,11 @@
       <button id="clearSearch" style="display: none;">Limpiar</button>
     </div>
 
-    <!-- Contenedor para las listas de reproducción en accordion -->
-    <div id="playlistsAccordion"></div>
+    <!-- Grid para las tarjetas de listas de reproducción -->
+    <div class="premium-grid" id="playlistList"></div>
+
+    <!-- Contenedor para los videos de una lista seleccionada o resultados de búsqueda (inicialmente oculto) -->
+    <div id="videoContainer" style="display: none;"></div>
   </main>
 
   <div id="footer"></div>
@@ -43,7 +46,7 @@
 
     // Agrupar videos por 'name' (serie o categoría)
     const groupedVideos = videosPremium.reduce((acc, video) => {
-      const key = video.name || 'Otros'; // Usar 'name' como clave de agrupación, fallback a 'Otros'
+      const key = video.name || 'Otros';
       if (!acc[key]) {
         acc[key] = [];
       }
@@ -51,74 +54,132 @@
       return acc;
     }, {});
 
-    // Renderizar el accordion con listas de reproducción
-    const accordionContainer = document.getElementById('playlistsAccordion');
-    Object.keys(groupedVideos).forEach((groupName, index) => {
-      const group = groupedVideos[groupName];
+    // Mapa de thumbnails para las listas de reproducción (portadas personalizadas)
+    // Puedes asignar paths a imágenes que subas a GitHub, ej: 'Imagenes/shingeki_cover.jpg'
+    // Por defecto, usa el thumbnail del primer video del grupo
+    const playlistThumbnails = {
+      // 'Shingeki No Kyojin': 'Imagenes/shingeki_cover.jpg',
+      // 'Nada': 'Imagenes/nada_cover.jpg',
+      // Agrega más aquí según tus listas
+    };
 
-      // Crear elemento details para el accordion (menú plegable nativo de HTML)
-      const details = document.createElement('details');
-      details.className = 'playlist-group';
-      details.open = index === 0; // Abrir el primero por defecto
+    // Función para obtener thumbnail de una lista
+    function getPlaylistThumbnail(groupName) {
+      return playlistThumbnails[groupName] || groupedVideos[groupName][0]?.thumbnail || 'Imagenes/default_cover.jpg';
+    }
 
-      const summary = document.createElement('summary');
-      summary.textContent = `${groupName} (${group.length} videos)`;
-      details.appendChild(summary);
+    // Función para crear una tarjeta de video
+    function createVideoCard(video) {
+      const card = document.createElement('div');
+      card.className = 'premium-card';
 
-      // Crear el grid para los videos del grupo
+      const formattedTitle = video.title.replace(/\\n/g, '<br>');
+
+      card.innerHTML = `
+        <a href="player.html?id=${video.id}">
+          <img src="${video.thumbnail}" alt="${video.title}" loading="lazy">
+          <div class="premium-info">
+            <h2>${video.title}</h2>
+            <h1>${video.title2}</h1>
+            <p class="premium-episode">T${video.temporada} E${video.episodio} • ${video.name}</p>
+            <p class="premium-desc">${video.description}</p>
+          </div>
+        </a>
+      `;
+
+      return card;
+    }
+
+    // Función para mostrar videos de una lista o resultados de búsqueda
+    function showVideos(titleText, videos, isSearch = false) {
+      const playlistList = document.getElementById('playlistList');
+      const videoContainer = document.getElementById('videoContainer');
+
+      playlistList.style.display = 'none';
+      videoContainer.style.display = 'block';
+      videoContainer.innerHTML = '';
+
+      // Botón de volver (solo si no es búsqueda, ya que búsqueda tiene 'Limpiar')
+      if (!isSearch) {
+        const backBtn = document.createElement('button');
+        backBtn.textContent = 'Volver a listas';
+        backBtn.className = 'back-button';
+        backBtn.onclick = () => {
+          videoContainer.style.display = 'none';
+          playlistList.style.display = 'grid';
+          searchInput.value = ''; // Limpiar búsqueda al volver
+          clearButton.style.display = 'none';
+        };
+        videoContainer.appendChild(backBtn);
+      }
+
+      // Título de la sección
+      const title = document.createElement('h2');
+      title.textContent = titleText;
+      videoContainer.appendChild(title);
+
+      // Grid de videos
       const grid = document.createElement('div');
       grid.className = 'premium-grid';
 
-      group.forEach(video => {
-        const card = document.createElement('div');
-        card.className = 'premium-card';
+      if (videos.length === 0) {
+        const noResults = document.createElement('p');
+        noResults.textContent = 'No se encontraron resultados.';
+        videoContainer.appendChild(noResults);
+      } else {
+        videos.forEach(video => {
+          grid.appendChild(createVideoCard(video));
+        });
+      }
 
-        // Formatear título con saltos de línea
-        const formattedTitle = video.title.replace(/\\n/g, '<br>');
+      videoContainer.appendChild(grid);
+    }
 
-        card.innerHTML = `
-          <a href="player.html?id=${video.id}">
-            <img src="${video.thumbnail}" alt="${video.title}" loading="lazy">
-            <div class="premium-info">
-              <h2>${video.title}</h2>
-              <h1>${video.title2}</h1>
-              <p class="premium-episode">T${video.temporada} E${video.episodio} • ${video.name}</p>
-              <p class="premium-desc">${video.description}</p>
-            </div>
-          </a>
-        `;
+    // Renderizar tarjetas de listas de reproducción
+    const playlistContainer = document.getElementById('playlistList');
+    Object.keys(groupedVideos).forEach(groupName => {
+      const thumbnail = getPlaylistThumbnail(groupName);
+      const card = document.createElement('div');
+      card.className = 'premium-card playlist-card'; // Clase extra para estilos específicos si necesitas
 
-        grid.appendChild(card);
+      card.innerHTML = `
+        <a href="#" onclick="return false;">
+          <img src="${thumbnail}" alt="${groupName}" loading="lazy">
+          <div class="premium-info">
+            <h2>${groupName}</h2>
+            <p>${groupedVideos[groupName].length} videos</p>
+          </div>
+        </a>
+      `;
+
+      card.addEventListener('click', () => {
+        showVideos(groupName, groupedVideos[groupName]);
       });
 
-      details.appendChild(grid);
-      accordionContainer.appendChild(details);
+      playlistContainer.appendChild(card);
     });
 
     // Funcionalidad de búsqueda
     const searchInput = document.getElementById('searchInput');
     const clearButton = document.getElementById('clearSearch');
-    const allCards = document.querySelectorAll('.premium-card');
 
     function filterVideos() {
       const query = searchInput.value.toLowerCase().trim();
       clearButton.style.display = query ? 'inline-block' : 'none';
 
-      allCards.forEach(card => {
-        const title = card.querySelector('h2')?.textContent.toLowerCase() || '';
-        const title2 = card.querySelector('h1')?.textContent.toLowerCase() || '';
-        const episode = card.querySelector('.premium-episode')?.textContent.toLowerCase() || '';
-        const desc = card.querySelector('.premium-desc')?.textContent.toLowerCase() || '';
-
-        const matches = title.includes(query) || title2.includes(query) || episode.includes(query) || desc.includes(query);
-        card.style.display = matches ? 'block' : 'none';
-      });
-
-      // Expandir/contraer grupos basados en resultados visibles
-      document.querySelectorAll('.playlist-group').forEach(group => {
-        const visibleCards = group.querySelectorAll('.premium-card[style="display: block;"]');
-        group.open = visibleCards.length > 0;
-      });
+      if (query) {
+        const filtered = videosPremium.filter(video => {
+          const title = video.title.toLowerCase();
+          const title2 = video.title2.toLowerCase();
+          const episode = `t${video.temporada} e${video.episodio} • ${video.name}`.toLowerCase();
+          const desc = video.description.toLowerCase();
+          return title.includes(query) || title2.includes(query) || episode.includes(query) || desc.includes(query);
+        });
+        showVideos('Resultados de búsqueda', filtered, true);
+      } else {
+        document.getElementById('videoContainer').style.display = 'none';
+        document.getElementById('playlistList').style.display = 'grid';
+      }
     }
 
     searchInput.addEventListener('input', filterVideos);

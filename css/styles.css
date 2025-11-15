@@ -3984,6 +3984,21 @@ footer h3 {
 .playlist-group .premium-grid {
   padding: 16px;
 }
+.back-button {
+  padding: 12px 20px;
+  background: linear-gradient(45deg, #ffd700, #ff8c00);
+  border: none;
+  border-radius: var(--radius, 16px);
+  color: #000;
+  font-weight: bold;
+  cursor: pointer;
+  margin-bottom: 20px;
+  transition: transform 0.3s;
+}
+
+.back-button:hover {
+  transform: scale(1.05);
+}
 
 
 
