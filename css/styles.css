@@ -3732,7 +3732,7 @@ footer h3 {
   border: 1px solid var(--border-premium, rgba(255, 215, 0, 0.3));
   border-radius: var(--radius, 16px);
   overflow: hidden;
-  height: 300px;
+  height: 370px;
   display: flex;
   flex-direction: column;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3),
