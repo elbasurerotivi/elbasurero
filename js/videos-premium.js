@@ -39,10 +39,10 @@ export const categoriasData = {
     cast: 'Michael Nyqvist, Noomi Rapace, Sven-Bertil Taube'
   },
 
-    'les_luthiers': {
+    'bloqueados-de-youtube': {
     background: 'Imagenes/les-luthiers-1486327.jpg',     // Fondo grande
     cover: 'Imagenes/les luthiers.jpg',               // Carátula pequeña
-    title: 'Bloqueados de YouTube',
+    title: 'Ya no te amo, Raúl',
     synopsis: '"Ya no te amo, Raúl" es una bolera que parodia las canciones de amor apasionadas y dramáticas, característica del estilo de Les Luthiers, donde el humor surge del contraste entre la música y la letra, así como de la interpretación.',
     year: '2006',
     genre: 'Humor',
