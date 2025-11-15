@@ -4022,9 +4022,9 @@ footer h3 {
 /* Botón volver */
 .back-button {
   padding: 10px 20px;
-  background: rgba(255, 215, 0, 0.2);
-  border: 1px solid var(--gold, #ffd700);
-  color: var(--gold, #ffd700);
+  background: rgb(255 215 0 / 11%);
+  border: 1px solid #ffd70042;
+  color: #ffd700d9;
   border-radius: 12px;
   font-weight: bold;
   cursor: pointer;
