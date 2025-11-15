@@ -96,7 +96,7 @@ export const categoriasData = {
     cast: 'Harrison Ford, Karen Allen, Paul Freeman'
   },
   'bloqueados-de-youtube': {
-    background: 'Picsart_25-10-18_02-01-51-724.jpg',     // Fondo grande
+    background: 'Imagenes/Picsart_25-10-18_02-01-51-724.jpg',     // Fondo grande
     cover: 'Imagenes/Picsart_25-10-18_02-01-51-724.jpg',               // Carátula pequeña
     title: 'Milo J',
     synopsis: 'Videos de los mas variados. Todo lo que no se puede quedar en youtube, se viene para aca!',
