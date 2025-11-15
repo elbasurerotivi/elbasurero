@@ -12,53 +12,8 @@ document.addEventListener("DOMContentLoaded", () => {
   let categories = {};
   let videoElements = [];
 
-  // === AUTH CHECK ===
-  onAuthStateChanged(auth, async (user) => {
-    if (!user) {
-      window.location.href = "index.html";
-      return;
-    }
-
-    const snapshot = await get(ref(db, `users/${user.uid}`));
-    if (!snapshot.exists() || snapshot.val().role !== "admin") {
-      alert("Acceso denegado");
-      window.location.href = "index.html";
-      return;
-    }
-
-    document.body.classList.add("visible");
-    loadData();
-  });
-
-  // === CARGAR DATOS ===
   let videosLoaded = false;
   let categoriesLoaded = false;
-
-  function checkAndRender() {
-    if (videosLoaded && categoriesLoaded) {
-      renderVideos();
-    }
-  }
-
-  // Cargar videoCatalog
-  onValue(ref(db, "videoCatalog"), (snap) => {
-    const data = snap.val();
-    videos = data ? Object.entries(data).map(([id, d]) => ({ id, ...d })) : [];
-    videosLoaded = true;
-    checkAndRender();
-  }, (error) => {
-    console.error("Error cargando videoCatalog:", error);
-    videoList.innerHTML = "<p style='color:red;'>Error: No se pudieron cargar los videos.</p>";
-  });
-
-  // Cargar categories
-  onValue(ref(db, "categories"), (snap) => {
-    categories = snap.val() || {};
-    categoriesLoaded = true;
-    checkAndRender();
-  }, (error) => {
-    console.error("Error cargando categories:", error);
-  });
 
   // === RENDER ===
   function renderVideos() {
@@ -157,6 +112,8 @@ document.addEventListener("DOMContentLoaded", () => {
       name, background, cover, synopsis, year, genre, cast
     }).then(() => {
       alert("Categoría creada: " + name);
+    }).catch(err => {
+      alert("Error al crear categoría: " + err.message);
     });
   });
 
@@ -177,6 +134,47 @@ document.addEventListener("DOMContentLoaded", () => {
       .replace(/(^-|-$)/g, '');
   }
 
-  // === DEBUG ===
+  // === AUTH CHECK ===
+  onAuthStateChanged(auth, async (user) => {
+    if (!user) {
+      window.location.href = "index.html";
+      return;
+    }
+
+    const snapshot = await get(ref(db, `users/${user.uid}`));
+    if (!snapshot.exists() || snapshot.val().role !== "admin") {
+      alert("Acceso denegado");
+      window.location.href = "index.html";
+      return;
+    }
+
+    document.body.classList.add("visible");
+
+    // === CARGAR DATOS (DESPUÉS DE AUTENTICACIÓN) ===
+    function checkAndRender() {
+      if (videosLoaded && categoriesLoaded) {
+        renderVideos();
+      }
+    }
+
+    onValue(ref(db, "videoCatalog"), (snap) => {
+      const data = snap.val();
+      videos = data ? Object.entries(data).map(([id, d]) => ({ id, ...d })) : [];
+      videosLoaded = true;
+      checkAndRender();
+    }, (error) => {
+      console.error("Error cargando videoCatalog:", error);
+      videoList.innerHTML = "<p style='color:red;'>Error: No se pudieron cargar los videos.</p>";
+    });
+
+    onValue(ref(db, "categories"), (snap) => {
+      categories = snap.val() || {};
+      categoriesLoaded = true;
+      checkAndRender();
+    }, (error) => {
+      console.error("Error cargando categories:", error);
+    });
+  });
+
   console.log("admin-videos.js cargado correctamente");
 });
