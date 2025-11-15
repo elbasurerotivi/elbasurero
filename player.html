@@ -63,7 +63,7 @@
     // INSERTAR VIDEO
     if (video.type === 'iframe') {
       container.innerHTML = `
-        <iframe src="${video.source}" frameborder="0" allowfullscreen allow="fullscreen; autoplay; encrypted-media"></iframe>
+        <iframe src="${video.source}" frameborder="0"  width="640" height="360"  allowfullscreen allow="fullscreen; autoplay; encrypted-media"></iframe>
       `;
     } else if (video.type === 'video') {
       container.innerHTML = `
@@ -74,6 +74,7 @@
       `;
     }
 
+    
     // INSERTAR INTERACCIÓN
     const interactionHTML = `
       <div class="video-interaction">
