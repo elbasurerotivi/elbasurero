@@ -1,6 +1,7 @@
 // js/videos.js
 export const categoriasData = {
   'shingeki-no-kyojin': {
+    categoria: 'Shingeki No Kiojin',
     background: 'Imagenes/Picsart_25-10-18_01-10-37-858.jpg',     // Fondo grande
     cover: 'Imagenes/Shingeki 1.webp',               // Carátula pequeña
     title: 'Shingeki no Kyojin',
@@ -10,6 +11,7 @@ export const categoriasData = {
     cast: 'Yuki Kaji, Marina Inoue, Yui Ishikawa'
   },
   'nada': {
+    categoria: 'Nada',
     background: 'Imagenes/nada portada.webp',     // Fondo grande
     cover: 'Imagenes/nada 1.jpg',               // Carátula pequeña
     title: 'Nada',
@@ -20,6 +22,7 @@ export const categoriasData = {
   },
 
     'millenium-2': {
+    categoria: 'Millennium',
     background: 'Imagenes/Picsart_25-11-02_19-41-27-072.jpg',     // Fondo grande
     cover: 'Imagenes/millennium-2.webp',               // Carátula pequeña
     title: 'Millennium',
@@ -30,6 +33,7 @@ export const categoriasData = {
     },
   
   'millenium': {
+    categoria: 'Millennium',
     background: 'Imagenes/Picsart_25-10-24_19-36-11-553.jpg',     // Fondo grande
     cover: 'Imagenes/millennium 1.jpg',               // Carátula pequeña
     title: 'Millennium',
@@ -40,6 +44,7 @@ export const categoriasData = {
   },
 
     'bloqueados-de-youtube': {
+    categoria: 'Bloqueados de Youtube',
     background: 'Imagenes/les-luthiers-1486327.jpg',     // Fondo grande
     cover: 'Imagenes/les luthiers.jpg',               // Carátula pequeña
     title: 'Ya no te amo, Raúl',
@@ -50,6 +55,7 @@ export const categoriasData = {
   },
 
     'encuenbtros-cercanos-del-tercer-tipo': {
+    categoria: 'Películas',
     background: 'Imagenes/yNtyz.qR4e-small--REACCIN-A-ENCUENTROS-CERCA.jpg',     // Fondo grande
     cover: 'Imagenes/encuentros cercanos del tercer tipo.jpg',               // Carátula pequeña  
     title: 'Encuentros cercanos del Tercer Tipo',
@@ -60,6 +66,7 @@ export const categoriasData = {
   },
 
     'mi-obra-maestra': {
+    categoria: 'Películas',
     background: 'Imagenes/REACCIN-A-Mi-obra-maestra-.jpg',     // Fondo grande
     cover: 'Imagenes/mi obra maestra.jpg',               // Carátula pequeña
     title: 'Mi Obra Maestra',
@@ -69,6 +76,7 @@ export const categoriasData = {
     cast: 'Guillermo Francella, Luis Brandoni, Raúl Arévalo'
   },
   'indiana-jones-2': {
+    categoria: 'Películas',
     background: 'Imagenes/Picsart_25-10-21_14-04-12-948.jpg',     // Fondo grande
     cover: 'Imagenes/indiana jones 2.jpg',               // Carátula pequeña
     title: 'Indiana Jones y el templo de la perdición',
@@ -78,6 +86,7 @@ export const categoriasData = {
     cast: 'Harrison Ford, Kate Capshaw, Ke Huy Quan'
   },
   'indiana-jones': {
+    categoria: 'Películas',
     background: 'Imagenes/Picsart_25-10-14_10-51-57-730.jpg',     // Fondo grande
     cover: 'Imagenes/indiana jones 1.jpg',               // Carátula pequeña
     title: 'Indiana Jones y los cazadores del arca perdida',
@@ -89,7 +98,7 @@ export const categoriasData = {
   'bloqueados-de-youtube': {
     background: 'Picsart_25-10-18_02-01-51-724.jpg',     // Fondo grande
     cover: 'Imagenes/Picsart_25-10-18_02-01-51-724.jpg',               // Carátula pequeña
-    title: 'Bloqueados de YouTube',
+    title: 'Milo J',
     synopsis: 'Videos de los mas variados. Todo lo que no se puede quedar en youtube, se viene para aca!',
     year: '2025',
     genre: 'Musica • Humor • Documental • etc',
@@ -97,6 +106,7 @@ export const categoriasData = {
   },
 
   'el-encargado': {
+    categoria: 'El Encargado',
     background: 'Imagenes/el encargado portada.webp',     // Fondo grande
     cover: 'Imagenes/el encargado 1.webp',               // Carátula pequeña
     title: 'El Encargado',
