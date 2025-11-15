@@ -9,7 +9,7 @@ export const categoriasData = {
     genre: 'Acción • Drama • Misterio',
     cast: 'Yuki Kaji, Marina Inoue, Yui Ishikawa'
   },
-  'nada': {z
+  'nada': {
     background: 'Imagenes/nada portada.webp',     // Fondo grande
     cover: 'Imagenes/nada 1.jpg',               // Carátula pequeña
     title: 'Nada',
