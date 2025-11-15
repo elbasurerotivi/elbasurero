@@ -66,6 +66,7 @@
     }
 
 // === RENDERIZAR TARJETAS DE LISTAS ===
+const container = document.getElementById('playlistList'); // ← ¡AQUÍ ESTABA EL PROBLEMA!
 Object.keys(grouped).forEach(name => {
   const videos = grouped[name];
   const slug = slugify(name);
@@ -76,15 +77,15 @@ Object.keys(grouped).forEach(name => {
   );
   const catData = catKey ? categoriasData[catKey] : null;
 
-  // Usar background del primer video o del catData
-  const background = catData?.background || videos[0]?.background || videos[0]?.thumbnail;
+  // Usar background del catData o del primer video
+  const background = catData?.background || videos[0]?.thumbnail || 'Imagenes/default.jpg';
 
   const card = document.createElement('div');
   card.className = 'premium-card playlist-card';
 
   card.innerHTML = `
     <a href="categorias.html?cat=${slug}">
-      <img src="$$ {background}" alt=" $${name}" loading="lazy">
+      <img src="${background}" alt="${name}" loading="lazy">
       <div class="premium-info">
         <h2>${name}</h2>
         <p class="playlist-count">${videos.length} videos</p>
