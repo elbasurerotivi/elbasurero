@@ -14,11 +14,13 @@
     <h1>Premium</h1>
     <p>Bienvenido a tu contenido exclusivo.</p>
 
+    <!-- Barra de búsqueda -->
     <div class="search-container">
       <input type="text" id="searchInput" placeholder="Buscar series, episodios o reacciones...">
       <button id="clearSearch" style="display: none;">Limpiar</button>
     </div>
 
+    <!-- Grid de tarjetas de listas -->
     <div class="premium-grid" id="playlistList"></div>
   </main>
 
@@ -26,81 +28,108 @@
 
   <script src="js/scripts.js"></script>
   <script type="module">
-    import { protectPage } from "./js/roleManager.js";
-    import "./js/login.js";
-    import { videosPremium } from "./js/videos-premium.js";
-    import { db, ref, onValue } from "./js/firebase-config.js";
+  import { protectPage } from "./js/roleManager.js";
+  import "./js/login.js";
+  import { videosPremium, categoriasData } from "./js/videos-premium.js";
 
-    protectPage(["premium", "admin"], "index.html");
+  protectPage(["premium", "admin"], "index.html");
 
-    let videoCategories = {};
-    let categories = {};
+  // Cargar header y footer
+  fetch('header.html').then(r => r.text()).then(d => {
+    document.getElementById('header').innerHTML = d;
+    window.initAuthButtons();
+  });
+  fetch('footer.html').then(r => r.text()).then(d => document.getElementById('footer').innerHTML = d);
 
-    onValue(ref(db, "videoCategories"), (snap) => {
-      videoCategories = snap.val() || {};
-      renderPlaylists();
-    });
+  // === AGRUPAR POR CATEGORÍA ===
+  const grouped = videosPremium.reduce((acc, v) => {
+    const key = v.name || 'Otros';
+    if (!acc[key]) acc[key] = [];
+    acc[key].push(v);
+      return acc;
+    }, {});
 
-    onValue(ref(db, "categories"), (snap) => {
-      categories = snap.val() || {};
-      renderPlaylists();
-    });
+    // === PORTADAS PERSONALIZADAS (sube estas imágenes a GitHub) ===
+    const covers = {
+      'Shingeki No Kyojin': 'Imagenes/Picsart_25-10-18_01-10-37-858.jpg',
+      'Nada': 'Imagenes/nada portada.webp',
+      'Millenium': 'Imagenes/Picsart_25-10-24_19-36-11-553.jpg',
+      'Les Luthiers': 'Imagenes/les-luthiers-1486327.jpg',
+      'El Encargado': 'Imagenes/el encargado portada.webp',
+      'Bloqueados de YouTube': 'Imagenes/Picsart_25-10-18_02-01-51-724.jpg',
+      
 
-    function renderPlaylists() {
-      const grouped = {};
+      // Agrega más...
+    };
 
-      videosPremium.forEach(v => {
-        const catSlug = videoCategories[v.id] || "sin-categoria";
-        const catName = categories[catSlug]?.name || "Sin categoría";
-        if (!grouped[catName]) grouped[catName] = [];
-        grouped[catName].push(v);
-      });
-
-      const container = document.getElementById("playlistList");
-      container.innerHTML = "";
-
-      Object.keys(grouped).forEach(catName => {
-        const videos = grouped[catName];
-        const slug = Object.keys(categories).find(s => categories[s].name === catName) || "sin-categoria";
-        const background = categories[slug]?.background || videos[0]?.thumbnail || "Imagenes/default.jpg";
-
-        const card = document.createElement("div");
-        card.className = "premium-card";
-        card.innerHTML = `
-          <a href="categorias.html?cat=${slug}">
-            <img src="${background}" loading="lazy">
-            <div class="premium-info">
-              <h2>${catName}</h2>
-              <p>${videos.length} videos</p>
-            </div>
-          </a>
-        `;
-        container.appendChild(card);
-      });
+    // === GENERAR URL AMIGABLE ===
+    function slugify(text) {
+      return text.toLowerCase()
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/(^-|-$)/g, '');
     }
 
-    // Cargar header y footer
-    fetch('header.html').then(r => r.text()).then(d => {
-      document.getElementById('header').innerHTML = d;
-      window.initAuthButtons?.();
-    });
-    fetch('footer.html').then(r => r.text()).then(d => document.getElementById('footer').innerHTML = d);
+// === RENDERIZAR TARJETAS DE LISTAS ===
+const container = document.getElementById('playlistList');
+Object.keys(grouped).forEach(name => {
+  const videos = grouped[name];
+  const slug = slugify(name);
 
-    // Búsqueda
+  // === PRIORIDAD DE IMAGEN ===
+  // 1. Portada manual (tú la defines)
+  let background = covers[name];
+
+  // 2. Si no hay portada manual, usa catData.background
+  if (!background) {
+    const catKey = Object.keys(categoriasData).find(key => 
+      categoriasData[key].name === name
+    );
+    const catData = catKey ? categoriasData[catKey] : null;
+    background = catData?.background;
+  }
+
+  // 3. Fallback: thumbnail del primer video
+  if (!background && videos[0]?.thumbnail) {
+    background = videos[0].thumbnail;
+  }
+
+  // 4. Último fallback
+  if (!background) background = 'Imagenes/default.jpg';
+
+  const card = document.createElement('div');
+  card.className = 'premium-card playlist-card';
+
+  card.innerHTML = `
+    <a href="categorias.html?cat=${slug}">
+      <img src="${background}" alt="${name}" loading="lazy">
+      <div class="premium-info">
+        <h2>${name}</h2>
+        <p class="playlist-count">${videos.length} videos</p>
+      </div>
+    </a>
+  `;
+
+  container.appendChild(card);
+});
+
+    // === BÚSQUEDA LOCAL (opcional, filtra listas) ===
     const searchInput = document.getElementById('searchInput');
     const clearBtn = document.getElementById('clearSearch');
+
     searchInput.addEventListener('input', () => {
       const q = searchInput.value.toLowerCase().trim();
       clearBtn.style.display = q ? 'inline-block' : 'none';
-      document.querySelectorAll('.premium-card').forEach(card => {
+
+      document.querySelectorAll('.playlist-card').forEach(card => {
         const title = card.querySelector('h2').textContent.toLowerCase();
         card.style.display = title.includes(q) ? 'block' : 'none';
       });
     });
+
     clearBtn.addEventListener('click', () => {
       searchInput.value = '';
       clearBtn.style.display = 'none';
-      document.querySelectorAll('.premium-card').forEach(c => c.style.display = 'block');
+      document.querySelectorAll('.playlist-card').forEach(c => c.style.display = 'block');
     });
 
     document.body.style.display = 'block';
