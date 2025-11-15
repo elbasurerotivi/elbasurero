@@ -148,6 +148,18 @@ export const videosPremium = [
   ///Nada///
 
   {
+  id: 'tirar_manteca_al_techo',
+  name: 'Nada',
+  temporada: '1',
+  episodio: '5',
+  title: '🔥 Tirar manteca al techo',
+  title2: 'Final inesperado y una despedida que me dejó pensando',
+  description: 'Hay finales que no buscan ruido, pero sí dejarte con esa sensación rara de “necesito procesarlo”.\nEl episodio 5 de NADA logra exactamente eso: una mezcla de ternura, crudeza, humor filoso y una última escena que te obliga a quedarte en silencio un momento.\nEntre detalles que pasan volando, gestos mínimos y decisiones que cierran todo con elegancia, esta reacción se volvió una montaña rusa emocional.\nUna despedida corta, íntima y perfecta para rematar esta miniserie única.',
+  thumbnail: 'Imagenes/NADA-Ep.-5-Final-inesperad.jpg',
+  source: 'https://rumble.com/embed/v6zj5mi/?pub=4nmhh2',
+  type: 'iframe'
+},
+  {
   id: 'comerse_un_garron',
   name: 'Nada',
   temporada: '1',
