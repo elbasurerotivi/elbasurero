@@ -4469,7 +4469,7 @@ footer h3 {
 .player-container {
   position: relative;
   z-index: 1;
-  align-items: center;
+  text-align: center;
 }
 .videoTitle h1{
   color:#ffffff;
