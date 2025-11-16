@@ -23,7 +23,18 @@ export const categoriasData = {
     cast: 'Luis Brandoni, Robert De Niro, María Rosa Fugazot'
   },
 
-      
+    millenium_2: {
+    key: 'millennium',
+    name:'Millennium',
+    background: 'Imagenes/Picsart_25-11-02_19-41-27-072.jpg',     // Fondo grande
+    cover: 'Imagenes/millennium-2.webp',               // Carátula pequeña
+    title: 'Millennium',
+    synopsis: 'Lisbeth Salander es buscada por la policía, tras verse envuelta en el asesinato de dos colaboradores de Millennium, a punto de sacar a la luz un escándalo sobre el comercio sexual en Suecia. Sin embargo, Lisbeth es más un ángel vengador que una víctima indefensa, y arremete con justa ira sobre los que la han herido... Segunda parte de la trilogía Millennium, adaptaciones de las exitosas novelas de Stieg Larsson.',
+    year: '2009',
+    genre: 'Thriller • Intriga',
+    cast: 'Noomi Rapace, Mikael Nyqvist, Lena Endre'
+    },
+  
   millenium: {
     key: 'millennium',
     name:'Millennium',
@@ -36,17 +47,6 @@ export const categoriasData = {
     cast: 'Michael Nyqvist, Noomi Rapace, Sven-Bertil Taube'
   },
 
-    bloqueados_de_youtube: {
-    key: 'bloqueados_de_youtube',
-    name:'Bloqueados de YouTube',
-    background: 'Imagenes/les-luthiers-1486327.jpg',     // Fondo grande
-    cover: 'Imagenes/les luthiers.jpg',               // Carátula pequeña
-    title: 'Ya no te amo, Raúl',
-    synopsis: '"Ya no te amo, Raúl" es una bolera que parodia las canciones de amor apasionadas y dramáticas, característica del estilo de Les Luthiers, donde el humor surge del contraste entre la música y la letra, así como de la interpretación.',
-    year: '2006',
-    genre: 'Humor',
-    cast: 'Les Luthiers'
-  },
 
     peliculas: {
     key: 'peliculas',
@@ -60,7 +60,19 @@ export const categoriasData = {
     cast: 'Richard Dreyfuss, François Truffaut, Teri Garr'
   },
 
-   
+    
+  bloqueados_de_youtube: {
+    key: 'bloqueados_de_youtube',
+    name:'Bloqueados de YouTube',
+    background: 'Imagenes/Picsart_25-10-18_02-01-51-724.jpg',     // Fondo grande
+    cover: 'Imagenes/Picsart_25-10-18_02-01-51-724.jpg',               // Carátula pequeña
+    title: 'Milo J',
+    synopsis: 'Videos de los mas variados. Todo lo que no se puede quedar en youtube, se viene para aca!',
+    year: '2025',
+    genre: 'Musica • Humor • Documental • etc',
+    cast: 'Edgar Mena y el chat'
+  },
+
   el_encargado: {
     key: 'el_encargado',
     name:'El Encargado',
