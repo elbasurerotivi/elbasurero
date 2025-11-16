@@ -3743,10 +3743,11 @@ footer h3 {
   overflow-x: hidden;
   }
 
-  
+
   /* scrollbar */
   ::-webkit-scrollbar{
     background: #00000000;
+    width: 6px;
   }
    ::-webkit-scrollbar-thumb{
     background: #abd100;
