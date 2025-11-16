@@ -75,8 +75,12 @@
 
     protectPage(["premium","admin"], "index.html");
 
-    fetch("header.html").then(r => r.text()).then(d => header.innerHTML = d);
-    fetch("footer.html").then(r => r.text()).then(d => footer.innerHTML = d);
+    // Cargar header y footer
+  fetch('header.html').then(r => r.text()).then(d => {
+    document.getElementById('header').innerHTML = d;
+  });
+  fetch('footer.html').then(r => r.text()).then(d => document.getElementById('footer').innerHTML = d);
+
 
     const params = new URLSearchParams(window.location.search);
     const videoId = params.get("id");
