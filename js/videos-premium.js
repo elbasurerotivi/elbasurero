@@ -1,7 +1,8 @@
 // js/videos.js
 export const categoriasData = {
-  'shingeki_no_kyojin': {
-    categoria: 'Shingki No Kyojin',
+  shingeki_no_kyojin: {
+    key: 'shingki_no_kyojin',
+    name: 'Shingki No Kyojin',
     background: 'Imagenes/Picsart_25-10-18_01-10-37-858.jpg',     // Fondo grande
     cover: 'Imagenes/Shingeki 1.webp',               // Carátula pequeña
     title: 'Shingeki no Kyojin',
