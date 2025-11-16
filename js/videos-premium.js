@@ -35,9 +35,7 @@ export const categoriasData = {
     genre: 'Thriller • Intriga',
     cast: 'Michael Nyqvist, Noomi Rapace, Sven-Bertil Taube'
   },
-
-
-    peliculas: {
+   peliculas: {
     key: 'peliculas',
     name:'Películas',
     background: 'Imagenes/yNtyz.qR4e-small--REACCIN-A-ENCUENTROS-CERCA.jpg',     // Fondo grande
@@ -48,9 +46,7 @@ export const categoriasData = {
     genre: 'Ciencia Ficcion',
     cast: 'Richard Dreyfuss, François Truffaut, Teri Garr'
   },
-
-    
-  bloqueados_de_youtube: {
+   bloqueados_de_youtube: {
     key: 'bloqueados_de_youtube',
     name:'Bloqueados de YouTube',
     background: 'Imagenes/Picsart_25-10-18_02-01-51-724.jpg',     // Fondo grande
@@ -61,8 +57,7 @@ export const categoriasData = {
     genre: 'Musica • Humor • Documental • etc',
     cast: 'Edgar Mena y el chat'
   },
-
-  el_encargado: {
+   el_encargado: {
     key: 'el_encargado',
     name:'El Encargado',
     background: 'Imagenes/el encargado portada.webp',     // Fondo grande
