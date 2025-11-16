@@ -4376,6 +4376,7 @@ footer h3 {
 
   .episode-desc {
     font-size: 0.85rem;
+    color: #ffd700;
     -webkit-line-clamp: 2;
     overflow-y: auto;
   }
