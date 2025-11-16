@@ -283,7 +283,7 @@ export const videosPremium = [
 },
   {
   id: 'encuentros_cercanos',
-  categoria: 'Peliculas',
+  categoria: 'peliculas',
   name: '👽 ENCUENTROS CERCANOS DEL TERCER TIPO',
   temporada: '0',
   episodio: '0',
@@ -296,7 +296,7 @@ export const videosPremium = [
 },
     {
     id: 'mi_obra_maestra',
-    categoria: 'Peliculas',
+    categoria: 'peliculas',
     name: "Mi Obra Maestra",
     temporada: "0",
     episodio: "0",
@@ -310,7 +310,7 @@ export const videosPremium = [
 
   {
     id: 'indiana_jones_2',
-    categoria: 'Peliculas',
+    categoria: 'peliculas',
     name: "Indiana Jones",
     temporada: "0",
     episodio: "2",
@@ -324,7 +324,7 @@ export const videosPremium = [
 
   {
     id: 'indiana_jones_1',
-    categoria: 'Peliculas',
+    categoria: 'peliculas',
     name: "Indiana Jones",
     temporada: "0",
     episodio: "1",
