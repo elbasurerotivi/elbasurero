@@ -67,6 +67,19 @@ export const videosPremium = [
 ///Shinki No Kiojin///
 
 {  
+  id: 'shingeki_no_kyojin_t1_eps_21_25',
+  name: 'Shingeki No Kyojin',
+  categoria: 'shingeki_no_kyojin',
+  temporada: '1',
+  episodio: '21-25',
+  title: '🧭 Shingeki No Kyojin T1 Eps. 21–25',
+  title2: 'Final de Temporada 1',
+  description: 'Los primeros 6 episodios están en YouTube. Los ví y reaccioné a ellos pero nunca los subí completos a ninguna plataforma. Se pueden ver en una lista de reproducción en mi canal El Basurero. Aquí seguimos con la primera temporada de Shingeki no Kyojin, ahora con los episodios 21 al 25, y ¡QUÉ BARBARIDAD! Esta parte es una verdadera montaña rusa.',
+  thumbnail: 'Imagenes/Reaccin-a-Shingeki-no-Kyoji4.jpg',
+  source: 'https://rumble.com/embed/v6zk0xi/?pub=4nmhh2',
+  type: 'iframe'
+},
+{  
   id: 'shingeki_no_kyojin_t1_eps_16_20',
   name: 'Shingeki No Kyojin',
   categoria: 'shingeki_no_kyojin',
