@@ -3745,8 +3745,8 @@ footer h3 {
     background: #00000000;
   }
    ::-webkit-scrollbar-thumb{
-    background: #6e8600;
-    border-radius: 12px;
+    background: #abd100;
+    border-radius: 8px;
   }
   ::-webkit-scrollbar-thumb :hover{
     background: #d7ff22;
