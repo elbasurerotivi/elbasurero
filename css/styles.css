@@ -4201,6 +4201,8 @@ footer h3 {
   .series-details h1 {
     font-size: 2rem;
   }
+  .back-button {
+    display: none;
 }
 /* Tarjetas de lista con fondo del video */
 .playlist-card img {
