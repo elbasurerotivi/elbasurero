@@ -23,19 +23,7 @@ export const categoriasData = {
     cast: 'Luis Brandoni, Robert De Niro, María Rosa Fugazot'
   },
 
-      
-  millenium: {
-    key: 'millennium',
-    name:'Millennium',
-    background: 'Imagenes/Picsart_25-10-24_19-36-11-553.jpg',     // Fondo grande
-    cover: 'Imagenes/millennium 1.jpg',               // Carátula pequeña
-    title: 'Millennium',
-    synopsis: 'Un periodista caído en desgracia y una hacker antisocial descubren un secreto espeluznante mientras investigan el caso de una mujer que desapareció 40 años antes.',
-    year: '2009',
-    genre: 'Thriller • Intriga',
-    cast: 'Michael Nyqvist, Noomi Rapace, Sven-Bertil Taube'
-  },
-   peliculas: {
+    peliculas: {
     key: 'peliculas',
     name:'Películas',
     background: 'Imagenes/yNtyz.qR4e-small--REACCIN-A-ENCUENTROS-CERCA.jpg',     // Fondo grande
