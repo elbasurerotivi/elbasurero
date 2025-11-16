@@ -3750,13 +3750,12 @@ footer h3 {
     width: 6px;
   }
    ::-webkit-scrollbar-thumb{
-    color: #c7a900fb;
+    background: #d4ff1788;
     border-radius: 8px;
   }
-  .tag-buttons::-webkit-scrollbar-thumb:hover{
-    color: #ffdd19fb;
+  ::-webkit-scrollbar-thumb :hover{
+    background: #d0ff00;
   }
-  
   ::-webkit-scrollbar-track{
     background: #ffffff00;
   }
