@@ -220,19 +220,7 @@ export const videosPremium = [
   type: 'iframe'
 },
 
-{
-  id: 'ya_no_te_amo_raul',
-  categoria: 'bloqueados_de_youtube',
-  name: '😂 Les Luthiers',
-  temporada: '0',
-  episodio: '1',
-  title: 'Ya no te amo, Raúl',
-  title2: 'No pude parar de reir',
-  description: 'Algunas piezas de humor simplemente no envejecen, y Ya no te amo, Raúl de Les Luthiers es una de ellas.\nUna joya de la ironía, la música y el absurdo más elegante, que me tuvo riendo de principio a fin.\nEntre el ingenio de las letras, los juegos de palabras y esa interpretación tan característica del grupo, fue imposible no rendirse ante el talento de estos genios.\nUna reacción llena de risas sinceras y admiración total por lo que hacen.',
-  thumbnail: 'Imagenes/NO-PUDE-PARAR-DE-RER-con-Y.jpg',
-  source: 'https://rumble.com/embed/v6zcjy0/?pub=4nmhh2',
-  type: 'iframe'
-},
+
   {
   id: 'encuentros_cercanos',
   categoria: 'peliculas',
@@ -289,20 +277,12 @@ export const videosPremium = [
   },
   
 
-  {
-    id: 'milo_j',
-    categoria: 'bloqueados_de_youtube',
-    name: "Milo J",
-    temporada: "",
-    episodio: "",
-    title: '🔥 MILO J',
-    title2:'Tres canciones que me hicieron cambiar de opinión',
-    description: 'Mi hijo Fabio me recomendó tres canciones de Milo J que, según él, merecían una oportunidad. Yo no soy fan del trap, pero este álbum tiene un toque folklórico que me tomó totalmente por sorpresa. Estas piezas no pueden verse en YouTube, así que esta reacción es contenido exclusivo para quienes disfrutan lo mejor de la música argentina, sin censura ni recortes. Lo confieso: no me gusta Milo J… pero estas tres canciones me volaron la cabeza.',
-    thumbnail: 'Imagenes/reaccion_milo_j.jpg',
-    source: 'https://rumble.com/embed/v6z6sxy/?pub=4nmhh2',
-    type: 'iframe'
-  },
   
+
+
+
+
+
   ///El Encargado///
   {
 
@@ -350,8 +330,35 @@ export const videosPremium = [
   
   
   
-  
-  
+  //chile dulce y manteca
+  {
+  id: 'ya_no_te_amo_raul',
+  categoria: 'bloqueados_de_youtube',
+  name: '😂 Les Luthiers',
+  temporada: '0',
+  episodio: '1',
+  title: 'Ya no te amo, Raúl',
+  title2: 'No pude parar de reir',
+  description: 'Algunas piezas de humor simplemente no envejecen, y Ya no te amo, Raúl de Les Luthiers es una de ellas.\nUna joya de la ironía, la música y el absurdo más elegante, que me tuvo riendo de principio a fin.\nEntre el ingenio de las letras, los juegos de palabras y esa interpretación tan característica del grupo, fue imposible no rendirse ante el talento de estos genios.\nUna reacción llena de risas sinceras y admiración total por lo que hacen.',
+  thumbnail: 'Imagenes/NO-PUDE-PARAR-DE-RER-con-Y.jpg',
+  source: 'https://rumble.com/embed/v6zcjy0/?pub=4nmhh2',
+  type: 'iframe'
+},
+
+{
+    id: 'milo_j',
+    categoria: 'bloqueados_de_youtube',
+    name: "Milo J",
+    temporada: "",
+    episodio: "",
+    title: '🔥 MILO J',
+    title2:'Tres canciones que me hicieron cambiar de opinión',
+    description: 'Mi hijo Fabio me recomendó tres canciones de Milo J que, según él, merecían una oportunidad. Yo no soy fan del trap, pero este álbum tiene un toque folklórico que me tomó totalmente por sorpresa. Estas piezas no pueden verse en YouTube, así que esta reacción es contenido exclusivo para quienes disfrutan lo mejor de la música argentina, sin censura ni recortes. Lo confieso: no me gusta Milo J… pero estas tres canciones me volaron la cabeza.',
+    thumbnail: 'Imagenes/reaccion_milo_j.jpg',
+    source: 'https://rumble.com/embed/v6z6sxy/?pub=4nmhh2',
+    type: 'iframe'
+  },
+
   
   // Agrega más videos aquí según necesites. Es escalable: solo edita este archivo.
 
