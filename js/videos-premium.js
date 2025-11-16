@@ -23,8 +23,9 @@ export const categoriasData = {
     cast: 'Luis Brandoni, Robert De Niro, María Rosa Fugazot'
   },
 
-    'millenium_2': {
-    categoria: 'Millennium',
+    millenium_2: {
+    key: 'millennium',
+    name:'Millennium',
     background: 'Imagenes/Picsart_25-11-02_19-41-27-072.jpg',     // Fondo grande
     cover: 'Imagenes/millennium-2.webp',               // Carátula pequeña
     title: 'Millennium',
@@ -35,7 +36,8 @@ export const categoriasData = {
     },
   
   'millenium': {
-    categoria: 'Millennium',
+    key: 'millennium',
+    name:'Millennium',
     background: 'Imagenes/Picsart_25-10-24_19-36-11-553.jpg',     // Fondo grande
     cover: 'Imagenes/millennium 1.jpg',               // Carátula pequeña
     title: 'Millennium',
@@ -239,7 +241,7 @@ export const videosPremium = [
   },
   {
     id: 'millenium',
-    categoria: 'Millennium',
+    categoria: 'millennium',
     name: 'Millenium',
     temporada: '0',
     episodio: '2',
@@ -252,7 +254,7 @@ export const videosPremium = [
   },
   {
   id: 'millenium_2',
-  categoria: 'Millennium',
+  categoria: 'millennium',
   name: 'Millenium',
   temporada: '0',
   episodio: '1',
