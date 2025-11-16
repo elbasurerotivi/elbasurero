@@ -35,7 +35,7 @@ export const categoriasData = {
     cast: 'Noomi Rapace, Mikael Nyqvist, Lena Endre'
     },
   
-  'millenium': {
+  millenium: {
     key: 'millennium',
     name:'Millennium',
     background: 'Imagenes/Picsart_25-10-24_19-36-11-553.jpg',     // Fondo grande
