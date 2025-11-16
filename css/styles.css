@@ -3804,6 +3804,7 @@ footer h3 {
   gap: 0px;
   position: relative;
   z-index: 1;
+  align-items: center;
 }
 
 .premium-info h3 {
@@ -4228,6 +4229,7 @@ footer h3 {
   right: 0;
   padding: 20px 16px 16px;
   border-radius: 0 0 var(--radius, 16px) var(--radius, 16px);
+  align-items: center;
 }
 
 .playlist-card h2 {
