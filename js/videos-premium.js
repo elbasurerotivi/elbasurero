@@ -315,7 +315,7 @@ export const videosPremium = [
   },
   {
     id: 'una_accion_solidaria',
-    categoria: 'El Encargado',
+    categoria: 'el_encargado',
     id: 'una_accion_solidaria',
     name: "El Encargado",
     temporada: "1",
@@ -329,7 +329,7 @@ export const videosPremium = [
   },
   {
     id: 'un_proyecto_peligroso',
-    categoria: 'El Encargado',
+    categoria: 'el_encargado',
     id: 'un_proyecto_peligroso',
     name: "El Encargado",
     temporada: "1",
