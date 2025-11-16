@@ -47,8 +47,9 @@ export const categoriasData = {
     cast: 'Michael Nyqvist, Noomi Rapace, Sven-Bertil Taube'
   },
 
-    'bloqueados_de_youtube': {
-    categoria: 'Bloqueados de Youtube',
+    bloqueados_de_youtube: {
+    key: 'bloqueados_de_youtube',
+    name:'Bloqueados de YouTube',
     background: 'Imagenes/les-luthiers-1486327.jpg',     // Fondo grande
     cover: 'Imagenes/les luthiers.jpg',               // Carátula pequeña
     title: 'Ya no te amo, Raúl',
@@ -58,8 +59,9 @@ export const categoriasData = {
     cast: 'Les Luthiers'
   },
 
-    'encuenbtros_cercanos_del_tercer_tipo': {
-    categoria: 'Peliculas',
+    peliculas: {
+    key: 'peliculas',
+    name:'Películas',
     background: 'Imagenes/yNtyz.qR4e-small--REACCIN-A-ENCUENTROS-CERCA.jpg',     // Fondo grande
     cover: 'Imagenes/encuentros cercanos del tercer tipo.jpg',               // Carátula pequeña  
     title: 'Encuentros cercanos del Tercer Tipo',
@@ -268,7 +270,7 @@ export const videosPremium = [
 
 {
   id: 'ya_no_te_amo_raul',
-  categoria: 'Bloqueados de YouTube',
+  categoria: 'bloqueados_de_youtube',
   name: '😂 Les Luthiers',
   temporada: '0',
   episodio: '1',
@@ -337,7 +339,7 @@ export const videosPremium = [
 
   {
     id: 'milo_j',
-    categoria: 'Bloqueados de YouTube',
+    categoria: 'bloqueados_de_youtube',
     name: "Milo J",
     temporada: "",
     episodio: "",
