@@ -31,7 +31,7 @@ export const categoriasData = {
     title: 'Películas',
     synopsis: 'Este es un espacio dedicado especialmente a todas esas peliculas que vemos cada semana!!',
     year: '2025',
-    genre: 'Ciencia ficcion • Comedia • Aventura • Acción • Terror • Drama',
+    genre: 'Peliculas de todo tipo',
     cast: 'Edgar y el chat'
   },
    bloqueados_de_youtube: {
