@@ -3742,6 +3742,9 @@ footer h3 {
   overflow-y: auto;
   overflow-x: hidden;
   }
+
+  
+  /* scrollbar */
   ::-webkit-scrollbar{
     background: #00000000;
   }
