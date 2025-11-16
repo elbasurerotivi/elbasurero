@@ -26,8 +26,8 @@ export const categoriasData = {
     peliculas: {
     key: 'peliculas',
     name:'Películas',
-    background: 'Imagenes/yNtyz.qR4e-small--REACCIN-A-ENCUENTROS-CERCA.jpg',     // Fondo grande
-    cover: 'Imagenes/encuentros cercanos del tercer tipo.jpg',               // Carátula pequeña  
+    background: 'Imagenes/portada_peliculas.jpg',     // Fondo grande
+    cover: 'Imagenes/poster_peliculas.jpg',               // Carátula pequeña  
     title: 'Películas',
     synopsis: 'Este es un espacio dedicado especialmente a todas esas peliculas que vemos cada semana!!',
     year: '2025',
