@@ -176,6 +176,23 @@ export const videosPremium = [
     source: 'https://rumble.com/embed/v6yzbss/?pub=4nmhh2',
     type: 'iframe'
   },
+
+  //peliculas//
+
+  {
+    id: 'el_patron',
+    categoria: 'peliculas',
+    name: 'El Patron',
+    temporada: '0',
+    episodio: '0',
+    title: '🥩 El Patrón: Radiografía de un Crimen',
+    title2: 'Película Cruda y Poderosa + Folklore Argentino',
+    description: 'Hoy en el canal nos aventamos una reacción intensa: “El Patrón: Radiografía de un Crimen”, una película argentina durísima basada en hechos reales. La historia de un carnicero atrapado en un sistema injusto, actuaciones brillantes y una crudeza que te deja pensando un buen rato. La verdad, tremenda película. Me sorprendió muchísimo.',
+    thumbnail: 'Imagenes/Reaccin-a-El-Patrn-Radiogra.jpg',
+    source: 'https://rumble.com/embed/v6zjt1o/?pub=4nmhh2',
+    type: 'iframe'
+  },
+
   {
     id: 'millenium',
     categoria: 'peliculas',
