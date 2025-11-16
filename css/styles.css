@@ -3731,7 +3731,7 @@ footer h3 {
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--border-premium, rgba(255, 215, 0, 0.3));
   border-radius: var(--radius, 16px);
-  
+  overflow: hidden;
   height: 370px;
   display: flex;
   flex-direction: column;
@@ -3840,7 +3840,7 @@ footer h3 {
   display: -webkit-box;
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
-  overflow-y:auto;
+  overflow: hidden;
   flex: 1;
 }
 
@@ -4159,7 +4159,7 @@ footer h3 {
 
 .episode-desc {
   font-size: 0.9rem;
-  color: #ffd700;
+  color: #ccc;
   margin: 0;
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -4357,7 +4357,7 @@ footer h3 {
   }
 
   .episode-card img {
-    height: 165px;
+    height: 100px;
     border-radius: 12px;
   }
 
@@ -4376,13 +4376,11 @@ footer h3 {
 
   .episode-desc {
     font-size: 0.85rem;
-    color: #ffd700;
     -webkit-line-clamp: 2;
     overflow-y: auto;
   }
   .catDesc{
     font-size: 0.8rem;
-    color: #ffffff;
     text-align: center;
     overflow-y: auto;
   }
