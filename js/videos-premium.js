@@ -1,6 +1,6 @@
 // js/videos.js
 export const categoriasData = {
-  'shingeki-no-kyojin': {
+  'shingeki_no_kyojin': {
     categoria: 'Shingki No Kyojin',
     background: 'Imagenes/Picsart_25-10-18_01-10-37-858.jpg',     // Fondo grande
     cover: 'Imagenes/Shingeki 1.webp',               // Carátula pequeña
@@ -21,7 +21,7 @@ export const categoriasData = {
     cast: 'Luis Brandoni, Robert De Niro, María Rosa Fugazot'
   },
 
-    'millenium-2': {
+    'millenium_2': {
     categoria: 'Millennium',
     background: 'Imagenes/Picsart_25-11-02_19-41-27-072.jpg',     // Fondo grande
     cover: 'Imagenes/millennium-2.webp',               // Carátula pequeña
@@ -43,7 +43,7 @@ export const categoriasData = {
     cast: 'Michael Nyqvist, Noomi Rapace, Sven-Bertil Taube'
   },
 
-    'bloqueados-de-youtube': {
+    'bloqueados_de_youtube': {
     categoria: 'Bloqueados de Youtube',
     background: 'Imagenes/les-luthiers-1486327.jpg',     // Fondo grande
     cover: 'Imagenes/les luthiers.jpg',               // Carátula pequeña
@@ -54,7 +54,7 @@ export const categoriasData = {
     cast: 'Les Luthiers'
   },
 
-    'encuenbtros-cercanos-del-tercer-tipo': {
+    'encuenbtros_cercanos_del_tercer_tipo': {
     categoria: 'Peliculas',
     background: 'Imagenes/yNtyz.qR4e-small--REACCIN-A-ENCUENTROS-CERCA.jpg',     // Fondo grande
     cover: 'Imagenes/encuentros cercanos del tercer tipo.jpg',               // Carátula pequeña  
@@ -65,7 +65,7 @@ export const categoriasData = {
     cast: 'Richard Dreyfuss, François Truffaut, Teri Garr'
   },
 
-    'mi-obra-maestra': {
+    'mi_obra_maestra': {
     categoria: 'Peliculas',
     background: 'Imagenes/REACCIN-A-Mi-obra-maestra-.jpg',     // Fondo grande
     cover: 'Imagenes/mi obra maestra.jpg',               // Carátula pequeña
@@ -75,7 +75,7 @@ export const categoriasData = {
     genre: 'Comedia • Drama',
     cast: 'Guillermo Francella, Luis Brandoni, Raúl Arévalo'
   },
-  'indiana-jones-2': {
+  'indiana_jones_2': {
     categoria: 'Peliculas',
     background: 'Imagenes/Picsart_25-10-21_14-04-12-948.jpg',     // Fondo grande
     cover: 'Imagenes/indiana jones 2.jpg',               // Carátula pequeña
@@ -85,7 +85,7 @@ export const categoriasData = {
     genre: 'Acción • Aventura',
     cast: 'Harrison Ford, Kate Capshaw, Ke Huy Quan'
   },
-  'indiana-jones': {
+  'indiana_jones': {
     categoria: 'Peliculas',
     background: 'Imagenes/Picsart_25-10-14_10-51-57-730.jpg',     // Fondo grande
     cover: 'Imagenes/indiana jones 1.jpg',               // Carátula pequeña
@@ -95,7 +95,7 @@ export const categoriasData = {
     genre: 'Acción • Aventura',
     cast: 'Harrison Ford, Karen Allen, Paul Freeman'
   },
-  'bloqueados-de-youtube': {
+  'bloqueados_de_youtube': {
     background: 'Imagenes/Picsart_25-10-18_02-01-51-724.jpg',     // Fondo grande
     cover: 'Imagenes/Picsart_25-10-18_02-01-51-724.jpg',               // Carátula pequeña
     title: 'Milo J',
@@ -105,7 +105,7 @@ export const categoriasData = {
     cast: 'Edgar Mena y el chat'
   },
 
-  'el-encargado': {
+  'el_encargado': {
     categoria: 'El Encargado',
     background: 'Imagenes/el encargado portada.webp',     // Fondo grande
     cover: 'Imagenes/el encargado 1.webp',               // Carátula pequeña
