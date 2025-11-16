@@ -3750,7 +3750,7 @@ footer h3 {
     width: 6px;
   }
    ::-webkit-scrollbar-thumb{
-    --gold: #c7a900fb;;
+    color: #c7a900fb;
     border-radius: 8px;
   }
   
