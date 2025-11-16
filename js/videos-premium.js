@@ -2,10 +2,10 @@
 export const categoriasData = {
   shingeki_no_kyojin: {
     key: 'shingeki_no_kyojin',
-    name: 'shingeki No Kyojin',
+    name: 'Shingeki No Kyojin',
     background: 'Imagenes/Picsart_25-10-18_01-10-37-858.jpg',     // Fondo grande
     cover: 'Imagenes/Shingeki 1.webp',               // Carátula pequeña
-    title: 'Shingeki no Kyojin',
+    title: 'Shingeki No Kyojin',
     synopsis: 'Cuando un titán colosal arrasa su hogar y mata a su madre, Eren Jaeger se une a la Legión de Reconocimiento con sus amigos Mikasa y Armin, solo para descubrir que él mismo puede volverse un titán. En su lucha por la supervivencia, Eren destapa conspiraciones, intrigas políticas y el terrible origen de los titanes.',
     year: '2013–2023',
     genre: 'Acción • Drama • Misterio',
