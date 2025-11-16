@@ -28,7 +28,7 @@ export const categoriasData = {
     name:'Películas',
     background: 'Imagenes/yNtyz.qR4e-small--REACCIN-A-ENCUENTROS-CERCA.jpg',     // Fondo grande
     cover: 'Imagenes/encuentros cercanos del tercer tipo.jpg',               // Carátula pequeña  
-    title: 'Encuentros cercanos del Tercer Tipo',
+    title: 'Películas',
     synopsis: 'Después de un encuentro accidental con naves de otro mundo, un hombre ordinario sigue una serie de pistas psíquicas sobre el primer encuentro programado entre representantes de la Tierra y visitantes del cosmos.',
     year: '1977',
     genre: 'Ciencia Ficcion',
