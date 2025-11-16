@@ -3740,6 +3740,7 @@ footer h3 {
   position: relative;
   animation: fadeUp 0.6s ease-out;
   overflow-y: auto;
+  overflow-x: hidden;
   }
   ::-webkit-scrollbar{
     background: #00000000;
