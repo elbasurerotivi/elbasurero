@@ -4193,6 +4193,8 @@ footer h3 {
     flex-direction: column;
     align-items: center;
     text-align: center;
+    gap: 0px;
+    overflow-y: auto;
   }
   .series-cover {
     width: 140px;
