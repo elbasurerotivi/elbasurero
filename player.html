@@ -4,119 +4,112 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Reproductor | El Basurero</title>
-  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/player-youtube.css">
   <link rel="icon" href="Imagenes/icono.png" type="image/x-icon">
 </head>
+
 <body style="display:none;">
   <div id="header"></div>
 
-  <main class="player-container-premium">
-    <h1 id="videoTitle"></h1>
-    <div class="video-wrapper" id="videoContainer">
-      <!-- El video/iframe se inserta aquí -->
-    </div>
-    <p id="videoDescription"></p>
+  <main class="player-page">
 
-    <div class="back-btn">
-      <a href="playlist.html">← Atrás</a>
+    <!-- CONTENEDOR PRINCIPAL -->
+    <div class="video-section">
+
+      <h1 id="videoTitle" class="video-title"></h1>
+
+      <div class="video-wrapper" id="videoContainer">
+        <!-- El iframe/video se insertará aquí -->
+      </div>
+
+      <!-- ACCIONES DE VIDEO (like/dislike) -->
+      <div class="video-actions">
+        <div class="actions-left">
+          <button id="likeBtn" class="action-btn">
+            👍 <span id="likeCount">0</span>
+          </button>
+
+          <button id="dislikeBtn" class="action-btn">
+            👎 <span id="dislikeCount">0</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- DESCRIPCIÓN DEL VIDEO -->
+      <div class="video-description">
+        <p id="videoDescription"></p>
+      </div>
+
+      <!-- COMENTARIOS -->
+      <div class="comments-container">
+        <h2>Comentarios</h2>
+
+        <button id="showCommentForm" class="add-comment-btn">Agregar comentario</button>
+
+        <div id="commentForm" class="comment-form" style="display:none;">
+          <textarea id="commentText" placeholder="Escribe tu comentario..."></textarea>
+          <div class="comment-form-buttons">
+            <button id="cancelComment" class="cancel-btn">Cancelar</button>
+            <button id="sendComment" class="send-btn">Enviar</button>
+          </div>
+        </div>
+
+        <div id="commentsList" class="comments-list">
+          <p style="color:#aaa">Cargando comentarios...</p>
+        </div>
+      </div>
+
     </div>
+
   </main>
 
   <div id="footer"></div>
 
   <script src="js/scripts.js"></script>
-  <script>
-    fetch("header.html")
-      .then(response => response.text())
-      .then(data => {
-        document.getElementById("header").innerHTML = data;
-      })
-      .catch(error => console.error("Error cargando el header:", error));
-  </script>
-  <script type="module" src="js/login.js" defer></script>
+  <script type="module" src="js/login.js"></script>
+
   <script type="module">
-  import { protectPage } from "./js/roleManager.js";
-  import { videosPremium } from "./js/videos-premium.js";
-  import { initVideoInteraction } from "./js/video-interaction.js";
+    import { protectPage } from "./js/roleManager.js";
+    import { videosPremium } from "./js/videos-premium.js";
+    import { initVideoInteraction } from "./js/video-interaction.js";
 
-  protectPage(["premium", "admin"], "index.html");
+    protectPage(["premium","admin"], "index.html");
 
-  // Cargar header y footer
-  fetch('header.html').then(r => r.text()).then(d => {
-    document.getElementById('header').innerHTML = d;
-  });
-  fetch('footer.html').then(r => r.text()).then(d => document.getElementById('footer').innerHTML = d);
+    fetch("header.html").then(r => r.text()).then(d => header.innerHTML = d);
+    fetch("footer.html").then(r => r.text()).then(d => footer.innerHTML = d);
 
-  // Obtener video
-  const params = new URLSearchParams(window.location.search);
-  const videoId = params.get('id');
-  const video = videosPremium.find(v => v.id === videoId);
+    const params = new URLSearchParams(window.location.search);
+    const videoId = params.get("id");
+    const video = videosPremium.find(v => v.id === videoId);
 
-  const titleEl = document.getElementById('videoTitle');
-  const descEl = document.getElementById('videoDescription');
-  const container = document.getElementById('videoContainer');
+    const titleEl = document.getElementById("videoTitle");
+    const descEl  = document.getElementById("videoDescription");
+    const container = document.getElementById("videoContainer");
 
-  if (video) {
-    titleEl.textContent = video.title;
-    descEl.textContent = video.description;
+    if (video) {
+      titleEl.textContent = video.title;
+      descEl.textContent  = video.description;
 
-    // INSERTAR VIDEO
-    if (video.type === 'iframe') {
-      container.innerHTML = `
-        <iframe src="${video.source}" frameborder="0"  width="640" height="360"  allowfullscreen allow="fullscreen; autoplay; encrypted-media"></iframe>
-      `;
-    } else if (video.type === 'video') {
-      container.innerHTML = `
-        <video controls preload="metadata">
-          <source src="${video.source}" type="video/mp4">
-          Tu navegador no soporta video.
-        </video>
-      `;
+      if (video.type === "iframe") {
+        container.innerHTML = `
+          <iframe src="${video.source}" allowfullscreen></iframe>
+        `;
+      } else {
+        container.innerHTML = `
+          <video controls>
+            <source src="${video.source}" type="video/mp4">
+          </video>
+        `;
+      }
+
+      initVideoInteraction(videoId);
+
+    } else {
+      titleEl.textContent = "Video no encontrado";
+      container.innerHTML = "<p>Error 404</p>";
     }
 
-    
-    // INSERTAR INTERACCIÓN
-    const interactionHTML = `
-      <div class="video-interaction">
-        <div class="like-section">
-          <button id="likeBtn" class="like-btn">
-            <span class="like-icon"> 👍 </span>
-            <span id="likeCount">0</span>
-          </button>
-          <button id="dislikeBtn" class="like-btn dislike">
-            <span class="like-icon"> 👎 </span>
-            <span id="dislikeCount">0</span>
-          </button>
-        </div>
-
-        <div class="comments-section">
-          <h3>Comentarios</h3>
-          <div id="commentForm" style="display:none;">
-            <textarea id="commentText" placeholder="Escribe tu comentario..." maxlength="1000"></textarea>
-            <button id="sendComment">Enviar</button>
-            <button id="cancelComment">Cancelar</button>
-          </div>
-          <button id="showCommentForm" class="add-comment-btn">Comentar</button>
-          <div id="commentsList">
-            <p style="color:#999;text-align:center;">Cargando comentarios...</p>
-          </div>
-        </div>
-      </div>
-    `;
-
-    const main = document.querySelector('.player-container-premium');
-    main.insertAdjacentHTML('beforeend', interactionHTML);
-
-    // INICIALIZAR
-    initVideoInteraction(videoId);
-
-  } else {
-    titleEl.textContent = 'Video no encontrado';
-    descEl.textContent = 'El video solicitado no existe.';
-    container.innerHTML = '<p style="text-align:center;color:#ccc;">Error 404</p>';
-  }
-
-  document.body.style.display = 'block';
-</script>
+    document.body.style.display = "block";
+  </script>
 </body>
 </html>
