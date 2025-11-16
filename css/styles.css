@@ -4490,6 +4490,7 @@ footer h3 {
   border-radius: 16px;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
   background: #000;
+  text-align: center;
 }
 
 #videoContainer iframe,
