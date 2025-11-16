@@ -3731,7 +3731,6 @@ footer h3 {
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--border-premium, rgba(255, 215, 0, 0.3));
   border-radius: var(--radius, 16px);
-  overflow: hidden;
   height: 370px;
   display: flex;
   flex-direction: column;
@@ -3740,6 +3739,7 @@ footer h3 {
   transition: all 0.4s ease;
   position: relative;
   animation: fadeUp 0.6s ease-out;
+  overflow-y: auto;
 }
 
 .premium-card::before {
@@ -4357,9 +4357,8 @@ footer h3 {
   }
 
   .episode-card img {
-    height: 100px;
+    height: 166px;
     border-radius: 12px;
-    overflow-y: auto;
   }
 
   .episode-card .premium-info {
