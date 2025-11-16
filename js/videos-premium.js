@@ -1,7 +1,7 @@
 // js/videos.js
 export const categoriasData = {
   'shingeki-no-kyojin': {
-    categoria: 'Shingeki No Kiojin',
+    categoria: 'Shingki No Kyojin',
     background: 'Imagenes/Picsart_25-10-18_01-10-37-858.jpg',     // Fondo grande
     cover: 'Imagenes/Shingeki 1.webp',               // Carátula pequeña
     title: 'Shingeki no Kyojin',
@@ -128,7 +128,7 @@ export const videosPremium = [
 {  
   id: 'shingeki_no_kyojin_t1_eps_16_20',
   name: 'Shingeki No Kyojin',
-  categoria: 'Shingeki No Kiojin',
+  categoria: 'Shingki No Kyojin',
   temporada: '1',
   episodio: '16-20',
   title: '🧭 Shingeki No Kyojin T1 Eps. 16–20',
@@ -142,7 +142,7 @@ export const videosPremium = [
 { 
   id: 'shingeki_no_kyojin_t1_eps_12_15',
   name: 'Shingeki No Kyojin',
-  categoria: 'Shingeki No Kiojin',
+  categoria: 'Shingki No Kyojin',
   temporada: '1',
   episodio: '12-15' ,
   title: '💥 Shingeki No Kyojin T1 Eps. 12–15',
@@ -155,7 +155,7 @@ export const videosPremium = [
 {
   id: 'shingeki_no_kyojin_t1_eps_7_11',
   name: 'Shingeki No Kyojin',
-  categoria: 'Shingeki No Kiojin',
+  categoria: 'Shingki No Kyojin',
   temporada: '1',
   episodio: '7-11',
   title: '⚔️ Shingeki No Kyojin T1 Eps. 7–11',
