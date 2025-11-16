@@ -71,39 +71,18 @@
 
 // === RENDERIZAR TARJETAS DE LISTAS ===
 const container = document.getElementById('playlistList');
-Object.keys(grouped).forEach(name => {
-  const videos = grouped[name];
-  const slug = slugify(name);
 
-  // === PRIORIDAD DE IMAGEN ===
-  // 1. Portada manual (tú la defines)
-  let background = covers[name];
-
-  // 2. Si no hay portada manual, usa catData.background
-  if (!background) {
-    const catKey = Object.keys(categoriasData).find(key => 
-      categoriasData[key].name === name
-    );
-    const catData = catKey ? categoriasData[catKey] : null;
-    background = catData?.background;
-  }
-
-  // 3. Fallback: thumbnail del primer video
-  if (!background && videos[0]?.thumbnail) {
-    background = videos[0].thumbnail;
-  }
-
-  // 4. Último fallback
-  if (!background) background = 'Imagenes/default.jpg';
+Object.values(categoriasData).forEach(cat => {
+  const videos = videosPremium.filter(v => v.categoria === cat.key);
 
   const card = document.createElement('div');
   card.className = 'premium-card playlist-card';
 
   card.innerHTML = `
-    <a href="categorias.html?cat=${slug}">
-      <img src="${background}" alt="${name}" loading="lazy">
+    <a href="categorias.html?cat=${cat.key}">
+      <img src="${cat.background}" alt="${cat.name}" loading="lazy">
       <div class="premium-info">
-        <h2>${name}</h2>
+        <h2>${cat.name}</h2>
         <p class="playlist-count">${videos.length} videos</p>
       </div>
     </a>
@@ -111,6 +90,7 @@ Object.keys(grouped).forEach(name => {
 
   container.appendChild(card);
 });
+
 
     // === BÚSQUEDA LOCAL (opcional, filtra listas) ===
     const searchInput = document.getElementById('searchInput');
