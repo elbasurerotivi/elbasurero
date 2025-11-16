@@ -23,18 +23,7 @@ export const categoriasData = {
     cast: 'Luis Brandoni, Robert De Niro, María Rosa Fugazot'
   },
 
-    millenium_2: {
-    key: 'millennium',
-    name:'Millennium',
-    background: 'Imagenes/Picsart_25-11-02_19-41-27-072.jpg',     // Fondo grande
-    cover: 'Imagenes/millennium-2.webp',               // Carátula pequeña
-    title: 'Millennium',
-    synopsis: 'Lisbeth Salander es buscada por la policía, tras verse envuelta en el asesinato de dos colaboradores de Millennium, a punto de sacar a la luz un escándalo sobre el comercio sexual en Suecia. Sin embargo, Lisbeth es más un ángel vengador que una víctima indefensa, y arremete con justa ira sobre los que la han herido... Segunda parte de la trilogía Millennium, adaptaciones de las exitosas novelas de Stieg Larsson.',
-    year: '2009',
-    genre: 'Thriller • Intriga',
-    cast: 'Noomi Rapace, Mikael Nyqvist, Lena Endre'
-    },
-  
+      
   millenium: {
     key: 'millennium',
     name:'Millennium',
@@ -71,46 +60,7 @@ export const categoriasData = {
     cast: 'Richard Dreyfuss, François Truffaut, Teri Garr'
   },
 
-    'mi_obra_maestra': {
-    categoria: 'Peliculas',
-    background: 'Imagenes/REACCIN-A-Mi-obra-maestra-.jpg',     // Fondo grande
-    cover: 'Imagenes/mi obra maestra.jpg',               // Carátula pequeña
-    title: 'Mi Obra Maestra',
-    synopsis: 'Arturo es un tratante de arte sin escrúpulos y Renzo es un pintor socialmente inadaptado con el que tiene amistad desde hace muchos años. Dispuestos a arriesgarlo todo, desarrollan un plan radical y ridículo para salvarse.',
-    year: '2018',
-    genre: 'Comedia • Drama',
-    cast: 'Guillermo Francella, Luis Brandoni, Raúl Arévalo'
-  },
-  'indiana_jones_2': {
-    categoria: 'Peliculas',
-    background: 'Imagenes/Picsart_25-10-21_14-04-12-948.jpg',     // Fondo grande
-    cover: 'Imagenes/indiana jones 2.jpg',               // Carátula pequeña
-    title: 'Indiana Jones y el templo de la perdición',
-    synopsis: 'En 1935, Indiana Jones llega a la India, todavía parte del Imperio Británico, y se le pide que encuentre una piedra mística. Luego se topa con un culto secreto que comete esclavitud y sacrificios humanos en las catacumbas de un antiguo palacio.',
-    year: '1984',
-    genre: 'Acción • Aventura',
-    cast: 'Harrison Ford, Kate Capshaw, Ke Huy Quan'
-  },
-  'indiana_jones': {
-    categoria: 'Peliculas',
-    background: 'Imagenes/Picsart_25-10-14_10-51-57-730.jpg',     // Fondo grande
-    cover: 'Imagenes/indiana jones 1.jpg',               // Carátula pequeña
-    title: 'Indiana Jones y los cazadores del arca perdida',
-    synopsis: 'En 1936, el arqueólogo y aventurero Indiana Jones es contratado por el gobierno de Estados Unidos para encontrar el Arca de la Alianza antes de que lo hagan los nazis de Adolf Hitler.',
-    year: '1981',
-    genre: 'Acción • Aventura',
-    cast: 'Harrison Ford, Karen Allen, Paul Freeman'
-  },
-  'bloqueados_de_youtube': {
-    background: 'Imagenes/Picsart_25-10-18_02-01-51-724.jpg',     // Fondo grande
-    cover: 'Imagenes/Picsart_25-10-18_02-01-51-724.jpg',               // Carátula pequeña
-    title: 'Milo J',
-    synopsis: 'Videos de los mas variados. Todo lo que no se puede quedar en youtube, se viene para aca!',
-    year: '2025',
-    genre: 'Musica • Humor • Documental • etc',
-    cast: 'Edgar Mena y el chat'
-  },
-
+   
   el_encargado: {
     key: 'el_encargado',
     name:'El Encargado',
