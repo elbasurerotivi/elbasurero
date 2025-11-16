@@ -3750,11 +3750,11 @@ footer h3 {
     width: 6px;
   }
    ::-webkit-scrollbar-thumb{
-    background: #d4ff1788;
+    background: #ffe60079;
     border-radius: 8px;
   }
   ::-webkit-scrollbar-thumb :hover{
-    background: #d0ff00;
+    background: #ffe600;
   }
   ::-webkit-scrollbar-track{
     background: #ffffff00;
