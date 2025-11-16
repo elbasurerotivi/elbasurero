@@ -27,7 +27,7 @@ export const categoriasData = {
     key: 'peliculas',
     name:'Películas',
     background: 'Imagenes/portada_peliculas.jpg',     // Fondo grande
-    cover: 'Imagenes/poster_peliculas.jpg',               // Carátula pequeña  
+    cover: 'Imagenes/poster_peliculas.png',               // Carátula pequeña  
     title: 'Películas',
     synopsis: 'Este es un espacio dedicado especialmente a todas esas peliculas que vemos cada semana!!',
     year: '2025',
