@@ -4379,6 +4379,12 @@ footer h3 {
     -webkit-line-clamp: 2;
     overflow-y: auto;
   }
+  .catDesc{
+    font-size: 0.8rem;
+    color: #ffffff;
+    text-align: center;
+    overflow-y: auto;
+  }
 
   /* === FOOTER (si tenés) === */
   #footer {
