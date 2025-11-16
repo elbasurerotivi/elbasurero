@@ -3740,7 +3740,21 @@ footer h3 {
   position: relative;
   animation: fadeUp 0.6s ease-out;
   overflow-y: auto;
-}
+  }
+  ::-webkit-scrollbar{
+    background: #00000000;
+  }
+   ::-webkit-scrollbar-thumb{
+    background: #6e8600;
+    border-radius: 12px;
+  }
+  ::-webkit-scrollbar-thumb :hover{
+    background: #d7ff22;
+  }
+  ::-webkit-scrollbar-track{
+    background: #ffffff00;
+  }
+
 
 .premium-card::before {
   content: '';
@@ -3761,6 +3775,7 @@ footer h3 {
               0 0 30px rgba(255, 215, 0, 0.15);
   background: rgba(40, 40, 60, 0.5);
 }
+
 
 .premium-card img {
   width: 100%;
