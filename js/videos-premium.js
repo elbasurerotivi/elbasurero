@@ -111,8 +111,9 @@ export const categoriasData = {
     cast: 'Edgar Mena y el chat'
   },
 
-  'el_encargado': {
-    categoria: 'El Encargado',
+  el_encargado: {
+    key: 'el_encargado',
+    name:'El Encargado',
     background: 'Imagenes/el encargado portada.webp',     // Fondo grande
     cover: 'Imagenes/el encargado 1.webp',               // Carátula pequeña
     title: 'El Encargado',
@@ -243,7 +244,7 @@ export const videosPremium = [
   },
   {
     id: 'millenium',
-    categoria: 'millennium',
+    categoria: 'peliculas',
     name: 'Millenium',
     temporada: '0',
     episodio: '2',
@@ -256,7 +257,7 @@ export const videosPremium = [
   },
   {
   id: 'millenium_2',
-  categoria: 'millennium',
+  categoria: 'peliculas',
   name: 'Millenium',
   temporada: '0',
   episodio: '1',
@@ -355,7 +356,7 @@ export const videosPremium = [
   {
 
     id: 'un_turista_en_buenos_aires',
-    categoria: 'El Encargado',
+    categoria: 'el_encargado',
     name: "El Encargado",
     temporada: "1",
     episodio: "3",
