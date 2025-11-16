@@ -29,21 +29,21 @@ export const categoriasData = {
     background: 'Imagenes/yNtyz.qR4e-small--REACCIN-A-ENCUENTROS-CERCA.jpg',     // Fondo grande
     cover: 'Imagenes/encuentros cercanos del tercer tipo.jpg',               // Carátula pequeña  
     title: 'Películas',
-    synopsis: 'Después de un encuentro accidental con naves de otro mundo, un hombre ordinario sigue una serie de pistas psíquicas sobre el primer encuentro programado entre representantes de la Tierra y visitantes del cosmos.',
-    year: '1977',
-    genre: 'Ciencia Ficcion',
-    cast: 'Richard Dreyfuss, François Truffaut, Teri Garr'
+    synopsis: 'Este es un espacio dedicado especialmente a todas esas peliculas que vemos cada semana!!',
+    year: '2025',
+    genre: 'Ciencia ficcion • Comedia • Aventura • Acción • Terror • Drama',
+    cast: 'Edgar y el chat'
   },
    bloqueados_de_youtube: {
     key: 'bloqueados_de_youtube',
     name:'Bloqueados de YouTube',
     background: 'Imagenes/Picsart_25-10-18_02-01-51-724.jpg',     // Fondo grande
     cover: 'Imagenes/Picsart_25-10-18_02-01-51-724.jpg',               // Carátula pequeña
-    title: 'Milo J',
+    title: 'Reels, videos, canciones, tic tocs, vides cortos. Todo el chile, dulce y manteca del bueno, en un solo lugar',
     synopsis: 'Videos de los mas variados. Todo lo que no se puede quedar en youtube, se viene para aca!',
     year: '2025',
     genre: 'Musica • Humor • Documental • etc',
-    cast: 'Edgar Mena y el chat'
+    cast: 'Edgar y el chat'
   },
    el_encargado: {
     key: 'el_encargado',
