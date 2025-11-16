@@ -3753,6 +3753,9 @@ footer h3 {
     color: #c7a900fb;
     border-radius: 8px;
   }
+  .tag-buttons::-webkit-scrollbar-thumb:hover{
+    color: #ffdd19fb;
+  }
   
   ::-webkit-scrollbar-track{
     background: #ffffff00;
