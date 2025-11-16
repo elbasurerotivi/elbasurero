@@ -39,7 +39,7 @@ export const categoriasData = {
     name:'Bloqueados de YouTube',
     background: 'Imagenes/Picsart_25-10-18_02-01-51-724.jpg',     // Fondo grande
     cover: 'Imagenes/ChatGPT Image 8 oct 2025, 02_53_59 p.m..png',               // Carátula pequeña
-    title: 'Reels, videos, canciones, tic tocs, vides cortos. Todo el chile, dulce y manteca del bueno, en un solo lugar',
+    title: 'Bloqueados de YouTube',
     synopsis: 'Videos de los mas variados. Todo lo que no se puede quedar en youtube, se viene para aca!',
     year: '2025',
     genre: 'Musica • Humor • Documental • etc',
