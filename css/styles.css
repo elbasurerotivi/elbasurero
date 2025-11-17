@@ -4067,7 +4067,7 @@ footer h3 {
 }
 
 .back-button:hover {
-  background: var(--gold, #ffd90094);
+  background: #ffd90094);
   color: #000;
   transform: translateY(-2px);
 }
