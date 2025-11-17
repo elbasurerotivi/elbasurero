@@ -1,3 +1,51 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+
+/* ==========================================================
+   MODO OSCURO - EL BASURERO (Estilo general para todo el sitio)
+   ========================================================== */
+
+:root {
+  --accent: #ff4081;
+  --accent-hover: #ff79b0;
+  --text-light: #eaeaea;
+  --text-muted: #9e9e9e;
+  --bg-dark: #121212;
+  --glass-bg: rgba(255, 255, 255, 0.05);
+  --border-light: rgba(255, 255, 255, 0.1);
+  --blur: blur(20px);
+  --radius: 14px;
+  --transition: 0.3s ease;
+  --gold: #ffd700;
+  --glass-bg-premium: rgba(30, 30, 50, 0.4);
+  --border-premium: rgba(255, 215, 0, 0.3);
+}
+
+
+/* ====== GENERAL ====== */
+body {
+  background-color: var(--bg-dark);
+  color: #ffffff;
+  font-family: 'Roboto', sans-serif;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: var(--transition);
+}
+a:hover {
+  color: var(--accent-hover);
+}
+
 /* ====== HEADER ====== */
 header, .navbar {
   background: rgba(18,18,18,0.9);
@@ -81,6 +129,56 @@ header, .navbar {
     height: 44px;
     font-size: 11px;
   }
+}
+
+
+
+
+
+/* ====== HERO ====== */
+.hero {
+  background: url('../Imagenes/bg_dark.jpg') center/cover no-repeat;
+  position: relative;
+  text-align: center;
+  padding: 100px 20px;
+  color: var(--text-light);
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+}
+.hero h1, .hero p {
+  position: relative;
+  z-index: 2;
+}
+
+/* ====== BOTONES ====== */
+.btn, .btn-primary {
+  background: var(--accent);
+  border: none;
+  color: white;
+  padding: 10px 25px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: var(--transition);
+}
+.btn:hover, .btn-primary:hover {
+  background: var(--accent-hover);
+  transform: scale(1.05);
+}
+
+/* ====== CONTENEDORES VIDRIO ====== */
+.glass, .video-card, .recommend-post, .chat-content, .modal-content {
+  background: var(--glass-bg);
+  backdrop-filter: var(--blur);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius);
+  box-shadow: 0 4px 25px rgba(0,0,0,0.5);
+  color: var(--text-light);
+  transition: var(--transition);
 }
 
 /* ====== FOOTER ====== */
