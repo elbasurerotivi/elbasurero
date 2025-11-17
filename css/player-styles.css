@@ -83,6 +83,35 @@ header, .navbar {
   }
 }
 
+/* ====== FOOTER ====== */
+footer {
+  background: #1a1a1a;
+  color: var(--text-muted);
+  text-align: center;
+  padding: 30px 10px;
+}
+footer h3 {
+  color: var(--accent);
+}
+footer a {
+  color: var(--text-light);
+}
+footer a:hover {
+  color: var(--accent);
+}
+
+/* ====== RESPONSIVE ====== */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 10px;
+  }
+  .video-card, .recommend-post {
+    margin-bottom: 15px;
+  }
+}
+
+
+
 
 
 /* ======================================================
