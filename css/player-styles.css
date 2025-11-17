@@ -1,3 +1,37 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+:root {
+  --accent: #ff4081;
+  --accent-hover: #ff79b0;
+  --text-light: #eaeaea;
+  --text-muted: #9e9e9e;
+  --bg-dark: #121212;
+  --glass-bg: rgba(255, 255, 255, 0.05);
+  --border-light: rgba(255, 255, 255, 0.1);
+  --blur: blur(20px);
+  --radius: 14px;
+  --transition: 0.3s ease;
+  --gold: #ffd700;
+  --glass-bg-premium: rgba(30, 30, 50, 0.4);
+  --border-premium: rgba(255, 215, 0, 0.3);
+}
+
+
+/* ====== GENERAL ====== */
+body {
+  background-color: var(--bg-dark);
+  color: #ffffff;
+  font-family: 'Roboto', sans-serif;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+}
+
 /* =====================================================
    ESTÉTICA PREMIUM - SOLO PARA player.html
    Estilo YouTube + detalles dorados Premium
