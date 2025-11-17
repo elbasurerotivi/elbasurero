@@ -123,7 +123,7 @@ header, .navbar {
 }
 
 /* Ajustes para pantallas pequeñas */
-@media (max-width: 600px) {
+@media (max-width: 480px) {
   #auth-btn {
     width: 48px;
     height: 44px;
@@ -432,7 +432,7 @@ body {
 }
 
 /* Responsivo para pantallas pequeñas */
-@media (max-width: 600px) {
+@media (max-width: 480px) {
     .navbar {
         padding: 10px;
     }
@@ -579,7 +579,7 @@ body {
 }
 
 /* 🔹 Ajuste de tamaño en móvil */
-@media (max-width: 600px) {
+@media (max-width: 480px) {
   #auth-btn {
     width: 60px;
     height: 45px;
@@ -1856,7 +1856,7 @@ footer h3 {
 }
 
 /* ====== RESPONSIVE ====== */
-@media (max-width: 600px) {
+@media (max-width: 480px) {
   .videos-page {
     padding: 0 10px;
   }
@@ -2424,7 +2424,7 @@ footer h3 {
 }
 
 /* ====== RESPONSIVE ====== */
-@media (max-width: 600px) {
+@media (max-width: 480px) {
   .chat-content, .message, .birthday-form, .bday-item {
     padding: 15px;
   }
@@ -2803,7 +2803,7 @@ footer h3 {
 }
 
 /* ====== RESPONSIVE ====== */
-@media (max-width: 600px) {
+@media (max-width: 480px) {
   .recommend-form, .recommend-post {
     padding: 15px;
   }
@@ -3379,7 +3379,7 @@ footer h3 {
 /* ==========================================================
    OPTIMIZACIÓN MÓVIL - NUEVA ESTÉTICA RESPONSIVE
    ========================================================== */
-@media (max-width: 600px) {
+@media (max-width: 480px) {
   body {
     overflow-x: hidden;
     padding: 0;
