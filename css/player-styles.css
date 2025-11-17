@@ -132,13 +132,13 @@ body {
   border-radius: 12px;
   margin: 0px 0;
   border: 1px solid #2b2b2b;
+  max-height: 149px;
 }
 @media (max-width: 480px) {
     .videoDescription{
         overflow-y: auto;
         font-size: 15px;
         margin: 5px 5px;
-        max-height: 149px;
     }
 }
 /* =============================
