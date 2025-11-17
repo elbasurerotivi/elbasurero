@@ -133,7 +133,13 @@ body {
   margin: 25px 0;
   border: 1px solid #2b2b2b;
 }
-
+@media (max-width: 768px) {
+    .videoDescription{
+        overflow-y: auto;
+        font-size: 15px;
+        margin: 5px 5px;
+    }
+}
 /* =============================
       COMENTARIOS
    ============================= */
