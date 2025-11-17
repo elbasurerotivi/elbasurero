@@ -4510,6 +4510,9 @@ footer h3 {
   color: #ffffff;
   font-size: 20px;
   clear: both;
+  overflow-y: auto;
+  font-size: 15px;
+  margin: 5px 5px;
 }
 
 
