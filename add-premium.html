@@ -6,8 +6,6 @@
   <title>Cargar Videos Premium - El Basurero</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
   <link rel="icon" href="Imagenes/icono.png" type="image/x-icon">
-  <meta name="description" content="El Basurero, tu canal de reacciones en YouTube. Horarios, videos y comunidad.">
-  <meta name="keywords" content="El Basurero, reacciones, YouTube, directos, Twitch, México, Argentina, stream, videos, comunidad, película, series, opinión, videoreacción">
   <style>
     body {
       font-family: 'Roboto', sans-serif;
@@ -17,49 +15,51 @@
       justify-content: center;
       align-items: flex-start;
       padding: 40px;
+      min-height: 100vh;
     }
     .form-container {
       background: #222;
-      padding: 25px 35px;
+      padding: 30px;
       border-radius: 12px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-      max-width: 700px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.6);
+      max-width: 750px;
       width: 100%;
     }
-    h1 {
-      text-align: center;
-      margin-bottom: 20px;
-    }
+    h1 { text-align: center; margin-bottom: 25px; }
     label {
       display: block;
-      margin-top: 15px;
+      margin-top: 18px;
       font-weight: bold;
     }
     input, textarea, select {
       width: 100%;
       padding: 10px;
-      margin-top: 5px;
+      margin-top: 6px;
       border-radius: 8px;
       border: none;
+      background: #333;
+      color: white;
       font-size: 1rem;
     }
-    textarea {
-      resize: vertical;
-      min-height: 80px;
-    }
+    textarea { resize: vertical; min-height: 100px; }
     button {
-      margin-top: 20px;
-      padding: 12px;
+      margin-top: 25px;
+      padding: 12px 20px;
       border: none;
       border-radius: 8px;
       background: #00acee;
       color: white;
       font-size: 1.1rem;
       cursor: pointer;
-      transition: 0.3s ease;
+      transition: 0.3s;
     }
-    button:hover {
-      background: #0084b8;
+    button:hover { background: #0084b8; }
+    .button-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+      justify-content: center;
     }
     .output {
       margin-top: 20px;
@@ -68,19 +68,20 @@
       border-radius: 8px;
       font-family: monospace;
       white-space: pre-wrap;
-      max-height: 300px;
+      max-height: 400px;
       overflow-y: auto;
+      display: none;
     }
     #preview {
       margin-top: 10px;
       max-width: 100%;
+      max-height: 300px;
       border-radius: 8px;
       display: none;
     }
-    .button-row {
-      display: flex;
-      gap: 10px;
-      margin-top: 15px;
+    .small-btn {
+      padding: 10px 16px;
+      font-size: 1rem;
     }
   </style>
 </head>
@@ -88,201 +89,249 @@
 
   <div class="form-container">
     <h1>Agregar Video Premium</h1>
+
     <form id="videoForm">
-      <label for="id">ID (automático)</label>
-      <input type="text" id="id" placeholder="Se genera automáticamente..." readonly />
+      <label for="categoria">Categoría (clave)</label>
+      <select id="categoria" required>
+        <option value="">-- Selecciona una categoría --</option>
+        <option value="shingeki_no_kyojin">Shingeki No Kyojin</option>
+        <option value="nada">Nada</option>
+        <option value="peliculas">Películas</option>
+        <option value="bloqueados_de_youtube">Bloqueados de YouTube</option>
+        <option value="el_encargado">El Encargado</option>
+        <!-- Agrega más categorías aquí cuando las crees -->
+      </select>
 
-      <label for="name">Nombre</label>
-      <input type="text" id="name" placeholder="Mi Obra Maestra" required>
+      <label for="name">Nombre (para mostrar en la lista)</label>
+      <input type="text" id="name" placeholder="Ej: Mi Obra Maestra" required>
 
-      <label for="temporada">Temporada</label>
+      <label for="temporada">Temporada (0 si es película)</label>
       <input type="number" id="temporada" value="0" required>
 
-      <label for="episodio">Episodio</label>
-      <input type="number" id="episodio" value="0" required>
+      <label for="episodio">Episodio (0 si es película, o rango como "21-25")</label>
+      <input type="text" id="episodio" value="0" required>
 
-      <label for="title">Título principal</label>
-      <input type="text" id="title" placeholder="🎨Mi obra maestra" required>
+      <label for="title">Título principal (con emoji)</label>
+      <input type="text" id="title" placeholder="🎨 Mi obra maestra" required>
 
       <label for="title2">Subtítulo</label>
       <input type="text" id="title2" placeholder="Con Guillermo Francella y Luis Brandoni" required>
 
-      <label for="description">Descripción</label>
+      <label for="description">Descripción completa</label>
       <textarea id="description" required></textarea>
 
-      <label for="source">Fuente (enlace Rumble)</label>
+      <label for="source">Fuente (embed Rumble)</label>
       <input type="url" id="source" placeholder="https://rumble.com/embed/xxxxxx/?pub=xxxx" required>
 
-      <label for="thumbnail">Miniatura</label>
-      <input type="url" id="thumbnail" placeholder="Se intentará obtener automáticamente..." />
-      <input type="file" id="manualThumbnail" accept="image/*" style="margin-top:10px;">
-      <img id="preview" alt="Vista previa">
-      <small id="thumbnailMessage" style="color:#ccc;"></small>
+      <label for="thumbnail">Miniatura (URL o carga manual)</label>
+      <input type="url" id="thumbnail" placeholder="Se intenta obtener automáticamente..." />
+      <input type="file" id="manualThumbnail" accept="image/*" style="margin-top:8px;">
 
-      <label for="type">Tipo de video</label>
+      <img id="preview" alt="Vista previa">
+
+      <label for="type">Tipo de reproducción</label>
       <select id="type" required>
         <option value="iframe">iframe</option>
         <option value="video">video</option>
       </select>
 
-      <button type="submit">➕ Agregar a la lista</button>
+      <button type="submit">➕ Agregar Video</button>
     </form>
 
-    <div class="output" id="output"></div>
-
     <div class="button-row">
-      <button id="downloadAll">⬇️ Descargar Todos</button>
-      <button id="copyAll">📋 Copiar</button>
+      <button id="downloadVideos" class="small-btn">⬇️ Descargar videos-premium.js</button>
+      <button id="downloadCategorias" class="small-btn">⬇️ Descargar categorias-data.js</button>
+      <button id="copyVideos" class="small-btn">📋 Copiar videos</button>
+      <button id="copyCategorias" class="small-btn">📋 Copiar categorías</button>
+      <button id="clearAll" class="small-btn">🗑️ Limpiar todo</button>
     </div>
+
+    <pre class="output" id="outputVideos"></pre>
+    <pre class="output" id="outputCategorias"></pre>
   </div>
 
   <script>
-  const form = document.getElementById("videoForm");
-  const preview = document.getElementById("preview");
-  const output = document.getElementById("output");
-  const titleInput = document.getElementById("title");
-  const idInput = document.getElementById("id");
-  const sourceInput = document.getElementById("source");
-  const thumbnailInput = document.getElementById("thumbnail");
-  const manualThumbnail = document.getElementById("manualThumbnail");
-  const thumbnailMessage = document.getElementById("thumbnailMessage");
-  const videosList = [];
-  let autoThumbnail = "";
-  let manualThumbnailUrl = "";
+    const videosList = [];
+    const categoriasSet = new Set(); // Para ir recolectando las categorías usadas
 
-  // 🧠 Generar ID automáticamente
-  titleInput.addEventListener("input", () => {
-    const titleValue = titleInput.value.trim().toLowerCase();
-    const generatedId = titleValue
-      .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, "")
-      .replace(/[^a-z0-9]+/g, "_")
-      .replace(/^_|_$/g, "");
-    idInput.value = generatedId;
-  });
+    const form = document.getElementById("videoForm");
+    const preview = document.getElementById("preview");
+    const sourceInput = document.getElementById("source");
+    const thumbnailInput = document.getElementById("thumbnail");
+    const manualThumbnail = document.getElementById("manualThumbnail");
+    const outputVideos = document.getElementById("outputVideos");
+    const outputCategorias = document.getElementById("outputCategorias");
 
-  // 🎥 Obtener miniatura automática desde enlace Rumble
-  async function getRumbleThumbnail(rumbleUrl) {
-    try {
-      const res = await fetch(rumbleUrl);
-      const html = await res.text();
-      const match = html.match(/<meta property="og:image" content="([^"]+)"/);
-      if (match && match[1]) return match[1];
-    } catch (e) {
-      console.warn("No se pudo obtener miniatura automática:", e);
+    let autoThumbnail = "";
+    let manualThumbnailUrl = "";
+
+    // Generar ID automático a partir del título
+    document.getElementById("title").addEventListener("input", () => {
+      const title = document.getElementById("title").value.trim().toLowerCase();
+      const id = title
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/[^a-z0-9]+/g, "_")
+        .replace(/(^\s+|\s+$)/g, "")
+        .replace(/_+/g, "_");
+      // No lo ponemos en input porque ya no usamos campo id visible
+    });
+
+    // Obtener thumbnail de Rumble
+    async function getRumbleThumbnail(url) {
+      try {
+        const res = await fetch(url);
+        const html = await res.text();
+        const match = html.match(/<meta property="og:image" content="([^"]+)"/);
+        return match ? match[1] : null;
+      } catch (e) {
+        console.warn("Error obteniendo thumbnail:", e);
+        return null;
+      }
     }
-    return null;
-  }
 
-  // Detectar cuando se ingresa un link de Rumble
-  sourceInput.addEventListener("change", async () => {
-    const url = sourceInput.value.trim();
-    if (!url) return;
+    sourceInput.addEventListener("change", async () => {
+      const url = sourceInput.value.trim();
+      if (!url) return;
 
-    thumbnailMessage.textContent = "🔄 Buscando miniatura automática...";
-    preview.style.display = "none";
-
-    const thumb = await getRumbleThumbnail(url);
-    if (thumb) {
-      autoThumbnail = thumb;
-      thumbnailInput.value = thumb;
-      preview.src = thumb;
-      preview.style.display = "block";
-      thumbnailMessage.textContent = "✅ Miniatura obtenida automáticamente desde Rumble.";
-    } else {
-      thumbnailMessage.textContent = "⚠️ No se pudo obtener miniatura automática. Cargá una manualmente.";
-      autoThumbnail = "";
-    }
-  });
-
-  // Cargar miniatura manual desde archivo
-  manualThumbnail.addEventListener("change", (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      manualThumbnailUrl = "Imagenes/" + file.name;
-      const reader = new FileReader();
-      reader.onload = (event) => {
-        preview.src = event.target.result;
+      const thumb = await getRumbleThumbnail(url);
+      if (thumb) {
+        autoThumbnail = thumb;
+        thumbnailInput.value = thumb;
+        preview.src = thumb;
         preview.style.display = "block";
-        thumbnailMessage.textContent = "📸 Miniatura cargada manualmente desde dispositivo.";
+      }
+    });
+
+    manualThumbnail.addEventListener("change", (e) => {
+      const file = e.target.files[0];
+      if (file) {
+        manualThumbnailUrl = "Imagenes/" + file.name;
+        const reader = new FileReader();
+        reader.onload = (ev) => {
+          preview.src = ev.target.result;
+          preview.style.display = "block";
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+
+    // Generar ID único
+    function generarId(title, categoria) {
+      const base = title
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/[^a-z0-9]+/g, "_")
+        .replace(/(^_|_$)/g, "");
+      return base;
+    }
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const categoriaKey = document.getElementById("categoria").value;
+      if (!categoriaKey) {
+        alert("Selecciona una categoría");
+        return;
+      }
+
+      const thumbnailUrl = autoThumbnail || manualThumbnailUrl || thumbnailInput.value.trim();
+      if (!thumbnailUrl) {
+        alert("No hay thumbnail (ni automática ni manual)");
+        return;
+      }
+
+      const title = document.getElementById("title").value.trim();
+      const id = generarId(title, categoriaKey);
+
+      const video = {
+        id,
+        name: document.getElementById("name").value.trim(),
+        categoria: categoriaKey,
+        temporada: document.getElementById("temporada").value,
+        episodio: document.getElementById("episodio").value,
+        title,
+        title2: document.getElementById("title2").value.trim(),
+        description: document.getElementById("description").value.trim(),
+        thumbnail: thumbnailUrl,
+        source: document.getElementById("source").value.trim(),
+        type: document.getElementById("type").value
       };
-      reader.readAsDataURL(file);
-    }
-  });
 
-  // Enviar formulario
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
+      videosList.push(video);
+      categoriasSet.add(categoriaKey);
 
-    const thumbnailUrl = autoThumbnail || manualThumbnailUrl || thumbnailInput.value.trim();
-    if (!thumbnailUrl) {
-      alert("❌ No se encontró miniatura automática ni manual.");
-      return;
-    }
+      actualizarOutputs();
+      form.reset();
+      preview.style.display = "none";
+      autoThumbnail = "";
+      manualThumbnailUrl = "";
+    });
 
-    const video = {
-      id: idInput.value.trim(),
-      name: document.getElementById("name").value.trim(),
-      temporada: document.getElementById("temporada").value.trim(),
-      episodio: document.getElementById("episodio").value.trim(),
-      title: titleInput.value.trim(),
-      title2: document.getElementById("title2").value.trim(),
-      description: document.getElementById("description").value.trim(),
-      thumbnail: thumbnailUrl,
-      source: document.getElementById("source").value.trim(),
-      type: document.getElementById("type").value.trim()
-    };
+    function actualizarOutputs() {
+      // Videos
+      const videosCode = videosList.length > 0
+        ? "export const videosPremium = [\n" +
+          videosList.map(v => "  " + JSON.stringify(v, null, 2).replace(/"([^"]+)":/g, "$1:").replace(/"/g, "'")).join(",\n\n") +
+          "\n];"
+        : "export const videosPremium = [];";
 
-    videosList.push(video);
+      outputVideos.textContent = videosCode;
+      outputVideos.style.display = "block";
 
-    const jsCode = JSON.stringify(video, null, 2)
-      .replace(/\"([^(\")"]+)\":/g, "$1:")
-      .replace(/\"/g, "'");
-    output.textContent += `\n${jsCode},\n`;
-
-    form.reset();
-    idInput.value = "";
-    preview.style.display = "none";
-    thumbnailMessage.textContent = "";
-    autoThumbnail = "";
-    manualThumbnailUrl = "";
-  });
-
-  // Descargar todos los videos como JS
-  document.getElementById("downloadAll").addEventListener("click", () => {
-    if (videosList.length === 0) {
-      alert("No hay videos en la lista.");
-      return;
+      // Categorías (solo las que ya tienen al menos un video)
+      let categoriasCode = "export const categoriasData = {\n";
+      categoriasSet.forEach(key => {
+        categoriasCode += `  ${key}: {\n    key: '${key}',\n    name: '${key.replace(/_/g, " ").replace(/\b\w/g, l => l.toUpperCase())}',\n    background: 'Imagenes/TU_FONDO_AQUI.jpg',\n    cover: 'Imagenes/TU_COVER_AQUI.jpg',\n    title: '',\n    synopsis: '',\n    year: '',\n    genre: '',\n    cast: ''\n  },\n`;
+      });
+      categoriasCode += "};";
+      outputCategorias.textContent = categoriasCode;
+      outputCategorias.style.display = categoriasSet.size > 0 ? "block" : "none";
     }
 
-    const jsCode = videosList.map(v =>
-      JSON.stringify(v, null, 2)
-        .replace(/\"([^(\")"]+)\":/g, "$1:")
-        .replace(/\"/g, "'")
-    ).join(",\n\n");
+    // Descargar videos-premium.js
+    document.getElementById("downloadVideos").addEventListener("click", () => {
+      if (videosList.length === 0) return alert("No hay videos");
+      descargarArchivo(outputVideos.textContent, "videos-premium.js");
+    });
 
-    const finalCode = `[\n${jsCode}\n];`;
-    const blob = new Blob([finalCode], { type: "application/javascript" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "videos-premium.js";
-    a.click();
-    URL.revokeObjectURL(url);
+    // Descargar categorias-data.js
+    document.getElementById("downloadCategorias").addEventListener("click", () => {
+      if (categoriasSet.size === 0) return alert("No hay categorías aún");
+      descargarArchivo(outputCategorias.textContent, "categorias-data.js");
+    });
 
-    alert("✅ Archivo videos-premium.js descargado con todos los videos.");
-  });
+    // Copiar
+    document.getElementById("copyVideos").addEventListener("click", () => {
+      navigator.clipboard.writeText(outputVideos.textContent);
+      alert("Videos copiados al portapapeles");
+    });
+    document.getElementById("copyCategorias").addEventListener("click", () => {
+      navigator.clipboard.writeText(outputCategorias.textContent);
+      alert("Categorías copiadas al portapapeles");
+    });
 
-  // 📋 Copiar todo el contenido del output
-  document.getElementById("copyAll").addEventListener("click", () => {
-    if (!output.textContent.trim()) {
-      alert("No hay nada para copiar.");
-      return;
+    // Limpiar todo
+    document.getElementById("clearAll").addEventListener("click", () => {
+      if (confirm("¿Borrar todos los videos y categorías generadas?")) {
+        videosList.length = 0;
+        categoriasSet.clear();
+        outputVideos.style.display = outputCategorias.style.display = "none";
+        outputVideos.textContent = outputCategorias.textContent = "";
+      }
+    });
+
+    // Función auxiliar para descargar
+    function descargarArchivo(contenido, nombre) {
+      const blob = new Blob([contenido], { type: "application/javascript" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = nombre;
+      a.click();
+      URL.revokeObjectURL(url);
     }
-    navigator.clipboard.writeText(output.textContent.trim());
-    alert("📋 Contenido copiado al portapapeles.");
-  });
   </script>
-
 </body>
 </html>
