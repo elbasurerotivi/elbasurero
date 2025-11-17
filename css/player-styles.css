@@ -135,10 +135,11 @@ body {
   max-height: 149px;
 }
 @media (max-width: 480px) {
-    .videoDescription{
+    #videoDescription{
         overflow-y: auto;
         font-size: 15px;
         margin: 5px 5px;
+        max-height: 149px;
     }
 }
 /* =============================
