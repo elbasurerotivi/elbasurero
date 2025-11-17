@@ -4062,7 +4062,8 @@ footer h3 {
   font-weight: bold;
   cursor: pointer;
   transition: all 0.3s;
-  margin-bottom: 16px;
+  margin-bottom: 70px;
+  margin-top: -30px;
 }
 
 .back-button:hover {
