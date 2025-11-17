@@ -133,7 +133,7 @@ body {
   margin: 0px 0;
   border: 1px solid #2b2b2b;
 }
-@media (max-width: 768px) {
+@media (max-width: 480px) {
     .videoDescription{
         overflow-y: auto;
         font-size: 15px;
