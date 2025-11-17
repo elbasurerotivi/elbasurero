@@ -302,7 +302,7 @@ footer a:hover {
 }
 
 /* ====== RESPONSIVE ====== */
-@media (max-width: 768px) {
+@media (max-width: 480px) {
   .container {
     padding: 0 10px;
   }
@@ -486,7 +486,7 @@ body {
 
 
 /* Responsivo */
-@media (max-width: 768px) {
+@media (max-width: 480px) {
     .navbar {
         flex-wrap: wrap; /* Permite que los elementos se ajusten */
     }
@@ -743,7 +743,7 @@ body {
 }
 
 /* 🔹 Responsive para móvil */
-@media (max-width: 768px) {
+@media (max-width: 480px) {
   .nav-menu {
     display: none;
     flex-direction: column;
@@ -904,7 +904,7 @@ footer h3 {
 
 
 /* Responsive para móviles */
-@media (max-width: 768px) {
+@media (max-width: 480px) {
     .nav-menu {
         display: none;
         flex-direction: column;
@@ -1015,7 +1015,7 @@ footer h3 {
 }
 
 /* Ocultar menú en móvil por defecto */
-@media (max-width: 768px) {
+@media (max-width: 480px) {
   .menu-toggle {
     display: flex;
   }
@@ -3126,7 +3126,7 @@ footer h3 {
 }
 
 /* RESPONSIVO - CELULARES */
-@media (max-width: 768px) {
+@media (max-width: 480px) {
   .categories-selection {
     margin: 12px 0;
     font-size: 13px;
@@ -3190,7 +3190,7 @@ footer h3 {
 
 
 /* RESPONSIVO - Tags en móviles */
-@media (max-width: 768px) {
+@media (max-width: 480px) {
   .tag {
     font-size: 10px;
     padding: 3px 8px;
@@ -3301,7 +3301,7 @@ footer h3 {
 }
 
 /* RESPONSIVO - MÓVILES */
-@media (max-width: 768px) {
+@media (max-width: 480px) {
   .filter-tags {
     margin: 20px 0;
     padding: 15px;
@@ -3585,7 +3585,7 @@ footer h3 {
 }
 
 /* Media query para móviles y tablets (ajusta el breakpoint si necesitas) */
-@media (max-width: 768px) {
+@media (max-width: 480px) {
   .mobile-only {
     display: block; /* Muestra botones solo en móvil */
   }
@@ -4194,7 +4194,7 @@ footer h3 {
   }
 
 /* Responsive */
-@media (max-width: 768px) {
+@media (max-width: 480px) {
   .hero-info {
     flex-direction: column;
     align-items: center;
@@ -4255,7 +4255,7 @@ footer h3 {
    RESPONSIVE MÓVIL - SOLO SE APLICA < 768px
    ======================================== */
 
-@media (max-width: 768px) {
+@media (max-width: 480px) {
   /* === CONTENEDOR GENERAL === */
   .playlist-container {
     padding: 0 12px;
@@ -4894,7 +4894,7 @@ footer h3 {
 }
 
 /* Responsivo */
-@media (max-width: 768px) {
+@media (max-width: 480px) {
   .modal-content {
     width: 90%;
     padding: 20px;
@@ -4957,7 +4957,7 @@ footer h3 {
 }
 
 /* Responsivo */
-@media (max-width: 768px) {
+@media (max-width: 480px) {
   .auth-buttons {
     margin-top: 6px;
     justify-content: center;
@@ -5109,7 +5109,7 @@ footer h3 {
 }
 
 /* Ajustes responsivos */
-@media (max-width: 768px) {
+@media (max-width: 480px) {
   .modal-content {
     width: 100%;
     aspect-ratio: 16 / 9;
@@ -5729,7 +5729,7 @@ p[style*="muted"] {
 }
 
 /* Responsive - Optimizado para celulares (app feel: touch-friendly, legible) */
-@media (max-width: 768px) {
+@media (max-width: 480px) {
   .encuestas-container {
     width: 98%;
     margin: 60px auto 20px;
@@ -5974,7 +5974,7 @@ a {
 }
 
 /* Responsive - Optimizado mobile */
-@media (max-width: 768px) {
+@media (max-width: 480px) {
   .completed-post {
     padding: 20px;
     margin-bottom: 16px;
