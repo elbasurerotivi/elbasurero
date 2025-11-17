@@ -138,6 +138,7 @@ body {
         overflow-y: auto;
         font-size: 15px;
         margin: 5px 5px;
+        max-height: 149px;
     }
 }
 /* =============================
