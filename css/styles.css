@@ -4748,7 +4748,7 @@ footer h3 {
 /* Estilos para el popup de login */
 
 
-.modalAnuncios {
+.modal {
   display: none;
   position: fixed;
   top: 0;
@@ -4762,7 +4762,7 @@ footer h3 {
   animation: fadeIn 0.3s ease;
 }
 
-.modalAnuncios-content {
+.modal-content {
   background: #2c2c2c;
   padding: 30px;
   border-radius: 10px;
@@ -4773,7 +4773,7 @@ footer h3 {
   animation: slideIn 0.3s ease;
 }
 
-.modalAnuncios-title {
+.modal-title {
   font-size: 24px;
   color: #ffcc00;
   
@@ -4908,12 +4908,12 @@ footer h3 {
 
 /* Responsivo */
 @media (max-width: 480px) {
-  .modalAnuncios-content {
+  .modal-content {
     width: 90%;
     padding: 20px;
   }
 
-  .modalAnuncios-title {
+  .modal-title {
     font-size: 20px;
   }
 
@@ -4985,7 +4985,7 @@ footer h3 {
 
 
 /* Estilos para el Popup de Anuncios */
-.modalAnuncios {
+.modal {
   display: none;
   position: fixed;
   top: 0;
@@ -4995,10 +4995,10 @@ footer h3 {
   background: rgba(0, 0, 0, 0.7); /* Fondo más oscuro para destacar el contenido */
   justify-content: center;
   align-items: center;
-  z-index: 9999999;
+  z-index: 1000;
 }
 
-.modalAnuncios-content {
+.modal-content {
   background: var(--glass-bg);
   backdrop-filter: var(--blur);
   border: 1px solid var(--border-light);
@@ -5036,10 +5036,10 @@ footer h3 {
   transition: var(--transition);
 }
 
-.announcement-card:hover {
+/*.announcement-card:hover {
   transform: scale(1.02);
   background: rgba(255, 255, 255, 0.12);
-}
+}*/
 
 .announcement-img {
   width: 100%;
@@ -5070,7 +5070,7 @@ footer h3 {
   overflow-y: auto;
 }
 
-.modalAnuncios-subtitle {
+.modal-subtitle {
   font-size: 14px;
   color: var(--text-muted);
   margin-bottom: 15px;
@@ -5104,7 +5104,7 @@ footer h3 {
   color: var(--accent-hover);
 }
 
-.modalAnuncios-title {
+.modal-title {
   text-align: center;
   font-size: 1.8em;
   margin-bottom: 15px;
@@ -5123,7 +5123,7 @@ footer h3 {
 
 /* Ajustes responsivos */
 @media (max-width: 480px) {
-  .modalAnuncios-content {
+  .modal-content {
     width: 100%;
     aspect-ratio: 16 / 9;
     height: 80vh;
@@ -5148,38 +5148,6 @@ footer h3 {
 
 
 
-/* ===========================
-   FIX PARA MODAL DE ANUNCIOS
-   =========================== */
-
-.modalAnuncios {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.7);
-  display: none;
-  justify-content: center;
-  align-items: center;
-  z-index: 999999 !important;
-}
-
-.modalAnuncios-content {
-  background: var(--glass-bg);
-  backdrop-filter: var(--blur);
-  border-radius: var(--radius);
-  padding: 20px;
-  width: 90%;
-  max-width: 900px;
-  max-height: 90vh;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.4);
-  z-index: 10000000;
-}
 
 
 
@@ -5264,7 +5232,7 @@ footer h3 {
   background: rgba(255, 51, 102, 0.9);
 }
 
-.modalAnuncios-title {
+.modal-title {
   text-align: center;
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
@@ -6067,4 +6035,3 @@ a {
   }
 }
 
-}

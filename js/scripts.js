@@ -95,9 +95,9 @@ document.addEventListener("DOMContentLoaded", () => {
       const lastShown = localStorage.getItem("announcementLastShown");
       const noShowToday = localStorage.getItem("noShowToday");
       
-      const announcementmodalAnuncios = document.getElementById("announcementmodalAnuncios");
-      if (announcementmodalAnuncios && (!noShowToday || lastShown !== today)) {
-        announcementmodalAnuncios.style.display = "flex";
+      const announcementModal = document.getElementById("announcementModal");
+      if (announcementModal && (!noShowToday || lastShown !== today)) {
+        announcementModal.style.display = "flex";
         console.log("Popup de anuncios mostrado automáticamente");
       } else {
         console.log("Popup de anuncios no mostrado (bloqueado por el usuario o mismo día)");
@@ -225,9 +225,9 @@ function reordenarTarjetasPorDia() {
 
   // Función para cerrar el popup
   window.cerrarAnuncio = function() {
-    const announcementmodalAnuncios = document.getElementById("announcementmodalAnuncios");
-    if (announcementmodalAnuncios) {
-      announcementmodalAnuncios.style.display = "none";
+    const announcementModal = document.getElementById("announcementModal");
+    if (announcementModal) {
+      announcementModal.style.display = "none";
       console.log("Popup de anuncios cerrado");
     }
   };
