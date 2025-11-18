@@ -4985,7 +4985,7 @@ footer h3 {
 
 
 /* Estilos para el Popup de Anuncios */
-.modalAnuncios {
+.modal {
   display: none;
   position: fixed;
   top: 0;
@@ -4998,7 +4998,7 @@ footer h3 {
   z-index: 1000;
 }
 
-.modalAnuncios-content {
+.modal-content {
   background: var(--glass-bg);
   backdrop-filter: var(--blur);
   border: 1px solid var(--border-light);
@@ -5036,10 +5036,10 @@ footer h3 {
   transition: var(--transition);
 }
 
-.announcement-card:hover {
+/*.announcement-card:hover {
   transform: scale(1.02);
   background: rgba(255, 255, 255, 0.12);
-}
+}*/
 
 .announcement-img {
   width: 100%;
@@ -5104,7 +5104,7 @@ footer h3 {
   color: var(--accent-hover);
 }
 
-.modalAnuncios-title {
+.modal-title {
   text-align: center;
   font-size: 1.8em;
   margin-bottom: 15px;
@@ -5123,7 +5123,7 @@ footer h3 {
 
 /* Ajustes responsivos */
 @media (max-width: 480px) {
-  .modalAnuncios-content {
+  .modal-content {
     width: 100%;
     aspect-ratio: 16 / 9;
     height: 80vh;
