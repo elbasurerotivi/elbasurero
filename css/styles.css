@@ -4997,7 +4997,7 @@ footer h3 {
   align-items: center;
   z-index: 1000;
 }
-.noShowToday p{
+.noShowToday label{
   font-size: 12px;
   text-align: center;
   color: #ffffff;
