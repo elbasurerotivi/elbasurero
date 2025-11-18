@@ -1390,14 +1390,14 @@ footer h3 {
 }
 
 .btn-close {
-  background: var(--text-muted);
+  background: #e91e63;
   color: white;
   margin-top: 10px;
   width: 100%;
 }
 
 .btn-close:hover {
-  background: var(--accent);
+  background:#c2185b;
   transform: scale(1.05);
 }
 
