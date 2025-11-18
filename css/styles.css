@@ -1325,6 +1325,7 @@ footer h3 {
   border: 1px solid var(--border-light);
   border-radius: var(--radius);
   padding: 20px;
+  text-align: center;
   border-radius: 25px;
   /*max-width: 400px;*/
   width: 90%;
