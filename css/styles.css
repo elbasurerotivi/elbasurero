@@ -1324,7 +1324,7 @@ footer h3 {
   border: 1px solid var(--border-light);
   border-radius: var(--radius);
   padding: 20px;
-  max-width: 400px;
+  /*max-width: 400px;*/
   width: 90%;
   box-shadow: 0 4px 25px rgba(0,0,0,0.3);
   animation: fadeUp 0.5s ease;
@@ -6035,3 +6035,4 @@ a {
   }
 }
 
+}
