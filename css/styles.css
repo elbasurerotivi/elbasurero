@@ -5000,7 +5000,7 @@ footer h3 {
 .noShowToday label{
   font-size: 12px;
   text-align: center;
-  color: #ffffff;
+  color: #ffffff !important;
 }
 
 .modal-content {
