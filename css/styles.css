@@ -4995,7 +4995,7 @@ footer h3 {
   background: rgba(0, 0, 0, 0.7); /* Fondo más oscuro para destacar el contenido */
   justify-content: center;
   align-items: center;
-  z-index: 1000;
+  z-index: 9999999;
 }
 
 .modalAnuncios-content {
@@ -5036,10 +5036,10 @@ footer h3 {
   transition: var(--transition);
 }
 
-/*.announcement-card:hover {
+.announcement-card:hover {
   transform: scale(1.02);
   background: rgba(255, 255, 255, 0.12);
-}*/
+}
 
 .announcement-img {
   width: 100%;
@@ -6035,3 +6035,4 @@ a {
   }
 }
 
+}
