@@ -4997,6 +4997,11 @@ footer h3 {
   align-items: center;
   z-index: 1000;
 }
+.noShowToday{
+  font-size: 12px;
+  text-align: center;
+  color: #ffffff;
+}
 
 .modal-content {
   background: var(--glass-bg);
