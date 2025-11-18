@@ -1,7 +1,7 @@
 <!-- popup.html -->
-<div id="announcementModal" class="modal">
-  <div class="modal-content">
-    <h2 class="modal-title">¡Anuncios Importantes!</h2>
+<div id="announcementModal" class="modalAnuncios">
+  <div class="modalAnuncios-content">
+    <h2 class="modalAnuncios-title">¡Anuncios Importantes!</h2>
 
     <!-- Contenedor del carrusel Swiper -->
     <div class="swiper announcement-swiper">
@@ -85,54 +85,7 @@
 </div>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-  const modalTitle = document.querySelector('.modal-title');
-
-  // Función para cambiar el título con animación
-  function cambiarTitulo(nuevoTexto) {
-    modalTitle.classList.add('fade-out');
-    setTimeout(() => {
-      modalTitle.textContent = nuevoTexto;
-      modalTitle.classList.remove('fade-out');
-      modalTitle.classList.add('fade-in');
-      setTimeout(() => modalTitle.classList.remove('fade-in'), 300);
-    }, 300);
-  }
-
-  const swiper = new Swiper('.announcement-swiper', {
-    loop: true,
-    navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
-    },
-    pagination: {
-      el: '.swiper-pagination',
-      clickable: true,
-    },
-    on: {
-      slideChange: function () {
-        const index = swiper.realIndex;
-        switch (index) {
-          case 0:
-            cambiarTitulo('📺 Próximo Stream');
-            break;
-          case 1:
-            cambiarTitulo('🔥 Nuevo Video!!!');
-            break;
-          case 2:
-            cambiarTitulo('🗓️ Horarios');
-            break;
-          default:
-            cambiarTitulo('¡Anuncios Importantes!');
-        }
-      }
-    }
-  });
-
-  cambiarTitulo('🎤 Próximo Stream'); // título inicial
-});
-
-  </script>
+</script>
 
 
 

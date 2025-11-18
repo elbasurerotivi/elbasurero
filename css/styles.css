@@ -4748,7 +4748,7 @@ footer h3 {
 /* Estilos para el popup de login */
 
 
-.modal {
+.modalAnuncios {
   display: none;
   position: fixed;
   top: 0;
@@ -4762,7 +4762,7 @@ footer h3 {
   animation: fadeIn 0.3s ease;
 }
 
-.modal-content {
+.modalAnuncios-content {
   background: #2c2c2c;
   padding: 30px;
   border-radius: 10px;
@@ -4773,7 +4773,7 @@ footer h3 {
   animation: slideIn 0.3s ease;
 }
 
-.modal-title {
+.modalAnuncios-title {
   font-size: 24px;
   color: #ffcc00;
   
@@ -4908,12 +4908,12 @@ footer h3 {
 
 /* Responsivo */
 @media (max-width: 480px) {
-  .modal-content {
+  .modalAnuncios-content {
     width: 90%;
     padding: 20px;
   }
 
-  .modal-title {
+  .modalAnuncios-title {
     font-size: 20px;
   }
 
@@ -4985,7 +4985,7 @@ footer h3 {
 
 
 /* Estilos para el Popup de Anuncios */
-.modal {
+.modalAnuncios {
   display: none;
   position: fixed;
   top: 0;
@@ -4998,7 +4998,7 @@ footer h3 {
   z-index: 1000;
 }
 
-.modal-content {
+.modalAnuncios-content {
   background: var(--glass-bg);
   backdrop-filter: var(--blur);
   border: 1px solid var(--border-light);
@@ -5070,7 +5070,7 @@ footer h3 {
   overflow-y: auto;
 }
 
-.modal-subtitle {
+.modalAnuncios-subtitle {
   font-size: 14px;
   color: var(--text-muted);
   margin-bottom: 15px;
@@ -5104,7 +5104,7 @@ footer h3 {
   color: var(--accent-hover);
 }
 
-.modal-title {
+.modalAnuncios-title {
   text-align: center;
   font-size: 1.8em;
   margin-bottom: 15px;
@@ -5123,7 +5123,7 @@ footer h3 {
 
 /* Ajustes responsivos */
 @media (max-width: 480px) {
-  .modal-content {
+  .modalAnuncios-content {
     width: 100%;
     aspect-ratio: 16 / 9;
     height: 80vh;
@@ -5232,7 +5232,7 @@ footer h3 {
   background: rgba(255, 51, 102, 0.9);
 }
 
-.modal-title {
+.modalAnuncios-title {
   text-align: center;
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
