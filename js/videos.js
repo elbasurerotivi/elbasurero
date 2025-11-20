@@ -3,6 +3,42 @@
 
 const videosData = [
 
+{
+  titulo: 'Reaccionando a “Esta Es Para Vos” del Cuarteto Obrero (Yayo) | ¡Ahora entiendo todos esos memes!',
+  descripcion: 'Hoy reaccionamos a “Esta Es para vos”, la mítica canción del Cuarteto Obrero, liderado por Yayo.\nFue tan graciosa que terminé escuchándola dos veces seguidas 😂\nAdemás, en un solo golpe entendí tantísimos memes, stickers y frases populares que siempre veía por todos lados.\nUna joya del humor argentino y uno de los momentos más divertidos del directo.\n\n⚠ IMPORTANTE:\nEste video no está monetizado debido a reclamos de derechos sobre el contenido musical.\nSi disfrutas este tipo de reacciones y quieres ayudar a que sigamos trayendo más contenido así, tu apoyo es más importante que nunca.\nCualquier contribución —desde un café hasta una membresía— realmente hace una diferencia enorme para el canal. ❤️',
+  fecha: '2025-11-19',
+  link: 'https://www.youtube.com/watch?v=Da8x_PBdxyI',
+  miniatura: 'https://img.youtube.com/vi/Da8x_PBdxyI/maxresdefault.jpg',
+  tags: [
+    'Humor',
+    'Música'
+  ]
+},
+  
+  {
+  titulo: 'Reaccionando al video de Te Lo Resumo: “Mejores PELÍCULAS ARGENTINAS” en Twitch',
+  descripcion: 'Hoy vimos en Twitch el final de “Mi Obra Maestra” y después reaccionamos al video de Te Lo Resumo Así Nomás:\n“Mejores PELICULAS ARGENTINAS | #TeLoResumo”.\n\nUn video increíble que me hizo sentir orgulloso del cine argentino… ¡como si yo fuera argentino! 😅\nFue una de las partes que más disfrutamos del directo, lleno de risas, anécdotas y comentarios buenísimos de la comunidad.\n\n⚠ NOTA IMPORTANTE:\nAl final del video hay un pequeño silencio debido a una reclamación de derechos de autor. Todo está bien; simplemente tuve que silenciar unos segundos para evitar problemas con el sistema automático.',
+  fecha: '2025-11-18',
+  link: 'https://www.youtube.com/watch?v=YnaiJQYK3O4',
+  miniatura: 'https://img.youtube.com/vi/YnaiJQYK3O4/maxresdefault.jpg',
+  tags: [
+    'Películas',
+    'Cultura',
+    'Especiales'
+  ]
+},
+{
+  titulo: 'Una de las veces que más me he reído 😂 | Reacción a Mariano Rodríguez y “La guerra de los mundos”',
+  descripcion: 'Este clip es un extracto del directo donde estábamos viendo Indiana Jones 2, y terminamos reaccionando al análisis de Mariano Rodríguez sobre “La guerra de los mundos”, la última versión con Ice Cube.\nEl modo en que Mariano explica cómo el cine se volvió un gran escaparate comercial… es tan brillante como absurdo 😂\nNos morimos de risa en el stream. Uno de los momentos más divertidos que hemos tenido.',
+  fecha: '2025-11-14',
+  link: 'https://www.youtube.com/watch?v=UxZp9qzX2-k',
+  miniatura: 'https://img.youtube.com/vi/UxZp9qzX2-k/maxresdefault.jpg',
+  tags: [
+    'Películas',
+    'Humor'
+  ]
+},
+  
 
   {
   titulo: 'Una joya de humor absurdo 😂 | Reacción a Peter Capusotto en “Todo por dos pesos”',
