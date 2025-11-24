@@ -110,7 +110,6 @@ function reordenarTarjetasPorDia() {
     "Miércoles de Clásicos",   // 1 - Martes
     "Miércoles de Clásicos",   // 2 - Miércoles
     "Jueves Animados",         // 3 - Jueves
-    "Jueves Animados 2",         // 3 - Jueves
     "Sábado de YouTube",      // 4 - Viernes
     "Sábado de YouTube",      // 5 - Sábado
     "Domingo de Sorpresas"    // 6 - Domingo
