@@ -129,11 +129,30 @@
   </footer>
 
   <!-- Botón Scroll to Top -->
-  <button class="scroll-to-top" title="Volver arriba">↑</button>
+    <button class="scroll-to-top" title="Volver arriba">↑</button>
 
-  <!-- Scripts -->
-  <script type="module" src="js/login.js" defer></script>
-  <script type="module" src="js/recommendations.js" defer></script>
-  <script src="js/scripts.js"></script>
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script type="module" src="js/login.js" defer></script>
+    <script type="module" src="js/recommendations.js" defer></script>
+    <script src="js/scripts.js"></script>
+    <script src="js/videos.js"></script> <!-- Carga videosData -->
+    <script>
+        var swiper = new Swiper(".mySwiper", {
+            loop: true,
+            autoplay: {
+                delay: 1500,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+        });
+    </script>
 </body>
 </html>
