@@ -3,6 +3,19 @@
 
 const videosData = [
 
+   {
+  titulo: 'Reaccionando a la 1.ª Temporada Completa de “Tres Acordes” | Jueves Animados en Twitch',
+  descripcion: 'Hoy vimos la primera temporada completa de “Tres Acordes”, una serie independiente de YouTube que nos sorprendió muchísimo.\nSon solo cinco episodios cortitos, pero llenos de creatividad, humor y una vibra increíble.\n\nLa vimos durante uno de nuestros Jueves Animados en Twitch, y disfrutarla junto con la comunidad hizo que tuviera un sabor totalmente distinto.\n¡Gran serie, gran experiencia y muchas ganas de seguir viendo más contenido así!',
+  fecha: '2025-11-23',
+  link: 'https://www.youtube.com/watch?v=6_MicSrXglE',
+  miniatura: 'https://img.youtube.com/vi/6_MicSrXglE/maxresdefault.jpg',
+  tags: [
+    'Series',
+    'Humor',
+    'Animación'
+  ]
+},
+  
 {
   titulo: 'Reaccionando a “Esta Es Para Vos” del Cuarteto Obrero (Yayo) | ¡Ahora entiendo todos esos memes!',
   descripcion: 'Hoy reaccionamos a “Esta Es para vos”, la mítica canción del Cuarteto Obrero, liderado por Yayo.\nFue tan graciosa que terminé escuchándola dos veces seguidas 😂\nAdemás, en un solo golpe entendí tantísimos memes, stickers y frases populares que siempre veía por todos lados.\nUna joya del humor argentino y uno de los momentos más divertidos del directo.\n\n⚠ IMPORTANTE:\nEste video no está monetizado debido a reclamos de derechos sobre el contenido musical.\nSi disfrutas este tipo de reacciones y quieres ayudar a que sigamos trayendo más contenido así, tu apoyo es más importante que nunca.\nCualquier contribución —desde un café hasta una membresía— realmente hace una diferencia enorme para el canal. ❤️',
@@ -1223,6 +1236,7 @@ if (toggleBtn && dropdownMenu) {
 
 // Cargar videos iniciales
 renderVideos("latest");
+
 
 
 
