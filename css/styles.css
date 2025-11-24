@@ -4210,6 +4210,13 @@ footer h3 {
     overflow-y: auto;
   }
 
+  .catDes p{
+    text-align: center;
+    font-size: 12px;
+    color: #000000;
+
+    }
+
 /* Responsive */
 @media (max-width: 480px) {
   .hero-info {
