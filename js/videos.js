@@ -133,7 +133,7 @@ const videosData = [
   ]
 },
   {
-  titulo: '😆 Mexicando reacciona: Nico Biffi 'Monólogos de Humor' | Segunda parte',
+  titulo: '😆 Mexicando reacciona: Nico Biffi "Monólogos de Humor" | Segunda parte',
   descripcion: 'Ayer me enfermé y no pude terminar la subida hoy. Por eso esta saliendo tarde el video.\nTarde pero seguro.\n\nSi creíste que ya no había más que reaccionar de Nico Biffi… ¡aquí tienes la segunda parte! Su estilo es tan particular que me hace reír incluso editando el video. Me encanta poder compartir este tipo de contenido que muchos ni siquiera conocen, y que vale la pena descubrir.',
   fecha: '2025-07-15',
   link: 'https://www.youtube.com/watch?v=cyHRPZZ5X7I&t=200s',
