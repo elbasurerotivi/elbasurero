@@ -1463,19 +1463,51 @@ const videosData = [
 const videoGrid = document.getElementById("video-grid");
 const filterButtons = document.querySelectorAll(".dropdown-item");
 const searchInput = document.getElementById("video-search");
+const categoryTitle = document.getElementById("category-title");
 let currentCategory = "latest";
 
+// Formatear fecha
 function formatDate(dateStr) {
   const [year, month, day] = dateStr.split('-');
   return `${day}-${month}-${year}`;
 }
 
+// Función para actualizar contadores
+function updateCategoryCounts() {
+  const counts = {};
+
+  // Contar todos los videos
+  counts.all = videosData.length;
+
+  // Contar por categoría
+  videosData.forEach(video => {
+    if (video.tags && Array.isArray(video.tags)) {
+      video.tags.forEach(tag => {
+        counts[tag] = (counts[tag] || 0) + 1;
+      });
+    }
+  });
+
+  // "Últimos" siempre máximo 10
+  counts.latest = Math.min(10, videosData.length);
+
+  // Actualizar todos los spans
+  document.querySelectorAll(".dropdown-item").forEach(btn => {
+    const cat = btn.dataset.category;
+    const countSpan = btn.querySelector(".count");
+    if (countSpan) {
+      const count = counts[cat] || 0;
+      countSpan.textContent = `(${count})`;
+    }
+  });
+}
+
+// Renderizar videos
 function renderVideos(category = currentCategory, searchQuery = "") {
   videoGrid.innerHTML = "";
 
   let filtered = videosData;
 
-  // Si hay búsqueda, ignoramos la categoría y buscamos en todos
   if (searchQuery) {
     const lowerQuery = searchQuery.toLowerCase();
     filtered = filtered.filter(video =>
@@ -1483,79 +1515,80 @@ function renderVideos(category = currentCategory, searchQuery = "") {
       video.descripcion.toLowerCase().includes(lowerQuery)
     );
   } else {
-    // Filtrado por categoría
     if (category !== "latest" && category !== "all") {
-      filtered = filtered.filter(video => video.tags.includes(category));
+      filtered = filtered.filter(video => video.tags && video.tags.includes(category));
     }
-    // "latest" y "all" muestran todos, pero "latest" limita a 10
   }
 
-  // Siempre ordenar por fecha descendente (más nuevo primero)
+  // Ordenar por fecha
   filtered = filtered.sort((a, b) => new Date(b.fecha) - new Date(a.fecha));
 
-  // Aplicar límite solo si es "latest" y no hay búsqueda
+  // Límite solo para "latest"
   if (category === "latest" && !searchQuery) {
     filtered = filtered.slice(0, 10);
   }
-  // "all" muestra TODOS sin límite
 
-  // Si no hay resultados
+  // Mostrar mensaje si no hay resultados
   if (filtered.length === 0) {
-    videoGrid.innerHTML = `<p style="text-align:center; color:#aaa; grid-column: 1/-1;">No se encontraron videos en esta categoría.</p>`;
-    return;
+    videoGrid.innerHTML = `<p style="text-align:center; color:#aaa; grid-column: 1/-1; padding: 40px;">No se encontraron videos.</p>`;
+  } else {
+    filtered.forEach(video => {
+      const card = document.createElement("div");
+      card.classList.add("video-card");
+      card.innerHTML = `
+        <a href="${video.link}" target="_blank">
+          <img src="${video.miniatura}" alt="${video.titulo}" loading="lazy">
+          <h3>${video.titulo}</h3>
+        </a>
+        <div class="video-desc">
+          <p>${video.descripcion}</p>
+        </div>
+        <small>${formatDate(video.fecha)}</small>
+      `;
+      videoGrid.appendChild(card);
+    });
   }
 
-  filtered.forEach(video => {
-    const card = document.createElement("div");
-    card.classList.add("video-card");
-
-    card.innerHTML = `
-      <a href="${video.link}" target="_blank">
-        <img src="${video.miniatura}" alt="${video.titulo}" loading="lazy">
-        <h3>${video.titulo}</h3>
-      </a>
-      <div class="video-desc">
-        <p>${video.descripcion}</p>
-      </div>
-      <small>${formatDate(video.fecha)}</small>
-    `;
-
-    videoGrid.appendChild(card);
-  });
+  // Actualizar título
+  if (category === "latest") {
+    categoryTitle.textContent = "Últimos";
+  } else if (category === "all") {
+    categoryTitle.textContent = "Todos";
+  } else {
+    categoryTitle.textContent = category;
+  }
 }
 
-// Botones de filtro
+// Eventos de botones
 filterButtons.forEach(btn => {
   btn.addEventListener("click", () => {
-    document.querySelector(".dropdown-item.active").classList.remove("active");
+    document.querySelector(".dropdown-item.active")?.classList.remove("active");
     btn.classList.add("active");
     currentCategory = btn.dataset.category;
-    renderVideos(currentCategory, searchInput.value);
-    // Cerrar el menú flotante y quitar la clase active del botón toggle
-    const dropdownMenu = document.querySelector(".dropdown-menu");
-    const toggleBtn = document.querySelector(".dropdown-toggle");
-    dropdownMenu.classList.remove("expanded");
-    toggleBtn.classList.remove("active");
-    toggleBtn.textContent = `Categorías ▼`;
+    renderVideos(currentCategory, searchInput.value.trim());
+
+    // Cerrar menú
+    document.querySelector(".dropdown-menu").classList.remove("expanded");
+    document.querySelector(".dropdown-toggle").classList.remove("active");
+    document.querySelector(".dropdown-toggle").textContent = "Categorías ▼";
   });
 });
 
 // Buscador
 searchInput.addEventListener("input", () => {
-  renderVideos(currentCategory, searchInput.value);
+  renderVideos(currentCategory, searchInput.value.trim());
 });
 
-// Toggle para el menú flotante
-const toggleBtn = document.querySelector(".dropdown-toggle");
-const dropdownMenu = document.querySelector(".dropdown-menu");
+// Toggle menú
+document.querySelector(".dropdown-toggle")?.addEventListener("click", function () {
+  const menu = document.querySelector(".dropdown-menu");
+  const isExpanded = menu.classList.toggle("expanded");
+  this.classList.toggle("active");
+  this.textContent = isExpanded ? "Categorías ▲" : "Categorías ▼";
+});
 
-if (toggleBtn && dropdownMenu) {
-  toggleBtn.addEventListener("click", () => {
-    dropdownMenu.classList.toggle("expanded");
-    toggleBtn.classList.toggle("active");
-    toggleBtn.textContent = dropdownMenu.classList.contains("expanded") ? "Categorías ▲" : "Categorías ▼";
-  });
-}
-
-// Cargar videos iniciales
-renderVideos("latest");
+// Inicializar
+document.addEventListener("DOMContentLoaded", () => {
+  updateCategoryCounts();  // ← Contadores al cargar
+  renderVideos("latest");
+});
