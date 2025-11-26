@@ -1,5 +1,116 @@
 const videosData = [
     {
+  titulo: '🦇🦸🏻 Reacciono a Mariano Rodríguez y NO PUEDO PARAR de reír 😂 | Reseña de Batman (Tim Burton)',
+  descripcion: 'Este tipo es una máquina. 🤯 No puedo con Mariano Rodríguez: su humor, su velocidad, su creatividad… ¡es impresionante! En esta ocasión reacciono a su reseña de Batman (la de Tim Burton, sí, esa). Lo menciono en el video y lo sostengo: no hay nada que me dé más risa que este tipo. Siempre termino mis noches con sus videos porque no hay mejor forma de cerrar el día que riéndome a carcajadas.',
+  fecha: '2025-06-03',
+  link: 'https://www.youtube.com/watch?v=Vb6nvMuatNY&t=349s',
+  miniatura: 'https://img.youtube.com/vi/Vb6nvMuatNY/maxresdefault.jpg',
+  tags: [
+    'Películas',
+    'Humor'
+  ]
+},
+  {
+  titulo: '🎬 Relatos Salvajes - Reacción a Pasternak (RE-EDICIÓN) | No está monetizado pero vale cada segundo',
+  descripcion: 'Sí, ya sé… Este video ya había salido. Pero el primero me lo bajaron por derechos de autor 😔 Así que aquí está la versión RE-EDITADA. No está monetizado, pero sí me dejan compartirlo, y eso ya es bastante.\nEs que esta obra es increíble, y simplemente no podía quedarme sin compartir mi reacción con ustedes. El nivel de tensión, la dirección, TODO.\n¿Ya la viste? ¿Qué opinás de este primer corto?',
+  fecha: '2025-06-04',
+  link: 'https://www.youtube.com/watch?v=XOGGESBlL6A',
+  miniatura: 'https://img.youtube.com/vi/XOGGESBlL6A/maxresdefault.jpg',
+  tags: [
+    'Películas',
+    'Humor',
+    'Especiales',
+    'Suspenso'
+  ]
+},
+  {
+  titulo: 'REACCIÓN a LAS RATAS | Segunda historia de RELATOS SALVAJES (no monetizado)',
+  descripcion: 'Segunda historia de Relatos Salvajes, esta vez con “Las Ratas”.\n\nEste video NO está monetizado, pero por suerte sí me dejan subirlo.\n\nUna joya de relato. Crudo, corto, inteligente.',
+  fecha: '2025-06-05',
+  link: 'https://www.youtube.com/watch?v=milBxy63g5c',
+  miniatura: 'https://img.youtube.com/vi/milBxy63g5c/maxresdefault.jpg',
+  tags: [
+    'Películas',
+    'Humor',
+    'Drama',
+    'Especiales'
+  ]
+},
+  {
+  titulo: '🔥 El Más Fuerte – Relatos Salvajes | Reacción & Reflexión: ¿Hasta Dónde Llegar?',
+  descripcion: 'Un nuevo episodio de esta joya del cine argentino: Relatos Salvajes – “El más fuerte”.\nUna historia que me dejó pensando en algo muy real: hay peleas que uno puede evitar… y si no se pueden evitar, alguien tiene que tener la fuerza moral de frenarlas.\n\n👉 Reflexiono sobre hasta qué punto vale la pena escalar un conflicto y cómo muchas veces el que \'va ganando\' tiene la responsabilidad de frenar.\nPorque si nadie para, el final puede ser más salvaje que lo que imaginamos.',
+  fecha: '2025-06-06',
+  link: 'https://www.youtube.com/watch?v=0acBruaMC_Y',
+  miniatura: 'https://img.youtube.com/vi/0acBruaMC_Y/maxresdefault.jpg',
+  tags: [
+    'Películas',
+    'Humor',
+    'Especiales',
+    'Suspenso'
+  ]
+},
+  {
+  titulo: '🔥 Relatos Salvajes - Reacción a \'Bombita\' | ¡Me engañó por completo!',
+  descripcion: 'Hoy vamos a ver \'Bombita\', la cuarta historia dentro de la película Relatos Salvajes.\nAl principio creí que sería la más floja… pero me llevé una gran sorpresa. Este corto no solo tiene un giro inesperado, sino que además me cambió completamente la perspectiva.',
+  fecha: '2025-06-09',
+  link: 'https://www.youtube.com/watch?v=FNDFFKVt8ZQ&t=16s',
+  miniatura: 'https://img.youtube.com/vi/FNDFFKVt8ZQ/maxresdefault.jpg',
+  tags: [
+    'Películas',
+    'Humor',
+    'Especiales',
+    'Suspenso'
+  ]
+},
+  {
+  titulo: '🎬 Relatos Salvajes - Reacción a \'La propuesta\' | Todo se pudrió…',
+  descripcion: 'Hoy reacciono a \'La propuesta\', la quinta historia de Relatos Salvajes.\nUn relato cargado de tensión, manipulación, y decisiones que lo cambian todo.\nEsta historia me dejó pensando en cómo el poder y el dinero pueden torcer cualquier situación.',
+  fecha: '2025-06-11',
+  link: 'https://www.youtube.com/watch?v=brOlj578bAA',
+  miniatura: 'https://img.youtube.com/vi/brOlj578bAA/maxresdefault.jpg',
+  tags: [
+    'Películas',
+    'Especiales',
+    'Suspenso'
+  ]
+},
+  {
+  titulo: 'Reacción a la Boda en Relatos Salvajes: Me Dejó SIN PALABRAS',
+  descripcion: 'Hoy!!! La sexta y última historia de Relatos Salvajes, titulada “Hasta que la muerte nos separe”!!! Honestamente, no sé ni qué decir. Esta historia hizo lo que muchas películas no logran: me dejó completamente callado... lo cual muchos van a amar. Jajajaja!\n\nEntre el caos, la tensión, el humor oscuro y lo inesperado... terminó siendo un cierre PERFECTO para una película que ya me venía encantando desde el principio.\n\nAl final del video también comparto mis reflexiones generales sobre la película completa. ¡Gracias por acompañarme en esta serie de reacciones!',
+  fecha: '2025-06-12',
+  link: 'https://www.youtube.com/watch?v=i7ne8fXQIVo&t=12s',
+  miniatura: 'https://img.youtube.com/vi/i7ne8fXQIVo/maxresdefault.jpg',
+  tags: [
+    'Películas',
+    'Humor',
+    'Drama',
+    'Especiales'
+  ]
+},
+  {
+  titulo: '\'Sos yegua, Marta\' 😂 Reacción a Gasalla | Me duele la cara de la risa',
+  descripcion: 'Antonio Gasalla es simplemente imparable. En esta ocasión reacciono al sketch “Sos yegua, Marta”, y como siempre, me duele la cara de tanto reír. Qué talento más brutal.',
+  fecha: '2025-06-16',
+  link: 'https://www.youtube.com/watch?v=RUqfT3UBmXY',
+  miniatura: 'https://img.youtube.com/vi/RUqfT3UBmXY/maxresdefault.jpg',
+  tags: [
+    'Humor',
+    'Especiales'
+  ]
+},
+  {
+  titulo: '👉 Reacción a Peter Capusotto: \'Padre Progresista\' | ¡Una joya de personaje!',
+  descripcion: 'En este video reacciono a Peter Capusotto: el Padre Progresista me hizo reír muchísimo con su discurso \'moderno\', lleno de contradicciones y esa forma tan particular de educar.\nCapusotto sorprende con un humor agudo que te hace pensar y reír al mismo tiempo. ¿Tú también te reíste? Cuéntamelo en los comentarios.',
+  fecha: '2025-06-18',
+  link: 'https://www.youtube.com/watch?v=gwdf1_5_YF8',
+  miniatura: 'https://img.youtube.com/vi/gwdf1_5_YF8/maxresdefault.jpg',
+  tags: [
+    'Humor',
+    'Especiales'
+  ]
+},
+
+    {
   titulo: '🎥 Reacción a Nico Biffi – \'Monólogos de Humor\'',
   descripcion: 'Me cagué de risa con este show. Me encanta poder hacer reacciones a cosas que mucha gente ni siquiera conoce. Ese es el caso de Nico Biffi y, en particular, de este monólogo. Incluso personas que ya lo conocían mencionan en los comentarios que no reconocen chistes muy fáciles de referenciar como el de \'Mauro\', lo cual hace este video aún más interesante.',
   fecha: '2025-07-08',
