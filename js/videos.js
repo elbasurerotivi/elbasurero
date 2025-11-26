@@ -1,7 +1,16 @@
-
-
-
 const videosData = [
+    {
+  titulo: 'Reacción: Pareja venezolana toma clase de mate 🍵 | ¡La reivindicación!',
+  descripcion: '¡Nuevo video en el canal! Hoy reacciono a un video de una pareja de venezolanos que decidió tomarse muy en serio el ritual del mate. Todo comenzó porque en un video anterior la chica fue muy criticada por mover la bombilla dentro del mate 😅, lo cual en el mundo matero es casi un sacrilegio.\nPara reivindicarse, la pareja tomó una clase especial sobre cómo preparar y disfrutar un buen mate, y lo documentaron en su canal. Yo me maté de risa con su esfuerzo, sus dudas y la manera tan auténtica en que se enfrentaron a esta tradición sudamericana.\nEste tipo de videos me encanta porque muestran cómo se aprende de los errores, y además me ayudan en mi propio viaje de aprendizaje del mate. 🍵',
+  fecha: '2025-09-03',
+  link: 'https://www.youtube.com/watch?v=KlUPR7N2Ekg',
+  miniatura: 'https://img.youtube.com/vi/KlUPR7N2Ekg/maxresdefault.jpg',
+  tags: [
+    'Cultura',
+    'Especiales'
+  ]
+},
+
     {
   titulo: 'La Anécdota de “Pinturita” del Puma Goity | Casi me atraganto de la risa',
   descripcion: 'Hoy reaccionamos a la famosa anécdota de El Puma Goity, conocida como “Pinturita”.\nUna historia tan divertida y tan inesperada que terminé riéndome muchísimo.\nLa comunidad siempre me recomienda las mejores joyas, y esta no fue la excepción.\n\nVimos este fragmento durante un YouTube Live, y compartir la risa con todos ustedes lo hizo todavía mejor.\n¡Gracias por seguir trayéndome contenido tan bueno!',
