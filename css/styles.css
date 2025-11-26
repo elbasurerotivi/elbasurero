@@ -1223,17 +1223,17 @@ footer h3 {
 
 .dropdown-item.active {
   background: var(--accent);
-  color: white;
+  color: rgb(0, 0, 0);
 }
 
 .dropdown-item .count {
   font-weight: normal;
-  color: #aaa;
+  color: #000000;
   font-size: 0.85em;
   margin-left: 6px;
 }
 .dropdown-item.active .count {
-  color: #fff;
+  color: #000000;
 }
 
 .video-grid {
