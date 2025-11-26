@@ -2,14 +2,14 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cargar videos - El Basurero</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="icon" href="Imagenes/icono.png" type="image/x-icon">
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
-    <meta name="description" content="El Basurero, tu canal de reacciones en YouTube. Horarios, videos y comunidad.">
-    <meta name="keywords" content="El Basurero, reacciones, YouTube, directos, Twitch, México, Argentina, stream, videos, comunidad, película, series, opinión, videoreacción">
-    <link rel="stylesheet" href="css/styles.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cargar videos - El Basurero</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="Imagenes/icono.png" type="image/x-icon">
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+  <meta name="description" content="El Basurero, tu canal de reacciones en YouTube. Horarios, videos y comunidad.">
+  <meta name="keywords" content="El Basurero, reacciones, YouTube, directos, Twitch, México, Argentina, stream, videos, comunidad, película, series, opinión, videoreacción">
+  <link rel="stylesheet" href="css/styles.css" />
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -92,6 +92,38 @@
       border-radius: 8px;
       display: none;
     }
+    #videoList {
+      margin-top: 20px;
+      background: #333;
+      padding: 15px;
+      border-radius: 8px;
+      max-height: 200px;
+      overflow-y: auto;
+    }
+    #videoList h2 {
+      margin-bottom: 10px;
+      font-size: 1.2rem;
+    }
+    #videoList ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+    }
+    #videoList li {
+      margin-bottom: 8px;
+      padding: 8px;
+      background: #444;
+      border-radius: 4px;
+    }
+    #copyButton {
+      margin-top: 10px;
+      width: auto;
+      padding: 10px 20px;
+      background: #4CAF50;
+    }
+    #copyButton:hover {
+      background: #45a049;
+    }
   </style>
 </head>
 <body>
@@ -116,8 +148,6 @@
       <input type="file" id="miniatura" accept="image/*" />
       <img id="preview" alt="Vista previa" style="display:none; max-width:200px; margin-top:10px;">
 
-
-
       <label>Tags</label>
       <div class="tags">
         <label><input type="checkbox" value="Películas" /> Películas</label>
@@ -136,13 +166,18 @@
         <label><input type="checkbox" value="Suspenso" /> Suspenso</label>
         <label><input type="checkbox" value="Biopic" /> Biopic</label>
         <label><input type="checkbox" value="Concierto" /> Concierto</label>
-
       </div>
 
       <button type="submit">➕ Agregar a la lista</button>
     </form>
 
     <div class="output" id="output"></div>
+    <button id="copyButton">📋 Copiar</button>
+
+    <div id="videoList">
+      <h2>Lista de Videos Cargados</h2>
+      <ul></ul>
+    </div>
 
     <button id="downloadAll">⬇️ Descargar Todos</button>
   </div>
@@ -151,6 +186,9 @@
   const preview = document.getElementById("preview");
   const linkInput = document.getElementById("link");
   const miniaturaInput = document.getElementById("miniatura");
+  const output = document.getElementById("output");
+  const videoListUl = document.querySelector("#videoList ul");
+  const copyButton = document.getElementById("copyButton");
   let videosList = [];
   let autoThumbnail = ""; // Miniatura obtenida automáticamente
   let manualThumbnail = ""; // Miniatura subida manualmente
@@ -231,11 +269,18 @@
 
     videosList.push(videoObj);
 
-    // Mostrar en pantalla
+    // Generar el código JS para el objeto
     const jsCode = JSON.stringify(videoObj, null, 2)
       .replace(/\"([^(\")"]+)\":/g, "$1:")
       .replace(/\"/g, "'");
-    document.getElementById("output").textContent += `  ${jsCode},\n`;
+
+    // Prepend al output (último arriba)
+    output.textContent = `  ${jsCode},\n` + output.textContent;
+
+    // Prepend a la lista de títulos (último arriba)
+    const li = document.createElement("li");
+    li.textContent = titulo;
+    videoListUl.prepend(li);
 
     // Resetear formulario
     document.getElementById("videoForm").reset();
@@ -244,34 +289,47 @@
     manualThumbnail = "";
   });
 
+  // 📌 Copiar el output al portapapeles
+  copyButton.addEventListener("click", () => {
+    if (output.textContent.trim() === "") {
+      alert("No hay contenido para copiar.");
+      return;
+    }
+    navigator.clipboard.writeText(output.textContent).then(() => {
+      alert("✅ Contenido copiado al portapapeles.");
+    }).catch(err => {
+      console.error("Error al copiar: ", err);
+      alert("❌ Error al copiar el contenido.");
+    });
+  });
+
   // 📌 Descargar todos los videos juntos
-document.getElementById("downloadAll").addEventListener("click", () => {
-  if (videosList.length === 0) {
-    alert("No hay videos en la lista.");
-    return;
-  }
+  document.getElementById("downloadAll").addEventListener("click", () => {
+    if (videosList.length === 0) {
+      alert("No hay videos en la lista.");
+      return;
+    }
 
-  const jsCode = videosList.map(v =>
-    JSON.stringify(v, null, 2)
-      .replace(/\"([^(\")"]+)\":/g, "$1:")
-      .replace(/\"/g, "'")
-  ).join(",\n\n"); // 🔥 agrega coma entre cada objeto
+    const jsCode = videosList.map(v =>
+      JSON.stringify(v, null, 2)
+        .replace(/\"([^(\")"]+)\":/g, "$1:")
+        .replace(/\"/g, "'")
+    ).join(",\n\n"); // 🔥 agrega coma entre cada objeto
 
-  const finalCode = `${jsCode},`; // 🔥 última coma al final también
+    const finalCode = `${jsCode},`; // 🔥 última coma al final también
 
-  const blob = new Blob([finalCode], { type: "application/javascript" });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = "add.js";
-  a.click();
-  URL.revokeObjectURL(url);
+    const blob = new Blob([finalCode], { type: "application/javascript" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "add.js";
+    a.click();
+    URL.revokeObjectURL(url);
 
-  alert("✅ Archivo add.js descargado con todos los videos.");
-});
+    alert("✅ Archivo add.js descargado con todos los videos.");
+  });
 
-</script>
-
+  </script>
 
 </body>
 </html>
