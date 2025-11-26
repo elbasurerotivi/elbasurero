@@ -1,5 +1,61 @@
 const videosData = [
     {
+  titulo: '🎥 Reacción a Nico Biffi – \'Monólogos de Humor\'',
+  descripcion: 'Me cagué de risa con este show. Me encanta poder hacer reacciones a cosas que mucha gente ni siquiera conoce. Ese es el caso de Nico Biffi y, en particular, de este monólogo. Incluso personas que ya lo conocían mencionan en los comentarios que no reconocen chistes muy fáciles de referenciar como el de \'Mauro\', lo cual hace este video aún más interesante.',
+  fecha: '2025-07-08',
+  link: 'https://www.youtube.com/watch?v=HuFq-BBasN0',
+  miniatura: 'https://img.youtube.com/vi/HuFq-BBasN0/maxresdefault.jpg',
+  tags: [
+    'Humor',
+    'Especiales'
+  ]
+},
+  {
+  titulo: '🎬 Lunes de Mariano!!! | Blancanieves (2024): Rewatch 😂',
+  descripcion: 'Hoy vamos a ver al divertidísimo video de Mariano Rodríguez donde comenta la nueva película de Blancanieves (2024). Mariano no decepciona: lleno de humor, referencias, y un ritmo genial que me hizo reírme muchísimo. Gran forma de empezar la semana con Lunes de Mariano.\n\'Y comienzaaaaaaa...\' 😄',
+  fecha: '2025-07-14',
+  link: 'https://www.youtube.com/watch?v=SKmZoeEKKp4',
+  miniatura: 'https://img.youtube.com/vi/SKmZoeEKKp4/maxresdefault.jpg',
+  tags: [
+    'Películas',
+    'Humor'
+  ]
+},
+  {
+  titulo: '😆 Mexicando reacciona: Nico Biffi 'Monólogos de Humor' | Segunda parte',
+  descripcion: 'Ayer me enfermé y no pude terminar la subida hoy. Por eso esta saliendo tarde el video.\nTarde pero seguro.\n\nSi creíste que ya no había más que reaccionar de Nico Biffi… ¡aquí tienes la segunda parte! Su estilo es tan particular que me hace reír incluso editando el video. Me encanta poder compartir este tipo de contenido que muchos ni siquiera conocen, y que vale la pena descubrir.',
+  fecha: '2025-07-15',
+  link: 'https://www.youtube.com/watch?v=cyHRPZZ5X7I&t=200s',
+  miniatura: 'https://img.youtube.com/vi/cyHRPZZ5X7I/maxresdefault.jpg',
+  tags: [
+    'Humor',
+    'Especiales'
+  ]
+},
+  {
+  titulo: '🤣 Reacción al Flaco Pailos: El Gallo Chacho 🐓 ¡Imperdible!',
+  descripcion: '¡Hoy reaccionamos al Flaco Pailos con su famoso chiste de El Gallo Chacho! 🐓 Me hizo reír muchísimo y seguro que a ustedes también les sacará una carcajada.',
+  fecha: '2025-07-16',
+  link: 'https://www.youtube.com/watch?v=kT-w0_tUAek&t=147s',
+  miniatura: 'https://img.youtube.com/vi/kT-w0_tUAek/maxresdefault.jpg',
+  tags: [
+    'Humor',
+    'Especiales'
+  ]
+},
+  {
+  titulo: 'Porqué los Extranjeros aman Argentina',
+  descripcion: 'Este video me devolvió la novedad de reenamorarme de Argentina, como si la descubriera nuevamente a través de los ojos de otros extranjeros. ¡Una verdadera joya que emociona!',
+  fecha: '2025-07-21',
+  link: 'https://www.youtube.com/watch?v=rNLxwxzPPV0&t=116s',
+  miniatura: 'https://img.youtube.com/vi/rNLxwxzPPV0/maxresdefault.jpg',
+  tags: [
+    'Cultura',
+    'Especiales'
+  ]
+},
+
+    {
   titulo: '😂 No me aguanté la risa con este compilado | Reacción a “La llama que llama”',
   descripcion: 'Reaccioné a los 21 videos del clásico compilado de “La llama que llama”, y la verdad… no pude contener la risa.\nAlgunas expresiones todavía me dejan con dudas, así que cualquier aclaración en los comentarios es más que bienvenida.',
   fecha: '2025-07-23',
