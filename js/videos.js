@@ -1,5 +1,60 @@
 const videosData = [
     {
+  titulo: '😂 No me aguanté la risa con este compilado | Reacción a “La llama que llama”',
+  descripcion: 'Reaccioné a los 21 videos del clásico compilado de “La llama que llama”, y la verdad… no pude contener la risa.\nAlgunas expresiones todavía me dejan con dudas, así que cualquier aclaración en los comentarios es más que bienvenida.',
+  fecha: '2025-07-23',
+  link: 'https://www.youtube.com/watch?v=IC5EOPf6kvU&t=1447s',
+  miniatura: 'https://img.youtube.com/vi/IC5EOPf6kvU/maxresdefault.jpg',
+  tags: [
+    'Humor',
+    'Especiales'
+  ]
+},
+  {
+  titulo: 'Reacción a Un santafesino en Toronto de Daddy Brieva | Me doblé de risa 😂',
+  descripcion: 'Hoy traigo la reacción a uno de los especiales más divertidos que he escuchado últimamente: Un santafesino en Toronto de Daddy Brieva.\nSí, me doblé de risa 😂, pero además me llamó la atención algo que no es menor: no es “un argentino en Toronto”, es un santafesino. Y esa diferencia tiene mucho sentido si sos del interior (o si conocés a alguien que lo sea).\n\nYa conocía el diario del primo, pero este video, CON Daddy Brieva, no lo había visto.\n\nUn relato lleno de ironía, picardía, observaciones filosas y esa manera única de narrar situaciones absurdas que tenemos los que viajamos. Si ya viste este show, contame en los comentarios qué te pareció o si hay otro que debería ver.',
+  fecha: '2025-07-26',
+  link: 'https://www.youtube.com/watch?v=1tjmUAekxiY',
+  miniatura: 'https://img.youtube.com/vi/1tjmUAekxiY/maxresdefault.jpg',
+  tags: [
+    'Humor',
+    'Especiales'
+  ]
+},
+  {
+  titulo: 'Reaccionando a Mariano Rodríguez: Starship Troopers | Me morí de risa',
+  descripcion: 'Hoy reaccionamos al video de Mariano Rodríguez sobre Starship Troopers, una película que ya vi hace tiempo y que, como muchos saben, ¡involucra a Argentina! Me lo recomendaron varias veces tanto por WhatsApp como durante los lives... y no decepcionó. Me doblé de risa. Mariano nunca falla.',
+  fecha: '2025-07-28',
+  link: 'https://www.youtube.com/watch?v=G3ynqQ-s02E',
+  miniatura: 'https://img.youtube.com/vi/G3ynqQ-s02E/maxresdefault.jpg',
+  tags: [
+    'Películas',
+    'Humor'
+  ]
+},
+  {
+  titulo: '🎬 Reacción a \'Te lo resumo así nomás: Velocipastor\' | ¡No pude parar de reír!',
+  descripcion: 'Una película tan mala... ¡que es buena! En este video reaccionamos al resumen de Velocipastor hecho por el maestro del absurdo: Te lo resumo así nomás. La premisa de esta joya es simple: un sacerdote que se convierte en dinosaurio ninja. ¿Necesito decir más?',
+  fecha: '2025-07-29',
+  link: 'https://www.youtube.com/watch?v=2fYF70MeY_U',
+  miniatura: 'https://img.youtube.com/vi/2fYF70MeY_U/maxresdefault.jpg',
+  tags: [
+    'Películas',
+    'Humor'
+  ]
+},
+  {
+  titulo: 'Reacción a Los Mejores Videos de Argentina #11 🇦🇷 | Me reí y aprendí un montón',
+  descripcion: 'Reaccionamos al video Los Mejores Videos de Argentina #11 del canal Soy Argentino 2.0 y no paramos de reír.\nPero más allá de las risas, también hubo algo importante: aprendizaje.\n\nAprender de los argentinos es mucho más fácil y genuino cuando uno simplemente los ve vivir, hablar, convivir y ser ellos mismos. Esta clase de contenido lo demuestra. 🇦🇷🔥',
+  fecha: '2025-07-31',
+  link: 'https://www.youtube.com/watch?v=LCh7m8y48es&t=4s',
+  miniatura: 'https://img.youtube.com/vi/LCh7m8y48es/maxresdefault.jpg',
+  tags: [
+    'Humor'
+  ]
+},
+
+    {
   titulo: '🔴 Reacción a Violencia Rivas | Peter Capusotto me hizo llorar de la risa',
   descripcion: '¡Qué pedazo de sketch! Peter Capusotto me hizo llorar de la risa con este personaje. VIOLENCIA RIVAS es todo lo que está mal, pero tan bien hecho que no podés evitar amarla.\nUna de las canciones se me quedó pegada todo el día.\nGracias a quienes la recomendaron en los comentarios de videos anteriores.\nSe viene más Capusotto, obvio.',
   fecha: '2025-08-01',
