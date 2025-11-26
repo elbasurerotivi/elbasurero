@@ -254,7 +254,13 @@ function reordenarTarjetasPorDia() {
         categoryItems.forEach(i => i.classList.remove('active'));
         item.classList.add('active');
         const category = item.getAttribute('data-category');
-        categoryTitle.textContent = category === 'latest' ? 'Últimos' : category.charAt(0).toUpperCase() + category.slice(1);
+        if (category === 'latest') {
+            categoryTitle.textContent = 'Últimos';
+          } else if (category === 'all') {
+            categoryTitle.textContent = 'Todos';
+          } else {
+            categoryTitle.textContent = category;
+          }
         console.log(`Título de categoría actualizado a: ${categoryTitle.textContent}`);
       });
     });

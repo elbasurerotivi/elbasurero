@@ -1475,25 +1475,34 @@ function renderVideos(category = currentCategory, searchQuery = "") {
 
   let filtered = videosData;
 
+  // Si hay búsqueda, ignoramos la categoría y buscamos en todos
   if (searchQuery) {
-    // Búsqueda global: filtrar por búsqueda en todos los videos
     const lowerQuery = searchQuery.toLowerCase();
     filtered = filtered.filter(video =>
-      video.titulo.toLowerCase().includes(lowerQuery)
+      video.titulo.toLowerCase().includes(lowerQuery) ||
+      video.descripcion.toLowerCase().includes(lowerQuery)
     );
   } else {
-    // Sin búsqueda: filtrar por categoría
-    if (category !== "latest") {
+    // Filtrado por categoría
+    if (category !== "latest" && category !== "all") {
       filtered = filtered.filter(video => video.tags.includes(category));
     }
+    // "latest" y "all" muestran todos, pero "latest" limita a 10
   }
 
-  // Siempre ordenar por fecha descendente
+  // Siempre ordenar por fecha descendente (más nuevo primero)
   filtered = filtered.sort((a, b) => new Date(b.fecha) - new Date(a.fecha));
 
-  // Para "latest" sin búsqueda, limitar a 10
+  // Aplicar límite solo si es "latest" y no hay búsqueda
   if (category === "latest" && !searchQuery) {
     filtered = filtered.slice(0, 10);
+  }
+  // "all" muestra TODOS sin límite
+
+  // Si no hay resultados
+  if (filtered.length === 0) {
+    videoGrid.innerHTML = `<p style="text-align:center; color:#aaa; grid-column: 1/-1;">No se encontraron videos en esta categoría.</p>`;
+    return;
   }
 
   filtered.forEach(video => {
@@ -1502,7 +1511,7 @@ function renderVideos(category = currentCategory, searchQuery = "") {
 
     card.innerHTML = `
       <a href="${video.link}" target="_blank">
-        <img src="${video.miniatura}" alt="${video.titulo}">
+        <img src="${video.miniatura}" alt="${video.titulo}" loading="lazy">
         <h3>${video.titulo}</h3>
       </a>
       <div class="video-desc">
@@ -1550,10 +1559,3 @@ if (toggleBtn && dropdownMenu) {
 
 // Cargar videos iniciales
 renderVideos("latest");
-
-
-
-
-
-
-
