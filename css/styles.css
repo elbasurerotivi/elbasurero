@@ -1226,6 +1226,16 @@ footer h3 {
   color: white;
 }
 
+.dropdown-item .count {
+  font-weight: normal;
+  color: #aaa;
+  font-size: 0.85em;
+  margin-left: 6px;
+}
+.dropdown-item.active .count {
+  color: #fff;
+}
+
 .video-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
