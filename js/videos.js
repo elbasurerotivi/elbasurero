@@ -21,6 +21,7 @@ const videosData = [
   link: 'https://www.youtube.com/watch?v=6_MicSrXglE',
   miniatura: 'https://img.youtube.com/vi/6_MicSrXglE/maxresdefault.jpg',
   tags: [
+    'Directos',
     'Series',
     'Humor',
     'Animación'
@@ -34,6 +35,7 @@ const videosData = [
   link: 'https://www.youtube.com/watch?v=Da8x_PBdxyI',
   miniatura: 'https://img.youtube.com/vi/Da8x_PBdxyI/maxresdefault.jpg',
   tags: [
+    'Directos',
     'Humor',
     'Música'
   ]
@@ -46,6 +48,7 @@ const videosData = [
   link: 'https://www.youtube.com/watch?v=YnaiJQYK3O4',
   miniatura: 'https://img.youtube.com/vi/YnaiJQYK3O4/maxresdefault.jpg',
   tags: [
+    'Directos',
     'Películas',
     'Cultura',
     'Especiales'
@@ -58,6 +61,7 @@ const videosData = [
   link: 'https://www.youtube.com/watch?v=UxZp9qzX2-k',
   miniatura: 'https://img.youtube.com/vi/UxZp9qzX2-k/maxresdefault.jpg',
   tags: [
+    'Directos',
     'Películas',
     'Humor'
   ]
@@ -71,6 +75,7 @@ const videosData = [
   link: 'https://www.youtube.com/watch?v=vwOxKXi9yoc',
   miniatura: 'https://img.youtube.com/vi/vwOxKXi9yoc/maxresdefault.jpg',
   tags: [
+    'Directos',
     'Humor',
     'Especiales'
   ]
