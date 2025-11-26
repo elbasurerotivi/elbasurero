@@ -2,7 +2,18 @@
 
 
 const videosData = [
-
+    {
+  titulo: 'La Anécdota de “Pinturita” del Puma Goity | Casi me atraganto de la risa',
+  descripcion: 'Hoy reaccionamos a la famosa anécdota de El Puma Goity, conocida como “Pinturita”.\nUna historia tan divertida y tan inesperada que terminé riéndome muchísimo.\nLa comunidad siempre me recomienda las mejores joyas, y esta no fue la excepción.\n\nVimos este fragmento durante un YouTube Live, y compartir la risa con todos ustedes lo hizo todavía mejor.\n¡Gracias por seguir trayéndome contenido tan bueno!',
+  fecha: '2025-11-24',
+  link: 'https://www.youtube.com/watch?v=PRGvz39TmmI',
+  miniatura: 'https://img.youtube.com/vi/PRGvz39TmmI/maxresdefault.jpg',
+  tags: [
+    'Directos',
+    'Humor',
+    'Especiales'
+  ]
+},
    {
   titulo: 'Reaccionando a la 1.ª Temporada Completa de “Tres Acordes” | Jueves Animados en Twitch',
   descripcion: 'Hoy vimos la primera temporada completa de “Tres Acordes”, una serie independiente de YouTube que nos sorprendió muchísimo.\nSon solo cinco episodios cortitos, pero llenos de creatividad, humor y una vibra increíble.\n\nLa vimos durante uno de nuestros Jueves Animados en Twitch, y disfrutarla junto con la comunidad hizo que tuviera un sabor totalmente distinto.\n¡Gran serie, gran experiencia y muchas ganas de seguir viendo más contenido así!',
