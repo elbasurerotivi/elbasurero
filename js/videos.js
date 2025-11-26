@@ -1,5 +1,70 @@
 const videosData = [
     {
+  titulo: '🔴 Reacción a Violencia Rivas | Peter Capusotto me hizo llorar de la risa',
+  descripcion: '¡Qué pedazo de sketch! Peter Capusotto me hizo llorar de la risa con este personaje. VIOLENCIA RIVAS es todo lo que está mal, pero tan bien hecho que no podés evitar amarla.\nUna de las canciones se me quedó pegada todo el día.\nGracias a quienes la recomendaron en los comentarios de videos anteriores.\nSe viene más Capusotto, obvio.',
+  fecha: '2025-08-01',
+  link: 'https://www.youtube.com/watch?v=IKL0KKeccxc&t=131s',
+  miniatura: 'https://img.youtube.com/vi/IKL0KKeccxc/maxresdefault.jpg',
+  tags: [
+    'Humor'
+  ]
+},
+  {
+  titulo: '🔥 Reacción a Mariano Rodríguez reseñando John Wick 🐶💥 Una perra genialidad',
+  descripcion: 'En este video reaccionamos a la increíble reseña que Mariano Rodríguez hizo sobre la película John Wick.\nCon su característico sentido del humor, Mariano analiza la historia, la acción y los momentos más memorables de esta cinta protagonizada por Keanu Reeves, logrando un video que es tan entretenido como la película misma.',
+  fecha: '2025-08-14',
+  link: 'https://www.youtube.com/watch?v=RLOLlgrYbK4&t=97s',
+  miniatura: 'https://img.youtube.com/vi/RLOLlgrYbK4/maxresdefault.jpg',
+  tags: [
+    'Películas',
+    'Humor'
+  ]
+},
+  {
+  titulo: '🔥 Reacción a Mariano Rodríguez reseñando Kickboxer 🥊 Van Damme al máximo',
+  descripcion: 'Hoy vamos a ver la reseña de Mariano Rodríguez sobre Kickboxer, la icónica película de artes marciales protagonizada por Jean-Claude Van Damme.\nCon su estilo único, Mariano combina análisis, humor y espontaneidad, creando un guion impecable que hace que cada comentario sea divertido y memorable.',
+  fecha: '2025-08-15',
+  link: 'https://www.youtube.com/watch?v=8emNaM4iF4I',
+  miniatura: 'https://img.youtube.com/vi/8emNaM4iF4I/maxresdefault.jpg',
+  tags: [
+    'Películas',
+    'Humor'
+  ]
+},
+  {
+  titulo: '🔥 Reacción a Mariano Rodríguez reseñando Evil Dead (Sam Raimi) | Humor de otro nivel',
+  descripcion: 'En este video reaccionamos a la reseña de Mariano Rodríguez sobre The Evil Dead (1981), el clásico del terror dirigido por Sam Raimi. Su análisis combina humor brutal, espontaneidad genial y un guion tan bien construido que me partió de risa como nunca antes en el canal.',
+  fecha: '2025-08-18',
+  link: 'https://www.youtube.com/watch?v=7jsvQwv_Ajs&t=5s',
+  miniatura: 'https://img.youtube.com/vi/7jsvQwv_Ajs/maxresdefault.jpg',
+  tags: [
+    'Películas',
+    'Humor'
+  ]
+},
+  {
+  titulo: '🎭 Reacción a Lucho Mellera | Lucho con la gente #195 | Regreso con sorpresa',
+  descripcion: 'Después de dos semanas sin subir nada (estuve en modo papi con la visita de mi hija ❤️), vuelvo al canal con un video muy especial: una reacción a Lucho Mellera - \'Lucho con la gente #195\'.\n\nEste show me pareció el mejor para retomar, lleno de humor, ingenio y momentos que me sacaron muchas risas. Además, en este video hay una sorpresa personal que estoy seguro le va a encantar a la comunidad 👀.',
+  fecha: '2025-09-01',
+  link: 'https://www.youtube.com/watch?v=gTFtzNYgDFQ&t=7s',
+  miniatura: 'https://img.youtube.com/vi/gTFtzNYgDFQ/maxresdefault.jpg',
+  tags: [
+    'Humor'
+  ]
+},
+  {
+  titulo: 'Reaccionando al ritual del mate por primera vez 🍵 | Reacción',
+  descripcion: '¡Nuevo video en el canal! Hoy reacciono a un video donde explican cómo preparar tu primer mate. Un tutorial bastante completo que me dejó listo para dar el primer paso en este viaje.\nEn el video pasado les conté la sorpresa: me compré un mate y yerba. Ahora estoy muy emocionado por incorporar esta tradición a mi vida, y quiero documentar todo el proceso para compartirlo con ustedes.\nEste video es el inicio de esa aventura. Estoy estudiando bastante para que mi primer mate salga lo mejor posible, porque planeo grabar un video especial preparando y probando mi propio mate. ¡No se lo pierdan!',
+  fecha: '2025-09-02',
+  link: 'https://www.youtube.com/watch?v=VX8fS2vnq0k',
+  miniatura: 'https://img.youtube.com/vi/VX8fS2vnq0k/maxresdefault.jpg',
+  tags: [
+    'Cultura',
+    'Especiales'
+  ]
+},
+
+    {
   titulo: 'Reacción: Pareja venezolana toma clase de mate 🍵 | ¡La reivindicación!',
   descripcion: '¡Nuevo video en el canal! Hoy reacciono a un video de una pareja de venezolanos que decidió tomarse muy en serio el ritual del mate. Todo comenzó porque en un video anterior la chica fue muy criticada por mover la bombilla dentro del mate 😅, lo cual en el mundo matero es casi un sacrilegio.\nPara reivindicarse, la pareja tomó una clase especial sobre cómo preparar y disfrutar un buen mate, y lo documentaron en su canal. Yo me maté de risa con su esfuerzo, sus dudas y la manera tan auténtica en que se enfrentaron a esta tradición sudamericana.\nEste tipo de videos me encanta porque muestran cómo se aprende de los errores, y además me ayudan en mi propio viaje de aprendizaje del mate. 🍵',
   fecha: '2025-09-03',
