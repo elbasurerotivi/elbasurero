@@ -207,18 +207,20 @@ const videosData = [
     'Just Chatting'
   ]
 },
-  {
+    {
   titulo: '🔴 Reacción a Un Oso Rojo | Película argentina',
-  descripcion: '¡Estoy de regreso, gente linda! 🙌\nDespués de dos semanas fuera por asuntos familiares, volvemos con todo al canal, y qué mejor que con Un Oso Rojo 🐻, una película argentina que desde el día uno me llamó muchísimo la atención.',
+  descripcion: '¡Estoy de regreso, gente linda! 🙌\nDespués de dos semanas fuera por asuntos familiares, volvemos con todo al canal, y qué mejor que con Un Oso Rojo 🐻, una película argentina que desde el día uno me llamó muchísimo la atención.\n\nLa comunidad votó entre tres opciones, esta quedó en tercer lugar, pero sinceramente era la que más me emocionaba. Incluso vimos el tráiler juntos en un live y desde ese momento me atrapó 🔥.',
   fecha: '2025-08-30',
   link: 'https://www.youtube.com/watch?v=ELR89ybRWRs&t=6168s',
-  miniatura: 'Imagenes/un oso rojo.webp',
+  miniatura: 'https://img.youtube.com/vi/ELR89ybRWRs/maxresdefault.jpg',
   tags: [
     'Películas',
     'Directos',
-    'Drama'
+    'Drama',
+    'Suspenso'
   ]
 },
+
 
  {
   titulo: '🎥 Live: Reacción a Cronos, ópera prima de Guillermo del Toro',
