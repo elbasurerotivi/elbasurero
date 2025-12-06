@@ -1,4 +1,62 @@
 const videosData = [
+
+    {
+  titulo: 'Reacción a Mariano Rodríguez reseñando Gladiador | SEMANA DE MARIANO | Me morí de risa 😭🤣',
+  descripcion: 'Segundo día oficial de la SEMANA DE MARIANO en el canal 🎉\nHoy reaccionamos al videazo de Mariano Rodríguez donde reseña GLADIADOR… ¡y qué locura!\nMariano destroza, analiza, exagera y celebra la película de la forma más graciosa posible.\nYo no podía parar de reír. Literalmente, lágrimas. Jajajaja.',
+  fecha: '2025-12-04',
+  link: 'https://www.youtube.com/watch?v=mES_2GlcHdM&t=794s',
+  miniatura: 'https://img.youtube.com/vi/mES_2GlcHdM/maxresdefault.jpg',
+  tags: [
+    'Películas',
+    'Humor'
+  ]
+},
+  {
+  titulo: 'Reacción a Mariano Rodríguez analizando Matrix | ¡La reseña más graciosa y absurda que vas a ver! 😂',
+  descripcion: 'Nuevo video en el canal y otro capítulo del clásico ya oficial: ¡Reaccionando a Mariano Rodríguez!\nEsta vez le toca a Matrix, y como siempre, la reseña de Mariano es una mezcla perfecta entre análisis inteligente, humor absurdo y caos cinematográfico.\nYo ya había visto Matrix hace años, pero ver esta reinterpretación me hizo llorar de risa. 🤣\n\nLa comunidad y yo disfrutamos muchísimo este fragmento durante el directo, y como siempre, cada pausa, cada carcajada y cada “pará, pará, pará” fue inevitable.\n\nSi te gusta Matrix, si te gusta Mariano o si querés reírte un rato, este video es para vos.',
+  fecha: '2025-12-03',
+  link: 'https://www.youtube.com/watch?v=D90T1-nMlns',
+  miniatura: 'https://img.youtube.com/vi/D90T1-nMlns/maxresdefault.jpg',
+  tags: [
+    'Películas',
+    'Humor'
+  ]
+},
+  {
+  titulo: 'Reacción a Caro Pardiaco | “Hablemos sin saber” – Peligro Sin Codificar | No pude parar de reír 😂',
+  descripcion: 'Este es un extracto de un YouTube Live donde vimos el video \'Hablemos sin saber con Caro Pardiaco\' del programa Peligro Sin Codificar.\nEl personaje de Caro Pardiaco me mató de risa desde el primer segundo; tiene un toque que me suena muchísimo a chica fresa mexicana y eso lo hizo todavía más gracioso para mí y para toda la comunidad.\n\nAdvertencia de siempre pero más importante en este video:\n👉 Paro, repito, retrocedo y vuelvo a repetir MUCHAS veces porque simplemente no puedo evitar ver varias veces las partes que me hacen reír hasta las lágrimas. Si sos nuevo en el canal… esto es normal acá. 😂',
+  fecha: '2025-12-01',
+  link: 'https://www.youtube.com/watch?v=J8w7aX9bnP4',
+  miniatura: 'https://img.youtube.com/vi/J8w7aX9bnP4/maxresdefault.jpg',
+  tags: [
+    'Directos',
+    'Humor',
+    'Especiales'
+  ]
+},
+  {
+  titulo: 'Reacción a Moonwalker | Videoreacción a Mariano Rodríguez (La cámara se apagó al final 😭)',
+  descripcion: 'Volvemos con otra reacción a Mariano Rodríguez. Esta vez vimos su reseña de Moonwalker, la película de Michael Jackson… y me cagué de risa. Mariano logra que incluso las películas más raras se sientan como una joya digna de revisitar.\n\nDato importante: al final del video hablo muy poquito porque la cámara se apagó inesperadamente 😭. Solo pude grabar unos cuantos segundos para cerrar. Ya saben que detesto la palabra “OUTRO”, así que digamos que el video se despide solo. 😂\n\nGracias por todo el apoyo y por las recomendaciones que hacen que este canal crezca y se vuelva más divertido cada semana. ¡Los quiero, comunidad!\nSi te gusta este tipo de contenido, no olvides dejar tu like, comentar y pasarte por los directos.',
+  fecha: '2025-11-30',
+  link: 'https://www.youtube.com/watch?v=IudrlzNgUh0',
+  miniatura: 'https://img.youtube.com/vi/IudrlzNgUh0/maxresdefault.jpg',
+  tags: [
+    'Películas',
+    'Humor'
+  ]
+},
+  {
+  titulo: 'Lunes de Mariano… ¡como todos los sábados! 😂 | Reacción a Goodfellas (Buenos Muchachos)',
+  descripcion: 'Al fiiiin… ¡Lunes de Mariano!\n(como todos los sábados… ya saben cómo funciona la tradición del canal 😂)\n\nHoy traemos una videoreacción a un nuevo contenido del canal de Mariano Rodríguez, donde reseña la película “Buenos Muchachos” (Goodfellas).\n\nLa reseña está llena del humor, el ritmo y la lucidez que solo Mariano tiene para destrozar, analizar y celebrar el cine al mismo tiempo.\nYo había visto esta película hace muchos años… pero honestamente no recordaba nada.\nAsí que verla revisitada por Mariano fue la manera perfecta de volver a entrarle, sin tener que ver la película completa (que el tiempo ya no me da 😅).',
+  fecha: '2025-11-29',
+  link: 'https://www.youtube.com/watch?v=vpbgMUVR34k',
+  miniatura: 'https://img.youtube.com/vi/vpbgMUVR34k/maxresdefault.jpg',
+  tags: [
+    'Películas',
+    'Humor'
+  ]
+},
+
     {
   titulo: '🦇🦸🏻 Reacciono a Mariano Rodríguez y NO PUEDO PARAR de reír 😂 | Reseña de Batman (Tim Burton)',
   descripcion: 'Este tipo es una máquina. 🤯 No puedo con Mariano Rodríguez: su humor, su velocidad, su creatividad… ¡es impresionante! En esta ocasión reacciono a su reseña de Batman (la de Tim Burton, sí, esa). Lo menciono en el video y lo sostengo: no hay nada que me dé más risa que este tipo. Siempre termino mis noches con sus videos porque no hay mejor forma de cerrar el día que riéndome a carcajadas.',
