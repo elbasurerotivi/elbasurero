@@ -6063,3 +6063,176 @@ a {
 }
 
 }
+
+/* Estilos para el botón de login */
+.btn-login {
+  background: #8f959b00;
+  color: #ffffff00;
+  padding: 0px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 700;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-auth {
+    padding: 6px;
+    border: none;
+    border-radius: 50%; /* Circular para sutileza */
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px; /* Tamaño para escritorio */
+    height: 32px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Iconos */
+.auth-icon {
+    width: 18px; /* Ajustado para coincidir visualmente con font-size: 14px */
+    height: 18px;
+    object-fit: contain;
+}
+
+/* Estilos para el botón de login */
+.btn-login {
+    background: #007bff00;
+}
+
+.btn-login:hover {
+    background: #0057b300;
+    transform: scale(1.1);
+}
+
+/* Estilos para el botón de logout */
+.btn-logout {
+    background: #e91e6200;
+    color: #ffffff00;
+    padding: 0px;  
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 700;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-logout:hover {
+    background: #c2185c00;
+    transform: scale(1.1);
+}
+
+/* Responsivo para pantallas pequeñas */
+@media (max-width: 600px) {
+    .navbar {
+        padding: 10px;
+    }
+
+    .auth-buttons {
+        gap: 4px;
+    }
+
+    .logo {
+        margin: 0 10px;
+    }
+
+    .logo img {
+        height: 40px; /* Reducir tamaño del logo */
+    }
+
+    .nav-menu li {
+        margin: 0 5px;
+    }
+
+    .nav-menu a {
+        font-size: 12px; /* Reducir tamaño del texto */
+    }
+
+    .btn-auth {
+        width: 24px;
+        height: 24px;
+    }
+
+    .auth-icon {
+        width: 14px;
+        height: 14px;
+    }
+}
+.btn-auth {
+  display: inline-block;
+  text-align: center;
+  font-size: 14px;
+  line-height: 1.1;
+  font-weight: 500;
+  padding: 8px 12px;
+  border: none;
+  background: none;
+  color: white;
+  cursor: pointer;
+}
+
+.btn-auth span {
+  display: block;
+}
+
+
+/* Responsivo */
+@media (max-width: 768px) {
+    .navbar {
+        flex-wrap: wrap; /* Permite que los elementos se ajusten */
+    }
+
+    .logo-wrap {
+        gap: 6px; /* Menos espacio en móvil */
+        margin-right: auto; /* Asegura que esté a la izquierda */
+    }
+
+    .auth-buttons {
+        gap: 8px;
+        margin-top: 0; /* Eliminar margen para evitar desplazamiento */
+    }
+
+    .btn-auth {
+        width: 28px; /* Más pequeño en móvil */
+        height: 28px;
+    }
+
+    .auth-icon {
+        width: 16px; /* Ajustado para móvil */
+        height: 16px;
+    }
+
+    .menu-toggle {
+        display: block;
+        margin-left: auto; /* Asegura que esté a la derecha */
+    }
+
+    .nav-menu {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        background-color: #222;
+        width: 100%;
+    }
+
+    .nav-menu.active {
+        display: flex;
+    }
+
+    .nav-menu.active ~ .auth-buttons {
+        display: none; /* Oculta botones cuando el menú está abierto */
+    }
+}
+
+@media (min-width: 769px) {
+    .auth-buttons {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%); /* Centra horizontalmente */
+    }
+}
