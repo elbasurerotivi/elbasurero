@@ -15,6 +15,37 @@
 
   <div id="header"></div>
 
+  <!-- Popup de login -->
+    <div id="loginModal" class="modal">
+      <div class="modal-content">
+        <h2 id="form-title" class="modal-title">Iniciar Sesión</h2>
+        <form id="loginForm" class="login-form">
+          <div class="form-group">
+            <input type="email" id="email" placeholder="Correo electrónico" required>
+          </div>
+          <div class="form-group" id="username-group" style="display: none;">
+            <input type="text" id="username" placeholder="Nombre de usuario (opcional)" maxlength="30">
+          </div>
+          <div class="form-group">
+            <input type="password" id="password" placeholder="Contraseña" required>
+          </div>
+          <button type="button" id="actionBtn" class="btn btn-primary">Login</button>
+        </form>
+        <p class="switch" onclick="toggleForm()">¿No tienes cuenta? Regístrate aquí</p>
+        <div class="social-login">
+          <p>O ingresa con:</p>
+          <button class="btn btn-google" onclick="loginGoogle()">
+            <img src="Imagenes/google_logo.webp" alt="Google" class="social-icon"> Google
+          </button>
+          <button class="btn btn-facebook" onclick="loginFacebook()">
+            <img src="Imagenes/facebook_logo_2.png" alt="Facebook" class="social-icon"> Facebook
+          </button>
+        </div>
+        <button class="btn btn-close" onclick="cerrarLogin()">Cerrar</button>
+      </div>
+    </div>
+
+    
   <main class="contact-page">
     <h1>Conéctate conmigo</h1>
     <p>Encuéntrame en mis plataformas oficiales 👇</p>
