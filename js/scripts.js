@@ -91,17 +91,17 @@ document.addEventListener("DOMContentLoaded", () => {
       document.body.insertAdjacentHTML("beforeend", data);
       
       // Verificar si el popup debe mostrarse
-      const today = new Date().toLocaleDateString("es-AR");
-      const lastShown = localStorage.getItem("announcementLastShown");
-      const noShowToday = localStorage.getItem("noShowToday");
+      //const today = new Date().toLocaleDateString("es-AR");
+      //const lastShown = localStorage.getItem("announcementLastShown");
+      //const noShowToday = localStorage.getItem("noShowToday");
       
-      const announcementModal = document.getElementById("announcementModal");
-      if (announcementModal && (!noShowToday || lastShown !== today)) {
-        announcementModal.style.display = "flex";
-        console.log("Popup de anuncios mostrado automáticamente");
-      } else {
-        console.log("Popup de anuncios no mostrado (bloqueado por el usuario o mismo día)");
-      }
+      //const announcementModal = document.getElementById("announcementModal");
+      //if (announcementModal && (!noShowToday || lastShown !== today)) {
+        //announcementModal.style.display = "flex";
+        //console.log("Popup de anuncios mostrado automáticamente");
+      //} else {
+        //console.log("Popup de anuncios no mostrado (bloqueado por el usuario o mismo día)");
+      //}
 
       // Función para reordenar las tarjetas según el día
 function reordenarTarjetasPorDia() {
