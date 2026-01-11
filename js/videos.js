@@ -1,4 +1,179 @@
 const videosData = [
+    {
+  titulo: 'Reacción a Mariano Duro de Matar | ¡EXPLOSIVO!',
+  descripcion: 'Terminamos de ver Die Hard (Duro de Matar) en Twitch…\ny como ya es tradición sagrada del canal, cuando existe video de Mariano sobre la peli que acabamos de ver, se ve EN VIVO con la comunidad 😌🎥\n\nEsta vez tocó la reseña de Mariano Rodríguez, y como era de esperarse:\nrisas, comentarios finísimos, observaciones incómodamente ciertas y ese humor que ya conocemos.',
+  fecha: '2026-01-09',
+  link: 'https://www.youtube.com/watch?v=D1r8Z_xvg-E',
+  miniatura: 'https://img.youtube.com/vi/D1r8Z_xvg-E/maxresdefault.jpg',
+  tags: [
+    'Películas',
+    'Directos',
+    'Humor'
+  ]
+},
+  {
+  titulo: 'REACCIÓN al NUEVO video de MARIANO | El Señor de los Anillos: LAS DOS TORRES',
+  descripcion: 'Reaccioné al nuevo video de Mariano Rodríguez, el segundo de su serie sobre El Señor de los Anillos: Las Dos Torres.\n\nNormalmente no veo sus videos apenas salen, porque no me gusta que parezca que me subo a la popularidad de nadie.\n👉 Esta es la excepción, porque esta serie en particular me interesa muchísimo.\n\n🤍💙💙🤍💙💙🤍💙💙🤍💙💙🤍\n\nEste video me encantó.\nMe morí de risa y, además, me emocionó confirmar dos cosas:\n\nQue sí va a hacer al menos los tres videos de la trilogía\n\nQue no van a estar tan espaciados, sino que salen con pocos días de diferencia\n\nEso cambia completamente el ritmo… y se agradece.',
+  fecha: '2026-01-06',
+  link: 'https://www.youtube.com/watch?v=8WFi39Mdi_4',
+  miniatura: 'https://img.youtube.com/vi/8WFi39Mdi_4/maxresdefault.jpg',
+  tags: [
+    'Películas',
+    'Humor'
+  ]
+},
+  {
+  titulo: 'Mariano Rodríguez y El Señor de los Anillos 😂 | Reacción a La Comunidad del Anillo',
+  descripcion: 'Este video fue una derrota voluntaria 😅\nMi idea original era no reaccionar a los videos más recientes de Mariano, para no parecer que me subo al tren por clics…\npero hubo demasiadas cosas alineándose como para resistirme.\n\nLa comunidad insistió bastante.\nEs El Señor de los Anillos.\nEs Mariano Rodríguez.\nY, para colmo, buscando el video me di cuenta de que muchísima gente ya estaba reaccionando a esta reseña.\n\nAsí que listo:\nrompí mi propia regla, abracé el caos y reaccioné de inmediato.\n\nMariano reseñando “La Comunidad del Anillo” es exactamente lo que imaginas:\nanálisis filoso, humor constante y momentos en los que simplemente no puedes parar de reír, aunque conozcas la película de memoria.',
+  fecha: '2026-01-02',
+  link: 'https://www.youtube.com/watch?v=Qv49U5HxnwI',
+  miniatura: 'https://img.youtube.com/vi/Qv49U5HxnwI/maxresdefault.jpg',
+  tags: [
+    'Películas',
+    'Humor'
+  ]
+},
+  {
+  titulo: 'Qué Hacer en Buenos Aires 🇦🇷 | Guía REAL por un Porteño | Reacción y Preparando Viaje a CABA',
+  descripcion: 'Este video es la segunda parte natural del proceso que empecé en el video anterior ✈️\nPrimero vimos la experiencia de una turista mexicana llegando a Buenos Aires.\nAhora tocaba lo lógico:\n👉 ver la ciudad desde los ojos de alguien que vive ahí.\n\nReaccionamos al video\n“Qué hacer en Buenos Aires – Guía completa por un porteño”\ndel canal Pasaporte al Día, y la diferencia se siente desde el primer minuto.\n\nAquí ya no solo hay sorpresa o descubrimiento, sino:\n\ncriterio local\n\nrecomendaciones prácticas\n\nnoción real de precios\n\ny, sobre todo, saber qué vale la pena mostrar y qué no\n\nEse “sabor de local” cambia completamente la experiencia y, para alguien que está empezando a preparar un viaje a CABA, esta información es oro puro.',
+  fecha: '2026-01-01',
+  link: 'https://www.youtube.com/watch?v=77DwAhp1bQg',
+  miniatura: 'https://img.youtube.com/vi/77DwAhp1bQg/maxresdefault.jpg',
+  tags: [
+    'Cultura',
+    'Especiales'
+  ]
+},
+  {
+  titulo: '¿Qué hacer en Buenos Aires? 🇦🇷 | Reacción a Roberta con Maleta + Preparando Viaje a CABA',
+  descripcion: 'Este video es especial porque ya no es solo curiosidad… es preparación real 😅✈️\nEstoy empezando a organizar mi próximo viaje a Buenos Aires (CABA) y quise hacerlo como sé hacerlo:\nviendo videos, reaccionando y aprendiendo en comunidad.\n\nEn esta ocasión reaccionamos al video\n“¿Qué hacer en BUENOS AIRES? 🇦🇷🧉 LA GUÍA COMPLETA”\ndel canal Roberta con Maleta, una creadora mexicana que viajó a CABA y comparte sus primeras impresiones.\n\nMe pareció perfecto empezar por aquí porque:\n\nEs la mirada de una extranjera llegando a la ciudad\n\nHabla desde la sorpresa, el descubrimiento y el recorrido inicial\n\nJusto el punto en el que yo estoy ahora mismo\n\nAdemás, aprovecho este proceso para aprender cómo se hace contenido de viajes, porque es algo que planeo hacer más adelante y ya se lo he contado a la comunidad.\nEsto es parte del entrenamiento 😎🎒',
+  fecha: '2025-12-31',
+  link: 'https://www.youtube.com/watch?v=DAWy5zl2TMA',
+  miniatura: 'https://img.youtube.com/vi/DAWy5zl2TMA/maxresdefault.jpg',
+  tags: [
+    'Cultura',
+    'Especiales'
+  ]
+},
+  {
+  titulo: 'Reacción a Guille Aquino | “Américas Anónimas” 😂 | Humor Latino en Vivo',
+  descripcion: 'Este sketch me agarró completamente por sorpresa 😅\nVimos “Américas Anónimas” del canal de Guille Aquino en vivo con la comunidad y la idea es tan simple como brillante:\ntodos los países de América Latina reunidos en un grupo de apoyo, sentados en círculo, como si estuvieran en terapia colectiva.\n\nEl solo concepto ya da risa… pero cuando empieza a desarrollarse, no hay forma de no identificarse, aunque no seas del mismo país.\nHumor muy fino, observación cultural deliciosa y chistes que funcionan mejor todavía cuando se ven acompañados por el chat en vivo.\n\nEste tipo de videos son los que me recuerdan por qué me encanta reaccionar a contenido latino:\nporque nos reímos de nosotros mismos sin mala leche y con mucha inteligencia.',
+  fecha: '2025-12-30',
+  link: 'https://www.youtube.com/watch?v=DDEJAjmU5sQ',
+  miniatura: 'https://img.youtube.com/vi/DDEJAjmU5sQ/maxresdefault.jpg',
+  tags: [
+    'Directos',
+    'Cultura',
+    'Humor',
+    'Especiales'
+  ]
+},
+  {
+  titulo: 'Mariano x2... DESTROZA Interestellar 😂 | + Reacción en Vivo con la Comunidad',
+  descripcion: 'Arrancamos con una de esas jugadas clásicas de Mariano Rodríguez 😅\nYo venía listo para Interestellar… y de repente troleo nivel cinefilia extrema.\nDespués, ahora sí, llegó la reseña real… y pasó exactamente lo que muchos intuíamos:\ncree que es una película ambiciosa, espectacular, pero también muy pretenciosa.\n\nEste video junta dos momentos distintos:\n\nUno grabado durante lo que llamamos La Semana de Mariano\n\nOtro visto en vivo en YouTube con la comunidad\n\nDos contextos, dos energías distintas, pero el mismo resultado:\nrisas, cine, debate y Mariano siendo Mariano 🎥🔥',
+  fecha: '2025-12-29',
+  link: 'https://www.youtube.com/watch?v=d1OZ4Le-p1o',
+  miniatura: 'https://img.youtube.com/vi/d1OZ4Le-p1o/maxresdefault.jpg',
+  tags: [
+    'Películas',
+    'Humor'
+  ]
+},
+  {
+  titulo: 'Reaccionando a TODAS las películas de TOM CRUISE | Te Lo Resumo Así Nomás (Live Recortado)',
+  descripcion: 'Este es un fragmento de un YouTube Live donde reaccionamos al video de Te Lo Resumo Así Nomás titulado\n“Todas las películas de TOM CRUISE” 🎥🔥\n\nAdvertencia amistosa desde el inicio 😅:\nese día andaba muy platicador. Mucho. Demasiado.\nIncluso después de recortar bastante el directo, sigo hablando un buen 🤣\n\nLa charla estuvo buenísima: cine, Tom Cruise, recuerdos, teorías y hasta la clásica banda que ya quería que le diera play.\nSpoiler: sí les di play… pero cuando yo quise 😂\n\nEste tipo de videos se disfrutan mucho más en comunidad, y por eso quise dejar intacta esa vibra de live, con comentarios, pausas y risas incluidas.',
+  fecha: '2025-12-26',
+  link: 'https://www.youtube.com/watch?v=q19djK0O4GM',
+  miniatura: 'https://img.youtube.com/vi/q19djK0O4GM/maxresdefault.jpg',
+  tags: [
+    'Directos',
+    'Humor',
+    'Especiales',
+    'Biopic'
+  ]
+},
+  {
+  titulo: 'Reacción a Gremlins 2 de Mariano Rodríguez 😱😂 | Reseña turbia en vivo',
+  descripcion: 'Esta es una reacción al video de Mariano Rodríguez reseñando Gremlins 2…\ny sí, fue tan turbia como graciosa. 😱😂\n\nDurante el live nos la pasamos increíble:\nhubo risas, momentos incómodos, comentarios muy fuera de lugar y también ratos donde sí nos dio miedito, porque Gremlins 2 es mucho más perturbadora de lo que uno recuerda.\n\nEn este directo hablamos de muchísimas cosas más, pero por temas de tiempo tuve que recortar varios momentos.\n👉 Ojo: varios de esos fragmentos van a empezar a aparecer en redes sociales muy pronto, porque valen completamente la pena.\n\nGracias a la comunidad por acompañar estos lives donde nunca sabemos exactamente qué va a pasar… y por eso mismo funcionan tan bien.',
+  fecha: '2025-12-22',
+  link: 'https://www.youtube.com/watch?v=jMFV_b17Owc',
+  miniatura: 'https://img.youtube.com/vi/jMFV_b17Owc/maxresdefault.jpg',
+  tags: [
+    'Películas',
+    'Directos',
+    'Humor'
+  ]
+},
+  {
+  titulo: 'MEXICANO REACCIONA a POR QUÉ SE LLAMAN ASÍ las PROVINCIAS ARGENTINAS 🇦🇷 | Pablo Molinari',
+  descripcion: 'Este video me atrapó más de lo que esperaba.\nReacciono al contenido de Pablo Molinari donde explica el origen de los nombres de las provincias argentinas, y la cantidad de datos inesperados es brutal.\n\nHay nombres que parecen obvios… hasta que descubres que su origen no tiene nada que ver con lo que uno imagina. Otros esconden historias históricas, geográficas y culturales que jamás había escuchado, al menos desde este lado del continente.\n\nEste tipo de videos me encantan porque mezclan:\nhistoria argentina\ncuriosidades culturales\nexplicación clara y con humor\ndatos que se quedan en la cabeza\n\nComo mexicano, escuchar estas explicaciones es un viaje directo a entender mejor Argentina, su identidad y su forma de nombrar el territorio. Aprendí bastante y, como suele pasar, tuve que pausar varias veces para comentar cosas que me volaron la cabeza.\n\nSi te gusta aprender mientras te ríes, este contenido vale muchísimo la pena.',
+  fecha: '2025-12-22',
+  link: 'https://www.youtube.com/watch?v=Wiu4fVxml7A',
+  miniatura: 'https://img.youtube.com/vi/Wiu4fVxml7A/maxresdefault.jpg',
+  tags: [
+    'Cultura',
+    'Humor',
+    'Especiales'
+  ]
+},
+  {
+  titulo: 'Mexicano reacciona a los mejores TikToks #12',
+  descripcion: 'En esta ocasión hago una reacción completa al video #12 del canal SOY ARGENTINO 2.0, uno de esos canales que no solo te hacen reír, sino que te enseñan muchísimo sobre Argentina sin que te des cuenta.\n\nDurante el video reacciono, pauso y comento porque este tipo de contenido siempre trae:\nvocabulario argentino que no se escucha en otros lados\ncostumbres argentinas muy particulares\nformas de hablar, expresiones y modismos que sorprenden mucho desde México\n\nEste tipo de videos me encantan porque mezclan humor argentino + aprendizaje cultural, y eso los vuelve perfectos para reaccionar en vivo y con la comunidad.\n\nSi te gusta el contenido de reacciones, cultura argentina, humor latinoamericano o simplemente reírte mientras aprendes algo nuevo, este video es para ti.',
+  fecha: '2025-12-21',
+  link: 'https://www.youtube.com/watch?v=5TvfMiJIsO4',
+  miniatura: 'https://img.youtube.com/vi/5TvfMiJIsO4/maxresdefault.jpg',
+  tags: [
+    'Cultura',
+    'Humor',
+    'Especiales'
+  ]
+},
+  {
+  titulo: 'Mexicano | Reacción a lucho con la gente #151 Argentina',
+  descripcion: 'Esta es una reacción a Lucho con la Gente #151, grabada durante un live de YouTube con la comunidad.\n\nComo siempre con Lucho, el video tiene de todo:\nmomentos incómodos, respuestas inesperadas, situaciones absurdas y ese humor que te agarra desprevenido y te hace soltar la carcajada. 😂\n\nEn el live estuvimos comentando, pausando, regresando clips (porque sí, cuando algo da risa hay que exprimirlo) y disfrutándolo juntos, que es como mejor se vive este tipo de contenido.\n\nGracias a la comunidad por las recomendaciones constantes.\nEstos videos funcionan perfecto para reaccionarlos en vivo y pasarla bien.',
+  fecha: '2025-12-17',
+  link: 'https://www.youtube.com/watch?v=OngZDImz4KQ',
+  miniatura: 'https://img.youtube.com/vi/OngZDImz4KQ/maxresdefault.jpg',
+  tags: [
+    'Cultura',
+    'Humor'
+  ]
+},
+  {
+  titulo: 'Mexicanos reaccionan a Perdon Centennials Pablo Molinari 👨‍👦😂 | Charla y risas',
+  descripcion: 'Este video es especial para mí.\n\nMi hijo Fabio y yo reaccionamos juntos a un video de Pablo Molinari, de esos maravillosos videos subtitulados como “Perdón, centennials”.\nLo curioso (y muy bonito) es que esta es la segunda vez que Fabio quiere grabar algo conmigo, y de manera totalmente coincidente… otra vez fue un “Perdón, centennials” de Pablo Molinari. 😄\n\nMás allá de la reacción, el video se convirtió en una charla muy natural entre nosotros:\nhablamos de cosas, comentamos, nos reímos y dejamos que la conversación fluyera.\nFue el pretexto perfecto para pasar un rato distinto, original y genuino con mi hijo, y la verdad me emocionó mucho compartirlo.\n\nGracias a la comunidad por estar siempre y por hacer que estos momentos también tengan un lugar aquí en el canal. ❤️',
+  fecha: '2025-12-16',
+  link: 'https://www.youtube.com/watch?v=rOl46E7t1fA&t=2429s',
+  miniatura: 'https://img.youtube.com/vi/rOl46E7t1fA/maxresdefault.jpg',
+  tags: [
+    'Cultura',
+    'Humor',
+    'Especiales'
+  ]
+},
+  {
+  titulo: 'Reacción a Rocky de Mariano Rodríguez | Semana de Mariano 🥊😂 | Directo completo',
+  descripcion: '¡Seguimos con La Semana de Mariano en el canal!\nHoy toca la reacción al video de Mariano Rodríguez sobre Rocky, pero con twist: este video viene directamente de un live de YouTube donde la comunidad y yo nos estábamos atacando de la risa. 😂\n\nPara contexto:\n👉 Vimos la película Rocky completa en Twitch hace poco.\n👉 En el canal tenemos una tradición sagrada: si Mariano tiene video sobre la peli que acabamos de ver, lo vemos al final.\n👉 Peeero… ese directo de Twitch se hizo más largo que la saga completa de Rápidos y Furiosos. 😅\nAsí que no alcanzamos a ver la reseña ese día.\n\nSolución:\nUsamos el video de Mariano sobre Rocky como pretexto perfecto para armar este live exclusivo de YouTube, donde además vimos otras cositas y nos la pasamos increíble. De esas transmisiones donde uno siente que el tiempo ni existe. ❤️\n\nGracias por acompañarme en esta celebración marianística de una semana entera.\n¡Y todavía falta! 🧉🔥',
+  fecha: '2025-12-08',
+  link: 'https://www.youtube.com/watch?v=HCZKJlrPBeE&t=11s',
+  miniatura: 'https://img.youtube.com/vi/HCZKJlrPBeE/maxresdefault.jpg',
+  tags: [
+    'Películas',
+    'Humor'
+  ]
+},
+  {
+  titulo: 'Reacción a Rápido y Furioso de Mariano Rodríguez | Semana de Mariano en el canal 🚗🔥😄',
+  descripcion: '¡Seguimos con la SEMANA DE MARIANO en el canal!\nHoy reaccioné a su video: “RÁPIDO Y FURIOSO: El Cine Triunfa a Pesar de Todo”, y DIOS SANTO… qué cosa tan divertida. Jajajaja.\n\nTengo que decirlo:\n👉 Mariano pone subtítulos tan graciosos que prácticamente son OTRO video.\nAquí confesión humilde: no pude leer todos.\nEntre la risa, el caos y mis comentarios, varios subtítulos se me fueron. Pero la comunidad me conoce… uno hace lo que puede con lo que tiene. 😅\nCuando Mariano escribe, hay que pausar como si fueran créditos post-créditos de Marvel. Jajajaja.\n\nEste video estuvo increíblemente divertido, lleno de humor involuntario (de mi parte) y humor MUY voluntario (de parte de Mariano).\nY claro… todo con mi esencia mexicanísima reaccionando al cine, a la vida y a lo que vaya saliendo.\n\nGracias por acompañarme en esta locura que llamamos contenido.\nY recuerden: esta semana puro Mariano diario. 🧉🔥',
+  fecha: '2025-12-07',
+  link: 'https://www.youtube.com/watch?v=OAGYdJf7ctk',
+  miniatura: 'https://img.youtube.com/vi/OAGYdJf7ctk/maxresdefault.jpg',
+  tags: [
+    'Películas',
+    'Humor'
+  ]
+},
+
 
     {
   titulo: 'Reacción a Mariano Rodríguez reseñando Gladiador | SEMANA DE MARIANO | Me morí de risa 😭🤣',
