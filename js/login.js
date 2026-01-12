@@ -183,7 +183,7 @@ window.loginGoogle = function() {
           email: user.email,
           username: user.displayName || user.email.split("@")[0],
           createdAt: Date.now(),
-          role: "user"  // ← ¡IMPORTANTE! Agregar rol por defecto
+          //role: "user"  // ← ¡IMPORTANTE! Agregar rol por defecto
         });
         console.log("Usuario guardado en DB");
         alert(`Bienvenido, ${user.displayName || user.email}!`);
