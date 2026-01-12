@@ -1,35 +1,3 @@
-import { heroSlides } from "./videos.js";
-import { auth } from "./firebase-config.js";
-
-document.addEventListener("DOMContentLoaded", () => {
-  const wrapper = document.getElementById("heroWrapper");
-  if (!wrapper) return;
-
-  wrapper.innerHTML = "";
-
-  heroSlides.forEach(slide => {
-    const div = document.createElement("div");
-    div.className = "swiper-slide hero-slide";
-    div.innerHTML = `
-      <div class="hero-bg" style="background-image:url('${slide.image}')"></div>
-      <div class="hero-content">
-        <h1>${slide.title}</h1>
-        <p>${slide.subtitle}</p>
-        <a href="${slide.ctaLink}" class="btn">${slide.ctaText}</a>
-      </div>
-    `;
-    wrapper.appendChild(div);
-  });
-
-  new Swiper(".heroSwiper", {
-    loop: true,
-    autoplay: { delay: 5000 },
-    pagination: { el: ".swiper-pagination", clickable: true }
-  });
-});
-
-
-
 document.addEventListener("DOMContentLoaded", () => {
   // Función para alternar el menú hamburguesa
   window.toggleMenu = function() {
