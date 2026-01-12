@@ -135,24 +135,33 @@ header, .navbar {
 
 
 
-/* ====== HERO ====== */
-.hero {
-  background: url('../Imagenes/bg_dark.jpg') center/cover no-repeat;
+.hero-carousel {
   position: relative;
-  text-align: center;
-  padding: 100px 20px;
-  color: var(--text-light);
+  height: 70vh;
 }
-.hero::before {
-  content: '';
+
+.hero-slide {
+  position: relative;
+  height: 70vh;
+}
+
+.hero-bg {
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.7);
+  background-size: cover;
+  background-position: center;
+  filter: brightness(0.4);
 }
-.hero h1, .hero p {
+
+.hero-content {
   position: relative;
   z-index: 2;
+  color: #fff;
+  text-align: center;
+  top: 50%;
+  transform: translateY(-50%);
 }
+
 
 /* ====== BOTONES ====== */
 .btn, .btn-primary {

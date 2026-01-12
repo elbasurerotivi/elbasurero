@@ -1,3 +1,28 @@
+// js/videos.js
+
+export const heroSlides = [
+  {
+    id: "promo-premium",
+    title: "Contenido Premium Exclusivo",
+    subtitle: "Series completas, clásicos y más",
+    image: "Imagenes/hero-premium.webp",
+    ctaText: "Ver Premium",
+    ctaLink: "playlist.html",
+    access: "public" // public | premium | admin
+  },
+  {
+    id: "ultimo-video",
+    title: "Último video en YouTube",
+    subtitle: "Reacción recién subida",
+    image: "Imagenes/hero-ultimo.webp",
+    ctaText: "Ver ahora",
+    ctaLink: "https://youtube.com/...",
+    access: "public"
+  }
+];
+
+
+
 const videosData = [
     {
   titulo: 'Reacción a Mariano Duro de Matar | ¡EXPLOSIVO!',
