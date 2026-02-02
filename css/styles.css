@@ -920,7 +920,7 @@ footer h3 {
     }
 
     .menu-toggle {
-        display: block;
+        display: flex;
     }
 
     .hero h1 {
