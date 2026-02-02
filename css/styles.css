@@ -6206,7 +6206,7 @@ a {
     }
 
     .menu-toggle {
-        display: block;
+        display: flex;
         margin-left: auto; /* Asegura que esté a la derecha */
     }
 
