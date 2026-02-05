@@ -265,3 +265,47 @@ function reordenarTarjetasPorDia() {
       });
     });
   }
+
+  // js/rumble-carousel.js
+import { rumbleVideos } from "./rumble-videos.js";
+
+document.addEventListener("DOMContentLoaded", () => {
+  const wrapper = document.querySelector(".rumbleSwiper .swiper-wrapper");
+  if (!wrapper || !rumbleVideos?.length) return;
+
+  wrapper.innerHTML = "";
+
+  rumbleVideos
+    .sort((a, b) => new Date(b.fecha) - new Date(a.fecha))
+    .forEach(video => {
+      const slide = document.createElement("div");
+      slide.className = "swiper-slide";
+
+      slide.innerHTML = `
+        <div class="rumble-slide">
+          <iframe
+            src="${video.link}"
+            loading="lazy"
+            allowfullscreen
+          ></iframe>
+          <h3>${video.titulo}</h3>
+        </div>
+      `;
+
+      wrapper.appendChild(slide);
+    });
+
+  new Swiper(".rumbleSwiper", {
+    slidesPerView: 1,
+    spaceBetween: 20,
+    loop: true,
+    pagination: {
+      el: ".rumbleSwiper .swiper-pagination",
+      clickable: true
+    },
+    navigation: {
+      nextEl: ".rumbleSwiper .swiper-button-next",
+      prevEl: ".rumbleSwiper .swiper-button-prev"
+    }
+  });
+});

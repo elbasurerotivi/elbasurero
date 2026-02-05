@@ -6236,3 +6236,29 @@ a {
         transform: translateX(-50%); /* Centra horizontalmente */
     }
 }
+
+
+
+
+
+
+/* === Videos Exclusivos === */
+
+
+.rumble-section {
+  margin: 60px auto;
+  max-width: 1200px;
+  padding: 0 20px;
+}
+
+.rumble-slide iframe {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 12px;
+  border: none;
+}
+
+.rumble-slide h3 {
+  margin-top: 10px;
+  text-align: center;
+}
