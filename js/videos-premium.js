@@ -74,8 +74,7 @@ export const videosPremium = [
   thumbnail: 'Imagenes/El encargado 1-06.png',
   source: 'https://rumble.com/v75d8hy-nada-vuelve-a-ser-igual-reaccin-a-el-encargado-ep.-6-contenido-premium.html?mref=4nmhh2&mc=dzuzl',
   type: 'iframe'
-}
-];
+},
    {
   id: 'reaccion_a_pizza_birra_y_faso_peliculas',
   name: 'Pizza, Birra y Faso',
