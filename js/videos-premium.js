@@ -241,19 +241,7 @@ export const videosPremium = [
   //chile dulce y manteca
   
 
-{
-    id: 'milo_j',
-    categoria: 'bloqueados_de_youtube',
-    name: "Milo J",
-    temporada: "",
-    episodio: "",
-    title: '🔥 MILO J',
-    title2:'Tres canciones que me hicieron cambiar de opinión',
-    description: 'Mi hijo Fabio me recomendó tres canciones de Milo J que, según él, merecían una oportunidad. Yo no soy fan del trap, pero este álbum tiene un toque folklórico que me tomó totalmente por sorpresa. Estas piezas no pueden verse en YouTube, así que esta reacción es contenido exclusivo para quienes disfrutan lo mejor de la música argentina, sin censura ni recortes. Lo confieso: no me gusta Milo J… pero estas tres canciones me volaron la cabeza.',
-    thumbnail: 'Imagenes/reaccion_milo_j.jpg',
-    source: 'https://rumble.com/embed/v6z6sxy/?pub=4nmhh2',
-    type: 'iframe'
-  },
+
 
   
   // Agrega más videos aquí según necesites. Es escalable: solo edita este archivo.
