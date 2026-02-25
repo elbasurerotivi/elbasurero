@@ -6242,50 +6242,72 @@ a {
 
 
 
-/* ===== Banner Exclusivos ===== */
+/* ===== Banner Exclusivos con Imagen ===== */
 
 .exclusive-banner {
   margin: 60px auto;
   max-width: 1200px;
-  padding: 60px 20px;
   border-radius: 20px;
-  background: linear-gradient(135deg, #ff4d00, #ff9900);
-  text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+  position: relative;
+}
+
+.exclusive-link {
+  display: block;
+  text-decoration: none;
+  color: white;
+}
+
+.exclusive-banner {
+  background-image: url("../images/banner-exclusivos.png");
+  background-size: cover;
+  background-position: center;
+  height: 350px;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
 .exclusive-banner:hover {
   transform: scale(1.02);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 25px 50px rgba(0,0,0,0.4);
 }
 
-.exclusive-link {
-  text-decoration: none;
-  color: white;
-  display: block;
+/* Capa oscura encima de la imagen */
+.exclusive-overlay {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    rgba(0,0,0,0.7),
+    rgba(0,0,0,0.3)
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
 }
 
 .exclusive-content h2 {
-  font-size: 2rem;
+  font-size: 2.5rem;
   margin-bottom: 10px;
 }
 
 .exclusive-content p {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   margin-bottom: 20px;
 }
 
 .exclusive-btn {
   display: inline-block;
-  padding: 12px 25px;
-  background: white;
-  color: #ff4d00;
+  padding: 12px 30px;
+  background: #ff4d00;
+  color: white;
   font-weight: bold;
   border-radius: 30px;
-  transition: background 0.3s ease, color 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .exclusive-btn:hover {
-  background: black;
-  color: white;
+  background: white;
+  color: #ff4d00;
 }
