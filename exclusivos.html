@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Exclusivos | El Basurero</title>
+  <title id="pageTitle">Exclusivos | El Basurero</title>
   <link rel="stylesheet" href="css/styles.css">
   <link rel="icon" href="Imagenes/icono.png" type="image/x-icon">
 </head>
@@ -13,18 +13,16 @@
 
   <main class="playlist-container">
 
-    <!-- HERO FIJO -->
+    <!-- HERO -->
     <section class="hero-section">
-      <div class="hero-background" 
-           style="background-image: url('images/banner-exclusivos.png');">
-      </div>
+      <div class="hero-background" id="heroBg"></div>
 
       <div class="hero-content">
         <div class="hero-info">
           <div class="series-details">
-            <h1>🔥 Contenido Exclusivo</h1>
-            <p>Material especial disponible para toda la comunidad</p>
-            <p>Detrás de escenas • Especiales • Contenido único</p>
+            <h1 id="seriesTitle">Cargando...</h1>
+            <p id="seriesMeta"></p>
+            <p id="seriesSynopsis"></p>
           </div>
         </div>
       </div>
@@ -32,7 +30,7 @@
 
     <!-- VIDEOS -->
     <section class="episodes-section">
-      <h2>Videos Exclusivos</h2>
+      <h2>Videos</h2>
       <div class="premium-grid" id="videoList"></div>
     </section>
 
@@ -44,26 +42,37 @@
 
   <script type="module">
     import "./js/login.js";
-    import { videosPremium } from "./js/videos-premium.js";
+    import { exclusivosData, videosExclusivos } from "./js/exclusivos.js";
 
-    // Cargar header y footer
-    fetch('header.html')
-      .then(r => r.text())
-      .then(d => {
-        document.getElementById('header').innerHTML = d;
-        window.initAuthButtons();
-      });
+    // Header y footer
+    fetch('header.html').then(r => r.text()).then(d => {
+      document.getElementById('header').innerHTML = d;
+      window.initAuthButtons();
+    });
 
-    fetch('footer.html')
-      .then(r => r.text())
-      .then(d => document.getElementById('footer').innerHTML = d);
+    fetch('footer.html').then(r => r.text()).then(d => {
+      document.getElementById('footer').innerHTML = d;
+    });
 
-    // === FILTRAR SOLO EXCLUSIVOS ===
-    const exclusivos = videosPremium.filter(v => v.exclusivo === true);
+    // === HERO DATA ===
+    document.getElementById('heroBg').style.backgroundImage =
+      `url('${exclusivosData.background}')`;
 
+    document.getElementById('seriesTitle').textContent =
+      exclusivosData.title;
+
+    document.getElementById('seriesMeta').innerHTML =
+      `<strong>${exclusivosData.year}</strong> • ${exclusivosData.genre}<br><em>${exclusivosData.cast}</em>`;
+
+    document.getElementById('seriesSynopsis').textContent =
+      exclusivosData.synopsis;
+
+    document.title = `${exclusivosData.title} | El Basurero`;
+
+    // === VIDEOS ===
     const container = document.getElementById('videoList');
 
-    exclusivos.forEach(video => {
+    videosExclusivos.forEach(video => {
       const card = document.createElement('div');
       card.className = 'premium-card episode-card';
 
