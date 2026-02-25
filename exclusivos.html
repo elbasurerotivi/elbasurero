@@ -17,8 +17,8 @@
     <section class="hero-section" id="heroSection">
       <div class="hero-background" id="heroBg"></div>
       <div class="hero-content">
-        <a href="index.html">
-        <button id="backBtn" class="back-button">Volver</button></a>
+        
+        <button id="backBtn" class="back-button">Volver</button>
         <div class="hero-info">
           <img id="coverImg" src="" alt="" class="series-cover">
           <div class="series-details">
@@ -62,6 +62,8 @@
 
     document.getElementById('seriesTitle').textContent =
       exclusivosData.title;
+
+    document.getElementById('coverImg').src = catData.cover;
 
     document.getElementById('seriesMeta').innerHTML =
       `<strong>${exclusivosData.year}</strong> • ${exclusivosData.genre}<br><em>${exclusivosData.cast}</em>`;
