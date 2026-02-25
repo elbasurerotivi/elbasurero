@@ -3,116 +3,149 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Exclusivos | El Basurero</title>
+  <title id="pageTitle">Exclusivos | El Basurero</title>
   <link rel="stylesheet" href="css/styles.css">
   <link rel="icon" href="Imagenes/icono.png" type="image/x-icon">
 </head>
 <body style="display:none;">
   <div id="header"></div>
 
-  <main class="playlist-container">
-    <h1>Premium</h1>
-    <p>Bienvenido a tu contenido exclusivo.</p>
-
-    <!-- Barra de búsqueda -->
-    <div class="search-container">
-      <input type="text" id="searchInput" placeholder="Buscar series, episodios o reacciones...">
-      <button id="clearSearch" style="display: none;">Limpiar</button>
+  <!-- Popup de login -->
+    <div id="loginModal" class="modal">
+      <div class="modal-content">
+        <h2 id="form-title" class="modal-title">Iniciar Sesión</h2>
+        <form id="loginForm" class="login-form">
+          <div class="form-group">
+            <input type="email" id="email" placeholder="Correo electrónico" required>
+          </div>
+          <div class="form-group" id="username-group" style="display: none;">
+            <input type="text" id="username" placeholder="Nombre de usuario (opcional)" maxlength="30">
+          </div>
+          <div class="form-group">
+            <input type="password" id="password" placeholder="Contraseña" required>
+          </div>
+          <button type="button" id="actionBtn" class="btn btn-primary">Login</button>
+        </form>
+        <p class="switch" onclick="toggleForm()">¿No tienes cuenta? Regístrate aquí</p>
+        <div class="social-login">
+          <p>O ingresa con:</p>
+          <button class="btn btn-google" onclick="loginGoogle()">
+            <img src="Imagenes/google_logo.webp" alt="Google" class="social-icon"> Google
+          </button>
+          <button class="btn btn-facebook" onclick="loginFacebook()">
+            <img src="Imagenes/facebook_logo_2.png" alt="Facebook" class="social-icon"> Facebook
+          </button>
+        </div>
+        <button class="btn btn-close" onclick="cerrarLogin()">Cerrar</button>
+      </div>
     </div>
 
-    <!-- Grid de tarjetas de listas -->
-    <div class="premium-grid" id="playlistList"></div>
+
+  <main class="playlist-container">
+    <!-- HERO SECTION -->
+    <section class="hero-section" id="heroSection">
+      <div class="hero-background" id="heroBg"></div>
+      <div class="hero-content">
+        <button id="backBtn" class="back-button">Volver</button>
+        <div class="hero-info">
+          <img id="coverImg" src="" alt="" class="series-cover">
+          <div class="series-details">
+            <h1 id="seriesTitle">Cargando...</h1>
+            <p id="seriesMeta"></p>
+            <p id="seriesSynopsis"></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EPISODIOS -->
+    <section class="episodes-section">
+      <h2>Videos</h2>
+      <div class="premium-grid" id="videoList"></div>
+    </section>
   </main>
 
   <div id="footer"></div>
 
   <script src="js/scripts.js"></script>
   <script type="module">
-  import { protectPage } from "./js/roleManager.js";
-  import "./js/login.js";
-  import { videosPremium, categoriasData } from "./js/videos-premium.js";
+    import { protectPage } from "./js/roleManager.js";
+    import "./js/login.js";
+    import { videosPremium, categoriasData } from "./js/videos-premium.js";
 
-  protectPage(["premium", "admin"], "index.html");
+    protectPage(["premium", "admin"], "index.html");
 
-  // Cargar header y footer
-  fetch('header.html').then(r => r.text()).then(d => {
-    document.getElementById('header').innerHTML = d;
-    window.initAuthButtons();
-  });
-  fetch('footer.html').then(r => r.text()).then(d => document.getElementById('footer').innerHTML = d);
+    // Cargar header y footer
+    fetch('header.html').then(r => r.text()).then(d => {
+      document.getElementById('header').innerHTML = d;
+      window.initAuthButtons();
+    });
+    fetch('footer.html').then(r => r.text()).then(d => document.getElementById('footer').innerHTML = d);
 
-  // === AGRUPAR POR CATEGORÍA ===
-  const grouped = videosPremium.reduce((acc, v) => {
-    const key = v.categoria || 'otros';
-    if (!acc[key]) acc[key] = [];
-    acc[key].push(v);
-      return acc;
-    }, {});
-
-    // === PORTADAS PERSONALIZADAS (sube estas imágenes a GitHub) ===
-    const covers = {
-      'Shingeki No Kyojin': 'Imagenes/Picsart_25-10-18_01-10-37-858.jpg',
-      'Nada': 'Imagenes/nada portada.webp',
-      'Millenium': 'Imagenes/Picsart_25-10-24_19-36-11-553.jpg',
-      'Les Luthiers': 'Imagenes/les-luthiers-1486327.jpg',
-      'El Encargado': 'Imagenes/el encargado portada.webp',
-      'Bloqueados de YouTube': 'Imagenes/Picsart_25-10-18_02-01-51-724.jpg',
-      
-
-      // Agrega más...
-    };
-
-    // === GENERAR URL AMIGABLE ===
-    function slugify(text) {
-      return text.toLowerCase()
-        .replace(/[^a-z0-9]+/g, '-')
-        .replace(/(^-|-$)/g, '');
+    // === LEER URL ===
+    const urlParams = new URLSearchParams(window.location.search);
+    const catSlug = urlParams.get('cat');
+    if (!catSlug) {
+      alert("Categoría no encontrada");
+      window.location.href = "playlist.html";
     }
 
-// === RENDERIZAR TARJETAS DE LISTAS ===
-const container = document.getElementById('playlistList');
+    // === OBTENER DATOS DE CATEGORÍA ===
+    const catData = categoriasData[catSlug];
+    if (!catData) {
+      alert("Categoría no encontrada");
+      window.location.href = "playlist.html";
+    }
 
-Object.values(categoriasData).forEach(cat => {
-  const videos = videosPremium.filter(v => v.categoria === cat.key);
+    // === APLICAR DATOS ===
+    document.getElementById('heroBg').style.backgroundImage = `url('${catData.background}')`;
+    document.getElementById('coverImg').src = catData.cover;
+    document.getElementById('seriesTitle').textContent = catData.title;
+    document.getElementById('seriesMeta').innerHTML = `<strong>${catData.year}</strong> • ${catData.genre}<br><em>${catData.cast}</em>`;
+    document.getElementById('seriesSynopsis').textContent = catData.synopsis;
+    document.title = `${catData.title} | El Basurero`;
 
-  const card = document.createElement('div');
-  card.className = 'premium-card playlist-card';
-
-  card.innerHTML = `
-    <a href="categorias.html?cat=${cat.key}">
-      <img src="${cat.background}" alt="${cat.name}" loading="lazy">
-      <div class="premium-info">
-        <h2>${cat.name}</h2>
-        <p class="playlist-count">${videos.length} videos</p>
-      </div>
-    </a>
-  `;
-
-  container.appendChild(card);
-});
+    // === FILTRAR EPISODIOS ===
+    const videos = videosPremium.filter(v => v.categoria === catSlug);
 
 
-    // === BÚSQUEDA LOCAL (opcional, filtra listas) ===
-    const searchInput = document.getElementById('searchInput');
-    const clearBtn = document.getElementById('clearSearch');
-
-    searchInput.addEventListener('input', () => {
-      const q = searchInput.value.toLowerCase().trim();
-      clearBtn.style.display = q ? 'inline-block' : 'none';
-
-      document.querySelectorAll('.playlist-card').forEach(card => {
-        const title = card.querySelector('h2').textContent.toLowerCase();
-        card.style.display = title.includes(q) ? 'block' : 'none';
-      });
+    // === ORDENAR POR TEMPORADA Y EPISODIO ===
+    videos.sort((a, b) => {
+      if (a.temporada !== b.temporada) return a.temporada - b.temporada;
+      const epA = a.episodio.replace(/[^0-9]/g, '');
+      const epB = b.episodio.replace(/[^0-9]/g, '');
+      return parseInt(epA) - parseInt(epB);
     });
 
-    clearBtn.addEventListener('click', () => {
-      searchInput.value = '';
-      clearBtn.style.display = 'none';
-      document.querySelectorAll('.playlist-card').forEach(c => c.style.display = 'block');
+    // === RENDERIZAR EPISODIOS ===
+    const container = document.getElementById('videoList');
+    videos.forEach(video => {
+      const card = document.createElement('div');
+      card.className = 'premium-card episode-card';
+
+      card.innerHTML = `
+        <a href="player.html?id=${video.id}">
+          <img src="${video.thumbnail}" alt="${video.title}" loading="lazy">
+          <div class="premium-info">
+            <p class="episode-number">T${video.temporada} E${video.episodio}</p>
+            <h3>${video.title}</h3>
+            <p class="episode-desc">${video.title2}</p>
+            <p class="catDesc">${video.description}</p>
+            
+          </div>
+        </a>
+      `;
+
+      container.appendChild(card);
+    });
+
+    // === BOTÓN VOLVER ===
+    document.getElementById('backBtn').addEventListener('click', () => {
+      window.history.back();
     });
 
     document.body.style.display = 'block';
   </script>
 </body>
+
 </html>
