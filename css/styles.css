@@ -6242,23 +6242,50 @@ a {
 
 
 
-/* === Videos Exclusivos === */
+/* ===== Banner Exclusivos ===== */
 
-
-.rumble-section {
+.exclusive-banner {
   margin: 60px auto;
   max-width: 1200px;
-  padding: 0 20px;
-}
-
-.rumble-slide iframe {
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  border-radius: 12px;
-  border: none;
-}
-
-.rumble-slide h3 {
-  margin-top: 10px;
+  padding: 60px 20px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #ff4d00, #ff9900);
   text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.exclusive-banner:hover {
+  transform: scale(1.02);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.exclusive-link {
+  text-decoration: none;
+  color: white;
+  display: block;
+}
+
+.exclusive-content h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.exclusive-content p {
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+}
+
+.exclusive-btn {
+  display: inline-block;
+  padding: 12px 25px;
+  background: white;
+  color: #ff4d00;
+  font-weight: bold;
+  border-radius: 30px;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.exclusive-btn:hover {
+  background: black;
+  color: white;
 }
