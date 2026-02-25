@@ -6,7 +6,7 @@ export const exclusivosData = {
   background: 'Imagenes/ChatGPT Image 25 feb 2026, 04_16_42 p.m..png',
   cover: 'Imagenes/ChatGPT Image 25 feb 2026, 05_43_03 p.m..png',               // Carátula pequeña
   title: 'Contenido Exclusivo',
-  synopsis: 'Material especial disponible para toda la comunidad. Detrás de escenas, especiales y contenido único que no entra en otras categorías.',
+  synopsis: 'Material especial disponible para toda la comunidad. Peliculas, especiales y contenido único y exclusivo para la pagina.',
   year: '2026',
   genre: 'Especiales • Comunidad • Extra',
   cast: 'El Basurero y la comunidad'
