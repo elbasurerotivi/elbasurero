@@ -165,6 +165,64 @@ export const videosExclusivos = [
   type: 'iframe'
 },
 
+  {
+  id: 'encuentros_cercanos',
+  categoria: 'peliculas',
+  name: '👽 ENCUENTROS CERCANOS DEL TERCER TIPO',
+  temporada: '0',
+  episodio: '0',
+  title: 'ENCUENTROS CERCANOS DEL TERCER TIPO',
+  title2: 'Cine, misterio y nostalgia en comunidad',
+  description: 'Nos reunimos en Twitch para ver juntos Encuentros Cercanos del Tercer Tipo, la obra maestra de Steven Spielberg que mezcla ciencia ficción, asombro y humanidad como pocas películas lo han hecho.\nFue una experiencia increíble verla en comunidad: teorías, risas, debates sobre ovnis y momentos en los que todos quedamos con la piel de gallina.\nUna joya del cine setentero que sigue generando la misma fascinación hoy que el día en que se estrenó.\nUna reacción completa, sincera y llena de nostalgia.',
+  thumbnail: 'Imagenes/yNtyz.qR4e-small--REACCIN-A-ENCUENTROS-CERCA.jpg',
+  source: 'https://rumble.com/embed/v6zbr2o/?pub=4nmhh2',
+  type: 'iframe'
+},
 
+
+  
+    {
+    id: 'mi_obra_maestra',
+    categoria: 'peliculas',
+    name: "Mi Obra Maestra",
+    temporada: "0",
+    episodio: "0",
+    title: '🎨 Mi obra maestra',
+    title2:'Con Guillermo Francella y Luis Brandoni',
+    description: 'En esta sesión completa en directo vimos Mi obra maestra, una película argentina que mezcla humor, tensión del mercado del arte y la ambición entre dos amigos: un galerista de éxito algo manipulador y un pintor talentoso pero en decadencia. Después de la película cerramos con un video del canal “Te Lo Resumo Así Nomás” sobre el cine argentino, lo que nos dejó con muchas más ganas de explorar nuevas joyitas del cine de Argentina. Una combinación de reacción auténtica, conversación sincera y descubrimiento cultural… ¡como siempre!',
+    thumbnail: 'Imagenes/REACCIN-A-Mi-obra-maestra-.jpg',
+    source: 'https://rumble.com/embed/v6z9dmc/?pub=4nmhh2', 
+    type: 'iframe'
+  },
+
+  {
+    id: 'indiana_jones_2',
+    categoria: 'peliculas',
+    name: "Indiana Jones",
+    temporada: "0",
+    episodio: "2",
+    title: '💀 INDIANA JONES Y EL TEMPLO DE LA PERDICIÓN',
+    title2:'Sin video de Mariano… pero con Ice Cube',
+    description: 'Volvimos con la segunda entrega de la saga: Indiana Jones y el Templo de la Perdición. Una película más oscura, más intensa y con momentos que siguen sorprendiendo décadas después. Esta vez rompimos la tradición: no hubo video de Mariano Rodríguez sobre la peli, pero no podíamos cerrar sin él, así que terminamos viendo su video sobre La Guerra de los Mundos con Ice Cube. Entre risas, comentarios y reacciones genuinas, fue una sesión redonda.',
+    thumbnail: 'Imagenes/Picsart_25-10-21_14-04-12-948.jpg',
+    source: 'https://rumble.com/embed/v6z7l10/?pub=4nmhh2',
+    type: 'iframe'
+  },
+
+  {
+    id: 'indiana_jones_1',
+    categoria: 'peliculas',
+    name: "Indiana Jones",
+    temporada: "0",
+    episodio: "1",
+    title: '🧢 INDIANA JONES Y LOS CAZADORES DEL ARCA PERDIDA',
+    title2:'Increíble final + Mariano Rodríguez',
+    description: 'Nos lanzamos a revivir Indiana Jones y los Cazadores del Arca Perdida, la primera aventura del arqueólogo más icónico del cine. Entre risas, teorías y nostalgia pura, descubrimos por qué esta película sigue siendo una joya absoluta. Y para cerrar con broche de oro, vimos un video de Mariano Rodríguez en YouTube que nos dejó reflexionando y riendo al mismo tiempo. Un clásico, una gran charla y una reacción sin filtros, como siempre.',
+    thumbnail: 'Imagenes/Picsart_25-10-14_10-51-57-730.jpg',
+    source: 'https://rumble.com/embed/v6z7kx6/?pub=4nmhh2',
+    type: 'iframe'
+  },
+  
+  
 
 ];
