@@ -6239,14 +6239,12 @@ a {
 
 
 
-
-
-
-/* ===== Banner Exclusivos con Imagen ===== */
+/* ===== Banner Exclusivos Responsive ===== */
 
 .exclusive-banner {
-  margin: 60px auto;
+  background-image: url("../Imagenes/ChatGPT Image 25 feb 2026, 04_16_42 p.m..png");
   max-width: 1200px;
+  margin: 60px auto;
   border-radius: 20px;
   overflow: hidden;
   position: relative;
@@ -6254,52 +6252,41 @@ a {
 
 .exclusive-link {
   display: block;
+  position: relative;
   text-decoration: none;
   color: white;
 }
 
-.exclusive-banner {
-  background-image: url("../Imagenes/ChatGPT Image 25 feb 2026, 04_16_42 p.m..png");
-  background-size: cover;
-  background-position: center;
-  height: 350px;
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
-}
-
-.exclusive-banner:hover {
-  transform: scale(1.02);
-  box-shadow: 0 25px 50px rgba(0,0,0,0.4);
-}
-
-/* Capa oscura encima de la imagen */
-.exclusive-overlay {
+/* Imagen mantiene proporción real */
+.exclusive-img {
   width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    to right,
-    rgba(0,0,0,0.7),
-    rgba(0,0,0,0.3)
-  );
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 20px;
+  height: auto;
+  display: block;
+}
+
+/* Contenido encima */
+.exclusive-content {
+  position: absolute;
+  top: 50%;
+  left: 60%;
+  transform: translate(-50%, -50%);
+  text-align: left;
+  max-width: 500px;
 }
 
 .exclusive-content h2 {
   font-size: 2.5rem;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
 
 .exclusive-content p {
   font-size: 1.2rem;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
 }
 
 .exclusive-btn {
   display: inline-block;
-  padding: 12px 30px;
+  padding: 14px 30px;
   background: #ff4d00;
   color: white;
   font-weight: bold;
@@ -6310,4 +6297,47 @@ a {
 .exclusive-btn:hover {
   background: white;
   color: #ff4d00;
+}
+
+/* ===== RESPONSIVE ===== */
+
+@media (max-width: 992px) {
+
+  .exclusive-content {
+    left: 50%;
+    max-width: 80%;
+    text-align: center;
+  }
+
+  .exclusive-content h2 {
+    font-size: 2rem;
+  }
+
+  .exclusive-content p {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 576px) {
+
+  .exclusive-content {
+    position: static;
+    transform: none;
+    padding: 20px;
+    background: #111;
+    text-align: center;
+  }
+
+  .exclusive-content h2 {
+    font-size: 1.6rem;
+  }
+
+  .exclusive-content p {
+    font-size: 0.9rem;
+  }
+
+  .exclusive-btn {
+    width: 100%;
+    padding: 12px;
+  }
 }
