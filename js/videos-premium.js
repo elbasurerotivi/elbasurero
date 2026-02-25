@@ -109,61 +109,7 @@ export const videosPremium = [
 },
 
   
-///Shinki No Kiojin///
 
-{  
-  id: 'shingeki_no_kyojin_t1_eps_21_25',
-  name: 'Shingeki No Kyojin',
-  categoria: 'shingeki_no_kyojin',
-  temporada: '1',
-  episodio: '21-25',
-  title: '🧭 Shingeki No Kyojin T1 Eps. 21–25',
-  title2: 'Final de Temporada 1',
-  description: 'Los primeros 6 episodios están en YouTube. Los ví y reaccioné a ellos pero nunca los subí completos a ninguna plataforma. Se pueden ver en una lista de reproducción en mi canal El Basurero. Aquí seguimos con la primera temporada de Shingeki no Kyojin, ahora con los episodios 21 al 25, y ¡QUÉ BARBARIDAD! Esta parte es una verdadera montaña rusa.',
-  thumbnail: 'Imagenes/Reaccin-a-Shingeki-no-Kyoji4.jpg',
-  source: 'https://rumble.com/embed/v6zk0xi/?pub=4nmhh2',
-  type: 'iframe'
-},
-{  
-  id: 'shingeki_no_kyojin_t1_eps_16_20',
-  name: 'Shingeki No Kyojin',
-  categoria: 'shingeki_no_kyojin',
-  temporada: '1',
-  episodio: '16-20',
-  title: '🧭 Shingeki No Kyojin T1 Eps. 16–20',
-  title2: 'Levi, la expedición y el Titán Femenino',
-  description: 'Estos episodios presentan el mundo real fuera de los muros: la Legión de Reconocimiento brilla, Levi demuestra por qué es una leyenda, y aparece uno de los misterios más importantes de toda la serie: el Titán Femenino.\nEl suspenso, las muertes inesperadas y la construcción del mundo hacen que este bloque sea imposible de ver sin comentar cada detalle.\nNota: mis reacciones completas a los episodios 1–6 están disponibles en YouTube, en la playlist de El Basurero.',
-  thumbnail: 'Imagenes/Shingeki-no-Kyojin-T1-Eps3..jpg',
-  source: 'https://rumble.com/embed/v6zjmk8/?pub=4nmhh2',
-  type: 'iframe'
-},
-
-{ 
-  id: 'shingeki_no_kyojin_t1_eps_12_15',
-  name: 'Shingeki No Kyojin',
-  categoria: 'shingeki_no_kyojin',
-  temporada: '1',
-  episodio: '12-15' ,
-  title: '💥 Shingeki No Kyojin T1 Eps. 12–15',
-  title2: 'La caída del Titán y el juicio de Eren',
-  description: 'Aquí la tensión se dispara: la lucha desesperada por sellar la brecha, el sacrificio del escuadrón y el momento en que Eren intenta controlar su poder. Después, el juicio donde el destino de Eren queda en manos del gobierno —una escena increíble por su intensidad y abuso de autoridad.\nUna mezcla de acción brutal, política interna y decisiones que cambian el rumbo de los personajes.\nRecordatorio: los episodios 1–6 pueden verse en mi canal de YouTube El Basurero, reacción completa en una playlist especial.',
-  thumbnail: 'Imagenes/Shingeki-no-Kyojin-T1-Eps.2.jpg',
-  source: 'https://rumble.com/embed/v6zjmj6/?pub=4nmhh2',
-  type: 'iframe'
-},
-{
-  id: 'shingeki_no_kyojin_t1_eps_7_11',
-  name: 'Shingeki No Kyojin',
-  categoria: 'shingeki_no_kyojin',
-  temporada: '1',
-  episodio: '7-11',
-  title: '⚔️ Shingeki No Kyojin T1 Eps. 7–11',
-  title2: 'El caos del Titán misterioso',
-  description: 'La historia da un salto enorme en estos episodios: Eren regresa… pero no como nadie esperaba. La aparición del Titán misterioso, las batallas dentro de Trost y el caos emocional del escuadrón convierten este bloque en uno de los más intensos de la primera temporada.\nEntre gritos, teorías y puro desconcierto, estas reacciones fueron una montaña rusa total.\nDato importante: mis reacciones a los episodios 1–6 están completas en mi canal de YouTube El Basurero, en una lista de reproducción exclusiva.',
-  thumbnail: 'Imagenes/Shingeki-no-Kyojin-T1-Eps..jpg',
-  source: 'https://rumble.com/embed/v6zjmho/?pub=4nmhh2',
-  type: 'iframe'
-},
 
 
 
@@ -240,32 +186,7 @@ export const videosPremium = [
 
   
 
-  {
-    id: 'millenium',
-    categoria: 'peliculas',
-    name: 'Millenium',
-    temporada: '0',
-    episodio: '2',
-    title: '🔍Millennium',
-    title2: 'La chica que soñaba con un cerillo y un galón de gasolina + Peter Capusotto',
-    description: 'Una secuela que me agarró desprevenido: reaccionamos a La chica que soñaba con un cerillo y un galón de gasolina — la segunda parte de la saga sueca The Girl Who Played with Fire — donde todo se complica, la tensión se eleva y el caos aparece por todos lados.\nPara rematar, cerramos la sesión viendo un video de Peter Capusotto que nos hizo soltar carcajadas y pensar al mismo tiempo.\nUna experiencia de comunidad en Twitch plena de giros, comentarios sin filtro y descubrimientos… ¡no te la pierdas!',
-    thumbnail: 'Imagenes/Picsart_25-11-02_19-41-27-072.jpg',
-    source: 'https://rumble.com/embed/v6zbrnq/?pub=4nmhh2',
-    type: 'iframe'
-  },
-  {
-  id: 'millenium_2',
-  categoria: 'peliculas',
-  name: 'Millenium',
-  temporada: '0',
-  episodio: '1',
-  title: '🔍Millennium 2',
-  title2: 'Los hombres que no amaban a las mujeres (sueca)',
-  description: 'En este directo de Twitch vimos juntos Los hombres que no amaban a las mujeres, la versión sueca de la primera entrega de la saga Millennium — dirigida por Niels Arden Oplev y protagonizada por Noomi Rapace y Mikael Nyqvist.',
-  thumbnail: 'Imagenes/Picsart_25-10-24_19-36-11-553.jpg',
-  source: 'https://rumble.com/embed/v6zblns/?pub=4nmhh2',
-  type: 'iframe'
-},
+  
 
 
   {
@@ -378,19 +299,7 @@ export const videosPremium = [
   
   
   //chile dulce y manteca
-  {
-  id: 'ya_no_te_amo_raul',
-  categoria: 'bloqueados_de_youtube',
-  name: '😂 Les Luthiers',
-  temporada: '0',
-  episodio: '1',
-  title: 'Ya no te amo, Raúl',
-  title2: 'No pude parar de reir',
-  description: 'Algunas piezas de humor simplemente no envejecen, y Ya no te amo, Raúl de Les Luthiers es una de ellas.\nUna joya de la ironía, la música y el absurdo más elegante, que me tuvo riendo de principio a fin.\nEntre el ingenio de las letras, los juegos de palabras y esa interpretación tan característica del grupo, fue imposible no rendirse ante el talento de estos genios.\nUna reacción llena de risas sinceras y admiración total por lo que hacen.',
-  thumbnail: 'Imagenes/NO-PUDE-PARAR-DE-RER-con-Y.jpg',
-  source: 'https://rumble.com/embed/v6zcjy0/?pub=4nmhh2',
-  type: 'iframe'
-},
+  
 
 {
     id: 'milo_j',
