@@ -4,7 +4,7 @@ export const exclusivosData = {
   key: 'exclusivos',
   name: 'Exclusivos',
   background: 'Imagenes/ChatGPT Image 25 feb 2026, 04_16_42 p.m..png',
-  cover: '../Imagenes/ChatGPT Image 25 feb 2026, 05_43_03 p.m..png',               // Carátula pequeña
+  cover: 'Imagenes/ChatGPT Image 25 feb 2026, 05_43_03 p.m..png',               // Carátula pequeña
   title: 'Contenido Exclusivo',
   synopsis: 'Material especial disponible para toda la comunidad. Detrás de escenas, especiales y contenido único que no entra en otras categorías.',
   year: '2026',
