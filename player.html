@@ -72,16 +72,17 @@
   <script type="module">
     import { protectPage } from "./js/roleManager.js";
     import { videosPremium } from "./js/videos-premium.js";
+    import { videosExclusivos } from "./js/exclusivos.js";
     import { initVideoInteraction } from "./js/video-interaction.js";
 
-    protectPage(["premium","admin"], "index.html");
 
     fetch("header.html").then(r => r.text()).then(d => header.innerHTML = d);
     fetch("footer.html").then(r => r.text()).then(d => footer.innerHTML = d);
 
     const params = new URLSearchParams(window.location.search);
     const videoId = params.get("id");
-    const video = videosPremium.find(v => v.id === videoId);
+    const allVideos = [...videosPremium, ...videosExclusivos];
+    const video = allVideos.find(v => v.id === videoId);
 
     const titleEl = document.getElementById("videoTitle");
     const descEl  = document.getElementById("videoDescription");
@@ -114,3 +115,4 @@
   </script>
 </body>
 </html>
+
