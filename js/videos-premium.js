@@ -559,7 +559,7 @@ export const videosPremium = [
   thumbnail: 'Imagenes/M863z.qR4e.1-small-Aliens.jpg',
   source: 'https://rumble.com/embed/v749dsu/?pub=4nmhh2',
   type: 'iframe'
-}
+},
 {
   id: 'especial_de_musica_m_sica',
   name: 'Música',
