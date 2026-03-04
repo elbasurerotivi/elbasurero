@@ -3,10 +3,10 @@ export const categoriasData = {
 
   m_sica: {
     key: 'm_sica',
-    name: 'MúSica',
+    name: 'Música',
     background: 'Imagenes/musica_background.jpg',     // Cambiar
     cover: 'Imagenes/ChatGPT Image 4 mar 2026, 07_37_05 p.m..png',         // Cambiar
-    title: 'MúSica',
+    title: 'Música',
     synopsis: '',
     year: '',
     genre: '',
