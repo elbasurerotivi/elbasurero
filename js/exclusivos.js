@@ -345,7 +345,36 @@ export const videosExclusivos = [
   thumbnail: 'Imagenes/Picsart_25-12-03_20-18-41-871.jpg',
   source: 'https://rumble.com/embed/v749dxi/?pub=4nmhh2',
   type: 'iframe'
+},
+{
+  id: 'la_sociedad_de_los_poetas_muertos_peliculas',
+  name: 'La sociedad de los poetas muertos',
+  categoria: 'peliculas',
+  temporada: '0',
+  episodio: '0',
+  title: 'La sociedad de los poetas muertos',
+  title2: 'Reacción en Twitch',
+  description: 'Una de esas películas que te dejan en silencio.\nLa vimos completa en Twitch y la conversación posterior fue tan fuerte como la historia misma.',
+  thumbnail: 'Imagenes/I_63z.qR4e-small-poetas-muertos.jpg',
+  source: 'https://rumble.com/embed/v749dy2/?pub=4nmhh2',
+  type: 'iframe'
+},
+
+  {
+  id: 'argentina_1985_peliculas',
+  name: 'Argentina 1985',
+  categoria: 'peliculas',
+  temporada: '0',
+  episodio: '0',
+  title: 'Argentina 1985',
+  title2: 'Argentina 1985 — Mi primera transmisión en Twitch',
+  description: 'Película especial por muchas razones: fue mi primera transmisión en Twitch y además en mi cumpleaños.\nCoincide con el Día del Maestro en Argentina… y sí, yo también soy maestro. Momento único.',
+  thumbnail: 'Imagenes/mo73z.qR4e-small-arg-1985.jpg',
+  source: 'https://rumble.com/embed/v749eo4/?pub=4nmhh2',
+  type: 'iframe'
 }
+
+
 
 
 ];
