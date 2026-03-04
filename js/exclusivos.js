@@ -236,6 +236,116 @@ export const videosExclusivos = [
     source: 'https://rumble.com/embed/v6z6sxy/?pub=4nmhh2',
     type: 'iframe'
   },
+  {
+  id: 'comenzamos_con_la_saga_x_men_97_x_men_97',
+  name: 'X-Men 97',
+  categoria: 'x_men_97',
+  temporada: '01',
+  episodio: '1-3',
+  title: 'Comenzamos con la saga X-Men 97',
+  title2: 'X-Men 97 (Parte 1) — Eps. 1, 2 y 3 | + Caballeros del Zodiaco',
+  description: 'El regreso mutante empezó fuerte. Vimos en Twitch los episodios 1, 2 y 3 de X-Men 97, con toda la nostalgia noventera pero con intensidad moderna.\nDespués cerramos con un video de Te lo resumo así nomás sobre Los Caballeros del Zodiaco, que nos terminó de prender el modo retro.',
+  thumbnail: 'Imagenes/a863z.qR4e.1-small-xmen-97.jpg',
+  source: 'https://rumble.com/embed/v749drs/?pub=4nmhh2',
+  type: 'iframe'
+},
+
+  {
+  id: 'x_men_97_x_men_97',
+  name: 'X-Men 97',
+  categoria: 'x_men_97',
+  temporada: '01',
+  episodio: '4-6',
+  title: 'X-Men 97',
+  title2: 'Continuamos con la saga',
+  description: 'La cosa se puso más intensa en los episodios 4, 5 y 6. Drama, política mutante y momentos que no esperábamos tan pronto.\nPara completar la noche en Twitch, vimos varios intros retro como material complementario. Nostalgia pura.',
+  thumbnail: 'Imagenes/g963z.qR4e.1-small-X-Men-97-Parte-2-Eps.-4-5-y.jpg',
+  source: 'https://rumble.com/embed/v749dtq/?pub=4nmhh2',
+  type: 'iframe'
+},
+
+  {
+  id: 'x_men_97_x_men_97',
+  name: 'X-Men 97',
+  categoria: 'x_men_97',
+  temporada: '01',
+  episodio: '7-10',
+  title: 'X-Men 97',
+  title2: 'X-Men 97 (Parte 3) — Eps. 7, 8, 9 y 10 | Final',
+  description: 'Los últimos episodios (7, 8, 9 y 10) elevaron todo. Giros fuertes, decisiones pesadas y un cierre que dejó conversación larga.\nUna sesión en Twitch cargada de emoción y análisis mutante.',
+  thumbnail: 'Imagenes/u963z.qR4e.1-small-X-Men-97-Parte-3-Eps.-7-8-9.jpg',
+  source: 'https://rumble.com/embed/v749du4/?pub=4nmhh2',
+  type: 'iframe'
+},
+
+  {
+  id: 'reaccion_en_twitch_peliculas',
+  name: 'Aliens',
+  categoria: 'peliculas',
+  temporada: '0',
+  episodio: '0',
+  title: 'Reacción en Twitch',
+  title2: 'Reacción en Twitch',
+  description: 'Más acción, más intensidad y un cambio total de tono respecto a la primera. Aliens convierte el terror en guerra directa.\nUna noche explosiva en Twitch.',
+  thumbnail: 'Imagenes/M863z.qR4e.1-small-Aliens.jpg',
+  source: 'https://rumble.com/embed/v749dsu/?pub=4nmhh2',
+  type: 'iframe'
+},
+{
+  id: 'especial_de_musica_m_sica',
+  name: 'Música',
+  categoria: 'm_sica',
+  temporada: '0',
+  episodio: '1',
+  title: 'Especial de Música',
+  title2: 'Especial de Música #1 — Folklore y Himno Argentino',
+  description: 'Primera noche musical en Twitch (contenido imposible en YouTube).\nRecomendaciones del público, mucho folklore y una versión increíblemente variada del Himno Nacional Argentino. Experiencia hermosa.',
+  thumbnail: 'Imagenes/m963z.qR4e.1-small-Musica.jpg',
+  source: 'https://rumble.com/embed/v749dtw/?pub=4nmhh2',
+  type: 'iframe'
+},
+
+  {
+  id: 'especial_musica_m_sica',
+  name: 'Música',
+  categoria: 'm_sica',
+  temporada: '0',
+  episodio: '2',
+  title: 'Especial música',
+  title2: 'Especial de Música #2 — Noche de Rock',
+  description: 'Segunda sesión musical en Twitch y otra vez una locura.\nMuchísimas recomendaciones de rock y una energía tremenda durante todo el directo.',
+  thumbnail: 'Imagenes/8-63z.qR4e-small-musica-2.jpg',
+  source: 'https://rumble.com/embed/v749dx0/?pub=4nmhh2',
+  type: 'iframe'
+},
+
+  {
+  id: 'the_best_crowd_ever_m_sica',
+  name: 'Best crowd ever',
+  categoria: 'm_sica',
+  temporada: '0',
+  episodio: '0',
+  title: 'The Best Crowd Ever',
+  title2: 'Reacción especial (YouTube)',
+  description: 'Un video que no pudo quedarse completo en YouTube por copyright.\n“Best Crowd Ever” celebra al público argentino, y lo vimos entero en directo.',
+  thumbnail: 'Imagenes/Ij73z.qR4e-small-Best-Crowd.jpg',
+  source: 'https://rumble.com/embed/v749efu/?pub=4nmhh2',
+  type: 'iframe'
+},
+
+  {
+  id: 'rocky_peliculas',
+  name: 'Rocky',
+  categoria: 'peliculas',
+  temporada: '0',
+  episodio: '1',
+  title: 'Rocky',
+  title2: 'Reacción en Twitch  + Mariano Rodríguez',
+  description: 'Clásico deportivo que nunca falla. Rocky se disfruta distinto en comunidad.\nPor supuesto, vimos el video correspondiente de Mariano Rodríguez. Ya tradición del canal.',
+  thumbnail: 'Imagenes/Picsart_25-12-03_20-18-41-871.jpg',
+  source: 'https://rumble.com/embed/v749dxi/?pub=4nmhh2',
+  type: 'iframe'
+}
 
 
 ];
