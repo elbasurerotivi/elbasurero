@@ -1,13 +1,24 @@
 // js/videos.js
 export const categoriasData = {
 
+  m_sica: {
+    key: 'm_sica',
+    name: 'MúSica',
+    background: 'Imagenes/FONDO_M_SICA.jpg',     // Cambiar
+    cover: 'Imagenes/COVER_M_SICA.jpg',         // Cambiar
+    title: 'M Sica',
+    synopsis: '',
+    year: '',
+    genre: '',
+    cast: ''
+  },
   x_men_97: {
     key: 'x_men_97',
     name: 'X Men 97',
     background: 'Imagenes/xmen-poster.png',     // Cambiar
     cover: 'Imagenes/xmenhellfire2023001_xmen97_variant.jpg',         // Cambiar
     title: 'X Men 97',
-    synopsis: "X-Men '97 es la continuación directa de la serie clásica de los 90, mostrando a los mutantes enfrentando un futuro peligroso e inesperado tras la pérdida del Profesor X. Con Cíclope liderando, el equipo enfrenta nuevos retos, la amenaza de Siniestro y la compleja integración de Magneto, quien busca cumplir el legado de Xavier en un mundo que aún los teme.",
+    synopsis: "X-Men '97 es la continuación directa de la serie clásica de los 90, mostrando a los mutantes enfrentando un futuro peligroso e inesperado tras la pérdida del Profesor X.",
     year: '2024',
     genre: 'Animación • Acción',
     cast: 'Ray Chase, Jennifer Hale, Alison Sealy-Smith, Cal Dodd'
@@ -547,6 +558,61 @@ export const videosPremium = [
   description: 'Más acción, más intensidad y un cambio total de tono respecto a la primera. Aliens convierte el terror en guerra directa.\nUna noche explosiva en Twitch.',
   thumbnail: 'Imagenes/M863z.qR4e.1-small-Aliens.jpg',
   source: 'https://rumble.com/embed/v749dsu/?pub=4nmhh2',
+  type: 'iframe'
+}
+{
+  id: 'especial_de_musica_m_sica',
+  name: 'Música',
+  categoria: 'm_sica',
+  temporada: '0',
+  episodio: '1',
+  title: 'Especial de Música',
+  title2: 'Especial de Música #1 — Folklore y Himno Argentino',
+  description: 'Primera noche musical en Twitch (contenido imposible en YouTube).\nRecomendaciones del público, mucho folklore y una versión increíblemente variada del Himno Nacional Argentino. Experiencia hermosa.',
+  thumbnail: 'Imagenes/m963z.qR4e.1-small-Musica.jpg',
+  source: 'https://rumble.com/embed/v749dtw/?pub=4nmhh2',
+  type: 'iframe'
+},
+
+  {
+  id: 'especial_musica_m_sica',
+  name: 'Música',
+  categoria: 'm_sica',
+  temporada: '0',
+  episodio: '2',
+  title: 'Especial música',
+  title2: 'Especial de Música #2 — Noche de Rock',
+  description: 'Segunda sesión musical en Twitch y otra vez una locura.\nMuchísimas recomendaciones de rock y una energía tremenda durante todo el directo.',
+  thumbnail: 'Imagenes/8-63z.qR4e-small-musica-2.jpg',
+  source: 'https://rumble.com/embed/v749dx0/?pub=4nmhh2',
+  type: 'iframe'
+},
+
+  {
+  id: 'the_best_crowd_ever_m_sica',
+  name: 'Best crowd ever',
+  categoria: 'm_sica',
+  temporada: '0',
+  episodio: '0',
+  title: 'The Best Crowd Ever',
+  title2: 'Reacción especial (YouTube)',
+  description: 'Un video que no pudo quedarse completo en YouTube por copyright.\n“Best Crowd Ever” celebra al público argentino, y lo vimos entero en directo.',
+  thumbnail: 'Imagenes/Ij73z.qR4e-small-Best-Crowd.jpg',
+  source: 'https://rumble.com/embed/v749efu/?pub=4nmhh2',
+  type: 'iframe'
+},
+
+  {
+  id: 'rocky_peliculas',
+  name: 'Rocky',
+  categoria: 'peliculas',
+  temporada: '0',
+  episodio: '1',
+  title: 'Rocky',
+  title2: 'Reacción en Twitch  + Mariano Rodríguez',
+  description: 'Clásico deportivo que nunca falla. Rocky se disfruta distinto en comunidad.\nPor supuesto, vimos el video correspondiente de Mariano Rodríguez. Ya tradición del canal.',
+  thumbnail: 'Imagenes/Picsart_25-12-03_20-18-41-871.jpg',
+  source: 'https://rumble.com/embed/v749dxi/?pub=4nmhh2',
   type: 'iframe'
 }
 
