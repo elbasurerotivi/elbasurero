@@ -1,5 +1,18 @@
 // js/videos.js
 export const categoriasData = {
+
+  x_men_97: {
+    key: 'x_men_97',
+    name: 'X Men 97',
+    background: 'Imagenes/FONDO_X_MEN_97.jpg',     // Cambiar
+    cover: 'Imagenes/b9c3af3c21132df8cb1c27353c6bbec8_df2e7aac2537c48a3dcc20477b7641bc.jpg',         // Cambiar
+    title: 'X Men 97',
+    synopsis: '',
+    year: '',
+    genre: '',
+    cast: ''
+  },
+
   shingeki_no_kyojin: {
     key: 'shingeki_no_kyojin',
     name: 'Shingeki No Kyojin',
@@ -75,10 +88,6 @@ export const videosPremium = [
   source: 'https://rumble.com/v75d8hy-nada-vuelve-a-ser-igual-reaccin-a-el-encargado-ep.-6-contenido-premium.html?mref=4nmhh2&mc=dzuzl',
   type: 'iframe'
 },
-
-
- 
-
 
 {
   id: 'visita_sorpresa_el_encargado',
@@ -457,6 +466,89 @@ export const videosPremium = [
     source: 'https://rumble.com/embed/v6z6sxy/?pub=4nmhh2',
     type: 'iframe'
   },
+  {
+  id: 'acompanante_terapetico_el_encargado',
+  name: 'El Encargado',
+  categoria: 'el_encargado',
+  temporada: '1',
+  episodio: '7',
+  title: 'Acompañante terapético',
+  title2: 'El control empieza a romperse',
+  description: 'En el episodio 7, todo lo que venía acumulándose comienza a estallar. Eliseo ya no juega con ventaja y sus movimientos se vuelven más desesperados, mientras el edificio deja de ser un espacio silencioso para convertirse en un verdadero campo de conflicto.',
+  thumbnail: 'Imagenes/q5aXz.qR4e-small-El-control-empieza-a-romper.jpg',
+  source: 'https://rumble.com/embed/v736kp4/?pub=4nmhh2',
+  type: 'iframe'
+},
+
+  {
+  id: 'sabotaje_en_la_sala_de_maquinas_el_encargado',
+  name: 'El Encargado',
+  categoria: 'el_encargado',
+  temporada: '1',
+  episodio: '8',
+  title: 'Sabotaje en la sala de máquinas',
+  title2: 'Sabotaje y caos',
+  description: 'Cuando el control empieza a escaparse, algunos deciden apretar botones más peligrosos. En el episodio 8, “Sabotaje en la sala de máquinas”, la tensión acumulada explota de forma directa y calculada. Ya no se trata solo de manipulación psicológica: las acciones tienen consecuencias concretas.',
+  thumbnail: 'Imagenes/SOu2z.qR4e-small-Sabotaje-y-caos-Reaccin-a-E.jpg',
+  source: 'https://rumble.com/embed/v740eg4/?pub=4nmhh2',
+  type: 'iframe'
+},
+
+  {
+  id: 'comenzamos_con_la_saga_x_men_97_x_men_97',
+  name: 'X-Men 97',
+  categoria: 'x_men_97',
+  temporada: '01',
+  episodio: '1-3',
+  title: 'Comenzamos con la saga X-Men 97',
+  title2: 'X-Men 97 (Parte 1) — Eps. 1, 2 y 3 | + Caballeros del Zodiaco',
+  description: 'El regreso mutante empezó fuerte. Vimos en Twitch los episodios 1, 2 y 3 de X-Men 97, con toda la nostalgia noventera pero con intensidad moderna.\nDespués cerramos con un video de Te lo resumo así nomás sobre Los Caballeros del Zodiaco, que nos terminó de prender el modo retro.',
+  thumbnail: 'Imagenes/a863z.qR4e.1-small-xmen-97.jpg',
+  source: 'https://rumble.com/embed/v749drs/?pub=4nmhh2',
+  type: 'iframe'
+},
+
+  {
+  id: 'x_men_97_x_men_97',
+  name: 'X-Men 97',
+  categoria: 'x_men_97',
+  temporada: '01',
+  episodio: '4-6',
+  title: 'X-Men 97',
+  title2: 'Continuamos con la saga',
+  description: 'La cosa se puso más intensa en los episodios 4, 5 y 6. Drama, política mutante y momentos que no esperábamos tan pronto.\nPara completar la noche en Twitch, vimos varios intros retro como material complementario. Nostalgia pura.',
+  thumbnail: 'Imagenes/g963z.qR4e.1-small-X-Men-97-Parte-2-Eps.-4-5-y.jpg',
+  source: 'https://rumble.com/embed/v749dtq/?pub=4nmhh2',
+  type: 'iframe'
+},
+
+  {
+  id: 'x_men_97_x_men_97',
+  name: 'X-Men 97',
+  categoria: 'x_men_97',
+  temporada: '01',
+  episodio: '7-10',
+  title: 'X-Men 97',
+  title2: 'X-Men 97 (Parte 3) — Eps. 7, 8, 9 y 10 | Final',
+  description: 'Los últimos episodios (7, 8, 9 y 10) elevaron todo. Giros fuertes, decisiones pesadas y un cierre que dejó conversación larga.\nUna sesión en Twitch cargada de emoción y análisis mutante.',
+  thumbnail: 'Imagenes/u963z.qR4e.1-small-X-Men-97-Parte-3-Eps.-7-8-9.jpg',
+  source: 'https://rumble.com/embed/v749du4/?pub=4nmhh2',
+  type: 'iframe'
+},
+
+  {
+  id: 'reaccion_en_twitch_peliculas',
+  name: 'Aliens',
+  categoria: 'peliculas',
+  temporada: '0',
+  episodio: '0',
+  title: 'Reacción en Twitch',
+  title2: 'Reacción en Twitch',
+  description: 'Más acción, más intensidad y un cambio total de tono respecto a la primera. Aliens convierte el terror en guerra directa.\nUna noche explosiva en Twitch.',
+  thumbnail: 'Imagenes/M863z.qR4e.1-small-Aliens.jpg',
+  source: 'https://rumble.com/embed/v749dsu/?pub=4nmhh2',
+  type: 'iframe'
+}
 
 
   
