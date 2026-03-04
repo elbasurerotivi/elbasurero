@@ -4,8 +4,8 @@ export const categoriasData = {
   x_men_97: {
     key: 'x_men_97',
     name: 'X Men 97',
-    background: 'Imagenes/FONDO_X_MEN_97.jpg',     // Cambiar
-    cover: 'Imagenes/b9c3af3c21132df8cb1c27353c6bbec8_df2e7aac2537c48a3dcc20477b7641bc.jpg',         // Cambiar
+    background: 'Imagenes/xmen-poster.png',     // Cambiar
+    cover: 'Imagenes/xmen-poster.png',         // Cambiar
     title: 'X Men 97',
     synopsis: '',
     year: '',
