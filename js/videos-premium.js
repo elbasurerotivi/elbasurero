@@ -7,10 +7,10 @@ export const categoriasData = {
     background: 'Imagenes/xmen-poster.png',     // Cambiar
     cover: 'Imagenes/xmenhellfire2023001_xmen97_variant.jpg',         // Cambiar
     title: 'X Men 97',
-    synopsis: '',
-    year: '',
-    genre: '',
-    cast: ''
+    synopsis: "X-Men '97 es la continuación directa de la serie clásica de los 90, mostrando a los mutantes enfrentando un futuro peligroso e inesperado tras la pérdida del Profesor X. Con Cíclope liderando, el equipo enfrenta nuevos retos, la amenaza de Siniestro y la compleja integración de Magneto, quien busca cumplir el legado de Xavier en un mundo que aún los teme.",
+    year: '2024',
+    genre: 'Animación • Acción',
+    cast: 'Ray Chase, Jennifer Hale, Alison Sealy-Smith, Cal Dodd'
   },
 
   shingeki_no_kyojin: {
