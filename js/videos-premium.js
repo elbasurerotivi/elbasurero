@@ -4,9 +4,9 @@ export const categoriasData = {
   m_sica: {
     key: 'm_sica',
     name: 'MúSica',
-    background: 'Imagenes/FONDO_M_SICA.jpg',     // Cambiar
-    cover: 'Imagenes/COVER_M_SICA.jpg',         // Cambiar
-    title: 'M Sica',
+    background: 'Imagenes/musica_background.jpg',     // Cambiar
+    cover: 'Imagenes/ChatGPT Image 4 mar 2026, 07_37_05 p.m..png',         // Cambiar
+    title: 'MúSica',
     synopsis: '',
     year: '',
     genre: '',
