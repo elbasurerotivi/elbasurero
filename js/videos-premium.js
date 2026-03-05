@@ -96,7 +96,7 @@ export const videosPremium = [
   title2: 'Reacción a El Encargado Ep. 6',
   description: 'El episodio 6 marca un quiebre claro en la serie. Las máscaras empiezan a caerse, las relaciones se tensan al límite y Eliseo deja ver hasta dónde está dispuesto a llegar para no perder el control del edificio.\n\nVisto en casa, en formato contenido premium, este capítulo se disfruta con pausa: silencios largos, miradas incómodas y decisiones que ya no tienen marcha atrás. Todo se vuelve más oscuro y más directo, sin necesidad de exagerar nada.\n\nUn episodio incómodo, potente y fundamental para entender el rumbo de la historia.',
   thumbnail: 'Imagenes/g1aXz.qR4e-small-Nada-vuelve-a-ser-igual-Rea.jpg',
-  source: 'https://rumble.com/v75d8hy-nada-vuelve-a-ser-igual-reaccin-a-el-encargado-ep.-6-contenido-premium.html?mref=4nmhh2&mc=dzuzl',
+  source: 'https://rumble.com/embed/v736khq/?pub=4nmhh2',
   type: 'iframe'
 },
 
