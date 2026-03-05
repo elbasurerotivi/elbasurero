@@ -487,7 +487,7 @@ export const videosPremium = [
   title2: 'El control empieza a romperse',
   description: 'En el episodio 7, todo lo que venía acumulándose comienza a estallar. Eliseo ya no juega con ventaja y sus movimientos se vuelven más desesperados, mientras el edificio deja de ser un espacio silencioso para convertirse en un verdadero campo de conflicto.',
   thumbnail: 'Imagenes/q5aXz.qR4e-small-El-control-empieza-a-romper.jpg',
-  source: 'https://rumble.com/v75d8pc-el-control-empieza-a-romperse-reaccin-a-el-encargado-ep.-7-contenido-premiu.html?mref=4nmhh2&mc=dzuzl',
+  source: 'https://rumble.com/embed/v736kp4/?pub=4nmhh2',
   type: 'iframe'
 },
 
