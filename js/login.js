@@ -174,38 +174,38 @@ window.loginGoogle = function() {
   signInWithPopup(auth, provider)
     .then(async (result) => {
       const user = result.user;
-      console.log("Autenticación con Google exitosa:", user.email);
-
       const userRef = ref(db, `users/${user.uid}`);
 
       try {
-        await set(userRef, {
-          email: user.email,
-          username: user.displayName || user.email.split("@")[0],
-          createdAt: Date.now(),
-          //role: "user"  // ← ¡IMPORTANTE! Agregar rol por defecto
-        });
-        console.log("Usuario guardado en DB");
+
+        const snapshot = await get(userRef);
+
+        // SOLO crear si no existe
+        if (!snapshot.exists()) {
+
+          await set(userRef, {
+            email: user.email,
+            username: user.displayName || user.email.split("@")[0],
+            role: "user",
+            createdAt: Date.now()
+          });
+
+          console.log("Usuario creado en DB");
+        } else {
+          console.log("Usuario ya existe, no se sobrescribe");
+        }
+
         alert(`Bienvenido, ${user.displayName || user.email}!`);
         cerrarLogin();
-      } catch (dbError) {
-        console.error("Error al guardar en DB:", dbError);
-        alert("Error al guardar tus datos. Contacta al admin.");
-        // Opcional: cerrar sesión si no se pudo guardar
-        // await signOut(auth);
+
+      } catch (error) {
+        console.error("Error al guardar usuario:", error);
+        alert("Error al guardar tus datos.");
       }
     })
     .catch(error => {
       console.error("Error de autenticación:", error);
-      let errorMessage = "Error al iniciar sesión con Google.";
-      if (error.code === "auth/popup-closed-by-user") {
-        errorMessage = "Ventana cerrada. Intenta de nuevo.";
-      } else if (error.code === "auth/popup-blocked") {
-        errorMessage = "Popup bloqueado. Habilita popups.";
-      } else {
-        errorMessage = error.message;
-      }
-      alert(errorMessage);
+      alert(error.message);
     });
 };
 
