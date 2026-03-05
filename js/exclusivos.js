@@ -36,7 +36,7 @@ export const videosExclusivos = [
   title: 'Reacción a La Ciénaga',
   title2: 'Caos, calor y tensión',
   description: 'Nos adentramos en La Ciénaga, una de las obras más celebradas del cine argentino contemporáneo. La vimos completa en Twitch y la experiencia fue intensa: ese calor sofocante, el caos familiar, la incomodidad constante… todo lo que hace única a la película de Lucrecia Martel estuvo presente desde el primer minuto.\n\nLa comunidad y yo reaccionamos a cada silencio, cada gesto extraño y cada escena cargada de tensión. Es una película que parece tranquila, pero te va apretando el pecho sin que te des cuenta. Perfecta para verla en grupo y comentar cada simbolismo, cada detalle escondido y cada momento incómodo.\n\nOtra joya del cine argentino compartida con ustedes.',
-  thumbnail: 'Imagenes/IWvEz.qR4e.jpg',
+  thumbnail: 'Imagenes/IWvEz.qR4e-small-Caos-calor-y-tensin-Reaccin.jpg',
   source: 'https://rumble.com/embed/v709nh6/?pub=4nmhh2',
   type: 'iframe'
 },
