@@ -822,7 +822,7 @@ const videosData = [
 {
   titulo: 'Mexicano reacciona a TikToks graciosos Argentina #5',
   descripcion: '🔥 ¡Nuevo video reaccionando a los TikToks más graciosos de Argentina! 🔥 No estaba preparado para el nivel de este video… ¡literalmente me dio un ataque de tos de la risa! 😂🤣',
-  fecha: '2025-03-08',
+  fecha: '2026-03-13',
   link: 'https://www.youtube.com/watch?v=anOaKkaJtVw&t=66s',
   miniatura: 'https://img.youtube.com/vi/anOaKkaJtVw/maxresdefault.jpg',
   tags: [
@@ -852,7 +852,7 @@ const videosData = [
 {
   titulo: '🤯 ¡De los Comerciales Más Épicos de Argentina! 😂📺 | Reacción',
   descripcion: '¡Hoy reacciono a algunos de los comerciales más creativos y sorprendentes de Argentina! 🇦🇷📺 Desde publicidad ingeniosa hasta anuncios que te sacan una carcajada, estos comerciales definitivamente saben cómo atrapar la atención. Mucho fútbol!!! ¿Cuál fue tu favorito? ¡Dímelo en los comentarios! 👇😆',
-  fecha: '2025-03-16',
+  fecha: '2026-03-14',
   link: 'https://www.youtube.com/watch?v=r8q-AZlOn58&t=39s',
   miniatura: 'https://img.youtube.com/vi/r8q-AZlOn58/maxresdefault.jpg',
   tags: [
@@ -1051,7 +1051,7 @@ const videosData = [
   {
   titulo: '🔥 Reacción a Nico Biffi 🇦🇷 en España 🇪🇸 | ¡Me encantó su monólogo! 😂🙌',
   descripcion: 'Hoy "reaccionamos" al increíble monólogo de Nico Biffi, un comediante argentino que la rompe en España con su show “Un Argentino en España”. 🇦🇷🇪🇸\n\nEl humor, el ritmo, la observación cultural... ¡todo impecable! Me reí mucho y lo disfruté de principio a fin. Si te gusta la comedia que mezcla acento, identidad y choque cultural, este video es para tí.',
-  fecha: '2025-04-17',
+  fecha: '2026-03-15',
   link: 'https://www.youtube.com/watch?v=ZhxWUXJvLnI',
   miniatura: 'https://img.youtube.com/vi/ZhxWUXJvLnI/maxresdefault.jpg',
   tags: [
