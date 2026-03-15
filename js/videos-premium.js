@@ -641,7 +641,7 @@ export const videosPremium = [
   thumbnail: 'Imagenes/mo73z.qR4e-small-arg-1985.jpg',
   source: 'https://rumble.com/embed/v749eo4/?pub=4nmhh2',
   type: 'iframe'
-}
+},
 
   {
   id: 'duro_de_matar_peliculas',
