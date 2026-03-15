@@ -643,6 +643,19 @@ export const videosPremium = [
   type: 'iframe'
 }
 
+  {
+  id: 'duro_de_matar_peliculas',
+  name: 'Películas',
+  categoria: 'peliculas',
+  temporada: '0',
+  episodio: '0',
+  title: 'Duro de matar',
+  title2: 'Reacción en vivo con la comunidad',
+  description: 'Uno de los grandes clásicos del cine de acción. Vimos Duro de matar en directo con la comunidad en Twitch dentro de nuestras noches de películas recomendadas desde la página.\n\nEntre momentos icónicos, frases legendarias y el carisma absoluto de John McClane, la película resultó perfecta para reaccionarla en grupo. Acción pura, tensión constante y muchas risas comentando cada situación imposible.',
+  thumbnail: 'Imagenes/Duro de matar.png',
+  source: 'https://rumble.com/embed/v74h0us/?pub=4nmhh2',
+  type: 'iframe'
+}
 
   
   
