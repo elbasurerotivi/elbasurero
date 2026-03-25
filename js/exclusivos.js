@@ -400,7 +400,20 @@ export const videosExclusivos = [
   thumbnail: 'Imagenes/El Eternauta parte 1.png',
   source: 'https://rumble.com/embed/v75fnq4/?pub=4nmhh2',
   type: 'iframe'
+},
+  
+ {
+  id: 'el_eternauta_parte_2_el_encargado',
+  name: 'El Eternauta',
+  categoria: 'el_encargado',
+  temporada: '1',
+  episodio: '4-6',
+  title: 'El Eternauta – Parte 2',
+  title2: 'Segunda parte de la serie completa en un día. -_-',
+  description: 'Continuación de la reacción a El Eternauta.\n\nEn esta segunda parte la historia sigue avanzando y las cosas empiezan a escalar.\nY también el cansancio de todos. ¡Pero aquí nadie se raja!\n\n👉 Segunda mitad de la reacción completa.',
+  thumbnail: 'Imagenes/El Eternauta parte 2.png',
+  source: 'https://rumble.com/embed/v75fnq8/?pub=4nmhh2',
+  type: 'iframe'
 }
-
 
 ];
