@@ -669,6 +669,48 @@ export const videosPremium = [
   thumbnail: 'Imagenes/día de la marmota.png',
   source: 'https://rumble.com/embed/v74h0v2/?pub=4nmhh2',
   type: 'iframe'
+},
+
+   {
+  id: 'pesadilla_en_la_calle_elm_peliculas',
+  name: 'Películas',
+  categoria: 'peliculas',
+  temporada: '0',
+  episodio: '0',
+  title: 'Pesadilla en la calle Elm',
+  title2: 'Reacción en vivo con la comunidad',
+  description: 'Turno de uno de los grandes nombres del terror: Pesadilla en la calle Elm. La vimos en directo con la comunidad en Twitch y fue una experiencia muy divertida para comentar.\n\nFreddy Krueger sigue siendo un villano increíble, y la mezcla entre sueños, pesadillas y creatividad visual dio mucho material para reaccionar y debatir durante toda la película. Un clásico del terror que siempre se disfruta ver acompañado.',
+  thumbnail: 'Imagenes/Pesadilla en la calle Elm.png',
+  source: 'https://rumble.com/embed/v74h0v6/?pub=4nmhh2',
+  type: 'iframe'
+},
+
+   {
+  id: 'aterrados_peliculas',
+  name: 'Películas',
+  categoria: 'peliculas',
+  temporada: '0',
+  episodio: '0',
+  title: 'Aterrados',
+  title2: 'Reacción en vivo con la comunidad',
+  description: 'Terror argentino de alto nivel. Aterrados nos tuvo en tensión durante buena parte de la película mientras la veíamos en directo con la comunidad en Twitch.\n\nLa atmósfera, las ideas y varias escenas realmente inquietantes funcionaron muy bien. El final no terminó de convencerme del todo, pero el recorrido hasta llegar ahí fue muy sólido y dejó bastante para comentar después.',
+  thumbnail: 'Imagenes/Aterrados.png',
+  source: 'https://rumble.com/embed/v74h0ve/?pub=4nmhh2',
+  type: 'iframe'
+},
+
+   {
+  id: 'luna_de_avellaneda_peliculas',
+  name: 'Películas',
+  categoria: 'peliculas',
+  temporada: '0',
+  episodio: '0',
+  title: 'Luna de Avellaneda',
+  title2: 'Reacción en vivo con la comunidad',
+  description: 'Una de esas historias que se sienten profundamente humanas. Vimos Luna de Avellaneda en vivo en Twitch con la comunidad, dentro de nuestras noches de películas recomendadas desde la página.\n\nEntre nostalgia, humor y momentos muy emotivos, la película nos metió de lleno en la vida de ese club de barrio que intenta sobrevivir a los cambios del país. Una experiencia muy especial para comentar juntos escena por escena.',
+  thumbnail: 'Imagenes/Luna de Avellaneda.png',
+  source: 'https://rumble.com/embed/v74h0vm/?pub=4nmhh2',
+  type: 'iframe'
 }
   
   
