@@ -414,6 +414,20 @@ export const videosExclusivos = [
   thumbnail: 'Imagenes/El Eternauta parte 2.png',
   source: 'https://rumble.com/embed/v75fnq8/?pub=4nmhh2',
   type: 'iframe'
+},
+  
+{
+  id: 'dia_de_la_marmota_peliculas',
+  name: 'Películas',
+  categoria: 'peliculas',
+  temporada: '0',
+  episodio: '0',
+  title: 'Día de la marmota',
+  title2: 'Reacción en vivo con la comunidad',
+  description: 'Un clásico que mezcla comedia, filosofía y una idea simple que termina siendo brillante. Vimos Día de la marmota en directo con la comunidad de Twitch como parte de nuestras noches de cine recomendadas.\n\nEntre risas, reflexiones y muchas observaciones sobre los detalles del bucle temporal, la película generó una conversación larguísima durante todo el directo.',
+  thumbnail: 'Imagenes/día de la marmota.png',
+  source: 'https://rumble.com/embed/v74h0v2/?pub=4nmhh2',
+  type: 'iframe'
 }
 
 ];
