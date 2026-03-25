@@ -386,9 +386,21 @@ export const videosExclusivos = [
   thumbnail: 'Imagenes/Duro de matar.png',
   source: 'https://rumble.com/embed/v74h0us/?pub=4nmhh2',
   type: 'iframe'
+},
+
+   {
+  id: 'el_eternauta_parte_1_el_eternauta',
+  name: 'El Eternauta',
+  categoria: 'el_eternauta',
+  temporada: '1',
+  episodio: '1-3',
+  title: 'El Eternauta – Parte 1',
+  title2: '¡¡¡Primera parte de la serie completa en un día!!!',
+  description: 'Arrancamos con El Eternauta en un stream bastante largo.\nSe votó en vivo para ver si seguía mi plan origininal (ver 3 episodios, lo cual yo ya consideraba como mucho) o veía la serie completa en una sesión.\n\nEvidentemente les gusta verme desgastado y sufriendo. Pero perdieron porque no sufrí. ¡JA!\n¡Disfruté cada momento de la serie!\n\nEsta es la primera parte, donde empieza todo: la historia, el ambiente y las primeras impresiones.\n\n👉 Primera mitad de la reacción completa.',
+  thumbnail: 'Imagenes/El Eternauta parte 1.png',
+  source: 'https://rumble.com/embed/v75fnq4/?pub=4nmhh2',
+  type: 'iframe'
 }
-
-
 
 
 ];
