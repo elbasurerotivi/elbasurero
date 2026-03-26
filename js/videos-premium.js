@@ -817,20 +817,6 @@ export const videosPremium = [
   thumbnail: 'Imagenes/El Eternauta parte 2.png',
   source: 'https://rumble.com/embed/v75fnq8/?pub=4nmhh2',
   type: 'iframe'
-},
-
-   {
-  id: 'episodio_1_plan_piloto_los_simuladores',
-  name: 'Los Simuladores',
-  categoria: 'los_simuladores',
-  temporada: '1',
-  episodio: '1',
-  title: 'Episodio 1 – “Plan Piloto”',
-  title2: 'Temporada 1 - Episodio 1',
-  description: 'Un hombre desesperado por recuperar a su esposa recurre a un grupo que resuelve problemas mediante operativos cuidadosamente diseñados. Así comienza todo.\n\nAcompáñame a ver el inicio de todo… aquí es donde empieza algo muy especial.\nVisto en casa (solo)',
-  thumbnail: 'Imagenes/Los Simuladores - Temporada 1 ep 01.png',
-  source: 'https://rumble.com/embed/v75bdsg/?pub=4nmhh2',
-  type: 'iframe'
 }
   
   
