@@ -405,7 +405,7 @@ export const videosExclusivos = [
  {
   id: 'el_eternauta_parte_2_el_eternauta',
   name: 'El Eternauta',
-  categoria: 'el_encargado',
+  categoria: 'el_eternauta',
   temporada: '1',
   episodio: '4-6',
   title: 'El Eternauta – Parte 2',
