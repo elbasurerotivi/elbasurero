@@ -915,6 +915,76 @@ export const videosPremium = [
   thumbnail: 'Imagenes/Los Simuladores - Temporada 1 ep 07.png',
   source: 'https://rumble.com/embed/v75be62/?pub=4nmhh2',
   type: 'iframe'
+},
+
+   {
+  id: 'episodio_8_el_pacto_copernico_los_simuladores',
+  name: 'Los Simuladores',
+  categoria: 'los_simuladores',
+  temporada: '1',
+  episodio: '8',
+  title: 'Episodio 8 – “EL pacto Copérnico”',
+  title2: 'El suertudo',
+  description: 'Los simuladores se ven envueltos en un operativo bajo presión, donde no todo está bajo su control.\n\nAcompáñame a ver este episodio, porque aquí ya nada es tan sencillo.',
+  thumbnail: 'Imagenes/Los Simuladores - Temporada 1 ep 08.png',
+  source: 'https://rumble.com/embed/v75bebq/?pub=4nmhh2',
+  type: 'iframe'
+},
+
+    {
+  id: 'episodio_9_el_ultimo_heroe_los_simuladores',
+  name: 'Los Simuladores',
+  categoria: 'los_simuladores',
+  temporada: '1',
+  episodio: '9',
+  title: 'Episodio 9 – “El último héroe”',
+  title2: 'El crédulo',
+  description: 'Un admirador del grupo se acerca demasiado a sus métodos y termina participando en uno de los operativos.\n\nAcompáñame, este episodio tiene algo diferente… y se siente.\nVisto en casa (solo)',
+  thumbnail: 'Imagenes/Los Simuladores - Temporada 1 ep 09.png',
+  source: 'https://rumble.com/embed/v75be6e/?pub=4nmhh2',
+  type: 'iframe'
+},
+
+   {
+  id: 'episodio_10_los_impresentables_los_simuladores',
+  name: 'Los Simuladores',
+  categoria: 'los_simuladores',
+  temporada: '1',
+  episodio: '10',
+  title: 'Episodio 10 – “Los impresentables”',
+  title2: 'El incómodo',
+  description: 'El equipo incorpora ayuda externa para ejecutar un plan complejo que requiere precisión absoluta.\n\nAcompáñame, porque aquí ya se empieza a sentir que estamos llegando a algo más grande.\nVisto en casa (solo)',
+  thumbnail: 'Imagenes/Los Simuladores - Temporada 1 ep 10.png',
+  source: 'https://rumble.com/embed/v75bddy/?pub=4nmhh2',
+  type: 'iframe'
+},
+
+   {
+  id: 'episodio_11_el_colaborador_foraneo_los_simuladores',
+  name: 'Los Simuladores',
+  categoria: 'los_simuladores',
+  temporada: '1',
+  episodio: '11',
+  title: 'Episodio 11 – “El colaborador foráneo”',
+  title2: 'El espacial',
+  description: 'Un caso relacionado con tecnología y manipulación lleva a los simuladores a ejecutar un operativo particularmente elaborado.\n\nAcompáñanos a ver este episodio… ya se siente la recta final.\nVisto en Twitch con la comunidad',
+  thumbnail: 'Imagenes/Los Simuladores - Temporada 1 ep 11.png',
+  source: 'https://rumble.com/embed/v75bduw/?pub=4nmhh2',
+  type: 'iframe'
+},
+
+   {
+  id: 'final_de_temporada_episodios_12_y_13_los_simuladores',
+  name: 'Los Simuladores',
+  categoria: 'los_simuladores',
+  temporada: '1',
+  episodio: '12-13',
+  title: 'Final de temporada – Episodios 12 y 13',
+  title2: 'Los últimos',
+  description: '“Marcela y Paul”\nUn conflicto emocional profundo requiere una intervención delicada para cambiar el destino de dos personas.\n\n“Un trabajo voluntario”\nEl equipo enfrenta un caso final que pone en juego todo lo aprendido, cerrando la temporada con un operativo significativo.\n\nAcompáñanos a cerrar la temporada… este final pega distinto cuando lo ves así.\nVisto en Twitch con la comunidad (live especial de cierre de temporada)',
+  thumbnail: 'Imagenes/Los Simuladores - Temporada 1 ep 12 y 13.png',
+  source: 'https://rumble.com/embed/v75beui/?pub=4nmhh2',
+  type: 'iframe'
 }
   
   
