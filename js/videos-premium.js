@@ -845,6 +845,76 @@ export const videosPremium = [
   thumbnail: 'Imagenes/Los Simuladores - Temporada 1 ep 02.png',
   source: 'https://rumble.com/embed/v75bdzc/?pub=4nmhh2',
   type: 'iframe'
+},
+
+  {
+  id: 'episodio_3_seguro_de_desempleo_los_simuladores',
+  name: 'Los Simuladores',
+  categoria: 'los_simuladores',
+  temporada: '1',
+  episodio: '3',
+  title: 'Episodio 3 – “Seguro de Desempleo”',
+  title2: 'El despedido',
+  description: 'Un hombre busca ser despedido para cobrar su indemnización, pero su empresa no cede. El equipo interviene para forzar la situación.\n\nAcompáñame, aquí los planes empiezan a ponerse más finos.\nVisto en casa (solo)',
+  thumbnail: 'Imagenes/Los Simuladores - Temporada 1 ep 03.png',
+  source: 'https://rumble.com/embed/v75be9y/?pub=4nmhh2',
+  type: 'iframe'
+},
+
+   {
+  id: 'episodio_4_el_testigo_espanol_los_simuladores',
+  name: 'Los Simuladores',
+  categoria: 'los_simuladores',
+  temporada: '1',
+  episodio: '4',
+  title: 'Episodio 4 – “El Testigo Español”',
+  title2: 'El espantado',
+  description: 'Un testigo clave debe ser protegido y convencido de declarar en un juicio complicado, mientras enfrenta presiones externas.\n\nAcompáñame a ver este caso… la tensión ya se empieza a sentir distinto.\nVisto en casa (solo)',
+  thumbnail: 'Imagenes/Los Simuladores - Temporada 1 ep 04.png',
+  source: 'https://rumble.com/embed/v75bdva/?pub=4nmhh2',
+  type: 'iframe'
+},
+
+   {
+  id: 'episodio_5_el_joven_simulador_los_simuladores',
+  name: 'Los Simuladores',
+  categoria: 'los_simuladores',
+  temporada: '1',
+  episodio: '5',
+  title: 'Episodio 5 – “El joven simulador”',
+  title2: 'La influyente',
+  description: 'Un adolescente descubre las operaciones del equipo y pone en riesgo su secreto, obligándolos a intervenir para proteger su identidad; al final, su inteligencia y admiración por el grupo lo convierten en parte clave del plan.\n\nAcompáñame, este episodio tiene detalles que se disfrutan mucho.\nVisto en casa (solo)',
+  thumbnail: 'Imagenes/Los Simuladores - Temporada 1 ep 05.png',
+  source: 'https://rumble.com/embed/v75be6i/?pub=4nmhh2',
+  type: 'iframe'
+},
+
+   {
+  id: 'episodio_6_el_pequeno_problema_del_gran_hombre_los_simuladores',
+  name: 'Los Simuladores',
+  categoria: 'los_simuladores',
+  temporada: '1',
+  episodio: '6',
+  title: 'Episodio 6 – “El pequeño problema del gran hombre”',
+  title2: 'El presi y su amiguito',
+  description: 'Sigue a un presidente con una crisis íntima que podría desestabilizar su imagen. El equipo monta una compleja simulación para resolverla en secreto y preservar su autoridad.\n\nAcompáñame, aquí ya se siente que los operativos pesan más.\nVisto en casa (solo)',
+  thumbnail: 'Imagenes/Los Simuladores - Temporada 1 ep 06.png',
+  source: 'https://rumble.com/embed/v75be9m/?pub=4nmhh2',
+  type: 'iframe'
+},
+
+    {
+  id: 'episodio_7_fuera_de_calculo_los_simuladores',
+  name: 'Los Simuladores',
+  categoria: 'los_simuladores',
+  temporada: '1',
+  episodio: '7',
+  title: 'Episodio 7 – “Fuera de Cálculo”',
+  title2: '¡¡¡El mejor!!!',
+  description: 'Un caso inesperado pone a prueba la capacidad del equipo para adaptarse a circunstancias fuera de lo planeado.\n\nAcompáñame… este es de esos donde las cosas no salen como esperas.\nVisto en casa (solo)',
+  thumbnail: 'Imagenes/Los Simuladores - Temporada 1 ep 07.png',
+  source: 'https://rumble.com/embed/v75be62/?pub=4nmhh2',
+  type: 'iframe'
 }
   
   
