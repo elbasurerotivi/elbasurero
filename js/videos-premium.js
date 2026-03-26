@@ -94,7 +94,7 @@ el_eternauta: {
   },
 
   los_simuladores: {
-    key: 'los simuladores',
+    key: 'los_simuladores',
     name:'Los Simuladores',
     background: 'Imagenes/Los Simuladores Poster.jpg',     // Fondo grande
     cover: 'Imagenes/Los_Simuladores_(Argentine_TV_Series).jpg',               // Carátula pequeña
@@ -836,7 +836,7 @@ export const videosPremium = [
    {
   id: 'episodio_2_diagnostico_rectoscopico_el_encargado',
   name: 'Los Simuladores',
-  categoria: 'el_encargado',
+  categoria: 'los_simuladores',
   temporada: '1',
   episodio: '2',
   title: 'Episodio 2 – “Diagnóstico Rectoscópico”',
