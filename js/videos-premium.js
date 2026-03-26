@@ -7,8 +7,8 @@ export const categoriasData = {
     background: 'Imagenes/musica_background.jpg',     // Cambiar
     cover: 'Imagenes/ChatGPT Image 4 mar 2026, 07_37_05 p.m..png',         // Cambiar
     title: 'Música',
-    synopsis: '',
-    year: '',
+    synopsis: 'Todos los directos de música van a vivir aquí. También calquier contenido que tenga que ver con música: recortes de vivos, reacciones independientes e incluso música propia eventualmente.',
+    year: '2026',
     genre: '',
     cast: ''
   },
