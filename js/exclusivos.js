@@ -470,6 +470,22 @@ export const videosExclusivos = [
   thumbnail: 'Imagenes/Luna de Avellaneda.png',
   source: 'https://rumble.com/embed/v74h0vm/?pub=4nmhh2',
   type: 'iframe'
-}
+},
+
+    {
+  id: 'casablanca_peliculas',
+  name: 'Películas',
+  categoria: 'peliculas',
+  temporada: '0',
+  episodio: '0',
+  title: 'Casablanca',
+  title2: 'Reacción en vivo con la comunidad',
+  description: 'Tocó turno a Casablanca, uno de los clásicos más famosos del cine. La vimos en vivo con la comunidad y la reacción fue bastante dividida: a muchas personas no les convenció… pero a mí me encantó.\n\nEntre el romance, los diálogos legendarios y ese estilo de cine clásico que ya casi no existe, fue una experiencia muy interesante verla y comentarla juntos.',
+  thumbnail: 'Imagenes/Casablanca.png',
+  source: 'https://rumble.com/embed/v74h0vy/?pub=4nmhh2',
+  type: 'iframe'
+},
+
+  
 
 ];
