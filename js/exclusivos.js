@@ -694,6 +694,90 @@ export const videosExclusivos = [
   thumbnail: 'Imagenes/Buenos días vietnam.png',
   source: 'https://rumble.com/embed/v75bv2m/?pub=4nmhh2',
   type: 'iframe'
+},
+
+   {
+  id: 'snk_eps_26_y_27_tres_acordes_parte_1_shingeki_no_kyojin',
+  name: 'Shingeki No Kyojin',
+  categoria: 'shingeki_no_kyojin',
+  temporada: '2',
+  episodio: '26-27',
+  title: 'SNK Eps. 26 y 27 + Tres Acordes Parte 1',
+  title2: 'Tres Acordes, Volumen 1',
+  description: 'Seguimos Shingeki no Kyojin con los episodios 26 y 27 en Twitch.\nDespués comenzamos Tres Acordes Parte 1. La numeramos así porque es difícil seguir la cuenta: es serie independiente de YouTube y las listas no eran accesibles.',
+  thumbnail: 'Imagenes/Shingeki no Kyojin 26 y 27 Y Tres Acordes 1.png',
+  source: 'https://rumble.com/embed/v749dwo/?pub=4nmhh2',
+  type: 'iframe'
+},
+
+  {
+  id: 'snk_eps_28_y_29_tres_acordes_parte_2_shingeki_no_kyojin',
+  name: 'Shingeki No Kyojin',
+  categoria: 'shingeki_no_kyojin',
+  temporada: '2',
+  episodio: '28-29',
+  title: 'SNK Eps. 28 y 29 + Tres Acordes Parte 2',
+  title2: 'Tres Acordes, Volumen 2',
+  description: 'Episodios 28 y 29 de Shingeki no Kyojin en Twitch.\nLuego Tres Acordes Parte 2, manteniendo numeración por la dificultad para seguir temporadas y episodios en YouTube.',
+  thumbnail: 'Imagenes/Shingeki no Kyojin 28 y 29Y Tres Acordes 2.png',
+  source: 'https://rumble.com/embed/v749dww/?pub=4nmhh2',
+  type: 'iframe'
+},
+
+   {
+  id: 'tres_acordes_parte_3_snk_eps_30_y_31_shingeki_no_kyojin',
+  name: 'Shingeki No Kyojin',
+  categoria: 'shingeki_no_kyojin',
+  temporada: '2',
+  episodio: '30-31',
+  title: 'Tres Acordes Parte 3 + SNK Eps. 30 y 31',
+  title2: 'Tres Acordes, Volumen 3',
+  description: 'Por única vez empezamos con Tres Acordes Parte 3.\nDespués seguimos Shingeki no Kyojin con los episodios 30 y 31. Directo dividido y muy movido.',
+  thumbnail: 'Imagenes/Shingeki no Kyojin 30 y 31 - Tres Acordes 3png.png',
+  source: 'https://rumble.com/embed/v749dxo/?pub=4nmhh2',
+  type: 'iframe'
+},
+
+    {
+  id: 'snk_eps_32_33_y_34_tres_acordes_parte_4_shingeki_no_kyojin',
+  name: 'Shingeki No Kyojin',
+  categoria: 'shingeki_no_kyojin',
+  temporada: '2',
+  episodio: '32-34',
+  title: 'SNK Eps. 32, 33 y 34 + Tres Acordes Parte 4',
+  title2: 'Tres Acordes, Volumen 4',
+  description: 'Episodios 32, 33 y 34 de Shingeki no Kyojin en Twitch.\nLuego Tres Acordes Parte 4, manteniendo numeración por la complejidad de ordenarla en YouTube.',
+  thumbnail: 'Imagenes/Shingeki no Kyojin 32-34 - Tres Acordes 4 png.png',
+  source: 'https://rumble.com/embed/v749dxw/?pub=4nmhh2',
+  type: 'iframe'
+},
+
+   {
+  id: 'snk_eps_35_36_y_37_tres_acordes_parte_5_shingeki_no_kyojin',
+  name: 'Shingeki No Kyojin',
+  categoria: 'shingeki_no_kyojin',
+  temporada: '2',
+  episodio: '35-37',
+  title: 'SNK Eps. 35, 36 y 37 + Tres Acordes Parte 5',
+  title2: 'Tres Acordes, Volumen 5',
+  description: 'Seguimos con los episodios 35, 36 y 37 de Shingeki no Kyojin.\nDespués Tres Acordes Parte 5, siempre numerada por la dificultad de llevar la cuenta real.',
+  thumbnail: 'Imagenes/Shingeki no Kyojin 35-37 - Tres Acordes 5 png.png',
+  source: 'https://rumble.com/embed/v749dya/?pub=4nmhh2',
+  type: 'iframe'
+},
+
+  {
+  id: 'tres_acordes_parte_6_youtube_especial_shingeki_no_kyojin',
+  name: 'Shingeki No Kyojin',
+  categoria: 'shingeki_no_kyojin',
+  temporada: '0',
+  episodio: '0',
+  title: 'Tres Acordes Parte 6 — YouTube Especial',
+  title2: 'Tres Acordes, Volumen 6',
+  description: 'Primera vez viendo Tres Acordes directamente en YouTube.\nNecesitábamos avanzar para llegar lo más cerca posible al estreno de la película final de temporada. Cambio estratégico total.',
+  thumbnail: 'Imagenes/Tres Acordes 6 en YOUTUBE.png',
+  source: 'https://rumble.com/embed/v74f67i/?pub=4nmhh2',
+  type: 'iframe'
 }
 
 ];
