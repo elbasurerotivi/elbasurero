@@ -93,6 +93,18 @@ el_eternauta: {
     cast: 'Ricardo Darín, Carla Peterson, César Troncoso, Andrea Pietra'
   },
 
+  los_simuladores: {
+    key: 'los simuladores',
+    name:'Los Simuladores',
+    background: 'Imagenes/Los Simuladores Poster.jpg',     // Fondo grande
+    cover: 'Imagenes/Los_Simuladores_(Argentine_TV_Series).jpg',               // Carátula pequeña
+    title: 'LOS SIMULADORES',
+    synopsis: 'La primera temporada de Los Simuladores sigue a un grupo liderado por Mario Santos que resuelve problemas mediante elaborados engaños y simulaciones. Cada episodio presenta un caso distinto donde usan inteligencia y actuación para impartir justicia fuera de los métodos tradicionales.',
+    year: '2002',
+    genre: 'Comedia • Drama • Policial • Suspenso',
+    cast: 'Federico D´Elía, Diego Peretti, Alejandro Fiore y Martín Seefeld'
+  },
+
 
 };
 export const videosPremium = [
