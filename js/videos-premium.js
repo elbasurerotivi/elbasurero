@@ -84,7 +84,7 @@ export const categoriasData = {
 el_eternauta: {
     key: 'el_eternauta',
     name:'El Eternauta',
-    background: 'Imagenes/El Eternauta Carátula Web.png',     // Fondo grande
+    background: 'Imagenes/El Eternauta poster cuadrado.jpg',     // Fondo grande
     cover: 'Imagenes/El Eternauta Carátula Web.png',               // Carátula pequeña
     title: 'El Eternauta',
     synopsis: 'El Eternauta: Un hombre común enfrenta una nevada mortal en Buenos Aires y, junto a otros sobrevivientes, lucha por entender y resistir una amenaza desconocida.',
