@@ -985,6 +985,48 @@ export const videosPremium = [
   thumbnail: 'Imagenes/Los Simuladores - Temporada 1 ep 12 y 13.png',
   source: 'https://rumble.com/embed/v75beui/?pub=4nmhh2',
   type: 'iframe'
+}, 
+
+  {
+  id: 'dracula_muerto_pero_feliz_en_espanol_peliculas',
+  name: 'Películas',
+  categoria: 'peliculas',
+  temporada: '0',
+  episodio: '0',
+  title: 'Drácula, muerto pero feliz (en español)',
+  title2: 'Reacción en vivo con la comunidad',
+  description: 'Primera vez viendo Dracula: Dead and Loving It… y sí, también fue mi primer acercamiento a Leslie Nielsen.\n\nLa reacción del chat al descubrir eso fue parte del show 😅\n\n👉 La vimos en español y en comunidad durante stream en Twitch.',
+  thumbnail: 'Imagenes/Drácula muerto pero feliz.png',
+  source: 'https://rumble.com/embed/v75bugq/?pub=4nmhh2',
+  type: 'iframe'
+},
+
+   {
+  id: 'la_pistola_desnuda_en_espanol_peliculas',
+  name: 'Películas',
+  categoria: 'peliculas',
+  temporada: '0',
+  episodio: '0',
+  title: 'La pistola desnuda (en español)',
+  title2: 'Reacción en vivo con la comunidad',
+  description: 'Seguimos con Leslie Nielsen después de la semana anterior.\n\nVimos The Naked Gun: From the Files of Police Squad! en español, en nuestro clásico miércoles de películas.\n\n👉 Reacción completa en vivo con la comunidad.',
+  thumbnail: 'Imagenes/La pistola desnudakra.png',
+  source: 'https://rumble.com/embed/v75buic/?pub=4nmhh2',
+  type: 'iframe'
+},
+
+  {
+  id: 'buenos_dias_vietnam_peliculas',
+  name: 'Películas',
+  categoria: 'peliculas',
+  temporada: '0',
+  episodio: '0',
+  title: 'Buenos días, Vietnam',
+  title2: 'Reacción en vivo con la comunidad',
+  description: 'Después de insistir bastante para que saliera votada… finalmente vimos Good Morning, Vietnam.\n\nUna película que combina comedia y momentos más profundos, y que dio pie a una conversación interesante después del stream.\n\n👉 Reacción completa en vivo con la comunidad.',
+  thumbnail: 'Imagenes/Buenos días vietnam.png',
+  source: 'https://rumble.com/embed/v75bv2m/?pub=4nmhh2',
+  type: 'iframe'
 }
   
   
