@@ -81,7 +81,17 @@ export const categoriasData = {
     cast: 'Guillermo Francella, Gabriel Goity, Gastón Cocchiarale'
   },
   
-
+el_eternauta: {
+    key: 'el_eternauta',
+    name:'El Eternauta',
+    background: 'Imagenes/El Eternauta Carátula Web.png',     // Fondo grande
+    cover: 'Imagenes/el encargado 1.webp',               // Carátula pequeña
+    title: 'El Eternauta',
+    synopsis: 'El Eternauta: Un hombre común enfrenta una nevada mortal en Buenos Aires y, junto a otros sobrevivientes, lucha por entender y resistir una amenaza desconocida.',
+    year: '2022',
+    genre: 'Drama • Ciencia Ficción • Supervivencia',
+    cast: 'Ricardo Darín, Carla Peterson, César Troncoso, Andrea Pietra'
+  },
 
 
 };
