@@ -817,6 +817,34 @@ export const videosPremium = [
   thumbnail: 'Imagenes/El Eternauta parte 2.png',
   source: 'https://rumble.com/embed/v75fnq8/?pub=4nmhh2',
   type: 'iframe'
+},
+
+   {
+  id: 'episodio_1_tarjeta_de_navidad_los_simuladores',
+  name: 'Los Simuladores',
+  categoria: 'los_simuladores',
+  temporada: '1',
+  episodio: '1',
+  title: 'Episodio 1 – “Tarjeta de Navidad”',
+  title2: 'El abandonado',
+  description: 'Un hombre desesperado por recuperar a su esposa recurre a un grupo que resuelve problemas mediante operativos cuidadosamente diseñados. Así comienza todo.\n\nAcompáñame a ver el inicio de todo… aquí es donde empieza algo muy especial.\nVisto en casa (solo)',
+  thumbnail: 'Imagenes/Los Simuladores - Temporada 1 ep 01.png',
+  source: 'https://rumble.com/embed/v75bdsg/?pub=4nmhh2',
+  type: 'iframe'
+},
+
+   {
+  id: 'episodio_2_diagnostico_rectoscopico_el_encargado',
+  name: 'Los Simuladores',
+  categoria: 'el_encargado',
+  temporada: '1',
+  episodio: '2',
+  title: 'Episodio 2 – “Diagnóstico Rectoscópico”',
+  title2: 'El perforado',
+  description: 'Un trabajador necesita simular una enfermedad para conservar su empleo, y los simuladores construyen un plan médico tan absurdo como efectivo.\n\nAcompáñame, este episodio ya deja ver el nivel de locura que manejan.',
+  thumbnail: 'Imagenes/Los Simuladores - Temporada 1 ep 02.png',
+  source: 'https://rumble.com/embed/v75bdzc/?pub=4nmhh2',
+  type: 'iframe'
 }
   
   
