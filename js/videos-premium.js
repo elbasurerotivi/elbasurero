@@ -767,7 +767,36 @@ export const videosPremium = [
   thumbnail: 'Imagenes/El encargado 1-11.png',
   source: 'https://rumble.com/embed/v75bbtc/?pub=4nmhh2',
   type: 'iframe'
+},
+
+   {
+  id: 'el_eternauta_parte_1_el_eternauta',
+  name: 'El Eternauta',
+  categoria: 'el_eternauta',
+  temporada: '1',
+  episodio: '1-3',
+  title: 'El Eternauta – Parte 1',
+  title2: '¡¡¡Primera parte de la serie completa en un día!!!',
+  description: 'Arrancamos con El Eternauta en un stream bastante largo.\nSe votó en vivo para ver si seguía mi plan origininal (ver 3 episodios, lo cual yo ya consideraba como mucho) o veía la serie completa en una sesión.\n\nEvidentemente les gusta verme desgastado y sufriendo. Pero perdieron porque no sufrí. ¡JA!\n¡Disfruté cada momento de la serie!\n\nEsta es la primera parte, donde empieza todo: la historia, el ambiente y las primeras impresiones.\n\n👉 Primera mitad de la reacción completa.',
+  thumbnail: 'Imagenes/El Eternauta parte 1.png',
+  source: 'https://rumble.com/embed/v75fnq4/?pub=4nmhh2',
+  type: 'iframe'
+},
+  
+ {
+  id: 'el_eternauta_parte_2_el_eternauta',
+  name: 'El Eternauta',
+  categoria: 'el_eternauta',
+  temporada: '1',
+  episodio: '4-6',
+  title: 'El Eternauta – Parte 2',
+  title2: 'Segunda parte de la serie completa en un día. -_-',
+  description: 'Continuación de la reacción a El Eternauta.\n\nEn esta segunda parte la historia sigue avanzando y las cosas empiezan a escalar.\nY también el cansancio de todos. ¡Pero aquí nadie se raja!\n\n👉 Segunda mitad de la reacción completa.',
+  thumbnail: 'Imagenes/El Eternauta parte 2.png',
+  source: 'https://rumble.com/embed/v75fnq8/?pub=4nmhh2',
+  type: 'iframe'
 }
+  
   
   //chile dulce y manteca
   
