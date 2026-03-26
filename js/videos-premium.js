@@ -727,7 +727,33 @@ export const videosPremium = [
   type: 'iframe'
 },
 
-  
+  {
+  id: 'episodio_9_el_ocupa_del_5b_el_encargado',
+  name: 'El Encargado',
+  categoria: 'el_encargado',
+  temporada: '1',
+  episodio: '9',
+  title: 'Episodio 9 – El Ocupa del 5B',
+  title2: 'El Encargado (Temporada 1)',
+  description: 'Seguimos con El Encargado y llegamos a uno de los episodios más interesantes de la temporada.\n\nEn este capítulo aparece Luis Brandoni, lo que le da un giro especial a la dinámica y eleva bastante la tensión de la historia.\n\n👉 Reacción completa al episodio 9, con comentarios en vivo.\n\n⚠️ Nota técnica: hubo un par de momentos donde el micrófono falló brevemente durante el stream.',
+  thumbnail: 'Imagenes/El encargado 1-09.png',
+  source: 'https://rumble.com/embed/v75bbro/?pub=4nmhh2',
+  type: 'iframe'
+},
+
+   {
+  id: 'episodio_10_la_hora_de_la_verdad_el_encargado',
+  name: 'El Encargado',
+  categoria: 'el_encargado',
+  temporada: '1',
+  episodio: '10',
+  title: 'Episodio 10 – La hora de la verdad',
+  title2: 'El Encargado (Temporada 1) | Reacción completa',
+  description: 'Seguimos avanzando en El Encargado y este episodio ya deja claro que estamos entrando en la recta final.\n\nTodo empieza a tomar forma y las tensiones acumuladas se sienten más presentes que nunca.\n\n👉 Reacción completa al episodio 10, con comentarios en vivo.',
+  thumbnail: 'Imagenes/El encargado 1-10.png',
+  source: 'https://rumble.com/embed/v75bbsa/?pub=4nmhh2',
+  type: 'iframe'
+}
   
   //chile dulce y manteca
   
