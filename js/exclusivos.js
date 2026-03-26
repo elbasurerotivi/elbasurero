@@ -512,6 +512,20 @@ export const videosExclusivos = [
   thumbnail: 'Imagenes/El encargado 1-10.png',
   source: 'https://rumble.com/embed/v75bbsa/?pub=4nmhh2',
   type: 'iframe'
+},
+
+   {
+  id: 'el_ave_fenix_el_encargado',
+  name: 'El Encargado',
+  categoria: 'el_encargado',
+  temporada: '1',
+  episodio: '11',
+  title: 'El ave Fénix',
+  title2: 'El Encargado (Temporada 1) | Reacción completa',
+  description: 'Llegamos al último episodio de la temporada 1 de El Encargado.\n\nUn cierre que junta todo lo que se fue construyendo y deja bastante para comentar.\n\n👉 Reacción completa en vivo.\n\n⚠️ Nota: hay algunos momentos con fallas de micrófono.',
+  thumbnail: 'Imagenes/El encargado 1-11.png',
+  source: 'https://rumble.com/embed/v75bbtc/?pub=4nmhh2',
+  type: 'iframe'
 }
 
 ];
