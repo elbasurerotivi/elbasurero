@@ -1178,9 +1178,22 @@ export const videosPremium = [
   thumbnail: 'Imagenes/Shingeki no Kyojin 35-37 - Tres Acordes 5 png.png',
   source: 'https://rumble.com/embed/v749dya/?pub=4nmhh2',
   type: 'iframe'
+},
+
+   {
+  id: 'tres_acordes_parte_6_youtube_especial_shingeki_no_kyojin',
+  name: 'Shingeki No Kyojin',
+  categoria: 'tres_acordes',
+  temporada: '0',
+  episodio: '0',
+  title: 'Tres Acordes Parte 6 — Especial de YouTube',
+  title2: 'Tres Acordes, Volumen 6',
+  description: 'Primera vez viendo Tres Acordes directamente en YouTube.\nNecesitábamos avanzar para llegar lo más cerca posible al estreno de la película final de temporada. Cambio estratégico total.',
+  thumbnail: 'Imagenes/Tres Acordes 6 en YOUTUBE.png',
+  source: 'https://rumble.com/embed/v74f67i/?pub=4nmhh2',
+  type: 'iframe'
 }
 
-    
   
   //chile dulce y manteca
   
