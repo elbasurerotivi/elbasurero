@@ -1113,7 +1113,7 @@ export const videosPremium = [
      {
   id: 'snk_eps_26_y_27_tres_acordes_parte_1_shingeki_no_kyojin',
   name: 'Shingeki No Kyojin',
-  categoria: 'shingeki_no_kyojin',
+  categoria: 'tres_acordes',
   temporada: '2',
   episodio: '26-27',
   title: 'SNK Eps. 26 y 27 + Tres Acordes Parte 1',
