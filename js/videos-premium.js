@@ -108,8 +108,8 @@ el_eternauta: {
  tres_acordes: {
     key: 'tres_acordes',
     name:'Tres Acordes',
-    background: '',     // Fondo grande
-    cover: '',               // Carátula pequeña
+    background: 'Imagenes/Tres Acordes background.png',     // Fondo grande
+    cover: 'Imagenes/Tres Acordes cover.png',               // Carátula pequeña
     title: 'Tres Acordes',
     synopsis: 'Tres Acordes es una comedia que sigue a un grupo de amigos músicos en el conurbano bonaerense, mostrando su vida cotidiana entre ensayos, fracasos y sueños. Con humor absurdo y muy argentino, la serie retrata sus conflictos personales, la amistad y la frustración de intentar vivir del arte.',
     year: '2014-2018',
