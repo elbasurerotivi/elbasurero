@@ -1184,7 +1184,7 @@ export const videosPremium = [
   id: 'snk_eps_36_y_37_tres_acordes_parte_6_shingeki_no_kyojin',
   name: 'Shingeki No Kyojin',
   categoria: 'tres_acordes',
-  temporada: '0',
+  temporada: '2',
   episodio: '0',
   title: 'Tres Acordes Parte 6 — Especial de YouTube',
   title2: 'Tres Acordes, Volumen 6',
