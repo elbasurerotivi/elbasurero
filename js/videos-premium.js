@@ -1112,7 +1112,7 @@ export const videosPremium = [
 
      {
   id: 'snk_eps_26_y_27_tres_acordes_parte_1_shingeki_no_kyojin',
-  name: 'Shingeki No Kyojin',
+  name: 'Tres Acordes',
   categoria: 'tres_acordes',
   temporada: '2',
   episodio: '26-27',
@@ -1126,7 +1126,7 @@ export const videosPremium = [
 
   {
   id: 'snk_eps_28_y_29_tres_acordes_parte_2_shingeki_no_kyojin',
-  name: 'Shingeki No Kyojin',
+  name: 'Tres Acordes',
   categoria: 'tres_acordes',
   temporada: '2',
   episodio: '28-29',
@@ -1140,7 +1140,7 @@ export const videosPremium = [
 
    {
   id: 'tres_acordes_parte_3_snk_eps_30_y_31_shingeki_no_kyojin',
-  name: 'Shingeki No Kyojin',
+  name: 'Tres Acordes',
   categoria: 'tres_acordes',
   temporada: '2',
   episodio: '30-31',
@@ -1154,7 +1154,7 @@ export const videosPremium = [
 
     {
   id: 'snk_eps_32_33_y_34_tres_acordes_parte_4_shingeki_no_kyojin',
-  name: 'Shingeki No Kyojin',
+  name: 'Tres Acordes',
   categoria: 'tres_acordes',
   temporada: '2',
   episodio: '32-34',
@@ -1168,7 +1168,7 @@ export const videosPremium = [
 
    {
   id: 'snk_eps_35_36_y_37_tres_acordes_parte_5_shingeki_no_kyojin',
-  name: 'Shingeki No Kyojin',
+  name: 'Tres Acordes',
   categoria: 'tres_acordes',
   temporada: '2',
   episodio: '35-37',
@@ -1182,7 +1182,7 @@ export const videosPremium = [
 
    {
   id: 'snk_eps_36_y_37_tres_acordes_parte_6_shingeki_no_kyojin',
-  name: 'Shingeki No Kyojin',
+  name: 'Tres Acordes',
   categoria: 'tres_acordes',
   temporada: '2',
   episodio: '0',
