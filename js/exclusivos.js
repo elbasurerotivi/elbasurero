@@ -796,8 +796,8 @@ export const videosExclusivos = [
 
   {
   id: 'tres_acordes_parte_8_youtube_especial_shingeki_no_kyojin',
-  name: 'Shingeki No Kyojin',
-  categoria: 'shingeki_no_kyojin',
+  name: 'Tres Acordes',
+  categoria: 'tres_acordes',
   temporada: '0',
   episodio: '8',
   title: 'Tres Acordes Parte 8 — YouTube Especial',
