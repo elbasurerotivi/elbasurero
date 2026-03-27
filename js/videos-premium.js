@@ -1192,6 +1192,48 @@ export const videosPremium = [
   thumbnail: 'Imagenes/Tres Acordes 6 en YOUTUBE.png',
   source: 'https://rumble.com/embed/v74f67i/?pub=4nmhh2',
   type: 'iframe'
+},
+
+    {
+  id: 'snk_eps_38_y_39_tres_acordes_parte_7_shingeki_no_kyojin',
+  name: 'Tres Acordes',
+  categoria: 'tres_acordes',
+  temporada: '0',
+  episodio: '7',
+  title: 'SNK Eps. 38 y 39 + Tres Acordes Parte 7',
+  title2: 'Tres Acordes, Volumen 7',
+  description: 'Episodios 38 y 39 de Shingeki no Kyojin.\nLuego Tres Acordes Parte 7, manteniendo el sistema de numeración independiente.',
+  thumbnail: 'Imagenes/Shingeki no Kyojin 38 y 39 - Tres Acordes 7 png.png',
+  source: 'https://rumble.com/embed/v74f3h6/?pub=4nmhh2',
+  type: 'iframe'
+},
+
+  {
+  id: 'tres_acordes_parte_8_youtube_especial_shingeki_no_kyojin',
+  name: 'Tres Acordes',
+  categoria: 'tres_acordes',
+  temporada: '0',
+  episodio: '8',
+  title: 'Tres Acordes Parte 8 — YouTube Especial',
+  title2: 'Tres Acordes, Volumen 8',
+  description: 'Seguimos acelerando en YouTube para acercarnos al estreno de la película final.\nParte 8 dentro del sistema numerado propio.',
+  thumbnail: 'Imagenes/Tres Acordes 8 en YOUTUBE.png',
+  source: 'https://rumble.com/embed/v74f3i8/?pub=4nmhh2',
+  type: 'iframe'
+},
+
+  {
+  id: 'snk_eps_40_y_41_tres_acordes_parte_9_shingeki_no_kyojin',
+  name: 'Tres Acordes',
+  categoria: 'tres_acordes',
+  temporada: '0',
+  episodio: '9',
+  title: 'SNK Eps. 40 y 41 + Tres Acordes Parte 9',
+  title2: 'Tres Acordes, Volumen 9',
+  description: 'Episodios 40 y 41 de Shingeki no Kyojin.\nLuego Tres Acordes Parte 9, manteniendo numeración por la complejidad de seguimiento.',
+  thumbnail: 'Imagenes/Shingeki no Kyojin 40 y 41 - Tres Acordes 9 png.png',
+  source: 'https://rumble.com/embed/v74f5f4/?pub=4nmhh2',
+  type: 'iframe'
 }
 
   
