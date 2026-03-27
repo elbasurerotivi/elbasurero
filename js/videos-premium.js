@@ -113,8 +113,8 @@ el_eternauta: {
     title: 'Tres Acordes',
     synopsis: 'Tres Acordes es una comedia que sigue a un grupo de amigos músicos en el conurbano bonaerense, mostrando su vida cotidiana entre ensayos, fracasos y sueños. Con humor absurdo y muy argentino, la serie retrata sus conflictos personales, la amistad y la frustración de intentar vivir del arte.',
     year: '2014-2018',
-    genre: 'Comedia • Drama • Policial • Suspenso',
-    cast: 'Federico D´Elía, Diego Peretti, Alejandro Fiore y Martín Seefeld'
+    genre: 'Animación • Drama • Comedia',
+    cast: 'Santiago Korovsky, Germán Beder, Facundo Gambandé y Pablo Rago (participación especial).'
   },
   
 };
