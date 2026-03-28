@@ -1272,7 +1272,7 @@ export const videosPremium = [
   episodio: '10',
   title: 'Tres Acordes – Parte 10 | Preparándonos para la película',
   title2: 'Tres Acordes, Volumen 10',
-  description: 'Seguimos avanzando con Tres Acordes, ahora con la mirada puesta en la película.',
+  description: 'Seguimos avanzando con Tres Acordes, ahora con la mirada puesta en la película.\n\nEste directo fue en YouTube, con la intención de avanzar lo más posible antes del estreno.\n\n👉 Reacción completa.',
   thumbnail: 'Imagenes/Tres Acordes 10 en YOUTUBE.png',
   source: 'https://rumble.com/embed/v75iri6/?pub=4nmhh2',
   type: 'iframe'
