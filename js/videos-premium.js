@@ -1262,6 +1262,48 @@ export const videosPremium = [
   thumbnail: 'Imagenes/Shingeki no Kyojin 40 y 41 - Tres Acordes 9 png.png',
   source: 'https://rumble.com/embed/v74f5f4/?pub=4nmhh2',
   type: 'iframe'
+},
+
+   {
+  id: 'tres_acordes_parte_10_preparandonos_para_la_pelicula_tres_acordes',
+  name: 'Tres Acordes',
+  categoria: 'tres_acordes',
+  temporada: '0',
+  episodio: '10',
+  title: 'Tres Acordes – Parte 10 | Preparándonos para la película',
+  title2: 'Tres Acordes, Volumen 10',
+  description: 'Seguimos avanzando con Tres Acordes, ahora con la mirada puesta en la película.',
+  thumbnail: 'Imagenes/Tres Acordes 10 en YOUTUBE.png',
+  source: 'https://rumble.com/embed/v75iri6/?pub=4nmhh2',
+  type: 'iframe'
+},
+
+  {
+  id: 'tres_acordes_parte_11_jueves_animado_twitch_tres_acordes',
+  name: 'Tres Acordes',
+  categoria: 'tres_acordes',
+  temporada: '0',
+  episodio: '11',
+  title: 'Tres Acordes – Parte 11 | Jueves animado (Twitch)',
+  title2: 'Tres Acordes, Volumen 11',
+  description: 'Continuamos con Tres Acordes en un directo dedicado completamente a la serie.\n\nEste fue el único “Jueves animado” enfocado solo en avanzar lo más posible antes de la película.\n\n👉 Reacción completa en vivo.',
+  thumbnail: 'Imagenes/Tres Acordes 11 en YOUTUBE.png',
+  source: 'https://rumble.com/embed/v75irmg/?pub=4nmhh2',
+  type: 'iframe'
+},
+
+  {
+  id: 'final_tres_acordes_parte_12_final_de_la_serie_pelicula_tres_acordes',
+  name: 'Tres Acordes',
+  categoria: 'tres_acordes',
+  temporada: '0',
+  episodio: '12',
+  title: '¡FINAL! Tres Acordes – Parte 12 | Final de la serie + película',
+  title2: 'Tres Acordes, Volumen 12',
+  description: 'Llegamos al final de Tres Acordes.\n\nEn este directo cerramos la serie y después vimos la película.\n\n👉 Reacción completa al final y a la película.\n\nUn cierre a la altura de todo lo que venía construyéndose.',
+  thumbnail: 'Imagenes/Tres Acordes 12 Final en YOUTUBE.png',
+  source: 'https://rumble.com/embed/v75irp0/?pub=4nmhh2',
+  type: 'iframe'
 }
 
 
