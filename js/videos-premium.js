@@ -1234,7 +1234,36 @@ export const videosPremium = [
   thumbnail: 'Imagenes/Shingeki no Kyojin 40 y 41 - Tres Acordes 9 png.png',
   source: 'https://rumble.com/embed/v74f5f4/?pub=4nmhh2',
   type: 'iframe'
+},
+
+    {
+  id: 'snk_eps_38_y_39_tres_acordes_parte_7_shingeki_no_kyojin',
+  name: 'Shingeki No Kyojin',
+  categoria: 'shingeki_no_kyojin',
+  temporada: '3',
+  episodio: '38-39',
+  title: 'SNK Eps. 38 y 39 + Tres Acordes Parte 7',
+  title2: 'Tres Acordes, Volumen 7',
+  description: 'Episodios 38 y 39 de Shingeki no Kyojin.\nLuego Tres Acordes Parte 7, manteniendo el sistema de numeración independiente.',
+  thumbnail: 'Imagenes/Shingeki no Kyojin 38 y 39 - Tres Acordes 7 png.png',
+  source: 'https://rumble.com/embed/v74f3h6/?pub=4nmhh2',
+  type: 'iframe'
+},
+
+   {
+  id: 'snk_eps_40_y_41_tres_acordes_parte_9_shingeki_no_kyojin',
+  name: 'Shingeki No Kyojin',
+  categoria: 'shingeki_no_kyojin',
+  temporada: '3',
+  episodio: '40-41',
+  title: 'SNK Eps. 40 y 41 + Tres Acordes Parte 9',
+  title2: 'Tres Acordes, Volumen 9',
+  description: 'Episodios 40 y 41 de Shingeki no Kyojin.\nLuego Tres Acordes Parte 9, manteniendo numeración por la complejidad de seguimiento.',
+  thumbnail: 'Imagenes/Shingeki no Kyojin 40 y 41 - Tres Acordes 9 png.png',
+  source: 'https://rumble.com/embed/v74f5f4/?pub=4nmhh2',
+  type: 'iframe'
 }
+
 
   
   //chile dulce y manteca
