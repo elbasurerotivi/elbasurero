@@ -1228,7 +1228,7 @@ export const videosPremium = [
   categoria: 'tres_acordes',
   temporada: '0',
   episodio: '9',
-  title: 'SNK Eps. 40 y 41 + Tres Acordes Parte 9',
+  title: 'Tres Acordes Parte 9 + SNK Eps. 40 y 41',
   title2: 'Tres Acordes, Volumen 9',
   description: 'Episodios 40 y 41 de Shingeki no Kyojin.\nLuego Tres Acordes Parte 9, manteniendo numeración por la complejidad de seguimiento.',
   thumbnail: 'Imagenes/Shingeki no Kyojin 40 y 41 - Tres Acordes 9 png.png',
