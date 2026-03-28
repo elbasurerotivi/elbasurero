@@ -918,6 +918,20 @@ export const videosExclusivos = [
   thumbnail: 'Imagenes/Shingeki no Kyojin 57-60.png',
   source: 'https://rumble.com/embed/v75jadi/?pub=4nmhh2',
   type: 'iframe'
+},
+
+   {
+  id: 'shingeki_no_kyojin_ovas_parte_1_ilse_no_techo_visitante_inesperado_shingeki_no_kyojin',
+  name: 'Shingeki No Kyojin',
+  categoria: 'shingeki_no_kyojin',
+  temporada: '5',
+  episodio: '1-2',
+  title: 'Shingeki no Kyojin OVAs (Parte 1) | Ilse no Techō + Visitante inesperado',
+  title2: 'Reacción en solitario',
+  description: 'Exploramos los primeros dos OVA de Shingeki no Kyojin junto a la comunidad.\n\nPrimero vemos “El cuaderno de Ilse (Ilse no Techō)”, donde se descubre el diario de una exploradora que tuvo un encuentro muy extraño con un titán. Este episodio aporta pistas importantes sobre el comportamiento de los titanes antes de la segunda temporada.\n\nDespués llega “Un visitante inesperado (Totsuzen no Raihōsha)”, un capítulo mucho más ligero centrado en una competencia de cocina entre Jean y Sasha. No es clave para la trama principal, pero amplía la dinámica entre los cadetes de la Tropa de Reclutas Nº104.\n\nUn bloque curioso de la serie: mitad lore importante, mitad caos culinario entre cadetes.',
+  thumbnail: 'Imagenes/Reacción a Ovas de Shingeki no Kyojin 1 y 2.png',
+  source: 'https://rumble.com/embed/v74hwxw/?pub=4nmhh2',
+  type: 'iframe'
 }
 
 ];
