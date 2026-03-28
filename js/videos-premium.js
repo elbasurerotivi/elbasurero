@@ -1304,6 +1304,62 @@ export const videosPremium = [
   thumbnail: 'Imagenes/Tres Acordes 12 Final en YOUTUBE.png',
   source: 'https://rumble.com/embed/v75irp0/?pub=4nmhh2',
   type: 'iframe'
+},
+
+   {
+  id: 'snk_temporada_3_eps_42_46_shingeki_no_kyojin',
+  name: 'Shingeki No Kyojin',
+  categoria: 'shingeki_no_kyojin',
+  temporada: '3',
+  episodio: '42-46',
+  title: 'SNK Temporada 3 (Eps. 42–46)',
+  title2: 'Reacción en vivo',
+  description: 'Continuamos con la temporada 3 de Attack on Titan.\n\n👉 Reacción a los episodios 42 al 46.',
+  thumbnail: 'Imagenes/Shingeki no Kyojin 42-46.png',
+  source: 'https://rumble.com/embed/v75jacs/?pub=4nmhh2',
+  type: 'iframe'
+},
+
+  {
+  id: 'snk_temporada_3_eps_47_52_shingeki_no_kyojin',
+  name: 'Shingeki No Kyojin',
+  categoria: 'shingeki_no_kyojin',
+  temporada: '3',
+  episodio: '47-52',
+  title: 'SNK Temporada 3 (Eps. 47–52)',
+  title2: 'Reacción en vivo',
+  description: 'Seguimos avanzando en la temporada 3 de Attack on Titan.\n\n👉 Reacción a los episodios 47 al 52.\n\nMostrar menos',
+  thumbnail: 'Imagenes/Shingeki no Kyojin 47 y 52.png',
+  source: 'https://rumble.com/embed/v75jad2/?pub=4nmhh2',
+  type: 'iframe'
+},
+
+  {
+  id: 'snk_temporada_3_eps_53_56_shingeki_no_kyojin',
+  name: 'Shingeki No Kyojin',
+  categoria: 'shingeki_no_kyojin',
+  temporada: '3',
+  episodio: '53-56',
+  title: 'SNK Temporada 3 (Eps. 53–56)',
+  title2: 'Reacción en vivo',
+  description: 'Continuamos con la recta final de la temporada 3 de Attack on Titan.\n\n👉 Reacción a los episodios 53 al 56.',
+  thumbnail: 'Imagenes/Shingeki no Kyojin 53-56.png',
+  source: 'https://rumble.com/embed/v75jad4/?pub=4nmhh2',
+  type: 'iframe'
+},
+
+  {
+  id: 'snk_temporada_3_eps_57_60_inicio_t4_shingeki_no_kyojin',
+  name: 'Shingeki No Kyojin',
+  categoria: 'shingeki_no_kyojin',
+  temporada: '3',
+  episodio: '57-60',
+  title: 'SNK Temporada 3 (Eps. 57–60) + Inicio T4',
+  title2: 'Reacción en vivo',
+  description: 'Cerramos la temporada 3 de Attack on Titan y arrancamos la siguiente etapa.\n\n👉 Incluye los episodios 57 al 60 y el primer episodio de la temporada 4.',
+  thumbnail: 'Imagenes/Shingeki no Kyojin 57-60.png',
+  source: 'https://rumble.com/embed/v75jadi/?pub=4nmhh2',
+  type: 'iframe'
 }
 
 
