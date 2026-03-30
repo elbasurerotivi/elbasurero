@@ -932,6 +932,62 @@ export const videosExclusivos = [
   thumbnail: 'Imagenes/Reacción a Ovas de Shingeki no Kyojin 1 y 2.png',
   source: 'https://rumble.com/embed/v74hwxw/?pub=4nmhh2',
   type: 'iframe'
+},
+
+    {
+  id: 'directo_snk_t4_parte_1_eps_61_65_shingeki_no_kyojin',
+  name: 'Shingeki No Kyojin',
+  categoria: 'shingeki_no_kyojin',
+  temporada: '4',
+  episodio: '61-65',
+  title: '🎥 Directo — SNK T4 Parte 1 (Eps. 61–65)',
+  title2: 'Reacción completa en vivo',
+  description: 'Reacciones en vivo a Attack on Titan con la comunidad en Twitch.\n\nEn este directo vimos los episodios 61 al 65, donde arranca una nueva etapa con un cambio fuerte en el enfoque de la historia.\n\nDe esos bloques donde todo se siente distinto desde el inicio… y sabes que ya nada va a ser igual.',
+  thumbnail: 'Imagenes/🎥 Directo — SNK T4 Parte 1 (Eps. 61–65).png',
+  source: 'https://rumble.com/embed/v75kazu/?pub=4nmhh2',
+  type: 'iframe'
+},
+
+  {
+  id: 'directo_snk_t4_parte_2_eps_66_68_shingeki_no_kyojin',
+  name: 'Shingeki No Kyojin',
+  categoria: 'shingeki_no_kyojin',
+  temporada: '4',
+  episodio: '66-68',
+  title: '🎥 Directo — SNK T4 Parte 2 (Eps. 66–68)',
+  title2: 'Reacción completa en vivo',
+  description: 'Reacciones en vivo a Attack on Titan con la comunidad en Twitch.\n\nEn este directo vimos los episodios 66 al 68, donde las tensiones siguen creciendo y las consecuencias empiezan a hacerse más claras.\n\nAquí ya no hay vuelta atrás… todo empieza a tomar forma.',
+  thumbnail: 'Imagenes/🎥 Directo — SNK T4 Parte 2 (Eps. 66–68).png',
+  source: 'https://rumble.com/embed/v75kazq/?pub=4nmhh2',
+  type: 'iframe'
+},
+
+  {
+  id: 'directo_snk_t4_parte_3_eps_69_72_shingeki_no_kyojin',
+  name: 'Shingeki No Kyojin',
+  categoria: 'shingeki_no_kyojin',
+  temporada: '3',
+  episodio: '69-72',
+  title: '🎥 Directo — SNK T4 Parte 3 (Eps. 69–72)',
+  title2: 'Reacción completa en vivo',
+  description: 'Reacciones en vivo a Attack on Titan con la comunidad en Twitch.\n\nEn este directo vimos los episodios 69 al 72, con un inicio que se tomó su tiempo y después soltó todo de golpe.\n\nDe esos bloques donde la historia respira… pero cuando avanza, pega fuerte.',
+  thumbnail: 'Imagenes/🎥 Directo — SNK T4 Parte 3 (Eps. 69–72).png',
+  source: 'https://rumble.com/embed/v75kb00/?pub=4nmhh2',
+  type: 'iframe'
+},
+
+  {
+  id: 'directo_snk_t4_parte_4_eps_73_77_shingeki_no_kyojin',
+  name: 'Shingeki No Kyojin',
+  categoria: 'shingeki_no_kyojin',
+  temporada: '4',
+  episodio: '73-77',
+  title: '🎥 Directo — SNK T4 Parte 4 (Eps. 73–77)',
+  title2: 'Reacción completa en vivo',
+  description: 'Reacciones en vivo a Attack on Titan con la comunidad en Twitch.\n\nEn este directo vimos los episodios 73 al 77, donde todo sigue escalando y el panorama se vuelve cada vez más pesado.\n\nDe esos momentos donde ya no es solo intensidad… es peso.',
+  thumbnail: 'Imagenes/🎥 Directo — SNK T4 Parte 4 (Eps. 73–77).png',
+  source: 'https://rumble.com/embed/v75kb42/?pub=4nmhh2',
+  type: 'iframe'
 }
 
 ];
