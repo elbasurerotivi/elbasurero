@@ -1483,12 +1483,12 @@ export const videosPremium = [
 },
 
   {
-  id: 'directo_snk_t4_parte_4_eps_73_77_shingeki_no_kyojin',
+  id: 'directo_snk_t4_parte_4_eps_73_78_shingeki_no_kyojin',
   name: 'Shingeki No Kyojin',
   categoria: 'shingeki_no_kyojin',
   temporada: '4',
-  episodio: '73-77',
-  title: '🎥 Directo — SNK T4 Parte 4 (Eps. 73–77)',
+  episodio: '73-78',
+  title: '🎥 Directo — SNK T4 Parte 4 (Eps. 73–78)',
   title2: 'Reacción completa en vivo',
   description: 'Reacciones en vivo a Attack on Titan con la comunidad en Twitch.\n\nEn este directo vimos los episodios 73 al 77, donde todo sigue escalando y el panorama se vuelve cada vez más pesado.\n\nDe esos momentos donde ya no es solo intensidad… es peso.',
   thumbnail: 'Imagenes/🎥 Directo — SNK T4 Parte 4 (Eps. 73–77).png',
