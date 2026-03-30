@@ -120,8 +120,8 @@ el_eternauta: {
    hermanos_y_detectives: {
     key: 'hermanos_y_detectives',
     name:'Hermanos y detectives',
-    background: 'Imagenes/nada portada.webp',     // Fondo grande
-    cover: 'Imagenes/nada 1.jpg',               // Carátula pequeña
+    background: 'Imagenes/Hermanos y detectives Cover.png',     // Fondo grande
+    cover: 'Imagenes/Hermanos y detectives carátula.png',               // Carátula pequeña
     title: 'Hermanos y detectives',
     synopsis: 'Un policía administrativo recibe inesperadamente la custodia de su medio hermano, un niño prodigio con un coeficiente intelectual extraordinario. Juntos, y con la ayuda de su compañero, comienzan a resolver casos criminales cada vez más complejos. La brillante mente del niño transforma tanto su vida personal como su forma de investigar.',
     year: '2006',
@@ -132,8 +132,8 @@ el_eternauta: {
    porno_y_helado: {
     key: 'porno_y_helado',
     name:'Porno y helado',
-    background: 'Imagenes/nada portada.webp',     // Fondo grande
-    cover: 'Imagenes/nada 1.jpg',               // Carátula pequeña
+    background: 'Imagenes/Porno y helado Cover.png',     // Fondo grande
+    cover: 'Imagenes/Porno y helado carátula.png',               // Carátula pequeña
     title: 'Porno y helado',
     synopsis: 'Dos treintañeros fracasados deciden formar una banda de rock falsa junto a una joven estafadora. Gracias a un inesperado éxito, logran meterse en la escena musical local. Pero la mentira empieza a crecer hasta salirse completamente de control.',
     year: '2023',
