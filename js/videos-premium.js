@@ -1490,7 +1490,7 @@ export const videosPremium = [
   episodio: '73-78',
   title: '🎥 Directo — SNK T4 Parte 4 (Eps. 73–78)',
   title2: 'Reacción completa en vivo',
-  description: 'Reacciones en vivo a Attack on Titan con la comunidad en Twitch.\n\nEn este directo vimos los episodios 73 al 77, donde todo sigue escalando y el panorama se vuelve cada vez más pesado.\n\nDe esos momentos donde ya no es solo intensidad… es peso.',
+  description: 'Reacciones en vivo a Attack on Titan con la comunidad en Twitch.\n\nEn este directo vimos los episodios 73 al 78, donde todo sigue escalando y el panorama se vuelve cada vez más pesado.\n\nDe esos momentos donde ya no es solo intensidad… es peso.',
   thumbnail: 'Imagenes/🎥 Directo — SNK T4 Parte 4 (Eps. 73–77).png',
   source: 'https://rumble.com/embed/v75kb42/?pub=4nmhh2',
   type: 'iframe'
