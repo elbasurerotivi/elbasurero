@@ -1,6 +1,30 @@
 // js/videos.js
 export const categoriasData = {
 
+    nada: {
+    key: 'nada',
+    name:'Nada',
+    background: 'Imagenes/nada portada.webp',     // Fondo grande
+    cover: 'Imagenes/nada 1.jpg',               // Carátula pequeña
+    title: 'Nada',
+    synopsis: 'Un icónico bon vivant, que apenas tiene recursos suficientes para mantener su estilo de vida acomodado, contrata a una joven paraguaya para reemplazar a la empleada doméstica recientemente fallecida que lo cuidó durante más de 40 años. Una comedia dramática con Luis Brandoni y Robert De Niro.',
+    year: '2023',
+    genre: 'Comedia • Drama',
+    cast: 'Luis Brandoni, Robert De Niro, María Rosa Fugazot'
+  },
+
+     el_encargado: {
+    key: 'el_encargado',
+    name:'El Encargado',
+    background: 'Imagenes/el encargado portada.webp',     // Fondo grande
+    cover: 'Imagenes/el encargado 1.webp',               // Carátula pequeña
+    title: 'El Encargado',
+    synopsis: 'El administrador de departamentos de un edificio residencial aprovecha su poder de vigilancia para entrometerse en la vida de los inquilinos.',
+    year: '2022',
+    genre: 'Comedia • Drama',
+    cast: 'Guillermo Francella, Gabriel Goity, Gastón Cocchiarale'
+  },
+
    okupas: {
     key: 'okupas',
     name:'Okupas',
@@ -49,6 +73,7 @@ export const categoriasData = {
     genre: '',
     cast: ''
   },
+   
   x_men_97: {
     key: 'x_men_97',
     name: 'X Men 97',
@@ -72,19 +97,8 @@ export const categoriasData = {
     genre: 'Acción • Drama • Misterio',
     cast: 'Yuki Kaji, Marina Inoue, Yui Ishikawa'
   },
-  nada: {
-    key: 'nada',
-    name:'Nada',
-    background: 'Imagenes/nada portada.webp',     // Fondo grande
-    cover: 'Imagenes/nada 1.jpg',               // Carátula pequeña
-    title: 'Nada',
-    synopsis: 'Un icónico bon vivant, que apenas tiene recursos suficientes para mantener su estilo de vida acomodado, contrata a una joven paraguaya para reemplazar a la empleada doméstica recientemente fallecida que lo cuidó durante más de 40 años. Una comedia dramática con Luis Brandoni y Robert De Niro.',
-    year: '2023',
-    genre: 'Comedia • Drama',
-    cast: 'Luis Brandoni, Robert De Niro, María Rosa Fugazot'
-  },
-
-    peliculas: {
+   
+     peliculas: {
     key: 'peliculas',
     name:'Películas',
     background: 'Imagenes/portada_peliculas.jpg',     // Fondo grande
@@ -106,18 +120,7 @@ export const categoriasData = {
     genre: 'Musica • Humor • Documental • etc',
     cast: 'Edgar y el chat'
   },
-   el_encargado: {
-    key: 'el_encargado',
-    name:'El Encargado',
-    background: 'Imagenes/el encargado portada.webp',     // Fondo grande
-    cover: 'Imagenes/el encargado 1.webp',               // Carátula pequeña
-    title: 'El Encargado',
-    synopsis: 'El administrador de departamentos de un edificio residencial aprovecha su poder de vigilancia para entrometerse en la vida de los inquilinos.',
-    year: '2022',
-    genre: 'Comedia • Drama',
-    cast: 'Guillermo Francella, Gabriel Goity, Gastón Cocchiarale'
-  },
-  
+   
 el_eternauta: {
     key: 'el_eternauta',
     name:'El Eternauta',
