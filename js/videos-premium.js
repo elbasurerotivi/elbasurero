@@ -1,6 +1,18 @@
 // js/videos.js
 export const categoriasData = {
 
+   okupas: {
+    key: 'okupas',
+    name:'Okupas',
+    background: 'Imagenes/Okupas Cover.png',     // Fondo grande
+    cover: 'Imagenes/Okupas carátula.png',               // Carátula pequeña
+    title: 'Okupas',
+    synopsis: 'Un joven de clase media termina ocupando una casa abandonada en Buenos Aires, donde conoce a un grupo de amigos con los que se adentra en un mundo marginal lleno de violencia, códigos callejeros y supervivencia. A través de sus vivencias, la serie retrata la crudeza social y emocional de la época. Todo mientras los lazos entre ellos se vuelven tan intensos como peligrosos.',
+    year: '2000',
+    genre: 'Drama',
+    cast: 'Rodrigo de la Serna, Ariel Staltari, Diego Alonso Gómez, Franco Tirri'
+  },
+
   m_sica: {
     key: 'm_sica',
     name: 'Música',
