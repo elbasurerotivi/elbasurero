@@ -1004,21 +1004,7 @@ export const videosExclusivos = [
   type: 'iframe'
 },
 
-  {
-  id: 'los_simuladores_t2_ep_1_okupas_ep_1_okupas',
-  name: 'Okupas',
-  categoria: 'okupas',
-  temporada: '1',
-  episodio: '1',
-  title: '🎬 Los Simuladores T2 Ep. 1 | Okupas Ep. 1',
-  title2: 'Serie doble',
-  description: 'Arrancamos los Lunes de Argentina en Twitch viendo estas dos series en paralelo.\n\nSimuladores Ep. 1: Nuevo caso donde el equipo despliega uno de sus operativos con precisión y estrategia.\nOkupas Ep. 1: Un joven entra en contacto con un grupo que lo lleva a una vida completamente distinta.\n\n🎵 Vimos Okupas en una versión especial: remasterizada pero con la música original (joyita encontrada por el mod del canal).\n\n⚠️ Nota: El siguiente episodio se perdió (se explica en el siguiente directo).',
-  thumbnail: 'Imagenes/Los Simuladores - Temporada 2, ep 1 + Okupas 1.png',
-  source: 'https://rumble.com/embed/v75klww/?pub=4nmhh2',
-  type: 'iframe'
-},
-
-  {
+   {
   id: 'simuladores_t2_ep_3_okupas_ep_3_interrumpido_los_simuladores',
   name: 'Los Simuladores',
   categoria: 'los_simuladores',
@@ -1026,20 +1012,6 @@ export const videosExclusivos = [
   episodio: '3',
   title: '🎬 Simuladores T2 Ep. 3 | Okupas Ep. 3 (interrumpido)',
   title2: 'Series dobles',
-  description: '⚠️ El episodio 2 de ambas series se perdió porque la computadora se quedó sin memoria y el VOD no se guardó.\n\nSimuladores Ep. 3: Un operativo donde cada detalle importa y todo debe salir perfecto.\nOkupas Ep. 3: Las tensiones dentro del grupo comienzan a escalar.\n\nEste directo fue distinto.\nNo pude terminarlo. Estaba pasando por un momento personal fuerte, no podía compartirlo en ese momento, y terminé el stream antes de tiempo.\n\nEl chat fue increíblemente amable conmigo… y todo cerró con un gran abrazo de mi hijo.',
-  thumbnail: 'Imagenes/Los Simuladores - Temporada 2, ep 3 + Okupas 3 (interrumpido).png',
-  source: 'https://rumble.com/embed/v75klxq/?pub=4nmhh2',
-  type: 'iframe'
-},
-
-  {
-  id: 'simuladores_t2_ep_3_okupas_ep_3_interrumpido_okupas',
-  name: 'Okupas',
-  categoria: 'okupas',
-  temporada: '1',
-  episodio: '3',
-  title: '🎬 Simuladores T2 Ep. 3 | Okupas Ep. 3 (interrumpido)',
-  title2: 'Serie doble',
   description: '⚠️ El episodio 2 de ambas series se perdió porque la computadora se quedó sin memoria y el VOD no se guardó.\n\nSimuladores Ep. 3: Un operativo donde cada detalle importa y todo debe salir perfecto.\nOkupas Ep. 3: Las tensiones dentro del grupo comienzan a escalar.\n\nEste directo fue distinto.\nNo pude terminarlo. Estaba pasando por un momento personal fuerte, no podía compartirlo en ese momento, y terminé el stream antes de tiempo.\n\nEl chat fue increíblemente amable conmigo… y todo cerró con un gran abrazo de mi hijo.',
   thumbnail: 'Imagenes/Los Simuladores - Temporada 2, ep 3 + Okupas 3 (interrumpido).png',
   source: 'https://rumble.com/embed/v75klxq/?pub=4nmhh2',
@@ -1075,39 +1047,11 @@ export const videosExclusivos = [
 },
 
   {
-  id: 'simuladores_t2_ep_4_okupas_ep_6_y_7_okupas',
-  name: 'Okupas',
-  categoria: 'okupas',
-  temporada: '1',
-  episodio: '6-7',
-  title: '🎬 Simuladores T2 Ep. 4 | Okupas Ep. 6 y 7',
-  title2: 'Serie doble',
-  description: 'Simuladores Ep. 4: Operativo donde el equipo debe adaptarse rápidamente a condiciones cambiantes.\nOkupas Ep. 6: La situación se complica para todos.\nOkupas Ep. 7: Las relaciones se tensan aún más y todo empieza a pesar.\n\n🎵 Versión remaster + música original.\n\nAquí Okupas ya empieza a sentirse más pesada… en el buen sentido.',
-  thumbnail: 'Imagenes/Los Simuladores - Temporada 2, ep 4 + Okupas 6 y 7.png',
-  source: 'https://rumble.com/embed/v75kq34/?pub=4nmhh2',
-  type: 'iframe'
-},
-
-  {
   id: 'simuladores_t2_ep_5_okupas_ep_9_los_simuladores',
   name: 'Los Simuladores',
   categoria: 'los_simuladores',
   temporada: '2',
   episodio: '5',
-  title: '🎬 Simuladores T2 Ep. 5 | Okupas Ep. 9',
-  title2: 'Serie doble',
-  description: 'Simuladores Ep. 5: Otro caso donde la ejecución es clave para que el plan funcione.\nOkupas Ep. 9: Se acercan momentos importantes dentro de la historia.\n\n⚠️ Me salté el episodio 8 sin darme cuenta 🙈😅\nEl moderador no estaba y nadie me corrigió 😅\n\nAun así lo disfruté… pero claramente faltaba contexto.',
-  thumbnail: 'Imagenes/Los Simuladores - Temporada 2, ep 5 + Okupas 9.png',
-  source: 'https://rumble.com/embed/v75kpd0/?pub=4nmhh2',
-  type: 'iframe'
-},
-
-  {
-  id: 'simuladores_t2_ep_5_okupas_ep_9_okupas',
-  name: 'Okupas|',
-  categoria: 'okupas',
-  temporada: '1',
-  episodio: '8-9',
   title: '🎬 Simuladores T2 Ep. 5 | Okupas Ep. 9',
   title2: 'Serie doble',
   description: 'Simuladores Ep. 5: Otro caso donde la ejecución es clave para que el plan funcione.\nOkupas Ep. 9: Se acercan momentos importantes dentro de la historia.\n\n⚠️ Me salté el episodio 8 sin darme cuenta 🙈😅\nEl moderador no estaba y nadie me corrigió 😅\n\nAun así lo disfruté… pero claramente faltaba contexto.',
@@ -1145,39 +1089,11 @@ export const videosExclusivos = [
 },
 
   {
-  id: 'simuladores_t2_ep_6_okupas_ep_10_final_okupas',
-  name: 'Okupas',
-  categoria: 'okupas',
-  temporada: '1',
-  episodio: '10',
-  title: '🎬 Simuladores T2 Ep. 6 | Okupas Ep. 10 — FINAL',
-  title2: 'Serie doble',
-  description: 'Simuladores Ep. 6: Caso donde todo debe ejecutarse con precisión total.\nOkupas Ep. 10: Gran final donde todo llega a su cierre.\n\n🎵 Versión remaster + música original.\n\nAl fin terminamos Okupas.\nGran final.',
-  thumbnail: 'Imagenes/Los Simuladores - Temporada 2, ep 6 + Okupas 10 FINAL.png',
-  source: 'https://rumble.com/embed/v75kmgc/?pub=4nmhh2',
-  type: 'iframe'
-},
-
-  {
   id: 'simuladores_t2_ep_7_hermanos_y_detectives_ep_1_los_simuladores',
   name: 'Los Simuladores',
   categoria: 'los_simuladores',
   temporada: '2',
   episodio: '7',
-  title: '🎬 Simuladores T2 Ep. 7 | Hermanos y Detectives Ep. 1',
-  title2: 'Serie doble',
-  description: 'Arrancamos nueva serie en los Lunes de Argentina.\n\nSimuladores Ep. 7: Caso donde todo se conecta dentro del plan.\nHyD Ep. 1: Un inicio fuerte, impactante, que marca el tono de la serie sin dudar.',
-  thumbnail: 'Imagenes/Los Simuladores - Temporada 2, ep 7 + HyD 1.png',
-  source: 'https://rumble.com/embed/v75kmh8/?pub=4nmhh2',
-  type: 'iframe'
-},
-
-  {
-  id: 'simuladores_t2_ep_7_hermanos_y_detectives_ep_1_hermanos_y_detectives',
-  name: 'Hermanos y detectives',
-  categoria: 'hermanos_y_detectives',
-  temporada: '1',
-  episodio: '1',
   title: '🎬 Simuladores T2 Ep. 7 | Hermanos y Detectives Ep. 1',
   title2: 'Serie doble',
   description: 'Arrancamos nueva serie en los Lunes de Argentina.\n\nSimuladores Ep. 7: Caso donde todo se conecta dentro del plan.\nHyD Ep. 1: Un inicio fuerte, impactante, que marca el tono de la serie sin dudar.',
@@ -1201,39 +1117,11 @@ export const videosExclusivos = [
 },
 
   {
-  id: 'simuladores_t2_ep_8_hermanos_y_detectives_ep_2_hermanos_y_detectives',
-  name: 'Hermanos y detectives',
-  categoria: 'hermanos_y_detectives',
-  temporada: '1',
-  episodio: '2',
-  title: '🎬 Simuladores T2 Ep. 8 | Hermanos y Detectives Ep. 2',
-  title2: 'Serie doble',
-  description: 'Simuladores Ep. 8: Operativo ejecutado con precisión.\nHyD Ep. 2: Caso que desarrolla la dinámica entre los protagonistas.\n\nTambién vimos un par de videos de música en este directo.',
-  thumbnail: 'Imagenes/Los Simuladores - Temporada 2, ep 8 + HyD 2.png',
-  source: 'https://rumble.com/embed/v75kqfs/?pub=4nmhh2',
-  type: 'iframe'
-},
-
-  {
   id: 'simuladores_t2_ep_9_hermanos_y_detectives_ep_3_los_simuladores',
   name: 'Los Simuladores',
   categoria: 'los_simuladores',
   temporada: '2',
   episodio: '9',
-  title: '🎬 Simuladores T2 Ep. 9 | Hermanos y Detectives Ep. 3',
-  title2: 'Serie doble',
-  description: 'Simuladores Ep. 9: Caso con carga emocional importante.\nHyD Ep. 3: Investigación que conecta de forma inesperada.\n\nTerminamos en una plática profunda…\ny luego explotamos de risa por la coincidencia entre ambos episodios 😂',
-  thumbnail: 'Imagenes/Los Simuladores - Temporada 2, ep 9 + HyD 3.png',
-  source: 'https://rumble.com/embed/v75kqhe/?pub=4nmhh2',
-  type: 'iframe'
-},
-
-  {
-  id: 'simuladores_t2_ep_9_hermanos_y_detectives_ep_3_hermanos_y_detectives',
-  name: 'Hermanos y detectives',
-  categoria: 'hermanos_y_detectives',
-  temporada: '1',
-  episodio: '3',
   title: '🎬 Simuladores T2 Ep. 9 | Hermanos y Detectives Ep. 3',
   title2: 'Serie doble',
   description: 'Simuladores Ep. 9: Caso con carga emocional importante.\nHyD Ep. 3: Investigación que conecta de forma inesperada.\n\nTerminamos en una plática profunda…\ny luego explotamos de risa por la coincidencia entre ambos episodios 😂',
