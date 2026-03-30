@@ -1,5 +1,120 @@
 const videosData = [
 
+       {
+  titulo: 'Un live entero de Mariano… y esto pasó 😂🔥',
+  descripcion: 'Este fue uno de esos días donde dijimos:\n“¿y si hacemos un live SOLO de Mariano Rodríguez?”\n\nY lo hicimos.\n\nEste video es la reacción a su reseña de Junior, en un directo de YouTube de septiembre de 2025 donde todo giró alrededor de sus videos.\n\nY la verdad… fue un acierto total.\n\nCuando entras en modo Mariano, ya no hay vuelta atrás 😅\nEl chat estaba completamente metido, tirando referencias y disfrutando cada segundo.\n\n📺 Esto fue en vivo en YouTube\n🕘 Y sí… hay que repetir estos lives',
+  fecha: '2026-03-27',
+  link: 'https://youtu.be/HBcA3bViW5U',
+  miniatura: 'https://img.youtube.com/vi/HBcA3bViW5U/maxresdefault.jpg',
+  tags: [
+    'Películas',
+    'Humor'
+  ]
+},
+  {
+  titulo: 'Mariano Rodríguez, Candyman | Casi me muero en vivo… y el chat no ayudó 😭😂',
+  descripcion: 'Este fue al final de un live en YouTube… ya era tardísimo, pero varios se quedaron con ganas de ver algo de Mariano Rodríguez.\n\nY la verdad… yo también.\n\nAsí que nos fuimos con Candyman.\n\nLo que NO estaba planeado: que me iba a atragantar con el mate en pleno video 😭\n\nY claro… el chat no perdonó.\n\n“Enfiselmo” por todos lados.\n\nACLARACIÓN IMPORTANTE:\nNO estaba fumando 😂\nFue 100% el mate intentando matarme en vivo.\n\nAun así, fue un momentazo cerrar el directo así.\n\n📺 Esto fue en vivo en YouTube (15 de noviembre 2025)\nY sí… hay cosas que solo pasan en directo.',
+  fecha: '2026-03-26',
+  link: 'https://youtu.be/dZ3zUJG0ZmI',
+  miniatura: 'https://img.youtube.com/vi/dZ3zUJG0ZmI/maxresdefault.jpg',
+  tags: [
+    'Películas',
+    'Humor'
+  ]
+},
+  {
+  titulo: 'Asesinos | Me gustó la película… y sabía que la Mariano la iba a destruir 😬🔥',
+  descripcion: 'Este salió del mismo live en el que vimos Aliens… pero la vibra fue completamente distinta.\n\nPorque esta vez yo ya iba nervioso.\n\nSabía que Mariano Rodríguez iba a hacer trizas la película…\ny el problema es que a mí SÍ me había gustado.\n\nEntonces fue ese momento incómodo donde estás esperando el golpe…\ny sabes que viene fuerte 😅\n\nAun así, verlo con la comunidad fue un momentazo.\n\nDe esos donde no importa si estás de acuerdo o no… igual la pasas increíble.\n\n📺 Esto pasó en vivo en Twitch\n🕘 Viernes – 21:00 hs Argentina\n\nY sí… a veces toca defender gustos impopulares.',
+  fecha: '2026-03-25',
+  link: 'https://youtu.be/GocS75-pJOo',
+  miniatura: 'https://img.youtube.com/vi/GocS75-pJOo/maxresdefault.jpg',
+  tags: [
+    'Películas',
+    'Humor'
+  ]
+},
+  {
+  titulo: 'Mariano/Aliens | Me reí… sin entender TODO (y aún así funcionó 😂)',
+  descripcion: 'Este es el cuarto video de la segunda semana de Mariano… y fue una locura.\n\nReaccioné a su reseña de Aliens (junto con otro video que salió ese mismo día)… y desde el primer momento estuvo buenísimo.\n\nPero lo más interesante vino después.\n\nEn edición me di cuenta de varias referencias que NO había entendido en vivo… y aun así me habían dado risa.\n\nEse nivel de humor es otra cosa.\n\nCuando algo funciona incluso sin contexto… sabes que está muy bien hecho.\n\n📺 Esto pasó en vivo en Twitch\n🕘 Viernes – 21:00 hs Argentina\n\nY la segunda semana de Mariano sigue escalando 🔥',
+  fecha: '2026-03-24',
+  link: 'https://youtu.be/eBt5SZYGNK0',
+  miniatura: 'https://img.youtube.com/vi/eBt5SZYGNK0/maxresdefault.jpg',
+  tags: [
+    'Películas',
+    'Humor'
+  ]
+},
+  {
+  titulo: 'Reacción a Mariano Rodríguez, Superman de James Gunn | ODIÉ la película… pero esto lo salvó TODO 😳🔥',
+  descripcion: 'No me gustó la película. Nada.\nPero después vimos a Mariano Rodríguez hablando de Superman… y fue otra historia completamente distinta.\n\nDe esas veces donde alguien logra decir EXACTAMENTE lo que tú sentías… pero mejor.\n\nY claro… apareció un clásico del canal:\n\n“Enfiselmo” se hizo presente 😅\n(para los nuevos: así le decimos cuando me estoy muriendo de la risa y empiezo a toser)\n\nEste video fue el preámbulo perfecto para uno de los rants más largos que he hecho.\n\n📺 Todo esto pasó en vivo en Twitch\n🕘 Viernes – 21:00 hs Argentina\n\nY sí… esto apenas estaba empezando.',
+  fecha: '2026-03-23',
+  link: 'https://youtu.be/RjdaxwNkEPs',
+  miniatura: 'https://img.youtube.com/vi/RjdaxwNkEPs/maxresdefault.jpg',
+  tags: [
+    'Películas',
+    'Humor'
+  ]
+},
+  {
+  titulo: 'Indi y Mariano | Ahora sí entendí TODO… (hasta el chiste de Hitler en Bariloche 😳😂)',
+  descripcion: 'Esta fue una experiencia completamente distinta.\n\nVimos Indiana Jones: Los cazadores del arca perdida completa… y justo después nos fuimos directo a la reseña de Mariano Rodríguez en vivo con el chat.\n\nY se notó.\n\nMuchas referencias que antes se me habrían pasado, esta vez sí las agarré.\nSe siente diferente cuando llegas “preparado”.\n\nPero lo mejor vino después…\n\nEn edición me di cuenta de un chiste sobre Hitler y Bariloche que NO había captado en el momento… y me cagué de risa 😂\n\nSiempre hay algo que se escapa en vivo.\n\n📺 Esto pasó en Twitch con la comunidad\n🕘 Viernes – 21:00 hs Argentina\n\nY sí… esto se disfruta mucho más en vivo.',
+  fecha: '2026-03-22',
+  link: 'https://youtu.be/EEsjqbZyxBY',
+  miniatura: 'https://img.youtube.com/vi/EEsjqbZyxBY/maxresdefault.jpg',
+  tags: [
+    'Películas',
+    'Humor'
+  ]
+},
+  {
+  titulo: 'Conan, Mariano | Ahora SÍ entendí todo… (y volvió el gallo 😑🐓)',
+  descripcion: 'Esta vez no me agarraron desprevenido.\n\nDespués de ver a Pablo Molinari explicando las tribus urbanas, fui directo a ver a Mariano Rodríguez con Conan el bárbaro… porque ese “exterminador de rolingas” no lo iba a dejar pasar.\n\nY valió totalmente la pena.\n\nPor primera vez sentí que entendía TODAS las referencias 😅\n(O al menos muchas más que antes)\n\nEso sí… hay cosas que nunca cambian.\n\nEl gallo del vecino volvió a hacer su aparición especial 🐓\n\nYa es parte del canal.',
+  fecha: '2026-03-21',
+  link: 'https://youtu.be/nWhlRzqY1nE',
+  miniatura: 'https://img.youtube.com/vi/nWhlRzqY1nE/maxresdefault.jpg',
+  tags: [
+    'Películas',
+    'Humor'
+  ]
+},
+  {
+  titulo: 'Reacción a Pablo Monilari, \'Perdón centenials\' - Floggers y Tribus urbanas',
+  descripcion: 'Creo que acabo de entender el 50% del chat… de golpe.\n\nMe recomendaron ver a Pablo Molinari hablando de Fotolog, floggers y tribus urbanas… y no estaba preparado para esto.\n\nEra TODO un mundo.\n\nY ahora entiendo por qué ustedes reaccionan como reaccionan en los lives.\n\nEsto cambia completamente cómo voy a ver la música argentina.\n\n📺 Lo seguimos en vivo en Twitch\n🕘 Viernes – 21:00 hs Argentina\n\nA ver si ahora sí les sigo el ritmo 😅',
+  fecha: '2026-03-20',
+  link: 'https://youtu.be/JVG0US-eauk',
+  miniatura: 'https://img.youtube.com/vi/JVG0US-eauk/maxresdefault.jpg',
+  tags: [
+    'Cultura',
+    'Música',
+    'Documental',
+    'Historia'
+  ]
+},
+  {
+  titulo: 'Folklore + METAL argentino 😳 | Reacción a Arraigo - Zamba para los huérfanos',
+  descripcion: 'Reacción y análisis en directo con la comunidad a Zamba para los huérfanos de Arraigo.\n\nUna combinación que no esperaba: folklore argentino con metal… y el resultado me sorprendió muchísimo. Fue muy interesante analizar la canción en vivo con la comunidad y ver cómo se mezclan estos estilos.\n\nEste tipo de descubrimientos son los que más disfruto hacer en directo.\n\n💬 ¿Qué otra banda mezcla folklore con otros géneros?',
+  fecha: '2026-03-19',
+  link: 'https://youtu.be/b1IslH9Bol8',
+  miniatura: 'https://img.youtube.com/vi/b1IslH9Bol8/maxresdefault.jpg',
+  tags: [
+    'Directos',
+    'Cultura',
+    'Música'
+  ]
+},
+  {
+  titulo: 'Reaccionando a El cuento de las comadrejas | Humor ácido y una historia brillante',
+  descripcion: 'Reacción completa a El cuento de las comadrejas.\n\nUna película que me sorprendió muchísimo. El humor ácido de los personajes, la forma en la que está escrita la historia y el ritmo general hacen que sea una experiencia muy disfrutable.\n\nAdemás, visualmente está muy bien cuidada y tiene ese estilo que te atrapa poco a poco.\n\nFue de esas películas que no esperaba tanto… y terminó siendo una gran sorpresa.\n\n💬 ¿Qué opinan ustedes de esta película?',
+  fecha: '2026-03-18',
+  link: 'https://youtu.be/dL68A-90UQI',
+  miniatura: 'https://img.youtube.com/vi/dL68A-90UQI/maxresdefault.jpg',
+  tags: [
+    'Películas',
+    'Humor',
+    'Drama',
+    'Suspenso'
+  ]
+},
      {
   titulo: 'Vuelve La llama que llama 1',
   descripcion: 'Esta es la nueva serie de Flow. La llama que llama.',
