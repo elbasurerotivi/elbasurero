@@ -270,45 +270,32 @@
   });
 </script>
 
-    <script type="module">
+<script type="module">
 
-        import { categoriasData } from './js/videos.js';
-        
+import { videosPremium } from './js/videos-premium.js';
+
 document.addEventListener("DOMContentLoaded", () => {
 
   const row = document.getElementById("seriesRow");
 
   if (!row) return;
 
-const categorias = Object.values(categoriasData);
+  videosPremium.forEach(video => {
 
-categorias.forEach(cat => {
-
-  const card = document.createElement("div");
-  card.classList.add("card");
-
-  card.innerHTML = `
-    <img src="${cat.cover}" alt="${cat.name}">
-    <p>${cat.name}</p>
-  `;
-
-  row.appendChild(card);
-
-});
-
-  series.forEach(serie => {
     const card = document.createElement("div");
     card.classList.add("card");
 
     card.innerHTML = `
-      <img src="${serie.cover}" alt="${serie.name}">
-      <p>${serie.name}</p>
+      <img src="${video.thumbnail}" alt="${video.name}">
+      <p>${video.title}</p>
     `;
 
     row.appendChild(card);
+
   });
 
 });
+
 </script>
     
 </body>
