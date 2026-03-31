@@ -6386,9 +6386,7 @@ a {
 }
 
 /* Ocultar scrollbar (opcional pero pro) */
-.row::-webkit-scrollbar {
-  display: none;
-}
+
 
 /* 🔥 TARJETAS */
 .card {
