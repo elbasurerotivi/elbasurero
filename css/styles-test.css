@@ -6363,3 +6363,48 @@ a {
 .card:hover {
   transform: scale(1.05);
 }
+
+/* 🔥 Sección tipo Netflix */
+.category-section {
+  margin: 30px 0;
+}
+
+/* Título de categoría */
+.category-section h2 {
+  margin: 10px 20px;
+  font-size: 1.5rem;
+  text-transform: capitalize;
+}
+
+/* 🔥 FILA HORIZONTAL */
+.row {
+  display: flex;
+  overflow-x: auto;
+  gap: 15px;
+  padding: 10px 20px;
+  scroll-behavior: smooth;
+}
+
+/* Ocultar scrollbar (opcional pero pro) */
+.row::-webkit-scrollbar {
+  display: none;
+}
+
+/* 🔥 TARJETAS */
+.card {
+  min-width: 200px;
+  flex: 0 0 auto;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.card img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+/* Hover tipo Netflix */
+.card:hover {
+  transform: scale(1.1);
+  z-index: 10;
+}
