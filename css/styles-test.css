@@ -6415,3 +6415,11 @@ a {
   transform: scale(1.1);
   z-index: 10;
 }
+
+/* 📱 Mobile */
+@media (max-width: 768px) {
+  .card {
+    min-width: 120px;
+    max-width: 140px;
+  }
+}
