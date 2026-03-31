@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Basurero</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="Imagenes/icono.png" type="image/x-icon">
+    <!-- Swiper CSS (solo una versión) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <meta name="description" content="El Basurero, tu canal de reacciones en YouTube. Horarios, videos y comunidad.">
+    <meta name="keywords" content="El Basurero, reacciones, YouTube, directos, Twitch, México, Argentina, stream, videos, comunidad, película, series, opinión, videoreacción">
+</head>
+<body>
+  
+  <div id="header"></div>
+  
+<!-- Popup de login -->
+    <div id="loginModal" class="modal">
+      <div class="modal-content">
+        <h2 id="form-title" class="modal-title">Iniciar Sesión</h2>
+        <form id="loginForm" class="login-form">
+          <div class="form-group">
+            <input type="email" id="email" placeholder="Correo electrónico" required>
+          </div>
+          <div class="form-group" id="username-group" style="display: none;">
+            <input type="text" id="username" placeholder="Nombre de usuario (opcional)" maxlength="30">
+          </div>
+          <div class="form-group">
+            <input type="password" id="password" placeholder="Contraseña" required>
+          </div>
+          <button type="button" id="actionBtn" class="btn btn-primary">Login</button>
+        </form>
+        <p class="switch" onclick="toggleForm()">¿No tienes cuenta? Regístrate aquí</p>
+        <div class="social-login">
+          <p>O ingresa con:</p>
+          <button class="btn btn-google" onclick="loginGoogle()">
+            <img src="Imagenes/google_logo.webp" alt="Google" class="social-icon"> Google
+          </button>
+          <button class="btn btn-facebook" onclick="loginFacebook()">
+            <img src="Imagenes/facebook_logo_2.png" alt="Facebook" class="social-icon"> Facebook
+          </button>
+        </div>
+        <button class="btn btn-close" onclick="cerrarLogin()">Cerrar</button>
+      </div>
+    </div>
+
+  <main>
+        <section class="hero">
+            <h1>¡Bienvenidos a El Basurero!</h1>
+            <p><br>Reaccionando a cultura popular,<br>
+                  publicidad, comunidad y<br>
+                  cosas que me gustan<br>
+                  en general<br>
+                  (y que no me gustan),<br>
+                  pero con mi comentario.<br>
+                  <br>
+                  Los quiero!!!<br>
+                  ¡Únete a la comunidad!</p>
+            <a href="https://www.youtube.com/@elbasureroedgar" class="btn">YouTube</a>
+        </section>
+
+       
+       
+
+        
+        <!-- Carrusel -->
+        <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+            </div>
+
+            <!-- Botones de navegación -->
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        
+            <!-- Paginación -->
+            <div class="swiper-pagination"></div>
+        </div>
+
+        <!-- Banner Exclusivos -->
+        <section class="exclusive-banner">
+          <a href="exclusivos.html" class="exclusive-link">
+
+            <img src="Imagenes/ChatGPT Image 25 feb 2026, 04_16_42 p.m..png" alt="Contenido Exclusivo" class="exclusive-img">
+
+            
+
+          </a>
+        </section>
+
+        <section class="schedule">
+  <h2>📅 Horarios de Directos</h2>
+  <div class="schedule-grid">
+    <div class="card">
+      <h3>Lunes de Argentina</h3>
+      <p>21:00 (Arg)</p>
+      <span>Twitch</span>
+    </div>
+    <div class="card">
+      <h3>Miercoles de clasicos</h3>
+      <p>22:30 (Arg)</p>
+      <span>Twitch</span>
+    </div>
+    <div class="card">
+      <h3>Jueves Animados</h3>
+      <p>21:00 (Arg)</p>
+      <span>Twitch</span>
+    </div>
+    <div class="card">
+      <h3>Sábados</h3>
+      <p>21:00 (Arg)</p>
+      <span>YouTube</span>
+    </div>
+    <div class="card">
+      <h3>Domingos</h3>
+      <p>21:00 (Arg)</p>
+      <span>Twitch</span>
+    </div>
+  </div>
+        </section>
+    
+
+         <div class="contact-page">
+    <h1>Conéctate conmigo</h1>
+    <p>Encuéntrame en mis plataformas oficiales 👇</p>
+
+    <div class="contact-grid">
+      <a href="https://www.twitch.tv/elbasurerochido" target="_blank" class="contact-card twitch">
+        <img src="Imagenes/Picsart_25-10-02_16-41-48-624.png" alt="Twitch">
+        <h3>Twitch</h3>
+      </a>
+      <a href="https://www.youtube.com/@elbasureroedgar" target="_blank" class="contact-card youtube">
+        <img src="Imagenes/Picsart_25-10-02_16-08-26-701.png" alt="YouTube">
+        <h3>YouTube</h3>
+      </a>
+      <a href="https://discord.gg/TgAkT7PFt5" target="_blank" class="contact-card discord">
+        <img src="Imagenes/Picsart_25-10-02_19-45-23-009.png" alt="Discord">
+        <h3>Discord</h3>
+      </a>
+      <a href="https://www.instagram.com/el_basurero_tiviplas" target="_blank" class="contact-card instagram">
+        <img src="Imagenes/Picsart_25-10-02_19-13-25-281.png" alt="Instagram">
+        <h3>Instagram</h3>
+      </a>
+      <a href="https://www.facebook.com/el.basurero.ti.vi.plas" target="_blank" class="contact-card facebook">
+        <img src="Imagenes/Picsart_25-10-02_19-40-40-000.png" alt="Facebook">
+        <h3>Facebook</h3>
+      </a>
+      <a href="https://www.patreon.com/cw/ElBasureroTi_Vi_Plas" target="_blank" class="contact-card patreon">
+        <img src="Imagenes/Picsart_25-10-02_19-21-17-233.png" alt="Patreon">
+        <h3>Patreon</h3>
+      </a>
+            <a href="https://chat.whatsapp.com/Fyw5G6L8GLm71kMDATHm6P" target="_blank" class="contact-card whatsapp">
+        <img src="Imagenes/whatsapp_logo_2.png" alt="Whatsapp">
+        <h3>WhatsApp</h3>
+      </a>
+    </div>
+         </div>
+    
+<footer>
+        <p>&copy; 2025 El Basurero. Todos los derechos reservados.</p>
+        <h3>Sígueme en mis redes</h3>
+        <div class="social-links">
+            <a href="https://www.twitch.tv/elbasurerochido" target="_blank">
+                <img src="Imagenes/twitch_logo.png" alt="Twitch"> Twitch
+            </a>
+            <a href="https://www.youtube.com/@elbasureroedgar" target="_blank">
+                <img src="Imagenes/youtube_logo.png" alt="YouTube"> YouTube
+            </a>
+            <a href="https://discord.gg/TgAkT7PFt5" target="_blank">
+                <img src="Imagenes/discord_logo.png" alt="Discord"> Discord
+            </a>
+            <a href="https://www.instagram.com/el_basurero_tiviplas" target="_blank">
+                <img src="Imagenes/instagram_logo.png" alt="Instagram"> Instagram
+            </a>
+            <a href="https://www.facebook.com/el.basurero.ti.vi.plas" target="_blank">
+                <img src="Imagenes/facebook_logo.png" alt="Facebook"> Facebook
+            </a>
+            <a href="https://www.patreon.com/cw/ElBasureroTi_Vi_Plas" target="_blank">
+                <img src="Imagenes/patreon_logo.png" alt="Patreon"> Patreon
+            </a>
+            <a href="https://chat.whatsapp.com/Fyw5G6L8GLm71kMDATHm6P" target="_blank">
+                <img src="Imagenes/WhatsApp.png" alt="WhatsApp"> WhatsApp
+            </a>
+        </div>
+    </main>
+</footer>
+
+<!-- Botón Scroll to Top -->
+  <button class="scroll-to-top" title="Volver arriba">↑</button>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="js/videos.js"></script> <!-- Carga videosData -->
+    <script type="module" src="js/login.js" defer></script>
+    <script type="module" src="js/community.js" defer></script>
+    <script>
+        var swiper = new Swiper(".mySwiper", {
+            loop: true,
+            autoplay: {
+                delay: 1500,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+        });
+    </script>
+    <script src="js/scripts.js"></script>
+    <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    if (typeof videosData === "undefined") {
+      console.error("⚠️ No se encontró videosData. Asegúrate de cargar videos.js antes de este script.");
+      return;
+    }
+
+    const swiperWrapper = document.querySelector(".mySwiper .swiper-wrapper");
+    if (!swiperWrapper) {
+      console.error("⚠️ No se encontró el contenedor .swiper-wrapper del carrusel.");
+      return;
+    }
+
+    // Ordenar por fecha descendente y tomar los 10 más recientes
+    const latestVideos = [...videosData]
+      .sort((a, b) => new Date(b.fecha) - new Date(a.fecha))
+      .slice(0, 10);
+
+    swiperWrapper.innerHTML = "";
+
+    // Crear slides dinámicos con miniatura + título sobre la imagen
+    latestVideos.forEach(video => {
+      const slide = document.createElement("div");
+      slide.classList.add("swiper-slide");
+      slide.innerHTML = `
+        <a href="${video.link}" target="_blank" rel="noopener noreferrer" class="video-slide">
+          <img src="${video.miniatura}" alt="${video.titulo}" loading="lazy">
+          <div class="video-overlay">
+            <span class="video-title">${video.titulo}</span>
+          </div>
+        </a>
+      `;
+      swiperWrapper.appendChild(slide);
+    });
+
+    // Inicializar carrusel
+    new Swiper(".mySwiper", {
+      loop: true,
+      autoplay: {
+        delay: 1500,
+        disableOnInteraction: false,
+      },
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+    });
+
+    console.log("🎬 Carrusel actualizado con los últimos 10 videos y títulos dinámicos.");
+  });
+</script>
+</body>
+
+</html>
+
+
