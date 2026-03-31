@@ -277,24 +277,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (!row) return;
 
-  const series = [
-    {
-      name: "Okupas",
-      cover: "Imagenes/Okupas carátula.png"
-    },
-    {
-      name: "Los Simuladores",
-      cover: "Imagenes/Los_Simuladores_(Argentine_TV_Series).jpg"
-    },
-    {
-      name: "Shingeki No Kyojin",
-      cover: "Imagenes/Shingeki 1.webp"
-    },
-    {
-      name: "Tres Acordes",
-      cover: "Imagenes/Tres Acordes cover.png"
-    }
-  ];
+const categorias = Object.values(categoriasData);
+
+categorias.forEach(cat => {
+
+  const card = document.createElement("div");
+  card.classList.add("card");
+
+  card.innerHTML = `
+    <img src="${cat.cover}" alt="${cat.name}">
+    <p>${cat.name}</p>
+  `;
+
+  row.appendChild(card);
+
+});
 
   series.forEach(serie => {
     const card = document.createElement("div");
