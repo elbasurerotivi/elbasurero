@@ -6387,6 +6387,14 @@ a {
 
 /* Ocultar scrollbar (opcional pero pro) */
 
+.row {
+  display: flex;
+  overflow-x: auto;
+  gap: 15px;
+  padding: 10px 20px;
+  scroll-behavior: smooth;
+  cursor: grab;
+}
 
 /* 🔥 TARJETAS */
 .card {
