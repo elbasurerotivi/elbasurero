@@ -276,26 +276,53 @@ import { videosPremium } from './js/videos-premium.js';
 
 document.addEventListener("DOMContentLoaded", () => {
 
-  const row = document.getElementById("seriesRow");
+  const container = document.getElementById("seriesRow");
 
-  if (!row) return;
+  if (!container) return;
+
+  // 🔥 Agrupar por categoría
+  const agrupados = {};
 
   videosPremium.forEach(video => {
+    if (!agrupados[video.categoria]) {
+      agrupados[video.categoria] = [];
+    }
+    agrupados[video.categoria].push(video);
+  });
 
-    const card = document.createElement("div");
-    card.classList.add("card");
+  // 🔥 Crear filas tipo Netflix
+  Object.keys(agrupados).forEach(categoria => {
 
-    card.innerHTML = `
-      <img src="${video.thumbnail}" alt="${video.name}">
-      <p>${video.title}</p>
-    `;
+    const section = document.createElement("div");
+    section.classList.add("category-section");
 
-    row.appendChild(card);
+    const title = document.createElement("h2");
+    title.textContent = categoria.replaceAll("_", " ");
+
+    const row = document.createElement("div");
+    row.classList.add("row");
+
+    agrupados[categoria].forEach(video => {
+
+      const card = document.createElement("div");
+      card.classList.add("card");
+
+      card.innerHTML = `
+        <img src="${video.thumbnail}" alt="${video.name}">
+        <p>${video.title}</p>
+      `;
+
+      row.appendChild(card);
+
+    });
+
+    section.appendChild(title);
+    section.appendChild(row);
+    container.appendChild(section);
 
   });
 
 });
-
 </script>
     
 </body>
