@@ -6413,3 +6413,46 @@ a {
     padding: 12px;
   }
 }
+
+
+/* === CONTENEDOR SWIPER + BANNER === */
+.home-top-section {
+  display: flex;
+  gap: 20px;
+  max-width: 1200px;
+  margin: 40px auto;
+  align-items: stretch;
+}
+
+/* Ambos ocupan mitad */
+.home-top-section .swiper,
+.home-top-section .exclusive-banner {
+  flex: 1;
+}
+
+/* Ajuste del banner para igualar altura */
+.home-top-section .exclusive-banner {
+  margin: 0; /* sacamos el margin original */
+  display: flex;
+}
+
+.home-top-section .exclusive-link {
+  width: 100%;
+}
+
+.home-top-section .exclusive-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* === MOBILE (vuelve a vertical) === */
+@media (max-width: 768px) {
+  .home-top-section {
+    flex-direction: column;
+  }
+
+  .home-top-section .exclusive-banner {
+    margin-top: 20px;
+  }
+}
