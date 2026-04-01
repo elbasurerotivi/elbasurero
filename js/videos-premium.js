@@ -16,7 +16,7 @@ export const categoriasData = {
      el_encargado: {
     key: 'el_encargado',
     name:'El Encargado',
-    background: 'Imagenes/el encargado portada.webp',     // Fondo grande
+    background: 'Imagenes/El encargado Portada.png',     // Fondo grande
     cover: 'Imagenes/el encargado 1.webp',               // Carátula pequeña
     title: 'El Encargado',
     synopsis: 'El administrador de departamentos de un edificio residencial aprovecha su poder de vigilancia para entrometerse en la vida de los inquilinos.',
