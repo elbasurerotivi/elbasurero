@@ -79,22 +79,23 @@
     // === VIDEOS ===
     const container = document.getElementById('videoList');
 
-    videosExclusivos.forEach(video => {
-      const card = document.createElement('div');
-      card.className = 'premium-card episode-card';
+// 🔥 invertir el orden (último → primero)
+[...videosExclusivos].reverse().forEach(video => {
+  const card = document.createElement('div');
+  card.className = 'premium-card episode-card';
 
-      card.innerHTML = `
-        <a href="player.html?id=${video.id}">
-          <img src="${video.thumbnail}" alt="${video.title}" loading="lazy">
-          <div class="premium-info">
-            <h3>${video.title}</h3>
-            <p class="catDesc">${video.description}</p>
-          </div>
-        </a>
-      `;
+  card.innerHTML = `
+    <a href="player.html?id=${video.id}">
+      <img src="${video.thumbnail}" alt="${video.title}" loading="lazy">
+      <div class="premium-info">
+        <h3>${video.title}</h3>
+        <p class="catDesc">${video.description}</p>
+      </div>
+    </a>
+  `;
 
-      container.appendChild(card);
-    });
+  container.appendChild(card);
+});
 
     // === BOTÓN VOLVER ===
     document.getElementById('backBtn').addEventListener('click', () => {
