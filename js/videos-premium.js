@@ -4,7 +4,7 @@ export const categoriasData = {
     nada: {
     key: 'nada',
     name:'Nada',
-    background: 'Imagenes/nada portada.webp',     // Fondo grande
+    background: 'Imagenes/Nada Portada grande.png',     // Fondo grande
     cover: 'Imagenes/nada 1.jpg',               // Carátula pequeña
     title: 'Nada',
     synopsis: 'Un icónico bon vivant, que apenas tiene recursos suficientes para mantener su estilo de vida acomodado, contrata a una joven paraguaya para reemplazar a la empleada doméstica recientemente fallecida que lo cuidó durante más de 40 años. Una comedia dramática con Luis Brandoni y Robert De Niro.',
