@@ -1240,6 +1240,20 @@ export const videosExclusivos = [
   thumbnail: 'Imagenes/Porno y Helado Base 3.png',
   source: 'https://rumble.com/embed/v75kagc/?pub=4nmhh2',
   type: 'iframe'
+},
+
+  {
+  id: 'reaccion_a_el_fantasma_de_buenos_aires_mas_rara_de_lo_que_esperaba_peliculas',
+  name: 'Películas',
+  categoria: 'peliculas',
+  temporada: '0',
+  episodio: '0',
+  title: 'Reacción a El fantasma de Buenos Aires 👻🇦🇷 (más rara de lo que esperaba…)',
+  title2: 'Reacción en YouTube',
+  description: 'En este directo reaccionamos a El fantasma de Buenos Aires, una comedia con tintes sobrenaturales donde un fantasma del pasado aparece en la Buenos Aires actual, generando una serie de situaciones tan absurdas como inesperadas. Lo que empieza como algo ligero poco a poco se va transformando en una historia con más capas de lo que parece a simple vista.\n\nLa vimos juntos el 20 de septiembre en YouTube, y fue de esos visionados donde el chat se vuelve parte del show: risas, comentarios fuera de control y momentos donde ya no sabíamos si lo que estaba pasando era genial… o completamente surrealista.\n\nDe esas películas que no todo el mundo ve, pero cuando las ves acompañado, se convierten en algo mucho más especial.\n\nSi te gusta descubrir joyas raras y vivirlas en comunidad, este tipo de contenido es justo para ti.\n\nY si aún no eres miembro Premium, este es el tipo de experiencias que te estás perdiendo 👀',
+  thumbnail: 'Imagenes/El Fantasma de Buenos Aires.jpeg',
+  source: 'https://rumble.com/embed/v75pnty/?pub=4nmhh2',
+  type: 'iframe'
 }
 
 ];
