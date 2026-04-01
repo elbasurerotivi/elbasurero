@@ -82,7 +82,7 @@
 // 🔥 invertir el orden (último → primero)
 [...videosExclusivos].reverse().forEach(video => {
   const card = document.createElement('div');
-  card.className = 'premium-card playlist-card exclusivos';
+  card.className = 'premium-card playlist-card premium';
 
   card.innerHTML = `
     <a href="player.html?id=${video.id}">
