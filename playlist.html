@@ -76,7 +76,7 @@ Object.values(categoriasData).forEach(cat => {
   const videos = videosPremium.filter(v => v.categoria === cat.key);
 
   const card = document.createElement('div');
-  card.className = 'premium-card playlist-card';
+  card.className = 'premium-card playlist-card premium';
 
   card.innerHTML = `
     <a href="categorias.html?cat=${cat.key}">

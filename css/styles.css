@@ -3899,7 +3899,7 @@ footer h3 {
 }
 
 /* Badge Premium */
-.premium-card::after {
+/*.premium-card::after {
   content: 'PREMIUM';
   position: absolute;
   top: 12px;
@@ -3913,7 +3913,7 @@ footer h3 {
   letter-spacing: 0.5px;
   z-index: 2;
   box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-}
+}*/
 
 .premium-desc {
   font-size: 0.85rem;
@@ -3960,6 +3960,43 @@ footer h3 {
 .premium-desc:not(:hover)::-webkit-scrollbar-thumb {
   background: rgba(255, 215, 0, 0.2);
 }
+
+/* === BADGE PREMIUM (solo cuando corresponde) === */
+.premium-card.premium::after {
+  content: 'PREMIUM';
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: linear-gradient(45deg, #ffd700, #ff8c00);
+  color: #000;
+  font-size: 0.7rem;
+  font-weight: bold;
+  padding: 4px 10px;
+  border-radius: 20px;
+  letter-spacing: 0.5px;
+  z-index: 2;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+/* === BADGE EXCLUSIVO === */
+.premium-card.exclusivo::after {
+  content: 'EXCLUSIVO';
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: #ffffff;
+  color: #000;
+  font-size: 0.7rem;
+  font-weight: bold;
+  padding: 4px 10px;
+  border-radius: 20px;
+  letter-spacing: 0.5px;
+  z-index: 2;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+
+
 
 /* Estilos para la barra de búsqueda */
 .search-container {
