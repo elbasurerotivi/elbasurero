@@ -3929,6 +3929,25 @@ footer h3 {
   -webkit-box-orient: vertical;
   overflow-y: auto;
 
+/* EXCLUSIVO */
+.premium-card.exclusivo::after {
+  content: 'EXCLUSIVO';
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: #ffffff;
+  color: #000;
+  font-size: 0.7rem;
+  font-weight: bold;
+  padding: 4px 10px;
+  border-radius: 20px;
+  letter-spacing: 0.5px;
+  z-index: 2;
+}
+
+
+
+
   /* Scrollbar personalizada */
   scrollbar-width: thin;
   scrollbar-color: rgba(255, 215, 0, 0.4) rgba(255, 215, 0, 0.1);
