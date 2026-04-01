@@ -212,6 +212,10 @@
         });
     </script>
     <script src="js/scripts.js"></script>
+    <script type="module">
+      import { initNotifications } from "./js/notifications.js";
+      initNotifications();
+    </script>
     <script>
   document.addEventListener("DOMContentLoaded", () => {
     if (typeof videosData === "undefined") {

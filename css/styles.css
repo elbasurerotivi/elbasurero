@@ -6456,3 +6456,23 @@ a {
     margin-top: 20px;
   }
 }
+
+
+
+.notifications {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: #111;
+  color: white;
+  padding: 10px 14px;
+  border-radius: 20px;
+  cursor: pointer;
+  z-index: 999;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+.notifications span {
+  color: gold;
+  font-weight: bold;
+}
