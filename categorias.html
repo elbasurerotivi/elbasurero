@@ -123,7 +123,7 @@
     const container = document.getElementById('videoList');
     videos.forEach(video => {
       const card = document.createElement('div');
-      card.className = 'premium-card episode-card';
+      card.className = 'premium-card episode-card premium';
 
       card.innerHTML = `
         <a href="player.html?id=${video.id}">
