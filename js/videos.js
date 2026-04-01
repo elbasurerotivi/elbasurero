@@ -1,5 +1,18 @@
 const videosData = [
 
+         {
+  titulo: 'Esto explica TODO el fútbol argentino… (y quiero vivirlo en vivo) 🇦🇷🔥',
+  descripcion: 'Hay algo del fútbol argentino que siempre me ha llamado la atención… pero nunca había entendido del todo:\n\nLas canciones de cancha.\n\nAsí que me metí a ver un video de Expediente Mobius sobre el origen de estas canciones… y ahora todo tiene mucho más sentido.\n\nNo es solo fútbol.\nEs cultura.\nEs identidad.\n\nY honestamente… me dieron ganas de vivir esto en vivo alguna vez.\n\nAdemás, en este video hago un anuncio importante sobre la página web y los miembros del canal 👀\n\n📺 Esto lo vimos reaccionando en el canal\n🕘 Y sí… cada vez entiendo más Argentina',
+  fecha: '2026-03-30',
+  link: 'https://youtu.be/VQMhd0-0keE',
+  miniatura: 'https://img.youtube.com/vi/VQMhd0-0keE/maxresdefault.jpg',
+  tags: [
+    'Cultura',
+    'Documental'
+  ]
+},
+
+
        {
   titulo: 'Un live entero de Mariano… y esto pasó 😂🔥',
   descripcion: 'Este fue uno de esos días donde dijimos:\n“¿y si hacemos un live SOLO de Mariano Rodríguez?”\n\nY lo hicimos.\n\nEste video es la reacción a su reseña de Junior, en un directo de YouTube de septiembre de 2025 donde todo giró alrededor de sus videos.\n\nY la verdad… fue un acierto total.\n\nCuando entras en modo Mariano, ya no hay vuelta atrás 😅\nEl chat estaba completamente metido, tirando referencias y disfrutando cada segundo.\n\n📺 Esto fue en vivo en YouTube\n🕘 Y sí… hay que repetir estos lives',
@@ -11,6 +24,7 @@ const videosData = [
     'Humor'
   ]
 },
+       
   {
   titulo: 'Mariano Rodríguez, Candyman | Casi me muero en vivo… y el chat no ayudó 😭😂',
   descripcion: 'Este fue al final de un live en YouTube… ya era tardísimo, pero varios se quedaron con ganas de ver algo de Mariano Rodríguez.\n\nY la verdad… yo también.\n\nAsí que nos fuimos con Candyman.\n\nLo que NO estaba planeado: que me iba a atragantar con el mate en pleno video 😭\n\nY claro… el chat no perdonó.\n\n“Enfiselmo” por todos lados.\n\nACLARACIÓN IMPORTANTE:\nNO estaba fumando 😂\nFue 100% el mate intentando matarme en vivo.\n\nAun así, fue un momentazo cerrar el directo así.\n\n📺 Esto fue en vivo en YouTube (15 de noviembre 2025)\nY sí… hay cosas que solo pasan en directo.',
