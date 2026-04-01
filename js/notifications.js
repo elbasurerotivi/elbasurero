@@ -1,6 +1,12 @@
 import { db, ref, onValue } from "./firebase-config.js";
 
-const notifCountEl = document.getElementById("notifCount");
+let notifCountEl;
+
+document.addEventListener("DOMContentLoaded", () => {
+  notifCountEl = document.getElementById("notifCount");
+});
+
+if (!notifCountEl) return;
 
 export function initNotifications() {
   const videosRef = ref(db, "videos");

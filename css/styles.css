@@ -6476,3 +6476,40 @@ a {
   color: gold;
   font-weight: bold;
 }
+
+
+
+.notifications {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 999;
+}
+
+#notifBell {
+  background: #111;
+  padding: 10px 14px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.notif-panel {
+  display: none;
+  margin-top: 10px;
+  background: #1a1a1a;
+  border-radius: 10px;
+  padding: 10px;
+  width: 260px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.notif-item {
+  padding: 8px;
+  border-bottom: 1px solid #333;
+  cursor: pointer;
+}
+
+.notif-item:hover {
+  background: #222;
+}
