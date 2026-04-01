@@ -6494,3 +6494,20 @@ a {
 .notif-item:hover {
   background: #222;
 }
+
+
+
+
+.video-stats {
+  display: flex;
+  gap: 10px;
+  margin-top: 8px;
+  font-size: 14px;
+  color: #ccc;
+}
+
+.video-stats span {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}

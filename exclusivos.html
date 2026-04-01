@@ -48,6 +48,7 @@
   <script type="module">
     import "./js/login.js";
     import { exclusivosData, videosExclusivos } from "./js/exclusivos.js";
+    import { db, ref, onValue } from "./js/firebase-config.js";
 
     // Header y footer
     fetch('header.html').then(r => r.text()).then(d => {
@@ -78,6 +79,10 @@
 
     // === VIDEOS ===
     const container = document.getElementById('videoList');
+    <div class="video-stats">
+      <span class="likes">👍 0</span>
+      <span class="comments">💬 0</span>
+    </div>
 
 // 🔥 invertir el orden (último → primero)
 [...videosExclusivos].reverse().forEach(video => {
@@ -95,6 +100,24 @@
   `;
 
   container.appendChild(card);
+});
+
+const likesEl = card.querySelector(".likes");
+const commentsEl = card.querySelector(".comments");
+
+const videoRef = ref(db, `videos/${video.id}`);
+
+onValue(videoRef, (snapshot) => {
+  const data = snapshot.val();
+  if (!data) return;
+
+  likesEl.textContent = `👍 ${data.likesCount || 0}`;
+
+  const commentsCount = data.comments
+    ? Object.keys(data.comments).length
+    : 0;
+
+  commentsEl.textContent = `💬 ${commentsCount}`;
 });
 
     // === BOTÓN VOLVER ===
