@@ -1254,6 +1254,20 @@ export const videosExclusivos = [
   thumbnail: 'Imagenes/El Fantasma de Buenos Aires.jpeg',
   source: 'https://rumble.com/embed/v75pnty/?pub=4nmhh2',
   type: 'iframe'
+},
+
+    {
+  id: 'reaccion_a_fase_7_cuarentena_caos_y_un_directo_que_termino_siendo_perfecto_por_accidente_peliculas',
+  name: 'Películas',
+  categoria: 'peliculas',
+  temporada: '0',
+  episodio: '0',
+  title: 'Reacción a Fase 7 🦠🇦🇷 cuarentena, caos y un directo que terminó siendo perfecto por accidente',
+  title2: 'Reacción en Twitch',
+  description: 'En este directo reaccionamos a Fase 7, una historia de encierro en un edificio donde una cuarentena empieza a sacar lo peor (y lo más extraño) de cada vecino. Lo que arranca con un tono casi ligero va escalando poco a poco hacia una tensión incómoda, con momentos que mezclan humor, paranoia y una sensación constante de que todo se puede salir de control en cualquier momento.\n\nEste directo tenía su propia historia. Originalmente estaba planeado para los lunes de Argentina, pero por problemas de internet no se pudo hacer y terminó moviéndose al miércoles de clásicos. Y aunque no es precisamente un clásico, terminó encajando perfecto con la dinámica: de esos días donde todo se siente medio improvisado… pero justo por eso funciona mejor.\n\nFue una de esas noches donde la película y el chat se van contaminando entre sí, y la experiencia se vuelve algo mucho más grande que solo verla.\n\nSi te gusta este tipo de caos compartido, aquí hay mucho de eso.\n\nY si aún no eres miembro Premium, este es el tipo de experiencias que te estás perdiendo 👀',
+  thumbnail: 'Imagenes/Fase 7.png',
+  source: 'https://rumble.com/embed/v75stxe/?pub=4nmhh2',
+  type: 'iframe'
 }
 
 ];
