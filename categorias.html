@@ -118,7 +118,7 @@
       const epA = a.episodio.replace(/[^0-9]/g, '');
       const epB = b.episodio.replace(/[^0-9]/g, '');
       return parseInt(epA) - parseInt(epB);
-    });
+    }).reverse();
 
     // === RENDERIZAR EPISODIOS ===
     const container = document.getElementById('videoList');
