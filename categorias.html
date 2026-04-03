@@ -108,21 +108,15 @@
     document.getElementById('seriesSynopsis').textContent = catData.synopsis;
     document.title = `${catData.title} | El Basurero`;
 
-    // === FILTRAR EPISODIOS ===
-    const videos = videosPremium.filter(v => v.categoria === catSlug);
+    // === FILTRAR + ORDENAR (último primero) ===
+const videos = [...videosPremium]
+  .filter(v => v.categoria === catSlug)
+  .reverse();
 
+// === RENDERIZAR EPISODIOS ===
+const container = document.getElementById('videoList');
 
-    // === ORDENAR POR TEMPORADA Y EPISODIO ===
-    videos.sort((a, b) => {
-      if (a.temporada !== b.temporada) return a.temporada - b.temporada;
-      const epA = a.episodio.replace(/[^0-9]/g, '');
-      const epB = b.episodio.replace(/[^0-9]/g, '');
-      return parseInt(epA) - parseInt(epB);
-    }).reverse();
-
-    // === RENDERIZAR EPISODIOS ===
-    const container = document.getElementById('videoList');
-    videos.forEach(video => {
+videos.forEach(video => {
   const card = document.createElement('div');
   card.className = 'premium-card episode-card premium';
 
@@ -145,7 +139,7 @@
 
   container.appendChild(card);
 
-  // 🔥 Firebase (DENTRO del loop)
+  // 🔥 Firebase stats
   const likesEl = card.querySelector(".likes");
   const commentsEl = card.querySelector(".comments");
 
@@ -155,8 +149,10 @@
     const data = snapshot.val();
     if (!data) return;
 
+    // Likes
     likesEl.textContent = `👍 ${data.likesCount || 0}`;
 
+    // Comentarios
     const commentsCount = data.comments
       ? Object.keys(data.comments).length
       : 0;
