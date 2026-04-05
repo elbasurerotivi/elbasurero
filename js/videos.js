@@ -1,5 +1,45 @@
 const videosData = [
 
+           {
+  titulo: '🔴 Malvinas: hablemos con respeto 🇦🇷',
+  descripcion: 'Este live es especial.\n\nVamos a hablar de Malvinas.\n\nQuiero que este sea un espacio entre ustedes y yo… para escuchar, aprender y entender mejor desde su perspectiva.\n\nPara entrar en contexto, vamos a ver el video de Historias Innecesarias sobre la Guerra de las Malvinas.\n\nNo busco polémica.\nNo busco debate político.\n\nBusco respeto, memoria y conversación.\n\nOjalá podamos hablar con calma, aprender algo nuevo… y recordar a quienes estuvieron ahí con el respeto que merecen.\n\n📺 Nos vemos en vivo\n🕘 9:00 pm Argentina\n\n🤍💙🤍💙🤍💙🤍💙🤍💙\n\n🛜 NUESTRA NUEVA PAGINA WEB!!!\nhttps://elbasurerotivi.github.io/elbasurero/\n\n🔗 Link Tree\nhttps://linktr.ee/elbasurerotivi\n\nMÁS DE NOSOTROS:\n\n💳 Mercadopago\nAlias: elbasurerotv\n\n📺 Twitch\nhttps://www.twitch.tv/elbasurerochido\n\n📲 Grupo de Whatsapp del canal:\nhttps://chat.whatsapp.com/Fyw5G6L8GLm71kMDATHm6P\n\n🖥 Canal de Discord:\nhttps://discord.gg/tZS2jQaDVY\n\nAPOYO AL CANAL:\n\n▶ Membresías de YouTube\nBotón de “Unirse” debajo del video\nhttps://www.youtube.com/channel/UCRE0S6c2_KYBazBhZcm-taw/join\n\n💻 Patreon\nhttps://patreon.com/ElBasureroTi_Vi_Plas\n\n🌎 PayPal\nhttps://paypal.me/edgarmenagarcia\n\n☕ Ko-fi\nhttps://ko-fi.com/elbasurerotv\n\n🤍💙🤍💙🤍💙🤍💙🤍💙',
+  fecha: '2026-04-04',
+  link: 'https://youtube.com/live/fcpLJMW5ix8',
+  miniatura: 'Imagenes/Malvinas anuncio.png',
+  tags: [
+    'Directos',
+    'Cultura',
+    'Documental',
+    'Historia',
+    'Just Chatting'
+  ]
+},
+  {
+  titulo: 'Audio horrible… pero tenía que hacer este video 🇦🇷🔥',
+  descripcion: '⚠️ Este video no está monetizado, pero quería subirlo igual porque vale mucho la pena.\n\nEste video tenía que pasar sí o sí.\n\nReaccioné a Enrique Pinti —uno de mis primeros referentes de la cultura argentina— con dos videos clave:\nLa historia argentina en 8 minutos y No existe el peronismo de izquierda.\n\nY aunque el contenido fue increíble… tuve un problema.\n\nEl micrófono dejó de funcionar y todo el audio que están escuchando es el del celular 😅\nNo es el mejor… pero no iba a dejar pasar este video por eso.\n\nPorque cuando el contenido vale la pena… se hace como se puede.\n\n📺 Esto lo vimos en el canal\n🕘 Y seguimos aprendiendo Argentina, paso a paso\n\n#EnriquePinti #Argentina #HistoriaArgentina #Reacción #CulturaArgentina #Peronismo #Humor\n\n🤍💙🤍💙🤍💙🤍💙🤍💙\n\n🛜 NUESTRA NUEVA PAGINA WEB!!!\nhttps://elbasurerotivi.github.io/elbasurero/\n\n🔗 Link Tree\nhttps://linktr.ee/elbasurerotivi\n\nMÁS DE NOSOTROS:\n\n💳 Mercadopago\nAlias: elbasurerotv\n\n📺 Twitch\nhttps://www.twitch.tv/elbasurerochido\n\n📲 Grupo de Whatsapp del canal:\nhttps://chat.whatsapp.com/Fyw5G6L8GLm71kMDATHm6P\n\n🖥 Canal de Discord:\nhttps://discord.gg/tZS2jQaDVY\n\nAPOYO AL CANAL:\n\n▶ Membresías de YouTube\nBotón de “Unirse” debajo del video\nhttps://www.youtube.com/channel/UCRE0S6c2_KYBazBhZcm-taw/join\n\n💻 Patreon\nhttps://patreon.com/ElBasureroTi_Vi_Plas\n\n🌎 PayPal\nhttps://paypal.me/edgarmenagarcia\n\n☕ Ko-fi\nhttps://ko-fi.com/elbasurerotv\n\n🤍💙🤍💙🤍💙🤍💙🤍💙',
+  fecha: '2026-04-03',
+  link: 'https://youtu.be/NeFKYeGkQmA',
+  miniatura: 'https://img.youtube.com/vi/NeFKYeGkQmA/maxresdefault.jpg',
+  tags: [
+    'Cultura',
+    'Humor',
+    'Historia'
+  ]
+},
+  {
+  titulo: 'Reaccion historias innecesarias, dictadura militar argentina',
+  descripcion: 'Este sábado vamos a reaccionar en vivo a la Guerra de las Malvinas… pero sentía que no podía llegar sin contexto.\n\nAsí que me metí a ver a Damian Kuc en Historias Innecesarias, hablando de la dictadura militar argentina.\n\nY sí… era necesario.\n\nNo es contenido fácil, pero es parte clave para entender muchas cosas de la historia del país.\n\nA veces hay que frenar un poco el entretenimiento… y ponerse serio.\n\n📺 Esto lo vimos en el canal\n🕘 Y este sábado seguimos en vivo con Malvinas\n\n#Argentina #HistoriaArgentina #Dictadura #DamianKuc #HistoriasInnecesarias #Reacción #Malvinas',
+  fecha: '2026-04-02',
+  link: 'https://youtu.be/Gd2oGBt99CA',
+  miniatura: 'https://img.youtube.com/vi/Gd2oGBt99CA/maxresdefault.jpg',
+  tags: [
+    'Cultura',
+    'Documental',
+    'Historia'
+  ]
+},
+
+
          {
   titulo: 'Esto explica TODO el fútbol argentino… (y quiero vivirlo en vivo) 🇦🇷🔥',
   descripcion: 'Hay algo del fútbol argentino que siempre me ha llamado la atención… pero nunca había entendido del todo:\n\nLas canciones de cancha.\n\nAsí que me metí a ver un video de Expediente Mobius sobre el origen de estas canciones… y ahora todo tiene mucho más sentido.\n\nNo es solo fútbol.\nEs cultura.\nEs identidad.\n\nY honestamente… me dieron ganas de vivir esto en vivo alguna vez.\n\nAdemás, en este video hago un anuncio importante sobre la página web y los miembros del canal 👀\n\n📺 Esto lo vimos reaccionando en el canal\n🕘 Y sí… cada vez entiendo más Argentina',
