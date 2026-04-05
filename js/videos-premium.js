@@ -1886,6 +1886,20 @@ export const videosPremium = [
   thumbnail: 'Imagenes/Fase 7.png',
   source: 'https://rumble.com/embed/v75stxe/?pub=4nmhh2',
   type: 'iframe'
+},
+
+     {
+  id: 'reaccion_a_shingeki_no_kyojin_ep_79_82_esto_ya_es_otra_cosa_shingeki_no_kyojin',
+  name: 'Shingeki No Kyojin',
+  categoria: 'shingeki_no_kyojin',
+  temporada: '4',
+  episodio: '79-82',
+  title: 'Reacción a Shingeki no Kyojin ⚔️🔥 ep 79–82 (esto ya es otra cosa…)',
+  title2: 'Reacción completa en vivo',
+  description: 'En este bloque reaccionamos a Attack on Titan (Shingeki no Kyojin), episodios 79 al 82, donde la historia deja de insinuar… y empieza a golpear directo. Todo lo que se venía construyendo explota aquí: decisiones irreversibles, revelaciones que cambian completamente el panorama y una sensación constante de que ya no hay vuelta atrás para nadie.\n\nFue de esos episodios donde cada minuto pesa. Momentos que en directo nos dejaron callados, otros donde simplemente no sabíamos cómo procesar lo que estaba pasando. La tensión no baja, y cuando parece que lo hará… empeora.\n\nDe esos bloques que se sienten como un punto de no retorno dentro de la serie.\n\nSi te gusta vivir este tipo de historias intensas acompañado, esto se disfruta diferente.\n\nY si aún no eres miembro Premium, este es el tipo de experiencias que te estás perdiendo 👀',
+  thumbnail: 'Imagenes/🎥 Directo — SNK T4 Parte 4 (Eps. 79 - 82).png',
+  source: 'https://rumble.com/embed/v75vyc6/?pub=4nmhh2',
+  type: 'iframe'
 }
 
 
