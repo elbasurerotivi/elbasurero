@@ -1,6 +1,18 @@
 // js/videos.js
 export const categoriasData = {
 
+       nada: {
+    key: 'el_mejor_infarto_de_mi_vida',
+    name:'El mejor infarto de mi vida',
+    background: 'Imagenes/El mejor infarto de mi vida.png',     // Fondo grande
+    cover: 'Imagenes/El mejor infarto de mi vida.png',               // Carátula pequeña
+    title: 'El mejor infarto de mi vida',
+    synopsis: 'Ariel, un escritor fantasma en crisis personal y matrimonial, recibe el encargo de escribir la biografía de un abogado mediático mientras intenta recomponer su vida; en medio de esta etapa confusa, acepta salir a un espectáculo donde conoce a una mujer que marcará un punto de quiebre, iniciando una cadena de decisiones que lo llevarán hacia el evento que cambiará su vida por completo.',
+    year: '2025',
+    genre: 'Comedia • Drama',
+    cast: 'Alan Sabbagh, Olivia Molina, Rogelio Gracia Bernada, Romina Peluffo, Eleonora Wexler, Rita Cortese, Rafael Spregelburd, Imanol Arias'
+  },
+
     nada: {
     key: 'nada',
     name:'Nada',
@@ -1899,6 +1911,20 @@ export const videosPremium = [
   description: 'En este bloque reaccionamos a Attack on Titan (Shingeki no Kyojin), episodios 79 al 82, donde la historia deja de insinuar… y empieza a golpear directo. Todo lo que se venía construyendo explota aquí: decisiones irreversibles, revelaciones que cambian completamente el panorama y una sensación constante de que ya no hay vuelta atrás para nadie.\n\nFue de esos episodios donde cada minuto pesa. Momentos que en directo nos dejaron callados, otros donde simplemente no sabíamos cómo procesar lo que estaba pasando. La tensión no baja, y cuando parece que lo hará… empeora.\n\nDe esos bloques que se sienten como un punto de no retorno dentro de la serie.\n\nSi te gusta vivir este tipo de historias intensas acompañado, esto se disfruta diferente.\n\nY si aún no eres miembro Premium, este es el tipo de experiencias que te estás perdiendo 👀',
   thumbnail: 'Imagenes/🎥 Directo — SNK T4 Parte 4 (Eps. 79 - 82).png',
   source: 'https://rumble.com/embed/v75vyc6/?pub=4nmhh2',
+  type: 'iframe'
+},
+
+     {
+  id: 'reaccion_a_el_mejor_infarto_de_mi_vida_ep_1_ariel_vaya_inicio_el_mejor_infarto_de_mi_vida',
+  name: 'El mejor infarto de mi vida',
+  categoria: 'el_mejor_infarto_de_mi_vida',
+  temporada: '1',
+  episodio: '1',
+  title: 'Reacción a El mejor infarto de mi vida 🇦🇷💔 Ep 1 (Ariel… vaya inicio)',
+  title2: 'Arielitooo...',
+  description: 'En este primer episodio de El mejor infarto de mi vida conocemos a Ariel, un personaje que arranca desde un lugar completamente cotidiano… pero que rápidamente se ve atravesado por una situación que lo cambia todo. La serie mezcla humor, incomodidad y momentos muy humanos de una forma que te agarra desprevenido.\n\nFue de esos comienzos donde uno no sabe bien hacia dónde va la historia, pero algo te dice que vale la pena quedarte. En directo se sintió mucho esa curiosidad, ese ir descubriendo poco a poco el tono y conectando con lo que le pasa al personaje.\n\nDe esos arranques que no necesitan exagerar para engancharte.\n\nSi te gusta empezar series así, acompañado y comentando cada momento, esto se disfruta distinto.',
+  thumbnail: 'Imagenes/El mejor infarto de mi vida Ep 1.png',
+  source: 'https://rumble.com/embed/v75yqpe/?pub=4nmhh2',
   type: 'iframe'
 }
 
