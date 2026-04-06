@@ -5,7 +5,7 @@ export const categoriasData = {
     key: 'el_mejor_infarto_de_mi_vida',
     name:'El mejor infarto de mi vida',
     background: 'Imagenes/El mejor infarto de mi vida.png',     // Fondo grande
-    cover: 'Imagenes/El mejor infarto de mi vida.png',               // Carátula pequeña
+    cover: 'Imagenes/El mejor infarto de mi vida caratula.jpg',               // Carátula pequeña
     title: 'El mejor infarto de mi vida',
     synopsis: 'Ariel, un escritor fantasma en crisis personal y matrimonial, recibe el encargo de escribir la biografía de un abogado mediático mientras intenta recomponer su vida; en medio de esta etapa confusa, acepta salir a un espectáculo donde conoce a una mujer que marcará un punto de quiebre, iniciando una cadena de decisiones que lo llevarán hacia el evento que cambiará su vida por completo.',
     year: '2025',
