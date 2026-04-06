@@ -1,7 +1,7 @@
 // js/videos.js
 export const categoriasData = {
 
-       nada: {
+       el_mejor_infarto_de_mi_vida: {
     key: 'el_mejor_infarto_de_mi_vida',
     name:'El mejor infarto de mi vida',
     background: 'Imagenes/El mejor infarto de mi vida.png',     // Fondo grande
