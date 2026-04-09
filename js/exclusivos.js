@@ -1282,6 +1282,34 @@ export const videosExclusivos = [
   thumbnail: 'Imagenes/🎥 Directo — SNK T4 Parte 4 (Eps. 79 - 82).png',
   source: 'https://rumble.com/embed/v75vyc6/?pub=4nmhh2',
   type: 'iframe'
+},
+
+    {
+  id: 'reaccion_a_el_polaquito_mas_cruda_de_lo_que_esperaba_peliculas',
+  name: 'Películas',
+  categoria: 'peliculas',
+  temporada: '0',
+  episodio: '0',
+  title: 'Reacción a El Polaquito 🇦🇷🖤 (más cruda de lo que esperaba…)',
+  title2: 'Lunes de Argentina. Reacción en vivo',
+  description: 'En este lunes de Argentina nos metimos con El Polaquito, una historia que sigue a un chico en situación de calle intentando sobrevivir en un entorno que no le da tregua. Lo que parecía que podía ir por un lado más ligero termina siendo mucho más duro, mostrando una realidad incómoda sin suavizarla.\n\nFue de esas películas que te agarran desprevenido. En directo se sintió ese cambio: de la curiosidad inicial a quedarnos más callados, procesando lo que estábamos viendo. No es una historia fácil, pero justo por eso se queda contigo.\n\nDe esos lunes donde la experiencia se vuelve más pesada… pero también más real.\n\nSi te gusta explorar este tipo de cine acompañado, aquí hay mucho de eso.',
+  thumbnail: 'Imagenes/El Polaquito.png',
+  source: 'https://rumble.com/embed/v762w2i/?pub=4nmhh2',
+  type: 'iframe'
+},
+
+  {
+  id: 'reaccion_a_rocky_ii_mucho_mejor_de_lo_que_esperaba_una_secuela_peliculas',
+  name: 'Películas',
+  categoria: 'peliculas',
+  temporada: '0',
+  episodio: '0',
+  title: 'Reacción a Rocky II 🥊🔥 (mucho mejor de lo que esperaba una secuela)',
+  title2: 'Miércoles de clásicos. Reacción en Vivo.',
+  description: 'En este miércoles de clásicos vimos Rocky II, continuando la historia de Rocky después de la primera pelea. La película se enfoca más en el crecimiento del personaje, en sus dudas, su vida fuera del ring y en cómo se prepara para volver a enfrentarse a Apollo. El guion sorprende por lo bien construido que está, haciendo que todo se sienta más sólido y emocional de lo que uno esperaría de una secuela.\n\nFue de esas noches donde la película cumple… y luego seguimos estirando el momento. Después nos aventamos un video de curiosidades que le dio todavía más sabor a lo que acabábamos de ver, y para cerrar como en los viejos tiempos, terminamos con un video de Mariano Rodríguez sobre Jurassic Park.\n\nDe esos directos completos, donde no solo ves una película… sino todo lo que viene después.\n\nSi te gusta quedarte más allá del final, aquí se vive justo eso.',
+  thumbnail: 'Imagenes/Rocky 2.png',
+  source: 'https://rumble.com/embed/v762w3q/?pub=4nmhh2',
+  type: 'iframe'
 }
 
 ];
