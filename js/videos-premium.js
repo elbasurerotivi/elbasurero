@@ -1954,6 +1954,34 @@ export const videosPremium = [
   thumbnail: 'Imagenes/Rocky 2.png',
   source: 'https://rumble.com/embed/v762w3q/?pub=4nmhh2',
   type: 'iframe'
+},
+
+         {
+  id: 'reaccion_a_shingeki_no_kyojin_final_pt_1_ep_83_87_esto_ya_no_se_detiene_shingeki_no_kyojin',
+  name: 'Shingeki No Kyojin',
+  categoria: 'shingeki_no_kyojin',
+  temporada: '4',
+  episodio: '83-87',
+  title: 'Reacción a Shingeki no Kyojin ⚔️🔥 FINAL Pt.1 (ep 83–87… esto ya no se detiene)',
+  title2: 'GRAN FINAL - PARTE 1',
+  description: 'En este bloque arrancamos el cierre de Attack on Titan con los episodios 83 al 87, los últimos antes del desenlace final. Todo lo que la serie vino construyendo durante tanto tiempo llega a un punto donde ya no hay espacio para dudas: decisiones extremas, consecuencias inevitables y una tensión que no da respiro.\n\nEste fue parte de un mismo live larguísimo que tuvimos que dividir en dos porque simplemente no cabía completo. Y se siente así: como una montaña rusa que ya no baja la intensidad. Cada episodio empuja más fuerte que el anterior, y en directo se vivió con esa mezcla de emoción, shock y silencio que solo esta serie sabe provocar.\n\nDe esos momentos donde sabes que estás viendo el principio del fin… y no hay forma de prepararte del todo.',
+  thumbnail: 'Imagenes/🎥 Directo — SNK T4 GRAN FINAL, PARTE 1, Eps. 83-87).png',
+  source: 'https://rumble.com/embed/v767jnw/?pub=4nmhh2',
+  type: 'iframe'
+},
+
+  {
+  id: 'reaccion_a_shingeki_no_kyojin_final_pt_2_el_cierre_y_que_cierre_shingeki_no_kyojin',
+  name: 'Shingeki No Kyojin',
+  categoria: 'shingeki_no_kyojin',
+  temporada: '4',
+  episodio: 'SP1 y SP2',
+  title: 'Reacción a Shingeki no Kyojin ⚔️🔥 FINAL Pt.2 (el cierre… y qué cierre)',
+  title2: 'GRAN FINAL - PARTE 2',
+  description: 'Aquí llegamos al final de Attack on Titan. Esta segunda parte corresponde al gran desenlace, que como explicó la comunidad, realmente funciona como una película dividida en dos partes: un “episodio” de aproximadamente una hora y otro de hora y media. Y se siente exactamente así… como un final a lo grande.\n\nEste es el mismo live que tuvimos que partir en dos por lo extenso que fue, pero aquí es donde todo termina de explotar. Emocionalmente, narrativamente… todo. Fue un cierre que nos tuvo completamente pegados a la pantalla, procesando cada momento junto con el chat.\n\nDespués de meses siguiendo esta historia, este final se sintió como tenía que sentirse: grande, intenso y muy difícil de soltar.\n\nDe esos cierres que no solo ves… se quedan contigo.',
+  thumbnail: 'Imagenes/🎥 Directo — SNK T4 GRAN FINAL, PARTE 2, Eps. SP1 y SP2 (Película).png',
+  source: 'https://rumble.com/embed/v767jtg/?pub=4nmhh2',
+  type: 'iframe'
 }
 
 
