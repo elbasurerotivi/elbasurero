@@ -1,6 +1,18 @@
 // js/videos.js
 export const categoriasData = {
 
+            peliculas: {
+    key: 'peliculas',
+    name:'Películas',
+    background: 'Imagenes/ChatGPT Image 15 abr 2026, 01_16_17 a.m..png',     // Fondo grande
+    cover: 'Imagenes/poster_peliculas.png',               // Carátula pequeña  
+    title: 'Películas',
+    synopsis: 'Este es un espacio dedicado especialmente a todas esas peliculas que vemos cada semana!!',
+    year: '2025',
+    genre: 'Películas de todo tipo',
+    cast: 'Edgar y el chat'
+  },
+       
        el_mejor_infarto_de_mi_vida: {
     key: 'el_mejor_infarto_de_mi_vida',
     name:'El mejor infarto de mi vida',
@@ -36,19 +48,6 @@ export const categoriasData = {
     genre: 'Comedia • Drama',
     cast: 'Guillermo Francella, Gabriel Goity, Gastón Cocchiarale'
   },
-
-            peliculas: {
-    key: 'peliculas',
-    name:'Películas',
-    background: 'Imagenes/ChatGPT Image 15 abr 2026, 01_16_17 a.m..png',     // Fondo grande
-    cover: 'Imagenes/poster_peliculas.png',               // Carátula pequeña  
-    title: 'Películas',
-    synopsis: 'Este es un espacio dedicado especialmente a todas esas peliculas que vemos cada semana!!',
-    year: '2025',
-    genre: 'Películas de todo tipo',
-    cast: 'Edgar y el chat'
-  },
-       
 
    okupas: {
     key: 'okupas',
