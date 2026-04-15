@@ -1982,6 +1982,20 @@ export const videosPremium = [
   thumbnail: 'Imagenes/🎥 Directo — SNK T4 GRAN FINAL, PARTE 2, Eps. SP1 y SP2 (Película).png',
   source: 'https://rumble.com/embed/v767jtg/?pub=4nmhh2',
   type: 'iframe'
+},
+
+        {
+  id: 'reaccion_a_hombre_mirando_al_sudeste_lenta_pero_te_atrapa_peliculas',
+  name: 'Películas',
+  categoria: 'peliculas',
+  temporada: '0',
+  episodio: '0',
+  title: 'Reacción a Hombre mirando al sudeste 🧠🇦🇷 (lenta… pero te atrapa)',
+  title2: 'Está loco? Es humano? El sonidista nos odia?',
+  description: 'En este lunes de Argentina vimos Hombre mirando al sudeste, una historia que gira alrededor de un paciente psiquiátrico que afirma venir de otro planeta, poniendo en duda constantemente qué es real y qué no. Es una de esas películas que se toman su tiempo, que avanzan despacio… pero que te van metiendo en su mundo sin que te des cuenta.\nLa vimos en Twitch el lunes 13 de abril, y aunque la comunidad ya advertía que podía sentirse “lenta”, terminó siendo una experiencia muy interesante. Hubo momentos donde el audio jugó en contra —la música tapando varios diálogos— pero justo ahí se sintió fuerte lo comunitario: gente que ya la había visto ayudando a entender detalles, completando lo que no se alcanzaba a escuchar y haciendo que la experiencia fuera mucho más completa.\nAdemás, en este directo empezamos a dar insignias VIP a quienes participan, aportan y elevan la reacción. Y la verdad… funcionó. Se sintió más vivo, más conectado, más colaborativo.\nSi te gusta este tipo de películas que te hacen pensar y además quieres formar parte activa del directo, este es buen momento para caerle… porque esas insignias no se regalan 👀',
+  thumbnail: 'Imagenes/ChatGPT Image 15 abr 2026, 01_16_17 a.m..png',
+  source: 'https://rumble.com/embed/v76c9c6/?pub=4nmhh2',
+  type: 'iframe'
 }
 
 
