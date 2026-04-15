@@ -37,6 +37,19 @@ export const categoriasData = {
     cast: 'Guillermo Francella, Gabriel Goity, Gastón Cocchiarale'
   },
 
+            peliculas: {
+    key: 'peliculas',
+    name:'Películas',
+    background: 'Imagenes/portada_peliculas.jpg',     // Fondo grande
+    cover: 'Imagenes/poster_peliculas.png',               // Carátula pequeña  
+    title: 'Películas',
+    synopsis: 'Este es un espacio dedicado especialmente a todas esas peliculas que vemos cada semana!!',
+    year: '2025',
+    genre: 'Películas de todo tipo',
+    cast: 'Edgar y el chat'
+  },
+       
+
    okupas: {
     key: 'okupas',
     name:'Okupas',
@@ -110,17 +123,6 @@ export const categoriasData = {
     cast: 'Yuki Kaji, Marina Inoue, Yui Ishikawa'
   },
    
-     peliculas: {
-    key: 'peliculas',
-    name:'Películas',
-    background: 'Imagenes/portada_peliculas.jpg',     // Fondo grande
-    cover: 'Imagenes/poster_peliculas.png',               // Carátula pequeña  
-    title: 'Películas',
-    synopsis: 'Este es un espacio dedicado especialmente a todas esas peliculas que vemos cada semana!!',
-    year: '2025',
-    genre: 'Películas de todo tipo',
-    cast: 'Edgar y el chat'
-  },
    bloqueados_de_youtube: {
     key: 'bloqueados_de_youtube',
     name:'Bloqueados de YouTube',
