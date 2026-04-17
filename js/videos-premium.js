@@ -1997,6 +1997,20 @@ export const videosPremium = [
   thumbnail: 'Imagenes/ChatGPT Image 15 abr 2026, 01_16_17 a.m..png',
   source: 'https://rumble.com/embed/v76c9c6/?pub=4nmhh2',
   type: 'iframe'
+},
+
+             {
+  id: 'reaccion_a_frequency_no_esperaba_que_fuera_tan_buena_peliculas',
+  name: 'Películas',
+  categoria: 'peliculas',
+  temporada: '0',
+  episodio: '0',
+  title: 'Reacción a Frequency 📻⏳ (no esperaba que fuera tan buena…)',
+  title2: 'Agradable sorpresa. De esas películas a las que entro a ciegas.',
+  description: 'En este miércoles de clásicos vimos Frequency, una historia donde un policía logra comunicarse con su padre en el pasado a través de una radio, desatando una serie de eventos que empiezan a alterar el presente de formas cada vez más intensas. Es de esas películas que mezclan emoción, misterio y ciencia ficción de una manera muy bien llevada.\n\nLa vimos en Twitch en comunidad y fue de esos visionados que te van atrapando poco a poco… hasta que ya estás completamente metido. La película tiene momentos que pegan fuerte, giros que se disfrutan mucho en directo y ese tipo de historia que se presta perfecto para reaccionarla acompañado.\n\nLa verdad, terminó siendo mucho mejor de lo que esperaba.\n\nDe esas que funcionan solas… pero en comunidad se disfrutan el doble.',
+  thumbnail: 'Imagenes/Frequency.png',
+  source: 'https://rumble.com/embed/v76gsjw/?pub=4nmhh2',
+  type: 'iframe'
 }
 
 
