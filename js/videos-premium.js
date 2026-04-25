@@ -52,8 +52,8 @@ export const categoriasData = {
             avatar_la_leyenda_de_aang: {
     key: 'avatar_la_leyenda_de_aang',
     name:'Avatar, La leyenda de Aang',
-    background: 'Imagenes/Avatar, Temporada 1. Parte 1 - Episodios 1-5.png',     // Fondo grande
-    cover: '526761.jpg',               // Carátula pequeña
+    background: '526761.jpg',     // Fondo grande
+    cover: 'Imagenes/Carátula AVATAR, AANG crop story.png',               // Carátula pequeña
     title: 'Avatar, La leyenda de Aang',
     synopsis: 'Katara y Sokka descubren a Aang, un misterioso niño atrapado en un iceberg que resulta ser el Avatar, el único capaz de dominar los cuatro elementos; mientras el mundo está al borde de la guerra por la expansión de la Nación del Fuego, su despertar marca el inicio de un viaje que podría restaurar el equilibrio, aunque también atrae la atención del exiliado príncipe Zuko.',
     year: '2005',
