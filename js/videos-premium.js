@@ -2023,6 +2023,20 @@ export const videosPremium = [
   thumbnail: 'Imagenes/Frequency.png',
   source: 'https://rumble.com/embed/v76gsjw/?pub=4nmhh2',
   type: 'iframe'
+},
+
+            {
+  id: 'reaccion_a_avatar_la_leyenda_de_aang_ep_1_5_que_energia_se_armo_avatar_la_leyenda_de_aang',
+  name: 'Avatar, La leyenda de Aang',
+  categoria: 'avatar_la_leyenda_de_aang',
+  temporada: '1',
+  episodio: '1-5',
+  title: 'Reacción a Avatar: La leyenda de Aang 🌊🔥 ep 1–5 (qué energía se armó…)',
+  title2: 'Gran serie. ¡¡¡Gran inicio!!!',
+  description: 'En este directo en Twitch arrancamos Avatar: The Last Airbender con los primeros 5 episodios del Libro 1, y la verdad… se sintió desde el inicio que esta serie iba a conectar fuerte con la comunidad. La energía fue buenísima, muy natural, de esas veces donde todo fluye solo y la gente lo disfruta de verdad.\n\nVimos:\n\nEpisodio 1 – “El niño en el iceberg”\nKatara y Sokka descubren a Aang atrapado en el hielo, dando inicio a una historia que mezcla aventura y destino desde el primer momento.\n\nEpisodio 2 – “El Avatar regresa”\nAang empieza a asumir quién es realmente, mientras la amenaza de la Nación del Fuego se hace presente.\n\nEpisodio 3 – “El templo del aire del sur”\nUn episodio más emocional donde Aang enfrenta la realidad de su pasado y lo que ha perdido.\n\nEpisodio 4 – “Los guerreros de Kyoshi”\nEl grupo llega a una isla donde Aang aprende una lección importante sobre responsabilidad y orgullo.\n\nEpisodio 5 – “El rey de Omashu”\nUn capítulo más ligero y creativo que muestra el ingenio de Aang y la riqueza del mundo que están construyendo.\n\nFue un arranque redondo. Me la pasé muy bien, pero más importante aún, se sintió que la comunidad también lo estaba disfrutando mucho. De esos comienzos donde no solo te engancha la historia… sino todo lo que se genera alrededor.',
+  thumbnail: 'Imagenes/Avatar, Temporada 1. Parte 1 - Episodios 1-5.png',
+  source: 'https://rumble.com/embed/v76tcmc/?pub=4nmhh2',
+  type: 'iframe'
 }
 
 
