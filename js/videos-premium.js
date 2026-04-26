@@ -2037,6 +2037,76 @@ export const videosPremium = [
   thumbnail: 'Imagenes/Avatar, Temporada 1. Parte 1 - Episodios 1-5.png',
   source: 'https://rumble.com/embed/v76tcmc/?pub=4nmhh2',
   type: 'iframe'
+},
+
+             {
+  id: 'reaccion_a_el_mejor_infarto_de_mi_vida_ep_2_ariel_y_concha_me_pego_distinto_el_mejor_infarto_de_mi_vida',
+  name: 'El mejor infarto de mi vida',
+  categoria: 'el_mejor_infarto_de_mi_vida',
+  temporada: '1',
+  episodio: '2',
+  title: 'Reacción a El mejor infarto de mi vida 🇦🇷💔 Ep 2 (Ariel y Concha… me pegó distinto)',
+  title2: 'Necesitaba volver a la serie que me hablaba a mí',
+  description: 'En el episodio 2, “Ariel y Concha”, de El mejor infarto de mi vida, la historia empieza a abrirse hacia nuevas conexiones, mostrando cómo los personajes se van entrelazando desde lugares inesperados. Ariel sigue cargando con lo que le pasó, pero ahora el enfoque también nos deja ver otras perspectivas que enriquecen lo que ya veníamos sintiendo.\n\nEntré a este episodio muy entusiasmado, porque el anterior me había hablado casi de forma personal… y aquí se mantuvo esa conexión. Fue de esos capítulos donde ya no solo estás viendo, sino proyectando cosas propias en lo que está pasando.\n\nLa serie empieza a agarrar forma… y a meterse un poco más adentro.',
+  thumbnail: 'Imagenes/El mejor infarto de mi vida Ep 2.png',
+  source: 'https://rumble.com/embed/v76ths2/?pub=4nmhh2',
+  type: 'iframe'
+},
+
+  {
+  id: 'reaccion_a_el_mejor_infarto_de_mi_vida_ep_3_te_pone_en_otro_lugar_el_mejor_infarto_de_mi_vida',
+  name: 'El mejor infarto de mi vida',
+  categoria: 'el_mejor_infarto_de_mi_vida',
+  temporada: '1',
+  episodio: '3',
+  title: 'Reacción a El mejor infarto de mi vida 🇦🇷💭 Ep 3 (te pone en otro lugar…)',
+  title2: 'Ecce infarctus',
+  description: 'En el episodio 3, “Alejandra y Javier”, de El mejor infarto de mi vida, la narrativa cambia de perspectiva y se mete de lleno en la experiencia de alguien que vive la enfermedad desde la inmovilidad, desde la imposibilidad de actuar. Es un capítulo que se siente distinto, más introspectivo, más incómodo en ciertos momentos.\n\nAl inicio me sacó un poco ese cambio de enfoque, pero conforme avanza y se conecta con la trama original, todo empieza a tener más sentido. Termina siendo un episodio que invita mucho a reflexionar, más que a reaccionar de forma inmediata.\n\nDe esos que te mueven por dentro sin hacer mucho ruido.',
+  thumbnail: 'Imagenes/El mejor infarto de mi vida Ep 3.png',
+  source: 'https://rumble.com/embed/v76thsm/?pub=4nmhh2',
+  type: 'iframe'
+},
+
+  {
+  id: 'reaccion_a_el_mejor_infarto_de_mi_vida_ep_4_ya_se_empieza_a_notar_el_mejor_infarto_de_mi_vida',
+  name: 'El mejor infarto de mi vida',
+  categoria: 'el_mejor_infarto_de_mi_vida',
+  temporada: '1',
+  episodio: '4',
+  title: 'Reacción a El mejor infarto de mi vida 🇦🇷👀 Ep 4 (ya se empieza a notar…)',
+  title2: 'El \'product placement\' se hace presente -_-',
+  description: 'En el episodio 4, “Ariel, Javier, Alejandra y Joe”, de El mejor infarto de mi vida, las distintas historias comienzan a cruzarse más claramente, dándole más peso al conjunto. Ya se siente que todo forma parte de algo más grande.\n\nAquí también empieza a asomarse el tema del product placement. Nada exagerado todavía, pero sí lo suficiente como para notarlo. Aun así, en este punto seguía muy metido en las tramas y en cómo se estaban desarrollando los personajes.\n\nTodavía había mucho interés… y muchas ganas de ver hacia dónde iba todo.',
+  thumbnail: 'Imagenes/El mejor infarto de mi vida Ep 4.png',
+  source: 'https://rumble.com/embed/v76thsu/?pub=4nmhh2',
+  type: 'iframe'
+},
+
+  {
+  id: 'reaccion_a_el_mejor_infarto_de_mi_vida_ep_5_concha_necesitaba_esto_el_mejor_infarto_de_mi_vida',
+  name: 'El mejor infarto de mi vida',
+  categoria: 'el_mejor_infarto_de_mi_vida',
+  temporada: '1',
+  episodio: '5',
+  title: 'Reacción a El mejor infarto de mi vida 🇦🇷🔥 Ep 5 (Concha necesitaba esto)',
+  title2: 'La historia de Concha!!! GRACIASSSSSS...',
+  description: 'En el episodio 5, “Concha, Joni y Los Chungos”, de El mejor infarto de mi vida, por fin se le da más espacio a Concha, profundizando en su contexto y dándole más dimensión como personaje. Era algo que hacía falta, y se siente.\n\nEste capítulo aporta mucho en ese sentido. No solo complementa lo que ya sabíamos, sino que le da más peso emocional a su presencia dentro de la historia. Fue de esos episodios que, sin hacer demasiado ruido, terminan siendo clave.\n\nAquí la serie vuelve a conectar bastante bien.',
+  thumbnail: 'Imagenes/El mejor infarto de mi vida Ep 5.png',
+  source: 'https://rumble.com/embed/v76tht2/?pub=4nmhh2',
+  type: 'iframe'
+},
+
+  {
+  id: 'reaccion_a_el_mejor_infarto_de_mi_vida_ep_6_el_final_me_dejo_raro_el_mejor_infarto_de_mi_vida',
+  name: 'El mejor infarto de mi vida',
+  categoria: 'el_mejor_infarto_de_mi_vida',
+  temporada: '1',
+  episodio: '6',
+  title: 'Reacción a El mejor infarto de mi vida 🇦🇷🎭 Ep 6 (el final… me dejó raro)',
+  title2: 'Ok. Es una serie.',
+  description: 'En el episodio 6, “Toda la orquesta”, de El mejor infarto de mi vida, llegamos al cierre de la historia. Todo se junta, todo se resuelve… pero no necesariamente de la forma que esperaba.\n\nAl final me quedé con un sabor de boca un tanto raro. Me molestó bastante la sensación de que todo terminó girando alrededor de un gran product placement, como si la historia hubiera sido un vehículo para eso. Además, se sintió como si realmente no hubiera habido un conflicto fuerte que sostuviera todo hasta el final.\n\nY eso pesa, porque venía muy interesado en la historia. Lo hablo justo al terminar el episodio.\n\nDe esos finales que te hacen pensar más en lo que pudo haber sido.',
+  thumbnail: 'Imagenes/El mejor infarto de mi vida Ep 6.png',
+  source: 'https://rumble.com/embed/v76thtq/?pub=4nmhh2',
+  type: 'iframe'
 }
 
 
