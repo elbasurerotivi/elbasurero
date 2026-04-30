@@ -176,42 +176,7 @@ window.loginGoogle = function() {
   signInWithRedirect(auth, provider);
 };
 
-  signInWithPopup(auth, provider)
-    .then(async (result) => {
-      const user = result.user;
-      const userRef = ref(db, `users/${user.uid}`);
-
-      try {
-
-        const snapshot = await get(userRef);
-
-        // SOLO crear si no existe
-        if (!snapshot.exists()) {
-
-          await set(userRef, {
-            email: user.email,
-            username: user.displayName || user.email.split("@")[0],
-            role: "user",
-            createdAt: Date.now()
-          });
-
-          console.log("Usuario creado en DB");
-        } else {
-          console.log("Usuario ya existe, no se sobrescribe");
-        }
-
-        alert(`Bienvenido, ${user.displayName || user.email}!`);
-        cerrarLogin();
-
-      } catch (error) {
-        console.error("Error al guardar usuario:", error);
-        alert("Error al guardar tus datos.");
-      }
-    })
-    .catch(error => {
-      console.error("Error de autenticación:", error);
-      alert(error.message);
-    });
+  
 
 // -----------------------------
 // 🔹 Login con Facebook
@@ -219,8 +184,10 @@ window.loginGoogle = function() {
 window.loginFacebook = function() {
   console.log("Iniciando autenticación con Facebook...");
   const provider = new FacebookAuthProvider();
-  signInWithRedirect(auth, provider)
-    .then(result => {
+  window.loginFacebook = function() {
+  const provider = new FacebookAuthProvider();
+  signInWithRedirect(auth, provider);
+};
       const user = result.user;
       console.log("Autenticación con Facebook exitosa:", user.email);
       const userRef = ref(db, `users/${user.uid}`);
@@ -234,20 +201,6 @@ window.loginFacebook = function() {
         alert(`Bienvenido, ${user.displayName || user.email}!`);
         cerrarLogin();
       });
-    })
-    .catch(error => {
-      console.error("Error al iniciar sesión con Facebook:", error);
-      let errorMessage = "Error al iniciar sesión con Facebook.";
-      if (error.code === "auth/popup-closed-by-user") {
-        errorMessage = "El popup se cerró antes de completar el proceso. Por favor, intenta de nuevo y no cierres la ventana.";
-      } else if (error.code === "auth/popup-blocked") {
-        errorMessage = "El popup fue bloqueado por el navegador. Permite popups para este sitio en la configuración de tu navegador.";
-      } else {
-        errorMessage = error.message;
-      }
-      alert(errorMessage);
-    });
-};
 
 // -----------------------------
 // 🔹 Logout
@@ -402,4 +355,4 @@ getRedirectResult(auth)
   })
   .catch((error) => {
     console.error("Error después del redirect:", error);
-  });
+  })};
