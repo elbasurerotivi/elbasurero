@@ -5,7 +5,8 @@ import {
   onAuthStateChanged,
   GoogleAuthProvider,
   FacebookAuthProvider,
-  signInWithPopup,
+  signInWithRedirect,
+  getRedirectResult,
   signInWithRedirect,
   getRedirectResult,
   signOut
@@ -169,7 +170,8 @@ document.getElementById("actionBtn")?.addEventListener("click", () => {
 // 🔹 Login con Google
 // -----------------------------
 window.loginGoogle = function() {
-  console.log("Iniciando autenticación con Google...");
+  console.log("Login con Google (redirect)");
+
   const provider = new GoogleAuthProvider();
   provider.setCustomParameters({ prompt: 'select_account' });
 
@@ -377,10 +379,11 @@ getRedirectResult(auth)
   .then(async (result) => {
     if (!result) return;
 
-    const user = result.user;
-    console.log("Usuario logueado:", user.email);
+    console.log("Resultado de redirect:", result);
 
+    const user = result.user;
     const userRef = ref(db, `users/${user.uid}`);
+
     const snapshot = await get(userRef);
 
     if (!snapshot.exists()) {
@@ -390,12 +393,15 @@ getRedirectResult(auth)
         role: "user",
         createdAt: Date.now()
       });
+
       console.log("Usuario creado en DB");
+    } else {
+      console.log("Usuario ya existía");
     }
 
     alert(`Bienvenido, ${user.displayName || user.email}!`);
-    cerrarLogin();
+
   })
   .catch((error) => {
-    console.error("Error post-redirect:", error);
+    console.error("Error después del redirect:", error);
   });
