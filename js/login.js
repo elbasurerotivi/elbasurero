@@ -173,6 +173,9 @@ window.loginGoogle = function() {
   const provider = new GoogleAuthProvider();
   provider.setCustomParameters({ prompt: 'select_account' });
 
+  signInWithRedirect(auth, provider);
+};
+
   signInWithPopup(auth, provider)
     .then(async (result) => {
       const user = result.user;
@@ -209,7 +212,6 @@ window.loginGoogle = function() {
       console.error("Error de autenticación:", error);
       alert(error.message);
     });
-};
 
 // -----------------------------
 // 🔹 Login con Facebook
@@ -217,7 +219,7 @@ window.loginGoogle = function() {
 window.loginFacebook = function() {
   console.log("Iniciando autenticación con Facebook...");
   const provider = new FacebookAuthProvider();
-  signInWithPopup(auth, provider)
+  signInWithRedirect(auth, provider)
     .then(result => {
       const user = result.user;
       console.log("Autenticación con Facebook exitosa:", user.email);
@@ -370,3 +372,30 @@ window.createPremiumUser = async function(email, password, username) {
     alert("Error: " + msg);
   }
 };
+
+getRedirectResult(auth)
+  .then(async (result) => {
+    if (!result) return;
+
+    const user = result.user;
+    console.log("Usuario logueado:", user.email);
+
+    const userRef = ref(db, `users/${user.uid}`);
+    const snapshot = await get(userRef);
+
+    if (!snapshot.exists()) {
+      await set(userRef, {
+        email: user.email,
+        username: user.displayName || user.email.split("@")[0],
+        role: "user",
+        createdAt: Date.now()
+      });
+      console.log("Usuario creado en DB");
+    }
+
+    alert(`Bienvenido, ${user.displayName || user.email}!`);
+    cerrarLogin();
+  })
+  .catch((error) => {
+    console.error("Error post-redirect:", error);
+  });
