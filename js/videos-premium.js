@@ -205,6 +205,18 @@ el_eternauta: {
     genre: 'Comedia',
     cast: 'Martín Piroyansky, Sofía Morandi, Ignacio Saralegui, Martín Pavlovsky, Eliseo Barrionuevo, Javier Niklison'
   },
+
+  variete: {
+    key: 'variete',
+    name:'variete',
+    background: 'Imagenes/portada_variete.jpeg',     // Fondo grande
+    cover: 'Imagenes/portada_variete.jpeg',               // Carátula pequeña
+    title: 'Variete',
+    synopsis: 'Cosas random, de todo',
+    year: '2026',
+    genre: 'Varieté · Musica · Clips · Lo que sea',
+    cast: 'La comunidad del Basurero'
+  },
   
 };
 export const videosPremium = [
