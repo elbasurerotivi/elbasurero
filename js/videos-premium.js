@@ -2107,6 +2107,20 @@ export const videosPremium = [
   thumbnail: 'Imagenes/El mejor infarto de mi vida Ep 6.png',
   source: 'https://rumble.com/embed/v76thtq/?pub=4nmhh2',
   type: 'iframe'
+},
+
+             {
+  id: 'reaccion_a_avatar_la_leyenda_de_aang_ep_6_8_avatar_la_leyenda_de_aang',
+  name: 'Avatar, La leyenda de Aang',
+  categoria: 'avatar_la_leyenda_de_aang',
+  temporada: '1',
+  episodio: '6-8',
+  title: 'Reacción a Avatar: La leyenda de Aang 🌊⚡ ep 6–8',
+  title2: 'La energía sigue intacta',
+  description: 'Seguimos con Avatar: The Last Airbender viendo los episodios 6 al 8 del Libro 1 en Twitch con la comunidad, y algo quedó clarísimo: la energía del primer live no fue casualidad. Se volvió a sentir exactamente esa misma vibra de diversión, emoción y conexión con la serie.\n\nMe la pasé muy bien otra vez, y se notaba que la comunidad también estaba completamente metida en el viaje. Esta serie simplemente funciona perfecto para verla acompañado.\n\nVimos:\n\nEpisodio 6 – “Prisioneros”\nKatara intenta ayudar a un grupo de maestros tierra capturados por la Nación del Fuego, enfrentándose a la desesperanza que se ha apoderado de ellos.\n\nEpisodio 7 – “El mundo de los espíritus (solsticio de invierno, parte 1)”\nEl grupo llega a una aldea atacada por un espíritu enfurecido, mientras Aang empieza a acercarse más al lado espiritual de su rol como Avatar.\n\nEpisodio 8 – “Avatar Roku (solsticio de invierno, parte 2)”\nAang intenta llegar al templo de Roku antes del solsticio para recibir orientación crucial, mientras la amenaza de Zuko y Zhao se vuelve cada vez más peligrosa.\n\nEste bloque tuvo un poquito de todo: aventura, humor, tensión',
+  thumbnail: 'Imagenes/Avatar, Temporada 1. Parte 2 - Episodios 6-8.png',
+  source: 'https://rumble.com/embed/v77bole/?pub=4nmhh2',
+  type: 'iframe'
 }
 
 
