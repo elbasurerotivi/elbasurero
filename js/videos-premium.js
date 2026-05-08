@@ -2121,6 +2121,20 @@ export const videosPremium = [
   thumbnail: 'Imagenes/Avatar, Temporada 1. Parte 2 - Episodios 6-8.png',
   source: 'https://rumble.com/embed/v77bole/?pub=4nmhh2',
   type: 'iframe'
+}, 
+
+            {
+  id: 'reaccion_a_avatar_la_leyenda_de_aang_ep_9_12_avatar_la_leyenda_de_aang',
+  name: 'Avatar, La leyenda de Aang',
+  categoria: 'avatar_la_leyenda_de_aang',
+  temporada: '1',
+  episodio: '9-12',
+  title: 'Reacción a Avatar: La leyenda de Aang 🌊🔥 ep 9–12',
+  title2: 'Noche de estrenos y revelaciones',
+  description: 'Seguimos avanzando en Avatar: The Last Airbender con los episodios 9 al 12 del Libro 1, y este directo terminó teniendo una energía muy especial. Fue literalmente noche de estrenos: nuevo layout, nuevas barras de metas en Twitch y hasta micrófono nuevo, regalo de un seguidor 💛\nY la verdad… todo salió increíble. El ambiente estuvo buenísimo y la serie también pegó fuerte esta vez, porque estos episodios empiezan a revelar mucho más sobre el mundo de Aang y hacen crecer bastante a los personajes.\nVimos:\nEpisodio 9 – “El pergamino de agua control”\nKatara encuentra un pergamino de técnicas de agua control y eso desata problemas con unos piratas bastante peligrosos.\nEpisodio 10 – “Jet”\nEl grupo conoce a Jet, un joven rebelde carismático que lucha contra la Nación del Fuego… aunque no todo es tan simple como parece.\nEpisodio 11 – “El gran cañón”\nAang y los demás deben ayudar a dos grupos enfrentados a cruzar un enorme cañón, lidiando con conflictos absurdos y diferencias que llevan años acumulándose.\nEpisodio 12 – “La tormenta”\nUno de los episodios más importantes hasta ahora. Aquí conocemos mucho más del pasado de Aang y también de Zuko, entendiendo mejor por qué son como son.\nFue un bloque muy completo: divertido, emocional y lleno de momentos donde la historia empieza a sentirse más profunda de lo que parecía al principio.\nY sí… definitivamente la energía de estos lives ya no parece coincidencia.',
+  thumbnail: 'Imagenes/Avatar, Temporada 1. Parte 3 - Episodios 9-12.png',
+  source: 'https://rumble.com/embed/v77dapy/?pub=4nmhh2',
+  type: 'iframe'
 }
 
 
