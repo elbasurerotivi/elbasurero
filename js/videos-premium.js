@@ -2135,6 +2135,20 @@ export const videosPremium = [
   thumbnail: 'Imagenes/Avatar, Temporada 1. Parte 3 - Episodios 9-12.png',
   source: 'https://rumble.com/embed/v77dapy/?pub=4nmhh2',
   type: 'iframe'
+},
+
+            {
+  id: 'reaccion_a_la_biblia_de_vox_dei_variete',
+  name: 'Variété',
+  categoria: 'variete',
+  temporada: '0',
+  episodio: '0',
+  title: 'Reacción a La Biblia de Vox Dei 🎸📖',
+  title2: 'Primer live exclusivo de álbum completo',
+  description: 'En este directo nos metimos de lleno con La Biblia, el mítico álbum conceptual de Vox Dei. Pero más allá del disco, este live marcó el inicio de algo nuevo dentro del canal: el primer directo dedicado exclusivamente a escuchar y analizar un álbum completo de principio a fin.\n\nY la experiencia fue muy distinta a los lives musicales normales. En lugar del caos hermoso de siempre, aquí todo se sintió mucho más homogéneo y conectado. Canción tras canción, el análisis fue fluyendo de manera natural, siguiendo el hilo del disco y dejándonos absorber completamente por la propuesta.\n\nFue una noche mucho más inmersiva, más enfocada… de esas donde realmente se siente que estás entrando al mundo del álbum y no solo escuchando canciones sueltas.\n\nAdemás, este directo abre oficialmente una nueva etapa para la comunidad. Lives especiales, sin calendario fijo, anunciados con anticipación y pensados para quienes realmente quieren vivir este tipo de experiencias completas junto al stream.\n\nY honestamente… qué buena manera de empezar.',
+  thumbnail: 'Imagenes/Vox Dei, La Biblia. Álbum. reacción Premium.png',
+  source: 'https://rumble.com/embed/v778fe4/?pub=4nmhh2',
+  type: 'iframe'
 }
 
 
