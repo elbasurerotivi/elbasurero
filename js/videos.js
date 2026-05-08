@@ -1,5 +1,115 @@
 const videosData = [
 
+             {
+  titulo: 'Mexicano reacciona a “10 platillos de comida Argentina” 🇦🇷🤤 | Necesito ir a Argentina',
+  descripcion: 'Este video me dio MUCHÍSIMA hambre 😭\n\nReaccionamos a “10 platillos de comida Argentina”…\ny aunque ya conocía casi todos, igual terminé con antojo de TODO.\n\nEl video es de un canal español.\n\nNo era exactamente lo que buscaba (quería encontrar uno argentino),\npero honestamente me gustó mucho la perspectiva extranjera.\n\nPorque termina pasando algo curioso:\n\nves a alguien de afuera descubrir Argentina…\ny te vuelve a pegar el deseo de conocerla.\n\nIncluso con todo lo complicado que está económicamente ahora mismo…\nsigo queriendo ir muchísimo.\n\n📺 Esto lo vimos reaccionando en el canal\n🍽️ Y sí… terminé sufriendo de hambre\n\n#Argentina #ComidaArgentina #Reacción #Cultura #Gastronomía #Viajes\n\n🤍💙🤍💙🤍💙🤍💙🤍💙\n\n🛜 NUESTRA NUEVA PAGINA WEB!!!\nhttps://elbasurerotivi.github.io/elbasurero/\n\n🔗 Link Tree\nhttps://linktr.ee/elbasurerotivi\n\nMÁS DE NOSOTROS:\n\n💳 Mercadopago\nAlias: elbasurerotv\n\n📺 Twitch\nhttps://www.twitch.tv/elbasurerochido\n\n📲 Grupo de Whatsapp del canal:\nhttps://chat.whatsapp.com/Fyw5G6L8GLm71kMDATHm6P\n\n🖥 Canal de Discord:\nhttps://discord.gg/tZS2jQaDVY\n\nAPOYO AL CANAL:\n\n▶ Membresías de YouTube\nBotón de “Unirse” debajo del video\nhttps://www.youtube.com/channel/UCRE0S6c2_KYBazBhZcm-taw/join\n\n💻 Patreon\nhttps://patreon.com/ElBasureroTi_Vi_Plas\n\n🌎 PayPal\nhttps://paypal.me/edgarmenagarcia\n\n☕ Ko-fi\nhttps://ko-fi.com/elbasurerotv\n\n🤍💙🤍💙🤍💙🤍💙🤍💙',
+  fecha: '2026-05-07',
+  link: 'https://youtu.be/w56U8mXJ-hg',
+  miniatura: 'https://img.youtube.com/vi/w56U8mXJ-hg/maxresdefault.jpg',
+  tags: [
+    'Cultura'
+  ]
+},
+  {
+  titulo: 'Mariano Rodríguez – “Enter the Ninja” | Lunes de Mariano… en martes 😂🥷',
+  descripcion: 'Sí… otra vez.\nY algún día caerá de nuevo en lunes\n\n“Lunes de Mariano”… en martes 😅\n\nPero bueno, lo importante es que hay Mariano Rodríguez,\ny esta vez con “Enter the Ninja”.\n\nY qué video.\n\nDe esos donde no sabes si reírte por la película…\no por cómo Mariano la destruye 😂\n\n📺 Esto lo vimos reaccionando en el canal\n🕘 Y sí… seguimos cumpliendo aunque sea tarde\n\n#MarianoRodriguez #EnterTheNinja #Argentina #Reacción #Humor #LunesDeMariano\n\n🤍💙🤍💙🤍💙🤍💙🤍💙\n\n🛜 NUESTRA NUEVA PAGINA WEB!!!\nhttps://elbasurerotivi.github.io/elbasurero/\n\n🔗 Link Tree\nhttps://linktr.ee/elbasurerotivi\n\nMÁS DE NOSOTROS:\n\n💳 Mercadopago\nAlias: elbasurerotv\n\n📺 Twitch\nhttps://www.twitch.tv/elbasurerochido\n\n📲 Grupo de Whatsapp del canal:\nhttps://chat.whatsapp.com/Fyw5G6L8GLm71kMDATHm6P\n\n🖥 Canal de Discord:\nhttps://discord.gg/tZS2jQaDVY\n\nAPOYO AL CANAL:\n\n▶ Membresías de YouTube\nBotón de “Unirse” debajo del video\nhttps://www.youtube.com/channel/UCRE0S6c2_KYBazBhZcm-taw/join\n\n💻 Patreon\nhttps://patreon.com/ElBasureroTi_Vi_Plas\n\n🌎 PayPal\nhttps://paypal.me/edgarmenagarcia\n\n☕ Ko-fi\nhttps://ko-fi.com/elbasurerotv\n\n🤍💙🤍💙🤍💙🤍💙🤍💙',
+  fecha: '2026-05-05',
+  link: 'https://youtu.be/nOQlVnvsW3I',
+  miniatura: 'https://img.youtube.com/vi/nOQlVnvsW3I/maxresdefault.jpg',
+  tags: [
+    'Películas',
+    'Humor'
+  ]
+},
+  {
+  titulo: 'Expediente Mobius – “El día que Charly García saltó a la pileta” | Todo lo que hubo detrás 👀🎸',
+  descripcion: 'Este video me sorprendió.\n\nTodos conocemos el momento: Charly García saltando a la pileta.\nParece algo espontáneo… casi impulsivo.\n\nPero hay mucho más detrás.\n\nEste video de Expediente Mobius muestra todo el contexto:\nlo político, lo social… y la historia previa al momento.\n\nY cambia completamente cómo lo ves.\n\nAhora, contexto del canal:\n\nSigo con el tema de la cámara 😅\nEste video está hecho con la solución de emergencia: webcam + OBS.\n\nNo es lo ideal, lo sé… pero estamos resolviendo mientras tanto.\n\nPorque este tipo de contenido vale la pena.\n\n📺 Esto lo vimos reaccionando en el canal\n🎸 Y cada vez entiendo más cosas de Argentina\n\n#CharlyGarcia #ExpedienteMobius #Argentina #Reacción #Historia #RockArgentino #Cultura\n\n🤍💙🤍💙🤍💙🤍💙🤍💙\n\n🛜 NUESTRA NUEVA PAGINA WEB!!!\nhttps://elbasurerotivi.github.io/elbasurero/\n\n🔗 Link Tree\nhttps://linktr.ee/elbasurerotivi\n\nMÁS DE NOSOTROS:\n\n💳 Mercadopago\nAlias: elbasurerotv\n\n📺 Twitch\nhttps://www.twitch.tv/elbasurerochido\n\n📲 Grupo de Whatsapp del canal:\nhttps://chat.whatsapp.com/Fyw5G6L8GLm71kMDATHm6P\n\n🖥 Canal de Discord:\nhttps://discord.gg/tZS2jQaDVY\n\nAPOYO AL CANAL:\n\n▶ Membresías de YouTube\nBotón de “Unirse” debajo del video\nhttps://www.youtube.com/channel/UCRE0S6c2_KYBazBhZcm-taw/join\n\n💻 Patreon\nhttps://patreon.com/ElBasureroTi_Vi_Plas\n\n🌎 PayPal\nhttps://paypal.me/edgarmenagarcia\n\n☕ Ko-fi\nhttps://ko-fi.com/elbasurerotv\n\n🤍💙🤍💙🤍💙🤍💙🤍💙',
+  fecha: '2026-05-02',
+  link: 'https://youtu.be/qk-SncURBxY',
+  miniatura: 'https://img.youtube.com/vi/qk-SncURBxY/maxresdefault.jpg',
+  tags: [
+    'Cultura',
+    'Música',
+    'Historia'
+  ]
+},
+  {
+  titulo: 'Johan Pastrana – “Ser peruano en Argentina” (Taburete Comedia) | Humor desde afuera 🇦🇷😂',
+  descripcion: 'Este video me llamó mucho la atención.\n\nJohan Pastrana en Taburete Comedia con “Ser peruano en Argentina”…\nhumor hecho desde la mirada de alguien de afuera.\n\nY eso me interesa bastante.\n\nPorque justo eso es parte de lo que busco en el canal:\ncontenido que tenga relación con Argentina… desde cualquier ángulo.\n\nAhora, contexto real:\n\nEstoy teniendo problemas con la cámara 😅\nEste video está hecho con lo que tengo (webcam + OBS)… haciendo magia para que salga.\n\nNo es el formato ideal, lo sé.\nPero no iba a dejar pasar este contenido.\n\nAdemás, siendo honestos… este tipo de videos no siempre generan tanta interacción, pero son clave para seguir explorando y encontrando cosas nuevas.\n\n📺 Esto lo vimos reaccionando en el canal\n🎭 Y quiero seguir encontrando más humor así\n\n#JohanPastrana #Argentina #Reacción #Humor #TabureteComedia #StandUp #Comedia\n\n🤍💙🤍💙🤍💙🤍💙🤍💙\n\n🛜 NUESTRA NUEVA PAGINA WEB!!!\nhttps://elbasurerotivi.github.io/elbasurero/\n\n🔗 Link Tree\nhttps://linktr.ee/elbasurerotivi\n\nMÁS DE NOSOTROS:\n\n💳 Mercadopago\nAlias: elbasurerotv\n\n📺 Twitch\nhttps://www.twitch.tv/elbasurerochido\n\n📲 Grupo de Whatsapp del canal:\nhttps://chat.whatsapp.com/Fyw5G6L8GLm71kMDATHm6P\n\n🖥 Canal de Discord:\nhttps://discord.gg/tZS2jQaDVY\n\nAPOYO AL CANAL:\n\n▶ Membresías de YouTube\nBotón de “Unirse” debajo del video\nhttps://www.youtube.com/channel/UCRE0S6c2_KYBazBhZcm-taw/join\n\n💻 Patreon\nhttps://patreon.com/ElBasureroTi_Vi_Plas\n\n🌎 PayPal\nhttps://paypal.me/edgarmenagarcia\n\n☕ Ko-fi\nhttps://ko-fi.com/elbasurerotv\n\n🤍💙🤍💙🤍💙🤍💙🤍💙',
+  fecha: '2026-05-01',
+  link: 'https://youtu.be/AKQ7yfTpG4Q',
+  miniatura: 'https://img.youtube.com/vi/AKQ7yfTpG4Q/maxresdefault.jpg',
+  tags: [
+    'Humor'
+  ]
+},
+  {
+  titulo: 'Expediente Mobius – “La historia de ‘¿Qué es Dios?’” | Esta canción me dejó pensando 🎶👀',
+  descripcion: 'Este es el segundo video que reacciono de Expediente Mobius…\ny me da mucho gusto hacerlo con permiso directo del dueño del canal 🙌\n\nEste video me llamó la atención por algo muy específico:\n\nHace poco escuchamos “¿Qué es Dios?” en un live de Twitch…\ny me dejó con MUCHAS preguntas.\n\nAsí que cuando vi que había un video explicando su historia… tenía que entrar.\n\nAdemás, este canal tiene muchísimo contenido sobre bandas y músicos que me interesa explorar, incluso sin conocer tanto de música argentina.\n\nSiento que este es un muy buen punto de entrada.\n\n📺 Esto lo vimos reaccionando en el canal\n🎶 Y definitivamente quiero seguir explorando este contenido\n\n#ExpedienteMobius #Argentina #MúsicaArgentina #Reacción #Historia #Cultura #RockArgentino\n\n🤍💙🤍💙🤍💙🤍💙🤍💙\n\n🛜 NUESTRA NUEVA PAGINA WEB!!!\nhttps://elbasurerotivi.github.io/elbasurero/\n\n🔗 Link Tree\nhttps://linktr.ee/elbasurerotivi\n\nMÁS DE NOSOTROS:\n\n💳 Mercadopago\nAlias: elbasurerotv\n\n📺 Twitch\nhttps://www.twitch.tv/elbasurerochido\n\n📲 Grupo de Whatsapp del canal:\nhttps://chat.whatsapp.com/Fyw5G6L8GLm71kMDATHm6P\n\n🖥 Canal de Discord:\nhttps://discord.gg/tZS2jQaDVY\n\nAPOYO AL CANAL:\n\n▶ Membresías de YouTube\nBotón de “Unirse” debajo del video\nhttps://www.youtube.com/channel/UCRE0S6c2_KYBazBhZcm-taw/join\n\n💻 Patreon\nhttps://patreon.com/ElBasureroTi_Vi_Plas\n\n🌎 PayPal\nhttps://paypal.me/edgarmenagarcia\n\n☕ Ko-fi\nhttps://ko-fi.com/elbasurerotv\n\n🤍💙🤍💙🤍💙🤍💙🤍💙',
+  fecha: '2026-04-29',
+  link: 'https://youtu.be/oCP4FfWPRXo',
+  miniatura: 'https://img.youtube.com/vi/oCP4FfWPRXo/maxresdefault.jpg',
+  tags: [
+    'Cultura',
+    'Música',
+    'Historia'
+  ]
+},
+  {
+  titulo: 'Mariano Rodríguez – “¿Quién engañó a Roger Rabbit?” | Volvimos 😏🔥',
+  descripcion: 'Después de unos días desaparecido… ya tocaba volver.\n\nY volvemos como se debe:\ncon Mariano Rodríguez y “¿Quién engañó a Roger Rabbit?”.\n\nVideo clásico, referencias por todos lados… y sí, un regreso necesario.\n\nA partir de aquí, volvemos al ritmo que debe tener el canal:\nun video diario.\n\nSe vienen muchas cosas.\n\n📺 Esto lo vimos reaccionando en el canal\n🕘 Y esto apenas empieza\n\n#MarianoRodriguez #RogerRabbit #Argentina #Reacción #Regreso #YouTube #Humor\n\n🤍💙🤍💙🤍💙🤍💙🤍💙\n\n🛜 NUESTRA NUEVA PAGINA WEB!!!\nhttps://elbasurerotivi.github.io/elbasurero/\n\n🔗 Link Tree\nhttps://linktr.ee/elbasurerotivi\n\nMÁS DE NOSOTROS:\n\n💳 Mercadopago\nAlias: elbasurerotv\n\n📺 Twitch\nhttps://www.twitch.tv/elbasurerochido\n\n📲 Grupo de Whatsapp del canal:\nhttps://chat.whatsapp.com/Fyw5G6L8GLm71kMDATHm6P\n\n🖥 Canal de Discord:\nhttps://discord.gg/tZS2jQaDVY\n\nAPOYO AL CANAL:\n\n▶ Membresías de YouTube\nBotón de “Unirse” debajo del video\nhttps://www.youtube.com/channel/UCRE0S6c2_KYBazBhZcm-taw/join\n\n💻 Patreon\nhttps://patreon.com/ElBasureroTi_Vi_Plas\n\n🌎 PayPal\nhttps://paypal.me/edgarmenagarcia\n\n☕ Ko-fi\nhttps://ko-fi.com/elbasurerotv\n\n🤍💙🤍💙🤍💙🤍💙🤍💙',
+  fecha: '2026-04-27',
+  link: 'https://youtu.be/l0vsCB5BKwE',
+  miniatura: 'https://img.youtube.com/vi/l0vsCB5BKwE/maxresdefault.jpg',
+  tags: [
+    'Humor'
+  ]
+},
+  {
+  titulo: 'Llegamos a 50K… y pasó esto 😭📞 (momento real) - CLIP',
+  descripcion: 'Este clip no estaba planeado.\n\nEstábamos en directo… todo normal…\ny en ese momento llegamos a 50,000 suscriptores.\n\nPero lo especial no fue eso.\n\nFue lo que pasó justo después.\n\nUna llamada inesperada de mi hijo… en el momento exacto.\n\nY terminé compartiendo ese momento con todos ustedes, sin planearlo.\n\nDe verdad… gracias por estar aquí.\n\n📺 Clip de un directo\n🎉 50K en el canal\n\nSi estuviste ahí… sabes lo que se sintió.\nY si no… este es ese momento.\n\n#50K #YouTube #Comunidad #MomentoReal #Directo #Clip #Gracias\n\n🤍💙🤍💙🤍💙🤍💙🤍💙\n\n🛜 NUESTRA NUEVA PAGINA WEB!!!\nhttps://elbasurerotivi.github.io/elbasurero/\n\n🔗 Link Tree\nhttps://linktr.ee/elbasurerotivi\n\nMÁS DE NOSOTROS:\n\n💳 Mercadopago\nAlias: elbasurerotv\n\n📺 Twitch\nhttps://www.twitch.tv/elbasurerochido\n\n📲 Grupo de Whatsapp del canal:\nhttps://chat.whatsapp.com/Fyw5G6L8GLm71kMDATHm6P\n\n🖥 Canal de Discord:\nhttps://discord.gg/tZS2jQaDVY\n\nAPOYO AL CANAL:\n\n▶ Membresías de YouTube\nBotón de “Unirse” debajo del video\nhttps://www.youtube.com/channel/UCRE0S6c2_KYBazBhZcm-taw/join\n\n💻 Patreon\nhttps://patreon.com/ElBasureroTi_Vi_Plas\n\n🌎 PayPal\nhttps://paypal.me/edgarmenagarcia\n\n☕ Ko-fi\nhttps://ko-fi.com/elbasurerotv\n\n🤍💙🤍💙🤍💙🤍💙🤍💙',
+  fecha: '2026-04-19',
+  link: 'https://youtu.be/ElXnRVXz0kM',
+  miniatura: 'https://img.youtube.com/vi/ElXnRVXz0kM/maxresdefault.jpg',
+  tags: [
+    'Especiales'
+  ]
+},
+  {
+  titulo: 'Historias Innecesarias – “Una ciudad ENTERA estafada” | Entré por el título… y me atrapó 😳💰',
+  descripcion: 'Entré a este video por pura curiosidad.\n\nLiteral: leí el título “Una ciudad ENTERA estafada”… y ya estaba dentro.\n\nY eso dice MUCHO.\n\nPorque el canal Historias Innecesarias no usa miniaturas exageradas:\nes solo una imagen del video… sin texto, sin ruido.\n\nY aun así funciona.\n\n¿Por qué?\nPorque el contenido engancha.\n\nLo que no esperaba… es que el tema iba a tocar algo que me interesa mucho: criptomonedas.\n\nSí, hay mucho desconocimiento e inestabilidad alrededor…\npero sigo pensando que son un gran avance.\n\nY este caso… es una locura.\n\n📺 Esto lo vimos reaccionando en el canal\n🕘 Entré sin contexto… salí con mucho en qué pensar\n\n#HistoriasInnecesarias #Criptomonedas #Argentina #Reacción #Estafa #Historia #Crypto\n\n🤍💙🤍💙🤍💙🤍💙🤍💙\n\n🛜 NUESTRA NUEVA PAGINA WEB!!!\nhttps://elbasurerotivi.github.io/elbasurero/\n\n🔗 Link Tree\nhttps://linktr.ee/elbasurerotivi\n\nMÁS DE NOSOTROS:\n\n💳 Mercadopago\nAlias: elbasurerotv\n\n📺 Twitch\nhttps://www.twitch.tv/elbasurerochido\n\n📲 Grupo de Whatsapp del canal:\nhttps://chat.whatsapp.com/Fyw5G6L8GLm71kMDATHm6P\n\n🖥 Canal de Discord:\nhttps://discord.gg/tZS2jQaDVY\n\nAPOYO AL CANAL:\n\n▶ Membresías de YouTube\nBotón de “Unirse” debajo del video\nhttps://www.youtube.com/channel/UCRE0S6c2_KYBazBhZcm-taw/join\n\n💻 Patreon\nhttps://patreon.com/ElBasureroTi_Vi_Plas\n\n🌎 PayPal\nhttps://paypal.me/edgarmenagarcia\n\n☕ Ko-fi\nhttps://ko-fi.com/elbasurerotv\n\n🤍💙🤍💙🤍💙🤍💙🤍💙',
+  fecha: '2026-04-17',
+  link: 'https://youtu.be/i80TWQOn0bI',
+  miniatura: 'https://img.youtube.com/vi/i80TWQOn0bI/maxresdefault.jpg',
+  tags: [
+    'Cultura',
+    'Historia',
+    'Especiales'
+  ]
+},
+  {
+  titulo: 'Soy Argentino 2.0 – Mejores TikToks #14 | Esto ya es cualquier cosa 🇦🇷😂',
+  descripcion: 'Seguimos con la serie…\n\nYa vamos por el #14 de los mejores TikToks de Argentina de Soy Argentino 2.0.\n\nY sí… cada vez es más difícil explicar lo que está pasando 😭\n\nHay momentos donde te ríes…\ny otros donde simplemente te rindes.\n\nPero ya estamos demasiado adentro como para parar ahora.\n\n📺 Esto lo vimos reaccionando en el canal\n🕘 Y la serie sigue creciendo\n\n#SoyArgentino #TikToksArgentina #Argentina #Reacción #Humor #Serie #TikTok\n\n🤍💙🤍💙🤍💙🤍💙🤍💙\n\n🛜 NUESTRA NUEVA PAGINA WEB!!!\nhttps://elbasurerotivi.github.io/elbasurero/\n\n🔗 Link Tree\nhttps://linktr.ee/elbasurerotivi\n\nMÁS DE NOSOTROS:\n\n💳 Mercadopago\nAlias: elbasurerotv\n\n📺 Twitch\nhttps://www.twitch.tv/elbasurerochido\n\n📲 Grupo de Whatsapp del canal:\nhttps://chat.whatsapp.com/Fyw5G6L8GLm71kMDATHm6P\n\n🖥 Canal de Discord:\nhttps://discord.gg/tZS2jQaDVY\n\nAPOYO AL CANAL:\n\n▶ Membresías de YouTube\nBotón de “Unirse” debajo del video\nhttps://www.youtube.com/channel/UCRE0S6c2_KYBazBhZcm-taw/join\n\n💻 Patreon\nhttps://patreon.com/ElBasureroTi_Vi_Plas\n\n🌎 PayPal\nhttps://paypal.me/edgarmenagarcia\n\n☕ Ko-fi\nhttps://ko-fi.com/elbasurerotv\n\n🤍💙🤍💙🤍💙🤍💙🤍💙',
+  fecha: '2026-04-16',
+  link: 'https://youtu.be/XnpceF7Latg',
+  miniatura: 'https://img.youtube.com/vi/XnpceF7Latg/maxresdefault.jpg',
+  tags: [
+    'Cultura',
+    'Humor'
+  ]
+},
+  {
+  titulo: 'Pablo Molinari – “Los planes militares más delirantes…” | Esto NO debería haber funcionado 😳😂',
+  descripcion: 'Este video lo eligieron los miembros del canal…\n\ny qué buena decisión.\n\nReaccionamos a Pablo Molinari con “Los planes militares más delirantes de la historia que realmente funcionaron”…\n\ny sí, hay cosas que simplemente NO deberían haber salido bien 😭\n\nPero salieron.\n\nY eso lo hace todavía más absurdo y divertido.\n\nGracias a los miembros por esta joya 👀\n\n📺 Esto lo vimos reaccionando en el canal\n🗳️ Elegido por votación de miembros\n\n#PabloMolinari #Argentina #Reacción #Historia #Humor #Comunidad #Miembros\n\n🤍💙🤍💙🤍💙🤍💙🤍💙\n\n🛜 NUESTRA NUEVA PAGINA WEB!!!\nhttps://elbasurerotivi.github.io/elbasurero/\n\n🔗 Link Tree\nhttps://linktr.ee/elbasurerotivi\n\nMÁS DE NOSOTROS:\n\n💳 Mercadopago\nAlias: elbasurerotv\n\n📺 Twitch\nhttps://www.twitch.tv/elbasurerochido\n\n📲 Grupo de Whatsapp del canal:\nhttps://chat.whatsapp.com/Fyw5G6L8GLm71kMDATHm6P\n\n🖥 Canal de Discord:\nhttps://discord.gg/tZS2jQaDVY\n\nAPOYO AL CANAL:\n\n▶ Membresías de YouTube\nBotón de “Unirse” debajo del video\nhttps://www.youtube.com/channel/UCRE0S6c2_KYBazBhZcm-taw/join\n\n💻 Patreon\nhttps://patreon.com/ElBasureroTi_Vi_Plas\n\n🌎 PayPal\nhttps://paypal.me/edgarmenagarcia\n\n☕ Ko-fi\nhttps://ko-fi.com/elbasurerotv\n\n🤍💙🤍💙🤍💙🤍💙🤍💙',
+  fecha: '2026-04-15',
+  link: 'https://youtu.be/G2LANwpxeiQ',
+  miniatura: 'https://img.youtube.com/vi/G2LANwpxeiQ/maxresdefault.jpg',
+  tags: [
+    'Cultura',
+    'Humor',
+    'Historia'
+  ]
+},
            {
   titulo: '🔴 Malvinas: hablemos con respeto 🇦🇷',
   descripcion: 'Este live es especial.\n\nVamos a hablar de Malvinas.\n\nQuiero que este sea un espacio entre ustedes y yo… para escuchar, aprender y entender mejor desde su perspectiva.\n\nPara entrar en contexto, vamos a ver el video de Historias Innecesarias sobre la Guerra de las Malvinas.\n\nNo busco polémica.\nNo busco debate político.\n\nBusco respeto, memoria y conversación.\n\nOjalá podamos hablar con calma, aprender algo nuevo… y recordar a quienes estuvieron ahí con el respeto que merecen.\n\n📺 Nos vemos en vivo\n🕘 9:00 pm Argentina\n\n🤍💙🤍💙🤍💙🤍💙🤍💙\n\n🛜 NUESTRA NUEVA PAGINA WEB!!!\nhttps://elbasurerotivi.github.io/elbasurero/\n\n🔗 Link Tree\nhttps://linktr.ee/elbasurerotivi\n\nMÁS DE NOSOTROS:\n\n💳 Mercadopago\nAlias: elbasurerotv\n\n📺 Twitch\nhttps://www.twitch.tv/elbasurerochido\n\n📲 Grupo de Whatsapp del canal:\nhttps://chat.whatsapp.com/Fyw5G6L8GLm71kMDATHm6P\n\n🖥 Canal de Discord:\nhttps://discord.gg/tZS2jQaDVY\n\nAPOYO AL CANAL:\n\n▶ Membresías de YouTube\nBotón de “Unirse” debajo del video\nhttps://www.youtube.com/channel/UCRE0S6c2_KYBazBhZcm-taw/join\n\n💻 Patreon\nhttps://patreon.com/ElBasureroTi_Vi_Plas\n\n🌎 PayPal\nhttps://paypal.me/edgarmenagarcia\n\n☕ Ko-fi\nhttps://ko-fi.com/elbasurerotv\n\n🤍💙🤍💙🤍💙🤍💙🤍💙',
