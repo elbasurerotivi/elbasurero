@@ -12,7 +12,19 @@ export const categoriasData = {
     genre: 'Películas de todo tipo',
     cast: 'Edgar y el chat'
   },
-       
+
+              variete: {
+    key: 'variete',
+    name:'variete',
+    background: 'Imagenes/portada_variete.jpeg',     // Fondo grande
+    cover: 'Imagenes/portada_variete.jpeg',               // Carátula pequeña
+    title: 'Variete',
+    synopsis: 'Cosas random, de todo',
+    year: '2026',
+    genre: 'Varieté · Musica · Clips · Lo que sea',
+    cast: 'La comunidad del Basurero'
+  },
+         
        el_mejor_infarto_de_mi_vida: {
     key: 'el_mejor_infarto_de_mi_vida',
     name:'El mejor infarto de mi vida',
@@ -206,18 +218,7 @@ el_eternauta: {
     cast: 'Martín Piroyansky, Sofía Morandi, Ignacio Saralegui, Martín Pavlovsky, Eliseo Barrionuevo, Javier Niklison'
   },
 
-  variete: {
-    key: 'variete',
-    name:'variete',
-    background: 'Imagenes/portada_variete.jpeg',     // Fondo grande
-    cover: 'Imagenes/portada_variete.jpeg',               // Carátula pequeña
-    title: 'Variete',
-    synopsis: 'Cosas random, de todo',
-    year: '2026',
-    genre: 'Varieté · Musica · Clips · Lo que sea',
-    cast: 'La comunidad del Basurero'
-  },
-  
+
 };
 export const videosPremium = [
  {
