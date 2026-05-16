@@ -1408,6 +1408,20 @@ export const videosExclusivos = [
   thumbnail: 'Imagenes/Avatar, Temporada 1. Parte 3 - Episodios 9-12.png',
   source: 'https://rumble.com/embed/v77dapy/?pub=4nmhh2',
   type: 'iframe'
+},
+
+   {
+  id: 'reaccion_a_avatar_la_leyenda_de_aang_ep_13_15_avatar_la_leyenda_de_aang',
+  name: 'Avatar, La leyenda de Aang',
+  categoria: 'avatar_la_leyenda_de_aang',
+  temporada: '1',
+  episodio: '13-15',
+  title: 'Reacción a Avatar: La leyenda de Aang 🌊⚡ ep 13–15',
+  title2: 'La serie sigue creciendo muchísimo',
+  description: 'Seguimos avanzando en Avatar: The Last Airbender con los episodios 13 al 15 del Libro 1, y cada vez se siente más claro por qué tanta gente ama esta serie. El mundo sigue expandiéndose, los personajes se sienten más sólidos y ya empiezan a aparecer episodios que dejan cosas importantes más allá de la aventura de la semana.\n\nLa energía del stream volvió a estar muy buena. Ya se siente como una tradición bonita entrar a Twitch a seguir este viaje con la comunidad.\n\nVimos:\n\nEpisodio 13 – “El espíritu azul”\nAang es capturado por la Nación del Fuego, pero una figura misteriosa conocida como el Espíritu Azul aparece para rescatarlo.\n\nEpisodio 14 – “La adivina”\nEl grupo llega a un pueblo obsesionado con las predicciones de una adivina, mientras Katara empieza a enfrentarse a ciertas emociones que no quiere admitir tan fácilmente.\n\nEpisodio 15 – “Bato de la Tribu Agua”\nKatara y Sokka se reencuentran con un viejo amigo de su padre, mientras Aang lucha con el miedo a quedarse solo.\n\nEste bloque tuvo un poco de todo: tensión, humor, desarrollo emocional y varios momentos donde la serie demuestra que sabe equilibrar muy bien el corazón con la aventura.\n\nY honestamente… cada vez se disfruta más verla acompañado.',
+  thumbnail: 'Imagenes/Avatar, Temporada 1. Parte 4 - Episodios 13-15.png',
+  source: 'https://rumble.com/embed/v77qo5q/?pub=4nmhh2',
+  type: 'iframe'
 }
 
 ];
