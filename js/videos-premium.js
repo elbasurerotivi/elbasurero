@@ -2176,6 +2176,20 @@ export const videosPremium = [
   thumbnail: 'Imagenes/Avatar, Temporada 1. Parte 4 - Episodios 13-15.png',
   source: 'https://rumble.com/embed/v77qo5q/?pub=4nmhh2',
   type: 'iframe'
+},
+
+             {
+  id: 'reaccion_a_los_simpson_1_variete',
+  name: 'Varieté',
+  categoria: 'variete',
+  temporada: '0',
+  episodio: '0',
+  title: 'Reacción a Los Simpson 🍩📺 #1',
+  title2: 'Primer stream viendo episodios recomendados con la comunidad',
+  description: 'Arrancamos oficialmente los streams de The Simpsons en Twitch y la experiencia estuvo buenísima. Aunque no he visto toda la serie, sí conozco bastante como para entrarle a muchos episodios… y justo eso hizo que el directo se sintiera muy genuino. Había cosas que recordaba y otras que descubrí completamente en vivo junto con la comunidad.\nLa dinámica estuvo muy divertida porque literalmente elegimos los episodios entre todos, usando referencias como “el de Bart agitando la cerveza” o “el de la huelga”, buscando en qué temporada estaban y dejándonos llevar por las recomendaciones del chat.\nVimos:\nTemporada 4, Episodio 18 — “Así como éramos”\n(el episodio donde Bart agita la cerveza y manda a Homero al hospital)\nUn accidente provocado por Bart manda a Homero al hospital, llevando a la familia a revivir recuerdos y momentos importantes de su relación.\nTemporada 4, Episodio 17 — “Última salida a Springfield”\n(el de la huelga)\nHomero termina liderando una huelga en la planta nuclear cuando los trabajadores pierden su seguro dental. Un episodio muy querido por la comunidad, con muchísimo humor pero también momentos sorprendentemente emocionales.\nTemporada 5, Episodio 1 — “El cuarteto de Homero”\n(el del cuarteto de Homero)\nHomero recuerda la época en la que formó un cuarteto musical junto a Apu, Barney y Skinner, viviendo una fama inesperada en clara referencia a The Beatles.\nAdemás, intentamos buscar el famoso episodio de Michael Jackson pero descubrimos que ya no está en Disney Plus. Y también salió mucho la recomendación de “Cabo de miedosos”, aunque preferí no verlo todavía porque no he visto la película en la que se basa y siento que se disfrutaría mucho menos así.\nY sí… esto de ver Los Simpson con la comunidad tiene muchísimo potencial. Sobre todo porque entre el caos del copy, las pausas constantes y andar diciendo cosas como “Los Thompson” o “Los Pérez”, el stream termina teniendo personalidad propia 😅',
+  thumbnail: 'Imagenes/Los Simpson, stream  1.png',
+  source: 'https://rumble.com/embed/v77it1k/?pub=4nmhh2',
+  type: 'iframe'
 }
 
 
