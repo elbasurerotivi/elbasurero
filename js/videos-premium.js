@@ -2190,6 +2190,20 @@ export const videosPremium = [
   thumbnail: 'Imagenes/Los Simpson, stream  1.png',
   source: 'https://rumble.com/embed/v77it1k/?pub=4nmhh2',
   type: 'iframe'
+},
+
+             {
+  id: 'reaccion_a_street_fighter_ii_peliculas',
+  name: 'Películas',
+  categoria: 'peliculas',
+  temporada: '0',
+  episodio: '0',
+  title: 'Reacción a Street Fighter II 👊🎮',
+  title2: '(Mucho más rara de lo que recordaba… el juego pues)',
+  description: 'Vi Street Fighter II: The Animated Movie y honestamente fue una experiencia bastante curiosa.\n\nLa película no terminó encantándome, pero sí me dejó varias cosas interesantes. Se nota muchísimo que es un producto muy de su época: una animación que apenas estaba encontrando ciertas bases, diseños exageradísimos y muchas tomas larguísimas que hoy se sienten raras… como personajes caminando durante demasiado tiempo 😅\n\nPero también hubo algo que sí me gustó bastante: la estructura.\n\nEn lugar de convertir todo en el típico torneo donde vamos viendo personajes caer uno por uno, la película usa un formato más libre que permite mover a los personajes por distintas situaciones y conflictos sin perder tiempo en peleas innecesarias. Eso hace que cuando llega una pelea importante, realmente se sienta importante.\n\nY curiosamente, eso también ayuda a que los personajes secundarios no desaparezcan tan rápido de la historia.\n\nFue una reacción muy interesante porque terminé apreciando más ciertas decisiones narrativas que la película en sí… y eso no me pasa tan seguido.',
+  thumbnail: 'Imagenes/Street Fighter II.png',
+  source: 'https://rumble.com/embed/v7880l2/?pub=4nmhh2',
+  type: 'iframe'
 }
 
 
