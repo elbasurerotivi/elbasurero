@@ -2204,6 +2204,34 @@ export const videosPremium = [
   thumbnail: 'Imagenes/Street Fighter II.png',
   source: 'https://rumble.com/embed/v7880l2/?pub=4nmhh2',
   type: 'iframe'
+},
+
+             {
+  id: 'reaccion_a_avatar_la_leyenda_de_aang_ep_16_18_avatar_la_leyenda_de_aang',
+  name: 'Avatar, La leyenda de Aang',
+  categoria: 'avatar_la_leyenda_de_aang',
+  temporada: '1',
+  episodio: '16-18',
+  title: 'Reacción a Avatar: La leyenda de Aang 🌊⚡ ep 16–18',
+  title2: 'Agarró vuelo muy rápido',
+  description: 'Seguimos avanzando en Avatar: The Last Airbender con los episodios 16 al 18 del Libro 1, y honestamente ya se siente clarísimo cómo la historia va creciendo cada vez más. El mundo se expande, los personajes empiezan a cargar más peso emocional y la serie poco a poco deja de sentirse solo como una aventura divertida.\n\nAdemás, el ambiente del stream estuvo buenísimo otra vez. Mucha vibra positiva, gente nueva entrando al viaje y esa sensación de comunidad que ya se está volviendo parte esencial de estos lives.\n\nVimos:\n\nEpisodio 16 – “El desertor”\nAang conoce a un ex maestro fuego que le enseña los peligros reales del fuego control antes de tiempo.\n\nEpisodio 17 – “El templo del aire del norte”\nEl grupo llega a un templo aire transformado por inventos mecánicos, descubriendo una realidad muy distinta a la que Aang esperaba.\n\nEpisodio 18 – “El maestro del agua”\nKatara finalmente enfrenta las restricciones de la Tribu Agua del Norte mientras Aang sigue preparándose para lo que viene.\n\nEste bloque tuvo muchísimo crecimiento de personajes y varios momentos donde ya empieza a sentirse el peso real del conflicto de la serie.\n\nY la verdad… verla acompañado hace que todo pegue todavía mejor.',
+  thumbnail: 'Imagenes/Avatar, Temporada 1. Parte 5 - Episodios 16-18.png',
+  source: 'https://rumble.com/embed/v78jqo4/?pub=4nmhh2',
+  type: 'iframe'
+},
+
+  {
+  id: 'reaccion_a_avatar_la_leyenda_de_aang_final_del_libro_1_avatar_la_leyenda_de_aang',
+  name: 'Avatar, La leyenda de Aang',
+  categoria: 'avatar_la_leyenda_de_aang',
+  temporada: '1',
+  episodio: '19 y 20',
+  title: 'Reacción a Avatar: La leyenda de Aang 🌊❄️ final del Libro 1',
+  title2: 'Episodios 19 y 20… ¡qué cierre!',
+  description: 'Llegamos al final del Libro 1 de Avatar: The Last Airbender viendo únicamente los episodios 19 y 20, principalmente para mantener la continuidad entre miniaturas, descripciones y playlists dentro de la página web. Y honestamente… terminó sintiéndose perfecto así, porque estos dos episodios funcionan como un cierre enorme por sí solos.\n\nLa vibra del stream volvió a estar increíble. Mucha gente nueva, muy buena energía y esa sensación constante de que todos estábamos viendo cómo la serie terminaba de despegar hacia algo muchísimo más grande.\n\nVimos:\n\nEpisodio 19 – “El sitio del Norte, parte 1”\nLa Nación del Fuego lanza su ataque contra la Tribu Agua del Norte, obligando a Aang y sus amigos a prepararse para una batalla que cambiará completamente el rumbo de la historia.\n\nEpisodio 20 – “El sitio del Norte, parte 2”\nLa batalla llega a su punto máximo mientras Aang enfrenta pérdidas, decisiones importantes y uno de los momentos más impactantes hasta ahora en la serie.\n\nEste cierre tuvo de todo: tensión, crecimiento de personajes, momentos épicos y escenas que ya dejan clarísimo que Avatar va mucho más allá de lo que parecía al principio.\n\nY sinceramente… la experiencia de verla con la comunidad sigue sintiéndose especial cada semana.',
+  thumbnail: 'Imagenes/Avatar, Temporada 1. Parte 6 - Episodios 19 y 20.png',
+  source: 'https://rumble.com/embed/v78jqrs/?pub=4nmhh2',
+  type: 'iframe'
 }
 
 
