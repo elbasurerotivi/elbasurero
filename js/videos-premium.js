@@ -2232,7 +2232,36 @@ export const videosPremium = [
   thumbnail: 'Imagenes/Avatar, Temporada 1. Parte 6 - Episodios 19 y 20.png',
   source: 'https://rumble.com/embed/v78jqrs/?pub=4nmhh2',
   type: 'iframe'
+},
+
+            {
+  id: 'reaccion_a_los_simpson_variete',
+  name: 'Varieté',
+  categoria: 'variete',
+  temporada: '0',
+  episodio: '0',
+  title: 'Reacción a Los Simpson 🍩📺',
+  title2: 'Segundo stream y entrando al hype de lleno',
+  description: 'Seguimos viendo The Simpsons en Twitch a puro episodio recomendado por la comunidad, y honestamente me la pasé increíble otra vez. Cada vez entiendo más por qué tanta gente ama esta serie… aunque todavía siento que apenas estoy rascando la superficie 😅\n\nLa dinámica sigue siendo buenísima: el chat recomendando episodios por referencias absurdamente específicas, nosotros buscándolos en Disney Plus y luego sobreviviendo al magnífico caos del copy entre pausas, comentarios y decir “Los Thompson” cada cinco minutos.\n\nEsta vez vimos:\n\nTemporada 4, Episodio 12 — “Marge vs. el monorriel”\n(el del monorriel)\nSpringfield compra un monorriel… y absolutamente nada podía salir bien 😅\n\nTemporada 6, Episodio 15 — “Homie, el payaso”\n(el de Homero payaso)\nHomero termina convertido en doble oficial de Krusty y todo se descontrola rapidísimo.\n\nTemporada 6, Episodio 13 — “Y con Maggie son 3”\n(el de “hazlo por ella”)\nHomero recuerda cómo fue realmente la llegada de Maggie a la familia 💔\n\nTemporada 3, Episodio 16 — “Bart el amante”\n(el de Bart respondiéndole cartas a la señora Krabappel)\nUna broma inocente escala muchísimo más de lo que Bart esperaba.\n\nTemporada 3, Episodio 22 — “El rock de Otto”\n(el de Otto perdiendo el trabajo)\nOtto toca fondo… y termina viviendo con los Simpson 😅\n\nFue otro stream llenísimo de risas, referencias que yo apenas estoy descubriendo y momentos donde ya entiendo por qué ciertos episodios marcaron a tanta gente. Y honestamente… verlos acompañado los hace todavía mejores.',
+  thumbnail: 'Imagenes/Simpson #2.png',
+  source: 'https://rumble.com/embed/v78l3p2/?pub=4nmhh2',
+  type: 'iframe'
+},
+
+  {
+  id: 'reaccion_a_la_maquina_de_hacer_pajaros_variete',
+  name: 'Varieté',
+  categoria: 'variete',
+  temporada: '0',
+  episodio: '0',
+  title: 'Reacción a La Máquina de Hacer Pájaros 🎹🕊️',
+  title2: 'Dos álbumes completos y un viaje psicodélico y grandioso',
+  description: 'En este directo en Twitch nos metimos de lleno con los dos álbumes de La Máquina de Hacer Pájaros, y honestamente fue una experiencia muy distinta a los lives musicales normales. Escuchar discos completos cambia totalmente la dinámica: todo se siente más conectado, más inmersivo y mucho más fácil de analizar como una obra completa.\n\nFuimos recorriendo canción por canción mientras poco a poco se iba armando ese mundo medio extraño, progresivo y muy teatral que tiene la banda. Hay momentos donde la música se siente elegantísima… y otros donde parece que está a punto de descarrilarse completamente 😅\n\nY justamente eso hizo el directo tan interesante.\n\nSe sintió como un viaje raro pero muy coherente, donde las ideas musicales van creciendo, transformándose y conectándose entre sí de maneras que no esperaba. Además, la comunidad estuvo increíble aportando contexto, interpretaciones y detalles que hicieron todavía más rica la experiencia.\n\nDe esos lives donde no solo “escuchas música”… sino que realmente entras al universo de un proyecto entero.',
+  thumbnail: 'Imagenes/La máquina de hacer pájaros.png',
+  source: 'https://rumble.com/embed/v78l3tq/?pub=4nmhh2',
+  type: 'iframe'
 }
+
 
 
   
