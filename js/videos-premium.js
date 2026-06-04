@@ -2260,6 +2260,20 @@ export const videosPremium = [
   thumbnail: 'Imagenes/La máquina de hacer pájaros.png',
   source: 'https://rumble.com/embed/v78l3tq/?pub=4nmhh2',
   type: 'iframe'
+},
+
+             {
+  id: 'reaccion_a_que_es_el_fulbo_variete',
+  name: 'Varieté',
+  categoria: 'variete',
+  temporada: '0',
+  episodio: '0',
+  title: 'Reacción a ¿Qué es el fulbo? ⚽🇦🇷',
+  title2: 'Intentando entender la pasión argentina',
+  description: 'Este directo fue una experiencia rarísima… pero buenísima 😅\nLa idea era simple: intentar entender un poco mejor lo que realmente significa el fulbo para los argentinos. No solo el deporte, sino todo lo que lo rodea: la pasión, la nostalgia, la identidad y esa forma tan intensa de vivirlo.\n\nEmpezamos viendo videos sobre el Mundial de Qatar y poco a poco el stream empezó a mutar hacia cualquier cosa relacionada con fútbol que la comunidad considerara importante: publicidad histórica, momentos emocionales, compilaciones, cultura futbolera… hasta terminar viendo un video de monjitas jugando fútbol jajajajaja.\n\nY honestamente, funcionó perfecto.\n\nFue de esos directos donde más allá de reírnos y sorprendernos, sí sentí que empecé a entender por qué el fútbol significa tanto para tanta gente en Argentina. Hubo videos que claramente les pegan emocionalmente muy fuerte, y vivir eso junto con la comunidad hizo que toda la experiencia se sintiera muchísimo más auténtica.\n\nPor temas de copyright este directo no podía quedarse en YouTube… así que ahora vive aquí, donde honestamente creo que encaja muchísimo mejor ⚽💙',
+  thumbnail: 'Imagenes/Qué es el fulbo.png',
+  source: 'https://rumble.com/embed/v78m7e4/?pub=4nmhh2',
+  type: 'iframe'
 }
 
 
