@@ -4,7 +4,7 @@ export const categoriasData = {
             peliculas: {
     key: 'peliculas',
     name:'Películas',
-    background: 'Imagenes/Street Fighter II.png',     // Fondo grande
+    background: 'Imagenes/Reacción Twitch, Metegol.png',     // Fondo grande
     cover: 'Imagenes/poster_peliculas.png',               // Carátula pequeña  
     title: 'Películas',
     synopsis: 'Este es un espacio dedicado especialmente a todas esas peliculas que vemos cada semana!!',
