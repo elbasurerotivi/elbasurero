@@ -1464,6 +1464,21 @@ export const videosExclusivos = [
   thumbnail: 'Imagenes/Qué es el fulbo.png',
   source: 'https://rumble.com/embed/v78m7e4/?pub=4nmhh2',
   type: 'iframe'
+},
+
+    {
+  id: 'reaccion_a_metegol_peliculas',
+  name: 'Películas',
+  categoria: 'peliculas',
+  temporada: '0',
+  episodio: '0',
+  title: 'Reacción a Metegol ⚽🎬',
+  title2: 'No sabía qué esperar y me encantó',
+  description: 'En este Jueves Animado vimos Metegol, una película que me habían recomendado muchísimo desde hace tiempo y que por una razón u otra nunca había visto. Y la verdad… qué bueno que finalmente llegó su momento.\n\nLa elección terminó siendo perfecta. Veníamos de cerrar el Libro 1 de Avatar: The Last Airbender y al mismo tiempo estoy cada vez más metido en contenido relacionado con fútbol, viendo documentales, videos históricos y todo tipo de material rumbo al Mundial. Así que hacer este puente entre ambas cosas durante los Jueves Animados simplemente tenía sentido.\n\nY menos mal que lo hicimos.\n\nEntré sin saber muy bien qué esperar. Conocía la fama de la película, pero poco más. Y terminó sorprendiéndome muchísimo. Tiene corazón, humor, personajes entrañables y una forma muy especial de hablar de fútbol sin quedarse únicamente en el fútbol.\n\nAdemás, verla en Twitch con la comunidad fue una experiencia fantástica. Hubo risas, comentarios, referencias y varios momentos donde entendí perfectamente por qué tanta gente insistía en que tenía que verla.\n\nDe esas recomendaciones que pasan años persiguiéndote… y cuando finalmente les das una oportunidad, descubres que tenían razón todo el tiempo. ⚽💙',
+  thumbnail: 'Imagenes/Reacción Twitch, Metegol.png',
+  source: 'https://rumble.com/embed/v78o0ii/?pub=4nmhh2',
+  type: 'iframe'
 }
+
 
 ];
