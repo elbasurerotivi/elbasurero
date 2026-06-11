@@ -3,15 +3,15 @@ const partidos = [
 
   {
     id: 1,
-    Local: "México",
-    Visitante: "Sudáfrica",
+    local: "México",
+    visitante: "Sudáfrica",
     resultado: "Local"
   },
 
   {
     id: 2,
-    Local: "Korea del Sur",
-    Visitante: "Chequia",
+    local: "Korea del Sur",
+    visitante: "Chequia",
     resultado: "Próximamente"
   }
 
@@ -29,7 +29,7 @@ const predicciones = [
   {
     partidoId: 1,
 
-    Local: [
+    local: [
       "Lucia Suárez",
       "Angie",
       "Charsvolta",
@@ -47,7 +47,7 @@ const predicciones = [
 
     ],
 
-    Visitante: [
+    visitante: [
       "Lautaro Gomez",
       "Adriana Larosa",
       "Agostina",
@@ -55,7 +55,7 @@ const predicciones = [
       "Blanqui"
     ],
 
-    Empate: [
+    empate: [
       "Rafa",
       "Patito",
       "Gonza",
@@ -99,96 +99,130 @@ SUMAR ACIERTOS
 */
 
 predicciones.forEach(pred => {
+
   const partido = partidos.find(
     p => p.id === pred.partidoId
   );
+
   if(!partido) return;
 
-
-  /*
-  ================================
-  RESULTADO Local
-  ================================
-  */
-
-  if(partido.resultado === partido.Local){
-    pred.Local.forEach(nombre => {
-      crearJugador(nombre);
-      estadisticas[nombre].ganados++;
-      estadisticas[nombre].puntos++;
-    });
-
-
-    pred.Visitante.forEach(nombre => {
-      crearJugador(nombre);
-      estadisticas[nombre].perdidos++;
-    });
-
-
-    pred.Empate.forEach(nombre => {
-      crearJugador(nombre);
-      estadisticas[nombre].perdidos++;
-    });
-  }
-
-
-  /*
-  ================================
-  RESULTADO Visitante
-  ================================
-  */
-
-  if(partido.resultado === partido.Visitante){
-    pred.Visitante.forEach(nombre => {
-      crearJugador(nombre);
-      estadisticas[nombre].ganados++;
-      estadisticas[nombre].puntos++;
-    });
-
-
-    pred.Local.forEach(nombre => {
-      crearJugador(nombre);
-      estadisticas[nombre].perdidos++;
-    });
-
-
-    pred.Empate.forEach(nombre => {
-      crearJugador(nombre);
-      estadisticas[nombre].perdidos++;
-    });
-  }
-
-
-  /*
-  ================================
-  RESULTADO Empate
-  ================================
-  */
-
   if(
-    partido.resultado.toLowerCase()
-    ===
-    "Empate"
-  ){
-    pred.Empate.forEach(nombre => {
+    partido.resultado === "proximamente"
+  ) return;
+
+
+
+  /*
+  ================================
+  GANÓ LOCAL
+  ================================
+  */
+
+  if(partido.resultado === "local"){
+
+    pred.local.forEach(nombre => {
+
       crearJugador(nombre);
+
+      estadisticas[nombre].ganados++;
+      estadisticas[nombre].puntos++;
+
+    });
+
+    pred.visitante.forEach(nombre => {
+
+      crearJugador(nombre);
+
+      estadisticas[nombre].perdidos++;
+
+    });
+
+    pred.empate.forEach(nombre => {
+
+      crearJugador(nombre);
+
+      estadisticas[nombre].perdidos++;
+
+    });
+
+  }
+
+
+
+  /*
+  ================================
+  GANÓ VISITANTE
+  ================================
+  */
+
+  if(partido.resultado === "visitante"){
+
+    pred.visitante.forEach(nombre => {
+
+      crearJugador(nombre);
+
+      estadisticas[nombre].ganados++;
+      estadisticas[nombre].puntos++;
+
+    });
+
+    pred.local.forEach(nombre => {
+
+      crearJugador(nombre);
+
+      estadisticas[nombre].perdidos++;
+
+    });
+
+    pred.empate.forEach(nombre => {
+
+      crearJugador(nombre);
+
+      estadisticas[nombre].perdidos++;
+
+    });
+
+  }
+
+
+
+  /*
+  ================================
+  EMPATE
+  ================================
+  */
+
+  if(partido.resultado === "empate"){
+
+    pred.empate.forEach(nombre => {
+
+      crearJugador(nombre);
+
       estadisticas[nombre].empatados++;
       estadisticas[nombre].puntos++;
+
     });
 
+    pred.local.forEach(nombre => {
 
-    pred.Local.forEach(nombre => {
       crearJugador(nombre);
+
       estadisticas[nombre].perdidos++;
+
     });
 
+    pred.visitante.forEach(nombre => {
 
-    pred.Visitante.forEach(nombre => {
       crearJugador(nombre);
+
       estadisticas[nombre].perdidos++;
+
     });
+
   }
+
 });
+
 
 
 
