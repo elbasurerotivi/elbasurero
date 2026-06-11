@@ -7,16 +7,13 @@ const partidos = [
     visitante: "Sudáfrica",
     resultado: "local"
   },
-
   {
     id: 2,
     local: "Corea del Sur",
     visitante: "Chequia",
     resultado: "Próximamente"
   }
-
 ];
-
 
 /*
 ====================================
@@ -111,7 +108,6 @@ predicciones.forEach(pred => {
   ) return;
 
 
-
   /*
   ================================
   GANÓ LOCAL
@@ -119,35 +115,23 @@ predicciones.forEach(pred => {
   */
 
   if(partido.resultado === "local"){
-
     pred.local.forEach(nombre => {
-
       crearJugador(nombre);
-
       estadisticas[nombre].ganados++;
       estadisticas[nombre].puntos++;
-
     });
 
     pred.visitante.forEach(nombre => {
-
       crearJugador(nombre);
-
       estadisticas[nombre].perdidos++;
-
     });
 
     pred.empate.forEach(nombre => {
-
       crearJugador(nombre);
-
       estadisticas[nombre].perdidos++;
-
     });
 
   }
-
-
 
   /*
   ================================
@@ -158,33 +142,22 @@ predicciones.forEach(pred => {
   if(partido.resultado === "visitante"){
 
     pred.visitante.forEach(nombre => {
-
       crearJugador(nombre);
-
       estadisticas[nombre].ganados++;
       estadisticas[nombre].puntos++;
-
     });
 
     pred.local.forEach(nombre => {
-
       crearJugador(nombre);
-
       estadisticas[nombre].perdidos++;
-
     });
 
     pred.empate.forEach(nombre => {
-
       crearJugador(nombre);
-
       estadisticas[nombre].perdidos++;
-
     });
 
   }
-
-
 
   /*
   ================================
@@ -195,35 +168,23 @@ predicciones.forEach(pred => {
   if(partido.resultado === "empate"){
 
     pred.empate.forEach(nombre => {
-
       crearJugador(nombre);
-
       estadisticas[nombre].empatados++;
       estadisticas[nombre].puntos++;
-
     });
 
     pred.local.forEach(nombre => {
-
       crearJugador(nombre);
-
       estadisticas[nombre].perdidos++;
-
     });
 
     pred.visitante.forEach(nombre => {
-
       crearJugador(nombre);
-
       estadisticas[nombre].perdidos++;
-
     });
-
   }
 
 });
-
-
 
 
 /*
@@ -238,9 +199,7 @@ const ranking = Object.values(estadisticas)
   if(b.puntos !== a.puntos){
     return b.puntos - a.puntos;
   }
-
   return b.ganados - a.ganados;
-
 });
 
 
@@ -253,7 +212,6 @@ RENDER TABLA
 const tbody = document.querySelector("#tablaPosiciones tbody");
 
 ranking.forEach((jugador,index) => {
-
   const tr = document.createElement("tr");
 
   if(index === 0){
@@ -296,7 +254,6 @@ ranking.forEach((jugador,index) => {
 
 });
 
-
 /*
 ====================================
 RENDER PARTIDOS
@@ -310,15 +267,13 @@ partidos.forEach(partido => {
   const div = document.createElement("div");
 
   div.classList.add("partido");
-
   div.innerHTML = `
-  
+
     <div>
       ${partido.local}
       vs
       ${partido.visitante}
     </div>
-
 
     <div class="resultado">
     Resultado:
@@ -335,7 +290,6 @@ partidos.forEach(partido => {
         : "Próximamente"
     }
     </div>
-
 
   `;
 
