@@ -240,9 +240,13 @@ ranking.forEach((jugador,index) => {
     }
     </td>
 
-    <td>
-      ${jugador.nombre}
+    <td
+    class="nombre-click"
+    onclick="abrirHistorial('${jugador.nombre}')"
+    >
+    ${jugador.nombre}
     </td>
+
 
     <td>
       ${jugador.ganados}
@@ -304,3 +308,207 @@ partidos.forEach(partido => {
   listaPartidos.appendChild(div);
 
 });
+
+
+/*
+====================================
+MODAL HISTORIAL
+====================================
+*/
+
+const modal =
+document.getElementById("modalHistorial");
+
+const modalTitulo =
+document.getElementById("modalTitulo");
+
+const modalBody =
+document.getElementById("modalBody");
+
+const cerrarModal =
+document.getElementById("cerrarModal");
+
+
+/*
+====================================
+ABRIR HISTORIAL
+====================================
+*/
+
+function abrirHistorial(nombre){
+
+  modal.classList.add("activo");
+
+  modalTitulo.innerText =
+  `Historial de ${nombre}`;
+
+  modalBody.innerHTML = "";
+
+  predicciones.forEach(pred => {
+
+    const partido = partidos.find(
+      p => p.id === pred.partidoId
+    );
+
+    if(!partido) return;
+
+    let prediccionJugador = null;
+
+    if(
+      pred.local.includes(nombre)
+    ){
+      prediccionJugador = "local";
+    }
+
+    if(
+      pred.visitante.includes(nombre)
+    ){
+      prediccionJugador = "visitante";
+    }
+
+    if(
+      pred.empate.includes(nombre)
+    ){
+      prediccionJugador = "empate";
+    }
+
+
+    if(!prediccionJugador) return;
+
+
+    const acerto =
+    prediccionJugador === partido.resultado;
+
+
+    const div =
+    document.createElement("div");
+
+    div.classList.add(
+      "historial-item"
+    );
+
+    div.classList.add(
+      acerto
+      ? "historial-acierto"
+      : "historial-error"
+    );
+
+
+    let textoPrediccion = "";
+
+    if(prediccionJugador === "local"){
+      textoPrediccion =
+      partido.local;
+    }
+
+    if(prediccionJugador === "visitante"){
+      textoPrediccion =
+      partido.visitante;
+    }
+
+    if(prediccionJugador === "empate"){
+      textoPrediccion =
+      "Empate";
+    }
+
+
+    let textoResultado = "";
+
+    if(partido.resultado === "local"){
+      textoResultado =
+      partido.local;
+    }
+
+    if(partido.resultado === "visitante"){
+      textoResultado =
+      partido.visitante;
+    }
+
+    if(partido.resultado === "empate"){
+      textoResultado =
+      "Empate";
+    }
+
+    if(partido.resultado === "proximamente"){
+      textoResultado =
+      "Próximamente";
+    }
+
+
+    div.innerHTML = `
+    
+      <strong>
+        ${partido.local}
+        vs
+        ${partido.visitante}
+      </strong>
+
+      <br><br>
+
+      Predicción:
+      <strong>
+        ${textoPrediccion}
+      </strong>
+
+      <br>
+
+      Resultado:
+      <strong>
+        ${textoResultado}
+      </strong>
+
+      <br><br>
+
+      ${
+        acerto
+        ? "✅ Acierto"
+        : "❌ Falló"
+      }
+
+    `;
+
+    modalBody.appendChild(div);
+
+  });
+
+}
+
+
+/*
+====================================
+CERRAR MODAL
+====================================
+*/
+
+cerrarModal.addEventListener(
+  "click",
+  () => {
+
+    modal.classList.remove(
+      "activo"
+    );
+
+  }
+);
+
+
+/*
+====================================
+CLICK FUERA
+====================================
+*/
+
+modal.addEventListener(
+  "click",
+  e => {
+
+    if(e.target === modal){
+
+      modal.classList.remove(
+        "activo"
+      );
+
+    }
+
+  }
+);

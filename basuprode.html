@@ -32,30 +32,21 @@
   "
 >
 
-   
-
     <div class="hero-center">
       <h1></h1>
-      <p>
-        
-      </p>
+      <p></p>
     </div>
 
-    <div class="hero-right">
-      
-    </div>
+    <div class="hero-right"></div>
 
   </header>
 
   <main class="contenedor">
-
     <section class="tabla-section">
-
       <h2>Tabla de posiciones</h2>
-
       <div class="tabla-container">
-        <table id="tablaPosiciones">
 
+        <table id="tablaPosiciones">
           <thead>
             <tr>
               <th>#</th>
@@ -65,25 +56,34 @@
               <th>🧮Puntos</th>
             </tr>
           </thead>
-
           <tbody>
-
           </tbody>
-
         </table>
       </div>
 
     </section>
 
     <section class="partidos-section">
-
       <h2>Resultados oficiales</h2>
-
       <div id="listaPartidos" class="lista-partidos"></div>
-
     </section>
-
   </main>
+  
+<!-- ====================================
+MODAL HISTORIAL
+==================================== -->
+
+<div id="modalHistorial" class="modal">
+  <div class="modal-contenido">
+    <button id="cerrarModal">
+      ✖
+    </button>
+    <h2 id="modalTitulo">
+      Predicciones
+    </h2>
+    <div id="modalBody"></div>
+  </div>
+</div>
 
   <script src="Basuprode/basuprode.js"></script>
 

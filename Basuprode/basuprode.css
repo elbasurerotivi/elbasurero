@@ -268,3 +268,84 @@ RESPONSIVE HERO
     background-size:cover;
   }
 }
+
+
+/*
+====================================
+MODAL
+====================================
+*/
+
+.modal{
+  position:fixed;
+  inset:0;
+  background:
+  rgba(0,0,0,.8);
+  display:none;
+  justify-content:center;
+  align-items:center;
+  padding:20px;
+  z-index:9999;
+}
+
+.modal.activo{
+  display:flex;
+}
+
+.modal-contenido{
+  width:100%;
+  max-width:700px;
+  max-height:80vh;
+  overflow:auto;
+  background:
+  #111;
+  border:
+  1px solid rgba(255,0,0,.2);
+  border-radius:20px;
+  padding:30px;
+  position:relative;
+  box-shadow:
+  0 0 40px rgba(255,0,0,.2);
+}
+
+#cerrarModal{
+  position:absolute;
+  top:15px;
+  right:15px;
+  background:none;
+  border:none;
+  color:white;
+  font-size:24px;
+  cursor:pointer;
+}
+
+.historial-item{
+  padding:15px;
+  margin-bottom:15px;
+  border-radius:12px;
+  background:
+  rgba(255,255,255,.04);
+  border:
+  1px solid rgba(255,255,255,.06);
+}
+
+.historial-acierto{
+  border-left:
+  5px solid #00ff99;
+}
+
+.historial-error{
+  border-left:
+  5px solid #ff3131;
+}
+
+.nombre-click{
+  cursor:pointer;
+  transition:.2s;
+}
+
+.nombre-click:hover{
+  color:#ff4d4d;
+  text-shadow:
+  0 0 10px rgba(255,0,0,.5);
+}
