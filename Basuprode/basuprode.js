@@ -67,7 +67,7 @@ const predicciones = [
     prediccion: "México"
   },
   {
-    participante: "Gracias Charly",
+    participante: "KarlangaxGD",
     partidoId: 1,
     prediccion: "México"
   },
