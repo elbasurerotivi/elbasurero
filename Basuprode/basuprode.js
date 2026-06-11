@@ -12,7 +12,7 @@ const partidos = [
     id: 2,
     local: "Korea del Sur",
     visitante: "Chequia",
-    resultado: "Vacante"
+    resultado: "Próximamente"
   }
 
 ];
