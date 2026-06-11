@@ -318,7 +318,7 @@ partidos.forEach(partido => {
   div.innerHTML = `
   
     <div>
-      ${partido.Local}
+      ${partido.local}
       vs
       ${partido.visitante}
     </div>
