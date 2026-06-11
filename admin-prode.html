@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Admin Basuprode</title>
+
+  <link rel="stylesheet" href="Basuprode/admin-prode.css">
+
+</head>
+
+<body>
+
+  <div class="admin-container">
+
+    <h1>ADMIN BASUPRODE</h1>
+
+    <div class="formulario">
+
+      <input
+        type="text"
+        id="participante"
+        placeholder="Nombre del participante"
+      >
+
+      <input
+        type="number"
+        id="partidoId"
+        placeholder="ID del partido"
+      >
+
+      <select id="prediccion">
+
+        <option value="">
+          Seleccionar resultado
+        </option>
+
+        <option value="empate">
+          Empate
+        </option>
+
+        <option value="Argentina">
+          Argentina
+        </option>
+
+        <option value="Brasil">
+          Brasil
+        </option>
+
+        <option value="México">
+          México
+        </option>
+
+        <option value="Sudáfrica">
+          Sudáfrica
+        </option>
+
+      </select>
+
+      <button id="agregarBtn">
+        Agregar Predicción
+      </button>
+
+      <button id="descargarBtn">
+        Descargar Fragmento JS
+      </button>
+
+    </div>
+
+    <div class="preview">
+
+      <h2>Fragmento generado</h2>
+
+      <pre id="resultado"></pre>
+
+    </div>
+
+  </div>
+
+  <script src="Basuprode/admin-prode.js"></script>
+
+</body>
+</html>
