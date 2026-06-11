@@ -3,15 +3,15 @@ const partidos = [
 
   {
     id: 1,
-    local: "México",
-    visitante: "Sudáfrica",
+    Local: "México",
+    Visitante: "Sudáfrica",
     resultado: "Local"
   },
 
   {
     id: 2,
-    local: "Korea del Sur",
-    visitante: "Chequia",
+    Local: "Korea del Sur",
+    Visitante: "Chequia",
     resultado: "Próximamente"
   }
 
@@ -29,7 +29,7 @@ const predicciones = [
   {
     partidoId: 1,
 
-    local: [
+    Local: [
       "Lucia Suárez",
       "Angie",
       "Charsvolta",
@@ -47,7 +47,7 @@ const predicciones = [
 
     ],
 
-    visitante: [
+    Visitante: [
       "Lautaro Gomez",
       "Adriana Larosa",
       "Agostina",
@@ -55,7 +55,7 @@ const predicciones = [
       "Blanqui"
     ],
 
-    empate: [
+    Empate: [
       "Rafa",
       "Patito",
       "Gonza",
@@ -107,25 +107,25 @@ predicciones.forEach(pred => {
 
   /*
   ================================
-  RESULTADO LOCAL
+  RESULTADO Local
   ================================
   */
 
-  if(partido.resultado === partido.local){
-    pred.local.forEach(nombre => {
+  if(partido.resultado === partido.Local){
+    pred.Local.forEach(nombre => {
       crearJugador(nombre);
       estadisticas[nombre].ganados++;
       estadisticas[nombre].puntos++;
     });
 
 
-    pred.visitante.forEach(nombre => {
+    pred.Visitante.forEach(nombre => {
       crearJugador(nombre);
       estadisticas[nombre].perdidos++;
     });
 
 
-    pred.empate.forEach(nombre => {
+    pred.Empate.forEach(nombre => {
       crearJugador(nombre);
       estadisticas[nombre].perdidos++;
     });
@@ -134,25 +134,25 @@ predicciones.forEach(pred => {
 
   /*
   ================================
-  RESULTADO VISITANTE
+  RESULTADO Visitante
   ================================
   */
 
-  if(partido.resultado === partido.visitante){
-    pred.visitante.forEach(nombre => {
+  if(partido.resultado === partido.Visitante){
+    pred.Visitante.forEach(nombre => {
       crearJugador(nombre);
       estadisticas[nombre].ganados++;
       estadisticas[nombre].puntos++;
     });
 
 
-    pred.local.forEach(nombre => {
+    pred.Local.forEach(nombre => {
       crearJugador(nombre);
       estadisticas[nombre].perdidos++;
     });
 
 
-    pred.empate.forEach(nombre => {
+    pred.Empate.forEach(nombre => {
       crearJugador(nombre);
       estadisticas[nombre].perdidos++;
     });
@@ -161,29 +161,29 @@ predicciones.forEach(pred => {
 
   /*
   ================================
-  RESULTADO EMPATE
+  RESULTADO Empate
   ================================
   */
 
   if(
     partido.resultado.toLowerCase()
     ===
-    "empate"
+    "Empate"
   ){
-    pred.empate.forEach(nombre => {
+    pred.Empate.forEach(nombre => {
       crearJugador(nombre);
       estadisticas[nombre].empatados++;
       estadisticas[nombre].puntos++;
     });
 
 
-    pred.local.forEach(nombre => {
+    pred.Local.forEach(nombre => {
       crearJugador(nombre);
       estadisticas[nombre].perdidos++;
     });
 
 
-    pred.visitante.forEach(nombre => {
+    pred.Visitante.forEach(nombre => {
       crearJugador(nombre);
       estadisticas[nombre].perdidos++;
     });
@@ -284,7 +284,7 @@ partidos.forEach(partido => {
   div.innerHTML = `
   
     <div>
-      ${partido.local}
+      ${partido.Local}
       vs
       ${partido.visitante}
     </div>
