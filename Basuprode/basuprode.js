@@ -5,14 +5,14 @@ const partidos = [
     id: 1,
     local: "México",
     visitante: "Sudáfrica",
-    resultado: "empate"
+    resultado: "México"
   },
 
   {
     id: 2,
-    local: "Argentina",
-    visitante: "Brasil",
-    resultado: "Argentina"
+    local: "Korea del Sur",
+    visitante: "Chequia",
+    resultado: "Vacante"
   }
 
 ];
@@ -27,28 +27,123 @@ PREDICCIONES
 const predicciones = [
 
   {
-    participante: "Juan",
+    participante: "Lucia Suárez",
     partidoId: 1,
-    prediccion: "empate"
+    prediccion: "México"
   },
-
   {
-    participante: "Pedro",
+    participante: "Angie",
+    partidoId: 1,
+    prediccion: "México"
+  },
+  {
+    participante: "Charsvolta",
+    partidoId: 1,
+    prediccion: "México"
+  },
+  {
+    participante: "Andrea",
+    partidoId: 1,
+    prediccion: "México"
+  },
+  {
+    participante: "Gustavo",
+    partidoId: 1,
+    prediccion: "México"
+  },
+  {
+    participante: "Mai",
+    partidoId: 1,
+    prediccion: "México"
+  },
+  {
+    participante: "La Corrupción Mata",
+    partidoId: 1,
+    prediccion: "México"
+  },
+  {
+    participante: "A",
+    partidoId: 1,
+    prediccion: "México"
+  },
+  {
+    participante: "Gracias Charly",
+    partidoId: 1,
+    prediccion: "México"
+  },
+  {
+    participante: "Xpupumbus",
+    partidoId: 1,
+    prediccion: "México"
+  },
+  {
+    participante: "Pepe",
+    partidoId: 1,
+    prediccion: "México"
+  },
+  {
+    participante: "Soledad",
+    partidoId: 1,
+    prediccion: "México"
+  },
+  {
+    participante: "Diego",
+    partidoId: 1,
+    prediccion: "México"
+  },
+  {
+    participante: "Davincho",
     partidoId: 1,
     prediccion: "México"
   },
 
   {
-    participante: "Juan",
-    partidoId: 2,
-    prediccion: "Argentina"
+    participante: "Lautaro Gomez",
+    partidoId: 1,
+    prediccion: "Sudáfrica"
+  },
+  {
+    participante: "Adriana Larosa",
+    partidoId: 1,
+    prediccion: "Sudáfrica"
+  },
+  {
+    participante: "Agostina",
+    partidoId: 1,
+    prediccion: "Sudáfrica"
+  },
+  {
+    participante: "Juancho",
+    partidoId: 1,
+    prediccion: "Sudáfrica"
+  },
+  {
+    participante: "Blanqui",
+    partidoId: 1,
+    prediccion: "Sudáfrica"
   },
 
+
   {
-    participante: "Pedro",
-    partidoId: 2,
-    prediccion: "Brasil"
-  }
+    participante: "Rafa",
+    partidoId: 1,
+    prediccion: "Empate"
+  },
+  {
+    participante: "Patito",
+    partidoId: 1,
+    prediccion: "Empate"
+  },
+  {
+    participante: "Gonza",
+    partidoId: 1,
+    prediccion: "Empate"
+  },
+  {
+    participante: "Charly!",
+    partidoId: 1,
+    prediccion: "Empate"
+  },
 
 ];
 
