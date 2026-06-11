@@ -5,7 +5,7 @@ const partidos = [
     id: 1,
     local: "México",
     visitante: "Sudáfrica",
-    resultado: "México"
+    resultado: "Local"
   },
 
   {
