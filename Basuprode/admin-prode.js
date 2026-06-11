@@ -41,19 +41,37 @@ agregarBtn.addEventListener("click", () => {
   }
 
   const fragmento = `
-predicciones.push(
-  {
-    participante: "${participante}",
-    partidoId: ${partidoId},
-    prediccion: "${prediccion}"
-  }
-);
+{
+  participante: "${participante}",
+  partidoId: ${partidoId},
+  prediccion: "${prediccion}"
+},
 `;
 
   fragmentos.push(fragmento);
 
   resultado.textContent =
   fragmentos.join("\n");
+
+
+
+  /*
+  ================================
+  LIMPIAR CAMPOS
+  ================================
+  */
+
+  document.getElementById(
+    "participante"
+  ).value = "";
+
+  document.getElementById(
+    "partidoId"
+  ).value = "";
+
+  document.getElementById(
+    "prediccion"
+  ).value = "";
 
 });
 
@@ -68,20 +86,27 @@ DESCARGAR
 descargarBtn.addEventListener("click", () => {
 
   if(fragmentos.length === 0){
+
     alert("No hay fragmentos");
+
     return;
   }
 
+  const contenido =
+  fragmentos.join("\n");
+
   const blob = new Blob(
-    [fragmentos.join("\n")],
+    [contenido],
     { type:"text/javascript" }
   );
 
   const a = document.createElement("a");
 
-  a.href = URL.createObjectURL(blob);
+  a.href =
+  URL.createObjectURL(blob);
 
-  a.download = "fragmento-basuprode.js";
+  a.download =
+  "fragmento-basuprode.js";
 
   a.click();
 
