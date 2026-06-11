@@ -323,10 +323,23 @@ partidos.forEach(partido => {
       ${partido.visitante}
     </div>
 
+
     <div class="resultado">
-      Resultado:
-      ${partido.resultado}
+    Resultado:
+    ${
+        partido.resultado === "local"
+        ? partido.local
+
+        : partido.resultado === "visitante"
+        ? partido.visitante
+
+        : partido.resultado === "empate"
+        ? "Empate"
+
+        : "Próximamente"
+    }
     </div>
+
 
   `;
 
