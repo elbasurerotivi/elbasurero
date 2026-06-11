@@ -27,123 +27,41 @@ PREDICCIONES
 const predicciones = [
 
   {
-    participante: "Lucia Suárez",
     partidoId: 1,
-    prediccion: "México"
-  },
-  {
-    participante: "Angie",
-    partidoId: 1,
-    prediccion: "México"
-  },
-  {
-    participante: "Charsvolta",
-    partidoId: 1,
-    prediccion: "México"
-  },
-  {
-    participante: "Andrea",
-    partidoId: 1,
-    prediccion: "México"
-  },
-  {
-    participante: "Gustavo",
-    partidoId: 1,
-    prediccion: "México"
-  },
-  {
-    participante: "Mai",
-    partidoId: 1,
-    prediccion: "México"
-  },
-  {
-    participante: "La Corrupción Mata",
-    partidoId: 1,
-    prediccion: "México"
-  },
-  {
-    participante: "A",
-    partidoId: 1,
-    prediccion: "México"
-  },
-  {
-    participante: "KarlangaxGD",
-    partidoId: 1,
-    prediccion: "México"
-  },
-  {
-    participante: "Xpupumbus",
-    partidoId: 1,
-    prediccion: "México"
-  },
-  {
-    participante: "Pepe",
-    partidoId: 1,
-    prediccion: "México"
-  },
-  {
-    participante: "Soledad",
-    partidoId: 1,
-    prediccion: "México"
-  },
-  {
-    participante: "Diego",
-    partidoId: 1,
-    prediccion: "México"
-  },
-  {
-    participante: "Davincho",
-    partidoId: 1,
-    prediccion: "México"
-  },
 
-  {
-    participante: "Lautaro Gomez",
-    partidoId: 1,
-    prediccion: "Sudáfrica"
-  },
-  {
-    participante: "Adriana Larosa",
-    partidoId: 1,
-    prediccion: "Sudáfrica"
-  },
-  {
-    participante: "Agostina",
-    partidoId: 1,
-    prediccion: "Sudáfrica"
-  },
-  {
-    participante: "Juancho",
-    partidoId: 1,
-    prediccion: "Sudáfrica"
-  },
-  {
-    participante: "Blanqui",
-    partidoId: 1,
-    prediccion: "Sudáfrica"
-  },
+    local: [
+      "Lucia Suárez",
+      "Angie",
+      "Charsvolta",
+      "Andrea",
+      "Gustavo",
+      "Mai",
+      "La Corrupción Mata",
+      "A",
+      "KarlangaxGD",
+      "Xpupumbus",
+      "Pepe",
+      "Soledad",
+      "Diego",
+      "Davincho"
 
+    ],
 
-  {
-    participante: "Rafa",
-    partidoId: 1,
-    prediccion: "Empate"
-  },
-  {
-    participante: "Patito",
-    partidoId: 1,
-    prediccion: "Empate"
-  },
-  {
-    participante: "Gonza",
-    partidoId: 1,
-    prediccion: "Empate"
-  },
-  {
-    participante: "Charly!",
-    partidoId: 1,
-    prediccion: "Empate"
-  },
+    visitante: [
+      "Lautaro Gomez",
+      "Adriana Larosa",
+      "Agostina",
+      "Juancho",
+      "Blanqui"
+    ],
+
+    empate: [
+      "Rafa",
+      "Patito",
+      "Gonza",
+      "Charly",
+    ]
+  }
 
 ];
 
@@ -156,40 +74,122 @@ GENERAR TABLA
 
 const estadisticas = {};
 
-predicciones.forEach(pred => {
+/*
+====================================
+CREAR JUGADOR
+====================================
+*/
 
-  const partido = partidos.find(
-    p => p.id === pred.partidoId
-  );
-
-  if(!partido) return;
-
-  if(!estadisticas[pred.participante]){
-
-    estadisticas[pred.participante] = {
-      nombre: pred.participante,
+function crearJugador(nombre){
+  if(!estadisticas[nombre]){
+    estadisticas[nombre] = {
+      nombre: nombre,
       ganados:0,
       empatados:0,
       perdidos:0,
       puntos:0
     };
+  }
+}
 
+/*
+====================================
+SUMAR ACIERTOS
+====================================
+*/
+
+predicciones.forEach(pred => {
+  const partido = partidos.find(
+    p => p.id === pred.partidoId
+  );
+  if(!partido) return;
+
+
+  /*
+  ================================
+  RESULTADO LOCAL
+  ================================
+  */
+
+  if(partido.resultado === partido.local){
+    pred.local.forEach(nombre => {
+      crearJugador(nombre);
+      estadisticas[nombre].ganados++;
+      estadisticas[nombre].puntos++;
+    });
+
+
+    pred.visitante.forEach(nombre => {
+      crearJugador(nombre);
+      estadisticas[nombre].perdidos++;
+    });
+
+
+    pred.empate.forEach(nombre => {
+      crearJugador(nombre);
+      estadisticas[nombre].perdidos++;
+    });
   }
 
-  const jugador = estadisticas[pred.participante];
 
-  if(pred.prediccion === partido.resultado){
+  /*
+  ================================
+  RESULTADO VISITANTE
+  ================================
+  */
 
-    jugador.ganados++;
-    jugador.puntos++;
+  if(partido.resultado === partido.visitante){
+    pred.visitante.forEach(nombre => {
+      crearJugador(nombre);
+      estadisticas[nombre].ganados++;
+      estadisticas[nombre].puntos++;
+    });
 
-  }else{
 
-    jugador.perdidos++;
+    pred.local.forEach(nombre => {
+      crearJugador(nombre);
+      estadisticas[nombre].perdidos++;
+    });
 
+
+    pred.empate.forEach(nombre => {
+      crearJugador(nombre);
+      estadisticas[nombre].perdidos++;
+    });
   }
 
+
+  /*
+  ================================
+  RESULTADO EMPATE
+  ================================
+  */
+
+  if(
+    partido.resultado.toLowerCase()
+    ===
+    "empate"
+  ){
+    pred.empate.forEach(nombre => {
+      crearJugador(nombre);
+      estadisticas[nombre].empatados++;
+      estadisticas[nombre].puntos++;
+    });
+
+
+    pred.local.forEach(nombre => {
+      crearJugador(nombre);
+      estadisticas[nombre].perdidos++;
+    });
+
+
+    pred.visitante.forEach(nombre => {
+      crearJugador(nombre);
+      estadisticas[nombre].perdidos++;
+    });
+  }
 });
+
 
 
 /*
