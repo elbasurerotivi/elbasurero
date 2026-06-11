@@ -231,11 +231,11 @@ ranking.forEach((jugador,index) => {
     <td class="posicion">
     ${
     index === 0
-    ? "🥇"
+    ? "🥇1"
     : index === 1
-    ? "🥈"
+    ? "🥈2"
     : index === 2
-    ? "🥉"
+    ? "🥉3"
     : index + 1
     }
     </td>
