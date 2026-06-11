@@ -20,7 +20,6 @@ body::before{
   content:"";
   position:fixed;
   inset:0;
-
   background:
   linear-gradient(
     rgba(0,0,0,.55),
@@ -59,7 +58,6 @@ body::before{
 .hero-left,
 .hero-right{
   width:180px;
-
   display:flex;
   justify-content:center;
   align-items:center;
@@ -85,9 +83,7 @@ body::before{
 .hero-center h1{
   font-size:72px;
   color:#ff3131;
-
   letter-spacing:4px;
-
   text-shadow:
   0 0 10px rgba(255,0,0,.7),
   0 0 30px rgba(255,0,0,.5),
@@ -110,32 +106,22 @@ body::before{
 
 .tabla-section,
 .partidos-section{
-
   background:
   rgba(255,255,255,.04);
-
   border:
   1px solid rgba(255,0,0,.15);
-
   border-radius:20px;
-
   padding:30px;
-
   margin-bottom:40px;
-
   backdrop-filter:blur(10px);
-
   box-shadow:
   0 0 30px rgba(255,0,0,.08);
 }
 
 h2{
   margin-bottom:25px;
-
   font-size:34px;
-
   color:#ff4d4d;
-
   text-shadow:
   0 0 10px rgba(255,0,0,.3);
 }
@@ -150,7 +136,6 @@ table{
 }
 
 thead{
-
   background:
   linear-gradient(
     to right,
@@ -168,25 +153,20 @@ td{
 }
 
 tbody tr{
-
   border-bottom:
   1px solid rgba(255,255,255,.06);
-
   transition:.25s;
 }
 
 tbody tr:hover{
-
   background:
   rgba(255,0,0,.08);
-
   transform:scale(1.01);
 }
 
 .top1{
   background:
   rgba(255,215,0,.08);
-
   box-shadow:
   inset 0 0 20px rgba(255,215,0,.12);
 }
@@ -207,30 +187,22 @@ tbody tr:hover{
 }
 
 .partido{
-
   background:
   rgba(0,0,0,.4);
-
   border:
   1px solid rgba(255,0,0,.12);
-
   border-radius:16px;
-
   padding:20px;
-
   display:flex;
   justify-content:space-between;
   align-items:center;
   gap:20px;
   flex-wrap:wrap;
-
   transition:.25s;
 }
 
 .partido:hover{
-
   transform:translateY(-2px);
-
   box-shadow:
   0 0 20px rgba(255,0,0,.15);
 }
@@ -241,7 +213,6 @@ tbody tr:hover{
 }
 
 @media(max-width:768px){
-
   .hero{
     justify-content:center;
     text-align:center;
@@ -273,9 +244,7 @@ RESPONSIVE HERO
 @media(max-width:1200px){
 
   .hero{
-
     min-height:420px;
-
     background-position:center center;
   }
 
@@ -285,26 +254,17 @@ RESPONSIVE HERO
 @media(max-width:768px){
 
   .hero{
-
     min-height:320px;
-
     padding:20px;
-
     background-position:center top;
   }
 
 }
 
-
 @media(max-width:480px){
-
   .hero{
-
     min-height:240px;
-
     background-position:center top;
-
     background-size:cover;
   }
-
 }

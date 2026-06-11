@@ -283,10 +283,6 @@ ranking.forEach((jugador,index) => {
     </td>
 
     <td>
-      ${jugador.empatados}
-    </td>
-
-    <td>
       ${jugador.perdidos}
     </td>
 
