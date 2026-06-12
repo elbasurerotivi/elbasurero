@@ -8,9 +8,9 @@ const partidos = [
   },
   {
     id: 2,
-    local: "Corea del Sur",
-    visitante: "Chequia",
-    resultado: "Entretiempo"
+    local: "Corea del Sur 2",
+    visitante: "Chequia 1",
+    resultado: "local"
   },
   {
     id: 3,
