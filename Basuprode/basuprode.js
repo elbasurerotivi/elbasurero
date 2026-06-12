@@ -1,5 +1,41 @@
 
 const partidos = [
+  {
+    partidoId: 2,
+
+    local: [
+      "Charsvolta",
+      "Maiira",
+      "Javier Acosta",
+      "Andrea",
+      "Rafa",
+      "Davincho,
+      "Favio",
+      "Dario",
+      "Soledad",
+      "Ivan Gonzalez",
+      "A",
+      "Ezequiel Camacho",
+      "Blanqui",
+      "Franco",
+      "Nelson Gonzalez"
+    ],
+
+    visitante: [
+      "Lautaro Gomez",
+      "Javier Martín Sánchez",
+      "Juancho"
+    ],
+
+    empate: [
+      "Pantera",
+      "Angie",
+      "Diego",
+      "Patito",
+      "Pepe"
+    ]
+  }
+
 
   {
     id: 1,
@@ -60,34 +96,7 @@ const predicciones = [
     ]
   },
 
-  {
-    partidoId: 2,
-
-    local: [
-      "Favio",
-      "Dario",
-      "Soledad",
-      "Ivan Gonzalez",
-      "A",
-      "Ezequiel Camacho",
-      "Blanqui",
-      "Franco",
-      "Nelson Gonzalez"
-    ],
-
-    visitante: [
-      "Pepe",
-      "Lucia Suarez",
-      "Patito",
-      "Ivan"
-    ],
-
-    empate: [
-      "Javier Martin Snachez",
-      "Juancho"
-    ]
-  }
-
+  
 
 ];
 
