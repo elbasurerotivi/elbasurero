@@ -5,347 +5,363 @@
 }
 
 body{
-  font-family:Arial, Helvetica, sans-serif;
   background:
-  radial-gradient(circle at top,
-  #4b0000 0%,
-  #170000 35%,
-  #090909 100%);
-  color:white;
-  min-height:100vh;
-  overflow-x:hidden;
-}
-
-body::before{
-  content:"";
-  position:fixed;
-  inset:0;
-  background:
-  linear-gradient(
-    rgba(0,0,0,.55),
-    rgba(0,0,0,.8)
+  radial-gradient(
+    circle at top,
+    #4b0000 0%,
+    #170000 35%,
+    #090909 100%
   );
 
-  pointer-events:none;
-  z-index:-1;
+  min-height:100vh;
+  font-family:Arial, Helvetica, sans-serif;
+  color:white;
+  padding:40px 20px;
 }
+
+/* =========================
+CONTENEDORES
+========================= */
+
+.admin-container,
+.contenedor{
+  width:100%;
+  max-width:1200px;
+  margin:auto;
+}
+
+.admin-container{
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,0,0,.15);
+  border-radius:20px;
+  padding:40px;
+  backdrop-filter:blur(10px);
+  box-shadow:
+  0 0 30px rgba(255,0,0,.15);
+}
+
+/* =========================
+HEADER HERO
+========================= */
 
 .hero{
   width:100%;
-  min-height:550px;
-  padding:40px 20px;
+  min-height:280px;
+
+  border-radius:25px;
+
   display:flex;
   align-items:center;
   justify-content:center;
-  position:relative;
+
+  margin-bottom:40px;
+
   overflow:hidden;
-  background-image:
-  linear-gradient(
-    rgba(0,0,0,.15),
-    rgba(0,0,0,.75)
-  ),
-  url("../imagenes/tabla.png");
-  background-size:contain;
-  background-position:center center;
-  background-repeat:no-repeat;
-  border-bottom:
-  2px solid rgba(255,0,0,.15);
-  box-shadow:
-  0 0 40px rgba(255,0,0,.15);
-}
-
-
-.hero-left,
-.hero-right{
-  width:180px;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-}
-
-.avatar{
-  width:180px;
-  filter:
-  drop-shadow(0 0 20px rgba(255,0,0,.5));
-}
-
-.hero-right{
-  font-size:90px;
-  text-shadow:
-  0 0 20px rgba(255,215,0,.5);
+  position:relative;
 }
 
 .hero-center{
-  flex:1;
   text-align:center;
+  padding:20px;
 }
 
-.hero-center h1{
-  font-size:72px;
+.hero h1{
+  font-size:clamp(32px, 5vw, 64px);
   color:#ff3131;
-  letter-spacing:4px;
-  text-shadow:
-  0 0 10px rgba(255,0,0,.7),
-  0 0 30px rgba(255,0,0,.5),
-  0 0 60px rgba(255,0,0,.3);
 }
 
-.hero-center p{
-  margin-top:15px;
+.hero p{
+  margin-top:10px;
+  font-size:clamp(14px, 2vw, 22px);
   color:#ddd;
-  font-size:22px;
-  letter-spacing:2px;
 }
 
-.contenedor{
-  width:95%;
-  max-width:1400px;
-  margin:auto;
-  padding:40px 0;
-}
+/* =========================
+TEXTOS
+========================= */
 
-.tabla-section,
-.partidos-section{
-  background:
-  rgba(255,255,255,.04);
-  border:
-  1px solid rgba(255,0,0,.15);
-  border-radius:20px;
-  padding:30px;
+h1{
+  text-align:center;
   margin-bottom:40px;
-  backdrop-filter:blur(10px);
-  box-shadow:
-  0 0 30px rgba(255,0,0,.08);
+  color:#ff3131;
+  font-size:48px;
 }
 
 h2{
-  margin-bottom:25px;
-  font-size:34px;
+  margin-bottom:20px;
+  font-size:clamp(24px, 4vw, 36px);
   color:#ff4d4d;
-  text-shadow:
-  0 0 10px rgba(255,0,0,.3);
+}
+
+/* =========================
+FORMULARIOS
+========================= */
+
+.formulario{
+  display:grid;
+  gap:20px;
+}
+
+input,
+select{
+  width:100%;
+  padding:15px;
+
+  border:none;
+  border-radius:12px;
+
+  background:rgba(0,0,0,.5);
+
+  color:white;
+  font-size:16px;
+}
+
+input::placeholder{
+  color:#bbb;
+}
+
+/* =========================
+BOTONES
+========================= */
+
+button{
+  padding:15px;
+
+  border:none;
+  border-radius:12px;
+
+  background:#b30000;
+
+  color:white;
+  font-size:18px;
+
+  cursor:pointer;
+  transition:.25s;
+}
+
+button:hover{
+  background:#ff3131;
+  transform:translateY(-2px);
+}
+
+/* =========================
+TABLA
+========================= */
+
+.tabla-section{
+  margin-bottom:50px;
 }
 
 .tabla-container{
-  overflow-x:hidden;
+  width:100%;
+  overflow-x:auto;
+  border-radius:20px;
 }
 
 table{
   width:100%;
+  min-width:700px;
+
   border-collapse:collapse;
+
+  background:rgba(255,255,255,.04);
+
+  overflow:hidden;
 }
 
 thead{
-  background:
-  linear-gradient(
-    to right,
-    #5f0000,
-    #b30000
-  );
-
-  color:white;
+  background:rgba(255,0,0,.15);
 }
 
 th,
 td{
-  padding:18px;
+  padding:16px;
   text-align:center;
+  border-bottom:1px solid rgba(255,255,255,.08);
 }
 
-tbody tr{
-  border-bottom:
-  1px solid rgba(255,255,255,.06);
-  transition:.25s;
+th{
+  font-size:16px;
+  color:#ff6666;
 }
 
-tbody tr:hover{
-  background:
-  rgba(255,0,0,.08);
-  transform:scale(1.01);
+td{
+  font-size:15px;
 }
 
-.top1{
-  background:
-  rgba(255,215,0,.08);
-  box-shadow:
-  inset 0 0 20px rgba(255,215,0,.12);
-}
-
-.top2{
-  background:
-  rgba(255,255,255,.05);
-}
-
-.top3{
-  background:
-  rgba(205,127,50,.08);
-}
+/* =========================
+LISTA DE PARTIDOS
+========================= */
 
 .lista-partidos{
   display:grid;
-  gap:15px;
-}
-
-.partido{
-  background:
-  rgba(0,0,0,.4);
-  border:
-  1px solid rgba(255,0,0,.12);
-  border-radius:16px;
-  padding:20px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
+  grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
   gap:20px;
-  flex-wrap:wrap;
-  transition:.25s;
 }
 
-.partido:hover{
-  transform:translateY(-2px);
-  box-shadow:
-  0 0 20px rgba(255,0,0,.15);
-}
-
-.resultado{
-  font-weight:bold;
-  color:#ff4d4d;
-}
-
-@media(max-width:768px){
-  .hero{
-    justify-content:center;
-    text-align:center;
-  }
-
-  .hero-center h1{
-    font-size:48px;
-  }
-
-  .hero-right{
-    font-size:60px;
-  }
-
-  th,
-  td{
-    padding:12px 8px;
-    font-size:14px;
-  }
-
-}
-
-
-/*
-========================================
-RESPONSIVE HERO
-========================================
-*/
-
-@media(max-width:1200px){
-
-  .hero{
-    min-height:420px;
-    background-position:center center;
-  }
-
-}
-
-
-@media(max-width:768px){
-
-  .hero{
-    min-height:320px;
-    padding:20px;
-    background-position:center top;
-  }
-
-}
-
-@media(max-width:480px){
-  .hero{
-    min-height:240px;
-    background-position:center top;
-    background-size:cover;
-  }
-}
-
-
-/*
-====================================
+/* =========================
 MODAL
-====================================
-*/
+========================= */
 
 .modal{
+  display:none;
+
   position:fixed;
   inset:0;
-  background:
-  rgba(0,0,0,.8);
-  display:none;
+
+  background:rgba(0,0,0,.7);
+
   justify-content:center;
   align-items:center;
-  padding:20px;
-  z-index:9999;
-}
 
-.modal.activo{
-  display:flex;
+  padding:20px;
+
+  z-index:999;
 }
 
 .modal-contenido{
   width:100%;
   max-width:700px;
-  max-height:80vh;
-  overflow:auto;
-  background:
-  #111;
-  border:
-  1px solid rgba(255,0,0,.2);
+
+  max-height:90vh;
+  overflow-y:auto;
+
+  background:#121212;
+
   border-radius:20px;
+
   padding:30px;
+
   position:relative;
-  box-shadow:
-  0 0 40px rgba(255,0,0,.2);
+
+  border:1px solid rgba(255,0,0,.2);
 }
 
 #cerrarModal{
   position:absolute;
   top:15px;
   right:15px;
-  background:none;
-  border:none;
-  color:white;
-  font-size:24px;
-  cursor:pointer;
+
+  width:40px;
+  height:40px;
+
+  padding:0;
 }
 
-.historial-item{
-  padding:15px;
-  margin-bottom:15px;
-  border-radius:12px;
-  background:
-  rgba(255,255,255,.04);
-  border:
-  1px solid rgba(255,255,255,.06);
+/* =========================
+PREVIEW
+========================= */
+
+.preview{
+  margin-top:40px;
 }
 
-.historial-acierto{
-  border-left:
-  5px solid #00ff99;
+pre{
+  margin-top:20px;
+  background:black;
+  padding:20px;
+  border-radius:15px;
+  overflow:auto;
+  color:#00ff99;
 }
 
-.historial-error{
-  border-left:
-  5px solid #ff3131;
+/* =========================
+TABLETS
+========================= */
+
+@media (max-width: 992px){
+
+  body{
+    padding:25px 15px;
+  }
+
+  .hero{
+    min-height:220px;
+  }
+
+  .admin-container{
+    padding:30px 20px;
+  }
+
+  th,
+  td{
+    padding:14px;
+  }
 }
 
-.nombre-click{
-  cursor:pointer;
-  transition:.2s;
+/* =========================
+MÓVILES
+========================= */
+
+@media (max-width: 768px){
+
+  body{
+    padding:15px 10px;
+  }
+
+  .hero{
+    min-height:180px;
+    border-radius:18px;
+    margin-bottom:25px;
+  }
+
+  h1{
+    font-size:32px;
+    margin-bottom:25px;
+  }
+
+  h2{
+    font-size:24px;
+  }
+
+  .admin-container{
+    padding:20px 15px;
+    border-radius:18px;
+  }
+
+  input,
+  select,
+  button{
+    font-size:15px;
+    padding:14px;
+  }
+
+  th,
+  td{
+    padding:12px;
+    font-size:14px;
+  }
+
+  .modal-contenido{
+    padding:20px 15px;
+  }
 }
 
-.nombre-click:hover{
-  color:#ff4d4d;
-  text-shadow:
-  0 0 10px rgba(255,0,0,.5);
+/* =========================
+CELULARES PEQUEÑOS
+========================= */
+
+@media (max-width: 480px){
+
+  .hero{
+    min-height:140px;
+  }
+
+  h1{
+    font-size:26px;
+  }
+
+  h2{
+    font-size:22px;
+  }
+
+  th,
+  td{
+    padding:10px;
+    font-size:13px;
+  }
+
+  button{
+    font-size:16px;
+  }
 }
