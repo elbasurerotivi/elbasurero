@@ -355,11 +355,12 @@ MODAL
 
 #cerrarModal{
   position:absolute;
-  top:15px;
+  top:-11px;
   right:15px;
   width:40px;
   height:40px;
   padding:0;
+  color: #ff3131;
 }
 
 /* =========================
