@@ -73,36 +73,48 @@ const partidos = [
     id: 1,
     local: "México",
     visitante: "Sudáfrica",
+    golesLocal: 2,
+    golesVisitante: 0,
     resultado: "local"
   },
   {
     id: 2,
     local: "Corea del Sur",
     visitante: "Chequia",
+    golesLocal: 2,
+    golesVisitante: 1,
     resultado: "local"
   },
   {
     id: 3,
     local: "Canadá",
     visitante: "Bosnia y Herzegovina",
+    golesLocal: 0,
+    golesVisitante: 0,
     resultado: "12/06"
   },
   {
     id: 4,
     local: "Estados Unidos",
     visitante: "Paraguay",
+    golesLocal: 0,
+    golesVisitante: 0,
     resultado: "12/06"
   },
   {
     id: 5,
     local: "Catar",
     visitante: "Suiza",
+    golesLocal: 0,
+    golesVisitante: 0,
     resultado: "13/06"
   },
   {
     id: 6,
     local: "Brasil",
     visitante: "Marruecos",
+    golesLocal: 0,
+    golesVisitante: 0,
     resultado: "13/06"
   },
   
