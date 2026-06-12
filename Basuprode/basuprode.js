@@ -1,6 +1,42 @@
 
 const partidos = [
   {
+    id: 1,
+    local: "México",
+    visitante: "Sudáfrica",
+    resultado: "local"
+  },
+  {
+    id: 2,
+    local: "Corea del Sur",
+    visitante: "Chequia",
+    resultado: "Entretiempo"
+  },
+  {
+    id: 3,
+    local: "Canadá",
+    visitante: "Bosnia y Herzegovina",
+    resultado: "Próximamente"
+  },
+  {
+    id: 4,
+    local: "Estados Unidos",
+    visitante: "Paraguay",
+    resultado: "Próximamente"
+  },
+  
+  
+];
+
+/*
+====================================
+PREDICCIONES
+====================================
+*/
+
+const predicciones = [
+
+  {
     partidoId: 2,
 
     local: [
@@ -34,30 +70,7 @@ const partidos = [
       "Patito",
       "Pepe"
     ]
-  }
-
-
-  {
-    id: 1,
-    local: "México",
-    visitante: "Sudáfrica",
-    resultado: "local"
   },
-  {
-    id: 2,
-    local: "Corea del Sur",
-    visitante: "Chequia",
-    resultado: "Próximamente"
-  }
-];
-
-/*
-====================================
-PREDICCIONES
-====================================
-*/
-
-const predicciones = [
 
   {
     partidoId: 1,
@@ -94,9 +107,7 @@ const predicciones = [
       "Gonza",
       "Charly",
     ]
-  },
-
-  
+  }
 
 ];
 
