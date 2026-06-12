@@ -106,49 +106,50 @@ async function predecir(prediccion){
     return;
   }
 
-  const prediccionRef = ref(
-    db,
-    `prode/predicciones/${partido.id}/${usuarioActual.uid}`
-  );
+const prediccionRef = ref(
+  db,
+  `prode/predicciones/${partido.id}/${usuarioActual.uid}`
+);
 
 
 
-  /*
-  ================================
-  VERIFICAR SI YA PREDIJO
-  ================================
-  */
+/*
+================================
+VERIFICAR SI YA PREDIJO
+================================
+*/
 
-  const snapshot =
-  await get(prediccionRef);
+const snapshot =
+await get(prediccionRef);
 
-  if(snapshot.exists()){
+if(snapshot.exists()){
 
-    mensaje.innerHTML =
-    "Ya realizaste tu predicción.";
+  mensaje.innerHTML =
+  "Ya realizaste tu predicción.";
 
-    return;
-  }
+  return;
+}
 
 
 
-  /*
-  ================================
-  GUARDAR
-  ================================
-  */
+/*
+================================
+GUARDAR
+================================
+*/
 
-  await set(prediccionRef, {
+await set(prediccionRef, {
 
-    nombre:
-    usuarioActual.displayName
-    ||
-    "Usuario",
+  nombre:
+  usuarioActual.displayName
+  ||
+  "Usuario",
 
-    prediccion:
-    prediccion
+  prediccion:
+  prediccion
 
-  });
+});
+
 
   mensaje.innerHTML =
   "✅ Predicción enviada.";
