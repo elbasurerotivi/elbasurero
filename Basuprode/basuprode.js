@@ -1,3 +1,72 @@
+const flags = {
+
+  "Argentina":"ar",
+  "Brasil":"br",
+  "Francia":"fr",
+  "España":"es",
+  "Portugal":"pt",
+  "Alemania":"de",
+  "México":"mx",
+  "Uruguay":"uy",
+  "Inglaterra":"gb",
+  "Estados Unidos":"us",
+  "Canadá":"ca",
+  "Japón":"jp",
+  "Corea del Sur":"kr",
+  "Australia":"au",
+  "Marruecos":"ma",
+  "Arabia Saudita":"sa",
+  "Croacia":"hr",
+  "Colombia":"co",
+  "Bélgica":"be",
+  "Países Bajos":"nl",
+  "Suiza":"ch",
+  "Austria":"at",
+  "Suecia":"se",
+  "Noruega":"no",
+  "Paraguay":"py",
+  "Ecuador":"ec",
+  "Ghana":"gh",
+  "Panamá":"pa",
+  "Senegal":"sn",
+  "Egipto":"eg",
+  "Irán":"ir",
+  "Qatar":"qa",
+  "Sudáfrica":"za",
+  "Túnez":"tn",
+  "Argelia":"dz",
+  "Irak":"iq",
+  "Jordania":"jo",
+  "Nueva Zelanda":"nz",
+  "Uzbekistán":"uz",
+  "Turquía":"tr",
+  "Escocia":"gb-sct",
+  "República Checa":"cz",
+  "Bosnia y Herzegovina":"ba",
+  "Costa de Marfil":"ci",
+  "Cabo Verde":"cv",
+  "Curazao":"cw",
+  "Haití":"ht",
+  "República Democrática del Congo":"cd"
+
+};
+
+function getFlag(nombrePais){
+
+  const codigo = flags[nombrePais];
+
+  if(!codigo){
+    return "";
+  }
+
+  return `
+    <img
+      class="flag"
+      src="imagenes/flags/${codigo}.svg"
+      alt="${nombrePais}"
+    >
+  `;
+}
 
 const partidos = [
   {
@@ -344,11 +413,23 @@ partidos.forEach(partido => {
   div.classList.add("partido");
   div.innerHTML = `
 
-    <div>
-      ${partido.local}
-      vs
-      ${partido.visitante}
-    </div>
+    <div class="equipos">
+
+  <div class="equipo">
+    ${getFlag(partido.local)}
+    <span>${partido.local}</span>
+  </div>
+
+  <span class="vs">
+    vs
+  </span>
+
+  <div class="equipo">
+    ${getFlag(partido.visitante)}
+    <span>${partido.visitante}</span>
+  </div>
+
+</div>
 
     <div class="resultado">
     Resultado:
