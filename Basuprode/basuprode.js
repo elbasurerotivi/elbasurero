@@ -657,3 +657,239 @@ modal.addEventListener(
 
   }
 );
+
+
+/*
+====================================
+MODAL PARTIDO
+====================================
+*/
+
+const modalPartido =
+document.getElementById("modalPartido");
+
+const contenidoPartido =
+document.getElementById("contenidoPartido");
+
+const cerrarModalPartido =
+document.getElementById("cerrarModalPartido");
+
+
+/*
+====================================
+ABRIR PARTIDO
+====================================
+*/
+
+function abrirPartido(id){
+
+  const partido =
+  partidos.find(p => p.id === id);
+
+  if(!partido) return;
+
+  const pred =
+  predicciones.find(
+    p => p.partidoId === id
+  );
+
+  let ganador = "Próximamente";
+
+  if(partido.resultado === "local"){
+    ganador = partido.local;
+  }
+
+  if(partido.resultado === "visitante"){
+    ganador = partido.visitante;
+  }
+
+  if(partido.resultado === "empate"){
+    ganador = "Empate";
+  }
+
+
+  /*
+  ================================
+  ACIERTOS / FALLOS
+  ================================
+  */
+
+  const aciertos = [];
+  const fallos = [];
+
+  if(pred){
+
+    ["local","visitante","empate"]
+    .forEach(tipo => {
+
+      pred[tipo].forEach(nombre => {
+
+        let texto = "";
+
+        if(tipo === "local"){
+          texto = partido.local;
+        }
+
+        if(tipo === "visitante"){
+          texto = partido.visitante;
+        }
+
+        if(tipo === "empate"){
+          texto = "Empate";
+        }
+
+        const html = `
+          <div class="pred-item">
+            <strong>${nombre}</strong>
+            <br>
+            Predicción:
+            ${texto}
+          </div>
+        `;
+
+        if(tipo === partido.resultado){
+
+          aciertos.push(html);
+
+        }else{
+
+          fallos.push(html);
+        }
+
+      });
+
+    });
+
+  }
+
+
+  /*
+  ================================
+  RENDER
+  ================================
+  */
+
+  contenidoPartido.innerHTML = `
+
+    <div class="partido-header">
+
+      <div class="partido-equipos">
+
+        <div class="partido-equipo">
+
+          <img
+            src="imagenes/flags/${flags[partido.local]}.svg"
+          >
+
+          <span>
+            ${partido.local}
+          </span>
+
+        </div>
+
+        <div class="partido-vs">
+          VS
+        </div>
+
+        <div class="partido-equipo">
+
+          <img
+            src="imagenes/flags/${flags[partido.visitante]}.svg"
+          >
+
+          <span>
+            ${partido.visitante}
+          </span>
+
+        </div>
+
+      </div>
+
+      <div class="resultado-oficial">
+
+        Resultado:
+        ${ganador}
+
+      </div>
+
+    </div>
+
+    <div class="predicciones-grid">
+
+      <div class="pred-columna aciertos">
+
+        <h3>
+          ✅ Aciertos
+        </h3>
+
+        ${
+          aciertos.length
+          ? aciertos.join("")
+          : "<p>Sin aciertos</p>"
+        }
+
+      </div>
+
+      <div class="pred-columna fallos">
+
+        <h3>
+          ❌ Fallos
+        </h3>
+
+        ${
+          fallos.length
+          ? fallos.join("")
+          : "<p>Sin fallos</p>"
+        }
+
+      </div>
+
+    </div>
+
+  `;
+
+  modalPartido.classList.add(
+    "activo"
+  );
+
+}
+
+
+/*
+====================================
+CERRAR MODAL
+====================================
+*/
+
+cerrarModalPartido.addEventListener(
+  "click",
+  () => {
+
+    modalPartido.classList.remove(
+      "activo"
+    );
+
+  }
+);
+
+
+/*
+====================================
+CLICK FUERA
+====================================
+*/
+
+modalPartido.addEventListener(
+  "click",
+  e => {
+
+    if(e.target === modalPartido){
+
+      modalPartido.classList.remove(
+        "activo"
+      );
+
+    }
+
+  }
+);
