@@ -15,16 +15,13 @@ PARTIDO ACTIVO
 ====================================
 */
 
-const partido = {
+const params =
+new URLSearchParams(
+  window.location.search
+);
 
-  id:1,
-
-  local:"México",
-
-  visitante:"Sudáfrica"
-
-};
-
+const partidoId =
+params.get("id");
 
 /*
 ====================================
