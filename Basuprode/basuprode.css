@@ -733,3 +733,59 @@ RESPONSIVE
   }
 
 }
+
+
+/*
+====================================
+SCROLLBAR PERSONALIZADA
+====================================
+*/
+
+/* Chrome, Edge, Opera */
+::-webkit-scrollbar{
+
+  width:10px;
+}
+
+::-webkit-scrollbar-track{
+
+  background:
+  rgba(255,255,255,.03);
+
+  border-radius:20px;
+}
+
+::-webkit-scrollbar-thumb{
+
+  background:
+  linear-gradient(
+    180deg,
+    #ff3131,
+    #7a0000
+  );
+
+  border-radius:20px;
+
+  border:
+  2px solid rgba(0,0,0,.35);
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+  background:
+  linear-gradient(
+    180deg,
+    #ff5555,
+    #a30000
+  );
+}
+
+/* Firefox */
+*{
+
+  scrollbar-width:thin;
+
+  scrollbar-color:
+  #b30000
+  rgba(255,255,255,.05);
+}
