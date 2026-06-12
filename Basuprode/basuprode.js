@@ -62,7 +62,7 @@ function getFlag(nombrePais){
   return `
     <img
       class="flag"
-      src="imagenes/flags/${codigo}.svg"
+      src="Imagenes/flags/${codigo}.svg"
       alt="${nombrePais}"
     >
   `;
