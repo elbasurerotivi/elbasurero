@@ -11,7 +11,7 @@ from "../firebase-config.js";
 
 /*
 ====================================
-PARTIDO ACTIVO
+PARTIDO ID DESDE URL
 ====================================
 */
 
@@ -22,6 +22,7 @@ new URLSearchParams(
 
 const partidoId =
 params.get("id");
+
 
 /*
 ====================================
@@ -47,21 +48,61 @@ document.getElementById("btnVisitante");
 
 /*
 ====================================
-RENDER
+PARTIDO ACTUAL
 ====================================
 */
 
-partidoDiv.innerHTML = `
-  ${partido.local}
-  vs
-  ${partido.visitante}
-`;
+let partido = null;
 
-btnLocal.innerText =
-`Gana ${partido.local}`;
 
-btnVisitante.innerText =
-`Gana ${partido.visitante}`;
+/*
+====================================
+CARGAR PARTIDO
+====================================
+*/
+
+async function cargarPartido(){
+
+  const partidoRef = ref(
+    db,
+    `prode/partidos/${partidoId}`
+  );
+
+  const snapshot =
+  await get(partidoRef);
+
+  if(!snapshot.exists()){
+
+    mensaje.innerHTML =
+    "Partido no encontrado.";
+
+    return;
+  }
+
+  partido = snapshot.val();
+
+
+  /*
+  ================================
+  RENDER
+  ================================
+  */
+
+  partidoDiv.innerHTML = `
+    ${partido.local}
+    vs
+    ${partido.visitante}
+  `;
+
+  btnLocal.innerText =
+  `Gana ${partido.local}`;
+
+  btnVisitante.innerText =
+  `Gana ${partido.visitante}`;
+
+}
+
+cargarPartido();
 
 
 /*
@@ -103,56 +144,67 @@ async function predecir(prediccion){
     return;
   }
 
-const prediccionRef = ref(
-  db,
-  `prode/predicciones/${partido.id}/${usuarioActual.uid}`
-);
+  if(!partido){
+
+    mensaje.innerHTML =
+    "Cargando partido...";
+
+    return;
+  }
 
 
+  /*
+  ================================
+  REFERENCIA
+  ================================
+  */
 
-/*
-================================
-VERIFICAR SI YA PREDIJO
-================================
-*/
-
-const snapshot =
-await get(prediccionRef);
-
-if(snapshot.exists()){
-
-  mensaje.innerHTML =
-  "Ya realizaste tu predicción.";
-
-  return;
-}
+  const prediccionRef = ref(
+    db,
+    `prode/predicciones/${partidoId}/${usuarioActual.uid}`
+  );
 
 
+  /*
+  ================================
+  YA PREDIJO
+  ================================
+  */
 
-/*
-================================
-GUARDAR
-================================
-*/
+  const snapshot =
+  await get(prediccionRef);
 
-await set(prediccionRef, {
+  if(snapshot.exists()){
 
-  nombre:
-  usuarioActual.displayName
-  ||
-  "Usuario",
+    mensaje.innerHTML =
+    "Ya realizaste tu predicción.";
 
-  prediccion:
-  prediccion
+    return;
+  }
 
-});
 
+  /*
+  ================================
+  GUARDAR
+  ================================
+  */
+
+  await set(prediccionRef, {
+
+    nombre:
+    usuarioActual.displayName
+    ||
+    "Usuario",
+
+    prediccion:
+    prediccion
+
+  });
 
   mensaje.innerHTML =
   "✅ Predicción enviada.";
 
 }
-
 
 
 /*
