@@ -115,12 +115,12 @@ async function predecir(prediccion){
 
   /*
   ================================
-  VERIFICAR SI YA VOTÓ
+  VERIFICAR SI YA PREDIJO
   ================================
   */
 
   const snapshot =
-  await get(votoRef);
+  await get(prediccionRef);
 
   if(snapshot.exists()){
 
@@ -138,7 +138,7 @@ async function predecir(prediccion){
   ================================
   */
 
-  await set(votoRef, {
+  await set(prediccionRef, {
 
     nombre:
     usuarioActual.displayName
