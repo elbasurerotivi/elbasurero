@@ -818,12 +818,16 @@ function abrirPartido(id){
       </div>
 
       <div class="resultado-oficial">
-
-        Resultado:
-        ${ganador}
-
+        ${partido.local}
+        ${partido.golesLocal ?? "-"}
+        -
+        ${partido.golesVisitante ?? "-"}
+        ${partido.visitante}
       </div>
-
+<div class="ganador-oficial">
+  Ganador:
+  ${ganador}
+</div>
     </div>
 
     <div class="predicciones-grid">
