@@ -411,6 +411,7 @@ partidos.forEach(partido => {
   const div = document.createElement("div");
 
   div.classList.add("partido");
+  div.onclick = () => abrirPartido(partido.id);
   div.innerHTML = `
 
     <div class="equipos">
