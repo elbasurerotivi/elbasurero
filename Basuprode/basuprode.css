@@ -44,28 +44,41 @@ CONTENEDORES
 HEADER HERO
 ========================= */
 .hero{
+
   width:100%;
+
+  min-height:550px;
+
   padding:40px 20px;
 
   display:flex;
   align-items:center;
-  justify-content:space-between;
-  gap:20px;
-  flex-wrap:wrap;
+  justify-content:center;
+
+  position:relative;
+
+  overflow:hidden;
+
+  background-image:
+  linear-gradient(
+    rgba(0,0,0,.45),
+    rgba(0,0,0,.75)
+  ),
+  url("../imagenes/tabla.png");
+
+  background-size:cover;
+
+  background-position:center center;
+
+  background-repeat:no-repeat;
 
   border-bottom:
   2px solid rgba(255,0,0,.15);
 
-  background:
-  linear-gradient(
-    to bottom,
-    rgba(255,0,0,.08),
-    rgba(0,0,0,.1)
-  );
-
   box-shadow:
   0 0 40px rgba(255,0,0,.15);
 }
+
 
 .hero-left,
 .hero-right{
@@ -129,6 +142,52 @@ h2{
   font-size:clamp(24px, 4vw, 36px);
   color:#ff4d4d;
 }
+
+/*
+========================================
+RESPONSIVE HERO
+========================================
+*/
+
+@media(max-width:1200px){
+
+  .hero{
+
+    min-height:420px;
+
+    background-position:center center;
+  }
+
+}
+
+
+@media(max-width:768px){
+
+  .hero{
+
+    min-height:320px;
+
+    padding:20px;
+
+    background-position:center top;
+  }
+
+}
+
+
+@media(max-width:480px){
+
+  .hero{
+
+    min-height:240px;
+
+    background-position:center top;
+
+    background-size:cover;
+  }
+
+}
+
 
 /* =========================
 FORMULARIOS
@@ -516,3 +575,5 @@ MODAL
   text-shadow:
   0 0 10px rgba(255,0,0,.5);
 }
+
+
