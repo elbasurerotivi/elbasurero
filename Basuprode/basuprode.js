@@ -788,7 +788,7 @@ function abrirPartido(id){
         <div class="partido-equipo">
 
           <img
-            src="imagenes/flags/${flags[partido.local]}.svg"
+            src="Imagenes/flags/${flags[partido.local]}.svg"
           >
 
           <span>
