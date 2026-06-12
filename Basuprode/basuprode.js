@@ -81,7 +81,7 @@ const predicciones = [
       "Diego",
       "Patito",
       "Pepe",
-      "Lucía Suarez",
+      "Lucia Suárez",
       "Ivan"
     ]
   },
