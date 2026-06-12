@@ -528,12 +528,12 @@ MODAL
 
 #cerrarModal{
   position:absolute;
-  top:15px;
+  top:-11px;
   right:15px;
   background:none;
   border:none;
-  color:white;
-  font-size:24px;
+  color:#ff3131;
+  font-size:15px;
   cursor:pointer;
 }
 
