@@ -58,7 +58,36 @@ const predicciones = [
       "Gonza",
       "Charly",
     ]
+  },
+
+  {
+    partidoId: 2,
+
+    local: [
+      "Favio",
+      "Dario",
+      "Soledad",
+      "Ivan Gonzalez",
+      "A",
+      "Ezequiel Camacho",
+      "Blanqui",
+      "Franco",
+      "Nelson Gonzalez"
+    ],
+
+    visitante: [
+      "Pepe",
+      "Lucia Suarez",
+      "Patito",
+      "Ivan"
+    ],
+
+    empate: [
+      "Javier Martin Snachez",
+      "Juancho"
+    ]
   }
+
 
 ];
 
