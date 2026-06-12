@@ -6576,7 +6576,8 @@ BANNER BASUPRODE
 */
 
 .basuprode-banner{
-  width:100%;
+  width:536px;
+  height: 259px;
   margin:35px auto;
   border-radius:24px;
   overflow:hidden;
@@ -6642,6 +6643,12 @@ RESPONSIVE
 */
 
 @media(max-width:768px){
+
+  .basuprode-banner{
+      width: 356px;
+      height: 177px;
+    }
+    
   .basuprode-link{
     min-height:180px;
   }
