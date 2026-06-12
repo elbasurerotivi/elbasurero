@@ -345,6 +345,54 @@ LISTA DE PARTIDOS
   color:#ff4d4d;
 }
 
+.equipos{
+
+  display:flex;
+
+  flex-wrap:wrap;
+
+  align-items:center;
+
+  gap:12px;
+
+  font-size:22px;
+
+  font-weight:bold;
+
+  line-height:1.5;
+}
+
+.equipo{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:10px;
+}
+
+.vs{
+
+  color:#999;
+
+  font-weight:normal;
+}
+
+.flag{
+
+  width:28px;
+
+  height:20px;
+
+  object-fit:cover;
+
+  border-radius:4px;
+
+  box-shadow:
+  0 0 8px rgba(255,255,255,.15);
+
+  flex-shrink:0;
+}
 
 /* =========================
 MODAL
@@ -482,6 +530,20 @@ MÓVILES
   .modal-contenido{
     padding:20px 15px;
   }
+
+  .equipos{
+
+  font-size:18px;
+
+  gap:8px;
+}
+
+.flag{
+
+  width:24px;
+
+  height:18px;
+}
 }
 
 /* =========================
