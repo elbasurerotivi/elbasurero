@@ -106,7 +106,7 @@ async function predecir(prediccion){
     return;
   }
 
-  const votoRef = ref(
+  const prediccionRef = ref(
     db,
     `prode/predicciones/${partido.id}/${usuarioActual.uid}`
   );
