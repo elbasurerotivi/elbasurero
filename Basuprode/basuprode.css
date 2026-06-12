@@ -675,9 +675,31 @@ RESPONSIVE
 */
 
 @media(max-width:768px){
+ @media(max-width:768px){
+
   .predicciones-grid{
-    grid-template-columns:1fr;
+
+    gap:10px;
   }
+
+  .pred-columna{
+
+    padding:12px;
+  }
+
+  .pred-item{
+
+    font-size:13px;
+
+    padding:10px;
+  }
+
+  .pred-columna h3{
+
+    font-size:18px;
+  }
+
+}
    
   
   .partido-equipo img{
