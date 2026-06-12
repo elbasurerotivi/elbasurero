@@ -6567,3 +6567,128 @@ a {
         border-radius: 14px;
     }
 }
+
+
+/*
+====================================
+BANNER BASUPRODE
+====================================
+*/
+
+.basuprode-banner{
+
+  width:100%;
+
+  margin:35px auto;
+
+  border-radius:24px;
+
+  overflow:hidden;
+
+  position:relative;
+
+  box-shadow:
+  0 0 30px rgba(255,0,0,.18);
+
+  transition:.3s;
+}
+
+.basuprode-banner:hover{
+
+  transform:translateY(-4px);
+
+  box-shadow:
+  0 0 45px rgba(255,0,0,.35);
+}
+
+.basuprode-link{
+
+  display:block;
+
+  text-decoration:none;
+
+  min-height:260px;
+
+  background-image:
+  linear-gradient(
+    rgba(0,0,0,.35),
+    rgba(0,0,0,.75)
+  ),
+  url("../Imagenes/tabla.png");
+
+  background-size:cover;
+
+  background-position:center;
+
+  position:relative;
+}
+
+.basuprode-overlay{
+
+  width:100%;
+  height:100%;
+
+  display:flex;
+
+  flex-direction:column;
+
+  justify-content:center;
+
+  align-items:center;
+
+  text-align:center;
+
+  padding:30px;
+}
+
+.basuprode-overlay h2{
+
+  font-size:58px;
+
+  color:#ff3131;
+
+  letter-spacing:4px;
+
+  text-shadow:
+  0 0 10px rgba(255,0,0,.6),
+  0 0 30px rgba(255,0,0,.3);
+
+  margin-bottom:15px;
+}
+
+.basuprode-overlay p{
+
+  font-size:22px;
+
+  color:white;
+
+  text-shadow:
+  0 0 10px rgba(0,0,0,.6);
+}
+
+/*
+====================================
+RESPONSIVE
+====================================
+*/
+
+@media(max-width:768px){
+
+  .basuprode-link{
+
+    min-height:180px;
+  }
+
+  .basuprode-overlay h2{
+
+    font-size:36px;
+
+    letter-spacing:2px;
+  }
+
+  .basuprode-overlay p{
+
+    font-size:16px;
+  }
+
+}
