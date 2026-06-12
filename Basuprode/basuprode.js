@@ -2,14 +2,14 @@
 const partidos = [
   {
     id: 1,
-    local: "México 2",
-    visitante: "Sudáfrica 0",
+    local: "México",
+    visitante: "Sudáfrica",
     resultado: "local"
   },
   {
     id: 2,
-    local: "Corea del Sur 2",
-    visitante: "Chequia 1",
+    local: "Corea del Sur",
+    visitante: "Chequia",
     resultado: "local"
   },
   {
