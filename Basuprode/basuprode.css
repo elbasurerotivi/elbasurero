@@ -516,11 +516,10 @@ MODAL
   overflow:auto;
   background:
   #111;
-
   border:
   1px solid rgba(255,0,0,.2);
   border-radius:20px;
-  padding:30px;
+  padding:1px;
   position:relative;
   box-shadow:
   0 0 40px rgba(255,0,0,.2);
