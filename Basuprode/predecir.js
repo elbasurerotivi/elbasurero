@@ -92,11 +92,11 @@ onAuthStateChanged(auth, user => {
 
 /*
 ====================================
-VOTAR
+PREDECIR
 ====================================
 */
 
-async function votar(prediccion){
+async function predecir(prediccion){
 
   if(!usuarioActual){
 
@@ -165,15 +165,15 @@ EVENTOS
 
 btnLocal.addEventListener(
   "click",
-  () => votar("local")
+  () => predecir("local")
 );
 
 btnEmpate.addEventListener(
   "click",
-  () => votar("empate")
+  () => predecir("empate")
 );
 
 btnVisitante.addEventListener(
   "click",
-  () => votar("visitante")
+  () => predecir("visitante")
 );
