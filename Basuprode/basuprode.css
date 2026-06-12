@@ -318,6 +318,14 @@ LISTA DE PARTIDOS
   flex-shrink:0;
 }
 
+.ganador-oficial{
+  text-align:center;
+  margin-top:10px;
+  color:#ff4d4d;
+  font-size:18px;
+  font-weight:bold;
+}
+
 /* =========================
 MODAL
 ========================= */
