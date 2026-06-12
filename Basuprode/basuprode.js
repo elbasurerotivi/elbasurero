@@ -41,7 +41,7 @@ const flags = {
   "Uzbekistán":"uz",
   "Turquía":"tr",
   "Escocia":"gb-sct",
-  "República Checa":"cz",
+  "Chequia":"cz",
   "Bosnia y Herzegovina":"ba",
   "Costa de Marfil":"ci",
   "Cabo Verde":"cv",
