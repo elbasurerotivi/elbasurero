@@ -173,18 +173,6 @@ RESPONSIVE HERO
     background-position:center top;
   }
 
-  .partido.local {
-    text.size: 12px;
-  }
-    .partido.visitante {
-    text.size: 12px;
-  }
-    .partido.resultado {
-    text.size: 12px;
-  }
-
-
-
 }
 
 
@@ -341,6 +329,10 @@ LISTA DE PARTIDOS
   color:#ff4d4d;
 }
 
+@media(max-width:768px){
+  .partido {
+        font-size: 10px;
+  }
 /* =========================
 MODAL
 ========================= */
