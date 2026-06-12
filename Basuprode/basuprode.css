@@ -43,38 +43,75 @@ CONTENEDORES
 /* =========================
 HEADER HERO
 ========================= */
-
 .hero{
   width:100%;
-  min-height:280px;
-
-  border-radius:25px;
+  padding:40px 20px;
 
   display:flex;
   align-items:center;
+  justify-content:space-between;
+  gap:20px;
+  flex-wrap:wrap;
+
+  border-bottom:
+  2px solid rgba(255,0,0,.15);
+
+  background:
+  linear-gradient(
+    to bottom,
+    rgba(255,0,0,.08),
+    rgba(0,0,0,.1)
+  );
+
+  box-shadow:
+  0 0 40px rgba(255,0,0,.15);
+}
+
+.hero-left,
+.hero-right{
+  width:180px;
+
+  display:flex;
   justify-content:center;
+  align-items:center;
+}
 
-  margin-bottom:40px;
+.avatar{
+  width:180px;
+  filter:
+  drop-shadow(0 0 20px rgba(255,0,0,.5));
+}
 
-  overflow:hidden;
-  position:relative;
+.hero-right{
+  font-size:90px;
+  text-shadow:
+  0 0 20px rgba(255,215,0,.5);
 }
 
 .hero-center{
+  flex:1;
   text-align:center;
-  padding:20px;
 }
 
-.hero h1{
-  font-size:clamp(32px, 5vw, 64px);
+.hero-center h1{
+  font-size:72px;
   color:#ff3131;
+
+  letter-spacing:4px;
+
+  text-shadow:
+  0 0 10px rgba(255,0,0,.7),
+  0 0 30px rgba(255,0,0,.5),
+  0 0 60px rgba(255,0,0,.3);
 }
 
-.hero p{
-  margin-top:10px;
-  font-size:clamp(14px, 2vw, 22px);
+.hero-center p{
+  margin-top:15px;
   color:#ddd;
+  font-size:22px;
+  letter-spacing:2px;
 }
+
 
 /* =========================
 TEXTOS
