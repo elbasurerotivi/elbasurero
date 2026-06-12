@@ -297,24 +297,40 @@ LISTA DE PARTIDOS
 
 .partido{
 
-  background:
-  rgba(0,0,0,.4);
+  background:rgba(0,0,0,.4);
 
-  border:
-  1px solid rgba(255,0,0,.12);
+  border:1px solid rgba(255,0,0,.12);
 
   border-radius:16px;
 
-  padding:20px;
+  padding:22px;
 
   display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:20px;
-  flex-wrap:wrap;
+  flex-direction:column;
+
+  align-items:flex-start;
+
+  gap:14px;
 
   transition:.25s;
 }
+
+.resultado{
+
+  font-weight:bold;
+
+  color:#ff4d4d;
+
+  font-size:20px;
+
+  width:100%;
+}
+
+.partido strong{
+  font-size:18px;
+  line-height:1.4;
+}
+
 
 .partido:hover{
 
@@ -329,10 +345,7 @@ LISTA DE PARTIDOS
   color:#ff4d4d;
 }
 
-@media(max-width:768px){
-  .partido {
-        font-size: 15px;
-  }
+
 /* =========================
 MODAL
 ========================= */
