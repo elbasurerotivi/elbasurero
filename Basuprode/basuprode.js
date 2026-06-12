@@ -9,7 +9,7 @@ const partidos = [
       "Javier Acosta",
       "Andrea",
       "Rafa",
-      "Davincho,
+      "Davincho",
       "Favio",
       "Dario",
       "Soledad",
