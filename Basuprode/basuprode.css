@@ -677,6 +677,10 @@ COLUMNAS PREDICCIONES
   line-height:1.4;
 }
 
+.pred-item strong{
+  color:#ff4d4d;
+}
+
 /*
 ====================================
 RESPONSIVE
