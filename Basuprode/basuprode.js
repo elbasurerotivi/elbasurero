@@ -686,7 +686,6 @@ document.getElementById("contenidoPartido");
 const cerrarModalPartido =
 document.getElementById("cerrarModalPartido");
 
-
 /*
 ====================================
 ABRIR PARTIDO
@@ -718,7 +717,6 @@ function abrirPartido(id){
   if(partido.resultado === "empate"){
     ganador = "Empate";
   }
-
 
   /*
   ================================
@@ -884,7 +882,6 @@ cerrarModalPartido.addEventListener(
     modalPartido.classList.remove(
       "activo"
     );
-
   }
 );
 
@@ -904,8 +901,6 @@ modalPartido.addEventListener(
       modalPartido.classList.remove(
         "activo"
       );
-
     }
-
   }
 );
