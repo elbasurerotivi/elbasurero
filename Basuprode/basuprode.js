@@ -16,13 +16,25 @@ const partidos = [
     id: 3,
     local: "Canadá",
     visitante: "Bosnia y Herzegovina",
-    resultado: "Próximamente"
+    resultado: "12/06"
   },
   {
     id: 4,
     local: "Estados Unidos",
     visitante: "Paraguay",
-    resultado: "Próximamente"
+    resultado: "12/06"
+  },
+  {
+    id: 5,
+    local: "Catar",
+    visitante: "Suiza",
+    resultado: "13/06"
+  },
+  {
+    id: 6,
+    local: "Brasil",
+    visitante: "Marruecos",
+    resultado: "13/06"
   },
   
   
