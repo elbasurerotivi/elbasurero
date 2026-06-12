@@ -31,7 +31,7 @@ const flags = {
   "Senegal":"sn",
   "Egipto":"eg",
   "Irán":"ir",
-  "Qatar":"qa",
+  "Catar":"qa",
   "Sudáfrica":"za",
   "Túnez":"tn",
   "Argelia":"dz",
