@@ -291,8 +291,41 @@ LISTA DE PARTIDOS
 
 .lista-partidos{
   display:grid;
-  grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
+  gap:15px;
+}
+
+.partido{
+
+  background:
+  rgba(0,0,0,.4);
+
+  border:
+  1px solid rgba(255,0,0,.12);
+
+  border-radius:16px;
+
+  padding:20px;
+
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
   gap:20px;
+  flex-wrap:wrap;
+
+  transition:.25s;
+}
+
+.partido:hover{
+
+  transform:translateY(-2px);
+
+  box-shadow:
+  0 0 20px rgba(255,0,0,.15);
+}
+
+.resultado{
+  font-weight:bold;
+  color:#ff4d4d;
 }
 
 /* =========================
