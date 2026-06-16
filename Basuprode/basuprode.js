@@ -342,10 +342,11 @@ predicciones.forEach(pred => {
   if(partido.resultado === "empate"){
 
     pred.empate.forEach(nombre => {
-      crearJugador(nombre);
-      estadisticas[nombre].empatados++;
-      estadisticas[nombre].puntos++;
-    });
+    crearJugador(nombre);
+    estadisticas[nombre].ganados++;
+    estadisticas[nombre].empatados++;
+    estadisticas[nombre].puntos++;
+  });
 
     pred.local.forEach(nombre => {
       crearJugador(nombre);
