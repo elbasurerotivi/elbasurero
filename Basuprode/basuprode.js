@@ -255,11 +255,11 @@ function crearJugador(nombre){
   if(!estadisticas[nombre]){
     estadisticas[nombre] = {
       nombre: nombre,
+      puntos:0,
+      participaciones:0,
       ganados:0,
       empatados:0,
       perdidos:0,
-      puntos:0,
-      participaciones:0
     };
   }
 }
