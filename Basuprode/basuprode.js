@@ -133,7 +133,6 @@ const predicciones = [
     partidoId: 3,
 
     local: [
-      "Charvolta",
       "Cintia",
       "Dave",
       "Diego",
@@ -151,6 +150,7 @@ const predicciones = [
       "Jorge",
       "Patito",
       "Diego Jacquier",
+      "Charsvolta"
     ],
 
     empate: [
