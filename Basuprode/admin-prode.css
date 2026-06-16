@@ -83,3 +83,40 @@ pre{
   overflow:auto;
   color:#00ff99;
 }
+
+
+
+#tablaPosiciones {
+  width: 100%;
+  table-layout: fixed;
+}
+
+#tablaPosiciones th,
+#tablaPosiciones td {
+  text-align: center;
+}
+
+/* Participante más ancha */
+#tablaPosiciones th:nth-child(2),
+#tablaPosiciones td:nth-child(2) {
+  width: 40%;
+  text-align: left;
+}
+
+/* Todas las estadísticas iguales */
+#tablaPosiciones th:nth-child(1),
+#tablaPosiciones td:nth-child(1),
+
+#tablaPosiciones th:nth-child(3),
+#tablaPosiciones td:nth-child(3),
+
+#tablaPosiciones th:nth-child(4),
+#tablaPosiciones td:nth-child(4),
+
+#tablaPosiciones th:nth-child(5),
+#tablaPosiciones td:nth-child(5),
+
+#tablaPosiciones th:nth-child(6),
+#tablaPosiciones td:nth-child(6) {
+  width: 12%;
+}
