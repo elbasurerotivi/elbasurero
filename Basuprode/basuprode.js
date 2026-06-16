@@ -97,25 +97,25 @@ const partidos = [
     id: 4,
     local: "Francia",
     visitante: "Senegal",
-    golesLocal: 0,
-    golesVisitante: 0,
-    resultado: "Mañana"
+    golesLocal: null,
+    golesVisitante: null,
+    resultado: "Próximamente"
   },
   {
     id: 5,
     local: "Irak",
     visitante: "Noruega",
-    golesLocal: 0,
-    golesVisitante: 0,
-    resultado: "Mañana"
+    golesLocal: null,
+    golesVisitante: null,
+    resultado: "Próximamente"
   },
   {
     id: 6,
     local: "Argentina",
     visitante: "Argelia",
-    golesLocal: 0,
-    golesVisitante: 0,
-    resultado: "Mañana"
+    golesLocal: null,
+    golesVisitante: null,
+    resultado: "Próximamente"
   },
   
   
