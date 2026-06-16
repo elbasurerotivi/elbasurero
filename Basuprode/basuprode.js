@@ -264,26 +264,7 @@ function crearJugador(nombre){
   }
 }
 
-/*
-====================================
-SUMAR ACIERTOS
-====================================
-*/
 
-predicciones.forEach(pred => {
-
-  const partido = partidos.find(
-    p => p.id === pred.partidoId
-  );
-
-  if(!partido) return;
-  
-  if(
-    partido.resultado === "proximamente"
-  ) return;
-
-
-  
 predicciones.forEach(pred => {
 
   const partido = partidos.find(
