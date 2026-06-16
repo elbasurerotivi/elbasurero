@@ -204,22 +204,21 @@ button:hover{
 /* =========================
 TABLA
 ========================= */
-#tablaPosiciones thead th{
-  position: sticky;
-  top: 0;
-  z-index: 10;
 
-  background: #1b1b1b; /* mismo color que uses */
-  color: white;
+/* IMPORTANTE */
+#tablaPosiciones{
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
 }
 
 #tablaPosiciones thead th{
   position: sticky;
   top: 0;
-  z-index: 10;
+  z-index: 100;
 
   background: #1b1b1b;
-  color: white;
+  color: #ff6666;
 
   box-shadow: 0 2px 8px rgba(0,0,0,.3);
 }
@@ -230,11 +229,10 @@ TABLA
 }
 
 .tabla-container{
-  max-height: 700px; /* ajustá a gusto */
-  width:100%;
+  max-height: 700px;
   overflow-y: auto;
   overflow-x: hidden;
-  border-radius:20px;
+  border-radius: 20px;
 }
 
 table{
