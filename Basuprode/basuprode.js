@@ -154,7 +154,7 @@ const predicciones = [
     ],
 
     empate: [
-      "Charly!",
+      "Charly",
       "dannabless"
     ]
   },
