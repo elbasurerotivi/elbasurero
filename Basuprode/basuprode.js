@@ -87,35 +87,35 @@ const partidos = [
   },
   {
     id: 3,
-    local: "Canadá",
-    visitante: "Bosnia y Herzegovina",
+    local: "Irán",
+    visitante: "Nueva Zelanda",
     golesLocal: 0,
     golesVisitante: 0,
-    resultado: "12/06"
+    resultado: "Activo"
   },
   {
     id: 4,
-    local: "Estados Unidos",
-    visitante: "Paraguay",
+    local: "Francia",
+    visitante: "Senegal",
     golesLocal: 0,
     golesVisitante: 0,
-    resultado: "12/06"
+    resultado: "Mañana"
   },
   {
     id: 5,
-    local: "Catar",
-    visitante: "Suiza",
+    local: "Irak",
+    visitante: "Noruega",
     golesLocal: 0,
     golesVisitante: 0,
-    resultado: "13/06"
+    resultado: "Mañana"
   },
   {
     id: 6,
-    local: "Brasil",
-    visitante: "Marruecos",
+    local: "Argentina",
+    visitante: "Argelia",
     golesLocal: 0,
     golesVisitante: 0,
-    resultado: "13/06"
+    resultado: "Mañana"
   },
   
   
