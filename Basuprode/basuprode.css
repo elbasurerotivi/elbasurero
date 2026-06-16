@@ -210,8 +210,10 @@ TABLA
 }
 
 .tabla-container{
+  max-height: 700px; /* ajustá a gusto */
   width:100%;
-  overflow-x:auto;
+  overflow-y: auto;
+  overflow-x: hidden;
   border-radius:20px;
 }
 
