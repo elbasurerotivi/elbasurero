@@ -99,7 +99,7 @@ const partidos = [
     visitante: "Senegal",
     golesLocal: null,
     golesVisitante: null,
-    resultado: "Próximamente"
+    resultado: "proximamente"
   },
   {
     id: 5,
@@ -107,7 +107,7 @@ const partidos = [
     visitante: "Noruega",
     golesLocal: null,
     golesVisitante: null,
-    resultado: "Próximamente"
+    resultado: "proximamente"
   },
   {
     id: 6,
@@ -115,7 +115,7 @@ const partidos = [
     visitante: "Argelia",
     golesLocal: null,
     golesVisitante: null,
-    resultado: "Próximamente"
+    resultado: "proximamente"
   },
   
   
