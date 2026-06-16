@@ -217,8 +217,8 @@ TABLA
   top: 0;
   z-index: 100;
 
-  background: #1b1b1b;
-  color: #ff6666;
+  background: #1b1b1b; /* mismo color que uses */
+  color: white;
 
   box-shadow: 0 2px 8px rgba(0,0,0,.3);
 }
