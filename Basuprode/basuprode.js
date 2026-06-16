@@ -441,6 +441,13 @@ ranking.forEach((jugador,index) => {
     ${jugador.nombre}
     </td>
 
+    <td>
+      ${jugador.puntos}
+    </td>
+
+    <td>
+      ${jugador.participaciones}
+    </td>
 
     <td>
       ${jugador.ganados}
@@ -448,14 +455,6 @@ ranking.forEach((jugador,index) => {
 
     <td>
       ${jugador.perdidos}
-    </td>
-
-    <td>
-      ${jugador.puntos}
-    </td>
-
-    <td>
-      ${jugador.participaciones}
     </td>
 
   `;
