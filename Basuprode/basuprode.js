@@ -91,7 +91,7 @@ const partidos = [
     visitante: "Nueva Zelanda",
     golesLocal: 0,
     golesVisitante: 0,
-    resultado: "Empate"
+    resultado: "empate"
   },
   {
     id: 4,
