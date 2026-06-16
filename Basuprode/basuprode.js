@@ -283,6 +283,43 @@ predicciones.forEach(pred => {
   ) return;
 
 
+  
+predicciones.forEach(pred => {
+
+  const partido = partidos.find(
+    p => p.id === pred.partidoId
+  );
+
+  if(!partido) return;
+
+  /*
+  ====================================
+  CONTAR PARTICIPACIONES
+  ====================================
+  */
+
+  [
+    ...pred.local,
+    ...pred.visitante,
+    ...pred.empate
+  ].forEach(nombre => {
+
+    crearJugador(nombre);
+
+    estadisticas[nombre].participaciones++;
+
+  });
+
+  /*
+  ====================================
+  SI EL PARTIDO NO TIENE RESULTADO
+  ====================================
+  */
+
+  if(partido.resultado === "proximamente"){
+    return;
+  }
+
   /*
   ================================
   GANÓ LOCAL
