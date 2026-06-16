@@ -258,7 +258,8 @@ function crearJugador(nombre){
       ganados:0,
       empatados:0,
       perdidos:0,
-      puntos:0
+      puntos:0,
+      participaciones:0
     };
   }
 }
@@ -276,6 +277,17 @@ predicciones.forEach(pred => {
   );
 
   if(!partido) return;
+  [
+  ...pred.local,
+  ...pred.visitante,
+  ...pred.empate
+].forEach(nombre => {
+
+  crearJugador(nombre);
+
+  estadisticas[nombre].participaciones++;
+
+});
 
   if(
     partido.resultado === "proximamente"
@@ -435,6 +447,10 @@ ranking.forEach((jugador,index) => {
       ${jugador.puntos}
     </td>
 
+    <td>
+      ${jugador.participaciones}
+    </td>
+
   `;
 
   tbody.appendChild(tr);
@@ -539,6 +555,17 @@ function abrirHistorial(nombre){
     );
 
     if(!partido) return;
+    [
+  ...pred.local,
+  ...pred.visitante,
+  ...pred.empate
+].forEach(nombre => {
+
+  crearJugador(nombre);
+
+  estadisticas[nombre].participaciones++;
+
+});
 
     let prediccionJugador = null;
 
@@ -729,6 +756,17 @@ function abrirPartido(id){
   partidos.find(p => p.id === id);
 
   if(!partido) return;
+  [
+  ...pred.local,
+  ...pred.visitante,
+  ...pred.empate
+].forEach(nombre => {
+
+  crearJugador(nombre);
+
+  estadisticas[nombre].participaciones++;
+
+});
 
   const pred =
   predicciones.find(
