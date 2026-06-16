@@ -204,6 +204,26 @@ button:hover{
 /* =========================
 TABLA
 ========================= */
+#tablaPosiciones thead th{
+  position: sticky;
+  top: 0;
+  z-index: 10;
+
+  background: #1b1b1b; /* mismo color que uses */
+  color: white;
+}
+
+#tablaPosiciones thead th{
+  position: sticky;
+  top: 0;
+  z-index: 10;
+
+  background: #1b1b1b;
+  color: white;
+
+  box-shadow: 0 2px 8px rgba(0,0,0,.3);
+}
+
 
 .tabla-section{
   margin-bottom:50px;
