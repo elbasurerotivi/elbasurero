@@ -91,7 +91,7 @@ const partidos = [
     visitante: "Nueva Zelanda",
     golesLocal: 0,
     golesVisitante: 0,
-    resultado: "Activo"
+    resultado: "Empate"
   },
   {
     id: 4,
@@ -128,6 +128,36 @@ PREDICCIONES
 */
 
 const predicciones = [
+
+  {
+    partidoId: 3,
+
+    local: [
+      "Charvolta",
+      "Cintia",
+      "Dave",
+      "Diego",
+      "Ezequiel Camacho",
+      "Luciano",
+      "Favio",
+      "Dario",
+      "Caesar M. Rangel",
+      "johanmastropiero",
+    ],
+
+    visitante: [
+      "Rafa",
+      "Gonza",
+      "Jorge",
+      "Patito",
+      "Diego Jacquier",
+    ],
+
+    empate: [
+      "Charly!",
+      "dannabless"
+    ]
+  },
 
   {
     partidoId: 2,
