@@ -95,8 +95,8 @@ const partidos = [
   },
   {
     id: 4,
-    local: "Francia",
-    visitante: "Senegal",
+    local: "México",
+    visitante: "Corea del Sur",
     golesLocal: null,
     golesVisitante: null,
     resultado: "proximamente"
@@ -128,6 +128,43 @@ PREDICCIONES
 */
 
 const predicciones = [
+
+  {
+    partidoId: 3,
+
+    local: [
+    "Charsvolta",
+    "Gustavo",
+    "Rafa",
+    "Gonza",
+    "Patito",
+    "Cintia",
+    "Darío",
+    "Favio",
+    "Diego Jacquier",
+    "Juan Pablo Saenz",
+    "Blanqui"
+    ],
+
+    visitante: [
+    "Javier Martín Sanchez",
+    "Javier",
+    "Lucía Suarez",
+    "50mbr4",
+    "Franco",
+    "Javier Acosta"
+    ],
+
+    empate: [
+      "Naty Alvarez",
+      "Andrea",
+      "EL MESSIAS",
+      "KarlangaxGD",
+      "Pepe",
+      "Charly"
+    
+    ]
+  },
 
   {
     partidoId: 3,
