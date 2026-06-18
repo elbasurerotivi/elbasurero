@@ -95,20 +95,21 @@ const partidos = [
   },
   {
     id: 4,
+    local: "Canadá",
+    visitante: "Catar",
+    golesLocal: 3,
+    golesVisitante: 0,
+    resultado: "local"
+  },
+    {
+    id: 6,
     local: "México",
     visitante: "Corea del Sur",
     golesLocal: null,
     golesVisitante: null,
     resultado: "proximamente"
   },
-  {
-    id: 5,
-    local: "Irak",
-    visitante: "Noruega",
-    golesLocal: null,
-    golesVisitante: null,
-    resultado: "proximamente"
-  },
+  
   {
     id: 6,
     local: "Argentina",
@@ -130,7 +131,7 @@ PREDICCIONES
 const predicciones = [
 
   {
-    partidoId: 3,
+    partidoId: 5,
 
     local: [
     "Charsvolta",
@@ -159,10 +160,35 @@ const predicciones = [
       "Naty Alvarez",
       "Andrea",
       "EL MESSIAS",
-      "KarlangaxGD",
+      "Karlanga",
       "Pepe",
       "Charly"
     
+    ]
+  },
+
+  {
+    partidoId: 4,
+
+    local: [
+    "Charsvolta",
+    "Diego Jacquier",
+    "Dalkiano",
+    "Andrea",
+    "Darío",
+    "Patito",
+    "Karlanga",
+    "Favio",
+    "Pepe"
+    ],
+
+    visitante: [
+    
+    ],
+
+    empate: [
+    "Blanqui",
+    "50mbr4"
     ]
   },
 
@@ -246,7 +272,7 @@ const predicciones = [
       "Mai",
       "La Corrupción Mata",
       "A",
-      "KarlangaxGD",
+      "Karlanga",
       "Xpupumbus",
       "Pepe",
       "Soledad",
