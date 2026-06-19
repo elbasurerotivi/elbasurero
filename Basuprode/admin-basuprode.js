@@ -123,6 +123,72 @@ async function abrirPartido(id){
 
 }
 
+async function guardarResultado(id){
+
+  const golesLocal =
+  Number(
+    document.getElementById(
+      `gl-${id}`
+    ).value
+  );
+
+  const golesVisitante =
+  Number(
+    document.getElementById(
+      `gv-${id}`
+    ).value
+  );
+
+  if(
+    isNaN(golesLocal) ||
+    isNaN(golesVisitante)
+  ){
+    alert(
+      "Completa ambos resultados"
+    );
+    return;
+  }
+
+  let resultado = "empate";
+
+  if(
+    golesLocal >
+    golesVisitante
+  ){
+    resultado = "local";
+  }
+
+  if(
+    golesVisitante >
+    golesLocal
+  ){
+    resultado = "visitante";
+  }
+
+  await update(
+    ref(
+      db,
+      `basuprode/partidos/${id}`
+    ),
+    {
+      golesLocal,
+      golesVisitante,
+      resultado,
+      cerrado:true
+    }
+  );
+
+  alert(
+    "Resultado guardado"
+  );
+
+  cargarPartidos();
+
+}
+
+window.guardarResultado =
+guardarResultado;
+
 async function borrarPartido(id){
 
   const ok =
@@ -165,17 +231,17 @@ async function cargarPartidos(){
   lista.innerHTML = "";
 
   if(!snap.exists()){
-
     return;
-
   }
 
   const partidos =
-Object.values(
-  snap.val()
-).sort(
-  (a,b) => b.id - a.id
-);
+  Object.values(
+    snap.val()
+  );
+
+  partidos.sort(
+    (a,b) => b.id - a.id
+  );
 
   partidos.forEach(
     partido => {
@@ -190,50 +256,99 @@ Object.values(
 
       div.innerHTML = `
 
-        <strong>
-
+        <h3>
           ${partido.local}
-
           vs
-
           ${partido.visitante}
+        </h3>
 
-        </strong>
+        <p>
+          Estado:
+          ${
+            partido.cerrado
+            ? "🔒 Cerrado"
+            : "🟢 Abierto"
+          }
+        </p>
 
-        <br>
+        <div class="resultado-admin">
 
-        Estado:
+          <input
+            type="number"
+            min="0"
+            id="gl-${partido.id}"
+            placeholder="Local"
+            value="${partido.golesLocal ?? ""}"
+          >
 
-        ${
-          partido.cerrado
-          ? "🔒 Cerrado"
-          : "🟢 Abierto"
-        }
+          <input
+            type="number"
+            min="0"
+            id="gv-${partido.id}"
+            placeholder="Visitante"
+            value="${partido.golesVisitante ?? ""}"
+          >
+
+          <select
+            id="res-${partido.id}"
+          >
+            <option
+              value="local"
+              ${
+                partido.resultado === "local"
+                ? "selected"
+                : ""
+              }
+            >
+              Gana Local
+            </option>
+
+            <option
+              value="empate"
+              ${
+                partido.resultado === "empate"
+                ? "selected"
+                : ""
+              }
+            >
+              Empate
+            </option>
+
+            <option
+              value="visitante"
+              ${
+                partido.resultado === "visitante"
+                ? "selected"
+                : ""
+              }
+            >
+              Gana Visitante
+            </option>
+          </select>
+
+          <button
+            onclick="guardarResultado(${partido.id})"
+          >
+            💾 Guardar Resultado
+          </button>
+
+        </div>
 
         <div class="botones">
 
           <button
-          onclick="
-          cerrarPartido(
-          ${partido.id}
-          )">
-          Cerrar
+          onclick="cerrarPartido(${partido.id})">
+            🔒 Cerrar
           </button>
 
           <button
-          onclick="
-          abrirPartido(
-          ${partido.id}
-          )">
-          Abrir
+          onclick="abrirPartido(${partido.id})">
+            🔓 Abrir
           </button>
 
           <button
-          onclick="
-          borrarPartido(
-          ${partido.id}
-          )">
-          Eliminar
+          onclick="borrarPartido(${partido.id})">
+            🗑 Eliminar
           </button>
 
         </div>
@@ -248,5 +363,3 @@ Object.values(
   );
 
 }
-
-cargarPartidos();
