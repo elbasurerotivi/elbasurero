@@ -724,8 +724,14 @@ COLUMNAS PREDICCIONES
   color:#ff4d4d;
 }
 
-.pred-columna-proximos{
- display:list-item;
+.predicciones-unicas{
+  width:100%;
+  text-align:center;
+}
+
+.predicciones-unicas .pred-item{
+  max-width:600px;
+  margin:10px auto;
 }
 
 /*
