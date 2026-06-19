@@ -1033,17 +1033,24 @@ function abrirPartido(id){
   `;
 
   if(
-    apuesta.resultado ===
-    partido.resultado
-  ){
+  partido.resultado ===
+  "proximamente"
+){
 
-    aciertos.push(html);
+  aciertos.push(html);
 
-  }else{
+}else if(
+  apuesta.resultado ===
+  partido.resultado
+){
 
-    fallos.push(html);
+  aciertos.push(html);
 
-  }
+}else{
+
+  fallos.push(html);
+
+}
 
 });
 
