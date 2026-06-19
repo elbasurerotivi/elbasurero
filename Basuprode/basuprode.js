@@ -153,7 +153,7 @@ const predicciones = [
     "Javier Martín Sanchez",
     "Javier",
     "Lucía Suarez",
-    "50mbr4",
+    "5ombr4",
     "Franco",
     "Javier Acosta",
     "Juancho",
@@ -223,7 +223,7 @@ const predicciones = [
 
     empate: [
     "Blanqui",
-    "50mbr4"
+    "5ombr4"
     ]
   },
 
@@ -290,7 +290,7 @@ const predicciones = [
       "Diego",
       "Patito",
       "Pepe",
-      "Lucia Suárez",
+      "Lucía Suarez",
       "Ivan"
     ]
   },
@@ -299,7 +299,7 @@ const predicciones = [
     partidoId: 1,
 
     local: [
-      "Lucia Suárez",
+      "Lucía Suarez",
       "Angie",
       "Charsvolta",
       "Andrea",
