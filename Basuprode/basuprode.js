@@ -155,7 +155,7 @@ const predicciones = [
       "EL MESSIAS",
       "Karlanga",
       "Pepe",
-      "Charly"
+      "Charly!"
     
     ]
   },
@@ -172,7 +172,12 @@ const predicciones = [
     "Patito",
     "Karlanga",
     "Favio",
-    "Pepe"
+    "Pepe",
+    "Charly!",
+    "Cintia",
+    "Agus",
+    "Dalkiano",
+    
     ],
 
     visitante: [
@@ -210,7 +215,7 @@ const predicciones = [
     ],
 
     empate: [
-      "Charly",
+      "Charly!",
       "dannabless"
     ]
   },
@@ -286,7 +291,7 @@ const predicciones = [
       "Rafa",
       "Patito",
       "Gonza",
-      "Charly",
+      "Charly!",
     ]
   }
 
