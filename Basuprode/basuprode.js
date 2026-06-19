@@ -157,7 +157,7 @@ PREDICCIONES
 ====================================
 */
 
-const predicciones = [
+/*const predicciones = [
     {
     partidoId: 9,
 
@@ -396,7 +396,7 @@ const predicciones = [
     ]
   }
 
-];
+];*/
 
 let prediccionesFirebase = {};
 
@@ -1610,7 +1610,7 @@ async function cargarPrediccionesFirebase() {
 
       prediccionesFirebase =
       snapshot.val();
-      
+
       await renderRankingFirebase();
 
     }else{
