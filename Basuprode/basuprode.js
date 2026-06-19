@@ -816,55 +816,77 @@ RENDER PARTIDOS
 ====================================
 */
 
-const listaPartidos = document.getElementById("listaPartidos");
+const listaPartidos =
+document.getElementById(
+  "listaPartidos"
+);
 
-partidos.forEach(partido => {
+function renderPartidos(){
 
-  const div = document.createElement("div");
+  listaPartidos.innerHTML = "";
 
-  div.classList.add("partido");
-  div.onclick = () => abrirPartido(partido.id);
-  div.innerHTML = `
+  partidos.forEach(partido => {
 
-    <div class="equipos">
+    const div =
+    document.createElement("div");
 
-  <div class="equipo">
-    ${getFlag(partido.local)}
-    <span>${partido.local}</span>
-  </div>
+    div.classList.add(
+      "partido"
+    );
 
-  <span class="vs">
-    vs
-  </span>
+    div.onclick = () =>
+    abrirPartido(
+      partido.id
+    );
 
-  <div class="equipo">
-    ${getFlag(partido.visitante)}
-    <span>${partido.visitante}</span>
-  </div>
+    div.innerHTML = `
 
-</div>
+      <div class="equipos">
 
-    <div class="resultado">
-    Resultado:
-    ${
-        partido.resultado === "local"
-        ? partido.local
+        <div class="equipo">
+          ${getFlag(partido.local)}
+          <span>${partido.local}</span>
+        </div>
 
-        : partido.resultado === "visitante"
-        ? partido.visitante
+        <span class="vs">
+          vs
+        </span>
 
-        : partido.resultado === "empate"
-        ? "Empate"
+        <div class="equipo">
+          ${getFlag(partido.visitante)}
+          <span>${partido.visitante}</span>
+        </div>
 
-        : "Próximamente"
-    }
-    </div>
+      </div>
 
-  `;
+      <div class="resultado">
 
-  listaPartidos.appendChild(div);
+        Resultado:
 
-});
+        ${
+          partido.resultado === "local"
+          ? partido.local
+
+          : partido.resultado === "visitante"
+          ? partido.visitante
+
+          : partido.resultado === "empate"
+          ? "Empate"
+
+          : "Próximamente"
+        }
+
+      </div>
+
+    `;
+
+    listaPartidos.appendChild(
+      div
+    );
+
+  });
+
+}
 
 
 /*
@@ -1593,6 +1615,18 @@ async function eliminarPrediccion(
   }
 
 }
+
+async function iniciarBasuProde(){
+
+  await cargarPartidosFirebase();
+
+  await cargarPrediccionesFirebase();
+
+  renderPartidos();
+
+}
+
+iniciarBasuProde();
 
 async function cargarPrediccionesFirebase() {
 
