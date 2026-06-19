@@ -47,3 +47,12 @@ button{
   border-radius:4px;
   vertical-align:middle;
 }
+.equipo{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.equipo .flag{
+  flex-shrink:0;
+}
