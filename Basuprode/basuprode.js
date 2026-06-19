@@ -1460,3 +1460,74 @@ async function cargarPrediccionesFirebase() {
 }
 
 cargarPrediccionesFirebase();
+
+
+
+
+
+
+
+
+
+
+
+
+async function migrarHistoricos() {
+
+  for(const pred of predicciones){
+
+    const partidoId = pred.partidoId;
+
+    for(const nombre of pred.local){
+
+      await set(
+        ref(
+          db,
+          `basuprode/predicciones/${partidoId}/hist_${nombre}`
+        ),
+        {
+          nombre,
+          resultado:"local",
+          historico:true
+        }
+      );
+
+    }
+
+    for(const nombre of pred.visitante){
+
+      await set(
+        ref(
+          db,
+          `basuprode/predicciones/${partidoId}/hist_${nombre}`
+        ),
+        {
+          nombre,
+          resultado:"visitante",
+          historico:true
+        }
+      );
+
+    }
+
+    for(const nombre of pred.empate){
+
+      await set(
+        ref(
+          db,
+          `basuprode/predicciones/${partidoId}/hist_${nombre}`
+        ),
+        {
+          nombre,
+          resultado:"empate",
+          historico:true
+        }
+      );
+
+    }
+
+  }
+
+  console.log("Migración terminada");
+
+}
