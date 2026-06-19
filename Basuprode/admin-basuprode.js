@@ -171,9 +171,11 @@ async function cargarPartidos(){
   }
 
   const partidos =
-  Object.values(
-    snap.val()
-  );
+Object.values(
+  snap.val()
+).sort(
+  (a,b) => b.id - a.id
+);
 
   partidos.forEach(
     partido => {
