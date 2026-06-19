@@ -238,7 +238,7 @@ const predicciones = [
       "Ezequiel Camacho",
       "Luciano",
       "Favio",
-      "Dario",
+      "Darío",
       "Caesar M. Rangel",
       "johanmastropiero",
     ],
@@ -269,7 +269,7 @@ const predicciones = [
       "Rafa",
       "Davincho",
       "Favio",
-      "Dario",
+      "Darío",
       "Soledad",
       "Ivan Gonzalez",
       "A",
@@ -976,7 +976,7 @@ function abrirPartido(id){
         ${partido.visitante}
       </div>
 
-      
+
 <div class="ganador-oficial">
   Ganador:
   ${ganador}
