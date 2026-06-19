@@ -892,6 +892,12 @@ ABRIR HISTORIAL
 
 function abrirHistorial(nombre){
 
+  console.log(
+    "ABRIENDO HISTORIAL DE:",
+    nombre
+  );
+
+
   modal.classList.add("activo");
 
   modalTitulo.innerText =
