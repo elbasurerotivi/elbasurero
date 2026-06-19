@@ -363,3 +363,5 @@ async function cargarPartidos(){
   );
 
 }
+
+cargarPartidos();
