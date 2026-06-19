@@ -975,6 +975,8 @@ function abrirPartido(id){
         ${partido.golesVisitante ?? "-"}
         ${partido.visitante}
       </div>
+
+      
 <div class="ganador-oficial">
   Ganador:
   ${ganador}
@@ -986,7 +988,7 @@ function abrirPartido(id){
       <div class="pred-columna aciertos">
 
         <h3>
-          ✅ Aciertos
+          ✅ Aciertos (${aciertos.length})
         </h3>
 
         ${
@@ -1000,7 +1002,7 @@ function abrirPartido(id){
       <div class="pred-columna fallos">
 
         <h3>
-          ❌ Fallos
+          ❌ Fallos (${fallos.length})
         </h3>
 
         ${
