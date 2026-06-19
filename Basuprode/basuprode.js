@@ -146,7 +146,8 @@ const predicciones = [
     "Diego Jacquier",
     "Juan Pablo Saenz",
     "Blanqui",
-    "Dave"
+    "Dave",
+    "Cundo"
     ],
 
     visitante: [
