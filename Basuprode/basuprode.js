@@ -1229,7 +1229,7 @@ esProximo
 `
 <div class="predicciones-grid">
 
-  <div class="pred-columna">
+  <div class="pred-columna proximos">
 
     <h3>
       👥 Predicciones (${aciertos.length})

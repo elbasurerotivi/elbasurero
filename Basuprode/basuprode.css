@@ -724,6 +724,10 @@ COLUMNAS PREDICCIONES
   color:#ff4d4d;
 }
 
+.pred-columna-proximos{
+ display:list-item;
+}
+
 /*
 ====================================
 RESPONSIVE
