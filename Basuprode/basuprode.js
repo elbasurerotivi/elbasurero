@@ -612,7 +612,7 @@ function crearJugador(nombre){
   CONTAR PARTICIPACIONES
   ====================================
   */
-
+/*
   [
     ...pred.local,
     ...pred.visitante,
@@ -623,7 +623,7 @@ function crearJugador(nombre){
 
     estadisticas[nombre].participaciones++;
 
-  });
+  }); */
 
   /*
   ====================================
