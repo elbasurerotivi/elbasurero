@@ -1531,3 +1531,4 @@ async function migrarHistoricos() {
   console.log("Migración terminada");
 
 }
+window.migrarHistoricos = migrarHistoricos;
