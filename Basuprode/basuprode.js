@@ -1399,3 +1399,38 @@ async function eliminarPrediccion(
   }
 
 }
+
+async function cargarPrediccionesFirebase() {
+
+  try {
+
+    const snapshot = await get(
+      ref(
+        db,
+        "basuprode/predicciones"
+      )
+    );
+
+    if(snapshot.exists()){
+
+      prediccionesFirebase =
+      snapshot.val();
+
+    }else{
+
+      prediccionesFirebase = {};
+
+    }
+
+  } catch(error){
+
+    console.error(
+      "Error cargando predicciones:",
+      error
+    );
+
+  }
+
+}
+
+cargarPrediccionesFirebase();
