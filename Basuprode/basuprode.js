@@ -630,10 +630,10 @@ function crearJugador(nombre){
   SI EL PARTIDO NO TIENE RESULTADO
   ====================================
   */
-
+/*
   if(partido.resultado === "proximamente"){
     return;
-  }
+  }*/
 
   /*
   ================================
