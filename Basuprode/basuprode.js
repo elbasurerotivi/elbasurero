@@ -1692,6 +1692,10 @@ async function cargarPartidosFirebase(){
     snap.val()
   );
 
+  partidos.sort(
+  (a,b) => b.id - a.id
+);
+
 }
 
 
