@@ -105,9 +105,9 @@ const partidos = [
     id: 6,
     local: "México",
     visitante: "Corea del Sur",
-    golesLocal: null,
-    golesVisitante: null,
-    resultado: "proximamente"
+    golesLocal: 1,
+    golesVisitante: 0,
+    resultado: "local"
   },
   
   {
