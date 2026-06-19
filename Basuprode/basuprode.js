@@ -1620,7 +1620,7 @@ async function eliminarPrediccion(
 
 async function iniciarBasuProde(){
 
-  await cargarPartidosFirebase();
+  escucharPartidosFirebase();
 
   await cargarPrediccionesFirebase();
 
@@ -1630,38 +1630,27 @@ async function iniciarBasuProde(){
 
 iniciarBasuProde();
 
-async function cargarPrediccionesFirebase() {
+function escucharPrediccionesFirebase(){
 
-  try {
+  onValue(
+    ref(db,"basuprode/predicciones"),
+    async snapshot => {
 
-    const snapshot = await get(
-      ref(
-        db,
-        "basuprode/predicciones"
-      )
-    );
+      if(snapshot.exists()){
 
-    if(snapshot.exists()){
+        prediccionesFirebase =
+        snapshot.val();
 
-      prediccionesFirebase =
-      snapshot.val();
+      }else{
+
+        prediccionesFirebase = {};
+
+      }
 
       await renderRankingFirebase();
 
-    }else{
-
-      prediccionesFirebase = {};
-
     }
-
-  } catch(error){
-
-    console.error(
-      "Error cargando predicciones:",
-      error
-    );
-
-  }
+  );
 
 }
 
@@ -1675,82 +1664,33 @@ async function(nombre){
   );
 
 };
-async function cargarPartidosFirebase(){
+function escucharPartidosFirebase(){
 
-  const snap = await get(
-    ref(db,"basuprode/partidos")
-  );
+  onValue(
+    ref(db, "basuprode/partidos"),
+    snapshot => {
 
-  if(!snap.exists()){
+      if(!snapshot.exists()){
 
-    partidos = [];
-    return;
+        partidos = [];
 
-  }
+        renderPartidos();
 
-  partidos = Object.values(
-    snap.val()
-  );
+        return;
+      }
 
-  partidos.sort(
-  (a,b) => b.id - a.id
-);
+      partidos =
+      Object.values(
+        snapshot.val()
+      );
 
-}
+      partidos.sort(
+        (a,b) => b.id - a.id
+      );
 
+      renderPartidos();
 
-
-
-
-
-
-
-
-
-async function migrarPartidos(){
-
-  for(const partido of partidos){
-
-    await set(
-      ref(
-        db,
-        `basuprode/partidos/${partido.id}`
-      ),
-      partido
-    );
-
-  }
-
-  console.log(
-    "Partidos migrados"
+    }
   );
 
 }
-
-
-window.migrarPartidos = async function(){
-
-  console.log("Migrando partidos...");
-
-  for(const partido of partidos){
-
-    await set(
-      ref(
-        db,
-        `basuprode/partidos/${partido.id}`
-      ),
-      partido
-    );
-
-    console.log(
-      "Migrado partido:",
-      partido.id
-    );
-
-  }
-
-  console.log(
-    "Migración terminada"
-  );
-
-};
