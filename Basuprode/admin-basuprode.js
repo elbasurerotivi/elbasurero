@@ -357,4 +357,11 @@ async function cargarPartidos(){
 
 }
 
-cargarPartidos();
+onValue(
+  ref(db,"basuprode/partidos"),
+  () => {
+
+    cargarPartidos();
+
+  }
+);
