@@ -1598,9 +1598,10 @@ async function eliminarPrediccion(
     );
 
     await cargarPrediccionesFirebase();
-    generarRanking();
 
-    abrirPartido(partidoId);
+await renderRankingFirebase();
+
+abrirPartido(partidoId);
 
     alert(
       "🗑️ Predicción eliminada"
