@@ -1527,9 +1527,10 @@ async function guardarPrediccion(
     });
 
     await cargarPrediccionesFirebase();
-    generarRanking();
 
-    abrirPartido(partidoId);
+await renderRankingFirebase();
+
+abrirPartido(partidoId);
 
     alert(
       "✅ Predicción guardada"
