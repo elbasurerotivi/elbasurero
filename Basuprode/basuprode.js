@@ -938,6 +938,14 @@ function abrirPartido(id){
   const predFirebase =
   prediccionesFirebase[id] || {};
 
+  const user = auth.currentUser;
+
+  const apuestaUsuario =
+  user
+  ? predFirebase[user.uid]
+  : null;
+
+
   let ganador = "Próximamente";
 
   if(partido.resultado === "local"){
@@ -1116,31 +1124,62 @@ esProximo
 `
 <div class="zona-apuesta">
 
-  <h3>
-    🎯 Hacer predicción
-  </h3>
+  ${
+    apuestaUsuario
+    ?
+    `
+      <h3>
+        ✅ Ya hiciste tu predicción
+      </h3>
 
-  <div class="opciones-apuesta">
+      <p>
+        Elegiste:
+        <strong>
+          ${
+            apuestaUsuario.resultado === "local"
+            ? partido.local
+            : apuestaUsuario.resultado === "visitante"
+            ? partido.visitante
+            : "Empate"
+          }
+        </strong>
+      </p>
 
-    <button
-      onclick="apostar(${id},'local')"
-    >
-      ${partido.local}
-    </button>
+      <button
+        onclick="cambiarPrediccion(${id})"
+      >
+        Cambiar predicción
+      </button>
+    `
+    :
+    `
+      <h3>
+        🎯 Hacer predicción
+      </h3>
 
-    <button
-      onclick="apostar(${id},'empate')"
-    >
-      Empate
-    </button>
+      <div class="opciones-apuesta">
 
-    <button
-      onclick="apostar(${id},'visitante')"
-    >
-      ${partido.visitante}
-    </button>
+        <button
+          onclick="apostar(${id},'local')"
+        >
+          ${partido.local}
+        </button>
 
-  </div>
+        <button
+          onclick="apostar(${id},'empate')"
+        >
+          Empate
+        </button>
+
+        <button
+          onclick="apostar(${id},'visitante')"
+        >
+          ${partido.visitante}
+        </button>
+
+      </div>
+    `
+  }
 
 </div>
 `
@@ -1270,6 +1309,10 @@ async function guardarPrediccion(
 
     });
 
+    await cargarPrediccionesFirebase();
+
+    abrirPartido(partidoId);
+
     alert(
       "✅ Predicción guardada"
     );
@@ -1285,15 +1328,12 @@ async function guardarPrediccion(
   }
 
 }
-window.apostar =
-function(id,resultado){
+/*
+====================================
+APOSTAR
+====================================
+*/
 
-  guardarPrediccion(
-    id,
-    resultado
-  );
-
-};
 window.apostar = function(
   id,
   resultado
@@ -1303,6 +1343,36 @@ window.apostar = function(
     id,
     resultado
   );
+
+};
+/*
+====================================
+CAMBIAR PREDICCIÓN
+====================================
+*/
+
+window.cambiarPrediccion =
+function(id){
+
+  const confirmar =
+  confirm(
+    "¿Deseas cambiar tu predicción?"
+  );
+
+  if(!confirmar){
+    return;
+  }
+
+  const partido =
+  partidos.find(
+    p => p.id === id
+  );
+
+  if(!partido){
+    return;
+  }
+
+  abrirPartido(id);
 
 };
 
