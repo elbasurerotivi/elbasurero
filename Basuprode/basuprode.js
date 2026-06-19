@@ -605,7 +605,7 @@ function crearJugador(nombre){
     p => p.id === pred.partidoId
   );
 
-  if(!partido) return;*/
+  if(!partido) return;
 
   /*
   ====================================
@@ -623,17 +623,17 @@ function crearJugador(nombre){
 
     estadisticas[nombre].participaciones++;
 
-  }); */
+  });*/
 
   /*
   ====================================
   SI EL PARTIDO NO TIENE RESULTADO
   ====================================
   */
-/*
+
   if(partido.resultado === "proximamente"){
     return;
-  }*/
+  }
 
   /*
   ================================
