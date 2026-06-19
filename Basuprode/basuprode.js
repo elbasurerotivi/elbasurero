@@ -1020,7 +1020,7 @@ function abrirHistorial(nombre){
 
 }
 
-
+window.abrirHistorial = abrirHistorial; 
 /*
 ====================================
 CERRAR MODAL
