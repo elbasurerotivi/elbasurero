@@ -1296,7 +1296,27 @@ async function guardarPrediccion(
       `basuprode/predicciones/${partidoId}/${user.uid}`
     );
 
-    
+    await set(predRef, {
+
+      uid: user.uid,
+
+      nombre:
+        user.displayName ||
+        user.email.split("@")[0],
+
+      resultado,
+
+      timestamp: Date.now()
+
+    });
+
+    await cargarPrediccionesFirebase();
+
+    abrirPartido(partidoId);
+
+    alert(
+      "✅ Predicción guardada"
+    );
 
   }catch(error){
 
