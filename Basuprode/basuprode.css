@@ -832,3 +832,35 @@ SCROLLBAR PERSONALIZADA
   #b30000
   rgba(255,255,255,.05);
 }
+
+/*
+====================================
+FIREBASE
+====================================
+*/
+
+.zona-apuesta{
+  margin-top:20px;
+  text-align:center;
+}
+
+.opciones-apuesta{
+  display:flex;
+  gap:10px;
+  justify-content:center;
+  flex-wrap:wrap;
+}
+
+.opciones-apuesta button{
+  background:#ff9800;
+  color:white;
+  border:none;
+  padding:12px 20px;
+  border-radius:8px;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+.opciones-apuesta button:hover{
+  transform:scale(1.05);
+}

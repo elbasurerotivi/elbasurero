@@ -1,3 +1,6 @@
+import {auth,db,ref,set,get}
+from "../js/firebase-config.js";
+
 const flags = {
 
   "Argentina":"ar",
@@ -922,6 +925,9 @@ function abrirPartido(id){
 
   if(!partido) return;
   
+  const esProximo =
+  partido.resultado ===
+  "proximamente";
 
   const pred =
   predicciones.find(
@@ -1052,6 +1058,52 @@ function abrirPartido(id){
   Ganador:
   ${ganador}
 </div>
+${
+esProximo
+?
+`
+<div class="zona-apuesta">
+
+  <h3>
+    🎯 Hacer predicción
+  </h3>
+
+  <div class="opciones-apuesta">
+
+    <button
+      onclick="apostar(${id},'local')"
+    >
+      ${partido.local}
+    </button>
+
+    <button
+      onclick="apostar(${id},'empate')"
+    >
+      Empate
+    </button>
+
+    <button
+      onclick="apostar(${id},'visitante')"
+    >
+      ${partido.visitante}
+    </button>
+
+  </div>
+
+</div>
+`
+:
+""
+}
+window.apostar =
+function(id,resultado){
+
+  guardarPrediccion(
+    id,
+    resultado
+  );
+
+};
     </div>
 
     <div class="predicciones-grid">
@@ -1130,3 +1182,62 @@ modalPartido.addEventListener(
     }
   }
 );
+
+/*
+====================================
+GUARDAR PREDICCIÓN
+====================================
+*/
+
+async function guardarPrediccion(
+  partidoId,
+  resultado
+){
+
+  const user = auth.currentUser;
+
+  if(!user){
+
+    alert(
+      "Debes iniciar sesión para participar."
+    );
+
+    return;
+  }
+
+  try{
+
+    const predRef = ref(
+      db,
+      `basuprode/predicciones/${partidoId}/${user.uid}`
+    );
+
+    await set(predRef, {
+
+      uid: user.uid,
+
+      nombre:
+        user.displayName ||
+        user.email.split("@")[0],
+
+      resultado,
+
+      timestamp: Date.now()
+
+    });
+
+    alert(
+      "✅ Predicción guardada"
+    );
+
+  }catch(error){
+
+    console.error(error);
+
+    alert(
+      "Error al guardar la predicción"
+    );
+
+  }
+
+}
