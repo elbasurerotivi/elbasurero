@@ -1141,7 +1141,7 @@ function abrirPartido(id){
   const aciertos = [];
   const fallos = [];
 
-  if(pred){
+  /*if(pred){
 
     ["local","visitante","empate"]
     .forEach(tipo => {
@@ -1184,7 +1184,7 @@ function abrirPartido(id){
 
     });
 
-  }
+  }*/
 
   Object.values(predFirebase)
 .forEach(apuesta => {
