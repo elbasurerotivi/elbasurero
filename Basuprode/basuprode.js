@@ -935,6 +935,9 @@ function abrirPartido(id){
     p => p.partidoId === id
   );
 
+  const predFirebase =
+  prediccionesFirebase[id] || {};
+
   let ganador = "Próximamente";
 
   if(partido.resultado === "local"){
@@ -1002,6 +1005,47 @@ function abrirPartido(id){
     });
 
   }
+
+  Object.values(predFirebase)
+.forEach(apuesta => {
+
+  let texto = "";
+
+  if(apuesta.resultado === "local"){
+    texto = partido.local;
+  }
+
+  if(apuesta.resultado === "visitante"){
+    texto = partido.visitante;
+  }
+
+  if(apuesta.resultado === "empate"){
+    texto = "Empate";
+  }
+
+  const html = `
+    <div class="pred-item">
+      <strong>${apuesta.nombre}</strong>
+      <br>
+      Predicción:
+      ${texto}
+    </div>
+  `;
+
+  if(
+    apuesta.resultado ===
+    partido.resultado
+  ){
+
+    aciertos.push(html);
+
+  }else{
+
+    fallos.push(html);
+
+  }
+
+});
 
 
   /*
