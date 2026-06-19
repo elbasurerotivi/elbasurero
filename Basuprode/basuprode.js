@@ -1100,10 +1100,12 @@ function abrirPartido(id){
   partido.resultado ===
   "proximamente";
 
-  const pred =
+  /*const pred =
   predicciones.find(
     p => p.partidoId === id
-  );
+  );*/
+
+  const pred = null;
 
   const predFirebase =
   prediccionesFirebase[id] || {};
