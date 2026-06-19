@@ -1126,7 +1126,7 @@ esProximo
 <div class="zona-apuesta">
 
   ${
-    apuestaUsuario
+    apuestaUsuario && !modoCambio
     ?
     `
       <h3>
