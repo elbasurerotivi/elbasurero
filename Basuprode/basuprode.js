@@ -302,7 +302,7 @@ const predicciones = [
       "Luciano",
       "Favio",
       "Darío",
-      "Caesar M. Rangel",
+      "Caesar M Rangel",
       "johanmastropiero",
     ],
 
