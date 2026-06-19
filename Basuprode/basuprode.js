@@ -101,8 +101,16 @@ const partidos = [
     golesVisitante: 0,
     resultado: "local"
   },
-    {
+  {
     id: 5,
+    local: "Inglaterra",
+    visitante: "Croacia",
+    golesLocal: 4,
+    golesVisitante: 2,
+    resultado: "local"
+  },
+    {
+    id: 6,
     local: "México",
     visitante: "Corea del Sur",
     golesLocal: 1,
@@ -124,7 +132,7 @@ PREDICCIONES
 const predicciones = [
 
   {
-    partidoId: 5,
+    partidoId: 6,
 
     local: [
     "Charsvolta",
@@ -161,6 +169,30 @@ const predicciones = [
       "Charly!",
       "soledad",
       "Adriana Larosa"
+    
+    ]
+  },
+
+  {
+    partidoId: 5,
+
+    local: [
+      "Davincho",
+      "Patito",
+      "Cundo",
+      "M",
+    ],
+
+    visitante: [
+      "5ombr4",
+      "Agostina",
+      "Favio",
+      "Pepe",
+    ],
+
+    empate: [
+      "Rafa",
+      "Emma"
     
     ]
   },
