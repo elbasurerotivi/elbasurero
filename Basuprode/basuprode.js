@@ -118,7 +118,32 @@ const partidos = [
     resultado: "local"
   },
   
+  {
+    id: 7,
+    local: "Estados Unidos",
+    visitante: "Australia",
+    golesLocal: null,
+    golesVisitante: null,
+    resultado: "proximamente"
+  },
 
+  {
+    id: 8,
+    local: "Escocia",
+    visitante: "Marruecos",
+    golesLocal: null,
+    golesVisitante: null,
+    resultado: "proximamente"
+  },
+
+  {
+    id: 9,
+    local: "Brasil",
+    visitante: "Haití",
+    golesLocal: null,
+    golesVisitante: null,
+    resultado: "proximamente"
+  },
   
   
 ];
@@ -130,6 +155,42 @@ PREDICCIONES
 */
 
 const predicciones = [
+    {
+    partidoId: 9,
+
+    local: [
+        ],
+
+    visitante: [
+        ],
+
+    empate: [
+        ]
+  },
+  {
+    partidoId: 8,
+
+    local: [
+        ],
+
+    visitante: [
+        ],
+
+    empate: [
+        ]
+  },
+  {
+    partidoId: 7,
+
+    local: [
+        ],
+
+    visitante: [
+        ],
+
+    empate: [
+        ]
+  },
 
   {
     partidoId: 6,
