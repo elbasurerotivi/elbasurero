@@ -1147,9 +1147,9 @@ esProximo
       </p>
 
       <button
-        onclick="cambiarPrediccion(${id})"
+        onclick="eliminarPrediccion(${id})"
       >
-        Cambiar predicción
+        Eliminar predicción
       </button>
     `
     :
@@ -1348,59 +1348,56 @@ window.apostar = function(
   );
 
 };
-/*
-====================================
-CAMBIAR PREDICCIÓN
-====================================
-*/
 
-window.cambiarPrediccion = function(id){
+window.eliminarPrediccion =
+function(id){
 
-  const confirmar = confirm(
-    "¿Deseas cambiar tu predicción?"
+  const confirmar =
+  confirm(
+    "¿Deseas eliminar tu predicción?"
   );
 
   if(!confirmar){
     return;
   }
 
-  modoCambio = true;
+  eliminarPrediccion(id);
 
-  abrirPartido(id);
 };
 
-async function cargarPrediccionesFirebase() {
+async function eliminarPrediccion(
+  partidoId
+){
 
-  try {
+  const user = auth.currentUser;
 
-    const snapshot = await get(
+  if(!user) return;
+
+  try{
+
+    await remove(
       ref(
         db,
-        "basuprode/predicciones"
+        `basuprode/predicciones/${partidoId}/${user.uid}`
       )
     );
 
-    if(snapshot.exists()){
+    await cargarPrediccionesFirebase();
 
-      prediccionesFirebase =
-      snapshot.val();
+    abrirPartido(partidoId);
 
-      console.log(
-        "Predicciones Firebase:",
-        prediccionesFirebase
-      );
+    alert(
+      "🗑️ Predicción eliminada"
+    );
 
-    }
+  }catch(error){
 
-  } catch(error){
+    console.error(error);
 
-    console.error(
-      "Error cargando predicciones:",
-      error
+    alert(
+      "Error al eliminar la predicción"
     );
 
   }
 
 }
-
-cargarPrediccionesFirebase();
