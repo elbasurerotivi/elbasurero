@@ -1,11 +1,4 @@
-import {
-  db,
-  ref,
-  get,
-  set,
-  remove,
-  update
-}
+import { db, ref, get, set, remove, update, onValue}
 from "../js/firebase-config.js";
 
 const lista =
