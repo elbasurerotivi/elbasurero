@@ -399,6 +399,7 @@ const predicciones = [
 
 ];
 
+let prediccionesFirebase = {};
 
 /*
 ====================================
@@ -1253,3 +1254,39 @@ window.apostar = function(
   );
 
 };
+
+async function cargarPrediccionesFirebase() {
+
+  try {
+
+    const snapshot = await get(
+      ref(
+        db,
+        "basuprode/predicciones"
+      )
+    );
+
+    if(snapshot.exists()){
+
+      prediccionesFirebase =
+      snapshot.val();
+
+      console.log(
+        "Predicciones Firebase:",
+        prediccionesFirebase
+      );
+
+    }
+
+  } catch(error){
+
+    console.error(
+      "Error cargando predicciones:",
+      error
+    );
+
+  }
+
+}
+
+cargarPrediccionesFirebase();
