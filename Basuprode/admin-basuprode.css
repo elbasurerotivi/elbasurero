@@ -1,0 +1,69 @@
+body{
+
+  background:#111;
+
+  color:white;
+
+  font-family:Arial;
+
+  padding:30px;
+
+}
+
+h1{
+
+  text-align:center;
+
+}
+
+.panel{
+
+  display:flex;
+
+  gap:10px;
+
+  justify-content:center;
+
+  margin-bottom:30px;
+
+}
+
+input{
+
+  padding:10px;
+
+  border:none;
+
+  border-radius:8px;
+
+}
+
+button{
+
+  padding:10px 15px;
+
+  cursor:pointer;
+
+}
+
+.partido{
+
+  background:#1e1e1e;
+
+  padding:15px;
+
+  margin-bottom:15px;
+
+  border-radius:10px;
+
+}
+
+.botones{
+
+  margin-top:10px;
+
+  display:flex;
+
+  gap:10px;
+
+}
