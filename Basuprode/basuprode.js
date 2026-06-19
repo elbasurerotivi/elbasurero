@@ -599,13 +599,13 @@ function crearJugador(nombre){
 }
 
 
-predicciones.forEach(pred => {
+/*predicciones.forEach(pred => {
 
   const partido = partidos.find(
     p => p.id === pred.partidoId
   );
 
-  if(!partido) return;
+  if(!partido) return;*/
 
   /*
   ====================================
