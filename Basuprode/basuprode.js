@@ -110,14 +110,7 @@ const partidos = [
     resultado: "local"
   },
   
-  {
-    id: 6,
-    local: "Argentina",
-    visitante: "Argelia",
-    golesLocal: null,
-    golesVisitante: null,
-    resultado: "proximamente"
-  },
+
   
   
 ];
