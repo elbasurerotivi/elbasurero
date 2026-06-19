@@ -1722,3 +1722,31 @@ async function migrarPartidos(){
   );
 
 }
+
+
+window.migrarPartidos = async function(){
+
+  console.log("Migrando partidos...");
+
+  for(const partido of partidos){
+
+    await set(
+      ref(
+        db,
+        `basuprode/partidos/${partido.id}`
+      ),
+      partido
+    );
+
+    console.log(
+      "Migrado partido:",
+      partido.id
+    );
+
+  }
+
+  console.log(
+    "Migración terminada"
+  );
+
+};
