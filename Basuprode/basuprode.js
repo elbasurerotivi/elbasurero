@@ -71,7 +71,9 @@ function getFlag(nombrePais){
   `;
 }
 
-const partidos = [
+let partidos = []
+
+/*const partidos = [
   {
     id: 1,
     local: "México",
@@ -149,7 +151,7 @@ const partidos = [
   },
   
   
-];
+];*/
 
 /*
 ====================================
@@ -1637,3 +1639,21 @@ async function(nombre){
   );
 
 };
+async function cargarPartidosFirebase(){
+
+  const snap = await get(
+    ref(db,"basuprode/partidos")
+  );
+
+  if(!snap.exists()){
+
+    partidos = [];
+    return;
+
+  }
+
+  partidos = Object.values(
+    snap.val()
+  );
+
+}
