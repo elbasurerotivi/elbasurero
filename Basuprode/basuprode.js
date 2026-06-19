@@ -400,6 +400,7 @@ const predicciones = [
 ];
 
 let prediccionesFirebase = {};
+let modoCambio = false;
 
 /*
 ====================================
@@ -1351,11 +1352,9 @@ CAMBIAR PREDICCIÓN
 ====================================
 */
 
-window.cambiarPrediccion =
-function(id){
+window.cambiarPrediccion = function(id){
 
-  const confirmar =
-  confirm(
+  const confirmar = confirm(
     "¿Deseas cambiar tu predicción?"
   );
 
@@ -1363,17 +1362,9 @@ function(id){
     return;
   }
 
-  const partido =
-  partidos.find(
-    p => p.id === id
-  );
-
-  if(!partido){
-    return;
-  }
+  modoCambio = true;
 
   abrirPartido(id);
-
 };
 
 async function cargarPrediccionesFirebase() {
