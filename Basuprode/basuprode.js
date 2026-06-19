@@ -1310,6 +1310,8 @@ async function guardarPrediccion(
 
     });
 
+    modoCambio = false;
+
     await cargarPrediccionesFirebase();
 
     abrirPartido(partidoId);
