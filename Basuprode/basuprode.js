@@ -1,4 +1,4 @@
-import {auth,db,ref,set,get,remove}
+import {auth, db, ref, set, get, remove}
 from "../js/firebase-config.js";
 
 const flags = {
@@ -400,7 +400,7 @@ const predicciones = [
 ];
 
 let prediccionesFirebase = {};
-let modoCambio = false;
+
 
 /*
 ====================================
@@ -1126,7 +1126,7 @@ esProximo
 <div class="zona-apuesta">
 
   ${
-    apuestaUsuario && !modoCambio
+    apuestaUsuario
     ?
     `
       <h3>
@@ -1296,29 +1296,7 @@ async function guardarPrediccion(
       `basuprode/predicciones/${partidoId}/${user.uid}`
     );
 
-    await set(predRef, {
-
-      uid: user.uid,
-
-      nombre:
-        user.displayName ||
-        user.email.split("@")[0],
-
-      resultado,
-
-      timestamp: Date.now()
-
-    });
-
-    modoCambio = false;
-
-    await cargarPrediccionesFirebase();
-
-    abrirPartido(partidoId);
-
-    alert(
-      "✅ Predicción guardada"
-    );
+    
 
   }catch(error){
 
