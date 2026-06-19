@@ -1470,7 +1470,7 @@ cargarPrediccionesFirebase();
 
 
 
-
+console.log("Iniciando migración...");
 
 async function migrarHistoricos() {
 
@@ -1531,4 +1531,5 @@ async function migrarHistoricos() {
   console.log("Migración terminada");
 
 }
+console.log("Migración terminada");
 window.migrarHistoricos = migrarHistoricos;
