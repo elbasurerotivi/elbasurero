@@ -781,6 +781,7 @@ ranking.forEach((jugador,index) => {
     <td
     class="nombre-click"
     onclick="abrirHistorial('${jugador.nombre}')"
+    onclick="console.log('CLICK', '${jugador.nombre}'); abrirHistorial('${jugador.nombre}')"
     >
     ${jugador.nombre}
     </td>
