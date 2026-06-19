@@ -1227,7 +1227,7 @@ esProximo
 `
 :
 `
-<div class="predicciones-grid">
+<div class="predicciones-full">
 
   <div class="predicciones-unicas">
 

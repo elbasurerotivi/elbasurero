@@ -724,6 +724,11 @@ COLUMNAS PREDICCIONES
   color:#ff4d4d;
 }
 
+.predicciones-full{
+  width:100%;
+  margin-top:30px;
+}
+
 .predicciones-unicas{
   width:100%;
   text-align:center;
