@@ -1693,3 +1693,32 @@ async function cargarPartidosFirebase(){
   );
 
 }
+
+
+
+
+
+
+
+
+
+
+async function migrarPartidos(){
+
+  for(const partido of partidos){
+
+    await set(
+      ref(
+        db,
+        `basuprode/partidos/${partido.id}`
+      ),
+      partido
+    );
+
+  }
+
+  console.log(
+    "Partidos migrados"
+  );
+
+}
