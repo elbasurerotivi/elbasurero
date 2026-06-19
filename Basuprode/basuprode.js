@@ -1508,6 +1508,7 @@ async function guardarPrediccion(
     });
 
     await cargarPrediccionesFirebase();
+    generarRanking();
 
     abrirPartido(partidoId);
 
@@ -1578,6 +1579,7 @@ async function eliminarPrediccion(
     );
 
     await cargarPrediccionesFirebase();
+    generarRanking();
 
     abrirPartido(partidoId);
 
