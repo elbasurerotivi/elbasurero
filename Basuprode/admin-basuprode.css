@@ -6,9 +6,7 @@ body{
 }
 
 h1{
-
   text-align:center;
-
 }
 
 .panel{
@@ -16,20 +14,17 @@ h1{
   gap:10px;
   justify-content:center;
   margin-bottom:30px;
-
 }
 
 input{
   padding:10px;
   border:none;
   border-radius:8px;
-
 }
 
 button{
   padding:10px 15px;
   cursor:pointer;
-
 }
 
 .partido{
@@ -37,11 +32,18 @@ button{
   padding:15px;
   margin-bottom:15px;
   border-radius:10px;
-
 }
 
 .botones{
   margin-top:10px;
   display:flex;
   gap:10px;
+}
+
+.flag{
+  width:32px;
+  height:24px;
+  object-fit:cover;
+  border-radius:4px;
+  vertical-align:middle;
 }
