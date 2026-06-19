@@ -400,6 +400,176 @@ const predicciones = [
 
 let prediccionesFirebase = {};
 
+async function generarRankingFirebase(){
+
+  const estadisticas = {};
+
+  function crearJugador(nombre){
+
+    if(!estadisticas[nombre]){
+
+      estadisticas[nombre] = {
+        nombre,
+        puntos: 0,
+        participaciones: 0,
+        ganados: 0,
+        empatados: 0,
+        perdidos: 0
+      };
+
+    }
+
+  }
+
+  partidos.forEach(partido => {
+
+    const apuestasPartido =
+    prediccionesFirebase[partido.id];
+
+    if(!apuestasPartido){
+      return;
+    }
+
+    Object.values(apuestasPartido)
+    .forEach(apuesta => {
+
+      const nombre =
+      apuesta.nombre;
+
+      crearJugador(nombre);
+
+      estadisticas[nombre]
+      .participaciones++;
+
+      if(
+        partido.resultado ===
+        "proximamente"
+      ){
+        return;
+      }
+
+      if(
+        apuesta.resultado ===
+        partido.resultado
+      ){
+
+        estadisticas[nombre]
+        .ganados++;
+
+        estadisticas[nombre]
+        .puntos++;
+
+        if(
+          partido.resultado ===
+          "empate"
+        ){
+
+          estadisticas[nombre]
+          .empatados++;
+
+        }
+
+      }else{
+
+        estadisticas[nombre]
+        .perdidos++;
+
+      }
+
+    });
+
+  });
+
+  return Object.values(
+    estadisticas
+  ).sort((a,b) => {
+
+    if(
+      b.puntos !== a.puntos
+    ){
+      return b.puntos - a.puntos;
+    }
+
+    return b.participaciones -
+    a.participaciones;
+
+  });
+
+}
+
+async function renderRankingFirebase(){
+
+  const ranking =
+  await generarRankingFirebase();
+
+  const tbody =
+  document.querySelector(
+    "#tablaPosiciones tbody"
+  );
+
+  tbody.innerHTML = "";
+
+  ranking.forEach(
+    (jugador,index) => {
+
+      const tr =
+      document.createElement("tr");
+
+      if(index === 0){
+        tr.classList.add("top1");
+      }
+
+      if(index === 1){
+        tr.classList.add("top2");
+      }
+
+      if(index === 2){
+        tr.classList.add("top3");
+      }
+
+      tr.innerHTML = `
+      
+        <td class="posicion">
+        ${
+          index === 0
+          ? "🥇1"
+          : index === 1
+          ? "🥈2"
+          : index === 2
+          ? "🥉3"
+          : index + 1
+        }
+        </td>
+
+        <td>
+          ${jugador.nombre}
+        </td>
+
+        <td>
+          ${jugador.puntos}
+        </td>
+
+        <td>
+          ${jugador.participaciones}
+        </td>
+
+        <td>
+          ${jugador.ganados}
+        </td>
+
+        <td>
+          ${jugador.perdidos}
+        </td>
+
+      `;
+
+      tbody.appendChild(tr);
+
+    }
+  );
+
+}
+
 
 /*
 ====================================
@@ -1440,6 +1610,8 @@ async function cargarPrediccionesFirebase() {
 
       prediccionesFirebase =
       snapshot.val();
+      
+      await renderRankingFirebase();
 
     }else{
 
