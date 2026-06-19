@@ -1654,7 +1654,7 @@ function escucharPrediccionesFirebase(){
 
 }
 
-cargarPrediccionesFirebase();
+escucharPrediccionesFirebase();
 window.abrirHistorialFirebase =
 async function(nombre){
 
