@@ -278,8 +278,7 @@ const predicciones = [
     "Charly!",
     "Cintia",
     "Agus",
-    "Dalkiano",
-
+    
     ],
 
     visitante: [
