@@ -553,7 +553,17 @@ const ranking = Object.values(estadisticas)
   if(b.puntos !== a.puntos){
     return b.puntos - a.puntos;
   }
-  return b.ganados - a.ganados;
+
+  if(b.participaciones !== a.participaciones){
+    return b.participaciones - a.participaciones;
+  }
+
+  return a.nombre.localeCompare(
+    b.nombre,
+    "es",
+    { sensitivity: "base" }
+  );
+
 });
 
 
