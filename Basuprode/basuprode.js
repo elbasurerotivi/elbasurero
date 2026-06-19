@@ -1190,37 +1190,63 @@ esProximo
 
     </div>
 
-    <div class="predicciones-grid">
+    ${
+!esProximo
+?
+`
+<div class="predicciones-grid">
 
-      <div class="pred-columna aciertos">
+  <div class="pred-columna aciertos">
 
-        <h3>
-          ✅ Aciertos (${aciertos.length})
-        </h3>
+    <h3>
+      ✅ Aciertos (${aciertos.length})
+    </h3>
 
-        ${
-          aciertos.length
-          ? aciertos.join("")
-          : "<p>Sin aciertos</p>"
-        }
+    ${
+      aciertos.length
+      ? aciertos.join("")
+      : "<p>Sin aciertos</p>"
+    }
 
-      </div>
+  </div>
 
-      <div class="pred-columna fallos">
+  <div class="pred-columna fallos">
 
-        <h3>
-          ❌ Fallos (${fallos.length})
-        </h3>
+    <h3>
+      ❌ Fallos (${fallos.length})
+    </h3>
 
-        ${
-          fallos.length
-          ? fallos.join("")
-          : "<p>Sin fallos</p>"
-        }
+    ${
+      fallos.length
+      ? fallos.join("")
+      : "<p>Sin fallos</p>"
+    }
 
-      </div>
+  </div>
 
-    </div>
+</div>
+`
+:
+`
+<div class="predicciones-grid">
+
+  <div class="pred-columna">
+
+    <h3>
+      👥 Predicciones (${aciertos.length})
+    </h3>
+
+    ${
+      aciertos.length
+      ? aciertos.join("")
+      : "<p>Aún no hay predicciones</p>"
+    }
+
+  </div>
+
+</div>
+`
+}
 
   `;
 
