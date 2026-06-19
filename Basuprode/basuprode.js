@@ -1526,7 +1526,7 @@ async function guardarPrediccion(
 
     });
 
-    await cargarPrediccionesFirebase();
+    
 
 await renderRankingFirebase();
 
@@ -1598,7 +1598,7 @@ async function eliminarPrediccion(
       )
     );
 
-    await cargarPrediccionesFirebase();
+    
 
 await renderRankingFirebase();
 
@@ -1624,7 +1624,7 @@ async function iniciarBasuProde(){
 
   escucharPartidosFirebase();
 
-  await cargarPrediccionesFirebase();
+  
 
   renderPartidos();
 
