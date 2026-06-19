@@ -780,8 +780,8 @@ ranking.forEach((jugador,index) => {
 
     <td
     class="nombre-click"
-    onclick="abrirHistorial('${jugador.nombre}')"
-    onclick="console.log('CLICK', '${jugador.nombre}'); abrirHistorial('${jugador.nombre}')"
+     onclick="abrirHistorialFirebase('${jugador.nombre}')"
+    
     >
     ${jugador.nombre}
     </td>
@@ -1628,3 +1628,12 @@ async function cargarPrediccionesFirebase() {
 }
 
 cargarPrediccionesFirebase();
+window.abrirHistorialFirebase =
+async function(nombre){
+
+  console.log(
+    "Abriendo historial de:",
+    nombre
+  );
+
+};
