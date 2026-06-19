@@ -1114,8 +1114,10 @@ function abrirPartido(id){
   if(!partido) return;
   
   const esProximo =
-  partido.resultado ===
-  "proximamente";
+partido.resultado ===
+"proximamente"
+&&
+!partido.cerrado;
 
   /*const pred =
   predicciones.find(
