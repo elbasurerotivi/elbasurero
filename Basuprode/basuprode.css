@@ -201,6 +201,47 @@ button:hover{
   transform:translateY(-2px);
 }
 
+
+/* =========================
+REGLAS
+========================= */
+
+
+.reglas-section{
+
+  margin-bottom:40px;
+}
+
+.reglas-box{
+
+  background:rgba(255,255,255,.04);
+
+  border:1px solid rgba(255,0,0,.15);
+
+  border-radius:16px;
+
+  padding:20px;
+
+  backdrop-filter:blur(10px);
+
+  line-height:1.7;
+}
+
+.reglas-box p{
+
+  margin-bottom:10px;
+}
+
+.reglas-box p:last-child{
+
+  margin-bottom:0;
+
+  text-align:center;
+
+  color:#ff4d4d;
+}
+
+
 /* =========================
 TABLA
 ========================= */
