@@ -898,130 +898,116 @@ function abrirHistorial(nombre){
 
   modalBody.innerHTML = "";
 
-  predicciones.forEach(pred => {
+  Object.entries(prediccionesFirebase)
+  .forEach(([partidoId, apuestas]) => {
 
     const partido = partidos.find(
-      p => p.id === pred.partidoId
+      p => p.id == partidoId
     );
 
     if(!partido) return;
-    
-    let prediccionJugador = null;
 
-    if(
-      pred.local.includes(nombre)
-    ){
-      prediccionJugador = "local";
-    }
+    Object.values(apuestas)
+    .forEach(apuesta => {
 
-    if(
-      pred.visitante.includes(nombre)
-    ){
-      prediccionJugador = "visitante";
-    }
-
-    if(
-      pred.empate.includes(nombre)
-    ){
-      prediccionJugador = "empate";
-    }
-
-
-    if(!prediccionJugador) return;
-
-
-    const acerto =
-    prediccionJugador === partido.resultado;
-
-
-    const div =
-    document.createElement("div");
-
-    div.classList.add(
-      "historial-item"
-    );
-
-    div.classList.add(
-      acerto
-      ? "historial-acierto"
-      : "historial-error"
-    );
-
-
-    let textoPrediccion = "";
-
-    if(prediccionJugador === "local"){
-      textoPrediccion =
-      partido.local;
-    }
-
-    if(prediccionJugador === "visitante"){
-      textoPrediccion =
-      partido.visitante;
-    }
-
-    if(prediccionJugador === "empate"){
-      textoPrediccion =
-      "Empate";
-    }
-
-
-    let textoResultado = "";
-
-    if(partido.resultado === "local"){
-      textoResultado =
-      partido.local;
-    }
-
-    if(partido.resultado === "visitante"){
-      textoResultado =
-      partido.visitante;
-    }
-
-    if(partido.resultado === "empate"){
-      textoResultado =
-      "Empate";
-    }
-
-    if(partido.resultado === "proximamente"){
-      textoResultado =
-      "Próximamente";
-    }
-
-
-    div.innerHTML = `
-    
-      <strong>
-        ${partido.local}
-        vs
-        ${partido.visitante}
-      </strong>
-
-      <br><br>
-
-      Predicción:
-      <strong>
-        ${textoPrediccion}
-      </strong>
-
-      <br>
-
-      Resultado:
-      <strong>
-        ${textoResultado}
-      </strong>
-
-      <br><br>
-
-      ${
-        acerto
-        ? "✅ Acierto"
-        : "❌ Falló"
+      if(apuesta.nombre !== nombre){
+        return;
       }
 
-    `;
+      const prediccionJugador =
+      apuesta.resultado;
 
-    modalBody.appendChild(div);
+      const acerto =
+      prediccionJugador ===
+      partido.resultado;
+
+      const div =
+      document.createElement("div");
+
+      div.classList.add(
+        "historial-item"
+      );
+
+      div.classList.add(
+        acerto
+        ? "historial-acierto"
+        : "historial-error"
+      );
+
+      let textoPrediccion = "";
+
+      if(prediccionJugador === "local"){
+        textoPrediccion =
+        partido.local;
+      }
+
+      if(prediccionJugador === "visitante"){
+        textoPrediccion =
+        partido.visitante;
+      }
+
+      if(prediccionJugador === "empate"){
+        textoPrediccion =
+        "Empate";
+      }
+
+      let textoResultado = "";
+
+      if(partido.resultado === "local"){
+        textoResultado =
+        partido.local;
+      }
+
+      if(partido.resultado === "visitante"){
+        textoResultado =
+        partido.visitante;
+      }
+
+      if(partido.resultado === "empate"){
+        textoResultado =
+        "Empate";
+      }
+
+      if(partido.resultado === "proximamente"){
+        textoResultado =
+        "Próximamente";
+      }
+
+      div.innerHTML = `
+      
+        <strong>
+          ${partido.local}
+          vs
+          ${partido.visitante}
+        </strong>
+
+        <br><br>
+
+        Predicción:
+        <strong>
+          ${textoPrediccion}
+        </strong>
+
+        <br>
+
+        Resultado:
+        <strong>
+          ${textoResultado}
+        </strong>
+
+        <br><br>
+
+        ${
+          acerto
+          ? "✅ Acierto"
+          : "❌ Falló"
+        }
+
+      `;
+
+      modalBody.appendChild(div);
+
+    });
 
   });
 
