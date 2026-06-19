@@ -1095,15 +1095,7 @@ esProximo
 :
 ""
 }
-window.apostar =
-function(id,resultado){
 
-  guardarPrediccion(
-    id,
-    resultado
-  );
-
-};
     </div>
 
     <div class="predicciones-grid">
@@ -1241,3 +1233,23 @@ async function guardarPrediccion(
   }
 
 }
+window.apostar =
+function(id,resultado){
+
+  guardarPrediccion(
+    id,
+    resultado
+  );
+
+};
+window.apostar = function(
+  id,
+  resultado
+){
+
+  guardarPrediccion(
+    id,
+    resultado
+  );
+
+};
