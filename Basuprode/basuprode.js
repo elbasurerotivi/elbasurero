@@ -102,7 +102,7 @@ const partidos = [
     resultado: "local"
   },
     {
-    id: 6,
+    id: 5,
     local: "México",
     visitante: "Corea del Sur",
     golesLocal: 1,
@@ -137,7 +137,8 @@ const predicciones = [
     "Favio",
     "Diego Jacquier",
     "Juan Pablo Saenz",
-    "Blanqui"
+    "Blanqui",
+    "Dave"
     ],
 
     visitante: [
@@ -146,7 +147,9 @@ const predicciones = [
     "Lucía Suarez",
     "50mbr4",
     "Franco",
-    "Javier Acosta"
+    "Javier Acosta",
+    "Juancho",
+    "Agus"
     ],
 
     empate: [
@@ -155,7 +158,9 @@ const predicciones = [
       "EL MESSIAS",
       "Karlanga",
       "Pepe",
-      "Charly!"
+      "Charly!",
+      "soledad",
+      "Adriana Larosa"
     
     ]
   },
@@ -177,7 +182,7 @@ const predicciones = [
     "Cintia",
     "Agus",
     "Dalkiano",
-    
+
     ],
 
     visitante: [
