@@ -630,17 +630,17 @@ function crearJugador(nombre){
   SI EL PARTIDO NO TIENE RESULTADO
   ====================================
   */
-
+/*
   if(partido.resultado === "proximamente"){
     return;
-  }
+  }*/
 
   /*
   ================================
   GANÓ LOCAL
   ================================
   */
-
+/*
   if(partido.resultado === "local"){
     pred.local.forEach(nombre => {
       crearJugador(nombre);
@@ -665,7 +665,7 @@ function crearJugador(nombre){
   GANÓ VISITANTE
   ================================
   */
-
+/*
   if(partido.resultado === "visitante"){
 
     pred.visitante.forEach(nombre => {
@@ -691,7 +691,7 @@ function crearJugador(nombre){
   EMPATE
   ================================
   */
-
+/*
   if(partido.resultado === "empate"){
 
     pred.empate.forEach(nombre => {
