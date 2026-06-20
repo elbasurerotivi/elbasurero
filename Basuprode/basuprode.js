@@ -396,47 +396,119 @@ function crearTarjetaPartido(partido){
 
   div.classList.add("partido");
 
+if(
+  partido.resultado ===
+  "proximamente"
+){
+  div.classList.add(
+    "partido-proximo"
+  );
+}else{
+  div.classList.add(
+    "partido-finalizado"
+  );
+}
+
+if(
+  partido.resultado ===
+  "proximamente"
+){
+
+  const proximos =
+  partidos.filter(
+    p =>
+    p.resultado ===
+    "proximamente"
+  );
+
+  if(
+    proximos.length &&
+    proximos[0].id === partido.id
+  ){
+    div.classList.add(
+      "partido-destacado"
+    );
+  }
+
+}
+
+const esDestacado =
+div.classList.contains(
+  "partido-destacado"
+);
+
   div.onclick = () =>
     abrirPartido(partido.id);
 
   div.innerHTML = `
-    <div class="equipos">
 
-      <div class="equipo">
-        ${getFlag(partido.local)}
-        <span>${partido.local}</span>
+  ${
+    esDestacado
+    ?
+    `
+      <div class="badge-nuevo">
+        NUEVO
       </div>
+    `
+    :
+    ""
+  }
 
-      <span class="vs">
-        vs
-      </span>
-
-      <div class="equipo">
-        ${getFlag(partido.visitante)}
-        <span>${partido.visitante}</span>
+  ${
+    partido.resultado ===
+    "proximamente"
+    ?
+    `
+      <div class="badge-abierto">
+        🎯 APUESTAS ABIERTAS
       </div>
+    `
+    :
+    `
+      <div class="badge-finalizado">
+        ✓ FINALIZADO
+      </div>
+    `
+  }
 
+  <div class="equipos">
+
+    <div class="equipo">
+      ${getFlag(partido.local)}
+      <span>${partido.local}</span>
     </div>
 
-    <div class="resultado">
+    <span class="vs">
+      vs
+    </span>
 
-      Resultado:
-
-      ${
-        partido.resultado === "local"
-        ? partido.local
-
-        : partido.resultado === "visitante"
-        ? partido.visitante
-
-        : partido.resultado === "empate"
-        ? "Empate"
-
-        : "Próximamente"
-      }
-
+    <div class="equipo">
+      ${getFlag(partido.visitante)}
+      <span>${partido.visitante}</span>
     </div>
-  `;
+
+  </div>
+
+  <div class="resultado">
+
+    Resultado:
+
+    ${
+      partido.resultado === "local"
+      ? partido.local
+
+      : partido.resultado === "visitante"
+      ? partido.visitante
+
+      : partido.resultado === "empate"
+      ? "Empate"
+
+      : "Próximamente"
+    }
+
+  </div>
+
+`;
 
   return div;
 }
