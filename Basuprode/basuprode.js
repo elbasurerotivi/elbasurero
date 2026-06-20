@@ -781,11 +781,10 @@ ranking.forEach((jugador,index) => {
     </td>
 
     <td
-    class="nombre-click"
-     onclick="abrirHistorialFirebase('${jugador.nombre}')"
-    
+      class="nombre-click"
+      onclick="abrirHistorialFirebase('${jugador.nombre}')"
     >
-    ${jugador.nombre}
+      ${jugador.nombre}
     </td>
 
     <td>
@@ -1565,8 +1564,9 @@ window.apostar = function(
 
 };
 
-window.eliminarPrediccion =
-function(id){
+window.eliminarPrediccion = function(id){
+  eliminarPrediccionFirebase(id);
+};{
 
   const confirmar =
   confirm(
