@@ -543,10 +543,7 @@ async function renderRankingFirebase(){
         }
         </td>
 
-        <td
-          class="nombre-click"
-          onclick="abrirHistorialFirebase('${jugador.nombre}')"
-        >
+        <td>
           ${jugador.nombre}
         </td>
 
@@ -1660,8 +1657,6 @@ function escucharPrediccionesFirebase(){
 }
 
 escucharPrediccionesFirebase();
-
-
 window.abrirHistorialFirebase =
 async function(nombre){
 
@@ -1671,9 +1666,6 @@ async function(nombre){
   );
 
 };
-
-
-
 function escucharPartidosFirebase(){
 
   onValue(
