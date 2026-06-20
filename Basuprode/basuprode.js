@@ -543,7 +543,10 @@ async function renderRankingFirebase(){
         }
         </td>
 
-        <td>
+        <td
+          class="nombre-click"
+          onclick="abrirHistorialFirebase('${jugador.nombre}')"
+        >
           ${jugador.nombre}
         </td>
 
