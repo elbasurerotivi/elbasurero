@@ -378,75 +378,111 @@ RENDER PARTIDOS
 ====================================
 */
 
-const listaPartidos =
+const listaProximos =
 document.getElementById(
-  "listaPartidos"
+  "listaProximos"
 );
+
+const listaFinalizados =
+document.getElementById(
+  "listaFinalizados"
+);
+
+
+function crearTarjetaPartido(partido){
+
+  const div =
+  document.createElement("div");
+
+  div.classList.add("partido");
+
+  div.onclick = () =>
+    abrirPartido(partido.id);
+
+  div.innerHTML = `
+    <div class="equipos">
+
+      <div class="equipo">
+        ${getFlag(partido.local)}
+        <span>${partido.local}</span>
+      </div>
+
+      <span class="vs">
+        vs
+      </span>
+
+      <div class="equipo">
+        ${getFlag(partido.visitante)}
+        <span>${partido.visitante}</span>
+      </div>
+
+    </div>
+
+    <div class="resultado">
+
+      Resultado:
+
+      ${
+        partido.resultado === "local"
+        ? partido.local
+
+        : partido.resultado === "visitante"
+        ? partido.visitante
+
+        : partido.resultado === "empate"
+        ? "Empate"
+
+        : "Próximamente"
+      }
+
+    </div>
+  `;
+
+  return div;
+}
+
 
 function renderPartidos(){
 
-  listaPartidos.innerHTML = "";
+  const proximos =
+partidos.filter(
+  p => p.resultado === "proximamente"
+);
 
-  partidos.forEach(partido => {
+const finalizados =
+partidos.filter(
+  p => p.resultado !== "proximamente"
+);
 
-    const div =
-    document.createElement("div");
+document.getElementById(
+  "contadorProximos"
+).textContent =
+`(${proximos.length})`;
 
-    div.classList.add(
-      "partido"
-    );
+document.getElementById(
+  "contadorFinalizados"
+).textContent =
+`(${finalizados.length})`;
 
-    div.onclick = () =>
-    abrirPartido(
-      partido.id
-    );
 
-    div.innerHTML = `
+  listaProximos.innerHTML = "";
+  listaFinalizados.innerHTML = "";
 
-      <div class="equipos">
+ proximos.forEach(partido => {
 
-        <div class="equipo">
-          ${getFlag(partido.local)}
-          <span>${partido.local}</span>
-        </div>
+  listaProximos.appendChild(
+    crearTarjetaPartido(partido)
+  );
 
-        <span class="vs">
-          vs
-        </span>
+});
 
-        <div class="equipo">
-          ${getFlag(partido.visitante)}
-          <span>${partido.visitante}</span>
-        </div>
+finalizados.forEach(partido => {
 
-      </div>
+  listaFinalizados.appendChild(
+    crearTarjetaPartido(partido)
+  );
 
-      <div class="resultado">
-
-        Resultado:
-
-        ${
-          partido.resultado === "local"
-          ? partido.local
-
-          : partido.resultado === "visitante"
-          ? partido.visitante
-
-          : partido.resultado === "empate"
-          ? "Empate"
-
-          : "Próximamente"
-        }
-
-      </div>
-
-    `;
-
-    listaPartidos.appendChild(
-      div
-    );
-
-  });
+});
 
 }
 
