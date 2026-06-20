@@ -781,10 +781,11 @@ ranking.forEach((jugador,index) => {
     </td>
 
     <td
-      class="nombre-click"
-      onclick="abrirHistorialFirebase('${jugador.nombre}')"
+    class="nombre-click"
+     onclick="abrirHistorialFirebase('${jugador.nombre}')"
+    
     >
-      ${jugador.nombre}
+    ${jugador.nombre}
     </td>
 
     <td>
