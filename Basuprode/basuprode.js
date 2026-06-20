@@ -1660,15 +1660,139 @@ function escucharPrediccionesFirebase(){
 }
 
 escucharPrediccionesFirebase();
-window.abrirHistorialFirebase =
-async function(nombre){
 
-  console.log(
-    "Abriendo historial de:",
-    nombre
-  );
+
+window.abrirHistorialFirebase = function(nombre){
+
+  modal.classList.add("activo");
+
+  modalTitulo.innerText =
+  `Historial de ${nombre}`;
+
+  modalBody.innerHTML = "";
+
+  let cantidad = 0;
+
+  Object.entries(prediccionesFirebase)
+  .forEach(([partidoId, apuestas]) => {
+
+    const partido = partidos.find(
+      p => p.id == partidoId
+    );
+
+    if(!partido){
+      return;
+    }
+
+    Object.values(apuestas)
+    .forEach(apuesta => {
+
+      if(apuesta.nombre !== nombre){
+        return;
+      }
+
+      cantidad++;
+
+      let textoPrediccion = "";
+
+      if(apuesta.resultado === "local"){
+        textoPrediccion = partido.local;
+      }
+
+      if(apuesta.resultado === "visitante"){
+        textoPrediccion = partido.visitante;
+      }
+
+      if(apuesta.resultado === "empate"){
+        textoPrediccion = "Empate";
+      }
+
+      let textoResultado = "";
+
+      if(partido.resultado === "local"){
+        textoResultado = partido.local;
+      }
+
+      if(partido.resultado === "visitante"){
+        textoResultado = partido.visitante;
+      }
+
+      if(partido.resultado === "empate"){
+        textoResultado = "Empate";
+      }
+
+      if(partido.resultado === "proximamente"){
+        textoResultado = "Próximamente";
+      }
+
+      const acerto =
+      partido.resultado !== "proximamente"
+      &&
+      apuesta.resultado === partido.resultado;
+
+      const div =
+      document.createElement("div");
+
+      div.className =
+      `historial-item ${
+        partido.resultado === "proximamente"
+        ? ""
+        : acerto
+        ? "historial-acierto"
+        : "historial-error"
+      }`;
+
+      div.innerHTML = `
+        <strong>
+          ${partido.local}
+          vs
+          ${partido.visitante}
+        </strong>
+
+        <br><br>
+
+        Predicción:
+        <strong>
+          ${textoPrediccion}
+        </strong>
+
+        <br>
+
+        Resultado:
+        <strong>
+          ${textoResultado}
+        </strong>
+
+        <br><br>
+
+        ${
+          partido.resultado === "proximamente"
+          ? "⏳ Pendiente"
+          : acerto
+          ? "✅ Acierto"
+          : "❌ Falló"
+        }
+      `;
+
+      modalBody.appendChild(div);
+
+    });
+
+  });
+
+  if(cantidad === 0){
+
+    modalBody.innerHTML = `
+      <p style="text-align:center;">
+        Este participante aún no realizó predicciones.
+      </p>
+    `;
+  }
 
 };
+
+
+
 function escucharPartidosFirebase(){
 
   onValue(
