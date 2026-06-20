@@ -1566,11 +1566,8 @@ window.apostar = function(
 };
 
 window.eliminarPrediccion = function(id){
-  eliminarPrediccionFirebase(id);
-};{
 
-  const confirmar =
-  confirm(
+  const confirmar = confirm(
     "¿Deseas eliminar tu predicción?"
   );
 
