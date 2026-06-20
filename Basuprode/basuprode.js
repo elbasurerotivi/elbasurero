@@ -1174,15 +1174,7 @@ function escucharPrediccionesFirebase(){
 }
 
 escucharPrediccionesFirebase();
-window.abrirHistorialFirebase =
-async function(nombre){
 
-  console.log(
-    "Abriendo historial de:",
-    nombre
-  );
-
-};
 function escucharPartidosFirebase(){
 
   onValue(
