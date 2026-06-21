@@ -1331,6 +1331,8 @@ function escucharPrediccionesFirebase(){
 
       await renderRankingFirebase();
 
+      renderPartidos();
+
     }
   );
 
