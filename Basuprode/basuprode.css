@@ -1033,3 +1033,9 @@ TRANSFORMACION
     margin-top:8px;
 }
 
+
+@media (max-width: 768px){
+  .equipo span{
+    font-size: 14px;
+  }
+}
