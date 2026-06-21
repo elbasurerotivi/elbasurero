@@ -516,17 +516,23 @@ div.classList.contains(
 
 </div>
 
-<div class="partido-fecha">
+${
+  partido.resultado !== "proximamente"
+  ?
+  `
+  <div class="partido-fecha">
 
-  📅
-  ${formatearFecha(partido.fecha)}
+    📅 ${formatearFecha(partido.fecha)}
 
-  ·
+    ·
 
-  🕒
-  ${partido.hora}
+    🕒 ${partido.hora} hs
 
-</div>
+  </div>
+  `
+  :
+  ""
+}
 
 <div class="resultado">
 

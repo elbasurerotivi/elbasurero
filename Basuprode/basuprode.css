@@ -991,33 +991,47 @@ TRANSFORMACION
 /* PARTIDOS */
 .partido{
     min-height: 150px;
-
     display:flex;
     flex-direction:column;
-
     justify-content:center;
-
     gap:12px;
 }
 .equipos{
     display:flex;
-
     justify-content:center;
-
     align-items:center;
-
     gap:30px;
-
     margin-top:15px;
 }
 .equipo{
     display:flex;
-
     align-items:center;
-
     gap:10px;
-
     font-size:18px;
-
     font-weight:700;
+}
+
+/* DIA Y HORA */
+.partido-info{
+    text-align:center;
+    font-size:15px;
+    color:#d0d0d0;
+    line-height:1.7;
+    margin-top:8px;
+}
+
+.partido-info strong{
+    color:#fff;
+}
+
+.partido-fecha{
+    text-align:center;
+    font-size:13px;
+    color:#999;
+    margin-top:8px;
+}
+
+.partido-info{
+    font-size:14px;
+    font-weight:600;
 }
