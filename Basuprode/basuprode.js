@@ -589,6 +589,9 @@ function renderPartidos(){
 partidos.filter(
   p => p.resultado === "proximamente"
 );
+  proximos.sort(
+        (a,b) => a.id - b.id
+      );
 
 const finalizados =
 partidos.filter(
