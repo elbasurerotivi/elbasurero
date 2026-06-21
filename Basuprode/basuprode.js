@@ -439,25 +439,24 @@ if(
   "proximamente"
 ){
 
-  const proximos =
-  partidos.filter(
-    p =>
-    p.resultado ===
-    "proximamente"
+  
+  const proximos = partidos
+  .filter(
+    p => p.resultado === "proximamente"
+  )
+  .sort(
+    (a,b) => a.id - b.id
   );
 
-  if(
-    proximos.length &&
-    proximos[0].id === partido.id
-  ){
-    div.classList.add(
-      "partido-destacado"
-    );
-  }
-
- 
-
+if(
+  proximos.length &&
+  proximos[0].id === partido.id
+){
+  div.classList.add(
+    "partido-destacado"
+  );
 }
+  
 
 const esDestacado =
 div.classList.contains(
