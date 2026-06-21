@@ -976,3 +976,13 @@ TRANSFORMACION
   color:#f5c542;
   font-weight:bold;
 }
+
+/* FECHA */
+.partido-fecha{
+  margin-top:12px;
+  text-align:center;
+  font-size:.95rem;
+  font-weight:600;
+  color:#ffd166;
+  opacity:.95;
+}

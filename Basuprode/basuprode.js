@@ -388,6 +388,24 @@ document.getElementById(
   "listaFinalizados"
 );
 
+function formatearFecha(fechaStr){
+
+  if(!fechaStr){
+    return "";
+  }
+
+  const fecha =
+  new Date(fechaStr);
+
+  return fecha.toLocaleDateString(
+    "es-AR",
+    {
+      day:"numeric",
+      month:"short"
+    }
+  );
+
+}
 
 function crearTarjetaPartido(partido){
 
@@ -482,21 +500,33 @@ div.classList.contains(
 
   <div class="equipos">
 
-    <div class="equipo">
-      ${getFlag(partido.local)}
-      <span>${partido.local}</span>
-    </div>
-
-    <span class="vs">
-      vs
-    </span>
-
-    <div class="equipo">
-      ${getFlag(partido.visitante)}
-      <span>${partido.visitante}</span>
-    </div>
-
+  <div class="equipo">
+    ${getFlag(partido.local)}
+    <span>${partido.local}</span>
   </div>
+
+  <span class="vs">
+    vs
+  </span>
+
+  <div class="equipo">
+    ${getFlag(partido.visitante)}
+    <span>${partido.visitante}</span>
+  </div>
+
+</div>
+
+<div class="partido-fecha">
+
+  📅
+  ${formatearFecha(partido.fecha)}
+
+  ·
+
+  🕒
+  ${partido.hora}
+
+</div>
 
 <div class="resultado">
 
