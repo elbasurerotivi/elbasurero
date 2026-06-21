@@ -126,6 +126,7 @@ h2{
   font-size:clamp(24px, 4vw, 36px);
   color:#ff4d4d;
   text-align: center;
+  margin-top:20px;
 }
 
 /*
