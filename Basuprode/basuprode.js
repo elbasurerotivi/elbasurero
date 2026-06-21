@@ -456,7 +456,7 @@ if(
     "partido-destacado"
   );
 }
-  
+}
 
 const esDestacado =
 div.classList.contains(
