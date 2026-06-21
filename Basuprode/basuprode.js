@@ -394,6 +394,13 @@ function crearTarjetaPartido(partido){
   const div =
   document.createElement("div");
 
+  const cantidadPredicciones =
+    Object.keys(
+      prediccionesFirebase[
+        partido.id
+      ] || {}
+    ).length;
+
   div.classList.add("partido");
 
 if(
@@ -430,12 +437,7 @@ if(
     );
   }
 
-  const cantidadPredicciones =
-Object.keys(
-  prediccionesFirebase[
-    partido.id
-  ] || {}
-).length;
+ 
 
 }
 
@@ -496,24 +498,28 @@ div.classList.contains(
 
   </div>
 
-  <div class="resultado">
+<div class="resultado">
 
-    Resultado:
-
-    ${
-      partido.resultado === "local"
-      ? partido.local
-
-      : partido.resultado === "visitante"
-      ? partido.visitante
-
-      : partido.resultado === "empate"
-      ? "Empate"
-
-      : "Próximamente"
-    }
-
+${
+  partido.resultado !==
+  "proximamente"
+  ?
+  `
+  <div class="marcador">
+    ${partido.golesLocal}
+    -
+    ${partido.golesVisitante}
   </div>
+  `
+  :
+  `
+  <div class="partido-pendiente">
+    Próximamente
+  </div>
+  `
+}
+
+</div>
 
   <div class="contador-predicciones">
 
