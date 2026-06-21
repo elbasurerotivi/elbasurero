@@ -951,3 +951,12 @@ TRANSFORMACION
   padding:4px 10px;
   border-radius:20px;
 }
+
+/* CONTADOR DE PREDICCIONES */
+.contador-predicciones{
+  margin-top:12px;
+  text-align:center;
+  font-size:.9rem;
+  color:#ddd;
+  font-weight:600;
+}

@@ -430,6 +430,13 @@ if(
     );
   }
 
+  const cantidadPredicciones =
+Object.keys(
+  prediccionesFirebase[
+    partido.id
+  ] || {}
+).length;
+
 }
 
 const esDestacado =
@@ -507,6 +514,18 @@ div.classList.contains(
     }
 
   </div>
+
+  <div class="contador-predicciones">
+
+  👥 ${cantidadPredicciones}
+
+  ${
+    cantidadPredicciones === 1
+    ? "predicción"
+    : "predicciones"
+  }
+
+</div>
 
 `;
 
