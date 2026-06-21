@@ -987,3 +987,37 @@ TRANSFORMACION
   color:#ffd166;
   opacity:.95;
 }
+
+/* PARTIDOS */
+.partido{
+    min-height: 150px;
+
+    display:flex;
+    flex-direction:column;
+
+    justify-content:center;
+
+    gap:12px;
+}
+.equipos{
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:30px;
+
+    margin-top:15px;
+}
+.equipo{
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    font-size:18px;
+
+    font-weight:700;
+}

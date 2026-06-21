@@ -543,9 +543,15 @@ ${
   `
   :
   `
-  <div class="partido-pendiente">
-    Próximamente
-  </div>
+  <div class="partido-info">
+
+  📅 ${formatearFecha(partido.fecha)}
+
+  <br>
+
+  🕒 ${partido.hora} hs
+
+</div>
   `
 }
 
