@@ -552,11 +552,11 @@ ${
   <div class="partido-info">
 
   <div>
-    📅 ${formatearFecha(partido.fecha)}
+    ${formatearFecha(partido.fecha)}
   </div>
 
   <div>
-    🕒 ${partido.hora} hs
+    ${partido.hora} hs
   </div>
 
 </div>
