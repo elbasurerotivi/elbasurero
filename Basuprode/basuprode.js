@@ -498,20 +498,72 @@ div.classList.contains(
     `
   }
 
-  <div class="equipos">
+  <div class="partido-grid">
 
-  <div class="equipo">
+  <div class="col-equipo">
+
     ${getFlag(partido.local)}
-    <span>${partido.local}</span>
+
+    <span>
+      ${partido.local}
+    </span>
+
   </div>
 
-  <span class="vs">
-    vs
-  </span>
+  <div class="col-fecha">
 
-  <div class="equipo">
+    <div class="vs">
+      VS
+    </div>
+
+    <div class="fecha">
+      ${formatearFecha(partido.fecha)}
+    </div>
+
+    <div class="hora">
+      ${partido.hora} hs
+    </div>
+
+  </div>
+
+  <div class="col-equipo">
+
     ${getFlag(partido.visitante)}
-    <span>${partido.visitante}</span>
+
+    <span>
+      ${partido.visitante}
+    </span>
+
+  </div>
+
+  <div class="col-predicciones">
+
+    <div class="estado">
+
+      ${
+        partido.resultado === "proximamente"
+        ? "🎯 APUESTAS ABIERTAS"
+        : "✓ FINALIZADO"
+      }
+
+    </div>
+
+    <div class="cantidad">
+
+      👥 ${cantidadPredicciones}
+
+    </div>
+
+    <div class="texto">
+
+      ${
+        cantidadPredicciones === 1
+        ? "predicción"
+        : "predicciones"
+      }
+
+    </div>
+
   </div>
 
 </div>
@@ -534,48 +586,7 @@ ${
   ""
 }
 
-<div class="resultado">
 
-${
-  partido.resultado !==
-  "proximamente"
-  ?
-  `
-  <div class="marcador">
-    ${partido.golesLocal}
-    -
-    ${partido.golesVisitante}
-  </div>
-  `
-  :
-  `
-  <div class="partido-info">
-
-  <div>
-    ${formatearFecha(partido.fecha)}
-  </div>
-
-  <div>
-    ${partido.hora} hs
-  </div>
-
-</div>
-  `
-}
-
-</div>
-
-  <div class="contador-predicciones">
-
-  👥 ${cantidadPredicciones}
-
-  ${
-    cantidadPredicciones === 1
-    ? "predicción"
-    : "predicciones"
-  }
-
-</div>
 
 `;
 
