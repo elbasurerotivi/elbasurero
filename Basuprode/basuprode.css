@@ -1018,6 +1018,7 @@ TRANSFORMACION
     color:#e3d24c;
     line-height:1.7;
     margin-top:8px;
+    font-weight:600;
 }
 
 .partido-info strong{
@@ -1031,13 +1032,9 @@ TRANSFORMACION
     margin-top:8px;
 }
 
-.partido-info{
-    font-size:14px;
-    font-weight:600;
-}
 @media(max-width:768px){
   .partido-info{
-    font-size:15px;
+    font-size:14px;
   }
 
 
