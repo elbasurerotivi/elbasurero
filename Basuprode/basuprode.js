@@ -460,7 +460,7 @@ div.classList.contains(
     ?
     `
       <div class="badge-abierto">
-        🎯 APUESTAS ABIERTAS
+        🎯 ABIERTO
       </div>
     `
     :
