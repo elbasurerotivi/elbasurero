@@ -551,11 +551,13 @@ ${
   `
   <div class="partido-info">
 
-  📅 ${formatearFecha(partido.fecha)}
+  <div>
+    📅 ${formatearFecha(partido.fecha)}
+  </div>
 
-  <br>
-
-  🕒 ${partido.hora} hs
+  <div>
+    🕒 ${partido.hora} hs
+  </div>
 
 </div>
   `
