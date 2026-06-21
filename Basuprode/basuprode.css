@@ -1014,8 +1014,8 @@ TRANSFORMACION
 /* DIA Y HORA */
 .partido-info{
     text-align:center;
-    font-size:15px;
-    color:#d0d0d0;
+    font-size:20px;
+    color:#e3d24c;
     line-height:1.7;
     margin-top:8px;
 }
@@ -1034,4 +1034,11 @@ TRANSFORMACION
 .partido-info{
     font-size:14px;
     font-weight:600;
+}
+@media(max-width:768px){
+  .partido-info{
+    font-size:15px;
+  }
+
+
 }
