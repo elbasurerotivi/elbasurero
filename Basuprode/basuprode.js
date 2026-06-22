@@ -812,7 +812,12 @@ function abrirHistorial(nombre){
     const prediccionJugador =
       apuesta.resultado;
 
+    const pendiente =
+      partido.resultado ===
+      "proximamente";
+
     const acerto =
+      !pendiente &&
       prediccionJugador ===
       partido.resultado;
 
@@ -823,11 +828,25 @@ function abrirHistorial(nombre){
       "historial-item"
     );
 
-    div.classList.add(
-      acerto
-      ? "historial-acierto"
-      : "historial-error"
-    );
+    if(pendiente){
+
+        div.classList.add(
+          "historial-pendiente"
+        );
+
+      }else if(acerto){
+
+        div.classList.add(
+          "historial-acierto"
+        );
+
+      }else{
+
+        div.classList.add(
+          "historial-error"
+        );
+
+      }
 
     let textoPrediccion = "";
 
@@ -903,7 +922,9 @@ function abrirHistorial(nombre){
       <br><br>
 
       ${
-        acerto
+        pendiente
+        ? "⏳ Pendiente"
+        : acerto
         ? "✅ Acierto"
         : "❌ Falló"
       }
