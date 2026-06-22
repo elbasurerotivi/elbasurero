@@ -1078,12 +1078,7 @@ TOP 3 RANKING
 */
 
 .top1{
-  background:
-  linear-gradient(
-    90deg,
-    rgba(255,215,0,.25),
-    rgba(255,215,0,.08)
-  );
+  background: linear-gradient(222deg, rgba(255, 215, 0, .25), rgb(116 103 31 / 18%));
 
   font-weight:bold;
 
@@ -1092,12 +1087,7 @@ TOP 3 RANKING
 }
 
 .top2{
-  background:
-  linear-gradient(
-    90deg,
-    rgba(192,192,192,.18),
-    rgba(192,192,192,.05)
-  );
+  background: linear-gradient(222deg, rgba(192, 192, 192, .18), rgb(122 109 109 / 13%));
 
   font-weight:bold;
 
@@ -1106,12 +1096,7 @@ TOP 3 RANKING
 }
 
 .top3{
-  background:
-  linear-gradient(
-    90deg,
-    rgba(205,127,50,.20),
-    rgba(205,127,50,.05)
-  );
+  background: linear-gradient(222deg, rgba(205, 127, 50, .20), rgb(110 56 24 / 5%));
 
   font-weight:bold;
 
