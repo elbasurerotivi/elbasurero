@@ -1045,12 +1045,12 @@ TRANSFORMACION
 
 
 /* OPCION 1 */
-/*#tablaPosiciones thead th {
+#tablaPosiciones thead th {
     position: sticky;
     top: 0;
     z-index: 10;
     background: #1e1e1e;
-}*/
+}
 
 /* OPCION 2 */
 .tabla-container {
