@@ -748,18 +748,14 @@ ABRIR HISTORIAL
 
 function abrirHistorial(nombre){
 
-  console.log(
-    "ABRIENDO HISTORIAL DE:",
-    nombre
-  );
-
-
   modal.classList.add("activo");
 
   modalTitulo.innerText =
   `Historial de ${nombre}`;
 
   modalBody.innerHTML = "";
+
+  const historial = [];
 
   Object.entries(prediccionesFirebase)
   .forEach(([partidoId, apuestas]) => {
@@ -777,100 +773,144 @@ function abrirHistorial(nombre){
         return;
       }
 
-      const prediccionJugador =
+      historial.push({
+        partido,
+        apuesta,
+        timestamp:
+          apuesta.timestamp || 0
+      });
+
+    });
+
+  });
+
+  /*
+  ====================================
+  ORDENAR MÁS NUEVAS PRIMERO
+  ====================================
+  */
+
+  historial.sort(
+    (a,b) =>
+      b.timestamp - a.timestamp
+  );
+
+  /*
+  ====================================
+  RENDER
+  ====================================
+  */
+
+  historial.forEach(item => {
+
+    const partido =
+      item.partido;
+
+    const apuesta =
+      item.apuesta;
+
+    const prediccionJugador =
       apuesta.resultado;
 
-      const acerto =
+    const acerto =
       prediccionJugador ===
       partido.resultado;
 
-      const div =
+    const div =
       document.createElement("div");
 
-      div.classList.add(
-        "historial-item"
-      );
+    div.classList.add(
+      "historial-item"
+    );
 
-      div.classList.add(
+    div.classList.add(
+      acerto
+      ? "historial-acierto"
+      : "historial-error"
+    );
+
+    let textoPrediccion = "";
+
+    if(prediccionJugador === "local"){
+      textoPrediccion =
+      partido.local;
+    }
+
+    if(prediccionJugador === "visitante"){
+      textoPrediccion =
+      partido.visitante;
+    }
+
+    if(prediccionJugador === "empate"){
+      textoPrediccion =
+      "Empate";
+    }
+
+    let textoResultado = "";
+
+    if(partido.resultado === "local"){
+      textoResultado =
+      partido.local;
+    }
+
+    if(partido.resultado === "visitante"){
+      textoResultado =
+      partido.visitante;
+    }
+
+    if(partido.resultado === "empate"){
+      textoResultado =
+      "Empate";
+    }
+
+    if(partido.resultado === "proximamente"){
+      textoResultado =
+      "Próximamente";
+    }
+
+    const fechaPrediccion =
+      item.timestamp
+      ? new Date(item.timestamp)
+        .toLocaleString("es-AR")
+      : "Fecha desconocida";
+
+    div.innerHTML = `
+
+      <strong>
+        ${partido.local}
+        vs
+        ${partido.visitante}
+      </strong>
+
+      <br><br>
+
+      🕒 ${fechaPrediccion}
+
+      <br><br>
+
+      Predicción:
+      <strong>
+        ${textoPrediccion}
+      </strong>
+
+      <br>
+
+      Resultado:
+      <strong>
+        ${textoResultado}
+      </strong>
+
+      <br><br>
+
+      ${
         acerto
-        ? "historial-acierto"
-        : "historial-error"
-      );
-
-      let textoPrediccion = "";
-
-      if(prediccionJugador === "local"){
-        textoPrediccion =
-        partido.local;
+        ? "✅ Acierto"
+        : "❌ Falló"
       }
 
-      if(prediccionJugador === "visitante"){
-        textoPrediccion =
-        partido.visitante;
-      }
+    `;
 
-      if(prediccionJugador === "empate"){
-        textoPrediccion =
-        "Empate";
-      }
-
-      let textoResultado = "";
-
-      if(partido.resultado === "local"){
-        textoResultado =
-        partido.local;
-      }
-
-      if(partido.resultado === "visitante"){
-        textoResultado =
-        partido.visitante;
-      }
-
-      if(partido.resultado === "empate"){
-        textoResultado =
-        "Empate";
-      }
-
-      if(partido.resultado === "proximamente"){
-        textoResultado =
-        "Próximamente";
-      }
-
-      div.innerHTML = `
-      
-        <strong>
-          ${partido.local}
-          vs
-          ${partido.visitante}
-        </strong>
-
-        <br><br>
-
-        Predicción:
-        <strong>
-          ${textoPrediccion}
-        </strong>
-
-        <br>
-
-        Resultado:
-        <strong>
-          ${textoResultado}
-        </strong>
-
-        <br><br>
-
-        ${
-          acerto
-          ? "✅ Acierto"
-          : "❌ Falló"
-        }
-
-      `;
-
-      modalBody.appendChild(div);
-
-    });
+    modalBody.appendChild(div);
 
   });
 
