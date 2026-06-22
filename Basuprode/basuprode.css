@@ -1069,3 +1069,52 @@ TRANSFORMACION
 #tablaPosiciones tbody td{
     background:transparent;
 }
+
+
+/*
+====================================
+TOP 3 RANKING
+====================================
+*/
+
+.top1{
+  background:
+  linear-gradient(
+    90deg,
+    rgba(255,215,0,.25),
+    rgba(255,215,0,.08)
+  );
+
+  font-weight:bold;
+
+  box-shadow:
+  inset 4px 0 0 #ffd700;
+}
+
+.top2{
+  background:
+  linear-gradient(
+    90deg,
+    rgba(192,192,192,.18),
+    rgba(192,192,192,.05)
+  );
+
+  font-weight:bold;
+
+  box-shadow:
+  inset 4px 0 0 #c0c0c0;
+}
+
+.top3{
+  background:
+  linear-gradient(
+    90deg,
+    rgba(205,127,50,.20),
+    rgba(205,127,50,.05)
+  );
+
+  font-weight:bold;
+
+  box-shadow:
+  inset 4px 0 0 #cd7f32;
+}
