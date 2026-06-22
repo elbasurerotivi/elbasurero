@@ -1046,27 +1046,22 @@ TRANSFORMACION
 
 /* OPCION 1 */
 .tabla-container{
-    max-height: 500px; /* ajustá la altura */
+    max-height: 500px;
     overflow-y: auto;
     overflow-x: auto;
-
-    border-radius: 20px;
+    border-radius: 12px;
 }
 
-/* importante */
 #tablaPosiciones{
     width: 100%;
     border-collapse: collapse;
 }
 
-/* cabecera fija */
 #tablaPosiciones thead th{
     position: sticky;
     top: 0;
     z-index: 100;
-
-    background: #050505; /* mismo color que tu cabecera */
+    background: #080808; /* mismo color que tu cabecera */
     color: #ff4d4d;
-
-    box-shadow: 0 2px 0 rgba(255,255,255,.08);
+    box-shadow: 0 2px 0 rgba(255,255,255,.1);
 }
