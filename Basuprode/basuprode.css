@@ -1045,33 +1045,15 @@ TRANSFORMACION
 
 
 /* OPCION 1 */
-#tablaPosiciones thead th {
-    position: sticky;
-    top: 0;
-    z-index: 10;
-    background: #1e1e1e;
+.tabla-container{
+  max-height: 500px;
+  overflow-y: auto;
 }
 
-/* OPCION 2 */
-.tabla-container {
-    max-height: 500px;
-    overflow-y: auto;
-}
-
-/* MANTENER */
-#tablaPosiciones thead th {
-    position: sticky;
-    top: 0;
-    z-index: 10;
-    background: #1e1e1e;
-}
-
-
-/* SOMBRA */
-#tablaPosiciones thead th {
-    position: sticky;
-    top: 0;
-    z-index: 10;
-    background: #1e1e1e;
-    box-shadow: 0 2px 5px rgba(0,0,0,.3);
+#tablaPosiciones thead th{
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: #111;
+  box-shadow: 0 2px 5px rgba(0,0,0,.3);
 }
