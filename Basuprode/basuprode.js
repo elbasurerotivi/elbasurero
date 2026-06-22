@@ -1477,3 +1477,49 @@ function escucharPartidosFirebase(){
   );
 
 }
+
+
+/*
+====================================
+SCROLL TO TOP
+====================================
+*/
+
+const btnTop =
+document.getElementById("btnTop");
+
+window.addEventListener(
+  "scroll",
+  () => {
+
+    if(window.scrollY > 400){
+
+      btnTop.classList.add(
+        "visible"
+      );
+
+    }else{
+
+      btnTop.classList.remove(
+        "visible"
+      );
+
+    }
+
+  }
+);
+
+btnTop.addEventListener(
+  "click",
+  () => {
+
+    window.scrollTo({
+
+      top:0,
+
+      behavior:"smooth"
+
+    });
+
+  }
+);

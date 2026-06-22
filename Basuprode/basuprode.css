@@ -1129,3 +1129,97 @@ TOP 3 RANKING
   outline:none;
   border-color:#ff3131;
 }
+
+
+/*
+====================================
+SCROLL TO TOP
+====================================
+*/
+
+#btnTop{
+
+  position:fixed;
+
+  bottom:25px;
+
+  right:25px;
+
+  width:55px;
+
+  height:55px;
+
+  border-radius:50%;
+
+  background:
+  linear-gradient(
+    180deg,
+    #ff3131,
+    #7a0000
+  );
+
+  color:white;
+
+  font-size:26px;
+
+  font-weight:bold;
+
+  border:none;
+
+  cursor:pointer;
+
+  z-index:9999;
+
+  opacity:0;
+
+  visibility:hidden;
+
+  transform:translateY(20px);
+
+  transition:
+  opacity .3s,
+  transform .3s,
+  visibility .3s;
+
+  box-shadow:
+  0 0 20px rgba(255,0,0,.35);
+
+}
+
+#btnTop:hover{
+
+  transform:
+  translateY(-3px);
+
+  box-shadow:
+  0 0 30px rgba(255,0,0,.6);
+
+}
+
+#btnTop.visible{
+
+  opacity:1;
+
+  visibility:visible;
+
+  transform:translateY(0);
+
+}
+
+@media(max-width:768px){
+
+  #btnTop{
+
+    width:50px;
+
+    height:50px;
+
+    font-size:22px;
+
+    bottom:20px;
+
+    right:20px;
+
+  }
+
+}
