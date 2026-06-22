@@ -72,10 +72,24 @@ function getFlag(nombrePais){
 }
 
 let partidos = []
-
-
-
 let prediccionesFirebase = {};
+
+
+let filtroPartidos = "";
+const buscadorPartido =
+document.getElementById(
+  "buscarPartido"
+);
+
+buscadorPartido
+.addEventListener("input", e => {
+
+  filtroPartidos =
+  e.target.value.toLowerCase();
+
+  renderPartidos();
+
+});
 
 async function generarRankingFirebase(){
 
@@ -585,17 +599,53 @@ ${
 function renderPartidos(){
 
   const proximos =
-partidos.filter(
-  p => p.resultado === "proximamente"
-);
+partidos.filter(p => {
+
+  const coincideBusqueda =
+
+    p.local
+      .toLowerCase()
+      .includes(filtroPartidos)
+
+    ||
+
+    p.visitante
+      .toLowerCase()
+      .includes(filtroPartidos);
+
+  return (
+    p.resultado === "proximamente"
+    &&
+    coincideBusqueda
+  );
+
+});
   proximos.sort(
         (a,b) => a.id - b.id
       );
 
 const finalizados =
-partidos.filter(
-  p => p.resultado !== "proximamente"
-);
+partidos.filter(p => {
+
+  const coincideBusqueda =
+
+    p.local
+      .toLowerCase()
+      .includes(filtroPartidos)
+
+    ||
+
+    p.visitante
+      .toLowerCase()
+      .includes(filtroPartidos);
+
+  return (
+    p.resultado !== "proximamente"
+    &&
+    coincideBusqueda
+  );
+
+});
 
 document.getElementById(
   "contadorProximos"
@@ -628,6 +678,47 @@ finalizados.forEach(partido => {
 });
 
 }
+
+
+
+/*
+====================================
+    BUSCADOR
+====================================
+*/
+
+const buscadorParticipante =
+document.getElementById(
+  "buscarParticipante"
+);
+
+buscadorParticipante
+.addEventListener("input", () => {
+
+  const texto =
+  buscadorParticipante.value
+  .toLowerCase();
+
+  const filas =
+  document.querySelectorAll(
+    "#tablaPosiciones tbody tr"
+  );
+
+  filas.forEach(fila => {
+
+    const nombre =
+    fila.children[1]
+    .textContent
+    .toLowerCase();
+
+    fila.style.display =
+    nombre.includes(texto)
+    ? ""
+    : "none";
+
+  });
+
+});
 
 
 /*

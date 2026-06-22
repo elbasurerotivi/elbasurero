@@ -1103,3 +1103,29 @@ TOP 3 RANKING
   box-shadow:
   inset 4px 0 0 #cd7f32;
 }
+
+/*
+====================================
+    BUSCADOR
+====================================
+*/
+
+
+.buscador-box{
+  margin:20px 0;
+}
+
+.buscador-box input{
+  width:100%;
+  padding:14px;
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,.1);
+  background:rgba(255,255,255,.05);
+  color:white;
+  font-size:16px;
+}
+
+.buscador-box input:focus{
+  outline:none;
+  border-color:#ff3131;
+}
