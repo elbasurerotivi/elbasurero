@@ -50,12 +50,24 @@ btnCrear.addEventListener(
       "visitante"
     ).value.trim();
 
+    const fecha =
+    document.getElementById(
+      "fecha"
+    ).value;
+
+    const hora =
+    document.getElementById(
+      "hora"
+    ).value;
+
     if(
       !local ||
-      !visitante
+      !visitante ||
+      !fecha ||
+      !hora
     ){
       alert(
-        "Completa ambos equipos"
+        "Completa todos los campos"
       );
       return;
     }
@@ -72,6 +84,8 @@ btnCrear.addEventListener(
         id,
         local,
         visitante,
+        fecha,
+        hora,
         golesLocal:null,
         golesVisitante:null,
         resultado:"proximamente",
@@ -254,6 +268,12 @@ async function cargarPartidos(){
           vs
           ${partido.visitante}
         </h3>
+
+        <p>
+          📅 ${partido.fecha || "-"}
+          <br>
+          🕒 ${partido.hora || "-"}
+        </p>
 
         <p>
           Estado:
