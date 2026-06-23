@@ -487,7 +487,7 @@ div.classList.contains(
     ?
     `
       <div class="badge-nuevo">
-        NUEVO
+        PRÓXIMO
       </div>
     `
     :
