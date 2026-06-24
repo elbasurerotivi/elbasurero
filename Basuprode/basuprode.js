@@ -50,7 +50,7 @@ const flags = {
   "Cabo Verde":"cv",
   "Curazao":"cw",
   "Haití":"ht",
-  "República Democrática del Congo":"cd"
+  "RD Congo":"cd"
 
 };
 
