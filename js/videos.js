@@ -1,5 +1,85 @@
 const videosData = [
-
+  
+  {
+  titulo: 'Mariano Recortes | Highlander 2 😂⚔️ | La reacción más larga de la Marianeta',
+  descripcion: 'Este Mariano Recortes terminó siendo una locura. 😂\n\nReaccionamos a la reseña de Highlander 2 en vivo por YouTube y, sin exagerar, fue una de las reacciones más largas y divertidas que hemos hecho en el canal con Mariano.\n\nTuve que detener el video muchísimas veces porque había demasiado que comentar. Entre las decisiones de la película, las ocurrencias de Mariano y el chat completamente desatado, fue imposible avanzar sin parar a reírnos.\n\nY enfiselmo se hizo presente, por cierto.\n\nSi te gustan los Mariano Recortes donde comentamos absolutamente todo... este es para ti. 🍿😂\n\nLINKS\n\n📲 Whatsapp: https://chat.whatsapp.com/Fyw5G6L8GLm71kMDATHm6P\n💳 Mercadopago: https://ceneka.net/elbasurero (Alias: elbasurerotv)\n💻 Patreon: https://patreon.com/ElBasureroTi_Vi_Plas\n📺 Twitch: https://www.twitch.tv/elbasurerochido\n▶ Membresías: https://www.youtube.com/channel/UCRE0S6c2_KYBazBhZcm-taw/join\n🛜 Página web: https://elbasurerotivi.github.io/elbasurero/\n🖥 Discord: https://discord.gg/tZS2jQaDVY\n🌎 PayPal: https://paypal.me/edgarmenagarcia\n☕ Ko-fi: https://ko-fi.com/elbasurerotv\n🛍️ Amazon Wishlist: https://www.amazon.com.mx/hz/wishlist/ls/2ZJB7HP322O4N?ref_=wl_share\n🔗 Linktree: https://linktr.ee/elbasurerotivi',
+  fecha: '2026-07-23',
+  link: 'https://youtu.be/KbhvIkzJoek',
+  miniatura: 'https://img.youtube.com/vi/KbhvIkzJoek/maxresdefault.jpg',
+  tags: []
+},
+  {
+  titulo: '¡Casas TAN BARATAS que parecen una ESTAFA! 😱 | 10 pueblos de Buenos Aires',
+  descripcion: 'Este fue uno de esos videos que me dejaron soñando despierto. 🇦🇷❤️\n\nReacciono a un recorrido por 10 pueblos de la provincia de Buenos Aires donde las casas tienen precios tan bajos que cuesta creer que sean reales.\n\nMás allá de la sorpresa, este video fue muy especial para mí porque me hizo ilusionarme todavía más con la posibilidad de algún día vivir en Argentina. La idea de comprar una casita en uno de estos lugares me parece cada vez menos imposible... y cada vez más emocionante.\n\n¿Ustedes se mudarían a alguno de estos pueblos?\n\nLINKS\n\n📲 Whatsapp: https://chat.whatsapp.com/Fyw5G6L8GLm71kMDATHm6P\n💳 Mercadopago: https://ceneka.net/elbasurero (Alias: elbasurerotv)\n💻 Patreon: https://patreon.com/ElBasureroTi_Vi_Plas\n📺 Twitch: https://www.twitch.tv/elbasurerochido\n▶ Membresías: https://www.youtube.com/channel/UCRE0S6c2_KYBazBhZcm-taw/join\n🛜 Página web: https://elbasurerotivi.github.io/elbasurero/\n🖥 Discord: https://discord.gg/tZS2jQaDVY\n🌎 PayPal: https://paypal.me/edgarmenagarcia\n☕ Ko-fi: https://ko-fi.com/elbasurerotv\n🛍️ Amazon Wishlist: https://www.amazon.com.mx/hz/wishlist/ls/2ZJB7HP322O4N?ref_=wl_share\n🔗 Linktree: https://linktr.ee/elbasurerotivi',
+  fecha: '2026-07-23',
+  link: 'https://youtu.be/N2JctoZ8yL8',
+  miniatura: 'https://img.youtube.com/vi/N2JctoZ8yL8/maxresdefault.jpg',
+  tags: []
+},
+  {
+  titulo: '¿La FIFA está podrida? 😳 | Corrupción, poder y el lado oscuro del fútbol',
+  descripcion: 'Este terminó siendo uno de los videos más personales que he grabado en mucho tiempo.\n\nAntes de reaccionar al documental sobre la corrupción en la FIFA, quise contarles una experiencia muy particular que viví ANTES de la final del Mundial. Es, probablemente, lo más cercano que he tenido a algo que podría considerarse una evidencia real de que aquel partido pudo haber estado arreglado... aunque el video que vemos después realmente no trata sobre ese tema.\n\nA partir de ahí, nos metemos de lleno en un recorrido por algunos de los episodios más polémicos, cuestionados y oscuros que han rodeado a la FIFA durante décadas.\n\n¿Qué tanto poder tiene realmente el dinero dentro del fútbol?\n\nLINKS\n\n📲 Whatsapp: https://chat.whatsapp.com/Fyw5G6L8GLm71kMDATHm6P\n💳 Mercadopago: https://ceneka.net/elbasurero (Alias: elbasurerotv)\n💻 Patreon: https://patreon.com/ElBasureroTi_Vi_Plas\n📺 Twitch: https://www.twitch.tv/elbasurerochido\n▶ Membresías: https://www.youtube.com/channel/UCRE0S6c2_KYBazBhZcm-taw/join\n🛜 Página web: https://elbasurerotivi.github.io/elbasurero/\n🖥 Discord: https://discord.gg/tZS2jQaDVY\n🌎 PayPal: https://paypal.me/edgarmenagarcia\n☕ Ko-fi: https://ko-fi.com/elbasurerotv\n🛍️ Amazon Wishlist: https://www.amazon.com.mx/hz/wishlist/ls/2ZJB7HP322O4N?ref_=wl_share\n🔗 Linktree: https://linktr.ee/elbasurerotivi',
+  fecha: '2026-07-26',
+  link: 'https://youtu.be/RH8euEyuvRI',
+  miniatura: 'https://img.youtube.com/vi/RH8euEyuvRI/maxresdefault.jpg',
+  tags: []
+},
+  {
+  titulo: '¿PANINI NOS ESTAFÓ? 😳 La verdad detrás del álbum del Mundial que nadie te cuenta',
+  descripcion: 'Todos alguna vez soñamos con completar un álbum Panini del Mundial... pero pocas veces nos detenemos a pensar cómo funciona realmente este negocio. 😳\n\nEn esta reacción descubrimos las estrategias que han convertido al álbum en una auténtica máquina de hacer dinero, las razones por las que cada vez es más difícil completarlo y el inesperado problema que podría poner en aprietos a Panini.\n\n¿Ustedes alguna vez completaron un álbum del Mundial? ¿Cuál fue su experiencia?\n\nLINKS\n💳 Apoya el canal en CENEKA: https://ceneka.net/elbasurero\n📲 Whatsapp: https://chat.whatsapp.com/Fyw5G6L8GLm71kMDATHm6P\n💳 Mercadopago: https://ceneka.net/elbasurero\nAlias: elbasurerotv\n💻 Patreon: https://patreon.com/ElBasureroTi_Vi_Plas\n📺 Twitch: https://www.twitch.tv/elbasurerochido\n▶ Membresías: https://www.youtube.com/channel/UCRE0S6c2_KYBazBhZcm-taw/join\n🛜 Página web: https://elbasurerotivi.github.io/elbasurero/\n🖥 Discord: https://discord.gg/tZS2jQaDVY\n🌎 PayPal: https://paypal.me/edgarmenagarcia\n☕ Ko-fi: https://ko-fi.com/elbasurerotv\n🛍️ Amazon Wishlist: https://www.amazon.com.mx/hz/wishlist/ls/2ZJB7HP322O4N?ref_=wl_share\n🔗 Linktree: https://linktr.ee/elbasurerotivi',
+  fecha: '2026-07-27',
+  link: 'https://youtu.be/bI5ZZYJc95Q',
+  miniatura: 'https://img.youtube.com/vi/bI5ZZYJc95Q/maxresdefault.jpg',
+  tags: []
+},
+  {
+  titulo: '¡LA VENGANZA DE RIQUELME! 😱 La verdadera historia detrás del \'¡Gigio!\' de Messi',
+  descripcion: 'Todos recordamos el inolvidable \'¡Gigio!\' de Messi después del penal contra Países Bajos, pero detrás de ese momento hay una historia que va mucho más allá del Mundial.\n\nEn esta reacción vemos cómo ese gesto terminó convirtiéndose, para muchos, en una especie de revancha simbólica por todo lo que vivió Juan Román Riquelme años atrás. Una historia llena de contexto, fútbol y memoria que hace que ese instante tenga un significado completamente diferente.\n\n¿Ustedes ya conocían toda esta historia o también les cambió la forma de ver ese momento?\n\nLINKS\n\n💳 Apoya el canal en CENEKA\nhttps://ceneka.net/elbasurero\n\n📲 Whatsapp\nhttps://chat.whatsapp.com/Fyw5G6L8GLm71kMDATHm6P\n\n💳 Mercadopago\nhttps://ceneka.net/elbasurero\nAlias: elbasurerotv\n\n💻 Patreon\nhttps://patreon.com/ElBasureroTi_Vi_Plas\n\n📺 Twitch\nhttps://www.twitch.tv/elbasurerochido\n\n▶ Membresías\nhttps://www.youtube.com/channel/UCRE0S6c2_KYBazBhZcm-taw/join\n\n🛜 Página web\nhttps://elbasurerotivi.github.io/elbasurero/\n\n🖥 Discord\nhttps://discord.gg/tZS2jQaDVY\n\n🌎 PayPal\nhttps://paypal.me/edgarmenagarcia\n\n☕ Ko-fi\nhttps://ko-fi.com/elbasurerotv\n\n🛍️ Amazon Wishlist\nhttps://www.amazon.com.mx/hz/wishlist/ls/2ZJB7HP322O4N?ref_=wl_share\n\n🔗 Linktree\nhttps://linktr.ee/elbasurerotivi',
+  fecha: '2026-07-28',
+  link: 'https://youtu.be/6r95NMp-PXs',
+  miniatura: 'https://img.youtube.com/vi/6r95NMp-PXs/maxresdefault.jpg',
+  tags: []
+},
+  {
+  titulo: 'Un mexicano probando la comida callejera argentina 🇲🇽❤️🇦🇷 | Reacción',
+  descripcion: 'Óscar, del canal La Capital, viajó a Argentina para recorrer sus calles y descubrir algunos de los sabores más emblemáticos del país. Desde clásicos imperdibles hasta joyas escondidas, este recorrido es una carta de amor a la gastronomía argentina y a su cultura.\n\nEn esta reacción comparto mis impresiones mientras vemos cómo un mexicano vive esta experiencia gastronómica. Como siempre, terminé con muchísima hambre... 😅\n\n¿Qué comida callejera argentina creen que todo visitante tiene que probar sí o sí?\n\nLINKS\n\n💳 Apoya el canal en CENEKA\nhttps://ceneka.net/elbasurero\n\n📲 Whatsapp\nhttps://chat.whatsapp.com/Fyw5G6L8GLm71kMDATHm6P\n\n💳 Mercadopago\nhttps://ceneka.net/elbasurero\nAlias: elbasurerotv\n\n💻 Patreon\nhttps://patreon.com/ElBasureroTi_Vi_Plas\n\n📺 Twitch\nhttps://www.twitch.tv/elbasurerochido\n\n▶ Membresías\nhttps://www.youtube.com/channel/UCRE0S6c2_KYBazBhZcm-taw/join\n\n🛜 Página web\nhttps://elbasurerotivi.github.io/elbasurero/\n\n🖥 Discord\nhttps://discord.gg/tZS2jQaDVY\n\n🌎 PayPal\nhttps://paypal.me/edgarmenagarcia\n\n☕ Ko-fi\nhttps://ko-fi.com/elbasurerotv\n\n🛍️ Amazon Wishlist\nhttps://www.amazon.com.mx/hz/wishlist/ls/2ZJB7HP322O4N?ref_=wl_share\n\n🔗 Linktree\nhttps://linktr.ee/elbasurerotivi',
+  fecha: '2026-07-28',
+  link: 'https://youtu.be/KlYYqLDQKrw',
+  miniatura: 'https://img.youtube.com/vi/KlYYqLDQKrw/maxresdefault.jpg',
+  tags: []
+},
+  {
+  titulo: '🌴 Mi yuca-feed #1 | Reaccionando a lo que Instagram insiste en enseñarme sobre Yucatán',
+  descripcion: '¡Bienvenidos al primer episodio de Mi yuca-feed! 🌴\n\nEstoy muy emocionado de comenzar este nuevo proyecto exclusivo para ustedes. Desde hace tiempo quería tener un espacio más relajado y personal donde pudiéramos compartir cosas que quizá no tienen mucho que ver con Argentina, pero sí conmigo, con mi tierra y con todo lo que el algoritmo decide poner frente a mis ojos.\n\nEn este primer episodio reaccionamos a varios videos de Instagram sobre Yucatán. Algunos me sorprendieron, otros me hicieron reír y otros simplemente me dieron ganas de salir a recorrer más mi estado.\n\nGracias por hacer posible esta serie con su apoyo. Espero que Mi yuca-feed se convierta en uno de esos rincones donde podamos simplemente pasar un buen rato juntos. 💚\n\nLINKS\n\n💳 Apoya el canal en CENEKA\nhttps://ceneka.net/elbasurero\n\n📲 Whatsapp\nhttps://chat.whatsapp.com/Fyw5G6L8GLm71kMDATHm6P\n\n💳 Mercadopago\nhttps://ceneka.net/elbasurero\nAlias: elbasurerotv\n\n💻 Patreon\nhttps://patreon.com/ElBasureroTi_Vi_Plas\n\n📺 Twitch\nhttps://www.twitch.tv/elbasurerochido\n\n▶ Membresías\nhttps://www.youtube.com/channel/UCRE0S6c2_KYBazBhZcm-taw/join\n\n🛜 Página web\nhttps://elbasurerotivi.github.io/elbasurero/\n\n🖥 Discord\nhttps://discord.gg/tZS2jQaDVY\n\n🌎 PayPal\nhttps://paypal.me/edgarmenagarcia\n\n☕ Ko-fi\nhttps://ko-fi.com/elbasurerotv\n\n🛍️ Amazon Wishlist\nhttps://www.amazon.com.mx/hz/wishlist/ls/2ZJB7HP322O4N?ref_=wl_share\n\n🔗 Linktree\nhttps://linktr.ee/elbasurerotivi',
+  fecha: '2026-07-29',
+  link: 'https://youtu.be/eGPCJBYtT74',
+  miniatura: 'https://img.youtube.com/vi/eGPCJBYtT74/maxresdefault.jpg',
+  tags: []
+},
+  {
+  titulo: '¿Cuál es el mejor choripán de Argentina? 🌭 Reaccionando a Luisito Comunica',
+  descripcion: 'Si hay una comida que representa a Argentina, el choripán tenía que estar en la lista. 🌭🇦🇷\n\nEn este video reacciono a la aventura de Luisito Comunica recorriendo Buenos Aires en busca del mejor choripán. Desde los clásicos puestos de la Costanera hasta versiones más gourmet, fue una experiencia llena de antojos, curiosidades y muchísimo humor. Al final, Luisito terminó eligiendo al choripán tradicional como su favorito.\n\nY ustedes... ¿cuál creen que es el mejor choripán de Argentina y dónde se consigue?\n\nLINKS\n\n💳 Apoya el canal en CENEKA\nhttps://ceneka.net/elbasurero\n\n📲 Whatsapp\nhttps://chat.whatsapp.com/Fyw5G6L8GLm71kMDATHm6P\n\n💳 Mercadopago\nhttps://ceneka.net/elbasurero\nAlias: elbasurerotv\n\n💻 Patreon\nhttps://patreon.com/ElBasureroTi_Vi_Plas\n\n📺 Twitch\nhttps://www.twitch.tv/elbasurerochido\n\n▶ Membresías\nhttps://www.youtube.com/channel/UCRE0S6c2_KYBazBhZcm-taw/join\n\n🛜 Página web\nhttps://elbasurerotivi.github.io/elbasurero/\n\n🖥 Discord\nhttps://discord.gg/tZS2jQaDVY\n\n🌎 PayPal\nhttps://paypal.me/edgarmenagarcia\n\n☕ Ko-fi\nhttps://ko-fi.com/elbasurerotv\n\n🛍️ Amazon Wishlist\nhttps://www.amazon.com.mx/hz/wishlist/ls/2ZJB7HP322O4N?ref_=wl_share\n\n🔗 Linktree\nhttps://linktr.ee/elbasurerotivi',
+  fecha: '2026-07-29',
+  link: 'https://youtu.be/hC2CJL9AqH4',
+  miniatura: 'https://img.youtube.com/vi/hC2CJL9AqH4/maxresdefault.jpg',
+  tags: []
+},
+  {
+  titulo: '¡LOS MEJORES GOLES DE ARGENTINA! ⚽🇦🇷 (Sí... los de México duelen 😭) | Reacción',
+  descripcion: 'La Selección Argentina ha marcado algunos de los goles más espectaculares de la historia del fútbol. Desde jugadas colectivas increíbles hasta definiciones imposibles, este recopilatorio está lleno de auténticas obras de arte. ⚽🇦🇷\n\nEn esta reacción disfrutamos cada gol... aunque debo admitir que los que fueron contra México siguen doliendo. 😅 Pero cuando un gol es extraordinario, hay que reconocerlo, aunque sea en contra.\n\n¿Cuál creen que es el mejor gol que ha marcado la Selección Argentina en toda su historia?\n\nLINKS\n\n💳 Apoya el canal en CENEKA\nhttps://ceneka.net/elbasurero\n\n📲 Whatsapp\nhttps://chat.whatsapp.com/Fyw5G6L8GLm71kMDATHm6P\n\n💳 Mercadopago\nhttps://ceneka.net/elbasurero\nAlias: elbasurerotv\n\n💻 Patreon\nhttps://patreon.com/ElBasureroTi_Vi_Plas\n\n📺 Twitch\nhttps://www.twitch.tv/elbasurerochido\n\n▶ Membresías\nhttps://www.youtube.com/channel/UCRE0S6c2_KYBazBhZcm-taw/join\n\n🛜 Página web\nhttps://elbasurerotivi.github.io/elbasurero/\n\n🖥 Discord\nhttps://discord.gg/tZS2jQaDVY\n\n🌎 PayPal\nhttps://paypal.me/edgarmenagarcia\n\n☕ Ko-fi\nhttps://ko-fi.com/elbasurerotv\n\n🛍️ Amazon Wishlist\nhttps://www.amazon.com.mx/hz/wishlist/ls/2ZJB7HP322O4N?ref_=wl_share\n\n🔗 Linktree\nhttps://linktr.ee/elbasurerotivi',
+  fecha: '2026-07-29',
+  link: 'https://youtu.be/ALrFglRD6qY',
+  miniatura: 'https://img.youtube.com/vi/ALrFglRD6qY/maxresdefault.jpg',
+  tags: []
+},
+  {
+  titulo: '¡ÓSCAR DE LA CAPITAL VISITÓ A LOCOS POR EL ASADO! 🇦🇷🥩 (¡Ahora quiero ir más que nunca!)',
+  descripcion: 'Cuando juntas a Óscar, de La Capital, con Laucha, de Locos por el Asado, sabes que algo bueno va a salir... y también sabes que vas a terminar con un hambre terrible. 🤤🥩\n\nEn esta reacción acompañamos esta gran colaboración mientras recorren la cultura del asado argentino, comparten anécdotas y preparan una comida que hace imposible no querer estar ahí.\n\nLo admito: cada vez que veo este tipo de videos me dan todavía más ganas de visitar Argentina. Entre la comida, la gente y el ambiente, siento que ese viaje se vuelve más inevitable con cada reacción.\n\n¿Qué lugar relacionado con el asado o la gastronomía argentina creen que no me puedo perder cuando finalmente vaya?\n\nLINKS\n\n💳 Apoya el canal en CENEKA\nhttps://ceneka.net/elbasurero\n\n📲 Whatsapp\nhttps://chat.whatsapp.com/Fyw5G6L8GLm71kMDATHm6P\n\n💳 Mercadopago\nhttps://ceneka.net/elbasurero\nAlias: elbasurerotv\n\n💻 Patreon\nhttps://patreon.com/ElBasureroTi_Vi_Plas\n\n📺 Twitch\nhttps://www.twitch.tv/elbasurerochido\n\n▶ Membresías\nhttps://www.youtube.com/channel/UCRE0S6c2_KYBazBhZcm-taw/join\n\n🛜 Página web\nhttps://elbasurerotivi.github.io/elbasurero/\n\n🖥 Discord\nhttps://discord.gg/tZS2jQaDVY\n\n🌎 PayPal\nhttps://paypal.me/edgarmenagarcia\n\n☕ Ko-fi\nhttps://ko-fi.com/elbasurerotv\n\n🛍️ Amazon Wishlist\nhttps://www.amazon.com.mx/hz/wishlist/ls/2ZJB7HP322O4N?ref_=wl_share\n\n🔗 Linktree\nhttps://linktr.ee/elbasurerotivi',
+  fecha: '2026-07-30',
+  link: 'https://youtu.be/AKXnhPBPsC0',
+  miniatura: 'https://img.youtube.com/vi/AKXnhPBPsC0/maxresdefault.jpg',
+  tags: []
+},
              {
   titulo: 'Mexicano reacciona a “10 platillos de comida Argentina” 🇦🇷🤤 | Necesito ir a Argentina',
   descripcion: 'Este video me dio MUCHÍSIMA hambre 😭\n\nReaccionamos a “10 platillos de comida Argentina”…\ny aunque ya conocía casi todos, igual terminé con antojo de TODO.\n\nEl video es de un canal español.\n\nNo era exactamente lo que buscaba (quería encontrar uno argentino),\npero honestamente me gustó mucho la perspectiva extranjera.\n\nPorque termina pasando algo curioso:\n\nves a alguien de afuera descubrir Argentina…\ny te vuelve a pegar el deseo de conocerla.\n\nIncluso con todo lo complicado que está económicamente ahora mismo…\nsigo queriendo ir muchísimo.\n\n📺 Esto lo vimos reaccionando en el canal\n🍽️ Y sí… terminé sufriendo de hambre\n\n#Argentina #ComidaArgentina #Reacción #Cultura #Gastronomía #Viajes\n\n🤍💙🤍💙🤍💙🤍💙🤍💙\n\n🛜 NUESTRA NUEVA PAGINA WEB!!!\nhttps://elbasurerotivi.github.io/elbasurero/\n\n🔗 Link Tree\nhttps://linktr.ee/elbasurerotivi\n\nMÁS DE NOSOTROS:\n\n💳 Mercadopago\nAlias: elbasurerotv\n\n📺 Twitch\nhttps://www.twitch.tv/elbasurerochido\n\n📲 Grupo de Whatsapp del canal:\nhttps://chat.whatsapp.com/Fyw5G6L8GLm71kMDATHm6P\n\n🖥 Canal de Discord:\nhttps://discord.gg/tZS2jQaDVY\n\nAPOYO AL CANAL:\n\n▶ Membresías de YouTube\nBotón de “Unirse” debajo del video\nhttps://www.youtube.com/channel/UCRE0S6c2_KYBazBhZcm-taw/join\n\n💻 Patreon\nhttps://patreon.com/ElBasureroTi_Vi_Plas\n\n🌎 PayPal\nhttps://paypal.me/edgarmenagarcia\n\n☕ Ko-fi\nhttps://ko-fi.com/elbasurerotv\n\n🤍💙🤍💙🤍💙🤍💙🤍💙',
