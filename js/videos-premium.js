@@ -1534,20 +1534,6 @@ export const videosPremium = [
   type: 'iframe'
 },
 
-    {
-  id: 'los_simuladores_t2_ep_1_okupas_ep_1_bloqueados_de_youtube',
-  name: 'Los Simuladores',
-  categoria: 'bloqueados_de_youtube',
-  temporada: '2',
-  episodio: '1',
-  title: '🎬 Los Simuladores T2 Ep. 1 | Okupas Ep. 1',
-  title2: 'Serie doble',
-  description: 'Arrancamos los Lunes de Argentina en Twitch viendo estas dos series en paralelo.\n\nSimuladores Ep. 1: Nuevo caso donde el equipo despliega uno de sus operativos con precisión y estrategia.\nOkupas Ep. 1: Un joven entra en contacto con un grupo que lo lleva a una vida completamente distinta.\n\n🎵 Vimos Okupas en una versión especial: remasterizada pero con la música original (joyita encontrada por el mod del canal).\n\n⚠️ Nota: El siguiente episodio se perdió (se explica en el siguiente directo).',
-  thumbnail: 'Imagenes/Los Simuladores - Temporada 2, ep 1 + Okupas 1.png',
-  source: 'https://rumble.com/embed/v75klww/?pub=4nmhh2',
-  type: 'iframe'
-},
-
   {
   id: 'los_simuladores_t2_ep_1_okupas_ep_1_okupas',
   name: 'Okupas',
@@ -2265,7 +2251,7 @@ export const videosPremium = [
              {
   id: 'reaccion_a_que_es_el_fulbo_variete',
   name: 'Varieté',
-  categoria: 'variete',
+  categoria: 'bloqueados_de_youtube',
   temporada: '0',
   episodio: '0',
   title: 'Reacción a ¿Qué es el fulbo? ⚽🇦🇷',
@@ -2307,7 +2293,7 @@ export const videosPremium = [
   {
   id: 'que_es_el_fulbo_2_variete',
   name: 'Varieté',
-  categoria: 'variete',
+  categoria: 'bloqueados_de_youtube',
   temporada: '0',
   episodio: '0',
   title: '¿Qué es el fulbo? #2 ⚽🇦🇷',
