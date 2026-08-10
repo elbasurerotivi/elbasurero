@@ -1550,4 +1550,32 @@ export const videosExclusivos = [
   type: 'iframe'
 },
 
+   {
+  id: 'reaccion_a_medianeras_peliculas',
+  name: 'Películas',
+  categoria: 'peliculas',
+  temporada: '0',
+  episodio: '0',
+  title: 'Reacción a Medianeras ❤️🏙️',
+  title2: '¿Dónde está Wally?',
+  description: 'En este Lunes de Argentina nos metimos con una película que me sorprendió muchísimo: Medianeras.\n\nUna historia romántica bastante particular porque, durante prácticamente toda la película, la pareja protagonista está destinada a encontrarse… pero no termina de hacerlo. Se cruzan, se buscan, se acercan y se alejan, mientras cada uno vive su propia historia en medio de Buenos Aires.\n\nY ahí encontré un paralelo que me encantó: ¿Dónde está Wally?\n\nPorque, de alguna manera, la película funciona como una búsqueda constante. Y cuando finalmente encuentras a Wally… se acabó el juego. 😂\n\nAlgo parecido ocurre aquí: toda la película está construida alrededor de esa búsqueda, y cuando finalmente sucede el encuentro, la historia puede terminar.\n\nLa vimos en Twitch junto con la comunidad y terminé disfrutándola muchísimo. Es una película muy bonita, con una historia sencilla pero contada de una manera que me pareció bastante especial.\n\nOtra recomendación argentina que llegó desde la comunidad y que terminó demostrando por qué vale la pena dejarse llevar por sus sugerencias. 🇦🇷❤️',
+  thumbnail: 'Imagenes/Títere enamorado de Medianeras.png',
+  source: 'https://rumble.com/embed/v7bq7zw/?pub=4nmhh2',
+  type: 'iframe'
+},
+
+  {
+  id: 'reaccion_a_x_men_97_t2e4_e6_x_men_97',
+  name: 'X-Men 97',
+  categoria: 'x_men_97',
+  temporada: '2',
+  episodio: '4-6',
+  title: 'Reacción a X-Men 97 🧬🔥 T2E4–E6',
+  title2: 'Esto se puso serio',
+  description: 'Seguimos avanzando con X-Men 97 y llegamos a los episodios 4, 5 y 6 de la segunda temporada.\n\nLa serie sigue siendo excelente y estos capítulos mantienen esa capacidad de mezclar acción, personajes y conflictos cada vez más grandes. Pero esta vez terminé el directo con una pregunta dando vueltas en la cabeza: ¿Disney está empezando a perder un poco el agarre sobre la historia?\n\nNo porque haya dejado de disfrutar la serie —todo lo contrario—, sino porque mientras más crece el universo y más piezas empiezan a moverse, más difícil se vuelve mantener la coherencia de todo lo que se está construyendo.\n\nY ahí está justamente mi interés ahora: quiero ver si la serie consigue cerrar todas estas líneas sin que la historia termine sintiéndose demasiado cargada o descontrolada.\n\nAsí que nos queda una última parada: los tres episodios finales.\n\nDespués de todo lo que ha ocurrido hasta aquí, toca esperar para descubrir si Disney consigue mantener el equilibrio hasta el final.\n\nPorque hasta ahora… vaya viaje. 🧬🔥',
+  thumbnail: 'Imagenes/Xmen 97 - Parte 2.png',
+  source: 'https://rumble.com/embed/v7bq80s/?pub=4nmhh2',
+  type: 'iframe'
+}
+
 ];
