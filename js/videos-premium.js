@@ -2288,6 +2288,118 @@ export const videosPremium = [
   thumbnail: 'Imagenes/Reacción Twitch, Metegol.png',
   source: 'https://rumble.com/embed/v78o0ii/?pub=4nmhh2',
   type: 'iframe'
+},
+
+             {
+  id: 'los_simpson_3_variete',
+  name: 'Varieté',
+  categoria: 'variete',
+  temporada: '0',
+  episodio: '0',
+  title: 'Los Simpson #3 🍩',
+  title2: 'Otro viaje por Springfield',
+  description: 'Tercer encuentro con Los Simpson y seguimos exactamente con la fórmula que ya se está convirtiendo en tradición: yo no elijo los episodios. La comunidad los propone. 😂\n\nComo todavía tengo muchísimo por descubrir de esta serie, seguimos utilizando las dinámicas del stream para decidir qué episodios vamos a ver. La comunidad lanza sus recomendaciones, aparecen referencias del tipo “el episodio donde pasa aquello”, hacemos la selección entre todos… y finalmente descubrimos qué demonios me recomendaron.\n\nY eso es precisamente lo divertido.\n\nNo estamos viendo la serie de manera cronológica ni intentando completar temporadas. Estamos construyendo nuestro propio recorrido por Springfield a través de los episodios que ustedes consideran indispensables.\n\nAdemás, sigue siendo muy divertido descubrir cuánto conoce la comunidad de una serie que yo, evidentemente, conozco muchísimo menos. 😂\n\nCada nuevo stream termina siendo una mezcla de nostalgia para ellos y descubrimiento para mí. Y mientras más episodios vemos, más referencias empiezan a tener sentido y más fácil resulta entender por qué ciertos capítulos son considerados auténticos clásicos.\n\nTercer viaje. Más recomendaciones. Más dinámicas. Y todavía me queda muchísimo Springfield por descubrir. 🍩📺',
+  thumbnail: 'Imagenes/Los Simpson, parte 3.png',
+  source: 'https://rumble.com/embed/v7bq7t4/?pub=4nmhh2',
+  type: 'iframe'
+},
+
+  {
+  id: 'que_es_el_fulbo_2_variete',
+  name: 'Varieté',
+  categoria: 'variete',
+  temporada: '0',
+  episodio: '0',
+  title: '¿Qué es el fulbo? #2 ⚽🇦🇷',
+  title2: 'Aprendiendo de fulbo en shutú',
+  description: 'Volvimos a intentar responder la pregunta más importante de este proceso de aprendizaje:\n\n¿Qué carajos es el fulbo? 😂⚽\n\nDespués de la primera sesión, todavía me quedaban muchísimas cosas por entender. Así que regresamos a YouTube con la comunidad para seguir explorando videos relacionados con el fútbol y, sobre todo, para que ellos pudieran hacer lo que mejor saben hacer: guiarme y explicarme qué demonios estoy viendo.\n\nLa idea sigue siendo la misma: acercarme poco a poco a la cultura futbolera argentina, entender su historia, sus personajes, sus momentos importantes y, sobre todo, descubrir por qué este deporte provoca semejantes niveles de pasión.\n\nY como era de esperarse, la comunidad no decepcionó.\n\nEntre explicaciones, contexto, momentos que sí entendí y otros en los que probablemente hice preguntas que cualquier argentino consideraría delito federal 😂, seguimos construyendo este pequeño curso intensivo de fulbo argentino.\n\nDespués de todo, si voy a seguir metiéndome en este mundo rumbo al Mundial, más me vale empezar a entenderlo.\n\nClase #2: en progreso. ⚽🇦🇷',
+  thumbnail: 'Imagenes/ChatGPT Image 9 ago 2026, 04_33_21 p.m..png',
+  source: 'https://rumble.com/embed/v7bq7s6/?pub=4nmhh2',
+  type: 'iframe'
+},
+
+  {
+  id: 'avatar_libro_2_1_2_avatar_la_leyenda_de_aang',
+  name: 'Avatar, La leyenda de Aang',
+  categoria: 'avatar_la_leyenda_de_aang',
+  temporada: '2',
+  episodio: '1-2',
+  title: 'Avatar Libro 2 - 1-2',
+  title2: 'Continúa la misión del Ávatar',
+  description: 'Después de cerrar el Libro 1, regresamos a Avatar: La leyenda de Aang para comenzar oficialmente el Libro 2, esta vez en nuestros Jueves Animados y acompañados por la comunidad en Twitch.\n\nTenía muchas ganas de volver a este universo después de todo lo que vivimos durante la primera temporada. Y estos dos primeros episodios nos dejan claro que la historia todavía tiene muchísimo por delante.\n\n🌊 Temporada 2, Episodio 1 — El estado Avatar\n\nAang continúa su entrenamiento mientras el grupo enfrenta nuevas dificultades y empieza a comprender mejor algunos de los desafíos que vienen por delante.\n\n🪨 Temporada 2, Episodio 2 — La cueva de los dos amantes\n\nEl grupo llega a un lugar lleno de historia y leyendas mientras busca una manera de continuar su viaje. Un episodio que mezcla aventura, misterio y una buena dosis de romance.\n\nComo siempre, la comunidad estuvo muy presente para acompañarme, comentar, explicar detalles y ayudarme a recordar cosas que probablemente ya debería tener más frescas. 😂\n\nY eso es precisamente lo bonito de estos Jueves Animados: ya no siento que simplemente estoy viendo una serie. Estamos recorriéndola juntos.\n\nLibro 2: oficialmente comenzado. 🌊🔥',
+  thumbnail: 'Imagenes/Avatar Temp 2 - Ep 1-2.png',
+  source: 'https://rumble.com/embed/v7bq7po/?pub=4nmhh2',
+  type: 'iframe'
+},
+
+  {
+  id: 'reaccion_a_celda_211_episodios_iniciales_variete',
+  name: 'Varieté',
+  categoria: 'variete',
+  temporada: '1',
+  episodio: '1-3',
+  title: 'Reacción a Celda 211 🔒 Episodios iniciales',
+  title2: 'Pensaba que era una película. Terminó siendo una serie 😂',
+  description: 'Esta reacción empezó con una pequeña confusión. 😂\n\nLa idea original era ver una película y terminamos descubriendo que Celda 211 era en realidad una serie. Pero ya estábamos ahí, la comunidad estaba lista y la historia había arrancado… así que decidimos seguir adelante.\n\nY la verdad es que no estuvo nada mal la decisión.\n\nNos metimos en una historia ambientada en una prisión, con un conflicto que rápidamente se convierte en algo mucho más grande: tensión, poder, violencia, secretos y un complot que empieza a tomar forma mientras los personajes intentan sobrevivir a una situación que se les va completamente de las manos.\n\nVimos la primera mitad de la serie en Twitch con la comunidad, todavía con la intención de encontrar un momento para regresar y terminarla.\n\nAsí que este video queda como una especie de primera parte accidental. 😂\n\nNo estaba planeado, no era lo que íbamos a ver esa noche… pero terminó siendo una de esas decisiones improvisadas que pueden terminar llevándote a una historia bastante interesante.\n\nAhora solo falta encontrar el momento para volver a la prisión y descubrir cómo termina todo. 🔒👀',
+  thumbnail: 'Imagenes/ChatGPT Image 9 ago 2026, 02_01_06 p.m..png',
+  source: 'https://rumble.com/embed/v7bq7qs/?pub=4nmhh2',
+  type: 'iframe'
+},
+
+  {
+  id: 'el_ciudadano_ilustre_peliculas',
+  name: 'Películas',
+  categoria: 'peliculas',
+  temporada: '0',
+  episodio: '0',
+  title: 'El Ciudadano Ilustre 🇦🇷🎬',
+  title2: 'Generó debate',
+  description: 'Otro Lunes de Argentina y otra recomendación de la comunidad que terminó dando mucho más de sí de lo que esperaba.\n\nEsta vez vimos El Ciudadano Ilustre, una película que me gustó muchísimo. De hecho, me pareció una película muy buena, con una historia que va mucho más allá de lo que parece a simple vista.\n\nY claro… también consiguió algo que ya se está volviendo tradición en estos lunes: abrir un debate que se salió un poquito del terreno cinematográfico. 😂\n\nLa película nos llevó a hablar de temas semipolíticos, opiniones, identidad, cultura y algunas cuestiones bastante delicadas. Los ánimos se calentaron un poquito en ciertos momentos, pero también fue interesante ver cómo una película puede provocar conversaciones que continúan mucho después de que termina.\n\nMás allá del debate, disfruté muchísimo la película. Tiene algo que me gusta especialmente de estas recomendaciones argentinas: no necesita estar constantemente intentando sorprenderte para mantenerte interesado. Simplemente va construyendo su historia y dejando que los personajes y las situaciones hagan el trabajo.\n\nOtro Lunes de Argentina que terminó siendo película, conversación, debate y, por momentos, una pequeña olla de presión. 😂🇦🇷\n\nPero sí: me gustó mucho.',
+  thumbnail: 'Imagenes/El Ciudadano Ilustre.png',
+  source: 'https://rumble.com/embed/v7bq7yo/?pub=4nmhh2',
+  type: 'iframe'
+},
+
+  {
+  id: 'reaccion_a_x_men_97_temporada_2_episodios_1_3_x_men_97',
+  name: 'X-Men 97',
+  categoria: 'x_men_97',
+  temporada: '2',
+  episodio: '1-3',
+  title: 'Reacción a X-Men 97 🧬⚡Temporada 2, episodios 1–3',
+  title2: '¡Los mutantes regresan!',
+  description: '¡Regresamos al universo mutante! 🧬⚡\n\nTenía muchas ganas de retomar X-Men 97 después de todo lo que vivimos durante la primera temporada, y estos primeros tres episodios de la segunda temporada fueron una forma genial de volver a entrar en este mundo.\n\nLa verdad es que llegué emocionadísimo. Había detalles de la primera temporada que ya tenía medio oxidados y, por suerte, la comunidad estuvo muy activa durante el directo para ayudarme a reconstruir lo que había pasado, recordar personajes, relaciones y algunos acontecimientos importantes.\n\nY eso hizo que la experiencia fuera todavía mejor.\n\nVimos los primeros tres episodios de la Temporada 2, regresando a una historia que ya viene cargadísima de personajes, conflictos y consecuencias. Después de todo lo que dejó la primera temporada, se siente muy bien volver a encontrarnos con los X-Men y descubrir hacia dónde va a llevarnos esta nueva etapa.\n\nFue una de esas reacciones donde el chat no solamente está viendo contigo: también se convierte en parte de la memoria de la serie. 😂\n\nQué gusto volver a este universo. Y qué manera tan bonita de hacerlo acompañado. 🧬💙',
+  thumbnail: 'Imagenes/Xmen 97 - Parte 1.png',
+  source: 'https://rumble.com/embed/v7bq7zm/?pub=4nmhh2',
+  type: 'iframe'
+},
+
+  {
+  id: 'reaccion_a_medianeras_peliculas',
+  name: 'Películas',
+  categoria: 'peliculas',
+  temporada: '0',
+  episodio: '0',
+  title: 'Reacción a Medianeras ❤️🏙️',
+  title2: '¿Dónde está Wally?',
+  description: 'En este Lunes de Argentina nos metimos con una película que me sorprendió muchísimo: Medianeras.\n\nUna historia romántica bastante particular porque, durante prácticamente toda la película, la pareja protagonista está destinada a encontrarse… pero no termina de hacerlo. Se cruzan, se buscan, se acercan y se alejan, mientras cada uno vive su propia historia en medio de Buenos Aires.\n\nY ahí encontré un paralelo que me encantó: ¿Dónde está Wally?\n\nPorque, de alguna manera, la película funciona como una búsqueda constante. Y cuando finalmente encuentras a Wally… se acabó el juego. 😂\n\nAlgo parecido ocurre aquí: toda la película está construida alrededor de esa búsqueda, y cuando finalmente sucede el encuentro, la historia puede terminar.\n\nLa vimos en Twitch junto con la comunidad y terminé disfrutándola muchísimo. Es una película muy bonita, con una historia sencilla pero contada de una manera que me pareció bastante especial.\n\nOtra recomendación argentina que llegó desde la comunidad y que terminó demostrando por qué vale la pena dejarse llevar por sus sugerencias. 🇦🇷❤️',
+  thumbnail: 'Imagenes/Títere enamorado de Medianeras.png',
+  source: 'https://rumble.com/embed/v7bq7zw/?pub=4nmhh2',
+  type: 'iframe'
+},
+
+  {
+  id: 'reaccion_a_x_men_97_t2e4_e6_x_men_97',
+  name: 'X-Men 97',
+  categoria: 'x_men_97',
+  temporada: '2',
+  episodio: '4-6',
+  title: 'Reacción a X-Men 97 🧬🔥 T2E4–E6',
+  title2: 'Esto se puso serio',
+  description: 'Seguimos avanzando con X-Men 97 y llegamos a los episodios 4, 5 y 6 de la segunda temporada.\n\nLa serie sigue siendo excelente y estos capítulos mantienen esa capacidad de mezclar acción, personajes y conflictos cada vez más grandes. Pero esta vez terminé el directo con una pregunta dando vueltas en la cabeza: ¿Disney está empezando a perder un poco el agarre sobre la historia?\n\nNo porque haya dejado de disfrutar la serie —todo lo contrario—, sino porque mientras más crece el universo y más piezas empiezan a moverse, más difícil se vuelve mantener la coherencia de todo lo que se está construyendo.\n\nY ahí está justamente mi interés ahora: quiero ver si la serie consigue cerrar todas estas líneas sin que la historia termine sintiéndose demasiado cargada o descontrolada.\n\nAsí que nos queda una última parada: los tres episodios finales.\n\nDespués de todo lo que ha ocurrido hasta aquí, toca esperar para descubrir si Disney consigue mantener el equilibrio hasta el final.\n\nPorque hasta ahora… vaya viaje. 🧬🔥',
+  thumbnail: 'Imagenes/Xmen 97 - Parte 2.png',
+  source: 'https://rumble.com/embed/v7bq80s/?pub=4nmhh2',
+  type: 'iframe'
 }
 
 
