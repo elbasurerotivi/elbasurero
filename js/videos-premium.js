@@ -1,6 +1,18 @@
 // js/videos.js
 export const categoriasData = {
 
+            avatar_la_leyenda_de_aang: {
+    key: 'avatar_la_leyenda_de_aang',
+    name:'Avatar, La leyenda de Aang',
+    background: 'Imagenes/Avatar temporada 2.jpg',     // Fondo grande
+    cover: 'Imagenes/Carátula AVATAR, AANG crop story.png',               // Carátula pequeña
+    title: 'Avatar, La leyenda de Aang',
+    synopsis: 'Katara y Sokka descubren a Aang, un misterioso niño atrapado en un iceberg que resulta ser el Avatar, el único capaz de dominar los cuatro elementos; mientras el mundo está al borde de la guerra por la expansión de la Nación del Fuego, su despertar marca el inicio de un viaje que podría restaurar el equilibrio, aunque también atrae la atención del exiliado príncipe Zuko.',
+    year: '2005',
+    genre: 'Acción, Aventura, Fantasía, Animación',
+    cast: 'Zach Tyler Eisen, Mae Whitman, Jack De Sena, Dante Basco, Jessie Flower, Mako, Greg Baldwin'
+  },
+
             peliculas: {
     key: 'peliculas',
     name:'Películas',
@@ -59,18 +71,6 @@ export const categoriasData = {
     year: '2022',
     genre: 'Comedia • Drama',
     cast: 'Guillermo Francella, Gabriel Goity, Gastón Cocchiarale'
-  },
-
-            avatar_la_leyenda_de_aang: {
-    key: 'avatar_la_leyenda_de_aang',
-    name:'Avatar, La leyenda de Aang',
-    background: 'Imagenes/526761.jpg',     // Fondo grande
-    cover: 'Imagenes/Carátula AVATAR, AANG crop story.png',               // Carátula pequeña
-    title: 'Avatar, La leyenda de Aang',
-    synopsis: 'Katara y Sokka descubren a Aang, un misterioso niño atrapado en un iceberg que resulta ser el Avatar, el único capaz de dominar los cuatro elementos; mientras el mundo está al borde de la guerra por la expansión de la Nación del Fuego, su despertar marca el inicio de un viaje que podría restaurar el equilibrio, aunque también atrae la atención del exiliado príncipe Zuko.',
-    year: '2005',
-    genre: 'Acción, Aventura, Fantasía, Animación',
-    cast: 'Zach Tyler Eisen, Mae Whitman, Jack De Sena, Dante Basco, Jessie Flower, Mako, Greg Baldwin'
   },
 
    okupas: {
