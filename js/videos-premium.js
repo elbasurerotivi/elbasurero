@@ -2400,9 +2400,21 @@ export const videosPremium = [
   thumbnail: 'Imagenes/Xmen 97 - Parte 2.png',
   source: 'https://rumble.com/embed/v7bq80s/?pub=4nmhh2',
   type: 'iframe'
+},
+
+ {
+  id: 'los_4_fantasticos_pelicula_reaccion_a_mariano_peliculas',
+  name: 'Películas',
+  categoria: 'peliculas',
+  temporada: '0',
+  episodio: '0',
+  title: 'Los 4 Fantásticos 🦸‍♂️🔥 película + reacción a Mariano',
+  title2: 'Nos llenamos de Marvel 2026     ¯\\_(ツ)_/¯',
+  description: 'Esta vez tuvimos una sesión bastante especial en Twitch.\n\nPrimero vimos Los 4 Fantásticos y después hicimos algo que ya se ha convertido en una combinación particularmente divertida: ver la reseña de Mariano Rodríguez sobre la misma película.\n\nLa experiencia fue todavía más especial porque tuvimos un invitado muy particular acompañándonos en el canal, lo que terminó dándole al directo una dinámica completamente distinta.\n\nEntre la película, los comentarios, las reacciones y posteriormente el análisis de Mariano, terminó siendo un stream muy divertido y con muchísimo material para conversar.\n\nEste contenido queda disponible exclusivamente en la sección Premium de la página web.\n\nUna película, una reseña y una compañía muy especial. 🦸‍♂️🎬',
+  thumbnail: 'Imagenes/Los 4 fantasticos.png',
+  source: 'https://rumble.com/embed/v7bsbc8/?pub=4nmhh2',
+  type: 'iframe'
 }
-
-
 
 
   
