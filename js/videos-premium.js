@@ -2400,6 +2400,20 @@ export const videosPremium = [
   thumbnail: 'Imagenes/Los 4 fantasticos.png',
   source: 'https://rumble.com/embed/v7bsbc8/?pub=4nmhh2',
   type: 'iframe'
+},
+
+              {
+  id: 'bueno_si_reaccion_a_superman_y_ya_peliculas',
+  name: 'Películas',
+  categoria: 'peliculas',
+  temporada: '0',
+  episodio: '0',
+  title: 'Bueno, sí. Reacción a Superman... y ya',
+  title2: 'Reacción en Twitch | + Mariano Rodríguez',
+  description: 'Clásico absoluto… aunque esta vez no conecté nada. Superman no me gustó, pero la conversación fue buenísima.\nCerramos con dos videos de Mariano Rodríguez: uno sobre la nueva de James Gunn y otro sobre la versión de Christopher Reeve.',
+  thumbnail: 'Imagenes/Superman Directo en twitch.png',
+  source: 'https://rumble.com/embed/v749dsg/?pub=4nmhh2',
+  type: 'iframe'
 }
 
 
