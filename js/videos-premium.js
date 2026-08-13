@@ -37,18 +37,18 @@ export const categoriasData = {
     cast: 'La comunidad del Basurero'
   },
          
-       el_mejor_infarto_de_mi_vida: {
-    key: 'el_mejor_infarto_de_mi_vida',
-    name:'El mejor infarto de mi vida',
-    background: 'Imagenes/El mejor infarto de mi vida.png',     // Fondo grande
-    cover: 'Imagenes/El mejor infarto de mi vida caratula.jpg',               // Carátula pequeña
-    title: 'El mejor infarto de mi vida',
-    synopsis: 'Ariel, un escritor fantasma en crisis personal y matrimonial, recibe el encargo de escribir la biografía de un abogado mediático mientras intenta recomponer su vida; en medio de esta etapa confusa, acepta salir a un espectáculo donde conoce a una mujer que marcará un punto de quiebre, iniciando una cadena de decisiones que lo llevarán hacia el evento que cambiará su vida por completo.',
-    year: '2025',
-    genre: 'Comedia • Drama',
-    cast: 'Alan Sabbagh, Olivia Molina, Rogelio Gracia Bernada, Romina Peluffo, Eleonora Wexler, Rita Cortese, Rafael Spregelburd, Imanol Arias'
+  x_men_97: {
+    key: 'x_men_97',
+    name: 'X Men 97',
+    background: 'Imagenes/xmen-poster.png',     // Cambiar
+    cover: 'Imagenes/xmenhellfire2023001_xmen97_variant.jpg',         // Cambiar
+    title: 'X Men 97',
+    synopsis: "X-Men '97 es la continuación directa de la serie clásica de los 90, mostrando a los mutantes enfrentando un futuro peligroso e inesperado tras la pérdida del Profesor X.",
+    year: '2024',
+    genre: 'Animación • Acción',
+    cast: 'Ray Chase, Jennifer Hale, Alison Sealy-Smith, Cal Dodd'
   },
-
+            
     nada: {
     key: 'nada',
     name:'Nada',
@@ -59,6 +59,18 @@ export const categoriasData = {
     year: '2023',
     genre: 'Comedia • Drama',
     cast: 'Luis Brandoni, Robert De Niro, María Rosa Fugazot'
+  },
+
+                   el_mejor_infarto_de_mi_vida: {
+    key: 'el_mejor_infarto_de_mi_vida',
+    name:'El mejor infarto de mi vida',
+    background: 'Imagenes/El mejor infarto de mi vida.png',     // Fondo grande
+    cover: 'Imagenes/El mejor infarto de mi vida caratula.jpg',               // Carátula pequeña
+    title: 'El mejor infarto de mi vida',
+    synopsis: 'Ariel, un escritor fantasma en crisis personal y matrimonial, recibe el encargo de escribir la biografía de un abogado mediático mientras intenta recomponer su vida; en medio de esta etapa confusa, acepta salir a un espectáculo donde conoce a una mujer que marcará un punto de quiebre, iniciando una cadena de decisiones que lo llevarán hacia el evento que cambiará su vida por completo.',
+    year: '2025',
+    genre: 'Comedia • Drama',
+    cast: 'Alan Sabbagh, Olivia Molina, Rogelio Gracia Bernada, Romina Peluffo, Eleonora Wexler, Rita Cortese, Rafael Spregelburd, Imanol Arias'
   },
 
      el_encargado: {
@@ -120,18 +132,6 @@ export const categoriasData = {
     year: '2026',
     genre: '',
     cast: ''
-  },
-   
-  x_men_97: {
-    key: 'x_men_97',
-    name: 'X Men 97',
-    background: 'Imagenes/xmen-poster.png',     // Cambiar
-    cover: 'Imagenes/xmenhellfire2023001_xmen97_variant.jpg',         // Cambiar
-    title: 'X Men 97',
-    synopsis: "X-Men '97 es la continuación directa de la serie clásica de los 90, mostrando a los mutantes enfrentando un futuro peligroso e inesperado tras la pérdida del Profesor X.",
-    year: '2024',
-    genre: 'Animación • Acción',
-    cast: 'Ray Chase, Jennifer Hale, Alison Sealy-Smith, Cal Dodd'
   },
 
   shingeki_no_kyojin: {
