@@ -28,7 +28,7 @@ export const categoriasData = {
               variete: {
     key: 'variete',
     name:'Variété',
-    background: 'Imagenes/portada_variete.jpeg',     // Fondo grande
+    background: 'Imagenes/variete.png',     // Fondo grande
     cover: 'Imagenes/portada_variete.jpeg',               // Carátula pequeña
     title: 'Variete',
     synopsis: 'Cosas random, de todo',
