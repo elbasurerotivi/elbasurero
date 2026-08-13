@@ -40,7 +40,7 @@ export const categoriasData = {
   x_men_97: {
     key: 'x_men_97',
     name: 'X Men 97',
-    background: 'Imagenes/xmen-poster.png',     // Cambiar
+    background: 'Imagenes/X-men 97 Cover.png',     // Cambiar
     cover: 'Imagenes/xmenhellfire2023001_xmen97_variant.jpg',         // Cambiar
     title: 'X Men 97',
     synopsis: "X-Men '97 es la continuación directa de la serie clásica de los 90, mostrando a los mutantes enfrentando un futuro peligroso e inesperado tras la pérdida del Profesor X.",
