@@ -2414,6 +2414,20 @@ export const videosPremium = [
   thumbnail: 'Imagenes/Superman Directo en twitch.png',
   source: 'https://rumble.com/embed/v749dsg/?pub=4nmhh2',
   type: 'iframe'
+},
+
+             {
+  id: 'capitan_america_un_nuevo_mundo_era_necesario_peliculas',
+  name: 'Películas',
+  categoria: 'peliculas',
+  temporada: '0',
+  episodio: '0',
+  title: 'Capitán América: Un nuevo mundo 🦅🇺🇸 ¿Era necesario? 😂',
+  title2: 'Así en serio... ¿quién pidió esta madre?',
+  description: 'Seguimos avanzando por el Universo Marvel con otra parada obligatoria en el camino: Capitán América: Un nuevo mundo.\n\nLa vimos en Twitch con la comunidad y… bueno.\n\nNo nos encantó.\nDe hecho, siendo completamente honestos: no nos gustó. 😂\n\nHay películas que terminan generando una conversación larguísima porque tienen cosas que analizar, y luego están las que simplemente te dejan mirando la pantalla pensando: “Bueno… ya la vimos.” Jajajaja.\n\nPero incluso cuando una película no funciona para nosotros, tiene una función importante dentro de este recorrido. Y esta definitivamente ayuda a pavimentar el camino hacia las metas grandes que tenemos por delante.\n\nPorque todavía faltan algunas paradas importantes antes de llegar a donde realmente quiero llegar: la nueva película de Spider-Man y la próxima de Avengers.\n\nAsí que seguimos avanzando.\n\nNo todas las películas van a ser joyas. Algunas simplemente son parte del camino. 😂\n\nCapitán América: Un nuevo mundo: visto.\nEl camino hacia Spider-Man y Avengers continúa. 🦅🕷️💥',
+  thumbnail: 'Imagenes/Cap america.png',
+  source: 'https://rumble.com/embed/v7bx7d6/?pub=4nmhh2',
+  type: 'iframe'
 }
 
 
