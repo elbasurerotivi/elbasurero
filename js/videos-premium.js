@@ -2428,6 +2428,20 @@ export const videosPremium = [
   thumbnail: 'Imagenes/Cap america.png',
   source: 'https://rumble.com/embed/v7bx7d6/?pub=4nmhh2',
   type: 'iframe'
+},
+
+             {
+  id: 'x_men_97_t2e7_e9_x_men_97',
+  name: 'X Men 97',
+  categoria: 'x_men_97',
+  temporada: '2',
+  episodio: '7-9',
+  title: 'X-Men 97 T2E7-E9 🧬🔥',
+  title2: 'El cierre de la segunda temporada',
+  description: 'Llegamos a la última parte de la segunda temporada de X-Men 97 con los episodios 7, 8 y 9.\n\nY sí: supongo que esto también forma parte del camino hacia las grandes metas que tenemos por delante, especialmente Spider-Man y Avengers: Doomsday. Así que seguimos avanzando por este enorme universo de historias, aunque algunas paradas sean más satisfactorias que otras. 😂\n\nLa experiencia de esta temporada me gustó mucho. Disfruté especialmente poder verla con la comunidad, porque esta vez hubo momentos en los que sentí que la serie empezaba a perder un poquito el rumbo. Afortunadamente, en el chat había gente que conoce muchísimo tanto la serie como los cómics y pudieron ayudarme a entender mejor algunas decisiones, referencias y acontecimientos.\n\nEso hizo una diferencia enorme.\n\nAl final, más allá de mis dudas con el rumbo que está tomando la historia, la velada estuvo buenísima. Fue una de esas sesiones en las que la conversación de la comunidad se vuelve casi tan importante como lo que estamos viendo en pantalla.\n\nY cuando terminamos los tres episodios finales, todavía quedaba noche. Así que cerramos la sesión con un video de Mariano Rodríguez reseñando Christine.\n\nUna buena manera de terminar este recorrido por la segunda temporada. 🧬💙\n\nTemporada 2: terminada.\nEl camino continúa. 🕷️💥',
+  thumbnail: 'Imagenes/Xmen 97 - Parte 3.png',
+  source: 'https://rumble.com/embed/v7byxb4/?pub=4nmhh2',
+  type: 'iframe'
 }
 
 
