@@ -1,5 +1,76 @@
 const videosData = [
-  
+    {
+  titulo: 'Batman y Robin según Mariano Rodríguez | Mexicano reacciona',
+  descripcion: 'Batman y Robin según Mariano Rodríguez | Reacción',
+  fecha: '2026-07-31',
+  link: 'https://youtu.be/dlwXIEtF6ro',
+  miniatura: 'https://img.youtube.com/vi/dlwXIEtF6ro/maxresdefault.jpg',
+  tags: []
+},
+  {
+  titulo: '¡ÓSCAR DE LA CAPITAL VISITÓ A LOCOS POR EL ASADO! 🇦🇷🥩 (¡Ahora quiero ir más que nunca!)',
+  descripcion: 'Cuando juntas a Óscar, de La Capital, con Laucha, de Locos por el Asado, sabes que algo bueno va a salir... y también sabes que vas a terminar con un hambre terrible. 🤤🥩\n\nEn esta reacción acompañamos esta gran colaboración mientras recorren la cultura del asado argentino, comparten anécdotas y preparan una comida que hace imposible no querer estar ahí.\n\nLo admito: cada vez que veo este tipo de videos me dan todavía más ganas de visitar Argentina. Entre la comida, la gente y el ambiente, siento que ese viaje se vuelve más inevitable con cada reacción.\n\n¿Qué lugar relacionado con el asado o la gastronomía argentina creen que no me puedo perder cuando finalmente vaya?\n\nLINKS\n\n💳 Apoya el canal en CENEKA\nhttps://ceneka.net/elbasurero\n\n📲 Whatsapp\nhttps://chat.whatsapp.com/Fyw5G6L8GLm71kMDATHm6P\n\n💳 Mercadopago\nhttps://ceneka.net/elbasurero\nAlias: elbasurerotv\n\n💻 Patreon\nhttps://patreon.com/ElBasureroTi_Vi_Plas\n\n📺 Twitch\nhttps://www.twitch.tv/elbasurerochido\n\n▶ Membresías\nhttps://www.youtube.com/channel/UCRE0S6c2_KYBazBhZcm-taw/join\n\n🛜 Página web\nhttps://elbasurerotivi.github.io/elbasurero/\n\n🖥 Discord\nhttps://discord.gg/tZS2jQaDVY\n\n🌎 PayPal\nhttps://paypal.me/edgarmenagarcia\n\n☕ Ko-fi\nhttps://ko-fi.com/elbasurerotv\n\n🛍️ Amazon Wishlist\nhttps://www.amazon.com.mx/hz/wishlist/ls/2ZJB7HP322O4N?ref_=wl_share\n\n🔗 Linktree\nhttps://linktr.ee/elbasurerotivi',
+  fecha: '2026-08-04',
+  link: 'https://youtu.be/AKXnhPBPsC0',
+  miniatura: 'https://img.youtube.com/vi/AKXnhPBPsC0/maxresdefault.jpg',
+  tags: []
+},
+  {
+  titulo: 'Los juegos de nuestra infancia eran un PELIGRO... y nadie decía nada',
+  descripcion: 'Hoy reacciono al genial video de Pablo Molinari:\n\n\'6 JUEGOS de los 80/90 que podían terminar como el C*L0\'\n\nAdemás de reírme muchísimo con los recuerdos y la nostalgia, terminé contando una historia muy personal: cómo me rompí el brazo jugando precisamente a uno de esos juegos. 😅\n\nEs uno de esos videos que te hacen pensar: \'¿Cómo seguimos vivos?\' 😂\n\n¿Cuál de estos juegos era el más peligroso para ustedes? ¿Y cuál fue la peor lesión que se llevaron jugando de niños?\n\nLINKS\n\n💳 Apoya el canal en CENEKA\nhttps://ceneka.net/elbasurero\n\n📲 Whatsapp\nhttps://chat.whatsapp.com/Fyw5G6L8GLm71kMDATHm6P\n\n💳 Mercadopago\nhttps://ceneka.net/elbasurero\nAlias: elbasurerotv\n\n💻 Patreon\nhttps://patreon.com/ElBasureroTi_Vi_Plas\n\n📺 Twitch\nhttps://www.twitch.tv/elbasurerochido\n\n▶ Membresías\nhttps://www.youtube.com/channel/UCRE0S6c2_KYBazBhZcm-taw/join\n\n🛜 Página web\nhttps://elbasurerotivi.github.io/elbasurero/\n\n🖥 Discord\nhttps://discord.gg/tZS2jQaDVY\n\n🌎 PayPal\nhttps://paypal.me/edgarmenagarcia\n\n☕ Ko-fi\nhttps://ko-fi.com/elbasurerotv\n\n🛍️ Amazon Wishlist\nhttps://www.amazon.com.mx/hz/wishlist/ls/2ZJB7HP322O4N?ref_=wl_share\n\n🔗 Linktree\nhttps://linktr.ee/elbasurerotivi',
+  fecha: '2026-08-05',
+  link: 'https://youtu.be/FLW6mGaqQiI',
+  miniatura: 'https://img.youtube.com/vi/FLW6mGaqQiI/maxresdefault.jpg',
+  tags: []
+},
+  {
+  titulo: '¡Hacía AÑOS que no me reía tanto! 😂 Radagast es un GENIO NATO | Reacción',
+  descripcion: 'Hay videos que te sacan una sonrisa... y luego están los que simplemente te hacen morir de risa. 😂\n\nEn esta reacción veo una actuación de Radagast para Comedy Central y, sinceramente, hacía muchísimo tiempo que no me reía así. Su forma de contar las historias y el ritmo del show me agarraron completamente desprevenido.\n\nFue una de esas reacciones en las que simplemente no podía dejar de reír.\n\n¿Cuál es el mejor monólogo o rutina de Radagast que han visto? Porque si todas son así... necesito seguir descubriéndolo.\n\nLINKS\n\n💳 Apoya el canal en CENEKA\nhttps://ceneka.net/elbasurero\n\n📲 Whatsapp\nhttps://chat.whatsapp.com/Fyw5G6L8GLm71kMDATHm6P\n\n💳 Mercadopago\nhttps://ceneka.net/elbasurero\nAlias: elbasurerotv\n\n💻 Patreon\nhttps://patreon.com/ElBasureroTi_Vi_Plas\n\n📺 Twitch\nhttps://www.twitch.tv/elbasurerochido\n\n▶ Membresías\nhttps://www.youtube.com/channel/UCRE0S6c2_KYBazBhZcm-taw/join\n\n🛜 Página web\nhttps://elbasurerotivi.github.io/elbasurero/\n\n🖥 Discord\nhttps://discord.gg/tZS2jQaDVY\n\n🌎 PayPal\nhttps://paypal.me/edgarmenagarcia\n\n☕ Ko-fi\nhttps://ko-fi.com/elbasurerotv\n\n🛍️ Amazon Wishlist\nhttps://www.amazon.com.mx/hz/wishlist/ls/2ZJB7HP322O4N?ref_=wl_share\n\n🔗 Linktree\nhttps://linktr.ee/elbasurerotivi',
+  fecha: '2026-08-05',
+  link: 'https://youtu.be/DfoP3A8bmSI',
+  miniatura: 'https://img.youtube.com/vi/DfoP3A8bmSI/maxresdefault.jpg',
+  tags: []
+},
+  {
+  titulo: '👽 ¡Lunes de Mariano... en jueves! 😂 Documental de ALIENS | Reacción',
+  descripcion: 'Hoy toca Lunes de Mariano... aunque el calendario diga jueves. 😂\n\nEn esta ocasión reacciono a un video de Mariano Rodríguez sobre un documental relacionado con aliens y extraterrestres. Como siempre, Mariano tiene una forma muy particular de analizar este tipo de temas, mezclando información, humor y mucho sarcasmo.\n\nEsta vez fue una reacción grabada en casa, sin directo y sin chat, disfrutando el video con calma y comentando cada ocurrencia sobre uno de los temas que más teorías despierta en internet.\n\nY ustedes... ¿creen que hay vida inteligente fuera de la Tierra o siguen siendo escépticos? 👽\n\nLINKS\n\n💳 Apoya el canal en CENEKA\nhttps://ceneka.net/elbasurero\n\n📲 Whatsapp\nhttps://chat.whatsapp.com/Fyw5G6L8GLm71kMDATHm6P\n\n💳 Mercadopago\nhttps://ceneka.net/elbasurero\nAlias: elbasurerotv\n\n💻 Patreon\nhttps://patreon.com/ElBasureroTi_Vi_Plas\n\n📺 Twitch\nhttps://www.twitch.tv/elbasurerochido\n\n▶ Membresías\nhttps://www.youtube.com/channel/UCRE0S6c2_KYBazBhZcm-taw/join\n\n🛜 Página web\nhttps://elbasurerotivi.github.io/elbasurero/\n\n🖥 Discord\nhttps://discord.gg/tZS2jQaDVY\n\n🌎 PayPal\nhttps://paypal.me/edgarmenagarcia\n\n☕ Ko-fi\nhttps://ko-fi.com/elbasurerotv\n\n🛍️ Amazon Wishlist\nhttps://www.amazon.com.mx/hz/wishlist/ls/2ZJB7HP322O4N?ref_=wl_share\n\n🔗 Linktree\nhttps://linktr.ee/elbasurerotivi',
+  fecha: '2026-08-06',
+  link: 'https://youtu.be/T9leVHnWe5M',
+  miniatura: 'https://img.youtube.com/vi/T9leVHnWe5M/maxresdefault.jpg',
+  tags: []
+},
+  {
+  titulo: '🇦🇷🥩 ¡Argentina vs México EN LA PARRILLA! ¿Quién ganó este duelo? | Reacción',
+  descripcion: '¡Hoy tocó un duelo que tenía que pasar tarde o temprano! 🔥🥩🇦🇷🇲🇽\n\nEn este video reacciono a Locos por el Asado, donde enfrentan a parrilleros argentinos y mexicanos en una competencia que no sólo abre el apetito... también pone sobre la mesa dos enormes tradiciones gastronómicas.\n\nComo mexicano y amante de la comida argentina, disfruté muchísimo este intercambio. Más que una competencia, es una oportunidad para apreciar lo mejor de ambas culturas y seguir aumentando mis ganas de viajar a Argentina.\n\n¿Ustedes con qué equipo se quedan? ¿Asado argentino o parrillada mexicana?\n\nLINKS\n\n💳 Apoya el canal en CENEKA\nhttps://ceneka.net/elbasurero\n\n📲 Whatsapp\nhttps://chat.whatsapp.com/Fyw5G6L8GLm71kMDATHm6P\n\n💳 Mercadopago\nhttps://ceneka.net/elbasurero\nAlias: elbasurerotv\n\n💻 Patreon\nhttps://patreon.com/ElBasureroTi_Vi_Plas\n\n📺 Twitch\nhttps://www.twitch.tv/elbasurerochido\n\n▶ Membresías\nhttps://www.youtube.com/channel/UCRE0S6c2_KYBazBhZcm-taw/join\n\n🛜 Página web\nhttps://elbasurerotivi.github.io/elbasurero/\n\n🖥 Discord\nhttps://discord.gg/tZS2jQaDVY\n\n🌎 PayPal\nhttps://paypal.me/edgarmenagarcia\n\n☕ Ko-fi\nhttps://ko-fi.com/elbasurerotv\n\n🛍️ Amazon Wishlist\nhttps://www.amazon.com.mx/hz/wishlist/ls/2ZJB7HP322O4N?ref_=wl_share\n\n🔗 Linktree\nhttps://linktr.ee/elbasurerotivi',
+  fecha: '2026-08-07',
+  link: 'https://youtu.be/9tQMLhPBtT4',
+  miniatura: 'https://img.youtube.com/vi/9tQMLhPBtT4/maxresdefault.jpg',
+  tags: []
+},
+  {
+  titulo: '¡LAUCHA PREPARA COMIDA MEXICANA! 🇲🇽🔥 Ft. La Ruta de la Garnacha | Reacción',
+  descripcion: 'Promesa pagada. 😂\n\nCuando terminó el video anterior de Laucha, prometí que iba a ver este... y aquí estamos cumpliendo.\n\nEn esta ocasión reacciono a Laucha preparando comida callejera mexicana junto a La Ruta de la Garnacha. Y sí: es exactamente el tipo de video que uno no debería ver con hambre. 🌮🔥\n\nMe encantó ver a Laucha metiéndose con la gastronomía mexicana y descubrir cómo se enfrenta a algunos de nuestros clásicos de comida callejera.\n\nEntre comida, Argentina, México y muchísimo antojo, este video fue peligroso para mi estómago. 😂\n\n¿Qué comida callejera mexicana tendría que probar Laucha sí o sí?\n\nLINKS\n\n💳 Apoya el canal en CENEKA\nhttps://ceneka.net/elbasurero\n\n📲 Whatsapp\nhttps://chat.whatsapp.com/Fyw5G6L8GLm71kMDATHm6P\n\n💳 Mercadopago\nhttps://ceneka.net/elbasurero\nAlias: elbasurerotv\n\n💻 Patreon\nhttps://patreon.com/ElBasureroTi_Vi_Plas\n\n📺 Twitch\nhttps://www.twitch.tv/elbasurerochido\n\n▶ Membresías\nhttps://www.youtube.com/channel/UCRE0S6c2_KYBazBhZcm-taw/join\n\n🛜 Página web\nhttps://elbasurerotivi.github.io/elbasurero/\n\n🖥 Discord\nhttps://discord.gg/tZS2jQaDVY\n\n🌎 PayPal\nhttps://paypal.me/edgarmenagarcia\n\n☕ Ko-fi\nhttps://ko-fi.com/elbasurerotv\n\n🛍️ Amazon Wishlist\nhttps://www.amazon.com.mx/hz/wishlist/ls/2ZJB7HP322O4N?ref_=wl_share\n\n🔗 Linktree\nhttps://linktr.ee/elbasurerotivi',
+  fecha: '2026-08-10',
+  link: 'https://youtu.be/IsARUbAfGRY',
+  miniatura: 'https://img.youtube.com/vi/IsARUbAfGRY/maxresdefault.jpg',
+  tags: []
+},
+  {
+  titulo: 'Los 4 Fantásticos no me convencieron... pero Mariano SÍ 😂 | Reacción',
+  descripcion: 'La película de Los 4 Fantásticos fue bastante... plana. 😅\n\nPero después de verla, nos fuimos a Twitch para ver a Mariano Rodríguez dar su opinión honesta sobre la película y ahí sí: valió completamente la pena. 😂\n\nEsta reacción fue en comunidad, justo después de terminar la película. Y finalmente pude descubrir de qué carajos estaba hablando Mariano. Jajajaja.\n\nLos miembros Premium pueden ver el live completo de esta sesión en la página web.\n\n📺 Twitch: todos los directos se publican gratis en el canal, excepto los domingos, que son contenido exclusivo para Premium.\n\n🕘 Directos: 21:00 hs\n\n🇦🇷 Lunes de Argentina\n🎬 Miércoles de Cine\n🎨 Jueves Animados\n🎵 Mente Colmena — Rockola en vivo\n⭐ Domingo Premium — contenido exclusivo en la web\nLINKS\n\n💳 Apoya el canal en CENEKA\nhttps://ceneka.net/elbasurero\n\n📲 Whatsapp\nhttps://chat.whatsapp.com/Fyw5G6L8GLm71kMDATHm6P\n\n💳 Mercadopago\nhttps://ceneka.net/elbasurero\nAlias: elbasurerotv\n\n💻 Patreon\nhttps://patreon.com/ElBasureroTi_Vi_Plas\n\n📺 Twitch\nhttps://www.twitch.tv/elbasurerochido\n\n▶ Membresías\nhttps://www.youtube.com/channel/UCRE0S6c2_KYBazBhZcm-taw/join\n\n🛜 Página web\nhttps://elbasurerotivi.github.io/elbasurero/\n\n🖥 Discord\nhttps://discord.gg/tZS2jQaDVY\n\n🌎 PayPal\nhttps://paypal.me/edgarmenagarcia\n\n☕ Ko-fi\nhttps://ko-fi.com/elbasurerotv\n\n🛍️ Amazon Wishlist\nhttps://www.amazon.com.mx/hz/wishlist/ls/2ZJB7HP322O4N?ref_=wl_share\n\n🔗 Linktree\nhttps://linktr.ee/elbasurerotivi',
+  fecha: '2026-08-11',
+  link: 'https://youtu.be/rseq_erGp_4',
+  miniatura: 'https://img.youtube.com/vi/rseq_erGp_4/maxresdefault.jpg',
+  tags: []
+},
+  {
+  titulo: 'La historia detrás de la crisis del 2001 | Reaccionando a Historias Innecesarias',
+  descripcion: 'Hoy reacciono a un documental de Historias Innecesarias sobre uno de los momentos más importantes y difíciles de la historia reciente de Argentina: la crisis de 2001.\n\nEs un video bastante largo —más de dos horas— pero también muy informativo y lleno de contexto. Una reacción diferente a las habituales, porque más que simplemente entretener, este documental ayuda a entender cómo se llegó a una situación que marcó profundamente a toda una generación de argentinos.\n\nSi conocen poco sobre lo ocurrido en 2001, este video es una excelente oportunidad para acercarse al tema. Y si lo vivieron, probablemente haya muchos momentos que les despierten recuerdos.\n\n¿Ustedes vivieron la crisis de 2001? ¿Qué recuerdan de aquella época?\n\nLINKS\n\n💳 Apoya el canal en CENEKA\nhttps://ceneka.net/elbasurero\n\n📲 Whatsapp\nhttps://chat.whatsapp.com/Fyw5G6L8GLm71kMDATHm6P\n\n💳 Mercadopago\nhttps://ceneka.net/elbasurero\nAlias: elbasurerotv\n\n💻 Patreon\nhttps://patreon.com/ElBasureroTi_Vi_Plas\n\n📺 Twitch\nhttps://www.twitch.tv/elbasurerochido\n\n▶ Membresías\nhttps://www.youtube.com/channel/UCRE0S6c2_KYBazBhZcm-taw/join\n\n🛜 Página web\nhttps://elbasurerotivi.github.io/elbasurero/\n\n🖥 Discord\nhttps://discord.gg/tZS2jQaDVY\n\n🌎 PayPal\nhttps://paypal.me/edgarmenagarcia\n\n☕ Ko-fi\nhttps://ko-fi.com/elbasurerotv\n\n🛍️ Amazon Wishlist\nhttps://www.amazon.com.mx/hz/wishlist/ls/2ZJB7HP322O4N?ref_=wl_share\n\n🔗 Linktree\nhttps://linktr.ee/elbasurerotivi',
+  fecha: '2026-08-12',
+  link: 'https://youtu.be/YTtot3vE6VA',
+  miniatura: 'https://img.youtube.com/vi/YTtot3vE6VA/maxresdefault.jpg',
+  tags: []
+},
   {
   titulo: 'Mariano Recortes | Highlander 2 😂⚔️ | La reacción más larga de la Marianeta',
   descripcion: 'Este Mariano Recortes terminó siendo una locura. 😂\n\nReaccionamos a la reseña de Highlander 2 en vivo por YouTube y, sin exagerar, fue una de las reacciones más largas y divertidas que hemos hecho en el canal con Mariano.\n\nTuve que detener el video muchísimas veces porque había demasiado que comentar. Entre las decisiones de la película, las ocurrencias de Mariano y el chat completamente desatado, fue imposible avanzar sin parar a reírnos.\n\nY enfiselmo se hizo presente, por cierto.\n\nSi te gustan los Mariano Recortes donde comentamos absolutamente todo... este es para ti. 🍿😂\n\nLINKS\n\n📲 Whatsapp: https://chat.whatsapp.com/Fyw5G6L8GLm71kMDATHm6P\n💳 Mercadopago: https://ceneka.net/elbasurero (Alias: elbasurerotv)\n💻 Patreon: https://patreon.com/ElBasureroTi_Vi_Plas\n📺 Twitch: https://www.twitch.tv/elbasurerochido\n▶ Membresías: https://www.youtube.com/channel/UCRE0S6c2_KYBazBhZcm-taw/join\n🛜 Página web: https://elbasurerotivi.github.io/elbasurero/\n🖥 Discord: https://discord.gg/tZS2jQaDVY\n🌎 PayPal: https://paypal.me/edgarmenagarcia\n☕ Ko-fi: https://ko-fi.com/elbasurerotv\n🛍️ Amazon Wishlist: https://www.amazon.com.mx/hz/wishlist/ls/2ZJB7HP322O4N?ref_=wl_share\n🔗 Linktree: https://linktr.ee/elbasurerotivi',
