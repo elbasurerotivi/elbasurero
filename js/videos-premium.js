@@ -2442,6 +2442,20 @@ export const videosPremium = [
   thumbnail: 'Imagenes/Xmen 97 - Parte 3.png',
   source: 'https://rumble.com/embed/v7byxb4/?pub=4nmhh2',
   type: 'iframe'
+},
+
+             {
+  id: 'reaccion_a_thunderbolts_peliculas',
+  name: 'Películas',
+  categoria: 'peliculas',
+  temporada: '0',
+  episodio: '0',
+  title: 'Reacción a Thunderbolts ⚡💥',
+  title2: 'De lo mejorcito de Marvel últimamente*',
+  description: 'Seguimos avanzando por el camino hacia las grandes metas del Universo Marvel, y esta vez tocó Thunderbolts*.\n\nLa vimos en Twitch junto con la comunidad y, después de algunas experiencias recientes con Marvel que no precisamente nos dejaron brincando de emoción 😂, esta película fue una sorpresa bastante agradable.\n\n¡Buena película!\n\nDe hecho, para mí está entre lo mejorcito que ha hecho Marvel últimamente. Tiene una energía diferente, personajes que funcionan muy bien juntos y una dinámica que hizo que la reacción fuera especialmente divertida con la comunidad.\n\nY eso también se agradece dentro de este recorrido. Después de algunas paradas que se sintieron más como trámite para llegar a las grandes metas, encontrarnos con una película que realmente disfruté fue un cambio de aire muy bienvenido.\n\nSeguimos pavimentando el camino hacia Spider-Man y Avengers: Doomsday. 🕷️💥\n\nPero esta vez sí:\nMarvel, bien jugado. ⚡',
+  thumbnail: 'Imagenes/Thunderbolts.png',
+  source: 'https://rumble.com/embed/v7c3o22/?pub=4nmhh2',
+  type: 'iframe'
 }
 
 
