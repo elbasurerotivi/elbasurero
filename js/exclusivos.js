@@ -1618,6 +1618,48 @@ export const videosExclusivos = [
   thumbnail: 'Imagenes/Xmen 97 - Parte 3.png',
   source: 'https://rumble.com/embed/v7byxb4/?pub=4nmhh2',
   type: 'iframe'
+},
+
+    {
+  id: 'reaccion_a_playa_de_lobos_peliculas',
+  name: 'Películas',
+  categoria: 'peliculas',
+  temporada: '0',
+  episodio: '0',
+  title: 'Reacción a Playa de Lobos 🐺🌊🇪🇸',
+  title2: 'Francella, una película y mucho que destrozar',
+  description: 'Este Lunes de Argentina nos fuimos hasta España por una razón muy sencilla:\n\nGuillermo Francella. 😂\n\nVimos Playa de Lobos en Twitch junto con la comunidad. No es necesariamente una película argentina, pero si aparece Francella, ya tenemos una excusa perfectamente válida para meterla en nuestro Lunes de Argentina.\n\nY hay algo que nadie puede negar: Francella devora la pantalla. El problema es que aquí es, en buena medida, Francella haciendo de Francella. Y aunque eso puede ser suficiente para sostener muchas cosas… esta vez no alcanzó.\n\nPorque la película no nos gustó. A nadie. 😂\n\nLa intención parece ser construir una especie de ejercicio mental, moral y psicológico alrededor de sus personajes, pero para nosotros terminó siendo un intento bastante fútil. El guion quiere deslumbrar constantemente con sus planteamientos, pero le encontramos muy poca inteligencia y sutileza en la manera de desarrollarlos.\n\nEs de esas películas que son difíciles de explicar porque incluso después de terminarla te quedas pensando: “¿Qué era exactamente lo que quería hacer?”\nY ni siquiera llegó a ese glorioso territorio de “es tan mala que es buena”. Jajajajaja.\n\nPero afortunadamente, había algo que sí funcionó perfectamente:\n\nla comunidad.\n\nPorque si la película no nos iba a dar mucho que disfrutar, al menos nos dio una oportunidad maravillosa para hacer lo que mejor hacemos juntos: destrozarla en familia. 😂\n\nY eso, honestamente, fue una joya.\n\nOtra película, otro Lunes de Argentina y otra noche en la que la comunidad terminó siendo lo mejor de todo. 🇦🇷❤️',
+  thumbnail: 'Imagenes/Playa de lobos.png',
+  source: 'https://rumble.com/embed/v7c9zcs/?pub=4nmhh2',
+  type: 'iframe'
+},
+
+  {
+  id: 'reaccion_a_backrooms_resena_de_mariano_el_origen_de_todo_peliculas',
+  name: 'Películas',
+  categoria: 'peliculas',
+  temporada: '0',
+  episodio: '0',
+  title: 'Reacción a Backrooms 👁️🟨 + reseña de Mariano + el origen de todo',
+  title2: 'Combo completo de bakcrooms',
+  description: 'Esta noche en Twitch tuvimos una sesión especialmente divertida porque hicimos un pequeño viaje por todo el fenómeno de The Backrooms.\n\nPrimero vimos la película Backrooms, después vimos la reseña correspondiente de Mariano Rodríguez y, para cerrar la noche, nos fuimos hasta el origen del fenómeno con el primer video de la serie web original de YouTube de The Backrooms.\n\nY la verdad: nos encantó casi todo.\n\nLa película funcionó muchísimo mejor de lo que esperaba. Me gustó mucho y, salvo algunos detalles que no terminaba de identificar, la experiencia fue muy buena.\n\nHasta que llegó Mariano a ponerle nombre a lo que nos estaba haciendo ruido. 😂\n\nResulta que el guion fue escrito por dos personas: un escritor nuevo en la industria y otro con mucha más experiencia. Y de repente todo empezó a tener sentido.\n\nLlegamos a una teoría bastante clara (gracias a Mariano, por supuesto): las partes que menos nos gustaron parecen venir precisamente de ese intento de meter una mano \'veterana\' para hacer más convencional una idea que originalmente era bastante menos convencional.\n\nLa intención aparentemente era evitar errores.\n\nY quizá justamente ahí estuvo el problema. 😂\n\nPor supuesto, esto es nuestra interpretación después de ver la película y escuchar el análisis de Mariano, pero nos resultó demasiado evidente la diferencia entre esas dos sensibilidades como para no comentarlo.\n\nY después de todo eso, terminar viendo el primer episodio de la serie web original de YouTube fue la manera perfecta de cerrar la noche y regresar a las raíces del fenómeno.\n\nAdemás…\n\nLA REPUTA MADRE.\n\nHubo sustos. Muchos.\n\nY sí: me brinqué como gato con pepino. 😂😂😂\n\nUna noche buenísima, con película, análisis, historia de internet, comunidad, teorías y unos cuantos sustos que definitivamente no estaban en el itinerario.\n\nBackrooms: aprobado.\nMi dignidad después de los sustos: pendiente. 🟨👁️',
+  thumbnail: 'Imagenes/ChatGPT Image 20 ago 2026, 11_40_16 p.m..png',
+  source: 'https://rumble.com/embed/v7ca04a/?pub=4nmhh2',
+  type: 'iframe'
+},
+
+  {
+  id: 'avatar_volvimos_con_el_peloncito_encantador_avatar_la_leyenda_de_aang',
+  name: 'Avatar, La leyenda de Aang',
+  categoria: 'avatar_la_leyenda_de_aang',
+  temporada: '2',
+  episodio: '3-5',
+  title: 'Avatar 🌊🔥 Volvimos con el peloncito encantador',
+  title2: 'Libro 2, episodios 3–5',
+  description: '¡Volvimos con el peloncito encantador! 😂\n\nDespués de alejarnos un rato de Avatar: La leyenda de Aang —primero por el Mundial y después por nuestra aventura con la segunda temporada de X-Men 97— finalmente regresamos al Libro 2.\n\nY esta vez vimos los episodios 3, 4 y 5 de la segunda temporada.\n\n🌊 Episodio 3\n\nAang y compañía continúan su viaje mientras aparecen nuevos obstáculos y la historia empieza a ampliar todavía más el mundo que conocemos.\n\n🪨 Episodio 4\n\nEl grupo se encuentra con una situación que los obliga a tomar decisiones y enfrentarse a una realidad bastante diferente a la que esperaban.\n\n🔥 Episodio 5\n\nLa aventura continúa y empiezan a aparecer nuevas piezas que hacen que el viaje de Aang se vuelva cada vez más interesante.\n\nY qué agradable fue regresar.\n\nNo esperaba que volver a Avatar después de tanto tiempo se sintiera como entrar en una especie de oasis de comodidad. Pero eso fue exactamente lo que ocurrió. Una noche tranquila, divertida y con esa sensación de simplemente sentarnos a disfrutar una buena historia.\n\nAdemás, tuvimos gente nueva bastante activa en el chat y, para mi fortuna, varios conocían muy bien la serie. Así que entre los que ya llevan tiempo acompañándome y los nuevos expertos en Avatar, tuvimos una muy buena combinación.\n\nNo fuimos una multitud esta vez. Pero, honestamente, se disfrutó igual que siempre.\n\nUna noche tranquila, una comunidad bonita, el peloncito de regreso y tres episodios que nos recordaron por qué estos Jueves Animados se sienten tan bien.\n\nBeso del chef. 👨‍🍳💋\n\nAhora sí: a disfrutar nuevamente los Jueves Animados en Twitch, en El Basurero Chido. 🌊🔥💙',
+  thumbnail: 'Imagenes/Avatar Temp 2 - Ep 3-5.png',
+  source: 'https://rumble.com/embed/v7ca0q8/?pub=4nmhh2',
+  type: 'iframe'
 }
 
 ];
