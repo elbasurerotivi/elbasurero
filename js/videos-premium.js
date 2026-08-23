@@ -16,7 +16,7 @@ export const categoriasData = {
             peliculas: {
     key: 'peliculas',
     name:'Películas',
-    background: 'Imagenes/Thunderbolts.png',     // Fondo grande
+    background: 'Imagenes/ChatGPT Image 20 ago 2026, 11_40_16 p.m..png',     // Fondo grande
     cover: 'Imagenes/poster_peliculas.png',               // Carátula pequeña  
     title: 'Películas',
     synopsis: 'Este es un espacio dedicado especialmente a todas esas peliculas que vemos cada semana!!',
