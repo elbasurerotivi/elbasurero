@@ -2498,6 +2498,20 @@ export const videosPremium = [
   thumbnail: 'Imagenes/Avatar Temp 2 - Ep 3-5.png',
   source: 'https://rumble.com/embed/v7ca0q8/?pub=4nmhh2',
   type: 'iframe'
+},
+
+              {
+  id: 'los_simpson_4_caja_de_pandora_variete',
+  name: 'Varieté',
+  categoria: 'variete',
+  temporada: '0',
+  episodio: '0',
+  title: 'Los Simpson #4 🍩📺 | Caja de Pandora',
+  title2: '¡Volvimos!',
+  description: 'Abrimos nuevamente la Caja de Pandora. 😂🍩\n\nCuarto directo de Los Simpson y la dinámica sigue exactamente igual: la comunidad propone, hacemos nuestras dinámicas para decidir qué episodios entran en la selección y finalmente los vemos juntos en Twitch.\n\nEsta vez fueron cuatro episodios, y la verdad es que estuvo genial.\n\nLo que más me sigue divirtiendo de este formato es que ustedes tienen una memoria absurda de esta serie y yo sigo entrando a muchos de estos episodios prácticamente a ciegas. 😂 Cada referencia que aparece en el chat puede convertirse en una nueva puerta que abrimos dentro de esta enorme colección de capítulos.\n\nNo estamos recorriendo la serie cronológicamente. Estamos construyendo nuestro propio camino a través de los episodios que la comunidad considera importantes, memorables, absurdos o simplemente demasiado buenos como para que me los siga perdiendo.\n\nY eso convierte cada sesión en una pequeña lotería.\n\n¿Qué episodio aparecerá en la próxima apertura de la Caja de Pandora?\nEso lo decidimos entre todos. 🍩📺\n\nEsta sección llegó para quedarse como parte recurrente del canal.\n\nCaja de Pandora: abierta. 😈',
+  thumbnail: 'Imagenes/Los Simpson #4.png',
+  source: 'https://rumble.com/embed/v7cej18/?pub=4nmhh2',
+  type: 'iframe'
 }
 
 
