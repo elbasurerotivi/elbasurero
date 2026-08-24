@@ -2229,7 +2229,7 @@ export const videosPremium = [
   title: 'Reacción a Los Simpson 🍩📺',
   title2: 'Segundo stream y entrando al hype de lleno',
   description: 'Seguimos viendo The Simpsons en Twitch a puro episodio recomendado por la comunidad, y honestamente me la pasé increíble otra vez. Cada vez entiendo más por qué tanta gente ama esta serie… aunque todavía siento que apenas estoy rascando la superficie 😅\n\nLa dinámica sigue siendo buenísima: el chat recomendando episodios por referencias absurdamente específicas, nosotros buscándolos en Disney Plus y luego sobreviviendo al magnífico caos del copy entre pausas, comentarios y decir “Los Thompson” cada cinco minutos.\n\nEsta vez vimos:\n\nTemporada 4, Episodio 12 — “Marge vs. el monorriel”\n(el del monorriel)\nSpringfield compra un monorriel… y absolutamente nada podía salir bien 😅\n\nTemporada 6, Episodio 15 — “Homie, el payaso”\n(el de Homero payaso)\nHomero termina convertido en doble oficial de Krusty y todo se descontrola rapidísimo.\n\nTemporada 6, Episodio 13 — “Y con Maggie son 3”\n(el de “hazlo por ella”)\nHomero recuerda cómo fue realmente la llegada de Maggie a la familia 💔\n\nTemporada 3, Episodio 16 — “Bart el amante”\n(el de Bart respondiéndole cartas a la señora Krabappel)\nUna broma inocente escala muchísimo más de lo que Bart esperaba.\n\nTemporada 3, Episodio 22 — “El rock de Otto”\n(el de Otto perdiendo el trabajo)\nOtto toca fondo… y termina viviendo con los Simpson 😅\n\nFue otro stream llenísimo de risas, referencias que yo apenas estoy descubriendo y momentos donde ya entiendo por qué ciertos episodios marcaron a tanta gente. Y honestamente… verlos acompañado los hace todavía mejores.',
-  thumbnail: 'Imagenes/Tompsons 2.png',
+  thumbnail: 'Imagenes/Los Simpson #2.png',
   source: 'https://rumble.com/embed/v78l3p2/?pub=4nmhh2',
   type: 'iframe'
 },
@@ -2285,7 +2285,7 @@ export const videosPremium = [
   title: 'Los Simpson #3 🍩',
   title2: 'Otro viaje por Springfield',
   description: 'Tercer encuentro con Los Simpson y seguimos exactamente con la fórmula que ya se está convirtiendo en tradición: yo no elijo los episodios. La comunidad los propone. 😂\n\nComo todavía tengo muchísimo por descubrir de esta serie, seguimos utilizando las dinámicas del stream para decidir qué episodios vamos a ver. La comunidad lanza sus recomendaciones, aparecen referencias del tipo “el episodio donde pasa aquello”, hacemos la selección entre todos… y finalmente descubrimos qué demonios me recomendaron.\n\nY eso es precisamente lo divertido.\n\nNo estamos viendo la serie de manera cronológica ni intentando completar temporadas. Estamos construyendo nuestro propio recorrido por Springfield a través de los episodios que ustedes consideran indispensables.\n\nAdemás, sigue siendo muy divertido descubrir cuánto conoce la comunidad de una serie que yo, evidentemente, conozco muchísimo menos. 😂\n\nCada nuevo stream termina siendo una mezcla de nostalgia para ellos y descubrimiento para mí. Y mientras más episodios vemos, más referencias empiezan a tener sentido y más fácil resulta entender por qué ciertos capítulos son considerados auténticos clásicos.\n\nTercer viaje. Más recomendaciones. Más dinámicas. Y todavía me queda muchísimo Springfield por descubrir. 🍩📺',
-  thumbnail: 'Imagenes/Los Simpson, parte 3.png',
+  thumbnail: 'Imagenes/Los Simpson #3.png',
   source: 'https://rumble.com/embed/v7bq7t4/?pub=4nmhh2',
   type: 'iframe'
 },
